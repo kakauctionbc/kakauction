@@ -50,7 +50,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" 
 			value="classpath:/config/mybatis/${Globals.DbType}/mybatis-config.xml" />
-		<property name="typeAliasesPackage" value="com.herb.app" />
+		<property name="typeAliasesPackage" value="com.app.kaka" />
 		<property name="mapperLocations">
 			<array>
 				<!-- <value>classpath:/config/mybatis/mapper/oracle/category.xml</value> -->

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +58,7 @@
 	selectedMarker = null;
 	
 	//마커 이미지의 이미지 주소입니다
-	var imageSrc = "image/icon.png"; 
+	var imageSrc = "${pageContext.request.contextPath }/image/icon.png"; 
 	
 	// 장소 검색 객체를 생성합니다
 	var ps = new daum.maps.services.Places(); 
@@ -119,7 +120,7 @@
 	    	}else{
 				// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
 			    iwContent = '<div style="padding:5px; width: 200px; height: 200px;"> 위치 좌표 : <br>'+position.latlng+
-			    				"<img src='image/kakao_spacedotOne.jpeg'></div>"; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+			    				"<img src='${pageContext.request.contextPath }/image/kakao_spacedotOne.jpeg'></div>"; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 			    				
 			    iwRemoveable = true; // removeable 속성을 true 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 			    
@@ -179,7 +180,7 @@
 	    }
 	    
 	  	//마커 이미지의 이미지 주소입니다
-	    var imageSrc = "image/icon.png";
+	    var imageSrc = "${pageContext.request.contextPath }/image/icon.png";
 	  	
 		//마커 이미지의 이미지 크기 입니다
 	    var imageSize = new daum.maps.Size(24, 35);
@@ -215,7 +216,7 @@
 		}
 		// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
 	    iwContent = '<div style="padding:5px; width: 200px; height: 250px;"> 위치 좌표 : <br>'+findMarker.getPosition()+
-	    				"<img src='image/kakao_spacedotOne.jpeg'></div>"; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+	    				"<img src='${pageContext.request.contextPath }/image/kakao_spacedotOne.jpeg'></div>"; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 	    				
 	    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 	    
@@ -260,7 +261,7 @@
 		return nearMarker;
 	}
 </script>
-	<form name="inputPlace" id="inputPlace" method="post" action="mapConti.jsp">
+	<form name="inputPlace" id="inputPlace" method="post" action="<c:url value='/map/mapConti.do'/>">
 		<input type="text" name="place" id="place" value="<%=place %>">
 		<input type="submit" value="검색">
 	</form>
