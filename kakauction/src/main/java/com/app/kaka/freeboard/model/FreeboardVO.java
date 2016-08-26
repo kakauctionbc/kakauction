@@ -7,14 +7,14 @@ public class FreeboardVO {
 	private String memberId;
 	private String freeboardTitle;
 	private String freeboardContent;
-	private Timestamp regdate;
+	private Timestamp freeboardRregdate;
 	private int freeboardReadCount;
 	private int freeboardGroupno;
 	private int freeboardStep;
 	private int freeboardSortno;
 	private String freeboardDelflag;
 	private String freeboardFilename;
-	private String freeboardFilesize;
+	private long freeboardFilesize;
 	private String freeboardDowncount;
 	private String freeboardOriginalname;
 	
@@ -42,11 +42,11 @@ public class FreeboardVO {
 	public void setFreeboardContent(String freeboardContent) {
 		this.freeboardContent = freeboardContent;
 	}
-	public Timestamp getRegdate() {
-		return regdate;
+	public Timestamp getFreeboardRregdate() {
+		return freeboardRregdate;
 	}
-	public void setRegdate(Timestamp regdate) {
-		this.regdate = regdate;
+	public void setFreeboardRregdate(Timestamp freeboardRregdate) {
+		this.freeboardRregdate = freeboardRregdate;
 	}
 	public int getFreeboardReadCount() {
 		return freeboardReadCount;
@@ -84,10 +84,10 @@ public class FreeboardVO {
 	public void setFreeboardFilename(String freeboardFilename) {
 		this.freeboardFilename = freeboardFilename;
 	}
-	public String getFreeboardFilesize() {
+	public long getFreeboardFilesize() {
 		return freeboardFilesize;
 	}
-	public void setFreeboardFilesize(String freeboardFilesize) {
+	public void setFreeboardFilesize(long freeboardFilesize) {
 		this.freeboardFilesize = freeboardFilesize;
 	}
 	public String getFreeboardDowncount() {
@@ -102,10 +102,11 @@ public class FreeboardVO {
 	public void setFreeboardOriginalname(String freeboardOriginalname) {
 		this.freeboardOriginalname = freeboardOriginalname;
 	}
+	
 	@Override
 	public String toString() {
 		return "FreeboardVO [freeboardNo=" + freeboardNo + ", memberId=" + memberId + ", freeboardTitle="
-				+ freeboardTitle + ", freeboardContent=" + freeboardContent + ", regdate=" + regdate
+				+ freeboardTitle + ", freeboardContent=" + freeboardContent + ", freeboardRregdate=" + freeboardRregdate
 				+ ", freeboardReadCount=" + freeboardReadCount + ", freeboardGroupno=" + freeboardGroupno
 				+ ", freeboardStep=" + freeboardStep + ", freeboardSortno=" + freeboardSortno + ", freeboardDelflag="
 				+ freeboardDelflag + ", freeboardFilename=" + freeboardFilename + ", freeboardFilesize="
