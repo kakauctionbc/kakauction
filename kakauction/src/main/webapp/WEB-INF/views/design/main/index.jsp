@@ -38,33 +38,39 @@
 	<div id="realtimeslide">
 	</div>
 </div>
-<div id="quickservice">
-	<div id="quickservicehead">
-		<p id="text">빠른 서비스</p>
+<div id="wrap">
+	<div id="quickservice">
+		<div id="quickservicehead">
+			<p id="text">빠른 서비스</p>
+		</div>
+		<div>
+			<p>이미지</p>
+		</div>
 	</div>
-	<div>
-		<p>이미지</p>
+	<div id="notice">
+		<div id="noticehead">
+			<p id="text">공지사항</p>
+			<p id="more">
+				<a href="">MORE▶</a>
+			</p>
+		</div>
+		<div>
+			<p>공지사항</p>
+		</div>
+	</div>
+	<div id="schedule">
+		<div id="schedulehead">
+			<p id="text">일정안내</p>
+			<p id="more">
+				<a href="">MORE▶</a>
+			</p>
+		</div>
+		<div>
+			<p>일정안내</p>
+		</div>
 	</div>
 </div>
-<div id="notice">
-	<div id="noticehead">
-		<p id="text">공지사항</p>
-		<p id="more"><a href="">MORE▶</a></p>
-	</div>
-	<div>
-		<p>공지사항</p>
-	</div>
-</div>
-<div id="schedule">
-	<div id="schedulehead">
-		<p id="text">일정안내</p>
-		<p id="more"><a href="">MORE▶</a></p>
-	</div>
-	<div>
-		<p>일정안내</p>
-	</div>
-</div>
-		<script>
+<!-- <script>
 		var show;
 		var slideIndex = 1;
 		showSlides(slideIndex);
@@ -103,5 +109,5 @@
 			}
 			show = setTimeout(showSlides, 3000);
 		}
-	</script>
+	</script> -->
 <%@ include file="../inc/bottom.jsp"%>

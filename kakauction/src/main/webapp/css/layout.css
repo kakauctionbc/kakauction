@@ -73,7 +73,7 @@ body, td, th{
 	margin-top: 5px;
 	float: right;	
 }
-#headmenu{
+#headmenu {
 	float: left;
 }
 #headmenu ul li{
@@ -93,6 +93,52 @@ body, td, th{
 	text-decoration: blink;
 	font-weight: bold;
 	color: black;
+}
+
+#headmenu-content {
+	display: none;
+	position: absolute;
+	top:111px;
+	width:100%;
+	max-height:250px;
+	background: white;
+	font-size: 1em;
+	border: 1px solid silver;
+}
+
+#headmenu-content a {
+	text-decoration: none;
+	display: block;
+	color: gray;
+	padding-bottom: 10px;
+}
+
+#headmenu-content a:hover {
+	text-decoration: none;
+	color: black;
+}
+
+#headmenu ul li a:hover #headmenu-content {
+	display: block;
+}
+#headmenu-content ul li{
+	padding-right: 30px;
+}
+#content-member{
+	float: left;
+	margin-left: 900px;
+}
+#content-sell{
+ 	float: left;	
+}
+#content-buy{
+	float: left;
+}
+#content-myinfo{
+	float: left;
+}
+#content-notice{
+	float: left;
 }
 #test{
 	width: 100%;
@@ -132,10 +178,17 @@ body, td, th{
 #realtimeslide{
 	border: 1px solid silver;
 	width: 820px;
-	height: 200px;
+	height: 220px;
 	float: left;
 	margin-top: 20px;
 	margin-left: 60px;
+}
+#wrap	{
+	width: 100%;
+	height: 300px;
+	margin: 0 auto;
+	border: 1px solid silver;
+	margin-top: 20px;
 }
 #quickservice{
 	width: 18%;
@@ -170,50 +223,7 @@ body, td, th{
 	width: 100%;
 	float: left;
 }
-#wrap	{
-	width: 1100px;
-	height: 500px;
-	margin: 0 auto;
-	border: 1px solid silver;
-	margin-top: 20px;
-}
-.dropbtn {
-    border-top: 1px solid silver;
-    cursor: pointer;
-    
-}
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-    width: 122px;
-    height: 83px;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    width: 122px;
-    background: #ff0080;
-    font-size: 0.9em;
-}
-
-.dropdown-content a {
-    text-decoration: none;
-    display: block;
-    color: white;
-    padding-bottom: 10px;
-    text-align: center;
-}
-
-.dropdown-content a:hover {
-	text-decoration: none; 
-	color: black;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
 /* container */
 #container	{
 	/*clear: both;*/
