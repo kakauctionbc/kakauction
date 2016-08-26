@@ -1,0 +1,64 @@
+@CHARSET "utf-8";
+/* body{margin:0} */
+
+body, td, th, span, p{
+	font-family: 'nanum gothic', 맑은 고딕, 한컴돋움, 돋움;
+	font-size: 0.9em;
+	color:#555555;
+}
+	
+td, th{
+	padding:4px;
+}
+
+
+input,Textarea, select {
+    font-family:'nanum gothic', 맑은 고딕, 한컴돋움, 돋움;
+	font-size: 0.9em;
+	color:#555555;
+}
+#text{
+	font-size:1.2em;
+	float: left;
+	padding-bottom: 10px;
+}
+#more{
+	float: right;
+	margin-top: 10px;
+}
+#more a{
+	text-decoration: none;
+	color: black;
+}
+
+
+.divPdList{
+	width:800px;
+	padding:10px 5px 10px 0;
+	margin:10px 0 35px 3px;
+	border:solid silver 1px;
+}	
+
+.errorMessage{
+	color:red;
+	font-size:0.8em;
+}
+
+
+#align_left{
+	text-align: left;
+}
+#align_right{
+	text-align: right;
+}
+#align_center{
+	text-align: center;
+}
+
+
+.width_80{
+	width:80px;
+}
+.width_350{
+	width:350px;
+}
