@@ -13,5 +13,8 @@ public interface NoticeService {
 	int insertNotice(NoticeVO vo);
 	List<NoticeVO> selectAll(SearchVO searchVo);
 	int selectTotalCount(SearchVO searchVo);
+	public NoticeVO selectByNo(int noticeNo);
+	public String selectByNoIdPwd(String memberId);
+	public int editNotice(NoticeVO noticeVo);
 
 }

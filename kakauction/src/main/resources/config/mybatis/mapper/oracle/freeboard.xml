@@ -19,4 +19,12 @@
 	<select id="selectAllFreeboard" resultType="FreeboardVO">
 		select * from FREEBOARD order by FREEBOARD_NO desc
 	</select> 
+	
+	<!-- 수정 sql문 -->
+	<update id="editNotice" parameterType="NoticeVO">
+		update notice
+		set freeboard_title=#{freeboardTitle}, freeboard_content=#{freeboardContent}, freeboard_filename=#{freeboardFilename},
+			freeboard_filesize=#{freeboardFilesize}, freeboard_originalname=#{freeboardOriginalname}
+		where FREEBOARD_NO=#{freeboardNo}
+	</update>
 </mapper>

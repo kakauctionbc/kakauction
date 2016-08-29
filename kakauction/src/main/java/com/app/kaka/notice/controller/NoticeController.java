@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
@@ -77,7 +78,7 @@ public class NoticeController {
 	@RequestMapping("/list.do")
 	public String listNotice(@ModelAttribute SearchVO searchVo,
 			Model model){
-logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);
+		logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);
 		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
@@ -103,5 +104,46 @@ logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);
 		model.addAttribute("pagingInfo", pagingInfo);
 		
 		return "notice/list";
+	}
+	
+	@RequestMapping(value="/edit.do", method=RequestMethod.GET)
+	public String noticeEdit_get(@RequestParam(defaultValue="0") int noticeNo, Model model){
+		logger.info("글 수정 화면 보여주기, 파라미터 noticeNo={}",noticeNo);
+		if(noticeNo<1){
+			model.addAttribute("msg", "잘못된 url 입니다");
+			model.addAttribute("url", "/notice/list.do");
+			return "common/message";
+		}
+		NoticeVO noticeVo = noticeService.selectByNo(noticeNo);
+		
+		model.addAttribute("noticeVo", noticeVo);
+		return "notice/edit";
+	}
+	
+	@RequestMapping(value="/edit.do", method=RequestMethod.POST)
+	public String noticeEdit_post(HttpServletRequest request, @ModelAttribute NoticeVO noticeVo, Model model){
+		logger.info("글 수정 화면 처리, noticeVo={}",noticeVo);
+		
+		List<Map<String, Object>> fileList = noticeService.fileupload(request);
+		
+		String fileName = "";		
+		String ofileName = "";
+		long fileSize = 0;
+		for(Map<String, Object> myMap : fileList){
+			fileName = (String) myMap.get("noticeFilename");
+			ofileName = (String) myMap.get("noticeOriginalname");
+			fileSize = (Long) myMap.get("noticeFilesize");
+		}//for
+		
+		noticeVo.setNoticeFilename(fileName);
+		noticeVo.setNoticeOriginalname(ofileName);
+		noticeVo.setNoticeFilesize(fileSize);
+		
+		logger.info("글 수정 처리, 파라미터 noticeVo={}", noticeVo);
+		int cnt = noticeService.editNotice(noticeVo);
+		logger.info("글쓰기 결과, cnt={}", cnt);
+		
+		//3. 결과저장, 뷰페이지 리턴
+		return "redirect:/notice/list.do";
 	}
 }

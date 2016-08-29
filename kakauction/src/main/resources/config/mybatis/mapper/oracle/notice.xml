@@ -52,4 +52,25 @@
 		select count(*) from notice 
 		<include refid="searchWhere"></include>
 	</select>
+	
+	
+	<!-- 수정 또는 디테일에서 쓸 셀렉트 -->
+	<select id="selectByNo" parameterType="int" resultType="NoticeVO">
+		select * from notice where notice_no=#{noticeNo}
+	</select>
+	
+	<!-- 공지사항 수정 시 비밀번호 체크용 -->
+	<select id="selectByNoIdPwd" parameterType="string" resultType="string">
+		select m.member_pwd from member m, notice n
+		where m.member_id=n.member_id
+		and m.member_id=#{memberId}
+	</select>
+	
+	<!-- 수정 sql문 -->
+	<update id="editNotice" parameterType="NoticeVO">
+		update notice
+		set notice_title=#{noticeTitle}, notice_content=#{noticeContent}, notice_filename=#{noticeFilename},
+			notice_filesize=#{noticeFilesize}, notice_originalname=#{noticeOriginalname}
+		where notice_no=#{noticeNo}
+	</update>
 </mapper>

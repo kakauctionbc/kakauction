@@ -160,4 +160,19 @@ public class NoticeServiceImpl implements NoticeService {
 	public int selectTotalCount(SearchVO searchVo) {
 		return noticeDao.selectTotalCount(searchVo);
 	}
+	
+	@Override
+	public NoticeVO selectByNo(int noticeNo) {
+		return noticeDao.selectByNo(noticeNo);
+	}
+
+	@Override
+	public String selectByNoIdPwd(String memberId) {
+		return noticeDao.selectByNoIdPwd(memberId);
+	}
+
+	@Override
+	public int editNotice(NoticeVO noticeVo) {
+		return noticeDao.editNotice(noticeVo);
+	}
 }
