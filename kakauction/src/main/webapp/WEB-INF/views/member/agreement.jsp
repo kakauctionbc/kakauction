@@ -6,7 +6,7 @@
 <style type="text/css">
 	#divAgree{
 		width:700px;
-	}
+	}s
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){

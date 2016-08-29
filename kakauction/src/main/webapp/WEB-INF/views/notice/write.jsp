@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js' />"></script>
+<script src="<c:url value='/ckeditor/ckeditor.js'/>" type="text/javascript"></script>
 
 <!DOCTYPE>
 <html>
@@ -19,7 +20,7 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
-		CKEDITOR.replace('content');	
+		CKEDITOR.replace('noticeContent');	
 		
 		$("#frmWrite").submit(function(event){
 			if($("#title").val()==""){
@@ -54,11 +55,11 @@
 	        </div>
 	        <div>
 	            <label for="name">작성자</label>
-	            <input type="text" id="noticeId" name="noticeId" />
+	            <input type="text" id="memberId" name="memberId" />
 	        </div>
 	        <div>
 	            <label for="upfile">첨부파일</label>
-	            <input type="file" id="noticeFilename" name="noticeFilename" />
+	            <input type="file" id="upfile" name="upfile" />
 	            (최대 100M)
 	        </div>
 	        <div>  

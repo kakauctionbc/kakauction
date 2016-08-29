@@ -91,19 +91,6 @@
     	<input type="password" name="jumin2" id="jumin2">
     	<input type="hidden" name="memberJumin" id="memberJumin">
     </div>
-    <%-- <div>
-    	<label for="gender">성별</label>
-    	<c:if test=""></c:if>
-    	<input type="text" name="memberGender" value="" readonly>
-    </div> --%>
-    <div>
-        <label for="pwd">비밀번호</label>
-        <input type="Password" name="memberPwd" id="memberPwd">
-    </div>
-    <div>
-        <label for="pwd2">비밀번호 확인</label>
-        <input type="Password" name="memberPwd2" id="memberPwd2">
-    </div>
     <div>
         <label for="zipcode">주소</label>
         <input type="text" name="zipcode" id="zipcode" ReadOnly
