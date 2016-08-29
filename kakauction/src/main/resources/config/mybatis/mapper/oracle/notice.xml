@@ -25,8 +25,7 @@
 			#{noticeFilename}, #{noticeFilesize}, 0, #{noticeOriginalname})
 	</insert>
 	
-	<select id="selectAll" resultType="noticeVo" 
-		parameterType="SearchVO">
+	<select id="selectAll" resultType="noticeVo" parameterType="SearchVO">
 		select *
 		from
 		(
@@ -49,8 +48,7 @@
 		]]>
 	</select>
 	
-	<select id="selectTotalCount" resultType="int" 
-		parameterType="SearchVO">
+	<select id="selectTotalCount" resultType="int" parameterType="SearchVO">
 		select count(*) from notice 
 		<include refid="searchWhere"></include>
 	</select>
