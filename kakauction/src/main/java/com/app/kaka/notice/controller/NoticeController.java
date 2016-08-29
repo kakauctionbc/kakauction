@@ -9,10 +9,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.app.kaka.common.PaginationInfo;
+import com.app.kaka.common.SearchVO;
+import com.app.kaka.common.Utility;
 import com.app.kaka.notice.model.NoticeService;
 import com.app.kaka.notice.model.NoticeVO;
 
@@ -68,5 +72,36 @@ public class NoticeController {
 		
 		//3. 결과저장, 뷰페이지 리턴
 		return "redirect:/notice/list.do";
+	}
+	
+	@RequestMapping("/list.do")
+	public String listNotice(@ModelAttribute SearchVO searchVo,
+			Model model){
+logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);
+		
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		searchVo.setBlockSize(Utility.BLOCK_SIZE);
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+				
+		//2. db작업 - select
+		List<NoticeVO> alist = noticeService.selectAll(searchVo);
+		logger.info("글목록 조회 결과 alist.size()={}", 
+				alist.size());
+		
+		//전체 레코드 개수 조회하기
+		int totalRecord 
+			= noticeService.selectTotalCount(searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+				
+		//3. 결과 저장, 뷰페이지 리턴
+		model.addAttribute("alist", alist);
+		model.addAttribute("pagingInfo", pagingInfo);
+		
+		return "notice/list";
 	}
 }

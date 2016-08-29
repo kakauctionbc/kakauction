@@ -17,6 +17,7 @@ public class NoticeVO {
 	private long noticeFilesize;
 	private int noticeDowncount;
 	private String noticeOriginalname;
+	private int newImgTerm;
 	
 	public int getNoticeNo() {
 		return noticeNo;
@@ -102,6 +103,12 @@ public class NoticeVO {
 	public void setNoticeOriginalname(String noticeOriginalname) {
 		this.noticeOriginalname = noticeOriginalname;
 	}
+	public int getNewImgTerm() {
+		return newImgTerm;
+	}
+	public void setNewImgTerm(int newImgTerm) {
+		this.newImgTerm = newImgTerm;
+	}
 	
 	@Override
 	public String toString() {
@@ -110,6 +117,7 @@ public class NoticeVO {
 				+ noticeReadCount + ", noticeGroupno=" + noticeGroupno + ", noticeStep=" + noticeStep + ", noticeSort="
 				+ noticeSort + ", noticeDelflag=" + noticeDelflag + ", noticeFilename=" + noticeFilename
 				+ ", noticeFilesize=" + noticeFilesize + ", noticeDowncount=" + noticeDowncount
-				+ ", noticeOriginalname=" + noticeOriginalname + "]";
+				+ ", noticeOriginalname=" + noticeOriginalname + ", newImgTerm=" + newImgTerm + "]";
 	}
+	
 }
