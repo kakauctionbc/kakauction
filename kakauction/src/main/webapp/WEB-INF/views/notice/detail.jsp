@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>글 상세보기</h2>
+	<h2>공지 글 상세보기</h2>
 	<div class="divForm">
 		<div class="firstDiv">
 			<span class="sp1">제목</span> 
