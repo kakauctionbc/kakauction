@@ -21,6 +21,11 @@ public class QnaDAOMybatis extends SqlSessionDaoSupport implements QnaDAO {
 	public int selectTotalCount(SearchVO searchVo) {
 		return getSqlSession().selectOne(namespace+".selectTotalCount", searchVo);
 	}
+
+	@Override
+	public QnaVO selectByNo(int questionNo) {
+		return getSqlSession().selectOne(namespace+".selectByNo", questionNo);
+	}
 	
 	
 }

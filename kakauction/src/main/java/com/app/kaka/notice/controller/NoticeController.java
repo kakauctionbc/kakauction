@@ -154,5 +154,39 @@ public class NoticeController {
 		return "common/message";
 	}
 	
-	
+	@RequestMapping("/detail.do")
+	public String detailNotice(@RequestParam(defaultValue="0") int noticeNo, HttpServletRequest request, Model model){
+		logger.info("공지글 보기 파라미터 noticeNo={}",noticeNo);
+		
+		if (noticeNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/list.do");
+			
+			return "common/message";
+		}
+		
+		NoticeVO noticeVo = noticeService.selectByNo(noticeNo);
+		logger.info("파라미터 noticeVo={}",noticeVo);
+		
+		String fileInfo="", downInfo="";
+		if(noticeVo.getNoticeFilename()!=null 
+				&& !noticeVo.getNoticeFilename().isEmpty()){
+			String contextPath = request.getContextPath();
+			double fileSize 
+					= Math.round((noticeVo.getNoticeFilesize()/1000.0)*10)/10.0;
+			
+			fileInfo="<img src='"+ contextPath 
+					+"/images/file.gif' alt='파일이미지'>";
+			fileInfo+=noticeVo.getNoticeOriginalname()
+					+ " ("+fileSize +"KB)";
+			
+			downInfo="다운:"+noticeVo.getNoticeDowncount();
+		}
+		
+		model.addAttribute("noticeVo", noticeVo);
+		model.addAttribute("fileInfo", fileInfo);
+		model.addAttribute("downInfo", downInfo);
+		
+		return "notice/detail";
+	}
 }

@@ -1,51 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>공지사항</title>
 </head>
 <body>
 	<h2>공지 글 상세보기</h2>
 	<div class="divForm">
 		<div class="firstDiv">
 			<span class="sp1">제목</span> 
-			<span>${freeVo.freeboardTitle}</span>
+			<span>${noticeVo.noticeTitle}</span>
 		</div>
 		<div>
 			<span class="sp1">작성자</span> 
-			<span>${freeVo.memberId}</span>
+			<span>${noticeVo.memberId}</span>
 		</div>
 		<div>
 			<span class="sp1">등록일</span> 
-			<span>${freeVo.freeboardRegdate}</span>
+			<span><fmt:formatDate pattern="yyyy년 MM월 dd일 " value="${noticeVo.noticeRegdate}"/></span>
 		</div>
 		<div>
 			<span class="sp1">조회수</span> 
-			<span>${freeVo.freeboardReadCount}</span>
+			<span>${noticeVo.noticeReadCount}</span>
 		</div>
 		<div>
 			<span class="sp1">첨부파일</span> 
 			<span>
 			<a href
-				="<c:url value='/freeboard/download.do?no=${vo.freeboardNo}&fileName=${vo.freeboardFilename}'/>">
+				="<c:url value='/notice/download.do?no=${noticeVo.noticeNo}&fileName=${noticeVo.noticeFilename}'/>">
 				${fileInfo }
 			</a>
 			</span>
 			<span style="color:blue">${downInfo }</span>
 		</div>		
 		<div class="lastDiv">			
-			<p class="content">${freeVo.freeboardContent}</p>
+			<p class="content">${noticeVo.noticeContent}</p>
 		</div>
 		<div class="center">
 			<a href
-			="<c:url value='/freeboard/edit.do?no=${freeVo.freeboardNo}'/>">
+			="<c:url value='/notice/edit.do?no=${noticeVo.noticeNo}'/>">
 			수정</a> |
         	<a href
-		="<c:url value='/freeboard/delete.do?no=${freeVo.freeboardNo}&fileName=${freeVo.freeboardFilename}'/>">
+		="<c:url value='/notice/delete.do?no=${noticeVo.noticeNo}&fileName=${noticeVo.noticeFilename}'/>">
 			삭제</a> |
-        	<a href="<c:url value='/freeboard/list.do'/>">목록</a>			
+        	<a href="<c:url value='/notice/list.do'/>">목록</a>			
 		</div>
 	</div>
 </body>

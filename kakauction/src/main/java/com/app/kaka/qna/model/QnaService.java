@@ -7,6 +7,6 @@ import com.app.kaka.notice.model.NoticeVO;
 
 public interface QnaService {
 	List<QnaVO> selectAll(SearchVO searchVo);
-	int selectTotalCount(SearchVO searchVo);
-
+	public int selectTotalCount(SearchVO searchVo);
+	public QnaVO selectByNo(int questionNo);
 }

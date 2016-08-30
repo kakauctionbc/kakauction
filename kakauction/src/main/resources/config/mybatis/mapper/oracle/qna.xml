@@ -36,4 +36,8 @@
 		select count(*) from question 
 		<include refid="searchWhere"></include>
 	</select>
+	
+	<select id="selectByNo" parameterType="int" resultType="QnaVO">
+		select * from question where question_no=#{questionNo}
+	</select>
 </mapper>

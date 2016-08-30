@@ -32,4 +32,9 @@ public class QnaServiceImpl implements QnaService{
 	public int selectTotalCount(SearchVO searchVo) {
 		return qnaDao.selectTotalCount(searchVo);
 	}
+
+	@Override
+	public QnaVO selectByNo(int questionNo) {
+		return qnaDao.selectByNo(questionNo);
+	}
 }

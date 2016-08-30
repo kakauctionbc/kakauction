@@ -29,7 +29,7 @@
 			<span class="sp1">첨부파일</span> 
 			<span>
 			<a href
-				="<c:url value='/freeboard/download.do?no=${vo.freeboardNo}&fileName=${vo.freeboardFilename}'/>">
+				="<c:url value='/freeboard/download.do?no=${freeVo.freeboardNo}&fileName=${freeVo.freeboardFilename}'/>">
 				${fileInfo }
 			</a>
 			</span>
