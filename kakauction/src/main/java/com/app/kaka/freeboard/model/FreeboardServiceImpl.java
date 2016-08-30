@@ -71,9 +71,9 @@ public class FreeboardServiceImpl implements FreeboardService{
 				}
 				//파일명, 원본파일명, 파일크기를 Map에 저장한 후 List에 추가한다
 				Map<String, Object> map = new HashMap<String, Object>();
-				map.put("fileName", fileName);
-				map.put("originalFileName", originFileName);
-				map.put("fileSize", fileSize);
+				map.put("freeboardFilename", fileName);
+				map.put("freeboardOriginalname", originFileName);
+				map.put("freeboardFilesize", fileSize);
 				
 				fileList.add(map);
 			}//if
@@ -108,19 +108,24 @@ public class FreeboardServiceImpl implements FreeboardService{
 		//업로드 경로를 구하는 메서드
 		String realtPath="";
 		String type = fileUploadProperties.getProperty("file.upload.type");
-		if(type.equals("test")){
+		if(type.equals("freeboard")){
 			//테스트인 경우 => 테스트 경로를 구한다
 			realtPath=
-					fileUploadProperties.getProperty("file.upload.path.test");		
+					fileUploadProperties.getProperty("file.upload.path.freeboardUpload");		
 		}else{
 			//실제 배포하는 경우 => 실제 경로를 구한다
 			realtPath=
-					fileUploadProperties.getProperty("file.upload.path");
+					fileUploadProperties.getProperty("file.upload.path.freeboard");
 			//물리적인 경로 구하기
 			realtPath=
 					request.getSession().getServletContext().getRealPath(realtPath);
 		}//if
 		return realtPath;
+	}
+
+	@Override
+	public FreeboardVO detailFreeboard(int freeboardNo) {
+		return freeboardDao.detailFreeboard(freeboardNo);
 	}
 	
 /*	public int updateDownCount(int no){

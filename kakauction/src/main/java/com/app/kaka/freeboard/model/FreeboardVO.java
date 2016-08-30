@@ -7,7 +7,7 @@ public class FreeboardVO {
 	private String memberId;
 	private String freeboardTitle;
 	private String freeboardContent;
-	private Timestamp freeboardRregdate;
+	private Timestamp freeboardRegdate;
 	private int freeboardReadCount;
 	private int freeboardGroupno;
 	private int freeboardStep;
@@ -17,7 +17,6 @@ public class FreeboardVO {
 	private long freeboardFilesize;
 	private String freeboardDowncount;
 	private String freeboardOriginalname;
-	
 	public int getFreeboardNo() {
 		return freeboardNo;
 	}
@@ -42,11 +41,11 @@ public class FreeboardVO {
 	public void setFreeboardContent(String freeboardContent) {
 		this.freeboardContent = freeboardContent;
 	}
-	public Timestamp getFreeboardRregdate() {
-		return freeboardRregdate;
+	public Timestamp getFreeboardRegdate() {
+		return freeboardRegdate;
 	}
-	public void setFreeboardRregdate(Timestamp freeboardRregdate) {
-		this.freeboardRregdate = freeboardRregdate;
+	public void setFreeboardRegdate(Timestamp freeboardRegdate) {
+		this.freeboardRegdate = freeboardRegdate;
 	}
 	public int getFreeboardReadCount() {
 		return freeboardReadCount;
@@ -102,11 +101,10 @@ public class FreeboardVO {
 	public void setFreeboardOriginalname(String freeboardOriginalname) {
 		this.freeboardOriginalname = freeboardOriginalname;
 	}
-	
 	@Override
 	public String toString() {
 		return "FreeboardVO [freeboardNo=" + freeboardNo + ", memberId=" + memberId + ", freeboardTitle="
-				+ freeboardTitle + ", freeboardContent=" + freeboardContent + ", freeboardRregdate=" + freeboardRregdate
+				+ freeboardTitle + ", freeboardContent=" + freeboardContent + ", freeboardRegdate=" + freeboardRegdate
 				+ ", freeboardReadCount=" + freeboardReadCount + ", freeboardGroupno=" + freeboardGroupno
 				+ ", freeboardStep=" + freeboardStep + ", freeboardSortno=" + freeboardSortno + ", freeboardDelflag="
 				+ freeboardDelflag + ", freeboardFilename=" + freeboardFilename + ", freeboardFilesize="

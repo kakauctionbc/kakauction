@@ -11,4 +11,5 @@ public interface FreeboardService {
 	public String getUniqueFileName(String ofileName);
 	public String getCurrentTime();
 	public String getUploadPath(HttpServletRequest request);
+	public FreeboardVO detailFreeboard(int freeboardNo);
 }

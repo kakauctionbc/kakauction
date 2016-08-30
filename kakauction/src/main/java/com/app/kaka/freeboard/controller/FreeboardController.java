@@ -9,9 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.kaka.freeboard.model.FreeboardService;
 import com.app.kaka.freeboard.model.FreeboardVO;
@@ -44,15 +46,16 @@ public class FreeboardController {
 		String ofileName="";
 		long fileSize=0;
 		for(Map<String, Object> myMap : fileList){
-			fileName = (String)myMap.get("fileName");
-			ofileName=(String)myMap.get("originalFileName");
-			fileSize = (Long)myMap.get("fileSize");
+			fileName = (String)myMap.get("freeboardFilename");
+			ofileName=(String)myMap.get("freeboardOriginalname");
+			fileSize = (Long)myMap.get("freeboardFilesize");
 			
 		}//for
 		freeboardVo.setFreeboardFilename(fileName);
 		freeboardVo.setFreeboardOriginalname(ofileName);
 		freeboardVo.setFreeboardFilesize(fileSize);
 		
+		logger.info("vo를 알고 싶어요={}",freeboardVo);
 		/*
 		reBoard.xml => ReBoardDAO => ReBoardDAOMybatis
 		=> ReBoardService => ReBoardServiceImpl
@@ -71,4 +74,38 @@ public class FreeboardController {
 		
 	}*/
 	
+	@RequestMapping("/detail.do")
+	public String detailFreeboard(@RequestParam(defaultValue="0") int freeboardNo, HttpServletRequest request, Model model){
+		logger.info("글 상세목록 파라미터 freeboardNo={}",freeboardNo);
+		
+		if (freeboardNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/list.do");
+			
+			return "common/message";
+		}
+		
+		FreeboardVO freeVo = freeboardService.detailFreeboard(freeboardNo);
+		
+		String fileInfo="", downInfo="";
+		if(freeVo.getFreeboardFilename()!=null 
+				&& !freeVo.getFreeboardFilename().isEmpty()){
+			String contextPath = request.getContextPath();
+			double fileSize 
+					= Math.round((freeVo.getFreeboardFilesize()/1000.0)*10)/10.0;
+			
+			fileInfo="<img src='"+ contextPath 
+					+"/images/file.gif' alt='파일이미지'>";
+			fileInfo+=freeVo.getFreeboardOriginalname()
+					+ " ("+fileSize +"KB)";
+			
+			downInfo="다운:"+freeVo.getFreeboardDowncount();
+		}
+		
+		model.addAttribute("freeVo", freeVo);
+		model.addAttribute("fileInfo", fileInfo);
+		model.addAttribute("downInfo", downInfo);
+		
+		return "/freeboard/detail";
+	}
 }
