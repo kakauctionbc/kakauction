@@ -45,7 +45,7 @@
 	  action="<c:url value='/notice/edit.do'/>" >
 	 <fieldset>
 		<legend>글쓰기</legend>
-		<input type="hidden" name="no" value="${noticeVo.noticeNo}">
+		<input type="hidden" name="noticeNo" value="${noticeVo.noticeNo}">
 		<input type="hidden" name="oldFileName" value="${noticeVo.noticeFilename}">
 		<input type="hidden" name="oldFileSize" value="${noticeVo.noticeFilesize}">
 		<input type="hidden" name="oldOriginalFileName" value="${noticeVo.noticeOriginalname}">

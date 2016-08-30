@@ -142,8 +142,17 @@ public class NoticeController {
 		logger.info("글 수정 처리, 파라미터 noticeVo={}", noticeVo);
 		int cnt = noticeService.editNotice(noticeVo);
 		logger.info("글쓰기 결과, cnt={}", cnt);
-		
+		String msg="", url="";
+		if(cnt>0){
+			msg="수정처리 되었습니다";
+			url="/notice/list.do";
+		}else{
+			msg="수정처리 실패";
+			url="/notice/edit.do?noticeNo="+noticeVo.getNoticeNo();
+		}
 		//3. 결과저장, 뷰페이지 리턴
-		return "redirect:/notice/list.do";
+		return "common/message";
 	}
+	
+	
 }
