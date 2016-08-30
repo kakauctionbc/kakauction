@@ -45,7 +45,7 @@
 	<input type="hidden" name="searchKeyword" value="${searchVO.searchKeyword }">	
 </form>
 
-<h2>자료실</h2>
+<h2>공지사항</h2>
 <div class="divList">
 <c:if test="${!empty param.searchKeyword }">
 	<!-- 검색의 경우 -->
@@ -59,8 +59,8 @@
 </c:if>
 
 <table class="box2"
-	 	summary="자료실에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
-	<caption>자료실</caption>
+	 	summary="공지사항에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
+	<caption>공지사항</caption>
 	<colgroup>
 		<col style="width:10%;" />
 		<col style="width:50%;" />
@@ -170,18 +170,18 @@
    	<form name="frmSearch" method="post" 
    	action="<c:url value='/notice/list.do' />" >
         <select name="searchCondition">
-            <option value="notice_title"
-           	   <c:if test="${param.searchCondition=='notice_title'}">
+            <option value="noticeTitle"
+           	   <c:if test="${param.searchCondition=='noticeTitle'}">
             		selected
                </c:if>
             >제목</option>
-            <option value="notice_content" 
-            	<c:if test="${param.searchCondition=='notice_content'}">
+            <option value="noticeContent" 
+            	<c:if test="${param.searchCondition=='noticeContent'}">
             		selected
                </c:if>
             >내용</option>
-            <option value="member_id" 
-           		<c:if test="${param.searchCondition=='member_id'}">
+            <option value="memberId" 
+           		<c:if test="${param.searchCondition=='memberId'}">
             		selected
                </c:if>
             >작성자</option>
