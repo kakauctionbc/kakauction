@@ -154,14 +154,14 @@
 				<a href="#" onclick="pageProc(${i})">
 				[${i}]</a>
 		</c:if>
-	</c:forEach>	
+	</c:forEach>
 	<!--  페이지 번호 끝 -->
 	
 	<!-- 다음 블럭으로 이동 -->
-	<c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">	
+	<c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
 		<a href="#" 
 		onclick="pageProc(${pagingInfo.lastPage+1})">
-			<img src="<c:url value='/image/last.JPG'/>" 
+			<img src="<c:url value='/image/last.JPG'/>"
 					alt="다음블럭으로">
 		</a>
 	</c:if>

@@ -20,6 +20,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.app.kaka.common.SearchVO;
+import com.app.kaka.qna.model.QnaVO;
+
 @Service
 public class FreeboardServiceImpl implements FreeboardService{
 
@@ -126,6 +129,16 @@ public class FreeboardServiceImpl implements FreeboardService{
 	@Override
 	public FreeboardVO detailFreeboard(int freeboardNo) {
 		return freeboardDao.detailFreeboard(freeboardNo);
+	}
+
+	@Override
+	public List<FreeboardVO> selectAll(SearchVO searchVo) {
+		return freeboardDao.selectAll(searchVo);
+	}
+
+	@Override
+	public int selectTotalCount(SearchVO searchVo) {
+		return freeboardDao.selectTotalCount(searchVo);
 	}
 	
 /*	public int updateDownCount(int no){

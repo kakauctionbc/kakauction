@@ -12,16 +12,25 @@ public class FreeboardVO {
 	private int freeboardGroupno;
 	private int freeboardStep;
 	private int freeboardSortno;
+	private int freeboardLike;
 	private String freeboardDelflag;
 	private String freeboardFilename;
 	private long freeboardFilesize;
 	private String freeboardDowncount;
 	private String freeboardOriginalname;
+	private int newImgTerm;
+	
 	public int getFreeboardNo() {
 		return freeboardNo;
 	}
 	public void setFreeboardNo(int freeboardNo) {
 		this.freeboardNo = freeboardNo;
+	}
+	public int getFreeboardLike() {
+		return freeboardLike;
+	}
+	public void setFreeboardLike(int freeboardLike) {
+		this.freeboardLike = freeboardLike;
 	}
 	public String getMemberId() {
 		return memberId;
@@ -101,14 +110,20 @@ public class FreeboardVO {
 	public void setFreeboardOriginalname(String freeboardOriginalname) {
 		this.freeboardOriginalname = freeboardOriginalname;
 	}
+	public int getNewImgTerm() {
+		return newImgTerm;
+	}
+	public void setNewImgTerm(int newImgTerm) {
+		this.newImgTerm = newImgTerm;
+	}
 	@Override
 	public String toString() {
 		return "FreeboardVO [freeboardNo=" + freeboardNo + ", memberId=" + memberId + ", freeboardTitle="
 				+ freeboardTitle + ", freeboardContent=" + freeboardContent + ", freeboardRegdate=" + freeboardRegdate
 				+ ", freeboardReadCount=" + freeboardReadCount + ", freeboardGroupno=" + freeboardGroupno
-				+ ", freeboardStep=" + freeboardStep + ", freeboardSortno=" + freeboardSortno + ", freeboardDelflag="
-				+ freeboardDelflag + ", freeboardFilename=" + freeboardFilename + ", freeboardFilesize="
-				+ freeboardFilesize + ", freeboardDowncount=" + freeboardDowncount + ", freeboardOriginalname="
-				+ freeboardOriginalname + "]";
+				+ ", freeboardStep=" + freeboardStep + ", freeboardSortno=" + freeboardSortno + ", freeboardLike="
+				+ freeboardLike + ", freeboardDelflag=" + freeboardDelflag + ", freeboardFilename=" + freeboardFilename
+				+ ", freeboardFilesize=" + freeboardFilesize + ", freeboardDowncount=" + freeboardDowncount
+				+ ", freeboardOriginalname=" + freeboardOriginalname + ", newImgTerm=" + newImgTerm + "]";
 	}
 }

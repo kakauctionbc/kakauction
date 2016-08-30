@@ -23,4 +23,41 @@
 	<select id="selectFreeboardByNo" parameterType="int" resultType="FreeboardVO">
 		select * from freeboard where freeboard_no = #{freeboardNo}
 	</select>
+	
+	<sql id="searchWhere">
+		<where>
+			<if test="searchKeyword!=null and searchKeyword!=''">
+				${searchCondition} 
+				like '%' || #{searchKeyword} || '%'
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectAll" resultType="freeboardVo" parameterType="SearchVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, LIST_ALL.*
+		    from
+		        (select freeboard_no, member_id, freeboard_title,
+					freeboard_regdate, freeboard_readcount, freeboard_content,
+					(sysdate-freeboard_regdate)*24 as newImgTerm,
+					freeboard_groupno, freeboard_step, freeboard_sort, freeboard_delflag,
+					freeboard_filename, freeboard_filesize, freeboard_downcount,
+					freeboard_originalname, freeboard_like
+		        from freeboard
+		        <include refid="searchWhere"></include>
+		        order by freeboard_groupno desc, freeboard_sort asc) LIST_ALL   
+		) 
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}
+			+ #{recordCountPerPage}
+		]]>
+	</select>
+	
+	<select id="selectTotalCount" resultType="int" parameterType="SearchVO">
+		select count(*) from freeboard
+		<include refid="searchWhere"></include>
+	</select>
 </mapper>
