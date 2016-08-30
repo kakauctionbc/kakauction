@@ -170,18 +170,18 @@
    	<form name="frmSearch" method="post" 
    	action="<c:url value='/notice/list.do' />" >
         <select name="searchCondition">
-            <option value="noticeTitle"
-           	   <c:if test="${param.searchCondition=='noticeTitle'}">
+            <option value="notice_title"
+           	   <c:if test="${param.searchCondition=='notice_title'}">
             		selected
                </c:if>
             >제목</option>
-            <option value="noticeContent" 
-            	<c:if test="${param.searchCondition=='noticeContent'}">
+            <option value="notice_content" 
+            	<c:if test="${param.searchCondition=='notice_content'}">
             		selected
                </c:if>
             >내용</option>
-            <option value="memberId" 
-           		<c:if test="${param.searchCondition=='memberId'}">
+            <option value="member_id" 
+           		<c:if test="${param.searchCondition=='member_id'}">
             		selected
                </c:if>
             >작성자</option>

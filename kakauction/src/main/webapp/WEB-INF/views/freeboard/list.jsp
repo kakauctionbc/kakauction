@@ -45,7 +45,7 @@
 	<input type="hidden" name="searchKeyword" value="${searchVO.searchKeyword }">	
 </form>
 
-<h2>자료실</h2>
+<h2>자유게시판</h2>
 <div class="divList">
 <c:if test="${!empty param.searchKeyword }">
 	<!-- 검색의 경우 -->
@@ -59,8 +59,8 @@
 </c:if>
 
 <table class="box2"
-	 	summary="자료실에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
-	<caption>자료실</caption>
+	 	summary="자유게시판에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
+	<caption>자유게시판</caption>
 	<colgroup>
 		<col style="width:10%;" />
 		<col style="width:50%;" />
@@ -170,13 +170,13 @@
    	<form name="frmSearch" method="post" 
    	action="<c:url value='/freeboard/list.do' />" >
         <select name="searchCondition">
-            <option value="notice_title"
-           	   <c:if test="${param.searchCondition=='notice_title'}">
+            <option value="freeboard_title"
+           	   <c:if test="${param.searchCondition=='freeboard_title'}">
             		selected
                </c:if>
             >제목</option>
-            <option value="notice_content" 
-            	<c:if test="${param.searchCondition=='notice_content'}">
+            <option value="freeboard_content" 
+            	<c:if test="${param.searchCondition=='freeboard_content'}">
             		selected
                </c:if>
             >내용</option>

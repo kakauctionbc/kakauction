@@ -42,12 +42,12 @@
 		        (select freeboard_no, member_id, freeboard_title,
 					freeboard_regdate, freeboard_readcount, freeboard_content,
 					(sysdate-freeboard_regdate)*24 as newImgTerm,
-					freeboard_groupno, freeboard_step, freeboard_sort, freeboard_delflag,
+					freeboard_groupno, freeboard_step, freeboard_sortno, freeboard_delflag,
 					freeboard_filename, freeboard_filesize, freeboard_downcount,
 					freeboard_originalname, freeboard_like
 		        from freeboard
 		        <include refid="searchWhere"></include>
-		        order by freeboard_groupno desc, freeboard_sort asc) LIST_ALL   
+		        order by freeboard_groupno desc, freeboard_sortno asc) LIST_ALL   
 		) 
 		<![CDATA[
 		where  RNUM> #{firstRecordIndex} 

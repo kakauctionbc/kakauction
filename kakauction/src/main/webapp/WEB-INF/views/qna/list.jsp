@@ -154,18 +154,18 @@
    	<form name="frmSearch" method="post" 
    	action="<c:url value='/qna/list.do' />" >
         <select name="searchCondition">
-            <option value="questionTitle"
-           	   <c:if test="${param.searchCondition=='questionTitle'}">
+            <option value="question_title"
+           	   <c:if test="${param.searchCondition=='question_title'}">
             		selected
                </c:if>
             >제목</option>
-            <option value="questionContent" 
-            	<c:if test="${param.searchCondition=='questionContent'}">
+            <option value="question_content" 
+            	<c:if test="${param.searchCondition=='question_content'}">
             		selected
                </c:if>
             >내용</option>
-            <option value="memberId" 
-           		<c:if test="${param.searchCondition=='memberId'}">
+            <option value="member_id" 
+           		<c:if test="${param.searchCondition=='member_id'}">
             		selected
                </c:if>
             >작성자</option>
