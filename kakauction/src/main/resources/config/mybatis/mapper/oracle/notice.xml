@@ -72,4 +72,12 @@
 			notice_filesize=#{noticeFilesize}, notice_originalname=#{noticeOriginalname}
 		where notice_no=#{noticeNo}
 	</update>
+	
+	<update id="updateReadCount" parameterType="int">
+		update notice set notice_readcount=notice_readcount+1 where notice_no = #{noticeNo}
+	</update>
+	
+	<delete id="deleteNotice">
+		delete from notice where notice_no =#{noticeNo}
+	</delete>
 </mapper>

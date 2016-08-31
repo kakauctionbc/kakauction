@@ -175,4 +175,13 @@ public class NoticeServiceImpl implements NoticeService {
 	public int editNotice(NoticeVO noticeVo) {
 		return noticeDao.editNotice(noticeVo);
 	}
+
+	@Override
+	public int updateReadCount(int noticeNo) {
+		return noticeDao.updateReadCount(noticeNo);
+	}
+
+	public int deleteNotice(int noticeNo) {
+		return noticeDao.deleteNotice(noticeNo);
+	}
 }

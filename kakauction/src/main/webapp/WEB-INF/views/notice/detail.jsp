@@ -2,6 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script type="text/javascript" 
+	src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#delete").click(function(){
+			alert("삭제하시겠습니까?");
+			return true;
+		});
+	});
+	
+</script>
 
 <!DOCTYPE html>
 <html>
@@ -32,7 +44,7 @@
 			<span class="sp1">첨부파일</span> 
 			<span>
 			<a href
-				="<c:url value='/notice/download.do?no=${noticeVo.noticeNo}&fileName=${noticeVo.noticeFilename}'/>">
+				="<c:url value='/notice/download.do?noticeNo=${noticeVo.noticeNo}&fileName=${noticeVo.noticeFilename}'/>">
 				${fileInfo }
 			</a>
 			</span>
@@ -43,10 +55,10 @@
 		</div>
 		<div class="center">
 			<a href
-			="<c:url value='/notice/edit.do?no=${noticeVo.noticeNo}'/>">
+			="<c:url value='/notice/edit.do?noticeNo=${noticeVo.noticeNo}'/>">
 			수정</a> |
-        	<a href
-		="<c:url value='/notice/delete.do?no=${noticeVo.noticeNo}&fileName=${noticeVo.noticeFilename}'/>">
+        	<a id="delete" href
+		="<c:url value='/notice/delete.do?noticeNo=${noticeVo.noticeNo}&fileName=${noticeVo.noticeFilename}'/>">
 			삭제</a> |
         	<a href="<c:url value='/notice/list.do'/>">목록</a>			
 		</div>

@@ -106,7 +106,7 @@
 						<c:if test="${!empty vo.noticeFilename }">
 							<img src='<c:url value="/image/file.gif"/>'>
 						</c:if>
-						<a href="<c:url value='/notice/updateCount.do?no=${vo.noticeNo}'/>">
+						<a href="<c:url value='/notice/updateCount.do?noticeNo=${vo.noticeNo}'/>">
 							<!-- 제목이 긴 경우 일부만 보여주기 -->
 							<c:if test="${fn:length(vo.noticeTitle)>30}">
 								${fn:substring(vo.noticeTitle, 0,30)}...

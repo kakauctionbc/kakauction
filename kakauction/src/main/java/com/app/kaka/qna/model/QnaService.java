@@ -9,4 +9,5 @@ public interface QnaService {
 	List<QnaVO> selectAll(SearchVO searchVo);
 	public int selectTotalCount(SearchVO searchVo);
 	public QnaVO selectByNo(int questionNo);
+	public int insertQna(QnaVO qnaVo);
 }

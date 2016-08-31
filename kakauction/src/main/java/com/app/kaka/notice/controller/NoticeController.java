@@ -1,5 +1,7 @@
 package com.app.kaka.notice.controller;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -145,11 +147,15 @@ public class NoticeController {
 		String msg="", url="";
 		if(cnt>0){
 			msg="수정처리 되었습니다";
-			url="/notice/list.do";
+			url="/notice/detail.do?noticeNo="+noticeVo.getNoticeNo();
 		}else{
 			msg="수정처리 실패";
 			url="/notice/edit.do?noticeNo="+noticeVo.getNoticeNo();
 		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
 		//3. 결과저장, 뷰페이지 리턴
 		return "common/message";
 	}
@@ -188,5 +194,60 @@ public class NoticeController {
 		model.addAttribute("downInfo", downInfo);
 		
 		return "notice/detail";
+	}
+	
+	@RequestMapping("/updateCount.do")
+	public String updateReadCount(@RequestParam(defaultValue="0")int noticeNo,Model model){
+		logger.info("이건 읽기 조회수 !!");
+		
+		if (noticeNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/notice/list.do");
+			
+			return "common/message";
+		}
+		
+		int cnt = noticeService.updateReadCount(noticeNo);
+		logger.info("조회수 증가 결과, cnt={}",cnt);
+		
+		return "redirect:/notice/detail.do?noticeNo="+noticeNo;
+	}
+	
+	@RequestMapping("/delete.do")
+	public String deleteNotice(@RequestParam(defaultValue="0")int noticeNo, String noticeFilename,Model model){
+		logger.info("공지 삭제 파라미터 noticeNo={},noticeFilename={}",noticeNo,noticeFilename);
+		
+		if (noticeNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/notice/list.do");
+			
+			return "common/message";
+		}
+		
+		//저장 프로시저에서 사용할 map 만들기
+		Map<String, String> map 
+			= new HashMap<String, String>();
+		map.put("groupNo", reBoardVo.getGroupNo()+"");
+		map.put("no", Integer.toString(no));
+		map.put("step", reBoardVo.getStep()+"");
+		logger.info("글삭제시 파라미터 map={}", map);
+		
+		reBoardService.deleteReBoard(map);
+		
+		//파일이 첨부된 경우에는 파일도 삭제처리한다
+		if(fileName!=null && !fileName.isEmpty()){
+			String upPath=reBoardService.getUploadPath(request);
+			File delFile = new File(upPath ,fileName);
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+				logger.info("파일 삭제 여부:{}", bool);					
+			}
+		}//if
+		
+		int cnt = noticeService.deleteNotice(noticeNo);
+		
+		logger.info("공지 삭제 결과, cnt={}",cnt);
+		
+		return "redirect:/notice/list.do";
 	}
 }

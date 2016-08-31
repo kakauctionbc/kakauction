@@ -37,4 +37,9 @@ public class QnaServiceImpl implements QnaService{
 	public QnaVO selectByNo(int questionNo) {
 		return qnaDao.selectByNo(questionNo);
 	}
+
+	@Override
+	public int insertQna(QnaVO qnaVo) {
+		return qnaDao.insertQna(qnaVo);
+	}
 }

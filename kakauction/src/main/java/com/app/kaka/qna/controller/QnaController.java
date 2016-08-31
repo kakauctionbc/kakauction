@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.kaka.common.PaginationInfo;
@@ -77,5 +78,21 @@ public class QnaController {
 		model.addAttribute("QnaVo", QnaVo);
 		
 		return "qna/detail";
+	}
+	
+	@RequestMapping(value="write.do", method=RequestMethod.GET)
+	public String insertQna_get(){
+		logger.info("질문 게시판 글쓰기 보여주기");
+		
+		return "qna/write";
+	}
+	
+	@RequestMapping(value="/write.do", method=RequestMethod.POST)
+	public String insertQna(@ModelAttribute QnaVO qnaVo){
+		logger.info("질문 글쓰기 qnaVo={}",qnaVo);
+		
+		int cnt = qnaService.insertQna(qnaVo);
+		
+		return "redirect:qna/list.do";
 	}
 }
