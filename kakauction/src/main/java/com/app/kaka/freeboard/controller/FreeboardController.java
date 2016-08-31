@@ -84,7 +84,7 @@ public class FreeboardController {
 		
 		if (freeboardNo==0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
-			model.addAttribute("url", "/list.do");
+			model.addAttribute("url", "/freeboard/list.do");
 			
 			return "common/message";
 		}

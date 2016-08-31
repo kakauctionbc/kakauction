@@ -29,7 +29,7 @@ public class FreeboardDAOMybatis extends SqlSessionDaoSupport implements Freeboa
 
 	@Override
 	public List<FreeboardVO> selectAll(SearchVO searchVo) {
-		return getSqlSession().selectOne(namespace+".selectAll", searchVo);
+		return getSqlSession().selectList(namespace+".selectAll", searchVo);
 	}
 
 	@Override

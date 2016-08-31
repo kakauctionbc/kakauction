@@ -106,7 +106,7 @@
 						<c:if test="${!empty vo.freeboardFilename }">
 							<img src='<c:url value="/image/file.gif"/>'>
 						</c:if>
-						<a href="<c:url value='/notice/updateCount.do?no=${vo.freeboardNo}'/>">
+						<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${vo.freeboardNo}'/>">
 							<!-- 제목이 긴 경우 일부만 보여주기 -->
 							<c:if test="${fn:length(vo.freeboardTitle)>30}">
 								${fn:substring(vo.freeboardTitle, 0,30)}...
