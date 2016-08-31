@@ -31,7 +31,7 @@ public class FreeReplyController {
 		int cnt = freereplyService.insertComment(vo);
 		logger.info("댓글달기 결과 cnt = {}", cnt);
 		
-		String msg = "", url = "/freeboard/detail.do?no="+vo.getFreereplyGroupno();
+		String msg = "", url = "/freeboard/detail.do?freeboardNo="+vo.getFreereplyGroupno();
 		if(cnt>0){
 			msg = "댓글을 달았습니다!";
 		}else{
@@ -45,10 +45,10 @@ public class FreeReplyController {
 	}
 	
 	@RequestMapping("/comment.do")
-	public String showComment(@RequestParam(defaultValue="0") int freereplyGroupno, Model model){
-		logger.info("댓글 보기, 파라미터 freereplyGroupno={}", freereplyGroupno);
+	public String showComment(@RequestParam(defaultValue="0") int freeboardNo, Model model){
+		logger.info("댓글 보기, 파라미터 freeboardNo={}", freeboardNo);
 
-		List<FreeReplyVO> alist = freereplyService.selectComment(freereplyGroupno);
+		List<FreeReplyVO> alist = freereplyService.selectComment(freeboardNo);
 		
 		model.addAttribute("alist", alist);
 		

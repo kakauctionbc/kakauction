@@ -8,11 +8,10 @@ public class FreeReplyVO {
 	private String  memberId;
 	private String  freereplyContent;
 	private Timestamp freereplyRegdate;
-	private Timestamp freereplyGroupno;
-	private Timestamp freereplyStep;
-	private Timestamp freereplySortno;
-	private Timestamp freereplyDelfalg;
-	
+	private int freereplyGroupno;
+	private int freereplyStep;
+	private int freereplySortno;
+	private String freereplyDelfalg;
 	public int getFreereplyNo() {
 		return freereplyNo;
 	}
@@ -43,31 +42,30 @@ public class FreeReplyVO {
 	public void setFreereplyRegdate(Timestamp freereplyRegdate) {
 		this.freereplyRegdate = freereplyRegdate;
 	}
-	public Timestamp getFreereplyGroupno() {
+	public int getFreereplyGroupno() {
 		return freereplyGroupno;
 	}
-	public void setFreereplyGroupno(Timestamp freereplyGroupno) {
+	public void setFreereplyGroupno(int freereplyGroupno) {
 		this.freereplyGroupno = freereplyGroupno;
 	}
-	public Timestamp getFreereplyStep() {
+	public int getFreereplyStep() {
 		return freereplyStep;
 	}
-	public void setFreereplyStep(Timestamp freereplyStep) {
+	public void setFreereplyStep(int freereplyStep) {
 		this.freereplyStep = freereplyStep;
 	}
-	public Timestamp getFreereplySortno() {
+	public int getFreereplySortno() {
 		return freereplySortno;
 	}
-	public void setFreereplySortno(Timestamp freereplySortno) {
+	public void setFreereplySortno(int freereplySortno) {
 		this.freereplySortno = freereplySortno;
 	}
-	public Timestamp getFreereplyDelfalg() {
+	public String getFreereplyDelfalg() {
 		return freereplyDelfalg;
 	}
-	public void setFreereplyDelfalg(Timestamp freereplyDelfalg) {
+	public void setFreereplyDelfalg(String freereplyDelfalg) {
 		this.freereplyDelfalg = freereplyDelfalg;
 	}
-	
 	@Override
 	public String toString() {
 		return "FreeReplyVO [freereplyNo=" + freereplyNo + ", freeboardNo=" + freeboardNo + ", memberId=" + memberId
@@ -75,4 +73,6 @@ public class FreeReplyVO {
 				+ ", freereplyGroupno=" + freereplyGroupno + ", freereplyStep=" + freereplyStep + ", freereplySortno="
 				+ freereplySortno + ", freereplyDelfalg=" + freereplyDelfalg + "]";
 	}
+	
+	
 }

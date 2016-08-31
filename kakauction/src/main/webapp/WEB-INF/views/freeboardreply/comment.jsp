@@ -34,8 +34,8 @@
 				<c:forEach var="freereplyVo" items="${alist }">
 					<tr>
 						<td style="text-align: center">${freereplyVo.memberId }</td>
-						<td>${freereplyVo.content }</td>
-						<td style="text-align: center"><fmt:formatDate value="${freereplyVo.regdate }" pattern="yyyy-MM-dd"/></td>
+						<td>${freereplyVo.freereplyContent }</td>
+						<td style="text-align: center"><fmt:formatDate value="${freereplyVo.freereplyRegdate }" pattern="yyyy-MM-dd"/></td>
 					</tr>
 				</c:forEach>
 				<!--반복처리 끝  -->
@@ -49,9 +49,9 @@
 					<p style="margin-top: 10px;">
 						<label for="memberId" style="margin-right: 10px;">작성자</label><input type="text" name="memberId" style="width: 30%">
 					</p>
-					<input type="hidden" name="freereplyGroupno" value="${vo.freereplyGroupno}">
+					<input type="hidden" name="freereplyGroupno" value="${freeVo.freeboardNo}">
 					<p style="margin-top: 20px;">
-						<textarea rows="5" cols="95" name="content"></textarea>
+						<textarea rows="5" cols="95" name="freereplyContent"></textarea>
 					</p>
 					<div style="text-align: center; margin-top: 10px;">
 						<input type="submit" name="commentSubmit" value="확인">

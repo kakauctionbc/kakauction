@@ -48,5 +48,6 @@
         	<a href="<c:url value='/freeboard/list.do'/>">목록</a>			
 		</div>
 	</div>
+	<jsp:include page="/freeboardreply/comment.do?freeboardGroupno=${freeVo.freeboardNo }"></jsp:include>
 </body>
 </html>

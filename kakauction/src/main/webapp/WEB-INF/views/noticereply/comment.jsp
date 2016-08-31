@@ -31,11 +31,11 @@
 				</tr>
 			</c:if>
 			<c:if test="${!empty alist }">
-				<c:forEach var="commentVo" items="${alist }">
+				<c:forEach var="notireplyVo" items="${alist }">
 					<tr>
-						<td style="text-align: center">${commentVo.memberId }</td>
-						<td>${commentVo.content }</td>
-						<td style="text-align: center"><fmt:formatDate value="${commentVo.regdate }" pattern="yyyy-MM-dd"/></td>
+						<td style="text-align: center">${notireplyVo.memberId }</td>
+						<td>${notireplyVo.content }</td>
+						<td style="text-align: center"><fmt:formatDate value="${notireplyVo.regdate }" pattern="yyyy-MM-dd"/></td>
 					</tr>
 				</c:forEach>
 				<!--반복처리 끝  -->
@@ -50,7 +50,7 @@
 						<label for="name" style="margin-right: 10px;">작성자</label><input type="text" name="name" style="width: 30%">
 						<label for="pwd" style="margin-left: 70px; margin-right: 10px;">비밀번호</label><input type="password" name="pwd" style="width: 30%">
 					</p>
-					<input type="hidden" name="bdNo" value="${vo.no}">
+					<input type="hidden" name="notireplyGroupno" value="${vo.notireplyGroupno}">
 					<p style="margin-top: 20px;">
 						<textarea rows="5" cols="95" name="content"></textarea>
 					</p>

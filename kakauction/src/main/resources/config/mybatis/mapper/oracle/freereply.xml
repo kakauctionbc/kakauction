@@ -6,9 +6,9 @@
 		<selectKey keyProperty="freereplyNo" order="BEFORE" resultType="int">
 			select freereply_seq.nextval from dual
 		</selectKey>
-		insert into comments(freereply_groupno, freereply_content, member_id, freereply_no, freereply_regdate,
+		insert into freereply(freereply_groupno, freeboard_no, freereply_content, member_id, freereply_no, freereply_regdate,
 		freereply_sortno, freereply_step)
-		values(#{freereplyGroupno},#{freereplyContent},#{memberId},#{freereplyNo},sysdate,0,0) 
+		values(#{freereplyGroupno},#{freereplyGroupno},#{freereplyContent},#{memberId},#{freereplyNo},sysdate,0,0) 
 	</insert>
 	
 	<select id="selectComment" parameterType="int" resultType="freereplyVo">
