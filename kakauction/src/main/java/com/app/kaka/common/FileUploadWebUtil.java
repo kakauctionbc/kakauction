@@ -16,9 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+@Component
 public class FileUploadWebUtil {
 	//자료실에서 업로드인지, 상품등록에서 이미지 업로드인지 구분해주는 상수
 	public static final int FREEBOARD_UPLOAD=1; //freeboard 업로드

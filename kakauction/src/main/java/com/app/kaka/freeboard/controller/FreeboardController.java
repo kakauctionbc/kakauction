@@ -27,7 +27,7 @@ import com.app.kaka.freeboard.model.FreeboardVO;
 public class FreeboardController {
 	private Logger logger = LoggerFactory.getLogger(FreeboardController.class);
 	
-	@Autowired(required=false)
+	@Autowired
 	private FileUploadWebUtil fileUtil;
 	
 	@Autowired
