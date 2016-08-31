@@ -26,22 +26,29 @@ public class DesignController {
 	
 	@RequestMapping("/top.do")
 	public String top(){
-		logger.info("index페이지");
+		logger.info("top페이지");
 		
 		return "/design/inc/top";
 	}
 	
 	@RequestMapping("/bottom.do")
 	public String bottom(){
-		logger.info("index페이지");
+		logger.info("bottom페이지");
 		
 		return "/design/inc/bottom";
 	}
 	
 	@RequestMapping("/login.do")
 	public String login(){
-		logger.info("index페이지");
+		logger.info("로그인 페이지");
 		
 		return "/design/login/login";
+	}
+	
+	@RequestMapping("/register.do")
+	public String register(){
+		logger.info("회원가입 페이지");
+		
+		return "/design/member/register";
 	}
 }

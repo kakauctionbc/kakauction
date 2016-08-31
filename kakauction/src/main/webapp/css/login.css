@@ -2,7 +2,6 @@
 
 #loginwrap{
 	width: 1000px;
-	margin-top: 100px;
 	margin-left: 450px;
 }
 #logintop{
@@ -40,9 +39,19 @@
 #memberradio{
 	margin-top: 40px;
 	margin-left: 395px;
+	margin-bottom: 10px;
 }
 .simpleForm{
-	margin-left: 300px;
+	margin-left: 250px;
+}
+.simpleForm div{
+	margin-left: 60px;
+}
+input#userid{
+	width:170px;
+}
+input#pwd{
+	width:170px;
 }
 #loginbutton{
     background-color: #FAE100;
@@ -66,13 +75,22 @@
   transform: translateY(4px);
 }
 #chkSave{
-	font-size: 0.8em;
-	margin-left: 100px;
+	font-size: 0.7em;
+	margin-left: 150px;
 }
-#loginlb{
-	float: left;
-	width: 150px;
+#loginwrap article{
+	width:500px;
+	margin-top:30px;
+	margin-bottom:30px;
+	border-top: 1px solid silver;
 }
-#loginbt button{
-	float: left;
+#loginwrap article label{
+	text-align: left;
+	width: 200px;
+	margin-left: 50px;
+}
+#loginwrap article button{
+	width: 100px;
+	border-radius: 15px;
+	background: #f2f2ee;
 }

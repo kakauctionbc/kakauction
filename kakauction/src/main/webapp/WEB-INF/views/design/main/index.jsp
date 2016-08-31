@@ -44,18 +44,25 @@ $(function() {
 });
 </script>
 	<div id="mainicondiv">
-		<ul >
-			<li id="iconone"><a href=""><img src="${pageContext.request.contextPath }/img/sellNow.png"></a></li>
-			<li id="icontwo"><a href=""><img src="${pageContext.request.contextPath }/img/enterCar.png"></a></li>
-			<li id="iconthree"><a href=""><img src="${pageContext.request.contextPath }/img/buyNow.png"></a></li>
-			<li id="iconfour"><a href=""><img src="${pageContext.request.contextPath }/img/joinAuction1.png"></a></li>
-			<li id="iconfive"><a href=""><img src="${pageContext.request.contextPath }/img/joinAuction2.png"></a></li>
+		<ul>
+			<li id="iconone"><a href=""><img
+					src="${pageContext.request.contextPath }/img/sellNow.png"></a></li>
+			<li id="icontwo"><a href=""><img
+					src="${pageContext.request.contextPath }/img/enterCar.png"></a></li>
+			<li id="iconthree"><a href=""><img
+					src="${pageContext.request.contextPath }/img/buyNow.png"></a></li>
+			<li id="iconfour"><a href=""><img
+					src="${pageContext.request.contextPath }/img/joinAuction1.png"></a></li>
+			<li id="iconfive"><a href=""><img
+					src="${pageContext.request.contextPath }/img/joinAuction2.png"></a></li>
 		</ul>
 	</div>
 	<div id="realtime">
 		<div id="realtimehead">
 			<p id="text">실시간 경매 현황</p>
-			<p id="more"><a href="">MORE▶</a></p>
+			<p id="more">
+				<a href="">MORE▶</a>
+			</p>
 		</div>
 		<table id="realtimetable">
 			<tr id="align_center">
@@ -86,41 +93,42 @@ $(function() {
 				<td>0</td>
 			</tr>
 		</table>
-	<div id="realtimeslide">
+		<div id="realtimeslide"></div>
+	</div>
+	<div id="mainwrap">
+		<div id="quickservice">
+			<div id="quickservicehead">
+				<p id="text">빠른 서비스</p>
+			</div>
+			<div>
+				<p>이미지</p>
+			</div>
+		</div>
+		<div id="notice">
+			<div id="noticehead">
+				<p id="text">공지사항</p>
+				<p id="more">
+					<a href="">MORE▶</a>
+				</p>
+			</div>
+			<div>
+				<p>공지사항</p>
+			</div>
+		</div>
+		<div id="schedule">
+			<div id="schedulehead">
+				<p id="text">일정안내</p>
+				<p id="more">
+					<a href="">MORE▶</a>
+				</p>
+			</div>
+			<div>
+				<p>일정안내</p>
+			</div>
+		</div>
 	</div>
 </div>
-<div id="wrap">
-	<div id="quickservice">
-		<div id="quickservicehead">
-			<p id="text">빠른 서비스</p>
-		</div>
-		<div>
-			<p>이미지</p>
-		</div>
-	</div>
-	<div id="notice">
-		<div id="noticehead">
-			<p id="text">공지사항</p>
-			<p id="more">
-				<a href="">MORE▶</a>
-			</p>
-		</div>
-		<div>
-			<p>공지사항</p>
-		</div>
-	</div>
-	<div id="schedule">
-		<div id="schedulehead">
-			<p id="text">일정안내</p>
-			<p id="more">
-				<a href="">MORE▶</a>
-			</p>
-		</div>
-		<div>
-			<p>일정안내</p>
-		</div>
-	</div>
-</div>
+</body>
 <!-- <script>
 		var show;
 		var slideIndex = 1;
