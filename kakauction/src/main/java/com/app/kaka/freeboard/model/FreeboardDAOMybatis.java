@@ -36,5 +36,15 @@ public class FreeboardDAOMybatis extends SqlSessionDaoSupport implements Freeboa
 	public int selectTotalCount(SearchVO searchVo) {
 		return getSqlSession().selectOne(namespace+".selectTotalCount", searchVo);
 	}
+
+	@Override
+	public FreeboardVO selectByNo(int freeboardNo) {
+		return getSqlSession().selectOne(namespace+".selectByNo",freeboardNo);
+	}
+
+	@Override
+	public int updateFreeboard(FreeboardVO freeboardVo) {
+		return getSqlSession().update(namespace+".updateFreeboard",freeboardVo);
+	}
 	
 }

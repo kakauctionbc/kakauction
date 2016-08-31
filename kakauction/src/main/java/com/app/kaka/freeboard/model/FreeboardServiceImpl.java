@@ -140,6 +140,16 @@ public class FreeboardServiceImpl implements FreeboardService{
 	public int selectTotalCount(SearchVO searchVo) {
 		return freeboardDao.selectTotalCount(searchVo);
 	}
+
+	@Override
+	public FreeboardVO selectByNo(int freeboardNo) {
+		return freeboardDao.selectByNo(freeboardNo);
+	}
+
+	@Override
+	public int updateFreeboard(FreeboardVO freeboardVo) {
+		return freeboardDao.updateFreeboard(freeboardVo);
+	}
 	
 /*	public int updateDownCount(int no){
 		return reBoardDao.updateDownCount(no);

@@ -15,18 +15,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.app.kaka.common.FileUploadWebUtil;
 import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
 import com.app.kaka.freeboard.model.FreeboardService;
 import com.app.kaka.freeboard.model.FreeboardVO;
-import com.app.kaka.qna.model.QnaVO;
 
 @Controller
 @RequestMapping("/freeboard")
 public class FreeboardController {
 	
 	private Logger logger = LoggerFactory.getLogger(FreeboardController.class);
+	
+	@Autowired(required=false)
+	private FileUploadWebUtil fileUtil;
 	
 	@Autowired
 	private FreeboardService freeboardService;
@@ -142,5 +145,58 @@ public class FreeboardController {
 		model.addAttribute("pagingInfo", pagingInfo);
 		
 		return "freeboard/list";
+	}
+	
+	@RequestMapping(value="/edit.do", method=RequestMethod.GET)
+	public String editFreeboard_get(@RequestParam(defaultValue="0") int freeboardNo, Model model){
+		
+		logger.info("글수정 화면 보여주기, 파라미터 freeboardNo={}",freeboardNo);
+		if(freeboardNo==0){
+			model.addAttribute("msg", "잘못된 url입니다");
+			model.addAttribute("url", "/freeboard/list.do");
+			return "common/message";
+		}
+		
+		//2.
+		FreeboardVO freeboardVO =freeboardService.selectByNo(freeboardNo);
+		
+		//3.
+		model.addAttribute("freeboardVO", freeboardVO);
+		return "freeboard/edit";
+	}
+	@RequestMapping(value="/edit.do", method=RequestMethod.POST)
+	public String editFreeboard_post(HttpServletRequest request, @ModelAttribute FreeboardVO freeboardVo, Model model){
+		
+		logger.info("글수정 화면 보여주기, 파라미터 FreeboardVO={}",freeboardVo);
+
+		int uploadType = FileUploadWebUtil.FREEBOARD_UPLOAD;
+		//상품등록시 이미지 업로드
+		logger.info("상품 등록 처리, request={}",request);
+		List<Map<String, Object>> fileList = fileUtil.fileUpload(request, uploadType);
+		if(fileList!=null && !fileList.isEmpty()){
+			//업로드된 파일명 구해오기
+			String fileName="";
+			long fileSize=0;
+			for(Map<String, Object> mymap : fileList ){
+				fileName =  (String) mymap.get("fileName");
+				fileSize =  (Long) mymap.get("fileSize");
+			}
+			
+			freeboardVo.setFreeboardFilename(fileName);
+			freeboardVo.setFreeboardFilesize(fileSize);
+		}
+		String msg = "", url ="";
+		int cnt = freeboardService.updateFreeboard(freeboardVo);
+		logger.info("게시글 등록 결과 cnt={}",cnt);
+		if(cnt>0){
+			msg="상품 수정 성공";
+			url="/freeboard/list.do";
+		}else{
+			msg="상품 수정 실패";
+			url="/freeboard/edit.do";
+		}
+		
+		return "common/message";
+
 	}
 }

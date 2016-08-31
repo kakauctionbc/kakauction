@@ -17,4 +17,6 @@ public interface FreeboardService {
 	public FreeboardVO detailFreeboard(int freeboardNo);
 	public List<FreeboardVO> selectAll(SearchVO searchVo);
 	public int selectTotalCount(SearchVO searchVo);
+	public FreeboardVO selectByNo(int freeboardNo);
+	public int updateFreeboard(FreeboardVO freeboardVo);
 }
