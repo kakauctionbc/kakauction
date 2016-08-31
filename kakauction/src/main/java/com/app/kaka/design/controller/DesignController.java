@@ -37,4 +37,11 @@ public class DesignController {
 		
 		return "/design/inc/bottom";
 	}
+	
+	@RequestMapping("/login.do")
+	public String login(){
+		logger.info("index페이지");
+		
+		return "/design/login/login";
+	}
 }

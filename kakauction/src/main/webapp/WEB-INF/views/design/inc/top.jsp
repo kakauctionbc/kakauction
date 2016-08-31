@@ -14,6 +14,7 @@ $(function(){
 		content.slideUp('fast');
 	});
 });
+
 </script>
 <!DOCTYPE html>
 <html lang="ko">
@@ -23,6 +24,7 @@ $(function(){
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/mainstyle.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/clear.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/layout.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/login.css" />
 <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>      
     <![endif]-->
@@ -36,11 +38,11 @@ $(function(){
 				<li>|</li>
 				<li><a href="${pageContext.request.contextPath }/main/index.jsp">회원가입</a></li>
 				<li>|</li>
-				<li><a href="${pageContext.request.contextPath }/main/index.jsp">로그인</a></li>
+				<li><a href="${pageContext.request.contextPath }/design/login.do">로그인</a></li>
 			</ul>				
 	</header>
 	<div id="wraplogo">
-		<a href="${pageContext.request.contextPath }/main/index.jsp">
+		<a href="${pageContext.request.contextPath }/design/index.do">
 			<img alt="로고 이미지" src="${pageContext.request.contextPath }/img/logo.png" /></a>
 	</div>
 	<div id="mainsearch">
@@ -103,6 +105,5 @@ $(function(){
 		</div>
 	</div>
 </body>
-	<div id="test">
-	</div>
+
 

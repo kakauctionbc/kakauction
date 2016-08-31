@@ -1,6 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp"%>
+<script type="text/javascript">
+$(function() {
+		var icon = $('#iconone img');
+		icon.hover(function() {
+			icon.attr("src", icon.attr("src").replace(".png","Big.png"))
+		}, function() {
+			icon.attr("src", icon.attr("src").replace("Big.png",".png"))
+		});
+});
+$(function() {
+	var icon = $('#icontwo img');
+	icon.hover(function() {
+		icon.attr("src", icon.attr("src").replace(".png","Big.png"))
+	}, function() {
+		icon.attr("src", icon.attr("src").replace("Big.png",".png"))
+	});
+});
+$(function() {
+	var icon = $('#iconthree img');
+	icon.hover(function() {
+		icon.attr("src", icon.attr("src").replace(".png","Big.png"))
+	}, function() {
+		icon.attr("src", icon.attr("src").replace("Big.png",".png"))
+	});
+});
+$(function() {
+	var icon = $('#iconfour img');
+	icon.hover(function() {
+		icon.attr("src", icon.attr("src").replace(".png","Big.png"))
+	}, function() {
+		icon.attr("src", icon.attr("src").replace("Big.png",".png"))
+	});
+});
+$(function() {
+	var icon = $('#iconfive img');
+	icon.hover(function() {
+		icon.attr("src", icon.attr("src").replace(".png","Big.png"))
+	}, function() {
+		icon.attr("src", icon.attr("src").replace("Big.png",".png"))
+	});
+});
+</script>
+	<div id="mainicondiv">
+		<ul >
+			<li id="iconone"><a href=""><img src="${pageContext.request.contextPath }/img/sellNow.png"></a></li>
+			<li id="icontwo"><a href=""><img src="${pageContext.request.contextPath }/img/enterCar.png"></a></li>
+			<li id="iconthree"><a href=""><img src="${pageContext.request.contextPath }/img/buyNow.png"></a></li>
+			<li id="iconfour"><a href=""><img src="${pageContext.request.contextPath }/img/joinAuction1.png"></a></li>
+			<li id="iconfive"><a href=""><img src="${pageContext.request.contextPath }/img/joinAuction2.png"></a></li>
+		</ul>
+	</div>
 	<div id="realtime">
 		<div id="realtimehead">
 			<p id="text">실시간 경매 현황</p>
