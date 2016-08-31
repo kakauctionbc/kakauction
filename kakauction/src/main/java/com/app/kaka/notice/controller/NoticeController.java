@@ -213,8 +213,8 @@ public class NoticeController {
 		return "redirect:/notice/detail.do?noticeNo="+noticeNo;
 	}
 	
-	@RequestMapping("/delete.do")
-	public String deleteNotice(@RequestParam(defaultValue="0")int noticeNo, String noticeFilename,Model model){
+	/*@RequestMapping("/delete.do")
+	public String deleteNotice(HttpServletRequest request,@ModelAttribute NoticeVO noticeVo, @RequestParam(defaultValue="0")int noticeNo, String noticeFilename,Model model){
 		logger.info("공지 삭제 파라미터 noticeNo={},noticeFilename={}",noticeNo,noticeFilename);
 		
 		if (noticeNo==0) {
@@ -227,27 +227,26 @@ public class NoticeController {
 		//저장 프로시저에서 사용할 map 만들기
 		Map<String, String> map 
 			= new HashMap<String, String>();
-		map.put("groupNo", reBoardVo.getGroupNo()+"");
-		map.put("no", Integer.toString(no));
-		map.put("step", reBoardVo.getStep()+"");
+		map.put("groupNo", noticeVo.getNoticeGroupno()+"");
+		map.put("no", Integer.toString(noticeNo));
+		map.put("step", noticeVo.getNoticeStep()+"");
 		logger.info("글삭제시 파라미터 map={}", map);
 		
-		reBoardService.deleteReBoard(map);
+		noticeService.deleteNotice(map);
 		
 		//파일이 첨부된 경우에는 파일도 삭제처리한다
-		if(fileName!=null && !fileName.isEmpty()){
-			String upPath=reBoardService.getUploadPath(request);
-			File delFile = new File(upPath ,fileName);
+		if(noticeFilename!=null && !noticeFilename.isEmpty()){
+			//String upPath=noticeFilename.get;
+			File delFile = new File(upPath ,noticeFilename);
 			if(delFile.exists()){
 				boolean bool=delFile.delete();
 				logger.info("파일 삭제 여부:{}", bool);					
 			}
 		}//if
 		
-		int cnt = noticeService.deleteNotice(noticeNo);
-		
+		int cnt = noticeService.deleteNotice(map);
 		logger.info("공지 삭제 결과, cnt={}",cnt);
 		
 		return "redirect:/notice/list.do";
-	}
+	}*/
 }

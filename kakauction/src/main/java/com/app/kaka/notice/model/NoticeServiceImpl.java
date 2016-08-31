@@ -181,7 +181,7 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDao.updateReadCount(noticeNo);
 	}
 
-	public int deleteNotice(int noticeNo) {
-		return noticeDao.deleteNotice(noticeNo);
+	public int deleteNotice(Map<String, String> map) {
+		return noticeDao.deleteNotice(map);
 	}
 }

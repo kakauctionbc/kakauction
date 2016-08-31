@@ -17,5 +17,5 @@ public interface NoticeService {
 	public String selectByNoIdPwd(String memberId);
 	public int editNotice(NoticeVO noticeVo);
 	public int updateReadCount(int noticeNo);
-	public int deleteNotice(int noticeNo);
+	public int deleteNotice(Map<String, String> map);
 }

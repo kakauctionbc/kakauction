@@ -1,6 +1,7 @@
 package com.app.kaka.notice.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -45,7 +46,7 @@ public class NoticeDAOMybatis extends SqlSessionDaoSupport implements NoticeDAO{
 	}
 
 	@Override
-	public int deleteNotice(int noticeNo) {
-		return getSqlSession().delete(namespace+".deleteNotice",noticeNo);
+	public int deleteNotice(Map<String, String> map) {
+		return getSqlSession().delete(namespace+".deleteNotice",map);
 	}
 }

@@ -1,6 +1,7 @@
 package com.app.kaka.notice.model;
 
 import java.util.List;
+import java.util.Map;
 
 import com.app.kaka.common.SearchVO;
 
@@ -12,5 +13,5 @@ public interface NoticeDAO {
 	public String selectByNoIdPwd(String memberId);
 	public int editNotice(NoticeVO noticeVo);
 	public int updateReadCount(int noticeNo);
-	public int deleteNotice(int noticeNo);
+	public int deleteNotice(Map<String, String> map);
 }
