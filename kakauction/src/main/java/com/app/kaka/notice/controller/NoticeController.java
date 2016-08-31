@@ -213,7 +213,7 @@ public class NoticeController {
 		return "redirect:/notice/detail.do?noticeNo="+noticeNo;
 	}
 	
-	/*@RequestMapping("/delete.do")
+	@RequestMapping("/delete.do")
 	public String deleteNotice(HttpServletRequest request,@ModelAttribute NoticeVO noticeVo, @RequestParam(defaultValue="0")int noticeNo, String noticeFilename,Model model){
 		logger.info("공지 삭제 파라미터 noticeNo={},noticeFilename={}",noticeNo,noticeFilename);
 		
@@ -236,7 +236,7 @@ public class NoticeController {
 		
 		//파일이 첨부된 경우에는 파일도 삭제처리한다
 		if(noticeFilename!=null && !noticeFilename.isEmpty()){
-			//String upPath=noticeFilename.get;
+			String upPath=noticeService.getUploadPath(request);
 			File delFile = new File(upPath ,noticeFilename);
 			if(delFile.exists()){
 				boolean bool=delFile.delete();
@@ -248,5 +248,28 @@ public class NoticeController {
 		logger.info("공지 삭제 결과, cnt={}",cnt);
 		
 		return "redirect:/notice/list.do";
-	}*/
+	}
+	
+	
+	@RequestMapping("/download.do")
+	public String download(@RequestParam(defaultValue="0") int noticeNo,@RequestParam String fileName,
+			HttpServletRequest request,Model model){
+		//http://localhost:5841/kaka/notice/download.do?noticeNo=2&fileName=BoardService20160831090649002.java
+		logger.info("다운로드 파라미터, noticeNo={},fileName={}",noticeNo, fileName);
+		
+		int cnt = noticeService.updateDownCount(noticeNo);
+		logger.info("다운로드 수 증가 noticeNo={}",noticeNo);
+		
+		Map<String, Object> map 
+		= new HashMap<String, Object>();
+		String upPath = noticeService.getUploadPath(request);
+	
+		File file = new File(upPath, fileName);
+		//생성한 파일 객체를 map에 저장한 후 뷰에 넘긴다
+		map.put("myfile", file);
+		
+		model.addAttribute("map", map);
+		
+		return "redirect:/notice/detail.do?noticeNo="+noticeNo;
+	}
 }

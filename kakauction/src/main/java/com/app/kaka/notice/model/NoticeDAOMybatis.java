@@ -49,4 +49,9 @@ public class NoticeDAOMybatis extends SqlSessionDaoSupport implements NoticeDAO{
 	public int deleteNotice(Map<String, String> map) {
 		return getSqlSession().delete(namespace+".deleteNotice",map);
 	}
-}
+
+	@Override
+	public int updateDownCount(int noticeNo) {
+		return getSqlSession().delete(namespace+".updateDownCount", noticeNo);
+	}
+}	

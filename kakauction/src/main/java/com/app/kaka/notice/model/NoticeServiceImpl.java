@@ -184,4 +184,9 @@ public class NoticeServiceImpl implements NoticeService {
 	public int deleteNotice(Map<String, String> map) {
 		return noticeDao.deleteNotice(map);
 	}
+
+	@Override
+	public int updateDownCount(int noticeNo) {
+		return noticeDao.updateDownCount(noticeNo);
+	}
 }

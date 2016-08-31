@@ -34,7 +34,7 @@
 			#{noticeContent}, sysdate, 0, #{noticeNo}, 0, 0, 
 			#{noticeFilename}, #{noticeFilesize}, 0, #{noticeOriginalname})
 	</insert>
-	
+
 	<select id="selectAll" resultType="noticeVo" parameterType="SearchVO">
 		select *
 		from
@@ -58,6 +58,7 @@
 		]]>
 	</select>
 	
+	<!-- 공지 글 수 -->
 	<select id="selectTotalCount" resultType="int" parameterType="SearchVO">
 		select count(*) from notice 
 		<include refid="searchWhere"></include>
@@ -83,12 +84,21 @@
 		where notice_no=#{noticeNo}
 	</update>
 	
+	<!-- 조회수 -->
 	<update id="updateReadCount" parameterType="int">
 		update notice set notice_readcount=notice_readcount+1 where notice_no = #{noticeNo}
 	</update>
 	
+	<!-- 삭제 -->
 	<delete id="deleteNotice" parameterMap="delParamMap" >
-		{call DELETE_REBOARD(?, ?, ?)}
+		{call notice_delete(?, ?, ?)}
 	</delete>	
 	<!-- 파라미터 순서 => P_NO, P_GROUPNO,p_step -->
+	
+	<!-- 다운수 -->
+	<update id="updateDownCount" parameterType="int">
+		update notice
+		set NOTICE_DOWNCOUNT = NOTICE_DOWNCOUNT+1
+		where notice_no=#{noticeNo}		
+	</update>
 </mapper>
