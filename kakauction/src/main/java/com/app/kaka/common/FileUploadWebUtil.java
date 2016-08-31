@@ -66,6 +66,7 @@ public class FileUploadWebUtil {
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("fileName", fileName);
 				map.put("fileSize", fileSize);
+				map.put("ofileName", ofileName);
 				logger.info("fileName={}",fileName);
 				
 				//map을 List에 저장한다

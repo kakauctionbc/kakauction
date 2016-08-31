@@ -25,7 +25,6 @@ import com.app.kaka.freeboard.model.FreeboardVO;
 @Controller
 @RequestMapping("/freeboard")
 public class FreeboardController {
-	
 	private Logger logger = LoggerFactory.getLogger(FreeboardController.class);
 	
 	@Autowired(required=false)
@@ -80,8 +79,42 @@ public class FreeboardController {
 	public String listFreeboard(){
 		
 	}*/
+	@RequestMapping("updateCount.do")
+	public String updateCountFreeboard(@RequestParam(defaultValue="0") int freeboardNo, HttpServletRequest request, Model model){
+		logger.info("조회수 증가 파라미터, freeboardNo={}", freeboardNo);
+		if (freeboardNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/freeboard/list.do");
+			
+			return "common/message";
+		}
+		
+		FreeboardVO freeVo = freeboardService.detailFreeboard(freeboardNo);
+		logger.info("글 상세목록 freeboardVo = {}", freeVo);
+		
+		String fileInfo="", downInfo="";
+		if(freeVo.getFreeboardFilename()!=null 
+				&& !freeVo.getFreeboardFilename().isEmpty()){
+			String contextPath = request.getContextPath();
+			double fileSize 
+					= Math.round((freeVo.getFreeboardFilesize()/1000.0)*10)/10.0;
+			
+			fileInfo="<img src='"+ contextPath 
+					+"/images/file.gif' alt='파일이미지'>";
+			fileInfo+=freeVo.getFreeboardOriginalname()
+					+ " ("+fileSize +"KB)";
+			
+			downInfo="다운:"+freeVo.getFreeboardDowncount();
+		}
+		
+		model.addAttribute("freeVo", freeVo);
+		model.addAttribute("fileInfo", fileInfo);
+		model.addAttribute("downInfo", downInfo);
+		
+		return "/freeboard/detail";
+	}
 	
-	@RequestMapping("/detail.do")
+/*	@RequestMapping("/detail.do")
 	public String detailFreeboard(@RequestParam(defaultValue="0") int freeboardNo, HttpServletRequest request, Model model){
 		logger.info("글 상세목록 파라미터 freeboardNo={}",freeboardNo);
 		
@@ -115,7 +148,7 @@ public class FreeboardController {
 		model.addAttribute("downInfo", downInfo);
 		
 		return "/freeboard/detail";
-	}
+	}*/
 	
 	@RequestMapping("/list.do")
 	public String freeboardList(@ModelAttribute SearchVO searchVo,
@@ -171,16 +204,15 @@ public class FreeboardController {
 
 		int uploadType = FileUploadWebUtil.FREEBOARD_UPLOAD;
 		//상품등록시 이미지 업로드
-		logger.info("상품 등록 처리, request={}",request);
+		logger.info("글 수정 처리 왜 안되냐, request={},uploadType={}",request,uploadType);
 		List<Map<String, Object>> fileList = fileUtil.fileUpload(request, uploadType);
-		if(fileList!=null && !fileList.isEmpty()){
-			//업로드된 파일명 구해오기
-			String fileName="";
-			long fileSize=0;
-			for(Map<String, Object> mymap : fileList ){
-				fileName =  (String) mymap.get("fileName");
-				fileSize =  (Long) mymap.get("fileSize");
-			}
+		logger.info("상품 등록 처리 얘는 뭐냐, fileList={}",fileList);
+		//업로드된 파일명 구해오기
+		String fileName="";
+		long fileSize=0;
+		for(Map<String, Object> mymap : fileList ){
+			fileName =  (String) mymap.get("fileName");
+			fileSize =  (Long) mymap.get("fileSize");
 			
 			freeboardVo.setFreeboardFilename(fileName);
 			freeboardVo.setFreeboardFilesize(fileSize);

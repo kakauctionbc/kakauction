@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -39,11 +40,9 @@
 			<p class="content">${freeVo.freeboardContent}</p>
 		</div>
 		<div class="center">
-			<a href
-			="<c:url value='/freeboard/edit.do?no=${freeVo.freeboardNo}'/>">
+			<a href	="<c:url value='/freeboard/edit.do?freeboardNo=${freeVo.freeboardNo}'/>">
 			수정</a> |
-        	<a href
-		="<c:url value='/freeboard/delete.do?no=${freeVo.freeboardNo}&fileName=${freeVo.freeboardFilename}'/>">
+        	<a href	="<c:url value='/freeboard/delete.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
 			삭제</a> |
         	<a href="<c:url value='/freeboard/list.do'/>">목록</a>			
 		</div>
