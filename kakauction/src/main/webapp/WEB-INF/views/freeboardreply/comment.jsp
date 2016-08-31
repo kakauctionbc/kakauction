@@ -31,26 +31,25 @@
 				</tr>
 			</c:if>
 			<c:if test="${!empty alist }">
-				<c:forEach var="commentVo" items="${alist }">
+				<c:forEach var="freereplyVo" items="${alist }">
 					<tr>
-						<td style="text-align: center">${commentVo.memberId }</td>
-						<td>${commentVo.content }</td>
-						<td style="text-align: center"><fmt:formatDate value="${commentVo.regdate }" pattern="yyyy-MM-dd"/></td>
+						<td style="text-align: center">${freereplyVo.memberId }</td>
+						<td>${freereplyVo.content }</td>
+						<td style="text-align: center"><fmt:formatDate value="${freereplyVo.regdate }" pattern="yyyy-MM-dd"/></td>
 					</tr>
 				</c:forEach>
 				<!--반복처리 끝  -->
 			  </c:if>
 	 	</table>
 	</div>
-	<form id="replyComment" name="replyComment" method="post" action="<c:url value='/freeboard/insertComment.do'/>">
+	<form id="replyComment" name="replyComment" method="post" action="<c:url value='/freeboardreply/insertComment.do'/>">
 		<div class="commentWrite" style="width: 500px; margin-top: 20px;">
 			<fieldset>
 				<legend>댓글달기</legend>
 					<p style="margin-top: 10px;">
-						<label for="name" style="margin-right: 10px;">작성자</label><input type="text" name="name" style="width: 30%">
-						<label for="pwd" style="margin-left: 70px; margin-right: 10px;">비밀번호</label><input type="password" name="pwd" style="width: 30%">
+						<label for="memberId" style="margin-right: 10px;">작성자</label><input type="text" name="memberId" style="width: 30%">
 					</p>
-					<input type="hidden" name="bdNo" value="${vo.no}">
+					<input type="hidden" name="freereplyGroupno" value="${vo.freereplyGroupno}">
 					<p style="margin-top: 20px;">
 						<textarea rows="5" cols="95" name="content"></textarea>
 					</p>

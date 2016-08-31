@@ -1,5 +1,7 @@
 package com.app.kaka.freereply.model;
 
+import java.util.List;
+
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +13,11 @@ public class FreeReplyDAOMybatis extends SqlSessionDaoSupport implements FreeRep
 	@Override
 	public int insertComment(FreeReplyVO vo) {
 		return getSqlSession().insert(namespace+".insertComment", vo);
+	}
+
+	@Override
+	public List<FreeReplyVO> selectComment(int freereplyGroupno) {
+		return getSqlSession().selectList(namespace+".selectComment", freereplyGroupno);
 	}
 
 }
