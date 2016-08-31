@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.app.kaka.common.PaginationInfo;
+import com.app.kaka.common.SearchVO;
+import com.app.kaka.common.Utility;
 import com.app.kaka.freereply.model.FreeReplyService;
 import com.app.kaka.freereply.model.FreeReplyVO;
 
@@ -45,12 +47,28 @@ public class FreeReplyController {
 	}
 	
 	@RequestMapping("/comment.do")
-	public String showComment(@RequestParam(defaultValue="0") int freeboardNo, Model model){
-		logger.info("댓글 보기, 파라미터 freeboardNo={}", freeboardNo);
+	public String showComment(@ModelAttribute SearchVO searchVo, Model model){
+		logger.info("댓글 보기, 파라미터 freereplyVo={}", searchVo);
 
-		List<FreeReplyVO> alist = freereplyService.selectComment(freeboardNo);
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.REPLY_RECORD_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 		
+		searchVo.setBlockSize(Utility.BLOCK_SIZE);
+		searchVo.setRecordCountPerPage(Utility.REPLY_RECORD_COUNT_PER_PAGE);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		
+		List<FreeReplyVO> alist = freereplyService.selectComment(searchVo);
+		logger.info("댓글 조회 결과, alist.size() = {}", alist.size());
+		
+		//전체 레코드 개수 조회하기
+		int totalRecord = freereplyService.selectTotalCount(searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+				
+		//3. 결과 저장, 뷰페이지 리턴
 		model.addAttribute("alist", alist);
+		model.addAttribute("pagingInfo", pagingInfo);
 		
 		return "freeboardreply/comment";
 	}

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.kaka.common.SearchVO;
+
 @Service
 public class FreeReplyServiceImpl implements FreeReplyService{
 
@@ -17,8 +19,13 @@ public class FreeReplyServiceImpl implements FreeReplyService{
 	}
 
 	@Override
-	public List<FreeReplyVO> selectComment(int freereplyGroupno) {
-		return freereplyDao.selectComment(freereplyGroupno);
+	public List<FreeReplyVO> selectComment(SearchVO searchVo) {
+		return freereplyDao.selectComment(searchVo);
+	}
+
+	@Override
+	public int selectTotalCount(SearchVO searchVo) {
+		return freereplyDao.selectTotalCount(searchVo);
 	}
 	
 }

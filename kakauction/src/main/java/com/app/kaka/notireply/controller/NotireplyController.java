@@ -12,7 +12,7 @@ import com.app.kaka.notireply.model.NotireplyService;
 import com.app.kaka.notireply.model.NotireplyVO;
 
 @Controller
-@RequestMapping("/noticereply")
+@RequestMapping("/notireply")
 public class NotireplyController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(NotireplyController.class);
@@ -23,12 +23,12 @@ public class NotireplyController {
 	@RequestMapping("/insertComment.do")
 	public String insertComment(@ModelAttribute NotireplyVO vo, Model model){
 
-		logger.info("댓글 달기, 파라미터 CommentVo={}", vo);
+		logger.info("댓글 달기, 파라미터 NotireplyVO={}", vo);
 		
 		int cnt = notireplyService.insertComment(vo);
 		logger.info("댓글달기 결과 cnt = {}", cnt);
 		
-		String msg = "", url = "/board/detail.do?no="+vo.getNotireplyGroupno();
+		String msg = "", url = "/notice/detail.do?no="+vo.getNotireplyGroupno();
 		if(cnt>0){
 			msg = "댓글을 달았습니다!";
 		}else{

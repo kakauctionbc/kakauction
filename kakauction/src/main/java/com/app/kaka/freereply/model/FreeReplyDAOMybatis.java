@@ -5,6 +5,8 @@ import java.util.List;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.app.kaka.common.SearchVO;
+
 @Repository
 public class FreeReplyDAOMybatis extends SqlSessionDaoSupport implements FreeReplyDAO{
 
@@ -16,8 +18,13 @@ public class FreeReplyDAOMybatis extends SqlSessionDaoSupport implements FreeRep
 	}
 
 	@Override
-	public List<FreeReplyVO> selectComment(int freereplyGroupno) {
-		return getSqlSession().selectList(namespace+".selectComment", freereplyGroupno);
+	public List<FreeReplyVO> selectComment(SearchVO searchVo) {
+		return getSqlSession().selectList(namespace+".selectComment", searchVo);
+	}
+
+	@Override
+	public int selectTotalCount(SearchVO searchVo) {
+		return getSqlSession().selectOne(namespace+".selectTotalCount", searchVo);
 	}
 
 }

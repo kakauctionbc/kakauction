@@ -90,6 +90,7 @@ public class FreeboardController {
 		}
 		
 		FreeboardVO freeVo = freeboardService.detailFreeboard(freeboardNo);
+		logger.info("글 상세목록 freeboardVo = {}", freeVo);
 		
 		String fileInfo="", downInfo="";
 		if(freeVo.getFreeboardFilename()!=null 
@@ -126,7 +127,7 @@ public class FreeboardController {
 		searchVo.setBlockSize(Utility.BLOCK_SIZE);
 		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-				
+		
 		//2. db작업 - select
 		List<FreeboardVO> alist = freeboardService.selectAll(searchVo);
 		//logger.info("글목록 조회 결과 alist.size()={}", alist.size());
@@ -135,7 +136,7 @@ public class FreeboardController {
 		int totalRecord 
 			= freeboardService.selectTotalCount(searchVo);
 		pagingInfo.setTotalRecord(totalRecord);
-				
+		
 		//3. 결과 저장, 뷰페이지 리턴
 		model.addAttribute("alist", alist);
 		model.addAttribute("pagingInfo", pagingInfo);

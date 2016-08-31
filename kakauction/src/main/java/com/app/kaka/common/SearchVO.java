@@ -32,6 +32,11 @@ public class SearchVO {
     /**페이지 별 레코드 갯수 (pageSize) */
     private int recordCountPerPage; 
     
+    
+    /** 댓글 페이징처리 */
+    private int freeboardNo;
+    private int noticeNo;
+    
    /**
      * 검색 조건을  설정한다.
      * @param bean 검색조건
@@ -45,6 +50,8 @@ public class SearchVO {
     	this.firstRecordIndex = bean.firstRecordIndex;
     	this.lastRecordIndex = bean.lastRecordIndex;
     	this.recordCountPerPage = bean.recordCountPerPage;
+    	this.freeboardNo = bean.freeboardNo;
+    	this.noticeNo = bean.noticeNo;
     }
 
     public String getSearchCondition() {
@@ -112,19 +119,30 @@ public class SearchVO {
 		this.recordCountPerPage = recordCountPerPage;
 	}
 
+	
+	public int getFreeboardNo() {
+		return freeboardNo;
+	}
+
+	public void setFreeboardNo(int freeboardNo) {
+		this.freeboardNo = freeboardNo;
+	}
+
+	public int getNoticeNo() {
+		return noticeNo;
+	}
+
+	public void setNoticeNo(int noticeNo) {
+		this.noticeNo = noticeNo;
+	}
 
 	@Override
 	public String toString() {
 		return "SearchVO [searchCondition=" + searchCondition + ", searchKeyword=" + searchKeyword + ", searchUseYn="
 				+ searchUseYn + ", currentPage=" + currentPage + ", blockSize=" + blockSize + ", firstRecordIndex="
 				+ firstRecordIndex + ", lastRecordIndex=" + lastRecordIndex + ", recordCountPerPage="
-				+ recordCountPerPage + "]";
+				+ recordCountPerPage + ", freeboardNo=" + freeboardNo + ", noticeNo=" + noticeNo + "]";
 	}
 
-	
-
-	
-
-	
 }
  

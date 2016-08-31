@@ -63,5 +63,6 @@
         	<a href="<c:url value='/notice/list.do'/>">목록</a>			
 		</div>
 	</div>
+	<jsp:include page="/notireply/comment.do?noticeNo=${noticeVo.noticeNo }"></jsp:include>
 </body>
 </html>
