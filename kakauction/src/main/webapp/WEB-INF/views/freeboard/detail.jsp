@@ -40,7 +40,7 @@
 			<p class="content">${freeVo.freeboardContent}</p>
 		</div>
 		<div class="center">
-			<a href	="<c:url value='/freeboard/edit.do?freeboardNo=${freeVo.freeboardNo}'/>">
+			<a href	="<c:url value='/freeboard/edit.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
 			수정</a> |
         	<a href	="<c:url value='/freeboard/delete.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
 			삭제</a> |

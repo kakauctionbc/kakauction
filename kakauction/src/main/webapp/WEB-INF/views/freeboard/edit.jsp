@@ -26,7 +26,6 @@
 		<div>
 			<input type="text" name="freeboardNo" id="freeboardNo" value="${param.freeboardNo}">
 			<input type="text" name="freeboardFilename" id="freeboardFilename" value="${param.freeboardFilename}">
-			<input type="text" name="freeboardNo" id="freeboardNo" value="${param.freeboardNo}">
 		</div>
 		<div>
 			<label for="memberId">아이디</label>
