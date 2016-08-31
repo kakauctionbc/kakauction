@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
@@ -166,7 +167,7 @@ public class NoticeController {
 		
 		if (noticeNo==0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
-			model.addAttribute("url", "/list.do");
+			model.addAttribute("url", "/notice/list.do");
 			
 			return "common/message";
 		}
@@ -182,7 +183,7 @@ public class NoticeController {
 					= Math.round((noticeVo.getNoticeFilesize()/1000.0)*10)/10.0;
 			
 			fileInfo="<img src='"+ contextPath 
-					+"/images/file.gif' alt='파일이미지'>";
+					+"/image/file.gif' alt='파일이미지'>";
 			fileInfo+=noticeVo.getNoticeOriginalname()
 					+ " ("+fileSize +"KB)";
 			
@@ -227,9 +228,9 @@ public class NoticeController {
 		//저장 프로시저에서 사용할 map 만들기
 		Map<String, String> map 
 			= new HashMap<String, String>();
-		map.put("groupNo", noticeVo.getNoticeGroupno()+"");
-		map.put("no", Integer.toString(noticeNo));
-		map.put("step", noticeVo.getNoticeStep()+"");
+		map.put("noticeGroupno", noticeVo.getNoticeGroupno()+"");
+		map.put("noticeNo", Integer.toString(noticeNo));
+		map.put("noticeStep", noticeVo.getNoticeStep()+"");
 		logger.info("글삭제시 파라미터 map={}", map);
 		
 		noticeService.deleteNotice(map);
@@ -252,24 +253,30 @@ public class NoticeController {
 	
 	
 	@RequestMapping("/download.do")
-	public String download(@RequestParam(defaultValue="0") int noticeNo,@RequestParam String fileName,
+	public ModelAndView download(@RequestParam(defaultValue="0") int noticeNo,@RequestParam String noticeFilename,
 			HttpServletRequest request,Model model){
 		//http://localhost:5841/kaka/notice/download.do?noticeNo=2&fileName=BoardService20160831090649002.java
-		logger.info("다운로드 파라미터, noticeNo={},fileName={}",noticeNo, fileName);
+		logger.info("다운로드 파라미터, noticeNo={},fileName={}",noticeNo, noticeFilename);
 		
 		int cnt = noticeService.updateDownCount(noticeNo);
 		logger.info("다운로드 수 증가 noticeNo={}",noticeNo);
 		
+		//3.
+		//다운로드할 파일정보를 이용해서 파일 객체를 
+		//만든 후 뷰에 넘긴다
+		
+		//ModelAndView(String viewName, Map map)		
 		Map<String, Object> map 
-		= new HashMap<String, Object>();
+			= new HashMap<String, Object>();
 		String upPath = noticeService.getUploadPath(request);
-	
-		File file = new File(upPath, fileName);
+		
+		File file = new File(upPath, noticeFilename);
 		//생성한 파일 객체를 map에 저장한 후 뷰에 넘긴다
 		map.put("myfile", file);
 		
-		model.addAttribute("map", map);
+		ModelAndView mav 
+		= new ModelAndView("downloadView", map);
 		
-		return "redirect:/notice/detail.do?noticeNo="+noticeNo;
+		return mav;
 	}
 }
