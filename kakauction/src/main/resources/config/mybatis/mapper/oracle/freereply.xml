@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="config.mybatis.mapper.oracle.freereply">
+	<insert id="insertComment" parameterType="commentVo">
+		<selectKey keyProperty="freereplyNo" order="BEFORE" resultType="int">
+			select freereply_seq.nextval from dual
+		</selectKey>
+		insert into comments(freereply_groupno, freereply_content, member_id, freereply_no, freereply_regdate,
+		freereply_sortno, freereply_step)
+		values(#{freereplyGroupno},#{freereplyContent},#{memberId},#{freereplyNo},sysdate,0,0) 
+	</insert>
+</mapper>
