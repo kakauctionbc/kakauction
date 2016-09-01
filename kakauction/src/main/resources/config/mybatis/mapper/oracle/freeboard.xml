@@ -72,6 +72,11 @@
 	<select id="selectByNo" parameterType="int" resultType="freeboardVo">
 		select * from freeboard where freeboard_no=#{freeboardNo}
 	</select>
+
+	<!-- 조회수 -->
+	<update id="updateReadCount" parameterType="int">
+		update freeboard set freeboard_readcount=freeboard_readcount+1 where freeboard_no = #{freeboardNo}
+	</update>
 	
 	<delete id="">
 	

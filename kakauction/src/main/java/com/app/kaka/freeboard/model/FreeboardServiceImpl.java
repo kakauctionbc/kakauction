@@ -150,6 +150,11 @@ public class FreeboardServiceImpl implements FreeboardService{
 	public int updateFreeboard(FreeboardVO freeboardVo) {
 		return freeboardDao.updateFreeboard(freeboardVo);
 	}
+
+	@Override
+	public int updateReadCount(int freeboardNo) {
+		return freeboardDao.updateReadCount(freeboardNo);
+	}
 	
 /*	public int updateDownCount(int no){
 		return reBoardDao.updateDownCount(no);

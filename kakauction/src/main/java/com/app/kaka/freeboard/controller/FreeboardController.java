@@ -89,6 +89,9 @@ public class FreeboardController {
 			return "common/message";
 		}
 		
+		int cnt = freeboardService.updateReadCount(freeboardNo);
+		logger.info("조회수 증가 파라미터, cnt={}", cnt);
+		
 		FreeboardVO freeVo = freeboardService.detailFreeboard(freeboardNo);
 		logger.info("글 상세목록 freeboardVo = {}", freeVo);
 		
