@@ -2,5 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="config.mybatis.mapper.oracle.notireply">
+	<insert id="insertComment" parameterType="freereplyVo">
+		<selectKey keyProperty="notireplyNo" order="BEFORE" resultType="int">
+			select notireply_seq.nextval from dual
+		</selectKey>
+		insert into notireply(notireply_no, notice_no, member_id, notireply_content, notireply_groupno, notireply_step, notireply_sortno)
+		values(#{notireplyNo},#{noticeNo},#{memberId},#{notireplyContent},#{notireplyGroupno},0,0) 
+	</insert>	
+	<select id="selectComment" parameterType="SearchVO" resultType="notireplyVo">
+		select *
+		from
+		(
+		    select rownum as RNUM, LIST_ALL.*
+		    from
+		        (select notireply_no, member_id, notireply_content, notireply_regdate, 
+        			notireply_groupno, notireply_step, notireply_sortno, notireply_delflag
+		        from notireply
+		        where notice_no = #{noticeNo}
+		        order by notireply_no asc, notireply_sortno asc) LIST_ALL    
+		) 
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}
+			+ #{recordCountPerPage}
+		]]>
+	</select>
 	
+	<select id="selectTotalCount" resultType="int" parameterType="SearchVO">
+		select count(*) from notireply
+		where notice_no = #{noticeNo }
+	</select>
 </mapper>

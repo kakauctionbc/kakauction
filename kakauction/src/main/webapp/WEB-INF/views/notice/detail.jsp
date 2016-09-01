@@ -1,32 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<!DOCTYPE HTML>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
-<title>공지사항</title>
+<title>공지사항 상세보기</title>
 </head>
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#delete").click(function(){
-			alert("삭제하시겠습니까?");
-			return true;
-		});
-	});
-</script>
 <body>
-	<h2>공지 글 상세보기</h2>
+	<h2>공지사항 상세보기</h2>
 	<div class="divForm">
 		<div class="firstDiv">
 			<span class="sp1">제목</span> 
 			<span>${noticeVo.noticeTitle}</span>
 		</div>
 		<div>
-			<span class="sp1">작성자</span> 
+			<span class="sp1">작성자</span>
 			<span>${noticeVo.memberId}</span>
 		</div>
 		<div>
@@ -58,6 +51,6 @@
         	<a href="<c:url value='/notice/list.do'/>">목록</a>			
 		</div>
 	</div>
-	<jsp:include page="/notireply/comment.do?noticeNo=${noticeVo.noticeNo }"></jsp:include>
+	<jsp:include page="/notireply/comment.do?noticeNo=${param.noticeNo }"></jsp:include>
 </body>
 </html>

@@ -179,7 +179,7 @@ public class FreeboardController {
 		return "freeboard/edit";
 	}
 	@RequestMapping(value="/edit.do", method=RequestMethod.POST)
-	public String editFreeboard_post(HttpServletRequest request, @ModelAttribute FreeboardVO freeboardVo, Model model){
+	public String editFreeboard_post(HttpServletRequest request, @ModelAttribute FreeboardVO freeboardVo, @RequestParam String freeboardFilename, Model model){
 		
 		logger.info("글수정 화면 보여주기, 파라미터 FreeboardVO={}",freeboardVo);
 
@@ -189,18 +189,20 @@ public class FreeboardController {
 		List<Map<String, Object>> fileList = fileUtil.fileUpload(request, uploadType);
 		logger.info("상품 등록 처리 얘는 뭐냐, fileList={}",fileList);
 		//업로드된 파일명 구해오기
-		String fileName="";
-		String ofileName="";
-		long fileSize=0;
-		for(Map<String, Object> mymap : fileList ){
-			fileName =  (String) mymap.get("fileName");
-			fileSize =  (Long) mymap.get("fileSize");
-			ofileName =  (String) mymap.get("ofileName");
-			
-			freeboardVo.setFreeboardFilename(fileName);
-			freeboardVo.setFreeboardFilesize(fileSize);
-			freeboardVo.setFreeboardOriginalname(ofileName);
-			logger.info("세터 다 하고 FreeboardVO={}",freeboardVo);
+		if(freeboardFilename!=null && !freeboardFilename.isEmpty()){
+			String fileName="";
+			String ofileName="";
+			long fileSize=0;
+			for(Map<String, Object> mymap : fileList ){
+				fileName =  (String) mymap.get("fileName");
+				fileSize =  (Long) mymap.get("fileSize");
+				ofileName =  (String) mymap.get("ofileName");
+				
+				freeboardVo.setFreeboardFilename(fileName);
+				freeboardVo.setFreeboardFilesize(fileSize);
+				freeboardVo.setFreeboardOriginalname(ofileName);
+				logger.info("세터 다 하고 FreeboardVO={}",freeboardVo);
+			}
 		}
 		String msg = "", url ="";
 		int cnt = freeboardService.updateFreeboard(freeboardVo);

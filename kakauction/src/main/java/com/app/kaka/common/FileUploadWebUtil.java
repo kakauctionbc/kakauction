@@ -47,7 +47,7 @@ public class FileUploadWebUtil {
 			String key = iter.next();
 			MultipartFile tempFile=fileMap.get(key);
 			
-			//업로드 파일이 있을 때 파일염, 파일크기 구해오고, 업로드 처리하기
+			//업로드 파일이 있을 때 파일명, 파일크기 구해오고, 업로드 처리하기
 			if(!tempFile.isEmpty()){
 				String ofileName = tempFile.getOriginalFilename();
 				logger.info("업로드 원본 파일명={}", ofileName);

@@ -90,11 +90,12 @@
 			<fieldset>
 				<legend>댓글달기</legend>
 					<p style="margin-top: 10px;">
-						<label for="name" style="margin-right: 10px;">작성자</label><input type="text" name="name" style="width: 30%">
+						<label for="memberId" style="margin-right: 10px;">작성자</label>
+						<input type="text" id="memberId" name="memberId" style="width: 30%">
 					</p>
 					<input type="hidden" name="notireplyGroupno" value="${noticeVo.noticeNo}">
 					<p style="margin-top: 20px;">
-						<textarea rows="5" cols="95" name="content"></textarea>
+						<textarea rows="5" cols="95" name="notireplyContent"></textarea>
 					</p>
 					<div style="text-align: center; margin-top: 10px;">
 						<input type="submit" name="commentSubmit" value="확인">

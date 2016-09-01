@@ -12,6 +12,7 @@ public class FreeReplyVO {
 	private int freereplyStep;
 	private int freereplySortno;
 	private String freereplyDelfalg;
+	
 	public int getFreereplyNo() {
 		return freereplyNo;
 	}

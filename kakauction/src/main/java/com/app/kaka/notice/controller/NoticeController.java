@@ -176,8 +176,7 @@ public class NoticeController {
 		logger.info("파라미터 noticeVo={}",noticeVo);
 		
 		String fileInfo="", downInfo="";
-		if(noticeVo.getNoticeFilename()!=null 
-				&& !noticeVo.getNoticeFilename().isEmpty()){
+		if(noticeVo.getNoticeFilename()!=null && !noticeVo.getNoticeFilename().isEmpty()){
 			String contextPath = request.getContextPath();
 			double fileSize 
 					= Math.round((noticeVo.getNoticeFilesize()/1000.0)*10)/10.0;

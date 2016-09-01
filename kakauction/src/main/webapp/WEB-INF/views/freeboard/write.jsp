@@ -32,7 +32,7 @@
 </script>
 </head>
 <body>
-	<form action="<c:url value='/freeboard/write.do'/>" method="post" name="freeWriteFrm" enctype="multipart/form-data">
+	<form action="<c:url value='/freeboard/write.do'/>" method="post" name="freeWriteFrm" id="frmWrite" enctype="multipart/form-data">
 		<div>
 			<label for="memberId">아이디</label>
 			<input type="text" name="memberId" id="memberId" readonly="readonly" value="admin">

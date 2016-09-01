@@ -48,7 +48,7 @@ public class FreeReplyController {
 	
 	@RequestMapping("/comment.do")
 	public String showComment(@ModelAttribute SearchVO searchVo, Model model){
-		logger.info("댓글 보기, 파라미터 freereplyVo={}", searchVo);
+		logger.info("댓글 보기, 파라미터 searchVo={}", searchVo);
 
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);

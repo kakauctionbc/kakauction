@@ -90,7 +90,8 @@
 			<fieldset>
 				<legend>댓글달기</legend>
 					<p style="margin-top: 10px;">
-						<label for="memberId" style="margin-right: 10px;">작성자</label><input type="text" name="memberId" style="width: 30%">
+						<label for="memberId" style="margin-right: 10px;">작성자</label>
+						<input type="text" id="memberId" name="memberId" style="width: 30%">
 					</p>
 					<input type="hidden" name="freereplyGroupno" value="${freeVo.freeboardNo}">
 					<p style="margin-top: 20px;">
