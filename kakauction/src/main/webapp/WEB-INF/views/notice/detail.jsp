@@ -3,13 +3,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <!DOCTYPE HTML>
-<html lang="ko">
+<html>
 <head>
-<title>공지사항</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
+<title>공지사항</title>
+</head>
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#delete").click(function(){
@@ -18,7 +19,6 @@
 		});
 	});
 </script>
-</head>
 <body>
 	<h2>공지 글 상세보기</h2>
 	<div class="divForm">
@@ -41,8 +41,7 @@
 		<div>
 			<span class="sp1">첨부파일</span> 
 			<span>
-			<a href
-				="<c:url value='/notice/download.do?noticeNo=${noticeVo.noticeNo}&noticeFilename=${noticeVo.noticeFilename}'/>">
+			<a href	="<c:url value='/notice/download.do?noticeNo=${noticeVo.noticeNo}&noticeFilename=${noticeVo.noticeFilename}'/>">
 				${fileInfo }
 			</a>
 			</span>
