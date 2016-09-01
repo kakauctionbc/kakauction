@@ -2,12 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="config.mybatis.mapper.oracle.notireply">
-	<insert id="insertComment" parameterType="freereplyVo">
+
+	<insert id="insertComment" parameterType="notireplyVo">
 		<selectKey keyProperty="notireplyNo" order="BEFORE" resultType="int">
 			select notireply_seq.nextval from dual
 		</selectKey>
 		insert into notireply(notireply_no, notice_no, member_id, notireply_content, notireply_groupno, notireply_step, notireply_sortno)
-		values(#{notireplyNo},#{noticeNo},#{memberId},#{notireplyContent},#{notireplyGroupno},0,0) 
+		values(#{notireplyNo},#{notireplyGroupno},#{memberId},#{notireplyContent},#{notireplyNo},0,0)
 	</insert>	
 	<select id="selectComment" parameterType="SearchVO" resultType="notireplyVo">
 		select *

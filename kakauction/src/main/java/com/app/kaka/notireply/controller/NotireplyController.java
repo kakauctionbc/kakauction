@@ -23,18 +23,19 @@ import com.app.kaka.notireply.model.NotireplyVO;
 public class NotireplyController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(NotireplyController.class);
+	
 	@Autowired
 	private NotireplyService notireplyService;
 	
 	@RequestMapping("/insertComment.do")
 	public String insertComment(@ModelAttribute NotireplyVO vo, Model model){
-
+		
 		logger.info("댓글 달기, 파라미터 NotireplyVO={}", vo);
 		
 		int cnt = notireplyService.insertComment(vo);
 		logger.info("댓글달기 결과 cnt = {}", cnt);
 		
-		String msg = "", url = "/notice/detail.do?no="+vo.getNotireplyGroupno();
+		String msg = "", url = "/notice/detail.do?noticeNo="+vo.getNotireplyGroupno();
 		if(cnt>0){
 			msg = "댓글을 달았습니다!";
 		}else{
@@ -46,6 +47,7 @@ public class NotireplyController {
 		
 		return "common/message";
 	}
+	
 	@RequestMapping("/comment.do")
 	public String showComment(@ModelAttribute SearchVO searchVo, Model model){
 		logger.info("댓글 보기, 파라미터 searchVo={}", searchVo);

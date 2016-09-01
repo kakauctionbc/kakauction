@@ -28,7 +28,7 @@ public class FreeReplyController {
 	@RequestMapping("/insertComment.do")
 	public String insertComment(@ModelAttribute FreeReplyVO vo, Model model){
 
-		logger.info("댓글 달기, 파라미터 CommentVo={}", vo);
+		logger.info("댓글 달기, 파라미터 FreeReplyVO={}", vo);
 		
 		int cnt = freereplyService.insertComment(vo);
 		logger.info("댓글달기 결과 cnt = {}", cnt);
