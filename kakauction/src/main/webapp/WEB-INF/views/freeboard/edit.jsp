@@ -47,7 +47,7 @@
 			</c:if>
 		</div>
 		<textarea id="freeboardContent" name="freeboardContent" rows="12" cols="40" >${freeboardVO.freeboardContent}</textarea>
-		<input type="submit" value="작성">
+		<input type="submit" value="수정">
 		<input type="reset" value="초기화">
 	</form>
 </body>

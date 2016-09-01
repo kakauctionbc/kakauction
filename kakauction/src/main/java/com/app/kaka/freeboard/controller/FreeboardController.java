@@ -92,32 +92,10 @@ public class FreeboardController {
 		int cnt = freeboardService.updateReadCount(freeboardNo);
 		logger.info("조회수 증가 파라미터, cnt={}", cnt);
 		
-		FreeboardVO freeVo = freeboardService.detailFreeboard(freeboardNo);
-		logger.info("글 상세목록 freeboardVo = {}", freeVo);
-		
-		String fileInfo="", downInfo="";
-		if(freeVo.getFreeboardFilename()!=null 
-				&& !freeVo.getFreeboardFilename().isEmpty()){
-			String contextPath = request.getContextPath();
-			double fileSize 
-					= Math.round((freeVo.getFreeboardFilesize()/1000.0)*10)/10.0;
-			
-			fileInfo="<img src='"+ contextPath 
-					+"/images/file.gif' alt='파일이미지'>";
-			fileInfo+=freeVo.getFreeboardOriginalname()
-					+ " ("+fileSize +"KB)";
-			
-			downInfo="다운:"+freeVo.getFreeboardDowncount();
-		}
-		
-		model.addAttribute("freeVo", freeVo);
-		model.addAttribute("fileInfo", fileInfo);
-		model.addAttribute("downInfo", downInfo);
-		
-		return "/freeboard/detail";
+		return "redirect:/freeboard/detail.do?freeboardNo="+freeboardNo;
 	}
 	
-/*	@RequestMapping("/detail.do")
+	@RequestMapping("/detail.do")
 	public String detailFreeboard(@RequestParam(defaultValue="0") int freeboardNo, HttpServletRequest request, Model model){
 		logger.info("글 상세목록 파라미터 freeboardNo={}",freeboardNo);
 		
@@ -151,7 +129,7 @@ public class FreeboardController {
 		model.addAttribute("downInfo", downInfo);
 		
 		return "/freeboard/detail";
-	}*/
+	}
 	
 	@RequestMapping("/list.do")
 	public String freeboardList(@ModelAttribute SearchVO searchVo,
