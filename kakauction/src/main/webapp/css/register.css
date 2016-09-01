@@ -4,6 +4,10 @@
 	width: 1000px;
 	margin-left: 450px;
 }
+#agreementframe{
+	margin-top:20px;
+	margin-left: 150px;
+}
 #registertop{
 	width:100%;
 	height:40px;
@@ -24,4 +28,86 @@
 }
 #registerlogo img{
 	padding-bottom: 10px;
+}
+#step{
+	width: 100%;
+	height: 100px;
+	margin-top: 20px;
+}
+#step img{
+	float: right;
+}
+#register_txt{
+	border-radius: 20px;
+	background: #f5f5f5;
+	margin-top: 20px;
+}
+#register_txt dl{
+	padding: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+#registertable{
+	border-top: 2px solid #FAE100;
+	border-bottom: 2px solid #FAE100;
+	margin-top: 50px;
+	margin-left:30px;
+	border-collapse: collapse;
+}
+#registertable tr{
+	text-align: left;
+	padding-left: 10px;
+}
+
+#registertable tr th{
+	border: 1px solid silver;
+	font-weight: bold;
+	border-left: none; 
+	border-right: none;
+	text-align: left;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background: #fefff0;
+	padding-left: 10px;
+}
+
+#registertable tr td{
+	border: 1px solid silver;
+	border-left: none; 
+	border-right: none;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+
+}
+.btn_area{
+	width:100%;
+	margin-top: 20px;
+}
+
+.btn_ok{
+	margin-left: 380px;
+}
+.btn_ok button{
+	width:90px;
+	border-radius: 10px;
+	background: #f2f2ee;
+}
+.btn_cancel{
+	margin-left: 20px;
+}
+.btn_cancel button{
+	width:90px;
+	border-radius: 10px;
+	background: #f2f2ee;
+}
+
+.btn_area ul li{
+	float:left;
+}
+.address_ul li{
+	float: left;
+}
+#address_li{
+	margin-left: 10px;
 }

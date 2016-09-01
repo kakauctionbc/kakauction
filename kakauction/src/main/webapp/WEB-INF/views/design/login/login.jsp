@@ -65,7 +65,7 @@
 			<div style="width: 100%; height: 30px;"></div>
 				<div id="join">
 				<label for="join" class="label">※ 회원이 아니신가요?</label>
-					<button type="submit" onclick="location.href='${pageContext.request.contextPath }/design/register.do'">회원가입</button>
+					<button type="submit" onclick="location.href='${pageContext.request.contextPath }/design/agreement.do'">회원가입</button>
 				</div>
 				<div id="searchid">
 					<label for="searchid" class="label">※ 아이디를 잊으셨나요?</label>

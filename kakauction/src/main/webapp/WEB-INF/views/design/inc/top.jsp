@@ -38,7 +38,7 @@ $(function(){
 				<ul class="views">					
 					<li><a href="${pageContext.request.contextPath }/main/index.jsp">마이페이지</a></li>
 					<li>|</li>
-					<li><a href="${pageContext.request.contextPath }/main/index.jsp">회원가입</a></li>
+					<li><a href="${pageContext.request.contextPath }/design/agreement.do">회원가입</a></li>
 					<li>|</li>
 					<li><a href="${pageContext.request.contextPath }/design/login.do">로그인</a></li>
 				</ul>				

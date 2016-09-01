@@ -51,4 +51,18 @@ public class DesignController {
 		
 		return "/design/member/register";
 	}
+	@RequestMapping("/checkUserid.do")
+	public String checkUserid(){
+		logger.info("회원가입 페이지");
+		
+		return "/design/member/checkUserid";
+	}
+	
+	@RequestMapping("/agreement.do")
+	public String agreement(){
+		logger.info("가입동의 페이지");
+		
+		return "/design/member/agreement";
+	}
+	
 }

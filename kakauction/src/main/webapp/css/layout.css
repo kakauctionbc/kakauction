@@ -74,6 +74,7 @@ html, body { margin:0; padding:0; height:100%; }
 	margin-left: 15px;
 	border-style: none;
 	width:200px;
+	margin-top: 15px;
 }
 #keyword:focus{
 	outline: none !important;
