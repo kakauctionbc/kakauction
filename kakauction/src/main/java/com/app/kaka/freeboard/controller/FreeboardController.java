@@ -209,13 +209,17 @@ public class FreeboardController {
 		logger.info("상품 등록 처리 얘는 뭐냐, fileList={}",fileList);
 		//업로드된 파일명 구해오기
 		String fileName="";
+		String ofileName="";
 		long fileSize=0;
 		for(Map<String, Object> mymap : fileList ){
 			fileName =  (String) mymap.get("fileName");
 			fileSize =  (Long) mymap.get("fileSize");
+			ofileName =  (String) mymap.get("ofileName");
 			
 			freeboardVo.setFreeboardFilename(fileName);
 			freeboardVo.setFreeboardFilesize(fileSize);
+			freeboardVo.setFreeboardOriginalname(ofileName);
+			logger.info("세터 다 하고 FreeboardVO={}",freeboardVo);
 		}
 		String msg = "", url ="";
 		int cnt = freeboardService.updateFreeboard(freeboardVo);

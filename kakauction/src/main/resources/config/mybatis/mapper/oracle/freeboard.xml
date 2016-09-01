@@ -63,12 +63,17 @@
 	
 	<update id="updateFreeboard" parameterType="freeboardVo">
 		update freeboard
-		freeboard_title=#{freeboardTitle},freeboard_content=#{freeboardContent},freeboard_filename=#{freeboardFilename},
-		freeboard_filesize=#{freeboardFilesize}, freeboard_originalname=#{freeboardOriginalname}
+		set freeboard_title=#{freeboardTitle},freeboard_content=#{freeboardContent},
+		freeboard_filename=#{freeboardFilename}, freeboard_filesize=#{freeboardFilesize}, 
+		freeboard_originalname=#{freeboardOriginalname}
 		where freeboard_no=#{freeboardNo}		
 	</update>
 	
 	<select id="selectByNo" parameterType="int" resultType="freeboardVo">
 		select * from freeboard where freeboard_no=#{freeboardNo}
 	</select>
+	
+	<delete id="">
+	
+	</delete>
 </mapper>
