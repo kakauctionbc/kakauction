@@ -50,6 +50,7 @@ public class MemberController {
 			@RequestParam String email1, @RequestParam String email2, @RequestParam String email3,
 			Model model){
 		logger.info("회원가입 memberVo={}",memberVo);
+		logger.info("주민 2 jumin2={}",jumin2);
 		
 		String memberHp = memberVo.getMemberHp();
 		if (memberHp==null || memberHp.isEmpty()) {
@@ -66,14 +67,6 @@ public class MemberController {
 			memberVo.setMemberEmail(email1+"@"+email3);
 		}else{
 			memberVo.setMemberEmail(email1+"@"+email2);
-		}
-		
-		String jender = jumin2.substring(0, 1);
-		logger.info("성별 jender={}", jender);
-		if (jender=="1") {
-			memberVo.setMemberGender("M");
-		}else if(jender=="2"){
-			memberVo.setMemberGender("F");
 		}
 		
 		int cnt = memberService.insertMember(memberVo);
@@ -94,8 +87,6 @@ public class MemberController {
 	@RequestMapping(value="/memberEdit.do", method=RequestMethod.GET)
 	public String memberEdit_get(){
 		logger.info("회원수정창 보여주기");
-		
-		
 		
 		return "member/memberEdit";
 	}

@@ -48,10 +48,13 @@
 				alert("핸드폰 번호를 입력하세요");
 				$("#hp2").focus();
 				return false;
+			}else if($("#memberGender").is(":checked") == false ){
+			    alert("성별을 선택 하세요");
+			    return false;
 			}
-			$("#memberHp").val()=$("#hp1").val()+"-"+$("#hp2").val()+"-"+$("#hp3").val();
-			alert($("#memberHp").val());
 		});//click
+		
+		
 		
 		$("#btnChkId").click(function(){
 			var userid = $("#userid").val()
@@ -91,11 +94,11 @@
     	<input type="password" name="jumin2" id="jumin2">
     	<input type="hidden" name="memberJumin" id="memberJumin">
     </div>
-    <%-- <div>
+    <div>
     	<label for="gender">성별</label>
-    	<c:if test=""></c:if>
-    	<input type="text" name="memberGender" value="" readonly>
-    </div> --%>
+    	<input type=radio name=memberGender id=memberGender value=M>남자
+     	<input type=radio name=memberGender id=memberGender value=F>여자
+    </div>
     <div>
         <label for="pwd">비밀번호</label>
         <input type="Password" name="memberPwd" id="memberPwd">

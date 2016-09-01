@@ -11,4 +11,41 @@ public class MemberServiceImpl implements MemberService {
 	public int insertMember(MemberVO memberVo){
 		return memberDao.insertMember(memberVo);
 	}
+
+	@Override
+	public int checkMemberId(String memberId) {
+		int count = memberDao.checkMemberId(memberId);
+		int result = 0;
+		if (count>0) { //해당 아이디가 이미 존재하는 경우
+			result = EXIST_ID;
+		}else { //해당 아이디가 없는 경우
+			result = NONE_EXIST_ID;
+		}
+		
+		return result;
+	}
+
+	@Override
+	public MemberVO selectMemberByUserid(String memberId) {
+		return memberDao.selectMemberByUserid(memberId);
+	}
+
+	@Override
+	public int loginCheck(MemberVO memberVo) {
+		String dbPwd = memberDao.loginCheck(memberVo);
+		int result = 0;
+		if (dbPwd==null || dbPwd.isEmpty()) {
+			result = ID_NONE;
+		}else{
+			if (dbPwd.equals(memberVo.getMemberPwd())) {
+				//비밀번호도 일치 => 로그인 성공
+				result = LOGIN_OK;
+			}else{
+				//비밀번호가 일치하지 않는 경우
+				result = PWD_DISAGREE;
+			}
+		}
+		
+		return result;
+	}
 }
