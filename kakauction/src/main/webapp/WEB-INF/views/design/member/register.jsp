@@ -69,7 +69,7 @@ $(document).ready(function(){
 		</div>
 		<div id="register_txt">
 	        <dl>
-	          <dt>아래의 양식을 기입하신 후, ‘가입하기’ 버튼을 누르십시오.</dt>
+	          <dt>아래의 양식을 기입하신 후, ‘회원가입’ 버튼을 누르십시오.</dt>
 	          <dd>아이디는 추후변경이 안되니 정확히 기입하십시오.</dd>
 	          <dd>입력하신 정보가 허위일 경우, 통보없이 가입이 취소됩니다.</dd>
 	          <dd>[&nbsp;<img src="${pageContext.request.contextPath }/img/check.png" alt="" />&nbsp;]으로 표시된 항목은 필수항목이므로 꼭 입력하셔야 합니다.</dd>

@@ -47,10 +47,13 @@
 						id="chkAgree">
 					<label for="chkAgree">약관에 동의합니다</label>
 				</div> 
-			<div id="btn_area">
-				<input type="submit" value="동의">
-				<input type="reset" value="동의하지않음">
-			</div>
+				<div id="btn_area">
+					<button type="submit" value="동의" id="btn_ok">
+					동의</button>
+					<button type="reset" value="동의" id="btn_cancel"
+						 onclick="location.href='${pageContext.request.contextPath }/design/index.do'">
+					동의하지 않음</button>
+				</div>
 			</form>
 		</div>
 	</div>

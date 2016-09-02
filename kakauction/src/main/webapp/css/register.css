@@ -80,26 +80,32 @@
 	padding-left: 10px;
 
 }
-.btn_area{
+#divAgreeFirstv{
+	margin-left: 400px;
+}
+#chkAgree{
+	margin-left: 500px;
+}
+#btn_area{
 	width:100%;
 	margin-top: 20px;
 }
 
-.btn_ok{
+#btn_ok{
 	margin-left: 380px;
-}
-.btn_ok button{
 	width:90px;
+	height:30px;
 	border-radius: 10px;
-	background: #f2f2ee;
+	background: #FAE100;
+	font-weight: bold;
 }
-.btn_cancel{
+#btn_cancel{
 	margin-left: 20px;
-}
-.btn_cancel button{
-	width:90px;
+	width:100px;
+	height:30px;
 	border-radius: 10px;
 	background: #f2f2ee;
+	font-weight: bold;
 }
 
 .btn_area ul li{
