@@ -82,5 +82,11 @@ public class DesignController {
 		
 		return "/design/member/pwdCheck";
 	}
+	@RequestMapping("/memberOut.do")
+	public String memberOut(){
+		logger.info("비밀번호확인 페이지");
+		
+		return "/design/member/memberOut";
+	}
 	
 }

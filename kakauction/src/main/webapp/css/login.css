@@ -64,10 +64,34 @@ input#pwd{
 	box-shadow: 0 5px 5px lightgray;
 	font-weight: bold;
 }
-#loginbutton:hover {background-color: #e1ca00}
+#pwdCheck_btn{
+	background-color: #f2f2ee;
+    color: black;
+    cursor: pointer;
+    width: 80px;
+    height:30px;
+	border-radius: 10%;
+	box-shadow: 0 5px 5px lightgray;
+	font-weight: bold;
+	margin-left: 70px;
+	float: left;
+}
+#pwdCheck_main{
+	background-color: #fae100;
+    color: black;
+    cursor: pointer;
+    width: 100px;
+    height:30px;
+	border-radius: 10%;
+	box-shadow: 0 5px 5px lightgray;
+	font-weight: bold;
+	margin-left:20px;
+	float: left;
+}
+#loginbutton:hover {background-color: #FAE100}
 
 #loginbutton:active {
-  background-color: #e1ca00;
+  background-color: #FAE100;
   box-shadow: 0 5px 5px lightgray;
   transform: translateY(4px);
 }

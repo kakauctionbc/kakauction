@@ -51,7 +51,10 @@
 						<input type="password" name="pwd"
 							id="pwd">
 					</div>
-						<button type="submit" id="loginbutton">확인</button>
+						<button type="submit" id="pwdCheck_btn">확인</button>
 				</fieldset>
 			</form>
+		</div>
+	</div>
+</div>
 <%@ include file="../inc/bottom.jsp"%>
