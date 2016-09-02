@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="config.mybatis.mapper.oracle.notice">
+
+	<sql id="searchWhere">
+		<where>
+			<if test="searchKeyword!=null and searchKeyword!=''">
+				${searchCondition} 
+				like '%' || #{searchKeyword} || '%'
+			</if>
+		</where>
+	</sql>
+	
+	<parameterMap type="map" id="delParamMap">
+		<parameter property="noticeNo" javaType="string" 
+			jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="noticeGroupno" javaType="string" 
+			jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="noticeStep" javaType="string" 
+			jdbcType="VARCHAR" mode="IN"/>
+	</parameterMap>
+	<!-- 파라미터 순서 => P_NO, P_GROUPNO,p_step -->
+	
+	<insert id="insertNotice" parameterType="NoticeVO">
+		<selectKey keyProperty="noticeNo" resultType="int" order="BEFORE">
+			select notice_seq.nextval from dual
+		</selectKey>
+		insert into notice(notice_no, member_id, notice_title, 
+			notice_content, notice_regdate, notice_readcount, notice_groupNo,
+			notice_step, notice_sort, notice_fileName, notice_fileSize,
+			notice_downcount, notice_originalname)
+		values(#{noticeNo}, #{memberId}, #{noticeTitle},
+			#{noticeContent}, sysdate, 0, #{noticeNo}, 0, 0, 
+			#{noticeFilename}, #{noticeFilesize}, 0, #{noticeOriginalname})
+	</insert>
+
+	<select id="selectAll" resultType="noticeVo" parameterType="SearchVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, LIST_ALL.*
+		    from
+		        (select notice_no, member_id, notice_title,
+					notice_regdate, notice_readcount, notice_content,
+					(sysdate-notice_regdate)*24 as newImgTerm,
+					notice_groupno, notice_step, notice_sort, notice_delflag,
+					notice_filename, notice_filesize, notice_downcount,
+					notice_originalname
+		        from notice
+		        <include refid="searchWhere"></include>
+		        order by notice_groupno desc, notice_sort asc) LIST_ALL    
+		) 
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}
+			+ #{recordCountPerPage}
+		]]>
+	</select>
+	
+	<!-- 공지 글 수 -->
+	<select id="selectTotalCount" resultType="int" parameterType="SearchVO">
+		select count(*) from notice 
+		<include refid="searchWhere"></include>
+	</select>
+	
+	<!-- 수정 또는 디테일에서 쓸 셀렉트 -->
+	<select id="selectByNo" parameterType="int" resultType="NoticeVO">
+		select * from notice where notice_no=#{noticeNo}
+	</select>
+	
+	<!-- 공지사항 수정 시 비밀번호 체크용 -->
+	<select id="selectByNoIdPwd" parameterType="string" resultType="string">
+		select m.member_pwd from member m, notice n
+		where m.member_id=n.member_id
+		and m.member_id=#{memberId}
+	</select>
+	
+	<!-- 수정 sql문 -->
+	<update id="editNotice" parameterType="NoticeVO">
+		update notice
+		set notice_title=#{noticeTitle}, notice_content=#{noticeContent}, notice_filename=#{noticeFilename},
+			notice_filesize=#{noticeFilesize}, notice_originalname=#{noticeOriginalname}
+		where notice_no=#{noticeNo}
+	</update>
+	
+	<!-- 조회수 -->
+	<update id="updateReadCount" parameterType="int">
+		update notice set notice_readcount=notice_readcount+1 where notice_no = #{noticeNo}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="deleteNotice" parameterMap="delParamMap" >
+		{call notice_delete(?, ?, ?)}
+	</delete>	
+	<!-- 파라미터 순서 => P_NO, P_GROUPNO,p_step -->
+	
+	<!-- 다운수 -->
+	<update id="updateDownCount" parameterType="int">
+		update notice
+		set NOTICE_DOWNCOUNT = NOTICE_DOWNCOUNT+1
+		where notice_no=#{noticeNo}		
+	</update>
+</mapper>

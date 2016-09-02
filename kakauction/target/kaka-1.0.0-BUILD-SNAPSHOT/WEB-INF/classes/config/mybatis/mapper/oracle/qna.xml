@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="config.mybatis.mapper.oracle.qna">
+	<sql id="searchWhere">
+		<where>
+			<if test="searchKeyword!=null and searchKeyword!=''">
+				${searchCondition} 
+				like '%' || #{searchKeyword} || '%'
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectAll" resultType="qnaVo" parameterType="SearchVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, LIST_ALL.*
+		    from
+		        (select question_no, member_id, question_title,
+					question_regdate, question_content,
+					question_return,
+					(sysdate-question_regdate)*24 as newImgTerm
+		        from question
+		        <include refid="searchWhere"></include>
+		        order by question_no desc) LIST_ALL    
+		) 
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}
+			+ #{recordCountPerPage}
+		]]>
+	</select>
+	
+	<select id="selectTotalCount" resultType="int" parameterType="SearchVO">
+		select count(*) from question 
+		<include refid="searchWhere"></include>
+	</select>
+	
+	<select id="selectByNo" parameterType="int" resultType="QnaVO">
+		select * from question where question_no=#{questionNo}
+	</select>
+	
+	<insert id="insertQna" parameterType="QnaVO">
+		<selectKey keyProperty="questionNo" resultType="int" order="BEFORE">
+			select question_seq.nextval from dual
+		</selectKey>
+		insert into question(QUESTION_NO,MEMBER_ID,QUESTION_TITLE,QUESTION_CONTENT)
+		values(#{questionNo},#{memberId},#{questionTitle},#{questionContent})
+	</insert>
+</mapper>

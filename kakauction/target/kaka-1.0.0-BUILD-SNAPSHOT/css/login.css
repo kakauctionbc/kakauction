@@ -1,0 +1,96 @@
+@CHARSET "UTF-8";
+
+#loginwrap{
+	width: 1000px;
+	margin-left: 450px;
+}
+#logintop{
+	width:100%;
+	height:40px;
+	margin-bottom: 30px;
+}
+
+#logintop p{
+	float: right;
+}
+#logintop p a{
+	text-decoration: blink;
+	
+}
+#loginlogo{
+	clear:both;
+	width:100%;
+	border-bottom:3px solid #534a4a;
+}
+#loginlogo img{
+	padding-bottom: 10px;
+}
+#loginp{
+	width :500px;
+	margin-top: 50px;
+	margin-left:25%;
+	border-top: 2px solid #FAE100;
+	border-bottom: 2px solid #FAE100;
+}
+#loginp p{
+	padding: 30px;
+	font-weight: bold;
+}
+#memberradio{
+	margin-top: 40px;
+	margin-left: 395px;
+	margin-bottom: 10px;
+}
+.simpleForm{
+	margin-left: 250px;
+}
+.simpleForm div{
+	margin-left: 60px;
+}
+input#userid{
+	width:170px;
+}
+input#pwd{
+	width:170px;
+}
+#loginbutton{
+    background-color: #FAE100;
+    color: black;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    height:40px;
+	position: absolute;
+	top: 460px;
+	left: 1030px;
+	border-radius: 10%;
+	box-shadow: 0 5px 5px lightgray;
+	font-weight: bold;
+}
+#loginbutton:hover {background-color: #e1ca00}
+
+#loginbutton:active {
+  background-color: #e1ca00;
+  box-shadow: 0 5px 5px lightgray;
+  transform: translateY(4px);
+}
+#chkSave{
+	font-size: 0.7em;
+	margin-left: 150px;
+}
+#loginwrap article{
+	width:500px;
+	margin-top:30px;
+	margin-bottom:30px;
+	border-top: 1px solid silver;
+}
+#loginwrap article label{
+	text-align: left;
+	width: 200px;
+	margin-left: 50px;
+}
+#loginwrap article button{
+	width: 100px;
+	border-radius: 15px;
+	background: #f2f2ee;
+}

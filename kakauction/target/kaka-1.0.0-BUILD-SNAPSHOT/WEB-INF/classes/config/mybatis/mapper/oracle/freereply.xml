@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="config.mybatis.mapper.oracle.freereply">
+	<insert id="insertComment" parameterType="freereplyVo">
+		<selectKey keyProperty="freereplyNo" order="BEFORE" resultType="int">
+			select freereply_seq.nextval from dual
+		</selectKey>
+		insert into freereply(freereply_groupno, freeboard_no, freereply_content, member_id, freereply_no, freereply_regdate,
+		freereply_sortno, freereply_step)
+		values(#{freereplyNo},#{freereplyGroupno},#{freereplyContent},#{memberId},#{freereplyNo},sysdate,0,0) 
+	</insert>
+	
+	<select id="selectComment" parameterType="SearchVO" resultType="freereplyVo">
+		select *
+		from
+		(
+		    select rownum as RNUM, LIST_ALL.*
+		    from
+		        (select freereply_no, member_id, freeboard_no,
+					freereply_regdate, freereply_content,
+					freereply_groupno, freereply_step, freereply_sortno, freereply_delflag
+		        from freereply
+		        where freeboard_no = #{freeboardNo }
+		        order by freereply_no asc, freereply_sortno asc) LIST_ALL    
+		) 
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}
+			+ #{recordCountPerPage}
+		]]>
+	</select>
+	
+	<select id="selectTotalCount" resultType="int" 
+		parameterType="SearchVO">
+		select count(*) from freereply
+		where freeboard_no = #{freeboardNo }
+	</select>
+</mapper>

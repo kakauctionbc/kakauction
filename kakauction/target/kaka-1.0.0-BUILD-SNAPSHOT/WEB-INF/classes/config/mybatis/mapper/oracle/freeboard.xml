@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.freeboard">
+	
+	<insert id="insertFreeboard" parameterType="FreeboardVO">
+		<selectKey keyProperty="freeboardNo" resultType="int" order="BEFORE">
+			select FREEBOARD_SEQ.nextval from dual
+		</selectKey>
+		insert into FREEBOARD(FREEBOARD_NO, MEMBER_ID, FREEBOARD_TITLE, 
+		FREEBOARD_CONTENT, FREEBOARD_GROUPNO,FREEBOARD_FILENAME,
+		FREEBOARD_FILESIZE, FREEBOARD_ORIGINALNAME)
+		values(#{freeboardNo},#{memberId},#{freeboardTitle},
+		#{freeboardContent},#{freeboardNo},#{freeboardFilename},
+		#{freeboardFilesize},#{freeboardOriginalname});
+	</insert>
+	
+	<select id="selectAllFreeboard" resultType="FreeboardVO">
+		select * from FREEBOARD order by FREEBOARD_NO desc
+	</select> 
+	
+	<select id="selectFreeboardByNo" parameterType="int" resultType="FreeboardVO">
+		select * from freeboard where freeboard_no = #{freeboardNo}
+	</select>
+	
+	<sql id="searchWhere">
+		<where>
+			<if test="searchKeyword!=null and searchKeyword!=''">
+				${searchCondition} 
+				like '%' || #{searchKeyword} || '%'
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectAll" resultType="freeboardVo" parameterType="SearchVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, LIST_ALL.*
+		    from
+		        (select freeboard_no, member_id, freeboard_title,
+					freeboard_regdate, freeboard_readcount, freeboard_content,
+					(sysdate-freeboard_regdate)*24 as newImgTerm,
+					freeboard_groupno, freeboard_step, freeboard_sortno, freeboard_delflag,
+					freeboard_filename, freeboard_filesize, freeboard_downcount,
+					freeboard_originalname, freeboard_like
+		        from freeboard
+		        <include refid="searchWhere"></include>
+		        order by freeboard_groupno desc, freeboard_sortno asc) LIST_ALL   
+		) 
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}
+			+ #{recordCountPerPage}
+		]]>
+	</select>
+	
+	<select id="selectTotalCount" resultType="int" parameterType="SearchVO">
+		select count(*) from freeboard
+		<include refid="searchWhere"></include>
+	</select>
+	
+	<update id="updateFreeboard" parameterType="freeboardVo">
+		update freeboard
+		set freeboard_title=#{freeboardTitle},freeboard_content=#{freeboardContent},
+		freeboard_filename=#{freeboardFilename}, freeboard_filesize=#{freeboardFilesize}, 
+		freeboard_originalname=#{freeboardOriginalname}
+		where freeboard_no=#{freeboardNo}		
+	</update>
+	
+	<select id="selectByNo" parameterType="int" resultType="freeboardVo">
+		select * from freeboard where freeboard_no=#{freeboardNo}
+	</select>
+
+	<!-- 조회수 -->
+	<update id="updateReadCount" parameterType="int">
+		update freeboard set freeboard_readcount=freeboard_readcount+1 where freeboard_no = #{freeboardNo}
+	</update>
+	
+	<delete id="">
+	
+	</delete>
+</mapper>

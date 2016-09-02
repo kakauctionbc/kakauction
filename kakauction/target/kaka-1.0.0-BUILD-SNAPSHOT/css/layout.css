@@ -1,0 +1,294 @@
+@CHARSET "utf-8";
+@IMPORT url("formLayout.css");
+
+
+body, td, th{
+	font-family: 'nanum gothic',맑은 고딕, 한컴돋움, 돋움;
+	font-size: 0.9em;
+}
+html, body { margin:0; padding:0; height:100%; }
+#wrap {
+    height:100%;
+    margin-top: 0px;
+}
+
+#header	{
+    position:relative;
+	width:100%;
+	height: 30px;
+	background: #FAE100;
+	border-bottom: 1px solid silver;
+}
+
+#header ul{
+	font-size: 0.8em;
+	font-weight: bold;
+	margin-right: 350px;
+}
+#header ul.views li	{
+	margin-top:5px;
+	float: right;	/*display: inline;*/
+}
+#header ul.views li a	{
+	padding: 8px;	
+	text-decoration: none;
+	color:#575757;		
+		
+}
+#header ul.views li a:hover, #headerRight ul.views li a:focus	{
+	/*background: #CCFF99;*/
+	text-decoration: blink;
+	color:#000000;	
+}
+#middle{
+	width: 100%;
+	height:90px;
+	border-bottom: 1px solid silver;
+}
+#wraplogo{
+	width: 37%;
+	height: 50px;
+	float:left;
+	margin-top: 20px;
+}
+#wraplogo a img{
+	margin-left: 55%;
+	margin-top: 20px;
+}
+
+#mainsearch{
+	float:left;
+	width: 18%;
+	height: 40px;
+	border-bottom: 5px solid #FAE100;
+	margin-top: 25px;
+	
+}
+#totalsearch{
+	float: left;
+	font-family: fantasy;
+	margin-top: 15px;
+}
+#keyword{
+	float: left;
+	margin-left: 15px;
+	border-style: none;
+	width:200px;
+}
+#keyword:focus{
+	outline: none !important;
+    border-color: rgba(255,255,255,0);
+}
+#btn{
+	float: right;	
+}
+#headmenu {
+	float: left;
+	margin-top: 40px;
+}
+#headmenu ul li{
+	float: left;
+	padding-right:20px;
+	font-size:1.2em;
+	font-weight: bold;
+	margin-left: 20px;
+	
+}
+#headmenu ul li a{
+	text-decoration: none;
+	color: #646464;
+}
+#headmenu ul li a:hover{
+	text-decoration: blink;
+	font-weight: bold;
+	color: black;
+}
+
+#headmenu-content {
+	display: none;
+	position: absolute;
+	top:120px;
+	width:100%;
+	height:250px;
+	background: #fafaf3;
+	font-size: 1em;
+	border: 1px solid silver;
+}
+
+#headmenu-content a {
+	text-decoration: none;
+	display: block;
+	color: gray;
+	padding-bottom: 10px;
+}
+
+#headmenu-content a:hover {
+	text-decoration: none;
+	color: black;
+}
+
+#headmenu ul li a:hover #headmenu-content {
+	display: block;
+}
+#headmenu-content ul li{
+	padding-right: 30px;
+	padding-top: 10px;
+}
+#content-member{
+	float: left;
+	margin-left: 950px;
+	padding-right: 10px;
+}
+#content-sell{
+ 	float: left;	
+	padding-right: 45px;
+}
+#content-buy{
+	float: left;
+	padding-right: 30px;
+}
+#content-myinfo{
+	float: left;
+}
+#content-notice{
+	float: left;
+}
+#mainicondiv{
+	width: 100%;
+	height: 250px;
+	background: #f8f8f8;
+	border-bottom: 1px solid silver;
+	border-top: 1px solid silver;
+}
+#mainicondiv ul{
+	margin-left: 400px;
+	padding-top: 10px;
+}
+#mainicondiv ul li{
+	float: left;
+}
+#realtime{
+	width: 100%;
+	height: 300px;
+}
+#realtimehead{
+	border-bottom: 2px solid black;
+	width: 60%;
+	margin-top: 30px;
+	margin-left: 400px;
+	float: left;
+}
+
+#realtimetable{
+	border: 1px solid silver;
+	width: 250px;
+	height: 200px;
+	float: left;
+	margin-left: 400px;
+	margin-top: 20px;
+}
+#realtimetable tr th{
+	border: 1px solid silver;
+}
+#realtimetable tr td{
+	border: 1px solid silver;
+	border-collapse: collapse;
+}
+#realtimeslide{
+	border: 1px solid silver;
+	width: 820px;
+	height: 220px;
+	float: left;
+	margin-top: 20px;
+	margin-left: 60px;
+}
+#mainwrap	{
+	width: 100%;
+	height: 300px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+#quickservice{
+	width: 18%;
+	height: 300px;
+	float: left;
+	margin-left: 400px;
+}
+#quickservicehead{
+	border-bottom: 2px solid black;
+	width: 100%;
+	float: left;
+}
+#notice{
+	width: 18%;
+	height: 300px;
+	float: left;
+	margin-left: 50px;
+}
+#noticehead{
+	border-bottom: 2px solid black;
+	width: 100%;
+	float: left;
+}
+#schedule{
+	width: 18%;
+	height: 300px;
+	float: left;
+	margin-left: 50px;
+}
+#schedulehead{
+	border-bottom: 2px solid black;
+	width: 100%;
+	float: left;
+}
+
+/* container */
+
+/* contents */
+
+.slide{
+	float:left;
+	width: 404px;
+	height: 448px;
+}
+.main-container{
+	float:right;
+	width: 372px;
+	height: 448px;	
+}
+.main-center{
+	float:left;
+	width: 320px;
+	height: 448px;	
+}
+/* footer */
+
+#footer{
+    width:100%;
+	overflow :hidden;
+	height:40px;
+	font: normal 11px 'Nanum Gothic';
+	background: #c0c0c0;
+	border-top: 2px solid #565654;
+	text-align: center;
+}
+
+#footer-menu{
+	text-align: center;
+	float: left;
+	width: 100%;
+	padding-top:10px;
+}
+#footer-menu a{
+	text-decoration: none;
+	padding-right: 10px;
+	font-size: 1.2em;
+	color: black;
+	
+}
+#footer-menu a:hover{
+	color: #ff0080;
+	font-weight:bold;
+	text-decoration: blink;
+	
+}
