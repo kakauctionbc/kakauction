@@ -48,9 +48,9 @@
 					<label for="chkAgree">약관에 동의합니다</label>
 				</div> 
 				<div id="btn_area">
-					<button type="submit" value="동의" id="btn_ok">
+					<button type="submit" value="동의" id="btn_agree">
 					동의</button>
-					<button type="reset" value="동의" id="btn_cancel"
+					<button type="reset" value="동의" id="btn_disagree"
 						 onclick="location.href='${pageContext.request.contextPath }/design/index.do'">
 					동의하지 않음</button>
 				</div>

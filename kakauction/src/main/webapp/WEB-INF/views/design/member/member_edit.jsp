@@ -92,9 +92,9 @@ $(document).ready(function(){
         				<input type="text" name="name" id="name" style="ime-mode:active; width: 120px;">
 					</td>
 					<th><label for="userid">
-					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />회원 ID</label></th>
+					<img src="${pageContext.request.contextPath }/img/check.png" alt=""/>회원 ID</label></th>
 					<td>
-			      		<input type="text" name="userid" id="userid" style="ime-mode:inactive; width: 120px;">&nbsp;
+			      		<input type="text" name="userid" id="userid" style="ime-mode:inactive; width: 120px;" value="" readonly="readonly">&nbsp;
 			        	<input type="button" value="중복확인" id="btnChkId" title="새창열림">
 					</td>
 				</tr>
@@ -108,21 +108,6 @@ $(document).ready(function(){
 					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />비밀번호 확인</label></th>
 					<td>
 						<input type="Password" name="pwd2" id="pwd2" style="width: 120px;">
-					</td>
-				</tr>
-				<tr>
-					<th><label for="jumin">
-					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />주민번호</label></th>
-					<td>
-       					<input type="text" name="jumin1" id="jumin1" style="width: 120px;"> - 
-     					<input type="password" name="jumin2" id="jumin2" style="width: 120px;">
-       					<input type="hidden" name="memberJumin" id="memberJumin">
-					</td>
-					<th><label for="gender">
-					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />성별</label></th>
-					<td>
-       					<input type=radio name=memberGender id=memberGender value=M>남자
-       					<input type=radio name=memberGender id=memberGender value=F>여자
 					</td>
 				</tr>
 				<tr>

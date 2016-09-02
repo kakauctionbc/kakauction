@@ -34,10 +34,7 @@
 				사이트의 원활한 사용을 위하여 로그인을 해주시기 바랍니다.
 			</p>
 		</div>
-		<form method='' action='' id="memberradio">
-			<input TYPE='radio' id='memberY' name='membercheck' value='회원' /><label for='memberY'>개인회원</label> 
-			<input TYPE='radio' id='memberN' name='membercheck' value='비회원' /><label for='memberN'>경매회원</label> 
-		</form>
+
 		<div class="simpleForm">
 			<form name="frmLogin" id="frmLogin" method="post" 
 				action="<c:url value='/login/login.do'/>" >

@@ -51,6 +51,12 @@ public class DesignController {
 		
 		return "/design/member/register";
 	}
+	@RequestMapping("/register_ok.do")
+	public String register_ok(){
+		logger.info("회원가입완료 페이지");
+		
+		return "/design/member/register_ok";
+	}
 	@RequestMapping("/checkUserid.do")
 	public String checkUserid(){
 		logger.info("회원가입 페이지");
@@ -64,5 +70,11 @@ public class DesignController {
 		
 		return "/design/member/agreement";
 	}
-	
+	@RequestMapping("/member_edit.do")
+	public String member_edit(){
+		logger.info("회원정보수정 페이지");
+		
+		return "/design/member/member_edit";
+	}
+
 }

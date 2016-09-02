@@ -57,6 +57,7 @@ $(function() {
 					src="${pageContext.request.contextPath }/img/joinAuction2.png"></a></li>
 		</ul>
 	</div>
+	<img src="${pageContext.request.contextPath }/img/hot_icon.png" id="hot_icon">
 	<div id="realtime">
 		<div id="realtimehead">
 			<p id="text">실시간 경매 현황</p>
@@ -64,36 +65,54 @@ $(function() {
 				<a href="">MORE▶</a>
 			</p>
 		</div>
-		<table id="realtimetable">
+		<table id="realtimetable" style="border-collapse:collapse">
 			<tr id="align_center">
-				<th colspan="2">제939차 경매 (2016.08.31)</th>
+				<th colspan="3">제939차 경매 (2016.08.31)</th>
 			</tr>
 			<tr id="align_center">
 				<td>전체</td>
 				<td>0</td>
+				<td></td>
 			</tr>
 			<tr id="align_center">
 				<td>승용</td>
 				<td>0</td>
+				<td></td>
 			</tr>
 			<tr id="align_center">
 				<td>suv</td>
 				<td>0</td>
+				<td></td>
 			</tr>
 			<tr id="align_center">
 				<td>승합</td>
 				<td>0</td>
+				<td></td>
 			</tr>
 			<tr id="align_center">
 				<td>화물</td>
 				<td>0</td>
+				<td></td>
 			</tr>
 			<tr id="align_center">
 				<td>기타</td>
 				<td>0</td>
+				<td></td>
 			</tr>
 		</table>
-		<div id="realtimeslide"></div>
+		<div id="realtimeslide">
+			<div id="realtimeslide_hot">
+				<div class="mySlides fade">
+					<img src="${pageContext.request.contextPath }/img/hot_car1.jpg" style="width:220px; height:217px">
+			 	</div>
+			 	<div class="mySlides fade">
+					<img src="${pageContext.request.contextPath }/img/hot_car2.jpg" style="width:220px; height:217px">
+			  	</div>
+			  	<div class="mySlides fade">
+					<img src="${pageContext.request.contextPath }/img/hot_car3.jpg" style="width:220px; height:217px">
+			  	</div>
+			</div>
+		</div>
 	</div>
 	<div id="mainwrap">
 		<div id="quickservice">
@@ -129,44 +148,20 @@ $(function() {
 	</div>
 </div>
 </body>
-<!-- <script>
-		var show;
-		var slideIndex = 1;
-		showSlides(slideIndex);
-
-		function plusSlides(n) {
-			clearTimeout(show);
-			showSlides(slideIndex += n - 1);
-		}
-
-		function currentSlide(n) {
-			clearTimeout(show);
-			showSlides(slideIndex = n);
-		}
-
-		function showSlides(n) {
-			var i;
-			var slides = document.getElementsByClassName("mySlides");
-			var dots = document.getElementsByClassName("dot");
-			if (n > slides.length) {
-				slideIndex = 1
-			}
-			if (n < 1) {
-				slideIndex = slides.length
-			}
-			for (i = 0; i < slides.length; i++) {
-				slides[i].style.display = "none";
-			}
-			for (i = 0; i < dots.length; i++) {
-				dots[i].className = dots[i].className.replace(" active", "");
-			}
-			slides[slideIndex - 1].style.display = "block";
-			dots[slideIndex - 1].className += " active";
-			slideIndex++;
-			if (slideIndex > slides.length) {
-				slideIndex = 1
-			}
-			show = setTimeout(showSlides, 3000);
-		}
-	</script> -->
+<script>
+	var slideIndex = 0;
+	showSlides();
+	
+	function showSlides() {
+	    var i;
+	    var slides = document.getElementsByClassName("mySlides");
+	    for (i = 0; i < slides.length; i++) {
+	        slides[i].style.display = "none"; 
+	    }
+	    slideIndex++;
+	    if (slideIndex> slides.length) {slideIndex = 1} 
+	    slides[slideIndex-1].style.display = "block"; 
+	    setTimeout(showSlides, 2000); // Change image every 2 seconds
+	}
+	</script>
 <%@ include file="../inc/bottom.jsp"%>

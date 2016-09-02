@@ -80,32 +80,57 @@
 	padding-left: 10px;
 
 }
-#divAgreeFirstv{
-	margin-left: 400px;
-}
-#chkAgree{
-	margin-left: 500px;
+#frmAgree{
+	width:700px;
+	margin-left: 150px;
 }
 #btn_area{
 	width:100%;
-	margin-top: 20px;
+	margin-top: 30px;
 }
 
-#btn_ok{
-	margin-left: 380px;
+#btn_agree{
+	margin-left: 250px;
 	width:90px;
 	height:30px;
 	border-radius: 10px;
 	background: #FAE100;
 	font-weight: bold;
 }
-#btn_cancel{
+#btn_disagree{
 	margin-left: 20px;
 	width:100px;
 	height:30px;
 	border-radius: 10px;
 	background: #f2f2ee;
 	font-weight: bold;
+}
+#btn_register{
+	float:left;
+	width:100px;
+	margin-left: 400px;
+	padding-right: 20px;
+}
+#btn_cancel{
+	float:left;
+	width:100px;
+	
+}
+#btn_register button{
+	width:100px;
+	height:30px;
+	border-radius: 10px;
+	background: #f2f2ee;
+	font-weight: bold;
+	
+}
+#btn_cancel button{
+	width:100px;
+	height:30px;
+	border-radius: 10px;
+	background: #f2f2ee;
+	font-weight: bold;
+	
 }
 
 .btn_area ul li{
@@ -116,4 +141,42 @@
 }
 #address_li{
 	margin-left: 10px;
+}
+
+/* register_ok */
+#register_ok{
+	margin-top:100px;
+	height:300px;
+	border-bottom: 2px solid black;
+}
+#register_ok h1{
+	font-size: 3em;
+	text-align: center;
+}
+#register_ok p{
+	margin-top:20px;
+	font-size: 1.5em;
+	text-align: center;
+}
+#register_button{
+	margin-top: 100px;
+}
+#register_ok_login{
+	margin-left:300px;
+	width: 250px;
+	height: 30px;
+	font-size:1.2em;
+	background-color: #FAE100;
+  	box-shadow: 0 5px 5px lightgray;
+  	transform: translateY(4px);
+}
+#register_ok_main{
+	margin-left:20px;
+	width: 130px;
+	height: 30px;
+	font-size:1.1em;
+	background-color: #f2f2ee;
+  	box-shadow: 0 5px 5px lightgray;
+  	transform: translateY(4px);
+	
 }

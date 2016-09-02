@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.0.min.js" ></script>
 <script type="text/javascript">
 $(function(){
@@ -30,17 +33,31 @@ $(function(){
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>      
     <![endif]-->
 </head>
-<body>
+<body style="overflow-x:hidden; overflow-y:auto;">
 	<div id="wrap">
 	<header>
-	<!-- header -->				
+	<!-- header -->
 		<div id="header">
 				<ul class="views">					
-					<li><a href="${pageContext.request.contextPath }/main/index.jsp">마이페이지</a></li>
-					<li>|</li>
-					<li><a href="${pageContext.request.contextPath }/design/agreement.do">회원가입</a></li>
-					<li>|</li>
-					<li><a href="${pageContext.request.contextPath }/design/login.do">로그인</a></li>
+					<!-- 로그인이 안된 경우 -->	
+					<c:if test="${empty sessionScope.memberId }">
+						<li><a href="<c:url value='/board/list.do'/>">고객센터</a></li>					
+						<li>|</li>
+						<li><a href="<c:url value='/design/agreement.do'/>">회원가입</a></li>
+						<li>|</li>	            
+						<li><a href="<c:url value='/login/login.do'/>">로그인</a></li>
+					</c:if>
+					<!-- 로그인된 경우 -->
+					<c:if test="${!empty sessionScope.memberId }">
+						<li>
+							<span style="font-size:1em">
+								${sessionScope.memberName}님</span>
+						</li> 
+						<li><a href="<c:url value='/design/logout.do'/>">로그아웃</a></li>
+						<li><a href="<c:url value='/member/member_edit.do'/>">회원정보수정</a></li>	            
+						<li><a href="<c:url value='/member/memberout.do'/>">회원탈퇴</a></li>	            
+					</c:if>
+					
 				</ul>				
 		</div>
 	</header>
@@ -56,7 +73,7 @@ $(function(){
 		    <option value="차종">차종</option>
 			</select>
 			<input id="keyword" name="keyword" fw-filter="" fw-label="검색어" fw-msg="" class="inputTypeText" onmousedown="" value="" type="text"  />
-			<p id="btn"><img src="<%=request.getContextPath()%>/img/search.jpg" alt="검색" onclick="" width="35px" height="35px"/></p>
+			<p id="search_btn"><a href=""><img src="<%=request.getContextPath()%>/img/search.png" alt="검색" onclick="" width="25px" height="25px"/></a></p>
 		</div>
 
 		<div id="headmenu">

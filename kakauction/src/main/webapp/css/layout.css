@@ -61,7 +61,7 @@ html, body { margin:0; padding:0; height:100%; }
 	width: 18%;
 	height: 40px;
 	border-bottom: 5px solid #FAE100;
-	margin-top: 25px;
+	margin-top: 26px;
 	
 }
 #totalsearch{
@@ -73,15 +73,16 @@ html, body { margin:0; padding:0; height:100%; }
 	float: left;
 	margin-left: 15px;
 	border-style: none;
-	width:200px;
+	width:220px;
 	margin-top: 15px;
 }
 #keyword:focus{
 	outline: none !important;
     border-color: rgba(255,255,255,0);
 }
-#btn{
-	float: right;	
+#search_btn{
+	float: right;
+	margin-top: 10px;	
 }
 #headmenu {
 	float: left;
@@ -168,9 +169,15 @@ html, body { margin:0; padding:0; height:100%; }
 #mainicondiv ul li{
 	float: left;
 }
+#hot_icon{
+	position: absolute;
+	top:455px;
+	left: 879px;
+}
 #realtime{
 	width: 100%;
 	height: 300px;
+	margin-bottom: 30px;
 }
 #realtimehead{
 	border-bottom: 2px solid black;
@@ -181,19 +188,19 @@ html, body { margin:0; padding:0; height:100%; }
 }
 
 #realtimetable{
-	border: 1px solid silver;
 	width: 250px;
 	height: 200px;
 	float: left;
 	margin-left: 400px;
-	margin-top: 20px;
+	margin-top: 30px;
 }
 #realtimetable tr th{
-	border: 1px solid silver;
+	font-weight: bold;
 }
 #realtimetable tr td{
 	border: 1px solid silver;
-	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
 }
 #realtimeslide{
 	border: 1px solid silver;
@@ -202,6 +209,11 @@ html, body { margin:0; padding:0; height:100%; }
 	float: left;
 	margin-top: 20px;
 	margin-left: 60px;
+}
+#realtimeslide_hot{
+	width:220px;
+	height:217px;
+	border: 2px solid silver;
 }
 #mainwrap	{
 	width: 100%;
@@ -267,6 +279,8 @@ html, body { margin:0; padding:0; height:100%; }
 #footer{
     width:100%;
 	overflow :hidden;
+	position:fixed;
+	bottom:0px;
 	height:40px;
 	font: normal 11px 'Nanum Gothic';
 	background: #c0c0c0;
