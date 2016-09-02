@@ -29,15 +29,21 @@
 		
 	});
 	
+	var reader = null;
+	var fileName = "";
+	
 	function readURL(input) {
 /* 		$("#UploadedImg").css("border-radius","40px");
  */		
 	    if (input.files && input.files[0]) {
 	    	for(var i=1; i<=input.files.length; i++){
-				$("#UploadedImg"+i).css({"height":"80px"},{"width":"80px"});
-				var fileName = input.files[i-1].name;
-		 		$("#picture"+i).val(fileName);
-		        var reader = new FileReader();
+				$("#UploadedImg"+i).css("height","80px"); //미리보기 크기 조정
+				$("#UploadedImg"+i).css("width","80px"); //미리보기 크기 조정
+				
+				fileName = input.files[i-1].name;
+		 		$("#picture"+i).val(fileName); //fileName 넣기
+		 		
+		        reader = new FileReader();
 		        reader.onload = function (e) {
 		            $('#UploadedImg'+(i-1)).attr('src', e.target.result);
 		        };
@@ -67,8 +73,8 @@
 		height:80px;
 		-webkit-border-radius:40px;
 		-moz-border-radius:40px;
-		/* border-radius: 40px; */
-	} */
+		border-radius: 40px; 
+	}*/
 </style>
 </head>
 <body>
@@ -76,7 +82,7 @@
 		<h3>국산차 등록</h3>
 		<div>
 			<div class="title">
-				<h4>판매자정보 입력</h4>
+				<h4>판매자정</h4>
 			</div>
 
 			<table summary="판매자정보 입력" id="memberInfoTable">
@@ -447,7 +453,27 @@
 		       <img id="UploadedImg20" src="" /> 
 		    </div>
 		    <div>
-		      <input multiple="multiple" type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      <input type='file' id="imageFileUpload" onchange="readURL(this);"  value="사진등록" accept="image/*"/>
+		      
 		      <input type="text" id="picture1" name="picture1">
 		      <input type="text" id="picture2" name="picture2">
 		      <input type="text" id="picture3" name="picture3">
