@@ -69,7 +69,7 @@ public class LoginController {
 			}
 			
 			msg=memberVo.getMemberName()+"님 로그인 되었습니다.";
-			url="/login/login.do";
+			url="/design/index.do";
 		}else if (result==MemberService.PWD_DISAGREE) {
 			msg="비밀번호가 일치하지 않습니다.";
 		}else if (result==MemberService.ID_NONE) {

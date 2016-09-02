@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../design/inc/top.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js' />"></script>
@@ -65,7 +66,6 @@
 </script>
 
 <div id="wrap">
-	<form name="frm1" method="post" action="<c:url value="/member/memberAdd.do"/>">
 	<div id="registerwrap">
 		<div id="registertop">
 			<p>
@@ -76,110 +76,83 @@
 			<img src="${pageContext.request.contextPath }/img/register_logo.png"
 				alt="로그인로고">
 		</div>
-		<table class="sub_tb_01 mb25" style="width: 1030px">
+		<div id="step">
+			<img src="${pageContext.request.contextPath }/img/register_step2.png" alt="스텝로고">
+		</div>
+		<div id="register_txt">
+	        <dl>
+	          <dt>아래의 양식을 기입하신 후, ‘가입하기’ 버튼을 누르십시오.</dt>
+	          <dd>아이디는 추후변경이 안되니 정확히 기입하십시오.</dd>
+	          <dd>입력하신 정보가 허위일 경우, 통보없이 가입이 취소됩니다.</dd>
+	          <dd>[&nbsp;<img src="${pageContext.request.contextPath }/img/check.png" alt="" />&nbsp;]으로 표시된 항목은 필수항목이므로 꼭 입력하셔야 합니다.</dd>
+	        </dl> 
+		</div>
+			
+		<table id="registertable">
 			<colgroup>
-				<col width="160" />
-				<col width="355" />
-				<col width="160" />
+				<col width="120" />
+				<col width="440" />
+				<col width="140" />
 				<col width="*" />
 			</colgroup>
 			<tbody>
 				<tr>
-					<th><strong><label for="memberName">성명(한글)</label></strong></th>
-					<td>    
-        				<input type="text" name="memberName" id="memberName" style="ime-mode:active">
-					</td>
-					<th><strong><label for="userid">회원 ID</label></strong></th>
+					<th><label for="memberName">
+					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />성명(한글)</label></th>
 					<td>
-			      		<input type="text" name="memberId" id="memberId" style="ime-mode:inactive">&nbsp;
+        				<input type="text" name="memberName" id="memberName" style="ime-mode:active; width: 120px;">
+					</td>
+					<th><label for="userid">
+					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />회원 ID</label></th>
+					<td>
+			      		<input type="text" name="memberId" id="memberId" style="ime-mode:inactive; width: 120px;">&nbsp;
 			        	<input type="button" value="중복확인" id="btnChkId" title="새창열림">
 					</td>
 				</tr>
 				<tr>
-					<th><strong><label for="pwd">비밀번호</label></strong></th>
+					<th><label for="pwd">
+					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />비밀번호</label></th>
        				<td>
-       					<input type="Password" name="pwd" id="pwd">
+       					<input type="Password" name="memberPwd" id="memberPwd" style="width: 120px;">
        				</td>
-					<th><strong><label for="pwd2">비밀번호 확인</label></strong></th>
+					<th><label for="pwd2">
+					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />비밀번호 확인</label></th>
 					<td>
-						<input type="Password" name="pwd2" id="pwd2">
+						<input type="Password" name="memberPwd2" id="memberPwd2" style="width: 120px;">
 					</td>
 				</tr>
 				<tr>
-					<th><strong>직업</strong></th>
-					<td><select name="i_sJobType" id="i_sJobType"
-						style="width: 195px">
-							<option value="">선택</option>
-
-							<option value="01">직장인</option>
-
-							<option value="02">자영업</option>
-
-							<option value="03">공무원</option>
-
-							<option value="04">전문직</option>
-
-							<option value="05">주부</option>
-
-							<option value="06">학생</option>
-
-							<option value="99">기타</option>
-
-					</select></td>
-					<th><strong>생년월일</strong></th>
-					<td><select name="i_sBirthdayYear" style="width: 60px">
-							<option value="">선택</option>
-					</select>&nbsp;년&nbsp; <select name="i_sBirthdayMonth" style="width: 50px">
-							<option value="">선택</option>
-					</select>&nbsp;월&nbsp; <select name="i_sBirthdayDay" style="width: 50px">
-							<option value="">선택</option>
-					</select>&nbsp;일&nbsp; <input type="radio" id="i_sSolarYn" name="i_sSolarYn"
-						value="Y" class="myClass" title="양력" checked="checked" /> <label
-						for="month1" class="myClass_label">양력</label> <input type="radio"
-						id="i_sSolarYn" name="i_sSolarYn" value="N" class="myClass"
-						title="음력" /> <label for="month2" class="myClass_label">음력</label>
+					<th><label for="jumin">
+					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />주민번호</label></th>
+					<td>
+       					<input type="text" name="jumin1" id="jumin1" style="width: 120px;"> - 
+     					<input type="password" name="jumin2" id="jumin2" style="width: 120px;">
+       					<input type="hidden" name="memberJumin" id="memberJumin">
+					</td>
+					<th><label for="gender">
+					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />성별</label></th>
+					<td>
+       					<input type=radio name=memberGender id=memberGender value=M>남자
+       					<input type=radio name=memberGender id=memberGender value=F>여자
 					</td>
 				</tr>
 				<tr>
-					<th><strong>E-mail</strong></th>
-					<td colspan="3"><input type="text" id="i_sJoinEmail1"
-						name="i_sJoinEmail1" class="required" alt="이메일 아이디"
-						onkeydown="fn_press_han(this);"
-						style="width: 184px; ime-mode: disabled;" placeholder="" value=""
-						maxlength="20" />&nbsp;@&nbsp; <input type="text"
-						id="i_sJoinEmail2" name="i_sJoinEmail2" class="required"
-						alt="이메일 도메인" onkeydown="fn_press_han(this);"
-						style="width: 88px; ime-mode: disabled;" placeholder="" value=""
-						maxlength="20" /> <select name="i_sJoinEmailCd"
-						id="i_sJoinEmailCd" alt="이메일">
-							<option value="">직접입력</option>
+					<th><label for="email1">
+					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />E-mail</label></th>
+					<td>
+					 
+					<input type="text" name="email1" id="email1" title="이메일주소 앞자리" style="width: 120px;"> @
+						<select name="email2" id="email2" title="이메일주소 뒷자리">
 							<option value="naver.com">naver.com</option>
-							<option value="nate.com">네이트</option>
-							<option value="gmail.com">지메일</option>
-							<option value="hanmail.net">한메일</option>
-							<option value="hotmail.com">핫메일</option>
-					</select> <a href="javascript:;" class="btn_mailcheck tb_btn">&nbsp;&nbsp;중복확인</a>
-					</td>
-				</tr>
-				<tr>
-					<th><strong><label for="zipcode">주소</label></strong></th>
-					<td colspan="3">
-						<ul class="address_ul">
-							<li>
-								<input type="text" name="zipcode" id="zipcode" ReadOnly title="우편번호" class="width_80">
-        						<input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림">
-        					</li>
-							<li>
-								<input type="text" name="address" id="address" ReadOnly title="주소"  class="width_350">
-							</li>
-							<li>
-								<input type="text" name="addressDetail" title="상세주소"  class="width_350">
-							</li>
-						</ul>
-					</td>
-				</tr>
-				<tr>
-					<th><strong><label for="hp1">핸드폰</label></strong></th>
+							<option value="hanmail.net">hanmail.net</option>
+							<option value="nate.com">nate.com</option>
+							<option value="gmail.com">gmail.com</option>
+							<option value="etc">직접입력</option>
+					</select> <input type="text" name="email3" id="email3"
+						title="직접입력인 경우 이메일주소 뒷자리" style="visibility: hidden; width:100px"> </select></td>
+
+					<th><label for="hp1">
+					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />핸드폰</label></th>
 					<td>
 						<select name="hp1" id="hp1" title="휴대폰 앞자리">
 								<option value="010">010</option>
@@ -188,145 +161,49 @@
 								<option value="017">017</option>
 								<option value="018">018</option>
 								<option value="019">019</option>
-						</select>
-					</td>
-					<td>
+						</select> -
+	
         				<input type="text" name="hp2" id="hp2" maxlength="4" title="휴대폰 가운데자리"
-        				class="width_80">
-        			</td>
-        			<td>
+        				style="width: 70px;"> -
+
         	      		<input type="text" name="hp3" id="hp3" maxlength="4" title="휴대폰 뒷자리"
-        				class="width_80">
+        				style="width: 70px;">
         			</td>
 				</tr>
 				<tr>
-					<th><strong>메일수신여부</strong></th>
-					<td><input type="radio" id="i_sMailFlag" name="i_sMailFlag"
-						class="myClass" title="수신함" value="Y" checked="checked" /><label
-						for="remember" class="myClass_label">수신함</label>&nbsp;&nbsp;&nbsp;
-						<input type="radio" id="i_sMailFlag" name="i_sMailFlag"
-						class="myClass" title="수신안함" value="N" /><label for="remember"
-						class="myClass_label">수신안함</label></td>
-					<th><strong>문자수신여부</strong></th>
-					<td><input type="radio" id="i_sSmsFlag" name="i_sSmsFlag"
-						class="myClass" title="수신함" value="Y" checked="checked" /><label
-						for="remember" class="myClass_label">수신함</label>&nbsp;&nbsp;&nbsp;
-						<input type="radio" id="i_sSmsFlag" name="i_sSmsFlag"
-						class="myClass" title="수신안함" value="N" /><label for="remember"
-						class="myClass_label">수신안함</label></td>
+					<th><label for="zipcode">
+					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />주소</label></th>
+					<td colspan="3">
+						<ul class="address_ul">
+							<li>
+								<input type="text" name="zipcode" id="zipcode" ReadOnly title="우편번호" style="width: 120px;">
+        						<input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림" >
+        					</li>
+							<li id="address_li">
+								<input type="text" name="address" id="address" ReadOnly title="주소" style="width:230px;">
+							</li>
+							<li id="address_li">
+								<input type="text" name="addressDetail" title="상세주소" placeholder="상세주소" 
+								 style="width: 320px;" required>
+							</li>
+						</ul>
+					</td>
 				</tr>
+
 			</tbody>
 		</table>
-		<div class="btn_area_c">
-			<ul class="btn">
-				<li class="btn_st01_ok"><a href="javascript:;" class="btn_reg"
-					title="확인">확인</a></li>
-				<li class="btn_st01_cancle btn_cancel"><a href="javascript:;"
-					title="취소">취소</a></li>
-				<!--li class="btn_st01_cancle btn_new_drop"><a href="javascript:;" title="회원탈퇴">회원탈퇴</a></li-->
+		<div class="btn_area">
+			<ul>
+				<li class="btn_ok">
+					<button type="submit" onclick="location.href='${pageContext.request.contextPath }/design/index.do'">회원가입</button>
+				</li>
+				<li class="btn_cancel">
+					<button type="submit" onclick="location.href='${pageContext.request.contextPath }/design/index.do'">취소</button>
+				</li>
 			</ul>
 		</div>
 	</div>
-	</form>
 </div>
-
-<style type="text/css">
-	.width_80{
-		width:80px;
-	}
-	.width_350{
-		width:350px;
-	}	
-</style>
-<article>
-<div class="divForm">
-<form name="frm1" method="post" action="<c:url value="/member/memberAdd.do"/>">
-<fieldset>
-	<legend>회원 가입</legend>
-    <div>        
-        <label for="memberName">성명</label>
-        <input type="text" name="memberName" id="memberName" style="ime-mode:active">
-    </div>
-    <div>
-        <label for="userid">회원ID</label>
-        <input type="text" name="memberId" id="memberId"
-        		style="ime-mode:inactive">&nbsp;
-        <input type="button" value="중복확인" id="btnChkId" title="새창열림">
-    </div>
-    <div>
-    	<label for="jumin">주민번호</label>
-    	<input type="text" name="jumin1" id="jumin1"> - 
-    	<input type="password" name="jumin2" id="jumin2">
-    	<input type="hidden" name="memberJumin" id="memberJumin">
-    </div>
-    <div>
-    	<label for="gender">성별</label>
-    	<input type=radio name=memberGender id=memberGender value=M>남자
-     	<input type=radio name=memberGender id=memberGender value=F>여자
-    </div>
-    <div>
-        <label for="pwd">비밀번호</label>
-        <input type="Password" name="memberPwd" id="memberPwd">
-    </div>
-    <div>
-        <label for="pwd2">비밀번호 확인</label>
-        <input type="Password" name="memberPwd2" id="memberPwd2">
-    </div>
-    <div>
-        <label for="zipcode">주소</label>
-        <input type="text" name="zipcode" id="zipcode" ReadOnly
-        	title="우편번호" class="width_80" style="text-align: center;">
-        <input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림"><br />
-        <span class="sp1">&nbsp;</span>
-        <!-- <input type="text" name="memberAddr" id="memberAddr" ReadOnly title="주소"  class="width_350"  style="padding-left: 10px;"><br /> -->
-        <input type="text" name="memberAddr" id="memberAddr"  title="주소"  class="width_350"  style="padding-left: 10px;"><br />
-        <span class="sp1">&nbsp;</span>
-        <input type="text" name="memberAddr2" id="memberAddr2" title="상세주소"  class="width_350"  style="padding-left: 10px;">
-    </div>
-    <div>
-    	<input type="hidden" name="hp">
-        <label for="hp1">핸드폰</label>&nbsp;
-        <select name="hp1" id="hp1" title="휴대폰 앞자리">
-            <option value="010">010</option>
-            <option value="011">011</option>
-            <option value="016">016</option>
-            <option value="017">017</option>
-            <option value="018">018</option>
-            <option value="019">019</option>
-       	</select>
-        -
-        <input type="text" name="hp2" id="hp2" maxlength="4" title="휴대폰 가운데자리"
-        	class="width_80">-
-        <input type="text" name="hp3" id="hp3" maxlength="4" title="휴대폰 뒷자리"
-        	class="width_80">
-        <input type="hidden" name="memberHp" id="memberHp">
-    </div>
-    <div>
-    	<input type="hidden" name="email">
-        <label for="email1">이메일 주소</label>
-        <input type="text" name="email1"  id="email1" title="이메일주소 앞자리">@
-        <select name="email2" id="email2"  title="이메일주소 뒷자리">
-            <option value="naver.com">naver.com</option>
-            <option value="hanmail.net">hanmail.net</option>
-            <option value="nate.com">nate.com</option>
-            <option value="gmail.com">gmail.com</option>
-            <option value="etc">직접입력</option>
-        </select>
-        <input type="text" name="email3" id="email3" title="직접입력인 경우 이메일주소 뒷자리"
-        	style="visibility:hidden">
-        <input type="hidden" name="memberEmail" id="memberEmail">
-    </div>
-    <div class="center">
-         <input type="submit" id="wr_submit" value="회원가입">
-    </div>
-</fieldset>
-
-    <input type ="text" name="chkId" id="chkId">
-    <input type ="text" name="chkId1" id="chkId1">
-        
-</form>
-</div>
-</article>
 
 <%@ include file="../design/inc/bottom.jsp"%>
 
