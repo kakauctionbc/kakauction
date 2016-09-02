@@ -66,6 +66,7 @@
 </script>
 
 <div id="wrap">
+	<form name="frm1" method="post" action="<c:url value="/member/memberAdd.do"/>">
 	<div id="registerwrap">
 		<div id="registertop">
 			<p>
@@ -118,7 +119,7 @@
 					<th><label for="pwd2">
 					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />비밀번호 확인</label></th>
 					<td>
-						<input type="Password" name="memberPwd2" id="memberPwd2" style="width: 120px;">
+						<input type="Password" name="memberPwd2" id="memberPwd" style="width: 120px;">
 					</td>
 				</tr>
 				<tr>
@@ -180,10 +181,10 @@
         						<input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림" >
         					</li>
 							<li id="address_li">
-								<input type="text" name="address" id="address" ReadOnly title="주소" style="width:230px;">
+								<input type="text" name="memberAddr" id="memberAddr"  title="주소" style="width:230px;">
 							</li>
 							<li id="address_li">
-								<input type="text" name="addressDetail" title="상세주소" placeholder="상세주소" 
+								<input type="text" name="memberAddr2" id="memberAddr2" title="상세주소" placeholder="상세주소" 
 								 style="width: 320px;" required>
 							</li>
 						</ul>
@@ -195,7 +196,8 @@
 		<div class="btn_area">
 			<ul>
 				<li class="btn_ok">
-					<button type="submit" onclick="location.href='${pageContext.request.contextPath }/design/index.do'">회원가입</button>
+					<%-- <button type="submit" onclick="location.href='${pageContext.request.contextPath }/design/index.do'">회원가입</button> --%>
+					<input type="submit" id="wr_submit" value="회원가입">
 				</li>
 				<li class="btn_cancel">
 					<button type="submit" onclick="location.href='${pageContext.request.contextPath }/design/index.do'">취소</button>
@@ -203,6 +205,7 @@
 			</ul>
 		</div>
 	</div>
+	</form>
 </div>
 
 <%@ include file="../design/inc/bottom.jsp"%>

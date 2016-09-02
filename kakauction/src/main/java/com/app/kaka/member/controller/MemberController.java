@@ -77,7 +77,7 @@ public class MemberController {
 		String msg="",url="";
 		if(cnt>0){
 			msg="가입 성공!";
-			url="/main/main.do";
+			url="/design/index.do";
 		}else{
 			msg="가입 실패!";
 			url="/member/register";
