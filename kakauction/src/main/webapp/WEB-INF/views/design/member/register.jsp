@@ -60,9 +60,9 @@ $(document).ready(function(){
 				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>회원가입>일반회원가입
 			</p>
 		</div>
-		<div id="registerlogo">
+		<div id="pagelogo">
 			<img src="${pageContext.request.contextPath }/img/register_logo.png"
-				alt="로그인로고">
+				alt="회원가입로고">
 		</div>
 		<div id="step">
 			<img src="${pageContext.request.contextPath }/img/register_step2.png" alt="스텝로고">

@@ -57,24 +57,14 @@ $(document).ready(function(){
 	<div id="registerwrap">
 		<div id="registertop">
 			<p>
-				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>회원가입>일반회원가입
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>회원정보수정
 			</p>
 		</div>
-		<div id="registerlogo">
-			<img src="${pageContext.request.contextPath }/img/register_logo.png"
+		<div id="pagelogo">
+			<img src="${pageContext.request.contextPath }/img/edit_logo.png"
 				alt="로그인로고">
 		</div>
-		<div id="step">
-			<img src="${pageContext.request.contextPath }/img/register_step2.png" alt="스텝로고">
-		</div>
-		<div id="register_txt">
-	        <dl>
-	          <dt>아래의 양식을 기입하신 후, ‘회원가입’ 버튼을 누르십시오.</dt>
-	          <dd>아이디는 추후변경이 안되니 정확히 기입하십시오.</dd>
-	          <dd>입력하신 정보가 허위일 경우, 통보없이 가입이 취소됩니다.</dd>
-	          <dd>[&nbsp;<img src="${pageContext.request.contextPath }/img/check.png" alt="" />&nbsp;]으로 표시된 항목은 필수항목이므로 꼭 입력하셔야 합니다.</dd>
-	        </dl> 
-		</div>
+
 			
 		<table id="registertable">
 			<colgroup>
@@ -89,25 +79,12 @@ $(document).ready(function(){
 					<th><label for="name">
 					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />성명(한글)</label></th>
 					<td>
-        				<input type="text" name="name" id="name" style="ime-mode:active; width: 120px;">
+        				<input type="text" name="name" id="name" style="ime-mode:active; width: 120px;" value="" readonly="readonly">
 					</td>
 					<th><label for="userid">
 					<img src="${pageContext.request.contextPath }/img/check.png" alt=""/>회원 ID</label></th>
 					<td>
 			      		<input type="text" name="userid" id="userid" style="ime-mode:inactive; width: 120px;" value="" readonly="readonly">&nbsp;
-			        	<input type="button" value="중복확인" id="btnChkId" title="새창열림">
-					</td>
-				</tr>
-				<tr>
-					<th><label for="pwd">
-					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />비밀번호</label></th>
-       				<td>
-       					<input type="Password" name="pwd" id="pwd" style="width: 120px;">
-       				</td>
-					<th><label for="pwd2">
-					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />비밀번호 확인</label></th>
-					<td>
-						<input type="Password" name="pwd2" id="pwd2" style="width: 120px;">
 					</td>
 				</tr>
 				<tr>
@@ -169,10 +146,10 @@ $(document).ready(function(){
 		<div id="btn_area">
 			<ul>
 				<li id="btn_register">
-					<button type="submit" onclick="location.href='${pageContext.request.contextPath }/design/register_ok.do'">회원가입</button>
+					<button type="submit" onclick="#">회원정보수정</button>
 				</li>
 				<li id="btn_cancel">
-					<button type="submit" onclick="location.href='${pageContext.request.contextPath }/design/index.do'">취소</button>
+					<button type="submit" onclick="#">취소</button>
 				</li>
 			</ul>
 		</div>

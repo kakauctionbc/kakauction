@@ -49,13 +49,13 @@ $(function(){
 					</c:if>
 					<!-- 로그인된 경우 -->
 					<c:if test="${!empty sessionScope.memberId }">
+						<li><a href="<c:url value='/member/memberOut.do'/>">회원탈퇴</a></li>	            
+						<li><a href="<c:url value='/design/pwdCheck.do'/>">회원정보수정</a></li>	            
+						<li><a href="<c:url value='/design/logout.do'/>">로그아웃</a></li>
 						<li>
-							<span style="font-size:1em">
+							<span style="font-size:1em; color:blue;">
 								${sessionScope.memberName}님</span>
 						</li> 
-						<li><a href="<c:url value='/design/logout.do'/>">로그아웃</a></li>
-						<li><a href="<c:url value='/member/member_edit.do'/>">회원정보수정</a></li>	            
-						<li><a href="<c:url value='/member/memberout.do'/>">회원탈퇴</a></li>	            
 					</c:if>
 					
 				</ul>				

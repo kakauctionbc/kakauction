@@ -17,12 +17,12 @@
 	text-decoration: blink;
 	
 }
-#loginlogo{
+#pagelogo{
 	clear:both;
 	width:100%;
 	border-bottom:3px solid #534a4a;
 }
-#loginlogo img{
+#pagelogo img{
 	padding-bottom: 10px;
 }
 #loginp{

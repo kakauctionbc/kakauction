@@ -76,5 +76,11 @@ public class DesignController {
 		
 		return "/design/member/member_edit";
 	}
-
+	@RequestMapping("/pwdCheck.do")
+	public String pwdCheck(){
+		logger.info("비밀번호확인 페이지");
+		
+		return "/design/member/pwdCheck";
+	}
+	
 }
