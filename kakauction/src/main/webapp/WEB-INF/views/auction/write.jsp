@@ -30,7 +30,7 @@
 </script> 
 <script src="<c:url value='/ckeditor/ckeditor.js'/>"
 	type="text/javascript"></script>
-<title>auction/write.jsp</title>
+<title>현재 작업 중인 auction/write.jsp</title>
 </head>
 <body>
 	<form action="" name="" id="" method="post">
