@@ -1,4 +1,4 @@
-package com.app.kaka.option.model;
+package com.app.kaka.op.model;
 
 public class OpVO {
 	private String carNum;

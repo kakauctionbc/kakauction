@@ -16,6 +16,6 @@ public class CarController {
 	public String carRegister(){
 		logger.info("차량 등록 페이지 보여주기");
 		
-		return "car/register2";
+		return "car/register";
 	}
 }
