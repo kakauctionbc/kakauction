@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../design/inc/top.jsp"%>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.0.min.js" ></script>
+<script type="text/javascript" src="<c:url value='/js/member.js'/>"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#userid").focus();
@@ -55,19 +56,24 @@
 					>
 					<label for="chkSave">아이디 저장하기</label>
 			</fieldset>
-			<!-- <div id="loginlb">
-				<label for="userid" class="label">아이디</label>
-				<label for="userid" class="label">아이디</label>
-				<label for="userid" class="label">아이디</label>
-			<div>
-			<div id="loginbt">
-				<button type="submit" id="loginbutton">Login</button>
-				<button type="submit" id="loginbutton">Login</button>
-				<button type="submit" id="loginbutton">Login</button>
-
-			</div> -->
 		</form>
-		
+			<article>
+			<div style="width: 100%; height: 30px;"></div>
+				<div id="join">
+				<label for="join" class="label">※ 회원이 아니신가요?</label>
+					<button type="submit" onclick="location.href='${pageContext.request.contextPath }/member/register.do'">회원가입</button>
+				</div>
+				<div id="searchid">
+					<label for="searchid" class="label">※ 아이디를 잊으셨나요?</label>
+					<button type="submit">아이디</button>
+				</div>
+				<div id="searchpwd">
+					<label for="searchpwd" class="label">※ 비밀번호를 잊으셨나요?</label>
+					<button type="submit">비밀번호</button>
+				</div>
+			</article>
+		</div>
 	</div>
+	<a href="<c:url value='/member/memberEdit.do'/>">회원정보수정</a>
 </div>
 <%@ include file="../design/inc/bottom.jsp"%>

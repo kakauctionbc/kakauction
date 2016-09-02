@@ -17,4 +17,6 @@ public interface MemberService {
 	public int checkMemberId(String memberId);
 	public int loginCheck(MemberVO memberVo);
 	public MemberVO selectMemberByUserid(String memberId);
+	public int updateMember(MemberVO memberVo);
+	public int memberOut(String memberId);
 }

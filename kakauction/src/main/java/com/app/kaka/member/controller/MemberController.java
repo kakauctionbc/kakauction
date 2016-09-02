@@ -1,5 +1,7 @@
 package com.app.kaka.member.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,10 +86,148 @@ public class MemberController {
 		return "common/message";
 	}
 	
+	@RequestMapping(value="/memberCheck.do", method=RequestMethod.GET)
+	public String memberCheck_get(HttpSession session, Model model){
+		String memberId = (String)session.getAttribute("memberId");
+		logger.info("회원 수정 전 확인 페이지 memberId={}",memberId);
+		
+		model.addAttribute("memberId", memberId);
+		
+		return "member/pwdCheck";
+	}
+	
+	@RequestMapping(value="/memberCheck.do", method=RequestMethod.POST)
+	public String memberCheck_post(@ModelAttribute MemberVO memberVo,HttpSession session,Model model){
+		String memberId = (String)session.getAttribute("memberId");
+		logger.info("회원 수정 아이디 memberId={}",memberId);
+		
+		int result = memberService.loginCheck(memberVo);
+		
+		String msg="",url="/member/pwdCheck.do";
+		if (result==MemberService.LOGIN_OK) {
+			url="/member/memberEdit.do";
+		}else if (result==MemberService.PWD_DISAGREE) {
+			msg="비밀번호가 틀렸습니다";
+		}else{
+			msg="비밀번호 체크 실패";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
 	@RequestMapping(value="/memberEdit.do", method=RequestMethod.GET)
-	public String memberEdit_get(){
-		logger.info("회원수정창 보여주기");
+	public String memberEdit_get(HttpSession session ,Model model){
+		String memberId = (String)session.getAttribute("memberId");
+		logger.info("회원 수정창 보여주기, userid={}",memberId);
+		
+		MemberVO memVo = memberService.selectMemberByUserid(memberId);
+		
+		//이메일 나누기
+		String email = memVo.getMemberEmail();
+		int find1 = email.indexOf("@");
+		String email1 = email.substring(0, find1);
+		String email2 = email.substring(find1+1);
+		
+		//핸드폰 나누기
+		String hp = memVo.getMemberHp();
+		int find2 = hp.indexOf("-");
+		int find3 = hp.lastIndexOf("-");
+		String hp1 = hp.substring(0, find2);
+		String hp2 = hp.substring(find2+1, find3);
+		String hp3 = hp.substring(find3+1);
+
+		//뿌린 값을 모델로 넣어넣어
+		model.addAttribute("email1", email1);
+		model.addAttribute("email2", email2);
+		model.addAttribute("hp1", hp1);
+		model.addAttribute("hp2", hp2);
+		model.addAttribute("hp3", hp3);
+		
+		model.addAttribute("memVo", memVo);
+		logger.info("보여주기 결과 memVo={}",memVo);
 		
 		return "member/memberEdit";
+	}
+	
+	@RequestMapping(value="/memberEdit.do", method=RequestMethod.POST)
+	public String memberEdit_post(@ModelAttribute MemberVO memberVo,@RequestParam String hp1, 
+			@RequestParam String hp2,@RequestParam String hp3,@RequestParam String email1, 
+			@RequestParam String email2, @RequestParam String email3, HttpSession session, Model model){
+		logger.info("널 보고싶다");
+		//아이디 받아와
+		String memberId = (String)session.getAttribute("memberId");
+		memberVo.setMemberId(memberId);
+		logger.info("세션으로 아이디를 받았지요 memberId={}",memberId);
+		
+		String memberHp = memberVo.getMemberHp();
+		if (memberHp==null || memberHp.isEmpty()) {
+			memberVo.setMemberHp(hp1+"-"+hp2+"-"+hp3);
+		}
+		
+		if (email2.equals("etc")){
+			memberVo.setMemberEmail(email1+"@"+email3);
+		}else{
+			memberVo.setMemberEmail(email1+"@"+email2);
+		}
+		
+		String msg="",url="/member/memberEdit.do";
+		int cnt = memberService.updateMember(memberVo);	
+		logger.info("회원수정 파라미터 memberVo={}",memberVo);
+		if (cnt>0) {
+			msg="수정 성공!";
+			
+			logger.info("수정 결과 cnt={}",cnt);
+		} else {
+			msg="수정 실패";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	@RequestMapping(value="/memberOut.do", method=RequestMethod.GET)
+	public String memberOut_get(HttpSession session, Model model){
+		logger.info("회원 탈퇴 화면 입니다.");
+		String memberId = (String)session.getAttribute("memberId");
+		logger.info("탈퇴하려는 회원 아이디 memberId={}",memberId);
+		
+		model.addAttribute("memberId", memberId);
+		
+		return "member/memberOut";
+	}
+	
+	@RequestMapping(value="/memberOut.do", method=RequestMethod.POST)
+	public String memberOut_post(@ModelAttribute MemberVO memberVo, HttpSession session, Model model){
+		String memberId = (String)session.getAttribute("memberId");
+		logger.info("회원 탈퇴 아이디 memberId={}",memberId);
+		
+		int result = memberService.loginCheck(memberVo);
+		
+		String msg="",url="/member/memberOut.do";
+		if (result==MemberService.LOGIN_OK) {
+			int cnt = memberService.memberOut(memberId);
+			if (cnt>0) {
+				msg="회원탈퇴 성공";
+				url="/index.do";
+				
+				session.invalidate();
+			}else{
+				msg="회원탈퇴 실패";
+			}
+		}else if (result==MemberService.PWD_DISAGREE) {
+			msg="비밀번호가 틀렸습니다";
+		}else{
+			msg="비밀번호 체크 실패";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
 	}
 }

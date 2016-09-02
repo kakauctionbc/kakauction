@@ -26,5 +26,9 @@
 	<select id="selectCountUserid" parameterType="string" resultType="int">
 		select count(*) from member where MEMBER_ID=#{memberId}
 	</select>
-	
+
+	<update id="outMember" parameterType="String">
+		update member set member_outdate=sysdate 
+		    where member_id=#{memberId} and member_outdate is null
+	</update>	
 </mapper>
