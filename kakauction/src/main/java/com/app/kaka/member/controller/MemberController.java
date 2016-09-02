@@ -2,6 +2,7 @@ package com.app.kaka.member.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.aspectj.weaver.Member;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,19 +72,42 @@ public class MemberController {
 			memberVo.setMemberEmail(email1+"@"+email2);
 		}
 		
-		int cnt = memberService.insertMember(memberVo);
-		logger.info("회원가입 결과 cnt={}",cnt);
+		
+		String jumin = memberVo.getMemberJumin();
+		logger.info("주민번호 중복 확인, 파라미터 jumin={}",jumin);
+
+		int result = memberService.checkMemberJumin(jumin);
+		logger.info("주민번호 중복확인 결과, result={}",result);
 		
 		String msg="",url="";
-		if(cnt>0){
-			msg="가입 성공!";
-			url="/design/index.do";
+		if (result==MemberService.NONE_EXIST_JUMIN) {
+			int cnt = memberService.insertMember(memberVo);
+			logger.info("회원가입 결과 cnt={}",cnt);
+			
+			if(cnt>0){
+				url="/member/registerCheck.do?memberId="+memberVo.getMemberId();
+			}else{
+				msg="가입 실패!";
+				url="/member/register.do";
+			}
 		}else{
-			msg="가입 실패!";
-			url="/member/register";
+			msg="이미 가입하신 회원입니다.로그인 하세요";
+			url="/login/login.do";
 		}
 		
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		
 		return "common/message";
+	}
+	
+	@RequestMapping("/registerCheck.do")
+	public String registerOk(@RequestParam String memberId, Model model){
+		logger.info("회원 가입 성공!");
+		
+		model.addAttribute("memberId", memberId);
+		
+		return "member/registerCheck";
 	}
 	
 	@RequestMapping(value="/memberCheck.do", method=RequestMethod.GET)

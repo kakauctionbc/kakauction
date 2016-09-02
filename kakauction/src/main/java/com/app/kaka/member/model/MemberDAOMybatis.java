@@ -16,6 +16,12 @@ public class MemberDAOMybatis extends SqlSessionDaoSupport implements MemberDAO 
 	public int checkMemberId(String memberId) {
 		return getSqlSession().selectOne(namespace+".selectCountUserid", memberId);
 	}
+	
+	@Override
+	public int checkMemberJumin(String memberJumin) {
+		return getSqlSession().selectOne(namespace+".selectCountJumin", memberJumin);
+	}
+
 
 	@Override
 	public String loginCheck(MemberVO memberVo) {
@@ -36,5 +42,4 @@ public class MemberDAOMybatis extends SqlSessionDaoSupport implements MemberDAO 
 	public int memberOut(String memberId) {
 		return getSqlSession().delete(namespace+".outMember", memberId);
 	}
-
 }

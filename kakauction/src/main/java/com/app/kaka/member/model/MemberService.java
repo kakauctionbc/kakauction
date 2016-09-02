@@ -8,6 +8,10 @@ public interface MemberService {
 	public static final int NONE_EXIST_ID=2;
 	//=> 해당 아이디가 존재하지 않음
 	
+	//주민등록번호 확인
+	public static final int EXIST_JUMIN=1;
+	public static final int NONE_EXIST_JUMIN=2;
+	
 	//로그인 처리시 사용하는 상수	
 	public static final int LOGIN_OK=1; //로그인 성공
 	public static final int PWD_DISAGREE=2;//비밀번호 불일치
@@ -19,4 +23,5 @@ public interface MemberService {
 	public MemberVO selectMemberByUserid(String memberId);
 	public int updateMember(MemberVO memberVo);
 	public int memberOut(String memberId);
+	public int checkMemberJumin(String memberJumin);
 }

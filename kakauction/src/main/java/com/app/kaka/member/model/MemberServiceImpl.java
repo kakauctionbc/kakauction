@@ -26,6 +26,20 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public int checkMemberJumin(String memberJumin) {
+		int count = memberDao.checkMemberJumin(memberJumin);
+		
+		int result = 0;
+		if (count>0) { 
+			result = EXIST_JUMIN;
+		}else { 
+			result = NONE_EXIST_JUMIN;
+		}
+		
+		return result;
+	}
+	
+	@Override
 	public MemberVO selectMemberByUserid(String memberId) {
 		return memberDao.selectMemberByUserid(memberId);
 	}

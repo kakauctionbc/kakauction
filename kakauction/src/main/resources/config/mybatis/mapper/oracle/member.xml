@@ -26,6 +26,10 @@
 	<select id="selectCountUserid" parameterType="string" resultType="int">
 		select count(*) from member where MEMBER_ID=#{memberId}
 	</select>
+	
+	<select id="selectCountJumin" parameterType="string" resultType="int">
+		select count(*) from member where member_jumin=#{memberJumin}
+	</select>
 
 	<update id="outMember" parameterType="String">
 		update member set member_outdate=sysdate 

@@ -16,13 +16,13 @@
 				alert("아이디는 영문자, 숫자, _만 가능합니다");
 				$("#memberId").focus();
 				return false;
-			}else if($("#pwd").val().length < 1){
+			}else if($("#memberPwd").val().length < 1){
 				alert("비밀번호를 입력하세요");
 				$("#memberPwd").focus();
 				return false;
 			}else if($("#memberPwd").val()!=$("#memberPwd2").val()){
 				alert("비밀번호가 일치하지 않습니다");
-				$("#pwd").focus();
+				$("#memberPwd").focus();
 				return false;
 			}else if($("#chkId").val()!="Y"){
 				alert("아이디 중복확인을 하세요!");
@@ -196,11 +196,10 @@
 		<div class="btn_area">
 			<ul>
 				<li class="btn_ok">
-					<%-- <button type="submit" onclick="location.href='${pageContext.request.contextPath }/design/index.do'">회원가입</button> --%>
-					<input type="submit" id="wr_submit" value="회원가입">
+					<button type="submit" >회원가입</button>
 				</li>
 				<li class="btn_cancel">
-					<button type="submit" onclick="location.href='${pageContext.request.contextPath }/design/index.do'">취소</button>
+					<%-- <button type="submit" onclick="location.href='${pageContext.request.contextPath }/design/index.do'">취소</button> --%>
 				</li>
 			</ul>
 		</div>
