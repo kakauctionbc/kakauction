@@ -25,8 +25,6 @@
 		document.frmPage.currentPage.value=curPage;
 		document.frmPage.submit();
 	}
-	
-
 </script>
 <style type="text/css">
 	body{
