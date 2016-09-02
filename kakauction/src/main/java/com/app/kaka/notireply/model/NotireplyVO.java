@@ -3,15 +3,15 @@ package com.app.kaka.notireply.model;
 import java.sql.Timestamp;
 
 public class NotireplyVO {
-	private int notireplyNo;
-	private int noticeNo;
-	private String memberId;
-	private String notireplyContent;
-	private Timestamp notireplyRegdate;
-	private int notireplyGroupno;
-	private int notireplyStep;
-	private int notireplySortno;
-	private String notireplyDelflag;
+	private int notireplyNo; /** 댓글번호 */
+	private int noticeNo;/** 글번호 */
+	private String memberId; /** 아이디 */
+	private String notireplyContent; /** 내용 */
+	private Timestamp notireplyRegdate;/** 작성일 */
+	private int notireplyGroupno; /** 그룹번호 */
+	private int notireplyStep; /** 스텝 */
+	private int notireplySortno; /** 소트 */
+	private String notireplyDelflag; /** 삭제여부 */
 	
 	public int getNotireplyNo() {
 		return notireplyNo;

@@ -3,21 +3,22 @@ package com.app.kaka.freeboard.model;
 import java.sql.Timestamp;
 
 public class FreeboardVO {
-	private int freeboardNo;
-	private String memberId;
-	private String freeboardTitle;
-	private String freeboardContent;
-	private Timestamp freeboardRegdate;
-	private int freeboardReadCount;
-	private int freeboardGroupno;
-	private int freeboardStep;
-	private int freeboardSortno;
-	private int freeboardLike;
-	private String freeboardDelflag;
-	private String freeboardFilename;
-	private long freeboardFilesize;
-	private String freeboardDowncount;
-	private String freeboardOriginalname;
+	private int freeboardNo;/** 글번호 */
+	private String memberId;/** 아이디 */
+	private String freeboardTitle;/** 제목 */
+	private String freeboardContent;/** 내용 */
+	private Timestamp freeboardRegdate;/** 작성일 */
+	private int freeboardReadcount;/** 조회수 */
+	private int freeboardGroupno;/** 그룹번호 */
+	private int freeboardStep;/** 스텝 */
+	private int freeboardSortno;/** 소트 */
+	private String freeboardDelflag;/** 삭제여부 */
+	private String freeboardFilename;/** 파일명 */
+	private long freeboardFilesize;/** 파일크기 */
+	private int freeboardDowncount;/** 다운로드수 */
+	private String freeboardOriginalname;/** 파일원본이름 */
+	private int freeboardLike;/** 추천수 */
+	
 	private int newImgTerm;
 	
 	public int getFreeboardNo() {
@@ -25,12 +26,6 @@ public class FreeboardVO {
 	}
 	public void setFreeboardNo(int freeboardNo) {
 		this.freeboardNo = freeboardNo;
-	}
-	public int getFreeboardLike() {
-		return freeboardLike;
-	}
-	public void setFreeboardLike(int freeboardLike) {
-		this.freeboardLike = freeboardLike;
 	}
 	public String getMemberId() {
 		return memberId;
@@ -56,11 +51,11 @@ public class FreeboardVO {
 	public void setFreeboardRegdate(Timestamp freeboardRegdate) {
 		this.freeboardRegdate = freeboardRegdate;
 	}
-	public int getFreeboardReadCount() {
-		return freeboardReadCount;
+	public int getFreeboardReadcount() {
+		return freeboardReadcount;
 	}
-	public void setFreeboardReadCount(int freeboardReadCount) {
-		this.freeboardReadCount = freeboardReadCount;
+	public void setFreeboardReadcount(int freeboardReadcount) {
+		this.freeboardReadcount = freeboardReadcount;
 	}
 	public int getFreeboardGroupno() {
 		return freeboardGroupno;
@@ -98,10 +93,10 @@ public class FreeboardVO {
 	public void setFreeboardFilesize(long freeboardFilesize) {
 		this.freeboardFilesize = freeboardFilesize;
 	}
-	public String getFreeboardDowncount() {
+	public int getFreeboardDowncount() {
 		return freeboardDowncount;
 	}
-	public void setFreeboardDowncount(String freeboardDowncount) {
+	public void setFreeboardDowncount(int freeboardDowncount) {
 		this.freeboardDowncount = freeboardDowncount;
 	}
 	public String getFreeboardOriginalname() {
@@ -110,20 +105,29 @@ public class FreeboardVO {
 	public void setFreeboardOriginalname(String freeboardOriginalname) {
 		this.freeboardOriginalname = freeboardOriginalname;
 	}
+	public int getFreeboardLike() {
+		return freeboardLike;
+	}
+	public void setFreeboardLike(int freeboardLike) {
+		this.freeboardLike = freeboardLike;
+	}
 	public int getNewImgTerm() {
 		return newImgTerm;
 	}
 	public void setNewImgTerm(int newImgTerm) {
 		this.newImgTerm = newImgTerm;
 	}
+	
 	@Override
 	public String toString() {
 		return "FreeboardVO [freeboardNo=" + freeboardNo + ", memberId=" + memberId + ", freeboardTitle="
 				+ freeboardTitle + ", freeboardContent=" + freeboardContent + ", freeboardRegdate=" + freeboardRegdate
-				+ ", freeboardReadCount=" + freeboardReadCount + ", freeboardGroupno=" + freeboardGroupno
-				+ ", freeboardStep=" + freeboardStep + ", freeboardSortno=" + freeboardSortno + ", freeboardLike="
-				+ freeboardLike + ", freeboardDelflag=" + freeboardDelflag + ", freeboardFilename=" + freeboardFilename
-				+ ", freeboardFilesize=" + freeboardFilesize + ", freeboardDowncount=" + freeboardDowncount
-				+ ", freeboardOriginalname=" + freeboardOriginalname + ", newImgTerm=" + newImgTerm + "]";
+				+ ", freeboardReadcount=" + freeboardReadcount + ", freeboardGroupno=" + freeboardGroupno
+				+ ", freeboardStep=" + freeboardStep + ", freeboardSortno=" + freeboardSortno + ", freeboardDelflag="
+				+ freeboardDelflag + ", freeboardFilename=" + freeboardFilename + ", freeboardFilesize="
+				+ freeboardFilesize + ", freeboardDowncount=" + freeboardDowncount + ", freeboardOriginalname="
+				+ freeboardOriginalname + ", freeboardLike=" + freeboardLike + ", newImgTerm=" + newImgTerm + "]";
 	}
+	
+	
 }

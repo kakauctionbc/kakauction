@@ -3,12 +3,32 @@ package com.app.kaka.car.model;
 public class CarVO {
 	private String carNum;
 	private String memberId;
+	/** 공고기관 */
+	private String carCompany; 
 	private String carPrice;
 	private String carLoc;
 	private String carBirth;
+	private String carSize;
 	private String carDist;
 	private String carGas;
 	private String carCc;
+	
+	public String getCarCompany() {
+		return carCompany;
+	}
+
+	public void setCarCompany(String carCompany) {
+		this.carCompany = carCompany;
+	}
+
+	public String getCarSize() {
+		return carSize;
+	}
+
+	public void setCarSize(String carSize) {
+		this.carSize = carSize;
+	}
+
 	private String carAm;
 	private String carColor;
 	private String carAcci;
@@ -123,8 +143,9 @@ public class CarVO {
 
 	@Override
 	public String toString() {
-		return "CarVO [carNum=" + carNum + ", memberId=" + memberId + ", carPrice=" + carPrice + ", carLoc=" + carLoc
-				+ ", carBirth=" + carBirth + ", carDist=" + carDist + ", carGas=" + carGas + ", carCc=" + carCc
-				+ ", carAm=" + carAm + ", carColor=" + carColor + ", carAcci=" + carAcci + "]";
+		return "CarVO [carNum=" + carNum + ", memberId=" + memberId + ", carCompany=" + carCompany + ", carPrice="
+				+ carPrice + ", carLoc=" + carLoc + ", carBirth=" + carBirth + ", carSize=" + carSize + ", carDist="
+				+ carDist + ", carGas=" + carGas + ", carCc=" + carCc + ", carAm=" + carAm + ", carColor=" + carColor
+				+ ", carAcci=" + carAcci + "]";
 	}
 }

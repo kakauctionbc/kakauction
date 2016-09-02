@@ -3,12 +3,13 @@ package com.app.kaka.qna.model;
 import java.sql.Timestamp;
 
 public class QnaVO {
-	private String memberId;
-	private String questionContent;
 	private int questionNo;
+	private String memberId;
+	private String questionTitle;
+	private String questionContent;
 	private Timestamp questionRegdate;
 	private String questionReturn;
-	private String questionTitle;
+	
 	private int newImgTerm;
 	
 	public String getMemberId() {

@@ -17,6 +17,7 @@ public class NoticeVO {
 	private long noticeFilesize;
 	private int noticeDowncount;
 	private String noticeOriginalname;
+	
 	private int newImgTerm;
 	
 	public int getNoticeNo() {

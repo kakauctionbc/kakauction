@@ -10,6 +10,7 @@ public class MemberVO {
 	private String memberEmail;
 	private String memberHp;
 	private String memberGender;
+	private String memberZipcode;
 	private String memberAddr;
 	private String memberAddr2;
 	private int memberMileage;
@@ -33,6 +34,12 @@ public class MemberVO {
 	}
 	public void setMemberPwd(String memberPwd) {
 		this.memberPwd = memberPwd;
+	}
+	public String getMemberZipcode() {
+		return memberZipcode;
+	}
+	public void setMemberZipcode(String memberZipcode) {
+		this.memberZipcode = memberZipcode;
 	}
 	public String getMemberJumin() {
 		return memberJumin;
@@ -93,9 +100,9 @@ public class MemberVO {
 	public String toString() {
 		return "MemberVO [memberId=" + memberId + ", memberName=" + memberName + ", memberPwd=" + memberPwd
 				+ ", memberJumin=" + memberJumin + ", memberEmail=" + memberEmail + ", memberHp=" + memberHp
-				+ ", memberGender=" + memberGender + ", memberAddr=" + memberAddr + ", memberAddr2=" + memberAddr2
-				+ ", memberMileage=" + memberMileage + ", memberGrade=" + memberGrade + ", memberOutdate="
-				+ memberOutdate + "]";
+				+ ", memberGender=" + memberGender + ", memberZipcode=" + memberZipcode + ", memberAddr=" + memberAddr
+				+ ", memberAddr2=" + memberAddr2 + ", memberMileage=" + memberMileage + ", memberGrade=" + memberGrade
+				+ ", memberOutdate=" + memberOutdate + "]";
 	}
 	
 }
