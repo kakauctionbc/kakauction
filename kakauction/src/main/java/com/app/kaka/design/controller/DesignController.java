@@ -88,5 +88,17 @@ public class DesignController {
 		
 		return "/design/member/memberOut";
 	}
+	@RequestMapping("/memberOut_ok.do")
+	public String memberOut_ok(){
+		logger.info("회원탈퇴확인 페이지");
+		
+		return "/design/member/memberOut_ok";
+	}
+	@RequestMapping("/carList.do")
+	public String carList(){
+		logger.info("차목록 페이지");
+		
+		return "/design/board/carList";
+	}
 	
 }

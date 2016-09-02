@@ -45,7 +45,7 @@ $(function(){
 						<li>|</li>
 						<li><a href="<c:url value='/design/agreement.do'/>">회원가입</a></li>
 						<li>|</li>	            
-						<li><a href="<c:url value='/login/login.do'/>">로그인</a></li>
+						<li><a href="<c:url value='/design/login.do'/>">로그인</a></li>
 					</c:if>
 					<!-- 로그인된 경우 -->
 					<c:if test="${!empty sessionScope.memberId }">
