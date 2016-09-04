@@ -8,26 +8,26 @@
 		<tbody>
 			<tr>
 				<th>차량명</th>
-				<td>차량이름</td>
+				<td>memberId 님의 차량</td>
 			</tr>
 			<tr>
 				<td colspan="2">
 					<table>
 						<tr>
 							<th>차량번호</th>
-							<td>차량번호여기</td>
+							<td>carVo.carNum</td>
 							<th>연식</th>
-							<td>언제태어난 차?</td>
+							<td>carVo.carBirth</td>
 							<th>연료</th>
-							<td>어떤 밥을 먹니</td>
+							<td>carGas</td>
 						</tr>
 						<tr>
 							<th>기어</th>
-							<td>자동이니 수동이니</td>
+							<td>carVo.carAm</td>
 							<th>주행거리</th>
-							<td>얼마나 달렸니</td>
-							<th>연료</th>
-							<td>어떤 밥을 먹니</td>
+							<td>carVo.carDist</td>
+							<th>배기량</th>
+							<td>carVo.carCc</td>
 						</tr>
 					</table>
 				</td>

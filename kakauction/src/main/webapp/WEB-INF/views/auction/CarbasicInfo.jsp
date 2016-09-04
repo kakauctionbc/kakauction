@@ -7,23 +7,30 @@
 		<tbody>
 			<tr>
 				<th>차량상세정보</th>
-				<td>차량모델</td>
+				<td>carVo.carModel</td>
 			</tr>
 			<tr>
 				<th>소재지</th>
-				<td>여기는 회원주소</td>
+				<td>memberVo.memberAddr+memberAddr2</td>
 			</tr>
 			<tr>
 				<th>보관장소</th>
-				<td>여기는 차량주소</td>
+				<td>carVo.carLoc</td>
 			</tr>
 			<tr>
 				<th>기관/재산종류</th>
-				<td>내용내용/내용</td>
+				<td>carVo.carCompany/불용품</td>
 			</tr>
 			<tr>
 				<th>집행기관</th>
-				<td>판매신청을 한 회원의 번호</td>
+				<td>c:if test="!empty carVo.carCompany"
+						carVo.carCompany(memberVo.memberName)
+					if여기까지 if
+					c:if test="empty carVo.carCompany"
+						memberVo.memberName
+					if여기까지 if
+					/전화번호 : memberVo.memberHp
+				</td>
 			</tr>
 			<tr>
 				<th>입찰기간 설정</th>
@@ -45,11 +52,11 @@
 						</tr>
 						<tr>
 							<th>입찰시작</th>
-							<td>시작날짜+시간+초</td>
+							<td>auctionVo.auctionRegdate</td>
 							<th>입찰마감</th>
-							<td>종료날짜+시간+초</td>
+							<td>auctionVo.auctionFinish</td>
 							<th>개찰일자</th>
-							<td>입찰마감+18시간</td>
+							<td>auctionVo.auctionOpentime</td>
 						</tr>
 					</table>
 				</td>
@@ -59,7 +66,7 @@
 					<table>
 						<tr>
 							<th>최저입찰가</th>
-							<td>비싸겠지?</td>
+							<td>auctionVo.auctionFirstprice</td>
 						</tr>
 					</table>
 				</td>
