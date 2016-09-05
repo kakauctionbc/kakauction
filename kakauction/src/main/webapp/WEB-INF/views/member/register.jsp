@@ -56,11 +56,42 @@
 		
 		
 		
-		$("#btnChkId").click(function(){
+		/* $("#btnChkId").click(function(){
 			var userid = $("#userid").val()
 			//checkUserid.jsp, 300, 200
 			window.open("<c:url value='/member/checkUserid.do?userid="+userid+"'/>", "checkUserid",
 					"width=380, height=180, left=300, top=150, resizable=yes, location=yes")
+		}); */
+		
+		$("#memberId").keyup(function(){
+			//1 <= 해당 아이디가 존재하는 경우
+			//2 <= 존재하지 않는 경우
+			
+			if (validate_userid($("#memberId").val()) && $("#memberId").val().length>=2) {
+				$.ajax({
+					url:"<c:url value='/member/ajaxCheckUserid.do'/>",
+					type:"GET",
+					data:"memberId="+$("#memberId").val(),
+					success:function(res){
+						var result = "";
+						if (res==1) {
+							result = "이미 등록된 아이디입니다.";
+							$("#chkId").val("N");
+						}else if(res==2){
+							result = "멋진 아이디군요!!"
+							$("#chkId").val("Y");
+						}
+						$("#message").html(result);
+					},
+					error:function(xhr, status, error){
+						alert(status+":"+error);
+					}
+				});
+			} else {
+				//유효성 검사를 통과하지 못한 경우
+				$("#message").html("아이디 규칙에 맞지 않습니다.");
+				$("#chkId").val("N");
+			}
 		});
 	});
 </script>
@@ -107,7 +138,8 @@
 					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />회원 ID</label></th>
 					<td>
 			      		<input type="text" name="memberId" id="memberId" style="ime-mode:inactive; width: 120px;">&nbsp;
-			        	<input type="button" value="중복확인" id="btnChkId" title="새창열림">
+			        	<!-- <input type="button" value="중복확인" id="btnChkId" title="새창열림"> -->
+			        	<span id="message" style="color: red"></span>
 					</td>
 				</tr>
 				<tr>

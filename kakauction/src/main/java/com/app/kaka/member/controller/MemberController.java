@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.kaka.member.model.MemberService;
 import com.app.kaka.member.model.MemberVO;
@@ -99,6 +100,18 @@ public class MemberController {
 		model.addAttribute("url",url);
 		
 		return "common/message";
+	}
+	
+	@RequestMapping("/ajaxCheckUserid.do")
+	@ResponseBody
+	public int ajaxCheckId(@RequestParam String memberId){
+		logger.info("ajax-아이디 중복확인, 파라미터 userid={}",memberId);
+		
+		int result = memberService.checkMemberId(memberId);
+		logger.info("ajax아이디 중복확인 결과, result={}",result);
+		//해당 아이디가 존재하면 1, 존재하지 않으면 2를 리턴
+		
+		return result;
 	}
 	
 	@RequestMapping("/registerCheck.do")
