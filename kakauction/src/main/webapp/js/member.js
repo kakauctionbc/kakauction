@@ -19,10 +19,10 @@
 		});//zipcode click
 	});//document.ready
 
-	function validate_userid(userid){
-		var pattern = new RegExp(/^[a-zA-Z0-9_]{5,20}$/);
+	function validate_userid(memberId){
+		var pattern = new RegExp(/^[a-z][a-zA-Z0-9_-]$/g);
 		
-		return pattern.test(userid);
+		return pattern.test(memberId);
 		
 	}
 	
@@ -30,4 +30,11 @@
 		var pattern = new RegExp(/^[0-9]*$/g);
 		
 		return pattern.tset(hp);
+	}
+	
+	function validate_pwd(pwd){
+		var pattern = new RegExp(/^[A-Za-z-9_-]{6,18}$/);
+		//숫자 6~18자리
+		return pattern.test(pwd);
+		
 	}

@@ -67,7 +67,7 @@
 			//1 <= 해당 아이디가 존재하는 경우
 			//2 <= 존재하지 않는 경우
 			
-			if (validate_userid($("#memberId").val()) && $("#memberId").val().length>=2) {
+			if (validate_userid($("#memberId").val()) && $("#memberId").val().length>=5 && $("#memberId").val().length<=20) {
 				$.ajax({
 					url:"<c:url value='/member/ajaxCheckUserid.do'/>",
 					type:"GET",
@@ -75,10 +75,10 @@
 					success:function(res){
 						var result = "";
 						if (res==1) {
-							result = "이미 등록된 아이디입니다.";
+							result = "이미사용중이거나 탈퇴한 아이디입니다.";
 							$("#chkId").val("N");
 						}else if(res==2){
-							result = "멋진 아이디군요!!"
+							result = "멋진 아이디네요!"
 							$("#chkId").val("Y");
 						}
 						$("#message").html(result);
@@ -89,9 +89,27 @@
 				});
 			} else {
 				//유효성 검사를 통과하지 못한 경우
-				$("#message").html("아이디 규칙에 맞지 않습니다.");
+				$("#message").html("5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.");
 				$("#chkId").val("N");
 			}
+			
+			$("#memberPwd").keyup(function(){
+				if (validate_pwd($("#memberPwd").val()) && $("#memberPwd").val().length>=8) {
+					$("#PWDmessage").html("사용가능한 비밀번호입니다.");
+				} else {
+					//유효성 검사를 통과하지 못한 경우
+					$("#PWDmessage").html("비밀번호는 영문/숫자/특문 포함 8자리 이상입니다.");
+				}
+			});
+			
+			$("#memberPwd2").keyup(function(){
+				if($("#memberPwd").val()!=$("#memberPwd2").val()){
+					$("#PWDmessage2").html("비밀번호가 일치하지 않습니다.");
+					$("#memberPwd2").focus();
+				} else {
+					$("#PWDmessage2").html("");
+				}
+			});
 		});
 	});
 </script>
@@ -147,11 +165,13 @@
 					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />비밀번호</label></th>
        				<td>
        					<input type="Password" name="memberPwd" id="memberPwd" style="width: 120px;">
+       					<span id="PWDmessage" style="color: red"></span>
        				</td>
 					<th><label for="pwd2">
 					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />비밀번호 확인</label></th>
 					<td>
-						<input type="Password" name="memberPwd2" id="memberPwd" style="width: 120px;">
+						<input type="Password" name="memberPwd2" id="memberPwd2" style="width: 120px;">
+						<span id="PWDmessage2" style="color: red"></span>
 					</td>
 				</tr>
 				<tr>
