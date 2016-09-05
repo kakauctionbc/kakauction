@@ -13,11 +13,17 @@
 		});//change
 		
 		$("#btnZipcode").click(function(){
-			window.open("/springherb/zipcode/zipcode.do",
+			window.open("/kaka/zipcode/zipcode.do",
 					"zip",
 			"width=500,height=500,left=10,top=50,resizable=yes,location=yes");
 		});//zipcode click
 	});//document.ready
+	
+	function validate_name(memberName){
+		var pattern = new RegExp(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/);
+
+		return pattern.test(memberName);
+	}
 
 	function validate_userid(memberId){
 		var pattern = new RegExp(/^[a-z][a-zA-Z0-9_-]$/g);
@@ -33,8 +39,7 @@
 	}
 	
 	function validate_pwd(pwd){
-		var pattern = new RegExp(/^[A-Za-z-9_-]{6,18}$/);
-		//숫자 6~18자리
-		return pattern.test(pwd);
+		var pattern = new RegExp( /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/);
 		
+		return pattern.test(pwd);
 	}

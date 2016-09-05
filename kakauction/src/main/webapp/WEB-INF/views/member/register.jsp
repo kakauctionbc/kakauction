@@ -7,21 +7,13 @@
 <script type="text/javascript" src="<c:url value='/js/member.js'/>"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#wr_submit").click(function(event){
+		/* $("#wr_submit").click(function(event){
 			if($("#memberName").val().length < 1){
 				alert("이름을 입력하세요");
 				$("#memberName").focus();
 				return false;
-			}else if(!validate_userid($("#memberId").val())){
-				alert("아이디는 영문자, 숫자, _만 가능합니다");
-				$("#memberId").focus();
-				return false;
 			}else if($("#memberPwd").val().length < 1){
 				alert("비밀번호를 입력하세요");
-				$("#memberPwd").focus();
-				return false;
-			}else if($("#memberPwd").val()!=$("#memberPwd2").val()){
-				alert("비밀번호가 일치하지 않습니다");
 				$("#memberPwd").focus();
 				return false;
 			}else if($("#chkId").val()!="Y"){
@@ -52,17 +44,9 @@
 			    alert("성별을 선택 하세요");
 			    return false;
 			}
-		});//click
+		});//click*/
 		
-		
-		
-		/* $("#btnChkId").click(function(){
-			var userid = $("#userid").val()
-			//checkUserid.jsp, 300, 200
-			window.open("<c:url value='/member/checkUserid.do?userid="+userid+"'/>", "checkUserid",
-					"width=380, height=180, left=300, top=150, resizable=yes, location=yes")
-		}); */
-		
+ 
 		$("#memberId").keyup(function(){
 			//1 <= 해당 아이디가 존재하는 경우
 			//2 <= 존재하지 않는 경우
@@ -92,25 +76,35 @@
 				$("#message").html("5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.");
 				$("#chkId").val("N");
 			}
-			
-			$("#memberPwd").keyup(function(){
-				if (validate_pwd($("#memberPwd").val()) && $("#memberPwd").val().length>=8) {
-					$("#PWDmessage").html("사용가능한 비밀번호입니다.");
-				} else {
-					//유효성 검사를 통과하지 못한 경우
-					$("#PWDmessage").html("비밀번호는 영문/숫자/특문 포함 8자리 이상입니다.");
-				}
-			});
-			
-			$("#memberPwd2").keyup(function(){
-				if($("#memberPwd").val()!=$("#memberPwd2").val()){
-					$("#PWDmessage2").html("비밀번호가 일치하지 않습니다.");
-					$("#memberPwd2").focus();
-				} else {
-					$("#PWDmessage2").html("");
-				}
-			});
 		});
+
+		$("#memberName").keyup(function() {
+			validate_name(memberName)
+			if(!validate_name($("#memberName").val())){
+				$("#Namemessage").html("이름은 한글만 가능합니다.");
+			}else{
+				$("#Namemessage").html("");
+			}
+		});
+		
+		$("#memberPwd").keyup(function(){
+			if (validate_pwd($("#memberPwd").val()) && $("#memberPwd").val().length>=8) {
+				$("#PWDmessage").html("");
+			} else {
+				//유효성 검사를 통과하지 못한 경우
+				$("#PWDmessage").html("비밀번호는 영문/숫자/특문 포함 8자리 이상합니다.");
+			}
+		});
+		
+		$("#memberPwd2").keyup(function(){
+			if($("#memberPwd").val()!=$("#memberPwd2").val()){
+				$("#PWDmessage2").html("비밀번호가 일치하지 않습니다.");
+				$("#memberPwd2").focus();
+			} else {
+				$("#PWDmessage2").html("");
+			}
+		});
+		
 	});
 </script>
 
@@ -147,10 +141,11 @@
 			</colgroup>
 			<tbody>
 				<tr>
-					<th><label for="memberName">
-					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />성명(한글)</label></th>
+					<th><label for="name">
+						<img src="${pageContext.request.contextPath }/img/check.png" alt="" />성명(한글)</label></th>
 					<td>
         				<input type="text" name="memberName" id="memberName" style="ime-mode:active; width: 120px;">
+        				<span id="Namemessage" style="color: red"></span>
 					</td>
 					<th><label for="userid">
 					<img src="${pageContext.request.contextPath }/img/check.png" alt="" />회원 ID</label></th>
@@ -229,7 +224,7 @@
 					<td colspan="3">
 						<ul class="address_ul">
 							<li>
-								<input type="text" name="zipcode" id="zipcode" ReadOnly title="우편번호" style="width: 120px;">
+								<input type="text" name="memberZipcode" id="memberZipcode" ReadOnly title="우편번호" style="width: 120px;">
         						<input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림" >
         					</li>
 							<li id="address_li">
@@ -251,6 +246,7 @@
 					<button type="submit" >회원가입</button>
 				</li>
 				<li class="btn_cancel">
+					<input type="reset" value="취소">
 					<%-- <button type="submit" onclick="location.href='${pageContext.request.contextPath }/design/index.do'">취소</button> --%>
 				</li>
 			</ul>
