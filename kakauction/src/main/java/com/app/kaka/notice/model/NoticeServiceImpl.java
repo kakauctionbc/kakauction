@@ -28,7 +28,7 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(NoticeServiceImpl.class);
 	
-	@Autowired
+	@Autowired()
 	private NoticeDAO noticeDao;
 
 	@Resource(name="fileUploadProperties")

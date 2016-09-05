@@ -23,7 +23,7 @@ import com.app.kaka.member.model.MemberVO;
 public class EmailController {
 	   private static final Logger logger = LoggerFactory.getLogger(EmailController.class);
 	
-	   @Autowired(required=false)
+	   @Autowired
 	   private EmailService emailService;
 	   
 	   @Autowired(required=false)
@@ -40,18 +40,19 @@ public class EmailController {
 	   }
 	  
 	   @RequestMapping(value="/user_find_password.do", method=RequestMethod.POST)
-	    public ModelAndView sendEmailAction_post (@ModelAttribute MemberVO memberVo, ModelMap model) throws Exception {
+	    public ModelAndView sendEmailAction_post (@ModelAttribute MemberVO memberVo) throws Exception {
 	        ModelAndView mav;
+	        logger.info("받았을까 아이디랑 이메일?? memberVo={}",memberVo);
 	        String memberId = memberVo.getMemberId();
 	        String memberEmail = memberVo.getMemberEmail(); 
 	        
 	        //String memberId=(String) paramMap.get("memberId");
 	        //String memberEmail=(String) paramMap.get("memberEmail");
-	        
 	        logger.info("받았을까 아이디랑 이메일?? memberId={},memberEmail={}",memberId,memberEmail);
 	        
-	        //String memberPwd = emailService.getPwd(memberVo);
-	        String memberPwd = "a1234567";
+	        
+	        String memberPwd = emailService.getPwd(memberVo);
+	        //String memberPwd = "a1234567";
 	        logger.info("너 왜 널임? memberPwd={}",memberPwd);
 	        
 	        System.out.println(memberPwd);

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.op">
+	<insert id="insertOp">
+		insert into op(car_num, member_id, op_in, op_out, op_con, op_safe, op_aa, op_tune)
+		values(#{carNum}, #{memberId}, #{opIn}, #{opOut}, #{opCon}, #{opSafe}, #{opAa}, #{opTune})
+	</insert>
+</mapper>

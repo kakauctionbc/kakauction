@@ -1,10 +1,14 @@
 package com.app.kaka.email.model;
 
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.app.kaka.member.model.MemberVO;
 
+@Service
 public class EmailServiceServiceImpl implements EmailService {
+	
+	@Autowired
 	private EmailDAO emailDao;
 
 	@Override

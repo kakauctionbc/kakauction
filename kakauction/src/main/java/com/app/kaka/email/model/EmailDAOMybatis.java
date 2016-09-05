@@ -1,12 +1,11 @@
 package com.app.kaka.email.model;
 
-import java.util.Map;
-
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.stereotype.Repository;
 
 import com.app.kaka.member.model.MemberVO;
-import com.sun.mail.imap.protocol.Namespaces.Namespace;
 
+@Repository
 public class EmailDAOMybatis extends SqlSessionDaoSupport implements EmailDAO {
 	private String namespace = "config.mybatis.mapper.oracle.member";
 

@@ -12,45 +12,39 @@ public class CarVO {
 	private String carDist;
 	private String carGas;
 	private String carCc;
-	
-	public String getCarCompany() {
-		return carCompany;
-	}
-
-	public void setCarCompany(String carCompany) {
-		this.carCompany = carCompany;
-	}
-
-	public String getCarSize() {
-		return carSize;
-	}
-
-	public void setCarSize(String carSize) {
-		this.carSize = carSize;
-	}
-
 	private String carAm;
 	private String carColor;
 	private String carAcci;
+	private String carRegdate;
+	private String carAuctionYn;
+	private int carFailSell;
+	private String carModel;
 	
 	public CarVO() {
-
+		
 	}
 
-	public CarVO(String carNum, String memberId, String carPrice, String carLoc, String carBirth, String carDist,
-			String carGas, String carCc, String carAm, String carColor, String carAcci) {
+	public CarVO(String carNum, String memberId, String carCompany, String carPrice, String carLoc, String carBirth,
+			String carSize, String carDist, String carGas, String carCc, String carAm, String carColor, String carAcci,
+			String carRegdate, String carAuctionYn, int carFailSell, String carModel) {
 		super();
 		this.carNum = carNum;
 		this.memberId = memberId;
+		this.carCompany = carCompany;
 		this.carPrice = carPrice;
 		this.carLoc = carLoc;
 		this.carBirth = carBirth;
+		this.carSize = carSize;
 		this.carDist = carDist;
 		this.carGas = carGas;
 		this.carCc = carCc;
 		this.carAm = carAm;
 		this.carColor = carColor;
 		this.carAcci = carAcci;
+		this.carRegdate = carRegdate;
+		this.carAuctionYn = carAuctionYn;
+		this.carFailSell = carFailSell;
+		this.carModel = carModel;
 	}
 
 	public String getCarNum() {
@@ -67,6 +61,14 @@ public class CarVO {
 
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
+	}
+
+	public String getCarCompany() {
+		return carCompany;
+	}
+
+	public void setCarCompany(String carCompany) {
+		this.carCompany = carCompany;
 	}
 
 	public String getCarPrice() {
@@ -91,6 +93,14 @@ public class CarVO {
 
 	public void setCarBirth(String carBirth) {
 		this.carBirth = carBirth;
+	}
+
+	public String getCarSize() {
+		return carSize;
+	}
+
+	public void setCarSize(String carSize) {
+		this.carSize = carSize;
 	}
 
 	public String getCarDist() {
@@ -141,11 +151,45 @@ public class CarVO {
 		this.carAcci = carAcci;
 	}
 
+	public String getCarRegdate() {
+		return carRegdate;
+	}
+
+	public void setCarRegdate(String carRegdate) {
+		this.carRegdate = carRegdate;
+	}
+
+	public String getCarAuctionYn() {
+		return carAuctionYn;
+	}
+
+	public void setCarAuctionYn(String carAuctionYn) {
+		this.carAuctionYn = carAuctionYn;
+	}
+
+	public int getCarFailSell() {
+		return carFailSell;
+	}
+
+	public void setCarFailSell(int carFailSell) {
+		this.carFailSell = carFailSell;
+	}
+
+	public String getCarModel() {
+		return carModel;
+	}
+
+	public void setCarModel(String carModel) {
+		this.carModel = carModel;
+	}
+
 	@Override
 	public String toString() {
 		return "CarVO [carNum=" + carNum + ", memberId=" + memberId + ", carCompany=" + carCompany + ", carPrice="
 				+ carPrice + ", carLoc=" + carLoc + ", carBirth=" + carBirth + ", carSize=" + carSize + ", carDist="
 				+ carDist + ", carGas=" + carGas + ", carCc=" + carCc + ", carAm=" + carAm + ", carColor=" + carColor
-				+ ", carAcci=" + carAcci + "]";
+				+ ", carAcci=" + carAcci + ", carRegdate=" + carRegdate + ", carAuctionYn=" + carAuctionYn
+				+ ", carFailSell=" + carFailSell + ", carModel=" + carModel + "]";
 	}
+	
 }

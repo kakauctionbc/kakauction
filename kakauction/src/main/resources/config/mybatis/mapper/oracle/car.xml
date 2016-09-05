@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.car">
+	<insert id="insertCar" parameterType="CarVO">
+		insert into car(car_num, member_id, car_company, car_price, car_loc, car_birth, car_model,
+			car_size, car_dist, car_gas, car_cc, car_am, car_color, car_acci, car_regdate, car_auction_yn, car_fail_sell)
+		values(#{carNum}, #{memberId}, #{carCompany}, #{carPrice}, #{carLoc}, #{carBirth}, #{carModel}, #{carSize}, #{carDist},
+		#{carGas}, #{carCc}, #{carAm}, #{carColor}, #{carAcci}, sysdate, 'N', 0)
+	</insert>
+</mapper>

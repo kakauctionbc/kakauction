@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 
+
 public class EmailSender {
 	@Autowired
     protected JavaMailSender  mailSender;
