@@ -58,8 +58,8 @@
 	});
 	
 	function setZipcode(zipcode, address){
-		opener.document.frm1.zipcode.value=zipcode;
-		opener.document.frm1.address.value=address;
+		opener.document.frm1.memberZipcode.value=zipcode;
+		opener.document.frm1.memberAddr.value=address;
 		self.close();
 	}
 	

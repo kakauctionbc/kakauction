@@ -7,7 +7,7 @@
 <script type="text/javascript" src="<c:url value='/js/member.js'/>"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		/* $("#wr_submit").click(function(event){
+		$("#wr_submit").click(function(event){
 			if($("#memberName").val().length < 1){
 				alert("이름을 입력하세요");
 				$("#memberName").focus();
@@ -15,14 +15,6 @@
 			}else if($("#memberPwd").val().length < 1){
 				alert("비밀번호를 입력하세요");
 				$("#memberPwd").focus();
-				return false;
-			}else if($("#chkId").val()!="Y"){
-				alert("아이디 중복확인을 하세요!");
-				$("#btnChkId").focus();
-				return false;
-			}else if($("#chkId1").val()!=$("#memberId").val()){
-				alert("아이디 중복확인후 아이디를 바꾸면 안됩니다!");
-				$("#memberId").focus();
 				return false;
 			}else if(!validate_hp($("#hp2").val()) || !validate_hp($("#hp3").val())){
 				alert("휴대폰 번호는 숫자여야 합니다");
@@ -44,7 +36,7 @@
 			    alert("성별을 선택 하세요");
 			    return false;
 			}
-		});//click*/
+		});//click
 		
  
 		$("#memberId").keyup(function(){
@@ -228,7 +220,7 @@
         						<input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림" >
         					</li>
 							<li id="address_li">
-								<input type="text" name="memberAddr" id="memberAddr"  title="주소" style="width:230px;">
+								<input type="text" name="memberAddr" id="memberAddr" ReadOnly  title="주소" style="width:230px;">
 							</li>
 							<li id="address_li">
 								<input type="text" name="memberAddr2" id="memberAddr2" title="상세주소" placeholder="상세주소" 

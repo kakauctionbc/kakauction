@@ -35,4 +35,8 @@
 		update member set member_outdate=sysdate 
 		    where member_id=#{memberId} and member_outdate is null
 	</update>	
+	
+	<select id="getPwd" parameterType="MemberVO" resultType="string">
+		select member_pwd from member where member_id=#{memberId} and member_email=#{memberEmail}
+	</select>
 </mapper>
