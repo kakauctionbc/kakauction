@@ -1,0 +1,105 @@
+@CHARSET "UTF-8";
+
+.Used_car_section.renew{
+	width: 80%;
+	margin: 0 auto;
+}
+.Used_car_section.renew .Usedcar{
+	width: 1000px !important;
+}
+
+.middlearea{
+	width: 1000px;
+	height:200px;
+	margin-left:230px;
+	border: 1px solid silver;
+}
+.specialtitle{
+	float: left;
+}
+.morearea{
+	float: right;
+}
+.special{
+	clear: both;
+}
+.special ul{
+	padding-left: 10px;
+}
+.special ul li{
+	float: left;
+	padding-right: 25px;
+}
+
+.list_mycar_top:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.Used_car_section.renew .usedcar_select {
+    position: relative;
+    overflow: hidden;
+    height: 31px;
+    border: 1px solid #cccacb;
+}
+
+.Used_car_section.renew .con1 {
+    position: relative;
+    margin-top: -1px;
+    border-top: 1px solid #CCCACB;
+    width: 858px !important;
+}
+#wrap table {
+    border-collapse: collapse;
+}
+.Used_car_section.renew .con1 .mycarlist > tbody > tr > td {
+    padding: 7px 0;
+}
+table.mycarlist td {
+    border-bottom: solid 1px #dddce1;
+}
+.Used_car_section.renew .con1 .mycarlist .thumb {
+    position: relative;
+}
+.Used_car_section.renew .con1 .mycarlist > tbody > tr > td {
+    padding: 7px 0;
+}
+.Used_car_section.renew .con1 .mycarlist .information {
+    width: 285px;
+    padding: 7px 0 7px 0;
+}
+.Used_car_section.renew .con1 .mycarlist > tbody > tr > td {
+    padding: 7px 0;
+}
+.Used_car_section.renew .con1 .mycarlist > tbody > tr > td {
+    padding: 7px 0;
+}
+.Used_car_section.renew .con1 .mycarlist > tbody > tr > td {
+    padding: 7px 0;
+}
+table.mycarlist td.centeralign {
+    text-align: center;
+    font-size: 12px;
+}
+.Used_car_section.renew .con1 .mycarlist > tbody > tr > td {
+    padding: 7px 0;
+}
+.Used_car_section.renew .con1 .mycarlist .dealerinfo .tt {
+    color: #8d8d8d;
+    margin-right: 6px;
+}
+a:visited {
+    color: #000;
+    text-decoration: none;
+}
+
+a:link {
+    color: #000;
+    text-decoration: none;
+}
+
+.Used_car_section.renew .con1 .mycarlist .dealerinfo .tt {
+    color: #8d8d8d;
+    margin-right: 6px;
+}
