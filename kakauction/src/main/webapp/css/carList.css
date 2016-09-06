@@ -1,54 +1,125 @@
 @CHARSET "UTF-8";
 
 .Used_car_section.renew{
-	width: 80%;
-	margin: 0 auto;
+	width: 1100px;
+	margin-left: 500px;
 }
-.Used_car_section.renew .Usedcar{
-	width: 1000px !important;
+.offset{
+	width: 100%;
+	height: 1px;
 }
-
 .middlearea{
-	width: 1000px;
-	height:200px;
-	margin-left:230px;
-	border: 1px solid silver;
+	
+	width: 100%;
+	height:140px;
+	margin-bottom: 20px;
+	margin-top: 80px;
 }
 .specialtitle{
-	float: left;
-}
-.morearea{
-	float: right;
+	width:200px;
+	padding-bottom: 10px;
 }
 .special{
-	clear: both;
+	width:100%;
 }
 .special ul{
-	padding-left: 10px;
+}
+.special .first{
+	margin-left: 0px;
+}
+.special .last{
+	margin-right: 0px;
 }
 .special ul li{
 	float: left;
-	padding-right: 25px;
+	margin-left: 30px;
 }
-
+.list_mycar_top{
+	width: 1000px;
+}
 .list_mycar_top:after {
     content: "";
     display: block;
     clear: both;
 }
-
-.Used_car_section.renew .usedcar_select {
-    position: relative;
+.fl ul li{
+	float: left;
+}
+.fr ul li{
+	float: right;
+}
+.usedcar_select {
     overflow: hidden;
-    height: 31px;
+    height: 37px;
     border: 1px solid #cccacb;
+	width: 1000px;
+}
+.usedcar_select ul {
+    padding: 9px 0 8px 0;
+    height:37px;
+    background-color: #fafafa;
+}
+.usedcar_select ul li{
+	float: left;
+	border-right: 1px solid #d1cbcb;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+.usedcar_select ul .more_btn{
+	border: none;
+	float: right;
+}
+
+button.more_btn {
+    background-color: #fafafa;
+    color: #000000;
+    cursor: pointer;
+    text-align:right;
+    border-right:none;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+button.more_btn.active, button.more_btn:hover {
+    background-color: #fafafa;
+}
+
+button.more_btn:after {
+    content: '더보기 ▼';
+    font-size: 13px;
+    color: #777;
+}
+
+button.more_btn.active:after {
+    content: "닫기 △";
+    color: #ff0000;
+    font-weight: bold;
+}
+div.sub {
+    overflow: hidden;
+    transition: 0.6s ease-in-out;
+    opacity: 0;
+    mex-height:0px;
+	width: 1000px;
+	border: 1px solid #cccacb;
+}
+
+div.sub.show {
+    opacity: 1;
+    max-height: 500px;
+    width: 1000px;
 }
 
 .Used_car_section.renew .con1 {
     position: relative;
     margin-top: -1px;
-    border-top: 1px solid #CCCACB;
-    width: 858px !important;
+    border: 1px solid #CCCACB;
+    width: 1000px !important;
+}
+ul, ol {
+    list-style: none;
 }
 #wrap table {
     border-collapse: collapse;
@@ -69,6 +140,20 @@ table.mycarlist td {
     width: 285px;
     padding: 7px 0 7px 0;
 }
+.dealerinfo{
+	border-left: 1px solid #dddce1;
+	padding-left: 10px;
+}
+table.mycarlist td.nonepd .dealerinfo {
+    height: auto;
+    display: block;
+    border-left: solid 1px #e8e8e8;
+    padding: 0 0 0 10px;
+    text-align: left;
+    font-size: 12px;
+    line-height: 160%;
+}
+
 .Used_car_section.renew .con1 .mycarlist > tbody > tr > td {
     padding: 7px 0;
 }
@@ -102,4 +187,42 @@ a:link {
 .Used_car_section.renew .con1 .mycarlist .dealerinfo .tt {
     color: #8d8d8d;
     margin-right: 6px;
+}
+.ico_cnt{
+	display: none;
+}
+.Used_car_section.renew .pageMove {
+    padding: 30px 0;
+}
+.pageMove {
+    width: 100%;
+    height: 15px;
+    padding: 37px 0 30px 0;
+    margin: 0 0 3px 0;
+    border-bottom: 2px solid #ebebeb;
+    clear: both;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.pageNumber {
+    margin: auto;
+    vertical-align: middle;
+}
+.Used_car_section.renew .list_top {
+    height: 30px;
+    padding: 7px 0 3px 0;
+}
+
+.list_top {
+    height: 26px;
+    position: relative;
+    top: 0px;
+}
+div.Quick_layer {
+    position: fixed;
+    top: 25%;
+    left: 82%;
+    width: 0;
+    height: 0;
 }
