@@ -1,35 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div>
-	<table>
-		<thead>차량상세정보</thead>
+	<table  width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
+		<thead >차량상세정보</thead>
 		<tbody>
 			<tr>
 				<th>차량상세정보</th>
-				<td>carVo.carModel</td>
+				<td>${vo.carNum}</td>
 			</tr>
 			<tr>
 				<th>소재지</th>
-				<td>memberVo.memberAddr+memberAddr2</td>
+				<td>vo.memberAddr+memberAddr2</td>
 			</tr>
 			<tr>
 				<th>보관장소</th>
-				<td>carVo.carLoc</td>
+				<td>vo.carLoc</td>
 			</tr>
 			<tr>
 				<th>기관/재산종류</th>
-				<td>carVo.carCompany/불용품</td>
+				<td>vo.carCompany/불용품</td>
 			</tr>
 			<tr>
 				<th>집행기관</th>
-				<td>c:if test="!empty carVo.carCompany"
-						carVo.carCompany(memberVo.memberName)
+				<td>c:if test="!empty vo.carCompany"
+						vo.carCompany(vo.memberName)
 					if여기까지 if
-					c:if test="empty carVo.carCompany"
-						memberVo.memberName
+					c:if test="empty vo.carCompany"
+						vo.memberName
 					if여기까지 if
-					/전화번호 : memberVo.memberHp
+					/전화번호 : vo.memberHp
 				</td>
 			</tr>
 			<tr>
@@ -48,15 +47,15 @@
 							<th>입찰번호</th>
 							<td>현재까지 입찰한 횟수</td>
 							<th>물건상태</th>
-							<td>입찰중인지 뭔지</td>
+							<td>vo.auction_state</td>
 						</tr>
 						<tr>
 							<th>입찰시작</th>
-							<td>auctionVo.auctionRegdate</td>
+							<td>경매 등록 시간</td>
 							<th>입찰마감</th>
-							<td>auctionVo.auctionFinish</td>
+							<td>vo.memberGrade</td>
 							<th>개찰일자</th>
-							<td>auctionVo.auctionOpentime</td>
+							<td>입찰 시간으로부터 15시간 이후 </td>
 						</tr>
 					</table>
 				</td>
@@ -66,7 +65,7 @@
 					<table>
 						<tr>
 							<th>최저입찰가</th>
-							<td>auctionVo.auctionFirstprice</td>
+							<td>vo.auctionFirstprice</td>
 						</tr>
 					</table>
 				</td>

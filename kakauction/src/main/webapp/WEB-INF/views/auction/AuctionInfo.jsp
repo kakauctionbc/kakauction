@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div>
-	<table>
+	<table width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
 		<thead>입찰정보</thead>
 		<tbody>
 			<tr>
@@ -14,7 +13,9 @@
 				<th>최저입찰가</th>
 			</tr>
 			<tr>
-				<td>여기는 마지막정보</td>
+				<c:if test="${empty vo}">
+					<td></td>
+				</c:if>
 			</tr>
 		</tbody>
 	</table>

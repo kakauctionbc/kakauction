@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div>
-	<table>
+	<table width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
 		<thead>입찰진행내용</thead>
 		<tbody>
 			<tr>

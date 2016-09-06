@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div>
-	<table>
+	<table width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
 		<thead>물건 기본 정보
 		</thead>
 		<tbody>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.auction">
+
+	<select id="selectCarList" resultType="AuctionVO">
+		select * from car where car_auction_yn='N'
+	</select>
+	
+	<select id="selectAuctionCar" parameterType="String" resultType="AuctionCarVO">
+		select * from auction_car where car_num=#{carNum}
+	</select>
+	
+</mapper>

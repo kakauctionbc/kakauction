@@ -1,52 +1,287 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
-<script src="<c:url value='/ckeditor/ckeditor.js'/>"
-	type="text/javascript"></script>
+<script type="text/javascript"
+	src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#carList").change(function() {
+			var carNum = $(
+			"#carList option:selected")
+			.val();
+			/* var carNum = $(this).val(); */
+			/* var carNum = $("#carList").val(); */
+			if (carNum != null && carNum != -1) {
+				$.ajax({
+					url : "<c:url value='/auction/selectCar.do'/>",
+					data : "carNum="+ carNum,
+					type : "POST",
+					dataType : "json",
+					success : function(vo) {
+						alert(vo.carNum);
+						var carNum = vo.carNum;
+						var addr = vo.memberAddr+ vo.memberAddr2;
+						$("#voCarNum").html(carNum);
+						$("#voMAddr").html(addr);
+						$("#voCarLoc").html(vo.carLoc);
+						$("#voCarCompany").html(vo.carCompany+ "/불용품");
+						var carCompanyHp = "";
+						if (vo.carCompany != null) {
+							carCompanyHp = vo.carCompany+ "("+ vo.memberName+ ")";
+						} else if (vo.carCompany == null) {
+							carCompanyHp = vo.memberName;
+						}
+						carCompanyHp += "/전화번호 : "+ vo.memberHp;
+						$("#voCarComHp").html(carCompanyHp);
+						$("#voCarFailSell").html(vo.carFailSell);
+						$("#voAuctionYN").html(vo.auctionNoYear+"-0"+vo.auctionNoCar);
+						$("#voMemberGrade").html("경매 시작으로부터 회원 등급에 따라 달라 집니다");
+						$("#voCarPrice").html("<input type='text' value='"+vo.carPrice+"'>");
+						$("#VoMemberId").html(vo.memberId+"님의 차량 정보 : "+vo.carModel);
+						$("#carVoCarNum").html(vo.carNum);
+						$("#carVoCarBirth").html(vo.carBirth);
+						$("#carVoCarGas").html(vo.carGas);
+						$("#carVoCarAm").html(vo.carAm);
+						$("#carVoCarDist").html(vo.carDist);
+						$("#carVoCarCc").html(vo.carCc);
+						var auctionHis ="";
+						if(vo.carFailSell>=1){
+							auctionHis = "";
+						}else if(vo.carFailSell<1){
+							auctionHis = "<td colspan='7'>이전 경매 정보가 존재하지 않습니다</td>";
+						}
+						$("#selectAuctionHis").html(auctionHis);
+						var hisAucInfo ="";
+						if(vo.carFailSell>=1){
+							hisAucInfo = "";
+						}else if(vo.carFailSell<1){
+							hisAucInfo = "<td colspan='7'>이전 경매 정보가 존재하지 않습니다</td>";
+						}
+						$("#HisAucInfo").html(hisAucInfo);
+						
+					},
+					error : function(xhr,status,error) {
+						alert("에러=>"+ status+ ":"+ error);
+						}
+					});
+
+				} else if (carNum == -1) {
+					$("#voCarNum").html("");
+					$("#voMAddr").html("");
+					$("#voCarLoc").html("");
+					$("#voCarCompany").html("");
+					$("#voCarComHp").html("");
+					$("#voCarFailSell").html("");
+					$("#voAuctionYN").html("");
+					$("#voMemberGrade").html("");
+					$("#voCarPrice").html("");
+					$("#carVoCarNum").html("");
+					$("#carVoCarBirth").html("");
+					$("#carVoCarGas").html("");
+					$("#carVoCarAm").html("");
+					$("#carVoCarDist").html("");
+					$("#carVoCarCc").html("");
+				}
+			});
+	});
+</script>
 <title>현재 작업 중인 auction/write.jsp</title>
 </head>
 <body>
-	<form action="" name="" id="" method="post">
-		<table width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
+	<form action="<c:url value='/auction/write.do'/>" name="auctionWrite"
+		id="auctionWrite" method="post">
+		<table width="960" border="1px solid silver;" cellspacing="0"
+			cellpadding="0" align="center">
 			<tr>
-				<td	height="30" class="p_10"><span for="auctionNo">물건관리번호 : </span>
-					<select>
-						<option>
-							<input type="text" name="auctionNo" id="auctionNo">
-						</option>
-					</select>
-					<input type="submit" id="btAuctionSubmit" value="경매 등록">
-					<input type="button" id="btAuctionDeny" value="경매 거부">
-					<input type="button" id="btAuctionDefer" value="경매 보류">
-				</td>
+				<td height="30" class="p_10">
+				<span for="auctionNo">물건관리번호	: </span> 
+				<select id="carList" name="carNum">
+						<c:if test="${empty carAlist}">
+							<option>등록된 차량이 없습니다</option>
+						</c:if>
+						<option value="-1">차량을 선택하세요</option>
+						<c:if test="${!empty carAlist}">
+							<c:forEach var="carVo" items="${carAlist}">
+								<option value="${carVo.carNum}">${carVo.carNum}</option>
+							</c:forEach>
+						</c:if>
+				</select> 
+				<input type="submit" id="btAuctionSubmit" value="경매 등록"> 
+				<input type="button" id="btAuctionDeny" value="경매 거부"> 
+				<input type="button" id="btAuctionDefer" value="경매 보류"></td>
 			</tr>
 			<tr>
-				<td height="220px;">사진 foreach</td>
-			</tr>
-			<tr>
-				<c:import url="CarbasicInfo.jsp"></c:import>
-			</tr>
-			<tr>
-				<c:import url="CarDetailInfo.jsp"></c:import>
-			</tr>
-			<tr>
-				<c:import url="CarAuctionList.jsp"></c:import>
-			</tr>
-			<tr>
-				<c:import url="AuctionInfo.jsp"></c:import>
-			</tr>
-			<tr>
-				<c:import url="AuctionRef.jsp"></c:import>
+				<td height='220px;'>사진 foreach</td>
 			</tr>
 		</table>
 	</form>
-			
+	<div id="voName"></div>
+	<div>
+		<%-- <%@ include file="CarbasicInfo.jsp" %>
+		<%@ include file="CarDetailInfo.jsp" %>
+		<%@ include file="CarAuctionList.jsp" %>
+		<%@ include file="AuctionInfo.jsp" %>
+		<%@ include file="AuctionRef.jsp" %> --%>
+	</div>
+	<table width="960" border="1px solid silver;" cellspacing="0"
+		cellpadding="0" align="center">
+		<thead>차량상세정보
+		</thead>
+		<tbody>
+			<tr>
+				<th>차량상세정보</th>
+				<td id="voCarNum"></td>
+			</tr>
+			<tr>
+				<th>소재지</th>
+				<td id="voMAddr"></td>
+			</tr>
+			<tr>
+				<th>보관장소</th>
+				<td id="voCarLoc"></td>
+			</tr>
+			<tr>
+				<th>기관/재산종류</th>
+				<td id="voCarCompany"></td>
+			</tr>
+			<tr>
+				<th>집행기관</th>
+				<td id="voCarComHp"></td>
+			</tr>
+			<tr>
+				<th>입찰기간 설정</th>
+				<td>회원등급별 차등시간 
+				<input type="text" id="auctionStartTime" value=""> 
+				<input type="text" id="auctionEndTime" value="">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<table>
+						<tr>
+							<th>물건관리 번호</th>
+							<td id="voAuctionYN">경매번호나와라</td>
+							<th>입찰 횟수</th>
+							<td id="voCarFailSell"></td>
+							<th>물건상태</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th>입찰시작</th>
+							<td>경매 등록 시간</td>
+							<th>입찰마감</th>
+							<td id="voMemberGrade"></td>
+							<th>개찰일자</th>
+							<td>입찰 시간으로부터 15시간 이후</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<th>최저입찰가</th>
+							<td id="voCarPrice">vo.carPrice</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table>
+						<tr>
+							<th>이전책임</th>
+							<td>매수자</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div>
+		<table width="960" border="1px solid silver;" cellspacing="0"
+			cellpadding="0" align="center">
+			<thead>물건 기본 정보
+			</thead>
+			<tbody>
+				<tr>
+					<th>차량명</th>
+					<td id="VoMemberId"></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<table>
+							<tr>
+								<th>차량번호</th>
+								<td id="carVoCarNum"></td>
+								<th>연식</th>
+								<td id="carVoCarBirth"></td>
+								<th>연료</th>
+								<td id="carVoCarGas"></td>
+							</tr>
+							<tr>
+								<th>기어</th>
+								<td id="carVoCarAm"></td>
+								<th>주행거리</th>
+								<td id="carVoCarDist"></td>
+								<th>배기량</th>
+								<td id="carVoCarCc"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>세부내역</th>
+					<td>시청 상징물 등 도색된 상태로 매수자가 제거 필요 사진은 해당 차량이 아닐 수 있으므로 실물 확인 바람
+					</td>
+				</tr>
+		</table>
+	</div>
+	<div>
+		<table width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
+			<thead>입찰진행내용</thead>
+			<tbody>
+				<tr>
+					<th>입찰번호</th>
+					<th>처분방식</th>
+					<th>개찰일시</th>
+					<th>최저입찰가</th>
+					<th>낙찰가</th>
+					<th>낙찰율</th>
+					<th>입찰결과</th>
+				</tr>
+				<tr id="selectAuctionHis">
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<table width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
+			<thead>입찰정보</thead>
+			<tbody>
+				<tr>
+					<th>입찰번호</th>
+					<th>회차/차수</th>
+					<th>대금납부</th>
+					<th>납부기한</th>
+					<th>입찰기간</th>
+					<th>개찰일시</th>
+					<th>최저입찰가</th>
+				</tr>
+				<tr id="HisAucInfo">
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div  width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
+	<pre>- 제공된 정보가 실제 매각물건의 정보와 일치하지 않거나 정보의 제공 이후 중요한 변동사항이 생길 수 있습니다.
+	- 물건의 내용은 온비드, 입찰 집행기관 등에서 반드시 재확인 하시기 바랍니다.
+	* 본 정보와 관련하여 발생하는 모든 문제에 대해 어떠한 책임도 지지 않습니다.</pre>
+	</div>
 </body>
 </html>
