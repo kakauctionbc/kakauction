@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.kaka.car.model.CarService;
 import com.app.kaka.car.model.CarVO;
@@ -50,7 +51,7 @@ public class CarController {
 			@ModelAttribute OpVO opVo, Model model){
 		
 		logger.info("차량 등록 처리, 파라미터 carVO = {}, opVo = {}", carVo, opVo);
-		
+		logger.info("pictureVo = {}", pictureVo);
 		if(opVo.getOpAa()==null || opVo.getOpAa().isEmpty()){
 			opVo.setOpAa("");
 		}
@@ -75,95 +76,62 @@ public class CarController {
 		logger.info("여기는 꼰트롤러 fileList={}",fileList.size());
 		//[2]db에 insert하기
 		String fileName="";
-		int count = 0;
+		int count = 1;
 		
+		//PictureVO pictureVo = new PictureVO();
+		//pictureVo.setCarNum(carVo.getCarNum());
+		//pictureVo.setMemberId(carVo.getMemberId());
 		for(Map<String, Object> myMap : fileList){
 			fileName = (String)myMap.get("picture");
-			count++;
+			System.out.println("fileName = "+fileName);
 			if(count==1){
 				pictureVo.setPicture1(fileName);
-				count++;
-			}
-			if(count==2){
+				System.out.println("pictureVo = "+pictureVo+", count = "+count);
+			}else if(count==2){
 				pictureVo.setPicture2(fileName);
-				count++;
-			}
-			if(count==3){
+				System.out.println("pictureVo = "+pictureVo+", count = "+count);
+			}else if(count==3){
 				pictureVo.setPicture3(fileName);
-				count++;
-			}
-			if(count==4){
+				System.out.println("pictureVo = "+pictureVo+", count = "+count);
+			}else if(count==4){
 				pictureVo.setPicture4(fileName);
-				count++;
-			}
-			if(count==5){
+				System.out.println("pictureVo = "+pictureVo+", count = "+count);
+			}else if(count==5){
 				pictureVo.setPicture5(fileName);
-				count++;
-			}
-			if(count==6){
+			}else if(count==6){
 				pictureVo.setPicture6(fileName);
-				count++;
-			}
-			if(count==7){
+			}else if(count==7){
 				pictureVo.setPicture7(fileName);
-				count++;
-			}
-			if(count==8){
+			}else if(count==8){
 				pictureVo.setPicture8(fileName);
-				count++;
-			}
-			if(count==9){
+			}else if(count==9){
 				pictureVo.setPicture9(fileName);
-				count++;
-			}
-			if(count==10){
+			}else if(count==10){
 				pictureVo.setPicture10(fileName);
-				count++;
-			}
-			if(count==11){
+			}else if(count==11){
 				pictureVo.setPicture11(fileName);
-				count++;
-			}
-			if(count==12){
+			}else if(count==12){
 				pictureVo.setPicture12(fileName);
-				count++;
-			}
-			if(count==13){
+			}else if(count==13){
 				pictureVo.setPicture13(fileName);
-				count++;
-			}
-			if(count==14){
+			}else if(count==14){
 				pictureVo.setPicture14(fileName);
-				count++;
-			}
-			if(count==15){
+			}else if(count==15){
 				pictureVo.setPicture15(fileName);
-				count++;
-			}
-			if(count==16){
+			}else if(count==16){
 				pictureVo.setPicture16(fileName);
-				count++;
-			}
-			if(count==17){
+			}else if(count==17){
 				pictureVo.setPicture17(fileName);
-				count++;
-			}
-			if(count==18){
+			}else if(count==18){
 				pictureVo.setPicture18(fileName);
-				count++;
-			}
-			if(count==19){
+			}else if(count==19){
 				pictureVo.setPicture19(fileName);
-				count++;
-			}
-			if(count==20){
+			}else if(count==20){
 				pictureVo.setPicture20(fileName);
-				count++;
 			}
-			
+			count++;
 		}//for
-		
-
+		logger.info("pictureVo={}",pictureVo);
 		
 		int cCnt = carService.insertCar(carVo);
 		int oCnt = opService.insertOp(opVo);
@@ -182,5 +150,30 @@ public class CarController {
 		model.addAttribute("url", url);
 		
 		return "common/message";
+	}
+	
+	@RequestMapping("/detail.do")
+	public String carDetail(@RequestParam(defaultValue="")String carNum,
+			HttpServletRequest request, Model model){
+		if (carNum.equals("") || carNum.isEmpty() || carNum==null) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/car/list.do");
+			
+			return "common/message";
+		}
+		logger.info("차량 세부사항 보여주기, 파라미터 carNum={}", carNum);
+		
+		CarVO carVo = carService.carDetail(carNum);
+		OpVO opVo = opService.opDetail(carNum);
+		PictureVO pictureVo = pictureService.pictureDetail(carNum);
+		System.out.println("carVo = "+ carVo+"\n");
+		System.out.println("opVo = "+ opVo+"\n");
+		System.out.println("pictureVo = "+ pictureVo+"\n");
+		
+		model.addAttribute("carVo", carVo);
+		model.addAttribute("opVo", opVo);
+		model.addAttribute("pictureVo", pictureVo);
+		
+		return "car/detail";
 	}
 }

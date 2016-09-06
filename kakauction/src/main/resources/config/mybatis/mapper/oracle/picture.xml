@@ -11,4 +11,9 @@
 		#{picture8}, #{picture9}, #{picture10}, #{picture11}, #{picture12}, #{picture13}, #{picture14}, #{picture15}, #{picture16},
 		#{picture17}, #{picture18}, #{picture19}, #{picture20})
 	</insert>
+	
+	<select id="selectByCarNum" parameterType="string" resultType="pictureVo">
+		select * from picture
+		where car_Num=#{carNum}
+	</select>
 </mapper>

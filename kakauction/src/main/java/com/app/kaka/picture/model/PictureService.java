@@ -9,5 +9,6 @@ public interface PictureService {
 
 	public int insertPicture(PictureVO pictureVo);
 	public List<Map<String, Object>> fileupload(HttpServletRequest request);
+	public PictureVO pictureDetail(String carNum);
 
 }

@@ -9,4 +9,9 @@
 		values(#{carNum}, #{memberId}, #{carCompany}, #{carPrice}, #{carLoc}, #{carBirth}, #{carModel}, #{carSize}, #{carDist},
 		#{carGas}, #{carCc}, #{carAm}, #{carColor}, #{carAcci}, sysdate, 'N', 0)
 	</insert>
+	
+	<select id="selectByCarNum" parameterType="string" resultType="carVo">
+		select * from car
+		where car_num=#{carNum}
+	</select>
 </mapper>

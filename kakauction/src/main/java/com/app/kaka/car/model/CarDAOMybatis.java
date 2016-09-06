@@ -13,4 +13,9 @@ public class CarDAOMybatis extends SqlSessionDaoSupport implements CarDAO{
 		return getSqlSession().insert(namespace+".insertCar", carVo);
 	}
 
+	@Override
+	public CarVO carDetail(String carNum) {
+		return getSqlSession().selectOne(namespace+".selectByCarNum", carNum);
+	}
+
 }

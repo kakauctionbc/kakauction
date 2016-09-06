@@ -11,6 +11,11 @@ public class OpDAOMybatis extends SqlSessionDaoSupport implements OpDAO {
 	public int insertOp(OpVO opVo) {
 		return getSqlSession().insert(namespace+".insertOp", opVo);
 	}
+
+	@Override
+	public OpVO opDetail(String carNum) {
+		return getSqlSession().selectOne(namespace+".selectByCarNum", carNum);
+	}
 	
 	
 }

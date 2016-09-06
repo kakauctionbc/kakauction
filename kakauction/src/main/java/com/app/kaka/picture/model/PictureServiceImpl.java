@@ -44,26 +44,24 @@ public class PictureServiceImpl implements PictureService{
 		
 		//파라미터 이름을 Key로하고, 파라미터에 해당하는 파일정보를 값으로 하는 Map을 구한다
 		Map<String , MultipartFile> filemap=multipartRequest.getFileMap();
-		System.out.println("여기는 지나냐?! filemap.size()!!"+filemap.size());
+		System.out.println("filemap.size()구해보자 이거좀"+filemap.size());
+
 		//Map에서 iterator를 이용하여 각 key에 해당하는 파일정보를 구해온다
 		Iterator<String> iter = filemap.keySet().iterator();
-		System.out.println("여기는 지나냐?! iter!!"+iter);
-		System.out.println("여기는 지나냐?! iter.hasNext()!!"+iter.hasNext());
-		
+		int numbering = 0;
 		while (iter.hasNext()) {
 			
 			String key = iter.next();
-			System.out.println("여기는 지나냐?! key!!"+key);
 			//임시파일 형태로 제공해줌
 			MultipartFile tempFile=filemap.get(key);
-			System.out.println("여기는 지나냐?! tempFile!!"+tempFile);
 			
 			//파일이 첨부된 경우 파일명과 파일크기를 구해온다
 			if(!tempFile.isEmpty()){
 				String originFileName = tempFile.getOriginalFilename();
+				System.out.println("originalFileName = "+originFileName);
 				
 				//파일명이 중복될 수 있으므로 파일명 변경하기
-				String fileName = getUniqueFileName(originFileName);
+				String fileName = getUniqueFileName(originFileName, numbering++);
 				//파일 업로드 처리 - 서버의 업로드 폴더에 저장하기
 				String upPath = getUploadPath(request);
 				File upFile = new File(upPath, fileName);
@@ -78,11 +76,9 @@ public class PictureServiceImpl implements PictureService{
 				//파일명, 원본파일명, 파일크기를 Map에 저장한 후 List에 추가한다
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("picture", fileName);
-				System.out.println("파일이름이얌!!!"+fileName);
 				fileList.add(map);
 			}//if
 		}//while
-		System.out.println("지났나?!");
 		return fileList;
 	}
 
@@ -105,7 +101,7 @@ public class PictureServiceImpl implements PictureService{
 		return realPath;
 	}
 
-	private String getUniqueFileName(String ofileName) {
+	private String getUniqueFileName(String ofileName, int numbering) {
 		//파일명에 현재시간을 추가해서 변경된 파일명 만들기
 		//abc.txt -> abc + 현재시간 + .txt
 		//=>abc20160818111540123.txt
@@ -116,7 +112,7 @@ public class PictureServiceImpl implements PictureService{
 		String ext = ofileName.substring(idx);
 		
 		//순수 파일명에 현재시간을 연결한 후 .확장자를 연결한다
-		String fileName = fName+getCurrentTime()+ext;
+		String fileName = fName+getCurrentTime()+numbering+ext;
 		return fileName;
 	}
 
@@ -126,5 +122,10 @@ public class PictureServiceImpl implements PictureService{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		String str = sdf.format(today);
 		return str;
+	}
+
+	@Override
+	public PictureVO pictureDetail(String carNum) {
+		return pictureDao.pictureDetail(carNum);
 	}
 }

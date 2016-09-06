@@ -14,4 +14,9 @@ public class CarServiceImpl implements CarService{
 		return carDao.insertCar(carVo);
 	}
 
+	@Override
+	public CarVO carDetail(String carNum) {
+		return carDao.carDetail(carNum);
+	}
+
 }

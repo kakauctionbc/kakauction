@@ -7,4 +7,9 @@
 		insert into op(car_num, member_id, op_in, op_out, op_con, op_safe, op_aa, op_tune)
 		values(#{carNum}, #{memberId}, #{opIn}, #{opOut}, #{opCon}, #{opSafe}, #{opAa}, #{opTune})
 	</insert>
+	
+	<select id="selectByCarNum" parameterType="string" resultType="opVo">
+		select * from op
+		where car_num=#{carNum}
+	</select>
 </mapper>

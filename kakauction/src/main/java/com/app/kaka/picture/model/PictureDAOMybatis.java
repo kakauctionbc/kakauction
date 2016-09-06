@@ -12,7 +12,11 @@ public class PictureDAOMybatis extends SqlSessionDaoSupport implements PictureDA
 
 	@Override
 	public int insertPicture(PictureVO pictureVo) {
-		logger.info("요기는 마이바티스 !!!!!!!pictureVo={}",pictureVo);
 		return getSqlSession().insert(namespace+".insertPicture", pictureVo);
+	}
+
+	@Override
+	public PictureVO pictureDetail(String carNum) {
+		return getSqlSession().selectOne(namespace+".selectByCarNum", carNum);
 	}
 }
