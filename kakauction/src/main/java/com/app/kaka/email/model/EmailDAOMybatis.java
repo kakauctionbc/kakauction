@@ -13,6 +13,11 @@ public class EmailDAOMybatis extends SqlSessionDaoSupport implements EmailDAO {
 	public String getPwd(MemberVO memberVo) {
 		return getSqlSession().selectOne(namespace+".getPwd", memberVo);
 	}
+
+	@Override
+	public int updatePwd(MemberVO memberVo) {
+		return getSqlSession().update(namespace+".updatePwd", memberVo);	
+	}
 	
 	/*@Override
 	public String getPwd(Map<String, Object> paramMap) {

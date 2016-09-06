@@ -26,7 +26,7 @@
 	}
 
 	function validate_userid(memberId){
-		var pattern = new RegExp(/^[a-z][a-zA-Z0-9_-]$/g);
+		var pattern = new RegExp(/^[a-zA-Z0-9_]+$/g);
 		
 		return pattern.test(memberId);
 		

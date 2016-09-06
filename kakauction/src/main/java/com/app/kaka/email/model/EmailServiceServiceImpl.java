@@ -16,6 +16,11 @@ public class EmailServiceServiceImpl implements EmailService {
 		return emailDao.getPwd(memberVo);
 	}
 
+	@Override
+	public int updatePwd(MemberVO memberVo) {
+		return emailDao.updatePwd(memberVo);
+	}
+
 	/*@Override
 	public String getPwd(Map<String, Object> paramMap) {
 		return emailDao.getPwd(paramMap);

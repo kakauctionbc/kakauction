@@ -39,4 +39,8 @@
 	<select id="getPwd" parameterType="MemberVO" resultType="string">
 		select member_pwd from member where member_id=#{memberId} and member_email=#{memberEmail}
 	</select>
+	
+	<update id="updatePwd" parameterType="MemberVO">
+		update member set member_pwd =#{memberPwd} where member_id=#{memberId}
+	</update>
 </mapper>
