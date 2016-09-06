@@ -180,8 +180,8 @@
 				<th scope="col"><label>변속기</label></th>
 				<td>
 					<select name="carAm" id="carAm" style="width:89px;" title="변속기선택">
-						<option value="auto" selected="">자동</option>
-						<option value="manual">수동</option>
+						<option value="자동" selected="">자동</option>
+						<option value="수동">수동</option>
 					</select>
 			  </td>
 				<th scope="col"><label>연료</label></th>

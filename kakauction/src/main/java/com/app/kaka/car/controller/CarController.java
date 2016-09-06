@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.kaka.car.model.CarService;
 import com.app.kaka.car.model.CarVO;
+import com.app.kaka.member.model.MemberService;
+import com.app.kaka.member.model.MemberVO;
 import com.app.kaka.op.model.OpService;
 import com.app.kaka.op.model.OpVO;
 import com.app.kaka.picture.model.PictureService;
@@ -37,6 +39,9 @@ public class CarController {
 	
 	@Autowired
 	private PictureService pictureService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	@RequestMapping(value = "/register.do", method = RequestMethod.GET)
 	public String carRegister_get(){
@@ -86,16 +91,12 @@ public class CarController {
 			System.out.println("fileName = "+fileName);
 			if(count==1){
 				pictureVo.setPicture1(fileName);
-				System.out.println("pictureVo = "+pictureVo+", count = "+count);
 			}else if(count==2){
 				pictureVo.setPicture2(fileName);
-				System.out.println("pictureVo = "+pictureVo+", count = "+count);
 			}else if(count==3){
 				pictureVo.setPicture3(fileName);
-				System.out.println("pictureVo = "+pictureVo+", count = "+count);
 			}else if(count==4){
 				pictureVo.setPicture4(fileName);
-				System.out.println("pictureVo = "+pictureVo+", count = "+count);
 			}else if(count==5){
 				pictureVo.setPicture5(fileName);
 			}else if(count==6){
@@ -166,13 +167,30 @@ public class CarController {
 		CarVO carVo = carService.carDetail(carNum);
 		OpVO opVo = opService.opDetail(carNum);
 		PictureVO pictureVo = pictureService.pictureDetail(carNum);
+		MemberVO memberVo = memberService.selectMemberByUserid(carVo.getMemberId());
+		
+		String[] opIn = opVo.getOpIn().split(",");
+		String[] opOut = opVo.getOpOut().split(",");
+		String[] opCon = opVo.getOpCon().split(",");
+		String[] opSafe = opVo.getOpSafe().split(",");
+		String[] opAa = opVo.getOpAa().split(",");
+		String[] opTune = opVo.getOpTune().split(",");
+		
 		System.out.println("carVo = "+ carVo+"\n");
 		System.out.println("opVo = "+ opVo+"\n");
 		System.out.println("pictureVo = "+ pictureVo+"\n");
+		System.out.println("memberVo = "+memberVo);
 		
 		model.addAttribute("carVo", carVo);
 		model.addAttribute("opVo", opVo);
 		model.addAttribute("pictureVo", pictureVo);
+		model.addAttribute("memberVo", memberVo);
+		model.addAttribute("opIn", opIn);
+		model.addAttribute("opOut", opOut);
+		model.addAttribute("opCon", opCon);
+		model.addAttribute("opSafe", opSafe);
+		model.addAttribute("opAa", opAa);
+		model.addAttribute("opTune", opTune);
 		
 		return "car/detail";
 	}

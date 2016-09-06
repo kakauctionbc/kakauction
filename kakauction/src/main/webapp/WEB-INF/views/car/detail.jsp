@@ -1,782 +1,934 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>차량 상세보기</title>
+<script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js' />"></script>
+<script type="text/javascript">
+	function Div_carphto_onoff(){
+		var n = document.getElementById("carphto_onoff").value;
+		if(n=="on"){
+	
+			$("#Div_carphto_onoff").hide();
+			$("#carphto_onoff").val("off") ;
+			$("#photoOnoffText").html("차량 사진 열기");
+		}else if(n=="off"){
+	
+			$("#Div_carphto_onoff").show();
+			$("#carphto_onoff").val("on") ;
+			$("#photoOnoffText").html("차량 사진 닫기");
+		}
+	}
+</script>
+<style type="text/css">
+	#carImage{
+		height: 80px;
+		width: 80px;
+	}
+</style>
 </head>
 <body>
 	<div class="cont_column03 renew"> 
-	<!--left-->
-	<div class="column_l"> 	
-		<!--타이틀탑-->
-	<div class="title_area" itemscope="" itemtype="http://schema.org/Article">
-		<div class="tit" itemprop="name">현대 제네시스 쿠페 200 터보 P</div>
-		<ul class="list">
-			<li><a href="javascript:void(0);" style="cursor:pointer" id="copy-button" data-clipboard-text="http://bobaedream.co.kr/mycar/mycar_view?no=1602402&amp;gubun=K"><img src="http://image.bobaedream.co.kr/image/detail/btn_adrcopy.gif" alt="주소복사"></a></li>
-			<li><a href="javascript:Open_print('1602402','K');"><img src="http://image.bobaedream.co.kr/image/detail/btn_print.gif" alt="인쇄"></a></li>
-		</ul>
+	<div class="column_l">
+	
+	<div class="title_area">
+		<div>${carVo.carModel }</div>
 	</div>
 	<!--//타이틀탑--> 
 	<!--상세1열(사진,차량정보,판매자정보,확인사항,sns)-->
-	<input type="hidden" name="hiddenNum" id="hiddenNum" value="17">
+	<input type="hidden" name="carNum" id="carNum" value="${carVo.carNum }">
 	<div class="detailA"> 
-		<!--왼쪽-->
-	<div class="leftarea"> 
-		<!---->
-	<div class="photocut" title="메인사진" onmouseover="arr_view('block');" onmouseout="arr_view('none');">							
-	<span class="line"></span>
-	<div id="photo_mvdiv" style="position: absolute; width: 640px; display: none;"> </div>							
-	<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_17.jpg" width="640" id="BigImg" style="cursor: pointer; margin-top: 3.5px;">							<div class="btn_area" style="display: none;" id="btn_area" onmouseover="arr_view('block');" onmouseout="arr_view('none');">
-		<button type="button" title="이전 사진보기" onclick="javascript:viewBigImg_pre();img_resize();">이전</button>
-		<button type="button" title="다음 사진보기" onclick="javascript:viewBigImg_nxt();img_resize();">다음</button>
-							</div>							
-						</div>					
-						<ul class="list" title="썸네일사진">
-	<li class="first">
-								<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_1_s1.jpg" alt="차량 썸네일 사진">
-								<span class="txt">전면</span>
-								<a href="javascript:viewPop('1');" onmouseover="viewBigImg('1');img_resize();" id="tn0" style=""></a>   
-	</li> <li>
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_2_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">측면</span>
-		<a href="javascript:viewPop('2');" onmouseover="viewBigImg('2');img_resize();" id="tn1" style=""></a>   
-	</li> <li>
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_3_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">후면</span>
-		<a href="javascript:viewPop('3');" onmouseover="viewBigImg('3');img_resize();" id="tn2" style=""></a>   
-	</li> <li>
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_4_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">실내</span>
-		<a href="javascript:viewPop('4');" onmouseover="viewBigImg('4');img_resize();" id="tn3" style=""></a>   
-	</li> <li class="last">
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_5_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">엔진</span>
-		<a href="javascript:viewPop('5');" onmouseover="viewBigImg('5');img_resize();" id="tn4" style=""></a>   
-	</li> <li class="first">
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_6_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">계기판</span>
-		<a href="javascript:viewPop('6');" onmouseover="viewBigImg('6');img_resize();" id="tn5" style=""></a>   
-	</li> <li>
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_7_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">변속기</span>
-		<a href="javascript:viewPop('7');" onmouseover="viewBigImg('7');img_resize();" id="tn6" style=""></a>   
-	</li> <li>
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_8_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">차량시트</span>
-		<a href="javascript:viewPop('8');" onmouseover="viewBigImg('8');img_resize();" id="tn7" style=""></a>   
-	</li> <li>
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_9_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">휠타이어</span>
-		<a href="javascript:viewPop('9');" onmouseover="viewBigImg('9');img_resize();" id="tn8" style=""></a>   
-	</li> <li class="last">
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_10_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">트렁크</span>
-		<a href="javascript:viewPop('10');" onmouseover="viewBigImg('10');img_resize();" id="tn9" style=""></a>   
-	</li> <li class="first">
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_11_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">옵션1</span>
-		<a href="javascript:viewPop('11');" onmouseover="viewBigImg('11');img_resize();" id="tn10" style=""></a>   
-	</li> <li>
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_12_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">옵션2</span>
-		<a href="javascript:viewPop('12');" onmouseover="viewBigImg('12');img_resize();" id="tn11" style=""></a>   
-	</li> <li>
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_13_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">옵션3</span>
-		<a href="javascript:viewPop('13');" onmouseover="viewBigImg('13');img_resize();" id="tn12" style=""></a>   
-	</li> <li>
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_14_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">옵션4</span>
-		<a href="javascript:viewPop('14');" onmouseover="viewBigImg('14');img_resize();" id="tn13" style=""></a>   
-	</li> <li class="last">
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_15_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">옵션5</span>
-		<a href="javascript:viewPop('15');" onmouseover="viewBigImg('15');img_resize();" id="tn14" style=""></a>   
-	</li> <li class="first">
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_16_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">옵션6</span>
-		<a href="javascript:viewPop('16');" onmouseover="viewBigImg('16');img_resize();" id="tn15" style=""></a>   
-	</li> <li>
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_17_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">옵션7</span>
-		<a href="javascript:viewPop('17');" onmouseover="viewBigImg('17');img_resize();" id="tn16" style="width:118px;height:87px; border:3px solid #ff6633;"></a>   
-	</li> <li>
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_18_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">옵션8</span>
-		<a href="javascript:viewPop('18');" onmouseover="viewBigImg('18');img_resize();" id="tn17" style=""></a>   
-	</li> <li>
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_19_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">옵션9</span>
-		<a href="javascript:viewPop('19');" onmouseover="viewBigImg('19');img_resize();" id="tn18" style=""></a>   
-	</li> <li class="last">
-		<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_20_s1.jpg" alt="차량 썸네일 사진">
-		<span class="txt">옵션10</span>
-		<a href="javascript:viewPop('20');" onmouseover="viewBigImg('20');img_resize();" id="tn19" style=""></a>   
-			</li>						</ul>					
-	</div>
+		<div>
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture1}'/>">
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture2}'/>">
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture3}'/>">
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture4}'/>">
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture5}'/>">
+		</div>
+		<div>
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture6}'/>">
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture7}'/>">
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture8}'/>">
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture9}'/>">
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture10}'/>">
+		</div>
+		<div>
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture11}'/>">
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture12}'/>">
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture13}'/>">
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture14}'/>">
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture15}'/>">
+		</div>
+		<div>
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture16}'/>">
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture17}'/>">
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture18}'/>">
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture19}'/>">
+			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture20}'/>">
+		</div>
+		
 	<!--//왼쪽--> 
 	<!--오른쪽-->
 	<div class="rightarea">
-		<div class="information">
-			<dl>
-				
-				<dt>
-					<span><em>1,105</em>만원</span>								<span class="Lookup">
-					<div id="div-gpt-ad-1397711494009-0" class="frimg1">
-						<a href="http://direct.samsungfire.com/CR_MyAnycarWeb/overture_index.jsp?OTK=A0910OB0064" target="_blink" onmouseover="$(this).find('>.insu').show();" onmouseout="$(this).find('>.insu').hide();"><img src="http://image.bobaedream.co.kr/image/detail/icon_s13.gif" alt="보험료조회"><!-- div class="insu"><p>가입권유 전화없음</p></div--></a>
-			</div>
-			<div id="div-gpt-ad-1397711578713-0" class="frimg2">
-				<a href="http://ad56.feeldmc.com/adv.dmc?m=bobaedream&amp;c=3007&amp;s=12053&amp;a=87064&amp;ac=1" class="last" target="_blink"><img src="http://image.bobaedream.co.kr/image/detail/icon_s15.gif" alt="저금리할부조회"></a>
-			</div>
-			<div id="" class="frimg3">
-				<a href="http://ad56.feeldmc.com/adv.dmc?m=bobaedream&amp;c=3007&amp;s=12053&amp;a=88037&amp;ac=1" class="last" target="_blank" title="새 창"><img src="http://image.bobaedream.co.kr/image/detail/icon_s16.gif" alt="리스상품 조회"></a>
-			</div>									
-		</span>
-		</dt>
+		<dt> <strong>차량 정보</strong> </dt>
+		<dd class="first">
+			<span class="t">초기 구입가</span>
+			<span>${carVo.carPrice }만원</span>
+		</dd>
 		
 		<dd class="first">
 			<span class="t">차량번호</span>
-			<span class="s">13거6416</span>
+			<span class="s">${carVo.carNum }</span>
 		</dd>
 		<dd>
 			<span class="t">연식</span> 
-			<span class="s"><em class="red">09년&nbsp;04월</em></span>
+			<span class="s">${carVo.carBirth }</span>
 		</dd>
 		<dd>
 			<span class="t">주행거리</span>
-			<span class="s"><em class="red">83,321 km</em></span>
+			<span class="s">${carVo.carDist } km</span>
 		</dd>
 		<dd>
 			<span class="t">연료</span>
-			<span class="s">가솔린</span>
+			<span class="s">${carVo.carGas }</span>
 		</dd>
 		<dd>
 			<span class="t">배기량</span>
-			<span class="s">1,998cc (210마력)</span>
+			<span class="s">${carVo.carCc }cc</span>
 		</dd>
 		<dd>
 			<span class="t">변속기</span>
-			<span class="s">자동5단</span>
+			<span class="s">${carVo.carAm }</span>
 		</dd>
 		<dd>
 			<span class="t">색상</span>
-			<span class="s">흰색</span>
+			<span class="s">${carVo.carColor }</span>
 		</dd>
 										<dd>
 			<span class="t">사고유무</span>
-			<span class="s">무사고												<a href="javascript:void(0);" onclick="pop_accident_renew('13%EA%B1%B06416','mycar','1602402')" class="red">(사고이력조회)</a>
-														</span>
+			<span class="s">${carVo.carAcci }</span>
 			</dd>
 		</dl>
 	</div>
+	
+	<div class="rightarea">
+		<dt> <strong>차량 옵션 정보</strong> </dt>
+		<div class="option">
+			<table id="carOptionTable" summary="차량옵션선택" style="font-size: 0.7em">
+			<%-- <colgroup>
+				<col width="20%">
+				<col width="20%">
+				<col width="23%">
+				<col width="20%">
+				<col width="*">
+			</colgroup> --%>
+			<tbody>
+			<tr>
+				<th class="h2" scope="row">내/외장옵션</th>
+				<th class="h2" scope="row">편의장치1</th>
+				<th class="h2" scope="row">편의장치2</th>
+				<th class="h2" scope="row">안전장치</th>
+				<th class="h2" scope="row">AV/오디오/항법</th>
+				<th class="h2" scope="row">튜닝사항</th>
+			</tr>
+			<tr>
+				<td class="opInout">
+					<ul>
+						<li><input type="checkbox" id="options_95" name="opIn" value="95" disabled
+							<c:forEach var="opInNum" items="${opIn }">
+								<c:if test="${opInNum=='95' }">
+									checked
+								</c:if>
+							</c:forEach>
+						> <label for="options_95">파워윈도우</label></li>
+						<li><input type="checkbox" id="options_96" name="opIn" value="96" disabled
+							<c:forEach var="opInNum" items="${opIn }">
+								<c:if test="${opInNum=='96' }">
+									checked
+								</c:if>
+							</c:forEach>
+						> <label for="options_96">에어컨</label></li>
+						<li><input type="checkbox" id="options_97" name="opIn" value="97" disabled
+							<c:forEach var="opInNum" items="${opIn }">
+								<c:if test="${opInNum=='97' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_97">풀오토에어컨</label></li>
+						<li><input type="checkbox" id="options_98" name="opIn" value="98" disabled
+							<c:forEach var="opInNum" items="${opIn }">
+								<c:if test="${opInNum=='98' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_98">좌/우독립에어컨</label></li>
+						<li><input type="checkbox" id="options_99" name="opIn" value="99" disabled
+							<c:forEach var="opInNum" items="${opIn }">
+								<c:if test="${opInNum=='99' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_99">가죽시트</label></li>
+						<li><input type="checkbox" id="options_100" name="opIn" value="100" disabled
+							<c:forEach var="opInNum" items="${opIn }">
+								<c:if test="${opInNum=='100' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_100">열선시트</label></li>
+						<li><input type="checkbox" id="options_101" name="opIn" value="101" disabled
+							<c:forEach var="opInNum" items="${opIn }">
+								<c:if test="${opInNum=='101' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_101">통풍시트</label></li>
+						<li><input type="checkbox" id="options_102" name="opIn" value="102" disabled
+							<c:forEach var="opInNum" items="${opIn }">
+								<c:if test="${opInNum=='102' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_102">마사지시트</label></li>
+						<li><input type="checkbox" id="options_103" name="opIn" value="103" disabled
+							<c:forEach var="opInNum" items="${opIn }">
+								<c:if test="${opInNum=='103' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_103">버켓시트</label></li>
+						<li><input type="checkbox" id="options_104" name="opIn" value="104" disabled
+							<c:forEach var="opInNum" items="${opIn }">
+								<c:if test="${opInNum=='104' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_104">메모리시트</label></li>
+						<li><input type="checkbox" id="options_105" name="opIn" value="105" disabled
+							<c:forEach var="opInNum" items="${opIn }">
+								<c:if test="${opInNum=='105' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_105">분할폴딩시트</label></li>
+						<li><input type="checkbox" id="options_106" name="opIn" value="106" disabled
+							<c:forEach var="opInNum" items="${opIn }">
+								<c:if test="${opInNum=='106' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_106">운전석전동시트</label></li>
+						<li><input type="checkbox" id="options_107" name="opIn" value="107" disabled
+							<c:forEach var="opInNum" items="${opIn }">
+								<c:if test="${opInNum=='107' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_107">동승석전동시트</label></li>
+						<li><input type="checkbox" id="options_108" name="opIn" value="108" disabled
+							<c:forEach var="opInNum" items="${opIn }">
+								<c:if test="${opInNum=='108' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_108">뒷좌석전동시트</label></li>
+					</ul>
+					<ul>
+						<li><input type="checkbox" id="options_109" name="opOut" value="109" disabled
+							<c:forEach var="opOutNum" items="${opOut }">
+								<c:if test="${opOutNum=='109' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_109">알루미늄휠</label></li>
+						<li><input type="checkbox" id="options_110" name="opOut" value="110" disabled
+							<c:forEach var="opOutNum" items="${opOut }">
+								<c:if test="${opOutNum=='110' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_110">크롬휠</label></li>
+						<li><input type="checkbox" id="options_111" name="opOut" value="111" disabled
+							<c:forEach var="opOutNum" items="${opOut }">
+								<c:if test="${opOutNum=='111' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_111">광폭타이어</label></li>
+						<li><input type="checkbox" id="options_112" name="opOut" value="112" disabled
+							<c:forEach var="opOutNum" items="${opOut }">
+								<c:if test="${opOutNum=='112' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_112">샤크안테나</label></li>
+						<li><input type="checkbox" id="options_113" name="opOut" value="113" disabled
+							<c:forEach var="opOutNum" items="${opOut }">
+								<c:if test="${opOutNum=='113' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_113">데이라이트</label></li>
+					</ul>
+				</td>
+				<td class="opCon">
+					<ul>
+						<li><input type="checkbox" id="options_38" name="opCon" value="38" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='38' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_38">썬루프</label></li>
+						<li><input type="checkbox" id="options_39" name="opCon" value="39" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='39' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_39">파노라마썬루프</label></li>
+						<li><input type="checkbox" id="options_40" name="opCon" value="40" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='40' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_40">HID/제논램프</label></li>
+						<li><input type="checkbox" id="options_41" name="opCon" value="41" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='41' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_41">오토라이트</label></li>
+						<li><input type="checkbox" id="options_42" name="opCon" value="42" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='42' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_42">스마트키</label></li>
+						<li><input type="checkbox" id="options_43" name="opCon" value="43" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='43' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_43">엔진스타트버튼</label></li>
+						<li><input type="checkbox" id="options_44" name="opCon" value="44" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='44' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_44">라이트세척장치</label></li>
+						<li><input type="checkbox" id="options_45" name="opCon" value="45" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='45' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_45">주차조향보조시스템</label></li>
+						<li><input type="checkbox" id="options_46" name="opCon" value="46" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='46' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_46">전자주차브레이크</label></li>
+						<li><input type="checkbox" id="options_47" name="opCon" value="47" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='47' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_47">이모빌라이져</label></li>
+						<li><input type="checkbox" id="options_48" name="opCon" value="48" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='48' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_48">트립컴퓨터</label></li>
+						<li><input type="checkbox" id="options_49" name="opCon" value="49" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='49' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_49">슈퍼비전계기판</label></li>
+						<li><input type="checkbox" id="options_50" name="opCon" value="50" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='50' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_50">HUD</label></li>
+						<li><input type="checkbox" id="options_51" name="opCon" value="51" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='51' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_51">나이트비전</label></li>
+						<li><input type="checkbox" id="options_52" name="opCon" value="52" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='52' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_52">ECM룸미러</label></li>
+						<li><input type="checkbox" id="options_53" name="opCon" value="53" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='53' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_53">크루즈컨트롤</label></li>
+						<li><input type="checkbox" id="options_54" name="opCon" value="54" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='54' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_54">에어서스펜션</label></li>
+						<li><input type="checkbox" id="options_55" name="opCon" value="55" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='55' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_55">전동트렁크</label></li>
+						<li><input type="checkbox" id="options_56" name="opCon" value="56" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='56' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_56">타이어공기압경보</label></li> 
+					</ul>
+				</td>
+				<td class="opCon">
+					<ul> 
+						<li><input type="checkbox" id="options_57" name="opCon" value="57" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='57' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_57">파워핸들</label></li>
+						<li><input type="checkbox" id="options_58" name="opCon" value="58" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='58' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_58">히팅핸들</label></li>
+						<li><input type="checkbox" id="options_59" name="opCon" value="59" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='59' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_59">리모컨핸들</label></li>
+						<li><input type="checkbox" id="options_60" name="opCon" value="60" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='60' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_60">가죽/우드핸들</label></li>
+						<li><input type="checkbox" id="options_61" name="opCon" value="61" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='61' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_61">속도감응식핸들</label></li>
+						<li><input type="checkbox" id="options_62" name="opCon" value="62" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='62' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_62">원격시동장치</label></li>
+						<li><input type="checkbox" id="options_63" name="opCon" value="63" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='63' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_63">무선도어리모컨</label></li>
+						<li><input type="checkbox" id="options_64" name="opCon" value="64" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='64' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_64">유아시트고정장치</label></li>
+						<li><input type="checkbox" id="options_65" name="opCon" value="65" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='65' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_65">패들쉬프트</label></li>
+						<li><input type="checkbox" id="options_66" name="opCon" value="66" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='66' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_66">압축도어</label></li>
+						<li><input type="checkbox" id="options_67" name="opCon" value="67" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='67' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_67">자동도어잠금</label></li>
+						<li><input type="checkbox" id="options_68" name="opCon" value="68" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='68' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_68">자동슬라이딩도어</label></li>
+						<li><input type="checkbox" id="options_69" name="opCon" value="69" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='69' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_69">전동접이식미러</label></li>
+						<li><input type="checkbox" id="options_70" name="opCon" value="70" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='70' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_70">냉장고</label></li>
+						<li><input type="checkbox" id="options_71" name="opCon" value="71" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='71' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_71">루프캐리어</label></li>
+						<li><input type="checkbox" id="options_72" name="opCon" value="72" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='72' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_72">에어스카프</label></li>
+						<li><input type="checkbox" id="options_73" name="opCon" value="73" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='73' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_73">공기청정기</label></li>
+						<li><input type="checkbox" id="options_74" name="opCon" value="74" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='74' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_74">전동햇빛가리개</label></li>
+						<li><input type="checkbox" id="options_75" name="opCon" value="75" disabled
+							<c:forEach var="opConNum" items="${opCon }">
+								<c:if test="${opConNum=='75' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_75">레인센서와이퍼</label></li> 
+					</ul>
+				</td>
+				<td class="opSafe">
+					<ul>
+						<li><input type="checkbox" id="options_76" name="opSafe" value="76" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='70' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_76">운전석에어백</label></li>
+						<li><input type="checkbox" id="options_77" name="opSafe" value="77" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='77' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_77">동승석에어백</label></li>
+						<li><input type="checkbox" id="options_78" name="opSafe" value="78" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='78' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_78">측면에어백</label></li>
+						<li><input type="checkbox" id="options_79" name="opSafe" value="79" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='79' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_79">커튼에어백</label></li>
+						<li><input type="checkbox" id="options_80" name="opSafe" value="80" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='80' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_80">승객감지에어백</label></li>
+						<li><input type="checkbox" id="options_81" name="opSafe" value="81" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='81' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_81">무릎보호에어백</label></li>
+						<li><input type="checkbox" id="options_82" name="opSafe" value="82" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='82' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_82">액티브헤드레스트</label></li>
+						<li><input type="checkbox" id="options_83" name="opSafe" value="83" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='83' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_83">ABS</label></li>
+						<li><input type="checkbox" id="options_84" name="opSafe" value="84" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='84' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_84">BAS</label></li>
+						<li><input type="checkbox" id="options_85" name="opSafe" value="85" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='85' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_85">EBD</label></li>
+						<li><input type="checkbox" id="options_86" name="opSafe" value="86" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='86' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_86">ECS</label></li>
+						<li><input type="checkbox" id="options_87" name="opSafe" value="87" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='87' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_87">LSD</label></li>
+						<li><input type="checkbox" id="options_88" name="opSafe" value="88" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='88' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_88">TCS</label></li>
+						<li><input type="checkbox" id="options_89" name="opSafe" value="89" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='89' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_89">VDC/ESP</label></li>
+						<li><input type="checkbox" id="options_90" name="opSafe" value="90" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='90' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_90">전,측면감지센서</label></li>
+						<li><input type="checkbox" id="options_91" name="opSafe" value="91" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='91' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_91">후방감지센서</label></li>
+						<li><input type="checkbox" id="options_92" name="opSafe" value="92" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='92' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_92">전방카메라</label></li>
+						<li><input type="checkbox" id="options_93" name="opSafe" value="93" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='93' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_93">후방카메라</label></li>
+						<li><input type="checkbox" id="options_94" name="opSafe" value="94" disabled
+							<c:forEach var="opSafeNum" items="${opSafe }">
+								<c:if test="${opSafeNum=='94' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_94">차선이탈경보장치</label></li>
+					</ul>
+				</td>
+				<td class="opAa">
+					<ul>
+						<li><input type="checkbox" id="options_114" name="opAa" value="114" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='114' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_114">내비게이션</label></li>
+						<li><input type="checkbox" id="options_115" name="opAa" value="115" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='115' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_115">하이패스</label></li>
+						<li><input type="checkbox" id="options_116" name="opAa" value="116" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='116' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_116">블랙박스</label></li>
+						<li><input type="checkbox" id="options_117" name="opAa" value="117" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='117' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_117">핸즈프리</label></li>
+						<li><input type="checkbox" id="options_118" name="opAa" value="118" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='118' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_118">블루투스</label></li>
+						<li><input type="checkbox" id="options_119" name="opAa" value="119" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='119' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_119">CD플레이어</label></li>
+						<li><input type="checkbox" id="options_120" name="opAa" value="120" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='120' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_120">CD체인저</label></li>
+						<li><input type="checkbox" id="options_121" name="opAa" value="121" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='121' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_121">DVD플레이어</label></li>
+						<li><input type="checkbox" id="options_122" name="opAa" value="122" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='122' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_122">DMB</label></li>
+						<li><input type="checkbox" id="options_123" name="opAa" value="123" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='123' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_123">DivX</label></li>
+						<li><input type="checkbox" id="options_124" name="opAa" value="124" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='124' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_124">MP3</label></li>
+						<li><input type="checkbox" id="options_125" name="opAa" value="125" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='125' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_125">AUX</label></li>
+						<li><input type="checkbox" id="options_126" name="opAa" value="126" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='126' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_126">USB</label></li>
+						<li><input type="checkbox" id="options_127" name="opAa" value="127" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='127' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_127">아이팟단자</label></li>
+						<li><input type="checkbox" id="options_128" name="opAa" value="128" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='128' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_128">앞좌석TV</label></li>
+						<li><input type="checkbox" id="options_129" name="opAa" value="129" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='129' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_129">뒷좌석TV</label></li>  
+						<li><input type="checkbox" id="options_130" name="opAa" value="130" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='130' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_130">엠프</label></li>  
+						<li><input type="checkbox" id="options_131" name="opAa" value="131" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='131' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_131">우퍼</label></li>
+						<li><input type="checkbox" id="options_132" name="opAa" value="132" disabled
+							<c:forEach var="opAaNum" items="${opAa }">
+								<c:if test="${opAaNum=='132' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_132">모젠시스템</label></li>
+					</ul>
+				</td>
+				<td class="opTune">
+					<ul>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_133" value="133" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='133' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_133">흡기</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_134" value="134" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='134' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_134">배기</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_135" value="135" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='135' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_135">미션</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_136" value="136" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='136' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_136">핸들</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_137" value="137" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='137' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_137">계기판</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_138" value="138" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='138' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_138">ECU맵핑</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_139" value="139" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='139' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_139">터보차저</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_140" value="140" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='140' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_140">슈퍼차저</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_141" value="141" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='141' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_141">다운스프링</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_142" value="142" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='142' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_142">일체형쇼바</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_143" value="143" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='143' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_143">NA튜닝</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_144" value="144" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='144' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_144">오디오</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_145" value="145" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='145' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_145">스트럿바</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_146" value="146" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='146' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_146">스테빌라이저</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_147" value="147" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='147' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_147">엔진스왑</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_148" value="148" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='148' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_148">브레이크</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_149" value="149" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='149' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_149">스포일러</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_150" value="150" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='150' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_150">휠/타이어</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_151" value="151" disabled
+							<c:forEach var="opTuneNum" items="${opTune }">
+								<c:if test="${opTuneNum=='151' }">
+									checked
+								</c:if>
+							</c:forEach>> <label for="options_151">에어로파츠</label></li>
+               	</ul>
+				</td>
+			</tr>
+			</tbody>
+			</table> 
+		</div>
+	</div>
+	
 	<div class="information mt">
 		<dl>
 			<dt> <strong>판매자정보</strong> </dt>
-			<dd class="first"> <span class="t">판매자</span> <span class="s"> <strong>김윤철</strong> <span class="dealer">(인증딜러)</span> <a href="javascript:memo_send('b3BocWZvcGhxa29waHFmb3BocW5vcGhza29waHNkb3Boc2hvcGhzZA%3D%3D');">쪽지</a> <a href="javascript:size_maps_myinfo('1602402','mycar','snsk2959','A');">상세정보</a> </span> </dd>
-			<dd> <span class="t">연락처</span> <span class="s"><em class="phone">010-7544-2959 &nbsp; / &nbsp;031-291-1717</em>									</span> </dd>
-									<dd> <span class="t">이메일</span> <span class="s">kimycu1@naver.com</span> </dd>
-								
-											
-		<dd> <span class="t">주소</span> <span class="s"> 경기 수원시 권선구 권선로 341 (.. <a href="javascript:size_maps_myinfo('1602402','mycar','snsk2959','B');">지도</a> </span> </dd>
-			
-		<dd> <span class="t">매매상사</span> <span class="s">이건모터스 (031-291-1717)</span> </dd>
-									<dd> <span class="t">보유매물</span> <span class="s"> 판매중 <em class="item"><a href="./mycar_holding_list.php?sellerID=snsk2959&amp;mtype_gubun=MK" target="_blank">31</a></em> 대 <span class="line">|</span> 판매완료 <em class="item"><a href="./mycar_holding_list.php?sellerID=snsk2959&amp;mtype_gubun=MK&amp;mtype=B" target="_blank">11</a></em> 대 <a href="./mycar_holding_list.php?sellerID=snsk2959&amp;mtype_gubun=MK" target="_blank">매물보기</a> </span> </dd>
+			<dd class="first"> <span class="t">판매자</span>
+				<span class="s"> <strong>${memberVo.memberName }</strong>
+				<a href="#" style="text-decoration: none; color: black;">쪽지</a>
+				<dd> <span class="t">연락처</span> <span class="s">${memberVo.memberHp }</span> </dd>
+				<dd> <span class="t">이메일</span> <span class="s">${memberVo.memberEmail }</span> </dd>
+				<dd> <span class="t">주소</span> <span class="s"> ${memberVo.memberAddr }</span> </dd>
+				<dd> <span class="t">매매상사</span> <span class="s">${carVo.carCompany }</span> </dd>
 			<dd class="pt1">
-				<p>자세한 설명이 필요하시면 연락처를 남겨주세요.<br>
-					판매자가 확인 후 연락드립니다.</p>
-				<div class="srch_area">
-					<form name="form1" method="post" action="/sms/NewSmsWriteCtrl_renew.php" onsubmit="return fSubmit(this);" target="Sms">
-				<input type="hidden" name="mType" value="M">
-				<input type="hidden" name="number" value="1602402">
-				<input type="hidden" name="dealer_phone" value="010-7544-2959">
-				<input type="hidden" name="city" value="경기">
-				<input type="hidden" name="message_type" value="3">
-				<input type="hidden" name="sendName" value="직거래">
-				<input type="text" title="연락받을 핸드폰 번호 입력" id="mobile" name="send_cel1" pattern="[0-9]*" style="IME-MODE:disabled;" onkeydown="Numberic();" maxlength="11"><button type="submit">문의신청</button>
-				</form>
-				<script type="text/javascript">
-				$('.srch_area input').focusin(function(){
-					$(this).css("background-image","none");
-				});
-				$('.srch_area input').focusout(function(){
-					var txt= $(this).val();
-					if(txt == ""){
-						$(this).css("background-image","url('http://image.bobaedream.co.kr/image/detail/bg_input.gif')");
-					}else{										
-						$(this).css("background-image","none");
-					}
-				});
-				</script>
-				</div>
 			</dd>
 		</dl>
 	</div>
-	<ul class="tools">
-									<li>
-			<span class="tit">실매물확인</span>
-																	<a class="item" href="javascript:void(0);" onclick="pop_accident_renew('13%EA%B1%B06416','mycar','1602402')">사고이력</a>
-				    
-	             			<a class="item" href="javascript:image_pop('file4.bobaedream.co.kr/direct/2016/08/29/GA11191472432966_1.jpg|','B','mycar','1602402');">성능점검</a>
-	             <a class="item" href="javascript:image_pop('file4.bobaedream.co.kr/direct/2016/08/29/GA11191472432966_3.jpg','A','mycar','1602402');">차량등록증</a><a class="item" href="javascript:dealer_p_pop('snsk2959');">딜러사원증</a>							</li>
-								<li>
-		<span class="tit">비용계산기</span>
-												<a class="item" href="javascript:fNewWin('/mycar/popup/popCalculation_new_A.php?cc=1998&amp;carseat=4&amp;price=1105&amp;carshape=%EC%8A%A4%ED%8F%AC%EC%B8%A0%EC%B9%B4&amp;y=2009',  '722', '763','yes');">이전등록비</a>
-													<a class="item" href="javascript:fNewWin('/mycar/popup/popCalculation_new_B.php?cc=1998&amp;carseat=4&amp;price=1105&amp;carshape=%EC%8A%A4%ED%8F%AC%EC%B8%A0%EC%B9%B4&amp;y=2009', '722', '573','yes');">자동차세</a>
-				<a class="item" href="javascript:fNewWin('http://www.anycardirect.com/CR_MyAnycarWeb/overture_index.jsp?OTK=A0910OB0064', '1100', '790');">자동차보험료 계산</a>
-				<a class="item" href="javascript:fNewWin('/mycar/popup/popCalculation_new_C.php?cc=1998&amp;carseat=4&amp;price=1105&amp;carshape=%EC%8A%A4%ED%8F%AC%EC%B8%A0%EC%B9%B4&amp;y=2009', '722', '633','yes');">할부/리스료 계산</a>
-	</li>
-	<li>
-		<span class="tit">시세확인</span>
-				<a class="item" href="javascript:void(0);" onclick="fNewWin('/mycar/popup/popMarketPrice.php?maker_no=49&amp;model_no=1012&amp;level_no=623&amp;level2_no=1287&amp;method=%EC%9E%90%EB%8F%99&amp;buy_year=200904', '900', '680');">중고차시세</a>
-					<a class="item" href="javascript:samecar_pop();">동급매물</a>
-					<a class="item" href="javascript:samecar_pop2();">팔린매물</a>
-		</li>
-	</ul>
-	<div class="dealer"> 
-								<a href="javascript:void(0);" onclick="wopen('https://security.bobaedream.co.kr/member/slogin_pop.php?pop=t_open&amp;page=%2Fmycar%2Fmycar_view.php%3Fno%3D1602402%26gubun%3DK','','400','290');"><img src="http://image.bobaedream.co.kr/image/detail/btn_b4.gif" alt="찜하기"></a> 
-	<a href="javascript:void(0);" onclick="wopen('https://security.bobaedream.co.kr/member/slogin_pop.php?pop=t_open&amp;page=%2Fmycar%2Fmycar_view.php%3Fno%3D1602402%26gubun%3DK','','400','290');"><img src="http://image.bobaedream.co.kr/image/detail/btn_b5.gif" alt="허위매물신고"></a> 
-	</div>
-	<ul class="btn_area">
-		<li><a href="javascript:fbs_click('http://www.bobaedream.co.kr/mycar/mycar_view.php?gubun=K&amp;no=1602402','현대 제네시스 쿠페 200 터보 P - 보배드림','http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_1.jpg')" class="link1"><img src="http://image.bobaedream.co.kr/image/detail/sns_face.gif" alt="페이스북"></a></li>
-		<!--<li><a href="#"><img src="http://image.bobaedream.co.kr/image/detail/sns_kakao.gif" alt="카카오톡" /></a></li>-->
-	<li><a href="javascript:twitter_click('http://www.bobaedream.co.kr/mycar/mycar_view.php?gubun=K&amp;no=1602402','현대 제네시스 쿠페 200 터보 P - 보배드림')" class="link2"><img src="http://image.bobaedream.co.kr/image/detail/sns_twit.gif" alt="트위터"></a></li>
-	<li><a href="javascript:void(window.open('http://www.band.us/plugin/share?body=현대 제네시스 쿠페 200 터보 P - 보배드림&amp;route=http://www.bobaedream.co.kr/mycar/mycar_view.php?gubun=K&amp;no=1602402', 'share_band', 'width=410, height=540, resizable=no'));"><img src="http://image.bobaedream.co.kr/image/detail/sns_band.gif" alt="밴드"></a></li>
-	<li><img src="http://image.bobaedream.co.kr/image/detail/sns_html.gif" alt="HTML" id="copy" onclick="void(0);" style="cursor:pointer"></li>
-	<textarea style="display:none" name="box-content" id="box-content">&lt;div style="width:640px;height:630px;margin:0 auto;font-family:'돋움', Dotum, sans-serif"&gt;&lt;img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_1.jpg" alt="" style="width:640px;height:480px;vertical-align:top;" /&gt;&lt;div style="height:32px;padding:10px 15px 9px 13px;border-top:1px solid #a4a4a4;border-bottom:1px solid #e5e5e5;background:#fafafa;"&gt;&lt;div style="float:left;width:403px;height:32px;line-height:34px;font-size:21px;font-weight:bold;"&gt;현대 제네시스 쿠페 200 터보 P&lt;/div&gt;&lt;div style="float:right;width:209px;height:32px;font-weight:bold;text-align:right;"&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;font-size:22px;color:#d91308;height:32px;line-height:29px;vertical-align:top;margin: 0 -4px 0 0;font-family:Tahoma, sans-serif"&gt;1,105&lt;/span&gt; &lt;span style="display:inline-block;*display:inline;zoom:1;font-size:14px;color:#8c8c8c;height:32px;line-height:34px;vertical-align:top;"&gt;만원&lt;/span&gt;&lt;a href="http://bobaedream.co.kr/mycar/mycar_view?no=1602402&amp;gubun=K" style="display:inline-block;*display:inline;zoom:1;margin:0 0 0 4px;"&gt;
-				&lt;img style="border:0;" src="http://image.bobaedream.co.kr/image/cyber/btn_detail.gif" alt="상세보기" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style="position:relative;width:627px;height:89px;padding:4px 0 4px 13px;border-bottom:1px solid #e5e5e5;overflow:hidden"&gt;&lt;ul style="float:left;list-style:none;margin:0;padding:0;font-size:12px;"&gt;&lt;li style="height:22px;line-height:22px;"&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:59px;font-size:11px;color:#939393;"&gt;연식&lt;/span&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:167px;color:#dd1619"&gt;
-					09년04월&lt;/span&gt;&lt;/li&gt;&lt;li style="height:22px;line-height:22px;"&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:59px;font-size:11px;color:#939393;"&gt;주행거리&lt;/span&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:167px;color:#dd1619"&gt;83,321km&lt;/span&gt;&lt;/li&gt;&lt;li style="height:22px;line-height:22px;"&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:59px;font-size:11px;color:#939393;"&gt;연료&lt;/span&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:167px;"&gt;가솔린&lt;/span&gt;&lt;/li&gt;&lt;li style="height:22px;line-height:22px;"&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:59px;font-size:11px;color:#939393;"&gt;배기량&lt;/span&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:167px;"&gt;1,998cc (210마력)&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;ul style="float:left;list-style:none;margin:0;padding:0;font-size:12px;"&gt;&lt;li style="height:22px;line-height:22px;"&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:72px;font-size:11px;color:#939393;"&gt;변속기&lt;/span&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:125px;"&gt;자동5단&lt;/span&gt;&lt;/li&gt;&lt;li style="height:22px;line-height:22px;"&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:72px;font-size:11px;color:#939393;"&gt;색상&lt;/span&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:125px;"&gt;흰색&lt;/span&gt;&lt;/li&gt;&lt;li style="height:22px;line-height:22px;"&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:72px;font-size:11px;color:#939393;"&gt;사고유무&lt;/span&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:125px;"&gt;무사고&lt;/??&gt;&lt;/span&gt;&lt;/li&gt;&lt;li style="height:22px;line-height:22px;"&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:72px;font-size:11px;color:#939393;"&gt;수입구분&lt;/span&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:125px;"&gt;&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;ul style="float:left;list-style:none;margin:0;padding:0;font-size:12px;"&gt;&lt;li style="height:22px;line-height:22px;"&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:78px;font-size:11px;color:#939393;"&gt;최초등록일&lt;/span&gt;&lt;span&gt;16.08.26&lt;/span&gt;&lt;/li&gt;&lt;li style="height:22px;line-height:22px;"&gt;&lt;span style="display:inline-block;*display:inline;zoom:1;width:78px;font-size:11px;color:#939393;"&gt;가격기준일&lt;/span&gt;&lt;span&gt;16.09.06&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;img style="position:absolute;top:57px;right:118px;" src="http://image.bobaedream.co.kr/image/cyber/ico_logo.gif" alt="보배드림" /&gt;&lt;/div&gt;&lt;/div&gt;</textarea>
-		</ul>
-	</div>
-	<!--//오른쪽--> 
-	<div class="clear"></div>
-	<!--옵션bottom-->
-	<div class="detailtop">
-		<dl>
-										<dt>최초등록</dt>
-			<dd>16/08/26</dd>
-			<dt>등록번호</dt>
-			<dd>1635028902</dd>
-			<dt>조회</dt>
-			<dd><em>254</em></dd>
-			<dt>찜회원</dt>
-			<dd class="last">0</dd>
-		</dl>
-		<div class="clear"></div>
-	</div>
-	<!--//옵션bottom--> 
-		</div>		
+	</div>	
 		
 	</div>
-	<!--//left-->
-	<div class="clear"></div>
 	
 	<!--//판매자보유차량--> 
 	<!--옵션사항-->
 	<div class="container"> 
-		<!-- 사고이력 -->
-	<!-- 리스정보 -->
-	
-								
-	
-	
-	<!-- 리스정보 -->
-	<div class="tab4_view  dealer">
-		<div class="page_tab">
-			<ul class="tab4" id="tab3">
-																									<li class="t4"><a href="#tab3" class="on">사고이력</a></li>
-				<li class="t5"><a href="#tab4">성능점검</a></li>							<li class="t6"><a href="#tab5">차량설명</a></li>
-				<li class="t7"><a href="#tab6">사진정보</a></li>
-				<li class="top"><a href="#">TOP</a></li>
-			</ul>
-		</div>
-							<div class="profile_view"> 
-			<span class="fl">
-				<ul>
-					<li> <span class="t">정보조회일자</span> <span class="s">:</span> 2016- 08- 26 </li>
-					<li> <span class="t">자동차 용도변경이력</span> <span class="s">:</span> 없음 </li>
-					<li> <span class="t">자동차번호/소유자 변경횟수</span> <span class="s">:</span> 1회 / 7회 </li>
-													
-					<li> <span class="t">자동차보험 특수 사고이력 </span> <span class="s">:</span> 전손 : 0, 도난 : 0, 침수(전손 : 0, 분손 : 0) </li>
-					<li> <span class="t">보험사고이력 (내차 피해)</span> <span class="s">:</span> 4회, 2,629,350원 </li>
-					<li> <span class="t">보험사고이력 (타차 가해)</span> <span class="s">:</span> 0회, 0원 </li>
-				</ul>
-			</span>
-			<span class="fr">
-				<ul>
-					<li><img src="http://image.bobaedream.co.kr/image/detail/txt_1.gif" alt="보배드림은 사고이력정보를 무료로 제공합니다."></li>
-					<li class="last"><a href="javascript:void(0);" onclick="pop_accident_renew('13%EA%B1%B06416','mycar','1602402')"><img src="http://image.bobaedream.co.kr/image/detail/btn_8_new.gif" alt="사고이력정보 자세히 보기"></a></li>
-			</ul>
-		</span>
-	</div>
-						<!-- 정보가 등록되지 않았을경우 -->
-	</div>
-	<!-- 사고이력 --> 
-	
-	<!-- 성능점검 -->
-	<div class="tab5_view dealer">
-		<div class="page_tab">
-			<ul class="tab5" id="tab4">
-																									<li class="t4"><a href="#tab3">사고이력</a></li>
-				<li class="t5"><a href="#tab4" class="on">성능점검</a></li>
-				<li class="t6"><a href="#tab5">차량설명</a></li>
-				<li class="t7"><a href="#tab6">사진정보</a></li>
-				<li class="top"><a href="#">TOP</a></li>
-			</ul>
-		</div>
-							<p class="dealer">
-			제시번호: 2016367432호 <span class="line">|</span> 압류: <em>0</em>건 <span class="line">|</span> 저당: <em>0</em>건
-		</p>										
-							
-		<!-- 이미지 파일로 등록되었을경우 -->
-	<div class="profile_view empty">
-		<ul>
-			<li><img src="http://image.bobaedream.co.kr/image/detail/txt_3.gif" alt="성능점검 기록부가 이미지 파일로 등록되었습니다."></li>
-			<li class="last"><a href="javascript:image_pop('file4.bobaedream.co.kr/direct/2016/08/29/GA11191472432966_1.jpg|','B','mycar','1602402');"><img src="http://image.bobaedream.co.kr/image/detail/btn_10.gif" alt="성능점검 기록부 보기"></a></li>
-		</ul>
-	</div>
-	<!-- 이미지 파일로 등록되었을경우 -->
-		
-	</div>
-	<!-- 성능점검 --> 
-	
-	
-	<!-- 차량설명 -->
-	<div class="tab6_view dealer">
-		<div class="page_tab">
-			<ul class="tab5" id="tab5">
-																									<li class="t4"><a href="#tab3">사고이력</a></li>
-				<li class="t5"><a href="#tab4">성능점검</a></li>							<li class="t6"><a href="#tab5" class="on">차량설명</a></li>
-				<li class="t7"><a href="#tab6">사진정보</a></li>
-				<li class="top"><a href="#">TOP</a></li>
-			</ul>
-		</div>
-		<div class="carsinfo">
-									<div class="leftarea"> 
-				<!--안내-->
-	<div class="top">
-		<ul class="inline">
-			<li>시세보다 매우 낮은 가격으로 차량 등록 후, 방문을 유도할 경우 허위매물인 가능성이 높습니다.</li>
-			<li>허위매물로 의심될 때는 자동차등록증, 성능점검기록부, 판매자의 신분증 등을 요청하세요.</li>
-		</ul>
-		<ul class="blockstyle">
-			<li><a href="javascript:fNewWin('/mycar/popup/popCheckFalse.php?no=1602402', '740', '630');">허위매물 구별방법</a></li>
-			<li><a style=" cursor:pointer" onclick="fNewWin('/mycar/popup/popup_car_deal.php', '640', '470', '');">차량매매 서류안내</a></li>
-			<li><a href="javascript:void(0);" onclick="wopen('https://security.bobaedream.co.kr/member/slogin_pop.php?pop=t_open&amp;page=%2Fmycar%2Fmycar_view.php%3Fno%3D1602402%26gubun%3DK','','400','290');"><img src="http://image.bobaedream.co.kr/renew/images/common_re/icon_singo.gif" class="iconstyle" alt="">허위매물신고</a></li>									
-		</ul>
-		<div class="clear"></div>
-	</div>
-	<!--//안내-->
-															<div class="middle" id="middle_content">★★★저희는 300%실매물로서 차상태는물론 허위매물 걱정없는 우수딜러입니다.★★★ 
-	<br>
-	
-	<br>
-	※전차량 전액할부.이전비.보험비.까지할부가능합니다 필요하시면 차량 유지비 까지 가능합니다! 만19세 누구나 가능합니다※ 
-	<br>
-	
-	<br>
-	
-	<br>
-	 ******* 실매물보다 허위매물들이 워낙많아서 고민되시죠?******** 
-	<br>
-	
-	<br>
-	허위매물처럼 포토샵이나, 사진도용해서 판매하거나, 고객을 기만하는 행위는 결코하지 않겠습니다. 
-	<br>
-	
-	<br>
-	안녕하세요.. 중고차를 생업으로 7 년째 근무중인 김 윤 철 과 장입니다. 
-	<br>
-	
-	<br>
-	저란사람 믿고 전화주신다면, 결코 실망시켜드리지 않겠습니다. 반드시 고객에게 보탬이 되는 딜러가 되겠습니다. 
-	<br>
-	
-	<br>
-	안사셔도 좋으니 한번믿고 전화주십시요 요즘 허위매물에 기름값낭비 시간낭비 하시는분들보면 너무 마음이아픔니다. 
-	<br>
-	
-	<br>
-	저는 안좋은차를 싸게파는것보다 좋은차 괜찮은차를 제가 손해안보는선 에서 팔겟습니다!! 믿어주십시요!!^-^ 
-	<br>
-	
-	<br>
-	허위매물 판매시 교통비지급과, 어떠한 처벌도 받겠습니다. 
-	<br>
-	
-	<br>
-	고객을 먼저생각하는 카매니저 "김 윤 철 "입니다. 
-	<br>
-	
-	<br>
-	 *******백번말보다 한번오셔서 시운전 해보시고 결정하세요******* 
-	<br>
-	
-	<br>
-	본인이 직접 매입한 차량만을 판매합니다. 
-	<br>
-	
-	<br>
-	김 윤 철 과장 ☎ 0 1 0 - 7 5 4 4 - 2 9 5 9 
-	<br>
-	
-	<br>
-	그리구 현재 광고중인 차량을 제외한 다른분들이 광고하는 차량이 정말 있는차량인지 궁금하실때가 많으실겁니다 
-	<br>
-	
-	<br>
-	 그럼 저한테 전화주실때 메모해놓으셨다가 차량번호 불러주시면 그차량이 정말 존재하는차량인지 아닌지 확인하여 말씀드리겠습니다 
-	<br>
-	
-	<br>
-	────────────────────────────────────────────────── 
-	<br>
-	
-	<br>
-	김 윤 철 (카매니저) ☎ 0 1 0 - 7 5 4 4 - 2 9 5 9 
-	<br>
-	
-	<br>
-	김 윤 철 (카매니저) ☎ 0 1 0 - 7 5 4 4 - 2 9 5 9 
-	<br>
-	
-	<br>
-	김 윤 철 (카매니저) ☎ 0 1 0 - 7 5 4 4 - 2 9 5 9 
-	<br>
-	
-	<br>
-	김 윤 철 (카매니저) ☎ 0 1 0 - 7 5 4 4 - 2 9 5 9 
-	<br>
-	
-	<br>
-	 ────────────────────────────────────────────────── 
-	<br>
-	 ▶ 오시는길 ◀ 
-	<br>
-	
-	<br>
-	- 주소: 경기 수원시 권선구 서둔동 79-9 (오토컬렉션자동차매매단지) 
-	<br>
-	
-	<br>
-	- 자가이용시: 네비게이션 통합검색에 "오토컬렉션 "검색 
-	<br>
-	
-	<br>
-	-대중교통 이용시 수원역 으로오시면 모시러 가겠습니다^^ 							</div>
-								<!--판매자정보-->
-	<div class="dealerinfo">
-		
-		<!--왼쪽-->
-		<div class="left">
-			<div class="dealerimg">
-													<img src="http://image.bobaedream.co.kr/renew/images/common_re/seller_profile.gif" width="54" height="63" alt="사진없음">
-												</div>
-			<table cellpadding="0" cellspacing="0" summary="판매자정보에 대한 항목들입니다.">
-				<caption>
-				판매자정보
-				</caption>
-				<colgroup>
-				<col width="74">
-				<col width="*">
-				</colgroup>
-				<tbody>
-					<tr>
-						<th>이름</th>
-						<td><strong>김윤철(인증딜러)</strong></td>
-					</tr>
-					<tr>
-						<th>연락처</th>
-						<td><strong>010-7544-2959												</strong></td>
-					</tr>
-																<tr>
-						<th>이메일</th>
-						<td>kimycu1@naver.com</td>
-					</tr>
-																											<tr>
-						<th>주소</th>
-						<td>경기 수원시 권선구..</td>
-					</tr>
-																
-						<tr><th>상사정보</th>
-						<td>이건모터스</td>
-					</tr>
-						<tr><th>조합정보</th>
-						<td>경기 매매조합</td>
-					</tr>
-						<tr><th>사원증번호</th>
-						<td>16-031-77696 <u style="font-size:11px;cursor:pointer" onclick="dealer_p_pop('snsk2959');">사원증보기</u> </td>
-					</tr>
-														</tbody>
-			</table>
-		</div>
-		<!--//왼쪽--> 
-		<!--오른쪽-->
-									<div class="right"> <img src="http://image.bobaedream.co.kr/renew/images/common_re/mobile.gif" class="fl" alt="">
-										<div class="sendinfo">판매자에게 무료 문자를 보내는 서비스입니다.<br>
-											허위 발송시 IP추적 후 처벌 <br>
-											받을 수 있습니다.</div>
-										<div class="phonenum">
-	<form name="form2" method="post" action="/sms/NewSmsWriteCtrl_renew.php" onsubmit="return fSubmit2(this);" target="Sms">
-	<input type="hidden" name="mType" value="M">
-	<input type="hidden" name="number" value="1602402">
-	<input type="hidden" name="dealer_phone" value="010-7544-2959">
-	<input type="hidden" name="city" value="경기">
-	<input type="hidden" name="message_type" value="3">
-	<input type="hidden" name="sendName" value="직거래">
-												<select name="send_cel1" id="select3" class="selectbox" style="width: 51px; font-size: 11px; height: 21px; border:1px solid #cbcbcb;" title="전화번호 국번 선택">
-						<option value="">선택</option>
-						<option value="010">010</option>
-						<option value="011">011</option>
-						<option value="016">016</option>
-						<option value="017">017</option>
-						<option value="018">018</option>
-						<option value="019">019</option>
-					</select>
-					-
-					<input name="send_cel2" type="text" style="IME-MODE:disabled;width:30px" size="7" onkeydown="Numberic();" maxlength="4" class="selset" title="전화번호입력">
-					-
-					<input name="send_cel3" type="text" style="IME-MODE:disabled;width:30px" class="selset" size="7" onkeydown="Numberic();" maxlength="4" title="전화번호입력">
-					<input type="image" src="http://image.bobaedream.co.kr/renew/images/common_re/detailbtn_12.gif" class="send" style="margin-top:5px;" title="문자전송">	
-	                 
-	
-				</form>
-			</div>
-			<div class="btnarea" title="버튼영역"> 
-			<img src="http://image.bobaedream.co.kr/renew/images/common_re/detailbtn_09.gif" alt="쪽지보내기" style="cursor:pointer;" onclick="memo_send('b3BocWZvcGhxa29waHFmb3BocW5vcGhza29waHNkb3Boc2hvcGhzZA%3D%3D');"> 
-			<img src="http://image.bobaedream.co.kr/renew/images/common_re/detailbtn_10.gif" alt="위치보기" style="cursor:pointer;" onclick="size_maps_myinfo('1602402','mycar','snsk2959','B');"> 
-			<a href="./mycar_holding_list.php?sellerID=snsk2959&amp;mtype_gubun=MK" target="_blank"><img src="http://image.bobaedream.co.kr/renew/images/common_re/detailbtn_11.gif" alt="매물보기" class="last"></a> </div>
-			<div class="clear"></div>
-		</div>
-		
-		<!--//오른쪽-->
-		<div class="clear"></div>
-	</div>
-	<!--//판매자정보--> 
-	</div>
-	<!--차량제원-->
-	<div class="rightarea">
-		<div class="spectitle"> <span class="fl">차량제원</span> <span class="specguide fr"><a href="#" style="cursor:pointer;" onclick="fNewWin('/mycar/popup/popReadSpec.php', 730, 600);">제원보는법</a></span> </div>
-	<table class="spectop" cellpadding="0" cellspacing="0" summary="차량제원에 대한 항목들입니다.">
-		<caption>
-		제조국등 제원표
-		</caption>
-		<tbody>
-			<tr>
-				<th class="first">제조국</th>
-				<td class="first">한국</td>
-			</tr>
-			<tr>
-				<th>출시/단종</th>
-				<td>2008년/-년 </td>
-			</tr>
-			<tr>
-				<th class="last">신차가격</th>
-				<td class="last">2,641만원</td>
-			</tr>
-		</tbody>
-	</table>
-	<table class="specmiddle" cellpadding="0" cellspacing="0" summary="차량내부제원에 대한 항목들입니다.">
-		<caption>
-		차량내부제원
-		</caption>
-		<tbody>
-			<tr>
-				<th class="first">엔진형식</th>
-				<td class="first">I4 2.0 TCI RS</td>
-			</tr>
-			<tr>
-				<th>배기량</th>
-				<td>1998cc</td>
-			</tr>
-			<tr>
-				<th>연료</th>
-				<td>가솔린</td>
-			</tr>
-			<tr>
-				<th>연비</th>
-				<td>11.0km/ℓ</td>
-			</tr>
-			<tr>
-				<th>고속/도심</th>
-				<td>/11.0km/ℓ</td>
-			</tr>
-			<tr>
-				<th>최대출력</th>
-				<td>210ps/6000rpm</td>
-			</tr>
-			<tr>
-				<th>최대토크</th>
-				<td>30.5kgm/2000rpm</td>
-			</tr>
-			<tr>
-				<th>최고속도</th>
-				<td>230km</td>
-			</tr>
-			<tr>
-				<th>제로백</th>
-				<td>8.5초</td>
-			</tr>
-			<tr>
-				<th>승차인원</th>
-				<td>4인승</td>
-			</tr>
-			<tr>
-				<th>구동방식</th>
-				<td>후륜 FR</td>
-			</tr>
-			<tr>
-				<th>보디형식</th>
-				<td>2도어</td>
-			</tr>
-			<tr>
-				<th class="last">변속기</th>
-				<td class="last">자동 5단</td>
-			</tr>
-		</tbody>
-	</table>
-	<table class="specmiddle" cellpadding="0" cellspacing="0" summary="차량외관제원에 대한 항목들입니다.">
-		<caption>
-		차량외관제원
-		</caption>
-		<tbody>
-			<tr>
-				<th class="first">전장(길이)</th>
-				<td class="first">4,630mm</td>
-			</tr>
-			<tr>
-				<th>전폭(넓이)</th>
-				<td>1,865mm</td>
-			</tr>
-			<tr>
-				<th>전고(높이)</th>
-				<td>1,385mm</td>
-			</tr>
-			<tr>
-				<th>측거(휠베이스)</th>
-				<td>2,820mm</td>
-			</tr>
-			<tr>
-				<th>전륜타이어</th>
-				<td>225/40/19</td>
-			</tr>
-			<tr>
-				<th>후륜타이어</th>
-				<td>245/40/19</td>
-			</tr>
-			<tr>
-				<th>공차중량</th>
-				<td>1,548kg</td>
-			</tr>
-			<tr>
-				<th>트렁크용량</th>
-				<td>-ℓ</td>
-			</tr>
-			<tr>
-				<th class="last">연료탱크용량</th>
-				<td class="last">55ℓ</td>
-			</tr>
-		</tbody>
-	</table>
-	<div class="btnview"> 
-	<img src="http://image.bobaedream.co.kr/renew/images/common_re/detailbtn_08.gif" alt="상세제원보기" title="상세제원보기" class="pointer" onclick="fNewWin('/mycar/popup/popCatalogSpec.php?maker_no=49&amp;model_no=1012&amp;level_no=623&amp;level2_no=1287&amp;method=%EC%9E%90%EB%8F%99&amp;buy_year=200904&amp;year=2009', '748', '760', 'yes');"> </div>
-	</div>
-	<div class="clear"></div>
-	<!--//차량제원--> 
-		</div>
-		<div class="clear"></div>
-	</div>
-	<!-- 차량설명 --> 
 	
 	<!--차량사진-->
 	<div class="tab7_view dealer">
 		<div class="page_tab">
 			<ul class="tab7" id="tab6">
-				<li class="t1"><a href="#tab1">보유매물</a></li>
-																		<li class="t4"><a href="#tab3">사고이력</a></li>
-				<li class="t5"><a href="#tab4">성능점검</a></li>							<li class="t6"><a href="#tab5">차량설명</a></li>
-				<li class="t7"><a href="#tab6" class="on">사진정보</a></li>
-				<li class="top"><a href="#">TOP</a></li>
+				<li class="t7"><a href="#tab6" style="text-decoration: none; color: black;">사진정보</a></li>
+				<li class="top"><a href="#" style="text-decoration: none; color: black;">TOP</a></li>
 			</ul>
 		</div>
 	
 		<div class="pagetitle">
-			<div class="detailbtn01"> <a href="javascript:Div_carphto_onoff();" class="bottom"><img src="http://image.bobaedream.co.kr/renew/images/common_re/detailphoto_off.gif" alt="차량사진닫기" title="차량사진닫기" class=" pointer" id="carphtoimg_onoff"></a> </div>
+			<div class="detailbtn01"> <a href="javascript:Div_carphto_onoff();" style="text-decoration: none; color: black;">
+				<pre id="photoOnoffText">차량 사진 닫기</pre></a>
+			</div>
 		</div>
 		<div class="carphoto">
 			<div class="top">
 				<ul class="inline">
-													<li>본 이미지는 사업적 용도가 아닌 경우 SNS, 카페, 블로그 등에서 자유롭게 사용이 가능합니다.</li>
+					<li>본 이미지는 사업적 용도가 아닌 경우 SNS, 카페, 블로그 등에서 자유롭게 사용이 가능합니다.</li>
 				</ul>
 			</div>
-			<script language="javascript">
-	
-	function Div_carphto_onoff(){
-	
-		var n = document.getElementById("carphto_onoff").value;
-	
-		if(n=="on"){
-	
-			$("#Div_carphto_onoff").hide();
-			$("#carphtoimg_onoff").attr("src","http://image.bobaedream.co.kr/renew/images/common_re/detailphoto_on.gif");
-			$("#carphto_onoff").val("off") ;
-	
-		}else if(n=="off"){
-	
-			$("#Div_carphto_onoff").show();
-			$("#carphtoimg_onoff").attr("src","http://image.bobaedream.co.kr/renew/images/common_re/detailphoto_off.gif");
-			$("#carphto_onoff").val("on") ;
-	
-		}
-	
-	}
-	
-	</script>
-							<input type="hidden" name="carphto_onoff" id="carphto_onoff" value="on">
-							<div id="Div_carphto_onoff" style=" display:block; padding:0 ; " align="center">
-											<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_1.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_2.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_3.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_4.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_5.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_6.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_7.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_8.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_9.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_10.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_11.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_12.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_13.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_14.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_15.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_16.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_17.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_18.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_19.jpg" width="640" alt="차량사진">						</div>
-										<div class="photoarea">
-				<img src="http://file4.bobaedream.co.kr/direct/2016/08/26/GA11191472194761_20.jpg" width="640" alt="차량사진">						</div>
+	<input type="hidden" name="carphto_onoff" id="carphto_onoff" value="on">
+		<div id="Div_carphto_onoff" style=" display:block; padding:0 ; " align="center">
+			<div class="photoarea">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture1}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture2}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture3}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture4}'/>" width="200" alt="차량사진">
+			</div>
+			<div class="photoarea">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture5}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture6}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture7}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture8}'/>" width="200" alt="차량사진">
+			</div>
+			<div class="photoarea">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture9}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture10}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture11}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture12}'/>" width="200" alt="차량사진">
+			</div>
+			<div class="photoarea">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture13}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture14}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture15}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture16}'/>" width="200" alt="차량사진">
+			</div>
+			<div class="photoarea">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture17}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture18}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture19}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${pictureVo.picture20}'/>" width="200" alt="차량사진">
+			</div>
 				    
-				</div>
+		</div>
 		<div class="detailbottom">
 			<dl>
 				<dt>책임한계 및 법적고지</dt>
@@ -792,7 +944,9 @@
 	
 	<!--상세하단안내-->
 	<div class="pagetitle">
-		<div class="detailbtn_top"><a href="javascript:history.back();"><img src="http://image.bobaedream.co.kr/renew/images/common_re/gotoback.gif" alt="이전페이지로 돌아가기" title="이전페이지로 돌아가기" class="mr5 pointer"></a> <img src="http://image.bobaedream.co.kr/renew/images/common_re/bar_dbdbdb.gif" class="mr5" alt=""> <a href="#"><img src="http://image.bobaedream.co.kr/renew/images/common_re/gototop.gif" alt="맨위로" title="맨위로" class=" pointer"></a></div>
+		<div class="detailbtn_top">
+		<a href="#" style="text-decoration: none; color: black;">맨 위로 올라가기</a>
+	</div>
 	</div>
 	<!--//상세하단안내--> 
 	</div>
