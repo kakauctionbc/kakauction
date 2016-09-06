@@ -453,27 +453,27 @@
 		    </div>
 		    <div>
 		    
-		      		<input type='file' id="imageFileUpload" onchange="readURL(this, 1);"   value="사진등록" accept="image/*"/>
-					<input type='file' id="imageFileUpload" onchange="readURL(this, 2);"   value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 3);"   value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 4);"   value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 5);"   value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 6);"   value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 7);"   value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 8);"   value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 9);"   value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 10);"  value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 11);"  value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 12);"  value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 13);"  value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 14);"  value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 15);"  value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 16);"  value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 17);"  value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 18);"  value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 19);"  value="사진등록" accept="image/*"/>
-				    <input type='file' id="imageFileUpload" onchange="readURL(this, 20);"  value="사진등록" accept="image/*"/>
-		      
+	      		<input type='file' id="imageFileUpload1" name="imageFileUpload1" onchange="readURL(this, 1);" accept="image/*"/>
+				<input type='file' id="imageFileUpload2" name="imageFileUpload2" onchange="readURL(this, 2);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload3" name="imageFileUpload3" onchange="readURL(this, 3);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload4" name="imageFileUpload4" onchange="readURL(this, 4);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload5" name="imageFileUpload5" onchange="readURL(this, 5);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload6" name="imageFileUpload6" onchange="readURL(this, 6);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload7" name="imageFileUpload7" onchange="readURL(this, 7);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload8" name="imageFileUpload8" onchange="readURL(this, 8);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload9" name="imageFileUpload9" onchange="readURL(this, 9);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload10" name="imageFileUpload10" onchange="readURL(this, 10);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload11" name="imageFileUpload11" onchange="readURL(this, 11);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload12" name="imageFileUpload12" onchange="readURL(this, 12);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload13" name="imageFileUpload13" onchange="readURL(this, 13);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload14" name="imageFileUpload14" onchange="readURL(this, 14);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload15" name="imageFileUpload15" onchange="readURL(this, 15);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload16" name="imageFileUpload16" onchange="readURL(this, 16);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload17" name="imageFileUpload17" onchange="readURL(this, 17);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload18" name="imageFileUpload18" onchange="readURL(this, 18);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload19" name="imageFileUpload19" onchange="readURL(this, 19);" accept="image/*"/>
+			    <input type='file' id="imageFileUpload20" name="imageFileUpload20" onchange="readURL(this, 20);" accept="image/*"/>
+				    
 		      <input type="hidden" id="picture1" name="picture1">
 		      <input type="hidden" id="picture2" name="picture2">
 		      <input type="hidden" id="picture3" name="picture3">

@@ -35,19 +35,16 @@ public class PictureServiceImpl implements PictureService{
 
 	@Override
 	public List<Map<String, Object>> fileupload(HttpServletRequest request) {
-		System.out.println("여기가 없으면 난 어쩌지?! request!!이새낑!!!"+request);
-		
 		//파일 업로드 처리
 		//여러 개의 파일정보를 저장하는 List => 리턴해줌
 		List<Map<String, Object>> fileList = new ArrayList<Map<String,Object>>();
 		
 		//HttpServletRequest를 MultipartHttpServletRequest로 다운캐스팅
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
-		System.out.println("여기는 지나냐?! multipartRequest!!이새끼랑"+multipartRequest+" request!!이새낑!!!"+request);
 		
 		//파라미터 이름을 Key로하고, 파라미터에 해당하는 파일정보를 값으로 하는 Map을 구한다
 		Map<String , MultipartFile> filemap=multipartRequest.getFileMap();
-		System.out.println("여기는 지나냐?! filemap!!"+filemap);
+		System.out.println("여기는 지나냐?! filemap.size()!!"+filemap.size());
 		//Map에서 iterator를 이용하여 각 key에 해당하는 파일정보를 구해온다
 		Iterator<String> iter = filemap.keySet().iterator();
 		System.out.println("여기는 지나냐?! iter!!"+iter);

@@ -69,6 +69,7 @@ public class CarController {
 		if(opVo.getOpTune()==null || opVo.getOpTune().isEmpty()){
 			opVo.setOpTune("");
 		}
+		
 		//[1]파일 업로드 처리하기
 		List<Map<String, Object>> fileList = pictureService.fileupload(request);
 		logger.info("여기는 꼰트롤러 fileList={}",fileList.size());
