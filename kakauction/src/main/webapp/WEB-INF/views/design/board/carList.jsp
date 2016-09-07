@@ -33,16 +33,13 @@ $( document ).ready( function() {
   });
 });	
 
+
 $(function(){
-	var acc = $('.accordion');
-	var panel = $('.panel');
-    for (var i = 0; i < acc.length; i++) {
-    	$(acc[i]).click(function(){
-  			panel.slideDown(500);
-  		}, function(){
-			panel.slideUp('fast');
+    $(".accordion").each(function (i) {
+    	$(this).click(function(){
+  			$(this).children().slideDown(200);
 		});
-    }
+	});
 });
 </script>
 
@@ -174,35 +171,35 @@ $(function(){
 					<li class="first">
 						<a href="">
 							<div class="imgbox">
-								<img src="http://file4.bobaedream.co.kr/direct/special/2016/09/03/1472883523_c.jpg"
+								<img src="${pageContext.request.contextPath }/img/test_img1.jpg"
 										alt="자동차사진" />
 							</div><span class="txt">기아 뉴 쏘렌토R 2013년형</span></a>
 					</li>
 					<li class="">
 						<a href="">
 							<div class="imgbox">
-								<img src="http://file4.bobaedream.co.kr/direct/special/2016/09/03/1472883458_c.jpg"
+								<img src="${pageContext.request.contextPath }/img/test_img2.jpg"
 											alt="자동차사진" />
 							</div><span class="txt">쉐보레(국산) 캡티바 2012년식</span></a>
 					</li>
 					<li class="">
 						<a href="">
 							<div class="imgbox">
-								<img src="http://file4.bobaedream.co.kr/direct/special/2016/09/03/1472883410_c.jpg"
+								<img src="${pageContext.request.contextPath }/img/test_img3.jpg"
 									alt="자동차사진" />
 							</div><span class="txt">현대 제네시스 2012년형</span></a>
 					</li>
 					<li class="">
 						<a href="">
 							<div class="imgbox">
-								<img src="http://file4.bobaedream.co.kr/direct/special/2016/09/05/1473030886_c.jpg"
+								<img src="${pageContext.request.contextPath }/img/test_img4.jpg"
 									alt="자동차사진" />
 							</div><span class="txt">현대 제네시스 쿠페 2010년형</span></a>
 					</li>
 					<li class="last">
 						<a href="">
 							<div class="imgbox">
-								<img src="http://file4.bobaedream.co.kr/direct/special/2016/09/05/1473030937_c.jpg"
+								<img src="${pageContext.request.contextPath }/img/test_img5.jpg"
 									alt="자동차사진" />
 							</div> <span class="txt">현대 아반떼MD 2011년형</span></a>
 					</li>
@@ -213,10 +210,10 @@ $(function(){
 		<div class="list_mycar_top">
 			<span class="fl">
 				<ul>
-					<li><a href="javascript:order_toggle('S11')" class="on up">등록순</a></li>
-					<li><a href="javascript:order_toggle('S22')" class="off">연식순</a></li>
-					<li><a href="javascript:order_toggle('S41')" class="off">가격순</a></li>
-					<li><a href="javascript:order_toggle('S51')" class="off">주행거리순</a></li>
+					<li><a href="javascript:order_toggle('S11')" class="on up">등록순&#9650;</a></li>
+					<li><a href="javascript:order_toggle('S22')" class="off">연식순&#9650;</a></li>
+					<li><a href="javascript:order_toggle('S41')" class="off">가격순&#9650;</a></li>
+					<li><a href="javascript:order_toggle('S51')" class="off">주행거리순&#9650;</a></li>
 					<li class="last"><a href="javascript:zzimSel()"
 						id="icon_star" class="">찜한차량</a></li>
 				</ul>
@@ -230,12 +227,6 @@ $(function(){
 						class="link"><img
 							src="http://image.bobaedream.co.kr/image/direct/btn_3.gif"
 							alt="매물관리" /></a></li>
-					<li class="list1"><a
-						href="javascript:albumSel('L', '/mycar/mycar_list.php?gubun=K&page=1')"
-						class="on">직거래리스트</a></li>
-					<li class="list2"><a
-						href="javascript:albumSel('A', '/mycar/mycar_list.php?gubun=K&page=1')"
-						class="off">직거래 앨범형리스트</a></li>
 					<li class="last"><select title="정렬갯수" name="view_size"
 						onchange="view_size_change(this.value);"
 						style="width: 68px; height: 21px;">
@@ -318,9 +309,9 @@ $(function(){
 					<col width="34px" />
 					<col width="116px" />
 					<col width="*" />
-					<col width="71px" />
-					<col width="68px" />
-					<col width="90px" />
+					<col width="100px" />
+					<col width="110px" />
+					<col width="120px" />
 					<col width="143px" />
 				</colgroup>
 				
@@ -334,7 +325,127 @@ $(function(){
 								class="ico_cnt">+13</span>
 						</a></td>
 
+						<td class="information">
+							<p>
+								<a href="mycar_view.php?no=1497871&gubun=K" class=""
+									itemprop="name">쌍용 <span class='bold'>코란도 C 시크 4WD</span>
+									비트
+								</a> <a href="mycar_view.php?no=1497871&gubun=K" target="_blank"><img
+									src="http://image.bobaedream.co.kr/renew/images/common_re/icon_winopen02.gif"></a>
+							</p>
+							<p>
+								<span class="option">검정색</span> <span class="option">수동</span>
+								<span class="option">디젤</span> <span class="option last"><a
+									href="javascript:pop_accident_renew('25루5150', 'mycar', '1497871');">사고이력</a></span>
+							</p>
+
+							<p class="iconarea"></p>
 						</td>
+								<td>12/01</td>
+								<td>197,000 km</td>
+
+								<td class="centeralign"><span class="redbold02">11,980</span>만원</td>
+								<td class="nonepd">
+									<div class="dealerinfo">
+										<span class="tt">이름</span> 문창순 <a
+											href="javascript:info_toggle('0')" class="zoom"
+											title="판매자정보 자세히보기"><img
+											src="http://image.bobaedream.co.kr/renew/images/common_re/btn_arr.png"
+											alt="" /></a><br> <span class="tt">주소</span> 부산 연제구<br />
+										<span class="tt">등록</span> 09월 05일<br> <span class="tt">조회</span>
+										<span style="color: #FF0000">2,917<a
+											href="javascript:wopen('https://security.bobaedream.co.kr/member/slogin_pop.php?pop=t_open&page=%2Fmycar%2Fmycar_list.php%3Fgubun%3DK','','400','290')"
+											id="zzimClass1497871" class="sub_star_off">찜</a> <!--판매자정보레이어창-->
+											<div class="layerwrap" style="display: none;">
+												<div class="layerwraptopbox">
+													<div class="layerwraptopcenter">
+														<img
+															src="http://image.bobaedream.co.kr/renew/images/common_re/pop_title09.png"
+															alt="판매자정보" title="판매자정보" class="layerwraptitleimg" /> <a
+															href="javascript:" onclick="$('.layerwrap').hide();"
+															class="close">닫기</a>
+													</div>
+												</div>
+												<div class="layerwrappopbody">
+													<!--컨테이너-->
+													<div class="layerwrapcontainer">
+														<!--팝업레이어내용시작-->
+														<div class="sellerimg">
+															<img
+																src="http://file4.bobaedream.co.kr/dealer/2011/01/26/Bg1295969837_3.jpg"
+																alt="판매자이미지" title="판매자이미지" width="54" height="63" />
+														</div>
+														<table cellpadding="0" cellspacing="0" class="layerinfo">
+															<caption>판매자정보</caption>
+															<colgroup>
+																<col width="64px">
+																<col width="*" />
+															</colgroup>
+															<tbody>
+																<tr>
+																	<th>이름</th>
+																	<td><strong>문창순(딜러)</strong></td>
+																</tr>
+																<tr>
+																	<th>연락처</th>
+																	<td><span class="redbold02">010-2570-0387</span></td>
+																</tr>
+																<tr>
+																	<th>이메일</th>
+																	<td>mcs648888@yahoo.co.kr</td>
+																</tr>
+																<tr>
+																	<th>카카오톡</th>
+																	<td></td>
+																</tr>
+																<tr>
+																	<th>주소</th>
+																	<td>부산 연제구 연산5동 1123번지<span class="popuplink"><a
+																			href="javascript:size_maps_myinfo('1497871','mycar','mcs6488','B');">지도보기</a></span></td>
+																</tr>
+																<tr>
+																	<th>보유차량</th>
+																	<td>총<span class="redbold02">11</span>대 등록중<span
+																		class="popuplink"><a
+																			href="/mycar/mycar_holding_list.php?sellerID=mcs6488&mtype_gubun=MK"
+																			target="_blank">매물보기</a></span></td>
+																</tr>
+																<tr>
+																	<th>상담하기</th>
+																	<td>
+																		<ul>
+																			<li><img
+																				src="http://image.bobaedream.co.kr/renew/images/common_re/detailbtn_03.gif"
+																				alt="무료문자보내기" title="무료문자보내기" class="pointer"
+																				onClick="fOpenSms('M','1497871','010-2570-0387','부산')" /></li>
+																			<li class="last"><img
+																				src="http://image.bobaedream.co.kr/renew/images/common_re/detailbtn_04.gif"
+																				alt="쪽지보내기" title="쪽지보내기" class="pointer"
+																				onClick="memo_send('b3BocWxvcGhyMW9waHFmb3Boc2dvcGhzaW9waHNlb3Boc2U%3D')" /></li>
+																		</ul>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+														<!--//팝업레이어내용시작-->
+													</div>
+													<div class="clear"></div>
+													<!--컨테이너-->
+												</div>
+												<div class="clear"></div>
+											</div> <!--/판매자정보레이어창-->
+									</div>
+								</td>
+							</tr>
+												<tr itemscope itemtype="http://schema.org/Article">
+						<td class="input"><input type="checkbox"
+							id="checklist_1497871" value="1497871" /></td>
+						<td class="thumb"><a
+							href="mycar_view.php?no=1497871&gubun=K"\> <img
+								src="http://file4.bobaedream.co.kr/direct/2016/01/21/Bg13471453371483_1_s1.jpg"><span
+								class="ico_cnt">+13</span>
+						</a></td>
+
 						<td class="information">
 							<p>
 								<a href="mycar_view.php?no=1497871&gubun=K" class=""
@@ -447,137 +558,14 @@ $(function(){
 									</div>
 								</td>
 							</tr>
-
-							<tr itemscope itemtype="http://schema.org/Article">
-								<td class="input"><input type="checkbox"
-									id="checklist_1604682" value="1604682" /></td>
-								<td class="thumb"><a
-									href="mycar_view.php?no=1604682&gubun=K"\> <img
-										src="http://file4.bobaedream.co.kr/direct/2016/09/01/Bg17931472700488_1_s1.jpg"><span
-										class="ico_cnt">+14</span>
-								</a></td>
-
-								</td>
-								<td class="information">
-									<p>
-										<a href="mycar_view.php?no=1604682&gubun=K" class=""
-											itemprop="name">GM대우 <span class='bold'>All New
-												마티즈 SE</span> 기본형
-										</a> <a href="mycar_view.php?no=1604682&gubun=K" target="_blank"><img
-											src="http://image.bobaedream.co.kr/renew/images/common_re/icon_winopen02.gif"></a>
-									</p>
-									<p>
-										<span class="option">은색</span> <span class="option">자동</span>
-										<span class="option">가솔린</span> <span class="option last"><a
-											href="javascript:pop_accident_renew('47나4935', 'mycar', '1604682');">사고이력</a></span>
-									</p>
-
-									<p class="iconarea"></p>
-
-								</td>
-								<td>06/04</td>
-								<td>102,000 km</td>
-
-								<td class="centeralign"><span class="redbold02">150</span>만원</td>
-								<td class="nonepd">
-									<div class="dealerinfo">
-										<span class="tt">이름</span> 문창순 <a
-											href="javascript:info_toggle('1')" class="zoom"
-											title="판매자정보 자세히보기"><img
-											src="http://image.bobaedream.co.kr/renew/images/common_re/btn_arr.png"
-											alt="" /></a><br> <span class="tt">주소</span> 부산 연제구<br />
-										<span class="tt">등록</span> 09월 05일<br> <span class="tt">조회</span>
-										<span style="">287<a
-											href="javascript:wopen('https://security.bobaedream.co.kr/member/slogin_pop.php?pop=t_open&page=%2Fmycar%2Fmycar_list.php%3Fgubun%3DK','','400','290')"
-											id="zzimClass1604682" class="sub_star_off">찜</a> <!--판매자정보레이어창-->
-											<div class="layerwrap" style="display: none;">
-												<div class="layerwraptopbox">
-													<div class="layerwraptopcenter">
-														<img
-															src="http://image.bobaedream.co.kr/renew/images/common_re/pop_title09.png"
-															alt="판매자정보" title="판매자정보" class="layerwraptitleimg" /> <a
-															href="javascript:" onclick="$('.layerwrap').hide();"
-															class="close">닫기</a>
-													</div>
-												</div>
-												<div class="layerwrappopbody">
-													<!--컨테이너-->
-													<div class="layerwrapcontainer">
-														<!--팝업레이어내용시작-->
-														<div class="sellerimg">
-															<img
-																src="http://file4.bobaedream.co.kr/dealer/2011/01/26/Bg1295969837_3.jpg"
-																alt="판매자이미지" title="판매자이미지" width="54" height="63" />
-														</div>
-														<table cellpadding="0" cellspacing="0" class="layerinfo">
-															<caption>판매자정보</caption>
-															<colgroup>
-																<col width="64px">
-																<col width="*" />
-															</colgroup>
-															<tbody>
-																<tr>
-																	<th>이름</th>
-																	<td><strong>문창순(딜러)</strong></td>
-																</tr>
-																<tr>
-																	<th>연락처</th>
-																	<td><span class="redbold02">010-2570-0387</span></td>
-																</tr>
-																<tr>
-																	<th>이메일</th>
-																	<td>mcs648888@yahoo.co.kr</td>
-																</tr>
-																<tr>
-																	<th>카카오톡</th>
-																	<td></td>
-																</tr>
-																<tr>
-																	<th>주소</th>
-																	<td>부산 연제구 연산5동 1123번지<span class="popuplink"><a
-																			href="javascript:size_maps_myinfo('1604682','mycar','mcs6488','B');">지도보기</a></span></td>
-																</tr>
-																<tr>
-																	<th>보유차량</th>
-																	<td>총<span class="redbold02">11</span>대 등록중<span
-																		class="popuplink"><a
-																			href="/mycar/mycar_holding_list.php?sellerID=mcs6488&mtype_gubun=MK"
-																			target="_blank">매물보기</a></span></td>
-																</tr>
-																<tr>
-																	<th>상담하기</th>
-																	<td>
-																		<ul>
-																			<li><img
-																				src="http://image.bobaedream.co.kr/renew/images/common_re/detailbtn_03.gif"
-																				alt="무료문자보내기" title="무료문자보내기" class="pointer"
-																				onClick="fOpenSms('M','1604682','010-2570-0387','부산')" /></li>
-																			<li class="last"><img
-																				src="http://image.bobaedream.co.kr/renew/images/common_re/detailbtn_04.gif"
-																				alt="쪽지보내기" title="쪽지보내기" class="pointer"
-																				onClick="memo_send('b3BocWxvcGhyMW9waHFmb3Boc2dvcGhzaW9waHNlb3Boc2U%3D')" /></li>
-																		</ul>
-																	</td>
-																</tr>
-															</tbody>
-														</table>
-														<!--//팝업레이어내용시작-->
-													</div>
-													<div class="clear"></div>
-													<!--컨테이너-->
-												</div>
-												<div class="clear"></div>
-											</div> <!--/판매자정보레이어창-->
-									</div>
-								</td>
-							</tr>
 						</tbody>
 					</table>
-				<div class="select_option">
-					<a href="javascript:zzim_ad('mycar');">&#9745;선택찜</a> <a
-						href="javascript:selectcar_ad('mycar');">&#9745;차량비교</a>
 				</div>
-				</div>
+					<div class="select_option">
+						<a href="javascript:zzim_ad('mycar');">&#9745;선택찜</a> <a
+							href="javascript:selectcar_ad('mycar');">&#9745;차량비교</a>
+						<div class="gototop" title="맨위로버튼" onclick="location.href='#';">맨위로&#9652;</div>
+					</div>
 
 				<!--페이징처리-->
 
@@ -585,7 +573,7 @@ $(function(){
 					<ul class="pagination">
 						<li><a href="#">&laquo;</a></li>
 						<li><a href="#">1</a></li>
-						<li><a class="active" href="#">2</a></li>
+						<li><a href="#">2</a></li>
 						<li><a href="#">3</a></li>
 						<li><a href="#">4</a></li>
 						<li><a href="#">5</a></li>
@@ -593,18 +581,15 @@ $(function(){
 						<li><a href="#">&raquo;</a></li>
 					</ul>
 				</div>
-				<div class="gototop" title="맨위로버튼" onclick="location.href='#';">맨위로&#9652;</div>
-				</div>
+				
 				<!--//페이징처리-->
-
-
-				<!--테이블바텀-->
+				
+				<!--//테이블바텀-->
 				<div class="list_top">
-					<a href="/mycar/manage/mycar_car_manage_new.php?gubun=K"><img
-						src="http://image.bobaedream.co.kr/renew/images/common_re/btn_02n.gif"
-						alt="" title="정보수정" class="btn" /></a> <a href="/mycar/mycar.php"><img
-						src="http://image.bobaedream.co.kr/image/cyber/btn_01n.gif" alt=""
-						title="차량등록" class="btn" /></a>
+					<a href="/mycar/manage/mycar_car_manage_new.php?gubun=K">
+						<img src="http://image.bobaedream.co.kr/renew/images/common_re/btn_02n.gif"	alt="" title="정보수정" class="btn" /></a> 
+					<a href="/mycar/mycar.php">
+						<img src="http://image.bobaedream.co.kr/image/cyber/btn_01n.gif" alt="" title="차량등록" class="btn" /></a>
 					<div>
 						<div class="search">
 							<img
@@ -619,41 +604,10 @@ $(function(){
 								src="http://image.bobaedream.co.kr/renew/images/common_re/btn_03.gif"
 								alt="" title="검색버튼" />
 						</div>
-						<div class="checkbox">
-							<input type="radio" name="s_field2" id="sch_field5" title="휴대폰"
-								value="cell" /> <label for="sch_field5" title="차량명">휴대폰</label>
-						</div>
-						<div class="checkbox">
-							<input type="radio" name="s_field2" id="sch_field6" title="차량번호"
-								value="car_number" /> <label for="sch_field6" title="차량명">차량번호</label>
-						</div>
-						<div class="checkbox">
-							<input type="radio" name="s_field2" id="sch_field7" title="판매자"
-								value="seller_name" /> <label for="sch_field7" title="판매자">판매자</label>
-						</div>
-						<div class="checkbox">
-							<input type="radio" name="s_field2" id="sch_field8" title="차량명"
-								value="car_name" /> <label for="sch_field8" title="차량명">차량명</label>
-						</div>
 					</div>
-					<!--//테이블바텀-->
 				</div>
-				<div class="clear"></div>
-				<!--//사이버매장등록차량-->
+				<!--테이블바텀-->
 			</div>
-			<!--//left-->
-
-			<!--//right-->
-			<div class="clear"></div>
-		</div>
-
-
-
-
-
-
-
-
 <script>
 var fixPos = '11';
 var maxTop = '155';

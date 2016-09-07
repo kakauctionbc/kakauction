@@ -36,6 +36,27 @@
 }
 .list_mycar_top{
 	width: 1000px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.list_mycar_top a.on.up{
+	float: left;
+	color:#000000;
+	border-right: 1px solid #d1cbcb;
+	padding-right: 10px;
+}
+.list_mycar_top a.off{
+	float: left;
+	border-right: 1px solid #d1cbcb;
+	padding-right: 10px;
+	padding-left: 10px;
+	color:#817070;
+}
+.list_mycar_top a#icon_star{
+	float: left;
+	color:#817070;
+	padding-left: 10px;
+	border: none;
 }
 .list_mycar_top:after {
     content: "";
@@ -117,6 +138,7 @@ div.sub.show {
     margin-top: -1px;
     border: 1px solid #CCCACB;
     width: 1000px !important;
+    height: auto;
 }
 ul, ol {
     list-style: none;
@@ -124,25 +146,34 @@ ul, ol {
 #wrap table {
     border-collapse: collapse;
 }
-.Used_car_section.renew .con1 .mycarlist > tbody > tr > td {
-    padding: 7px 0;
+.mycarlist{
+	padding-bottom: 10px;
+	padding-top: 10px;
 }
-table.mycarlist td {
+.mycarlist tr td {
     border-bottom: solid 1px #dddce1;
 }
-.Used_car_section.renew .con1 .mycarlist .thumb {
-    position: relative;
-}
-.Used_car_section.renew .con1 .mycarlist > tbody > tr > td {
-    padding: 7px 0;
-}
-.Used_car_section.renew .con1 .mycarlist .information {
-    width: 285px;
-    padding: 7px 0 7px 0;
-}
-.dealerinfo{
-	border-left: 1px solid #dddce1;
+.mycarlist .input{
 	padding-left: 10px;
+	padding-right: 10px;
+}
+.mycarlist .thumb {
+	position: relative;
+}
+.mycarlist .information {
+    width: 285px;
+    padding-left: 20px;
+}
+.mycarlist .centeralign{
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.mycarlist .dealerinfo{
+	border-left: 1px solid #dddce1;
+	padding-left: 20px;
+}
+.mycarlist td .nonepd{
+	padding-left: 20px;
 }
 table.mycarlist td.nonepd .dealerinfo {
     height: auto;
@@ -153,24 +184,11 @@ table.mycarlist td.nonepd .dealerinfo {
     font-size: 12px;
     line-height: 160%;
 }
-
-.Used_car_section.renew .con1 .mycarlist > tbody > tr > td {
-    padding: 7px 0;
-}
-.Used_car_section.renew .con1 .mycarlist > tbody > tr > td {
-    padding: 7px 0;
-}
-.Used_car_section.renew .con1 .mycarlist > tbody > tr > td {
-    padding: 7px 0;
-}
 table.mycarlist td.centeralign {
     text-align: center;
     font-size: 12px;
 }
-.Used_car_section.renew .con1 .mycarlist > tbody > tr > td {
-    padding: 7px 0;
-}
-.Used_car_section.renew .con1 .mycarlist .dealerinfo .tt {
+.mycarlist .dealerinfo .tt {
     color: #8d8d8d;
     margin-right: 6px;
 }
@@ -184,15 +202,8 @@ a:link {
     text-decoration: none;
 }
 
-.Used_car_section.renew .con1 .mycarlist .dealerinfo .tt {
-    color: #8d8d8d;
-    margin-right: 6px;
-}
 .ico_cnt{
 	display: none;
-}
-.Used_car_section.renew .pageMove {
-    padding: 30px 0;
 }
 .Used_car_section.renew .list_top {
     height: 30px;
@@ -200,9 +211,21 @@ a:link {
 }
 
 .list_top {
-    height: 26px;
-    position: relative;
-    top: 0px;
+	width: 1000px;
+}
+.list_top a img{
+	float: right;
+}
+.search{
+	float: left;
+}
+.inputbox{
+	margin-left:400px;
+	float: left;
+}
+#btm_sbtn{
+	padding-left:10px;
+	float: left;
 }
 div.Quick_layer {
     position: fixed;
@@ -211,23 +234,41 @@ div.Quick_layer {
     width: 0;
     height: 0;
 }
+.select_option{
+	width:1000px;
+}
+.select_option a{
+   	float:left;
+   	padding-right:10px;
+   	color:#a5a5a5;
+}
+.select_option a:hover{
+	color: #000000;
+}
+.select_option a.active{
+	color:#000000;
+}
+.gototop{
+	float:right;
+	color: #6c6c6c;
+}
 
 /* paging */
 .pageMove {
+	border-bottom: 1px solid silver;
+	padding-top:10px;
+	padding-bottom:20px;
 	width: 1000px;
-    height: 15px;
-    padding: 37px 0 30px 0;
-    margin: 0 0 3px 0;
     clear: both;
     position: relative;
     overflow: hidden;
-    border: 1px solid red;
 }
-.ul.pagination {
-    text-align: center;
+.pagination {
+	width:100%;
+	height:auto;
     display: inline-block;
     padding: 0;
-    margin: 0;
+    margin-left: 390px;
 }
 
 ul.pagination li {
@@ -253,7 +294,4 @@ ul.pagination li a.active {
 ul.pagination li a:hover:not(.active) {
 	background-color: #f6f6f6;
 	border: #ebebeb;
-}
-.select_option{
-    border: 1px solid red;
 }
