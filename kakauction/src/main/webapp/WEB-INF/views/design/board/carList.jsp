@@ -1,22 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title>상세검색 게시판</title>	
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="robots" content="ALL">
-<meta name="robots" content="index,follow">
-<!--link rel="stylesheet" type="text/css" href="http://image.bobaedream.co.kr/css/default.css" /  -->
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/searchSlide.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/carList.css"/>
 
-<link rel="SHORTCUT ICON" HREF="http://image.bobaedream.co.kr/bobae.ico">
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.0.min.js" ></script>
-<!-- script type="text/javascript" src="http://image.bobaedream.co.kr/mycar/common/js/mycar_list_search.js"></script -->
-<script type="text/javascript" src="/mycar/common/js/mycar_list_search_new.js?ver=2"></script>
 <%@ include file="../inc/top.jsp"%>
 <script language="javascript">  
 	function openNav() {
@@ -29,18 +17,9 @@
 		document.getElementById("main").style.marginLeft = "0";
 	}
 	
-</script>
-<script type="text/javascript">
-var acc = document.getElementsByClassName("accordion");
-var i;
 
-for (i = 0; i < acc.length; i++) {
-    acc[i].onclick = function(){
-        this.classList.toggle("active");
-        this.nextElementSibling.classList.toggle("show");
-  }
-}
 </script>
+
 <script type="text/javascript">
 $( document ).ready( function() {
   var Offset = $( '.offset' ).offset();
@@ -52,105 +31,124 @@ $( document ).ready( function() {
       $( '.sidenav' ).removeClass( 'searchFixed' );
     }
   });
-});
-</script>
-<script type="text/javascript">
-$( document ).ready( function() {
-  var Offset = $( '.offset' ).offset();
-  $( window ).scroll( function() {
-    if ( $( document ).scrollTop() > Offset.top ) {
-      $( '.sidenav' ).addClass( 'searchFixed' );
-    }
-    else {
-      $( '.sidenav' ).removeClass( 'searchFixed' );
-    }
-  });
-});
-</script>
-<script>
-var acc = document.getElementsByClassName("accordion");
-var i;
+});	
 
-for (i = 0; i < acc.length; i++) {
-    acc[i].onclick = function(){
-        this.classList.toggle("active");
-        this.nextElementSibling.classList.toggle("show");
-  }
-}
+
+$(function(){
+	var acc = $('.accordion');
+	var panel = $('.panel');
+    for (var i = 0; i < acc.length; i++) {
+    $(acc[i]).click(function(){
+  		panel.slideDown(500);
+  		$(acc[i]).addClass('active');
+  	}, function(){
+		panel.slideUp('fast');
+	});
+});
 </script>
+
 <!--contents-->
 <div id="wrap">
 	<div class="Used_car_section renew">
 		<div id="body">
 			<div id="mySidenav" class="sidenav">
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-				<span>차량 상세 검색 </span>
+				<p>차량 상세 검색</p>
 				<button class="accordion">차종</button>
 				<div class="panel">
+					<p>
+					</p>
 				</div>
+				
 				<button class="accordion">제조사/모델/등급</button>
 				<div class="panel">
-					  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					<p>
+					</p>
 				</div>
+				
 				<button class="accordion">연식</button>
-					<div class="panel">
-		                <select class="_select_2col" id="_s_m_eYYYY" >
-		                    <option value="">년</option>
-							
+				<div class="panel">
+		                <select id="yyyy" >
+							<option value="">년</option>
 							<option value="2017">2017</option>
-							
 							<option value="2016">2016</option>
-							
 							<option value="2015">2015</option>
-							
 							<option value="2014">2014</option>
-							
 							<option value="2013">2013</option>
-							
 							<option value="2012">2012</option>
-							
 							<option value="2011">2011</option>
-							
 							<option value="2010">2010</option>
-							
 							<option value="2009">2009</option>
-							
 							<option value="2008">2008</option>
-							
 							<option value="2007">2007</option>
-							
 							<option value="2006">2006</option>
-							
 							<option value="2005">2005</option>
-							
 							<option value="2004">2004</option>
-							
 							<option value="2003">2003</option>
-							
 							<option value="2002">2002</option>
-							
 							<option value="2001">2001</option>
-							
 							<option value="2000">2000</option>
-							
 							<option value="1999">1999</option>
-							
 							<option value="1998">1998</option>
-							
 							<option value="1997">1997</option>
-							
 							<option value="1996">1996</option>
-						
-	                	</select>
-					</div>
+						</select>
+						<P> ~ </P>
+		                <select id="yyyy2" >
+							<option value="">년</option>
+							<option value="2017">2017</option>
+							<option value="2016">2016</option>
+							<option value="2015">2015</option>
+							<option value="2014">2014</option>
+							<option value="2013">2013</option>
+							<option value="2012">2012</option>
+							<option value="2011">2011</option>
+							<option value="2010">2010</option>
+							<option value="2009">2009</option>
+							<option value="2008">2008</option>
+							<option value="2007">2007</option>
+							<option value="2006">2006</option>
+							<option value="2005">2005</option>
+							<option value="2004">2004</option>
+							<option value="2003">2003</option>
+							<option value="2002">2002</option>
+							<option value="2001">2001</option>
+							<option value="2000">2000</option>
+							<option value="1999">1999</option>
+							<option value="1998">1998</option>
+							<option value="1997">1997</option>
+							<option value="1996">1996</option>
+						</select>
+				</div>
 				<button class="accordion">가격</button>
 				<div class="panel">
+					<p>Lorem ipsum...</p>
 				</div>
 				<button class="accordion">주행거리</button>
 				<div class="panel">
+					<p>Lorem ipsum...</p>
 				</div>
 				<button class="accordion">색상</button>
 				<div class="panel">
+					<p>Lorem ipsum...</p>
+				</div>
+				<button class="accordion">연료</button>
+				<div class="panel">
+					<select id="fuel">
+						<option value="">선택</option>
+						<option value="0101">가솔린</option>
+						<option value="0201">디젤</option>
+						<option value="0301">LPG</option>
+						<option value="0302">LPG(일반인)</option>
+						<option value="0401">가솔린+LPG</option>
+						<option value="0501">가솔린+전기</option>
+						<option value="0502">디젤+전기</option>
+						<option value="0503">LPG+전기월</option>
+						<option value="0601">전기</option>
+						<option value="0402">가솔린+CNG</option>
+						<option value="0701">LNG</option>
+						<option value="9901">기타</option>
+	                </select>
 				</div>
 				
 			</div>
@@ -576,56 +574,27 @@ for (i = 0; i < acc.length; i++) {
 							</tr>
 						</tbody>
 					</table>
-					<div class="select_option">
-						<a href="javascript:zzim_ad('mycar');">선택찜</a> <a
-							href="javascript:selectcar_ad('mycar');">차량비교</a>
-					</div>
+				<div class="select_option">
+					<a href="javascript:zzim_ad('mycar');">&#9745;선택찜</a> <a
+						href="javascript:selectcar_ad('mycar');">&#9745;차량비교</a>
 				</div>
-				<div class="con2" style="display: none;">
-					<ul class="mycarlist_album">
-					</ul>
 				</div>
 
 				<!--페이징처리-->
 
-
-
 				<div class="pageMove">
-					<ul class="pageNumber">
-
-						<li class="first"><a
-							href="/mycar/mycar_list.php?gubun=K&page=1"><span
-								class="current">1</span></a></li>
-						<li class=""><a href="/mycar/mycar_list.php?gubun=K&page=2"><span
-								class="link_page">2</span></a></li>
-						<li class=""><a href="/mycar/mycar_list.php?gubun=K&page=3"><span
-								class="link_page">3</span></a></li>
-						<li class=""><a href="/mycar/mycar_list.php?gubun=K&page=4"><span
-								class="link_page">4</span></a></li>
-						<li class=""><a href="/mycar/mycar_list.php?gubun=K&page=5"><span
-								class="link_page">5</span></a></li>
-						<li class=""><a href="/mycar/mycar_list.php?gubun=K&page=6"><span
-								class="link_page">6</span></a></li>
-						<li class=""><a href="/mycar/mycar_list.php?gubun=K&page=7"><span
-								class="link_page">7</span></a></li>
-						<li class=""><a href="/mycar/mycar_list.php?gubun=K&page=8"><span
-								class="link_page">8</span></a></li>
-						<li class=""><a href="/mycar/mycar_list.php?gubun=K&page=9"><span
-								class="link_page">9</span></a></li>
-						<li class=""><a href="/mycar/mycar_list.php?gubun=K&page=10"><span
-								class="link_page">10</span></a></li>
-						<li class="btn_next"><a
-							href="/mycar/mycar_list.php?gubun=K&page=11"><img
-								src="http://image.bobaedream.co.kr/renew/images/common/btn_next3_00.jpg"
-								alt="다음" title="다음" class="next" /></a></li>
-						<li class="btn_next"><a
-							href="/mycar/mycar_list.php?gubun=K&page=444"><img
-								src="http://image.bobaedream.co.kr/renew/images/common/btn_next4.jpg"
-								alt="다음" title="다음" class="next" /></a></li>
+					<ul class="pagination">
+						<li><a href="#">&laquo;</a></li>
+						<li><a href="#">1</a></li>
+						<li><a class="active" href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#">6</a></li>
+						<li><a href="#">&raquo;</a></li>
 					</ul>
-					<div class="gototop" title="맨위로버튼" onclick="location.href='#';"></div>
-
-
+				</div>
+				<div class="gototop" title="맨위로버튼" onclick="location.href='#';">맨위로&#9652;</div>
 				</div>
 				<!--//페이징처리-->
 
