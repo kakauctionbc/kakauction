@@ -45,8 +45,13 @@ public class CarController {
 	private MemberService memberService;
 	
 	@RequestMapping(value = "/register.do", method = RequestMethod.GET)
-	public String carRegister_get(){
-		logger.info("차량 등록 페이지 보여주기");
+	public String carRegister_get(HttpSession session, Model model){
+		String memberId = (String) session.getAttribute("memberId");
+		logger.info("차량 등록 페이지 보여주기, 파라미터 memberId = {}", memberId);
+		
+		MemberVO memVo = memberService.selectMemberByUserid(memberId);
+		
+		model.addAttribute("memVo", memVo);
 		
 		return "car/register";
 	}

@@ -1,25 +1,77 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>차량등록</title>
-
+<%@ include file="../design/inc/top.jsp" %>
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js' />"></script>
 <script type="text/javascript">
 	
 	$(function(){
 		$("#carReg").click(function(event){
 			var bool = false;
-			$("input[type='file']").each(function(){
+			/* $("input[type='file']").each(function(){
 				if(!$(this).val()){
 					alert("사진은 20장 모두 등록하셔야 합니다");
 					bool = true;
 					return false;
 				}
-			});
+			}); */
+			
+			
+			if($("#carCompany").val().length<1){
+				alert("공고기관을 입력하세요");
+				$("#carCompany").focus();
+				bool = true;
+			}else if($("#carNum").val().length<1){
+				alert("차량 번호를 입력하세요");
+				$("#carNum").focus();
+				bool = true;
+			}else if($("#carModel").val().length<1){
+				alert("차량명을 입력하세요");
+				$("#carModel").focus();
+				bool = true;
+			}else if($("#carBirth1").val()==''){
+				alert("연식 년도를 선택하세요");
+				$("#carBirth1").focus();
+				bool = true;
+			}else if($("#carBirth2").val()==''){
+				alert("연식 월을 입력하세요");
+				$("#carBirth2").focus();
+				bool = true;
+			}else if($("#carSize").val()==''){
+				alert("차종을 선택하세요");
+				$("#carSize").focus();
+				bool = true;
+			}else if($("#carAm").val()==''){
+				alert("변속기를 선택하세요");
+				$("#carAm").focus();
+				bool = true;
+			}else if($("#carGas").val().length<1){
+				alert("연료를 선택하세요");
+				$("#carGas").focus();
+				bool = true;
+			}else if($("#carCc").val().length<1){
+				alert("배기량을 입력하세요");
+				$("#carCc").focus();
+				bool = true;
+			}else if($("#carDist").val().length<1){
+				alert("주행거리를 입력하세요");
+				$("#carDist").focus();
+				bool = true;
+			}else if($("#carColor").val().length<1){
+				alert("차량색상을 선택하세요");
+				$("#carColor").focus();
+				bool = true;
+			}else if($("#carPrice").val().length<1){
+				alert("초기구입가를 입력하세요");
+				$("#carPrice").focus();
+				bool = true;
+			}else if($("#carLoc").val().length<1){
+				alert("차량 현재 위치를 입력하세요");
+				$("#carLoc").focus();
+				bool = true;
+			}else if($("#sellerAgree2:checked").val()=='2'){
+				alert("차량 판매 약관에 동의하세요")
+				bool=true;
+			}
 
 			if(!bool){
 				$("#carBirth").val($("#carBirth1").val()+"년 "+$("#carBirth2").val()+"월");
@@ -68,8 +120,6 @@
 		border-radius: 40px; 
 	}*/
 </style>
-</head>
-<body>
 <form id="registerCar" name="registerCar" method="post" enctype="multipart/form-data" action="<c:url value='/car/register.do'/>">
 	<div id="Content">
 		<h3>국산차 등록</h3>
@@ -89,17 +139,17 @@
 				<tr>
 					<th scope="col">이름</th>
 					<td>
-						<strong>강병천</strong>
+						<strong>${memVo.memberName }</strong>
 					</td>
 					<th scope="col">아이디</th>
 					<td>
-						<input type="text" name="memberId" id="memberId" value="admin" readonly>
+						<input type="text" name="memberId" id="memberId" value="${memVo.memberId }" readonly>
 					</td>
 				</tr>
 				<tr>
 					<th scope="col">주소</th>
 					<td colspan="3">
-					서울 광진구 광장동 극동아파트	
+					${memVo.memberAddr }
 					</td>
 				</tr>
 				<tr>
@@ -109,17 +159,13 @@
 				<tr>
 					<th scope="col"><label>이메일</label></th>
 					<td colspan="3">
-						starstar16@naver.com
+						${memVo.memberEmail }
 					</td>
 				</tr>
 				<tr>
 					<th scope="col"><label>휴대전화</label></th>
 					<td colspan="3">
-						010
-						<span>-</span>
-						7453
-						<span>-</span>
-						1990
+						${memVo.memberHp }
                     </td>
 				</tr>
 				</tbody>
@@ -168,9 +214,10 @@
 					월
 					<input type="hidden" name="carBirth" id="carBirth">
 			  	</td>
-				<th scope="col"><label>연식</label><span>(최초등록일)</span></th>
+				<th scope="col"><label>차종</label></th>
 				<td>
 					<select name="carSize" id="carSize" style="width:89px;" title="년선택">
+						<option value="">선택하세요</option>
 						<option value="경차">경차</option>
 						<option value="소형">소형</option>
 						<option value="준중">준중</option>
@@ -191,13 +238,15 @@
 				<th scope="col"><label>변속기</label></th>
 				<td>
 					<select name="carAm" id="carAm" style="width:89px;" title="변속기선택">
-						<option value="자동" selected="">자동</option>
+						<option value="" selected>선택하세요</option>
+						<option value="자동">자동</option>
 						<option value="수동">수동</option>
 					</select>
 			  </td>
 				<th scope="col"><label>연료</label></th>
 				<td>
          			<select name="carGas" style="width:100px;" id="carGas" title="연료선택">
+						<option value="">선택하세요</option>
 						<option value="가솔린">가솔린</option>
 						<option value="디젤">디젤</option>
 						<option value="LPG">LPG</option>
@@ -227,7 +276,7 @@
 				<th scope="col"><label>색상</label></th>
 				<td>
 					<select name="carColor" id="carColor" style="width:89px;" title="색상선택">
-							<option value="">선택</option>
+							<option value="">선택하세요</option>
 							<option value="검정색">검정색</option><option value="검정투톤">검정투톤</option><option value="은색">은색</option><option value="은색투톤">은색투톤</option><option value="흰색">흰색</option><option value="흰색투톤">흰색투톤</option><option value="진주색">진주색</option><option value="진주투톤">진주투톤</option><option value="갈색">갈색</option><option value="금색">금색</option><option value="남색">남색</option><option value="노란색">노란색</option><option value="녹색">녹색</option><option value="베이지색">베이지색</option><option value="보라색">보라색</option><option value="분홍색">분홍색</option><option value="빨간색">빨간색</option><option value="연금색">연금색</option><option value="연두색">연두색</option><option value="은하늘색">은하늘색</option><option value="자주색">자주색</option><option value="주황색">주황색</option><option value="청색">청색</option><option value="진청색">진청색</option><option value="청옥색">청옥색</option><option value="파란색">파란색</option><option value="하늘색">하늘색</option><option value="회색">회색</option><option value="진회색">진회색</option><option value="기타색상">기타색상</option>
 					</select>
 				</td>
@@ -235,7 +284,7 @@
 					<label>사고여부</label>
 				</th>
 				<td>
-					<input name="carAcci" type="radio" id="noAcci" value="N">
+					<input name="carAcci" type="radio" id="noAcci" value="N" checked>
 					<label for="noAcci">무사고</label>
 						
 					<input name="carAcci" type="radio" id="acci" value="Y">
@@ -571,9 +620,9 @@
 						 </p>
 					</div>
 					<div class="bx">
-						<input type="radio" id="sellerAgree1" name="sellerAgree" checked="">
+						<input type="radio" id="sellerAgree1" name="sellerAgree" checked="" value="1">
 						<label for="sellerAgree1" class="s1">위 내용에 동의합니다.</label>
-						<input type="radio" id="sellerAgree2" name="sellerAgree">
+						<input type="radio" id="sellerAgree2" name="sellerAgree" value="2">
 						<label for="sellerAgree2" class="s2">위 내용에 동의하지 않습니다. </label>
 					</div>
 				</fieldset>
@@ -585,4 +634,4 @@
 		</div>            
 	</div>
 </body>
-</html>
+<%@ include file="../design/inc/bottom.jsp" %>

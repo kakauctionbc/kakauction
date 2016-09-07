@@ -185,9 +185,9 @@
 								src="${pageContext.request.contextPath}/img/check.png"
 								alt="" />성별
 						</label></th>
-						<td><input type=radio name=memberGender id=memberGender
-							value=M>남자 <input type=radio name=memberGender
-							id=memberGender value=F>여자</td>
+						<td><input type="radio" name="memberGender" id="memberGender"
+							value="M"><label for="memberGender">남자</label> <input type="radio" name="memberGender"
+							id="memberGender1" value="F"><label for="memberGender1">여자</label></td>
 					</tr>
 					<tr>
 						<th><label for="email1"> <img
