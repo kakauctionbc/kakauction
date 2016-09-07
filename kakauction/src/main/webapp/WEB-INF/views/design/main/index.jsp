@@ -45,14 +45,14 @@ $(function() {
 </script>
 	<div id="mainicondiv">
 		<ul>
-			<li id="iconone"><a href=""><img
-					src="${pageContext.request.contextPath }/img/sellNow.png"></a></li>
-			<li id="icontwo"><a href=""><img
+			<%-- <li id="iconone"><a href=""><img
+					src="${pageContext.request.contextPath }/img/sellNow.png"></a></li> --%>
+			<li id="icontwo"><a href="<c:url value='/car/register.do'/>"><img
 					src="${pageContext.request.contextPath }/img/enterCar.png"></a></li>
 			<li id="iconthree"><a href=""><img
 					src="${pageContext.request.contextPath }/img/buyNow.png"></a></li>
-			<li id="iconfour"><a href=""><img
-					src="${pageContext.request.contextPath }/img/joinAuction1.png"></a></li>
+			<%-- <li id="iconfour"><a href=""><img
+					src="${pageContext.request.contextPath }/img/joinAuction1.png"></a></li> --%>
 			<li id="iconfive"><a href=""><img
 					src="${pageContext.request.contextPath }/img/joinAuction2.png"></a></li>
 		</ul>

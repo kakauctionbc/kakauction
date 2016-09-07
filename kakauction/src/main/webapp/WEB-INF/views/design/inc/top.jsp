@@ -33,7 +33,7 @@ $(function(){
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>      
     <![endif]-->
 </head>
-<body style="overflow-x:hidden; overflow-y:auto;">
+<body style="overflow-x:hidden; overflow:visible;">
 	<div id="wrap">
 	<header>
 	<!-- header -->
@@ -43,14 +43,14 @@ $(function(){
 					<c:if test="${empty sessionScope.memberId }">
 						<li><a href="<c:url value='/board/list.do'/>">고객센터</a></li>					
 						<li>|</li>
-						<li><a href="<c:url value='/design/agreement.do'/>">회원가입</a></li>
+						<li><a href="<c:url value='/member/agreement.do'/>">회원가입</a></li>
 						<li>|</li>	            
-						<li><a href="<c:url value='/design/login.do'/>">로그인</a></li>
+						<li><a href="<c:url value='/login/login.do'/>">로그인</a></li>
 					</c:if>
 					<!-- 로그인된 경우 -->
 					<c:if test="${!empty sessionScope.memberId }">
-						<li><a href="<c:url value='/design/memberOut.do'/>">회원탈퇴</a></li>	            
-						<li><a href="<c:url value='/design/pwdCheck.do'/>">회원정보수정</a></li>	            
+						<li><a href="<c:url value='/member/memberOut.do'/>">회원탈퇴</a></li>	            
+						<li><a href="<c:url value='/member/pwdCheck.do'/>">회원정보수정</a></li>	            
 						<li><a href="<c:url value='/login/logout.do'/>">로그아웃</a></li>
 						<li>
 							<span style="font-size:1em; color:blue;">
@@ -88,24 +88,22 @@ $(function(){
 		<div id="headmenu-content">
 			<div id="content-member">
 					<ul>
-					<li><a href="#">회원가입</a></li>
-					<li><a href="#">회원정보수정</a></li>
+					<li><a href="<c:url value='/member/agreement.do'/>">회원가입</a></li>
+					<li><a href="<c:url value='/member/pwdCheck.do'/>">회원정보수정</a></li>
 					<li><a href="#">회사소개</a></li>
 					<li><a href="#">찾아오시는 길</a></li>
 				</ul>
 			</div>
 			<div id="content-sell">
 				<ul>
-					<li><a href="#">바로팔기</a></li>
-					<li><a href="#">경매신청</a></li>
+					<li><a href="<c:url value='/car/register.do'/>">경매신청</a></li>
 				</ul>
 			</div>
 			<div id="content-buy">
 				<ul>
-					<li><a href="#">바로사기</a></li>
-					<li><a href="#">일정안내</a></li>
+					<li><a href="<c:url value='/auction/list.do'/>">공매리스트</a></li>
 					<li><a href="#">경매리스트</a></li>
-					<li><a href="#">공매리스트</a></li>
+					<li><a href="#">일정안내</a></li>
 				</ul>
 			</div>
 			<div id="content-myinfo">

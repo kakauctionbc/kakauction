@@ -5,23 +5,26 @@
 	<div>
     <table class="cartListTbl box2" 
 	summary="장바구니 목록에 관한 표로써, 상품명,가격, 수량, 금액 등의 정보를 제공합니다." style="text-align: center;">
-	<caption>장바구니 목록</caption>
-	<colgroup>
-		<col width="25%" />
-		<col width="25%" />
-		<col width="20%" />
-		<col width="20%" />		
-	</colgroup>
-	<thead>
-		<tr>
-			<th scope="col">사진</th>
-			<th scope="col">차종</th>
-			<th scope="col">연식</th>
-			<th scope="col">주행거리</th>			
-			<th scope="col">초기 매매가</th>			
-		</tr>
-	</thead>
-	<tbody>
+		<caption>장바구니 목록</caption>
+		<colgroup>
+			<col width="20%" />
+			<col width="20%" />
+			<col width="20%" />
+			<col width="10%" />		
+			<col width="10%" />		
+			<col width="20%" />		
+		</colgroup>
+		<thead>
+			<tr>
+				<th scope="col">사진</th>
+				<th scope="col">차종</th>
+				<th scope="col">연식</th>
+				<th scope="col">주행거리</th>			
+				<th scope="col">초기 매매가</th>			
+				<th scope="col">등록일</th>			
+			</tr>
+		</thead>
+		<tbody>
 			<c:if test="${empty carList }">
 				<tr>
 					<td colspan="5" style="text-align: center;">등록하신 차량이 없습니다</td>
@@ -33,10 +36,13 @@
 						<td class="align_left">
 							<img alt="첫번째 차량 이미지" src="<c:url value='/picture_upload/${car["PICTURE_1"] }'/>" align="absmiddle" style="width: 80px; height: 80px;">
 						</td>
-						<td class="align_right">${car["CAR_MODEL"] }</td>
+						<td class="align_right"><a href="<c:url value='/car/detail.do?carNum=${car["CAR_NUM"] }'/>">
+							<p>${car["CAR_MODEL"] }</p><p>${car["CAR_NUM"] }</p></a></td>
 						<td>${car['CAR_BIRTH']}</td>
 						<td class="align_right">${car['CAR_DIST']} km</td>
-						<td><fmt:formatNumber value="${car['CAR_PRICE'] }" pattern="#,###"/>원</td>
+						<td><fmt:formatNumber value="${car['CAR_PRICE'] }" pattern="#,###"/>만원</td>
+						<td><p><fmt:formatDate value="${car['CAR_REGDATE'] }" pattern="yyyy년MM월dd일"/></p>
+						<p><fmt:formatDate value="${car['CAR_REGDATE'] }" pattern="HH시 mm분"/></p></td>
 					</tr>
 				</c:forEach>
 			</c:if>

@@ -45,8 +45,13 @@ public class CarController {
 	private MemberService memberService;
 	
 	@RequestMapping(value = "/register.do", method = RequestMethod.GET)
-	public String carRegister_get(){
-		logger.info("차량 등록 페이지 보여주기");
+	public String carRegister_get(HttpSession session, Model model){
+		String memberId = (String) session.getAttribute("memberId");
+		logger.info("차량 등록 페이지 보여주기, 파라미터 memberId = {}", memberId);
+		
+		MemberVO memVo = memberService.selectMemberByUserid(memberId);
+		
+		model.addAttribute("memVo", memVo);
 		
 		return "car/register";
 	}
@@ -169,18 +174,31 @@ public class CarController {
 		OpVO opVo = opService.opDetail(carNum);
 		PictureVO pictureVo = pictureService.pictureDetail(carNum);
 		MemberVO memberVo = memberService.selectMemberByUserid(carVo.getMemberId());
+		String[] opIn = null;
+		String[] opOut = null;
+		String[] opCon = null;
+		String[] opSafe = null;
+		String[] opAa = null;
+		String[] opTune = null;
 		
-		String[] opIn = opVo.getOpIn().split(",");
-		String[] opOut = opVo.getOpOut().split(",");
-		String[] opCon = opVo.getOpCon().split(",");
-		String[] opSafe = opVo.getOpSafe().split(",");
-		String[] opAa = opVo.getOpAa().split(",");
-		String[] opTune = opVo.getOpTune().split(",");
-		
-		System.out.println("carVo = "+ carVo+"\n");
-		System.out.println("opVo = "+ opVo+"\n");
-		System.out.println("pictureVo = "+ pictureVo+"\n");
-		System.out.println("memberVo = "+memberVo);
+		if(opVo.getOpIn()!=null && !opVo.getOpIn().isEmpty()){
+			opIn = opVo.getOpIn().split(",");
+		}
+		if(opVo.getOpOut()!=null && !opVo.getOpOut().isEmpty()){
+			opOut = opVo.getOpOut().split(",");
+		}
+		if(opVo.getOpCon()!=null && !opVo.getOpCon().isEmpty()){
+			opCon = opVo.getOpCon().split(",");
+		}
+		if(opVo.getOpSafe()!=null && !opVo.getOpSafe().isEmpty()){
+			opSafe = opVo.getOpSafe().split(",");
+		}
+		if(opVo.getOpAa()!=null && !opVo.getOpAa().isEmpty()){
+			opAa = opVo.getOpAa().split(",");
+		}
+		if(opVo.getOpTune()!=null && !opVo.getOpTune().isEmpty()){
+			opTune = opVo.getOpTune().split(",");
+		}
 		
 		model.addAttribute("carVo", carVo);
 		model.addAttribute("opVo", opVo);
