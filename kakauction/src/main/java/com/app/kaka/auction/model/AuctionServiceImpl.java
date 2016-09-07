@@ -29,4 +29,15 @@ public class AuctionServiceImpl implements AuctionService{
 		return auctionDao.auctionCar(carNum);
 	}
 
+	@Override
+	public int insertAuction(AuctionVO vo) {
+		return auctionDao.insertAuction(vo);
+	}
+
+	@Override
+	public int updateAuctionYn(AuctionVO vo) {
+		return auctionDao.updateAuctionYn(vo);
+	}
+
+	
 }

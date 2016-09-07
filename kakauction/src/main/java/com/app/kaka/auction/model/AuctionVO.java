@@ -3,7 +3,10 @@ package com.app.kaka.auction.model;
 import java.sql.Timestamp;
 
 public class AuctionVO {
-	private String auctionNo;
+	
+	private int auctionNoYear;
+	private int auctionNoCar;
+	private int auctionNo;
 	private String carNum;
 	private String sellerMemberId;
 	private String buyerMemberId;
@@ -14,10 +17,22 @@ public class AuctionVO {
 	private Timestamp auctionFinish;
 	private Timestamp auctionOpentime;/** 개찰일시 */
 	
-	public String getAuctionNo() {
+	public int getAuctionNo() {
 		return auctionNo;
 	}
-	public void setAuctionNo(String auctionNo) {
+	public int getAuctionNoYear() {
+		return auctionNoYear;
+	}
+	public void setAuctionNoYear(int auctionNoYear) {
+		this.auctionNoYear = auctionNoYear;
+	}
+	public int getAuctionNoCar() {
+		return auctionNoCar;
+	}
+	public void setAuctionNoCar(int auctionNoCar) {
+		this.auctionNoCar = auctionNoCar;
+	}
+	public void setAuctionNo(int auctionNo) {
 		this.auctionNo = auctionNo;
 	}
 	public String getCarNum() {
@@ -77,9 +92,10 @@ public class AuctionVO {
 	
 	@Override
 	public String toString() {
-		return "AuctionVO [auctionNo=" + auctionNo + ", carNum=" + carNum + ", sellerMemberId=" + sellerMemberId
-				+ ", buyerMemberId=" + buyerMemberId + ", auctionPromp=" + auctionPromp + ", auctionFirstprice="
-				+ auctionFirstprice + ", auctionRegdate=" + auctionRegdate + ", auctionState=" + auctionState
-				+ ", auctionFinish=" + auctionFinish + ", auctionOpentime=" + auctionOpentime + "]";
+		return "AuctionVO [auctionNoYear=" + auctionNoYear + ", auctionNoCar=" + auctionNoCar + ", auctionNo="
+				+ auctionNo + ", carNum=" + carNum + ", sellerMemberId=" + sellerMemberId + ", buyerMemberId="
+				+ buyerMemberId + ", auctionPromp=" + auctionPromp + ", auctionFirstprice=" + auctionFirstprice
+				+ ", auctionRegdate=" + auctionRegdate + ", auctionState=" + auctionState + ", auctionFinish="
+				+ auctionFinish + ", auctionOpentime=" + auctionOpentime + "]";
 	}
 }

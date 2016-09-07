@@ -24,6 +24,12 @@
 					success : function(vo) {
 						alert(vo.carNum);
 						$("#carPic").html("");
+						$("#carNum").attr("value",vo.carNum);
+						$("#carSize").attr("value",vo.carSize);
+						$("#sellerMemberId").attr("value",vo.memberId);
+						$("#auctionPromp").attr("value",vo.carPrice);
+						$("#carBirth").attr("value",vo.carBirth);
+						$("#voCarModel").attr("value",vo.carModel);
  						var img = [$("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture1+"'/>"),
 						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture2+"'/>"),
 						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture3+"'/>"),
@@ -45,7 +51,7 @@
 						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture19+"'/>"),
 						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture20+"'/>")];
 						$("#carPic").append(img);
-						$(".pic").css("width", "190px").css("height", "100px");
+						$(".pic").css("width", "190px").css("height", "100px").css("border","1px solid red");
 						
 						var carNum = vo.carNum;
 						var addr = vo.memberAddr+ vo.memberAddr2;
@@ -92,6 +98,7 @@
 					}
 				});
 			}else if (carNum == -1) {
+				$("#carPic").html("");
 				$("#voCarNum").html("");
 				$("#voMAddr").html("");
 				$("#voCarLoc").html("");
@@ -107,6 +114,8 @@
 				$("#carVoCarAm").html("");
 				$("#carVoCarDist").html("");
 				$("#carVoCarCc").html("");
+				$("#selectAuctionHis").html("");
+				$("#HisAucInfo").html("");
 			}
 		});
 		
@@ -131,10 +140,17 @@
 								<option value="${carVo.carNum}">${carVo.carNum}</option>
 							</c:forEach>
 						</c:if>
-				</select> 
+				</select>
+				<!-- <input type="hidden" id="carNum" name="carNum"> -->
+				<input type="hidden" id="sellerMemberId" name="sellerMemberId">
+				<input type="hidden" id="auctionPromp" name="auctionPromp">
+				<input type="hidden" id="carBirth" name="carBirth">
+				<input type="hidden" id="carSize" name="carSize">
+				<input type="text" id="voCarModel" readonly="readonly" >
 				<input type="submit" id="btAuctionSubmit" value="경매 등록"> 
 				<input type="button" id="btAuctionDeny" value="경매 거부"> 
-				<input type="button" id="btAuctionDefer" value="경매 보류"></td>
+				<input type="button" id="btAuctionDefer" value="경매 보류">
+				</td>
 			</tr>
 			<tr>
 				<td height='220px;' id="carPic"></td>
@@ -142,13 +158,6 @@
 		</table>
 	</form>
 	<div id="voName"></div>
-	<div>
-		<%-- <%@ include file="CarbasicInfo.jsp" %>
-		<%@ include file="CarDetailInfo.jsp" %>
-		<%@ include file="CarAuctionList.jsp" %>
-		<%@ include file="AuctionInfo.jsp" %>
-		<%@ include file="AuctionRef.jsp" %> --%>
-	</div>
 	<table width="960" border="1px solid silver;" cellspacing="0"
 		cellpadding="0" align="center">
 		<thead>차량상세정보

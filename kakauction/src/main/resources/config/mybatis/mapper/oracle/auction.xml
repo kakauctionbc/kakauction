@@ -11,5 +11,18 @@
 	<select id="selectAuctionCar" parameterType="String" resultType="AuctionCarVO">
 		select * from auction_car where car_num=#{carNum}
 	</select>
+	<insert id="insertAuction" parameterType="AuctionVO">
+		<selectKey keyProperty="auctionNo" resultType="int" order="BEFORE">
+			select auction_seq.nextval from dual
+		</selectKey>
+		insert into auction(AUCTION_NO_YEAR,AUCTION_NO_CAR,AUCTION_NO,
+		CAR_NUM,SELLER_MEMBER_ID,AUCTION_PROMP,AUCTION_FIRSTPRICE,AUCTION_STATE)
+		values(to_char(sysdate, 'yyyy'),#{auctionNoCar},#{auctionNo},
+		#{carNum},#{sellerMemberId},#{auctionPromp},#{auctionFirstprice},'START')
+	</insert>
+	
+	<update id="updateAuctionYn" parameterType="AuctionVO">
+		update car set car_auction_yn='Y' where car_num=#{carNum} and member_id=#{sellerMemberId}
+	</update>
 	
 </mapper>

@@ -22,4 +22,16 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 		return getSqlSession().selectOne(namespace+".selectAuctionCar", carNum);
 	}
 
+	@Override
+	public int insertAuction(AuctionVO vo) {
+		return getSqlSession().insert(namespace+".insertAuction",vo);
+	}
+
+	@Override
+	public int updateAuctionYn(AuctionVO vo) {
+		return getSqlSession().update(namespace+".updateAuctionYn", vo);
+	}
+	
+	
+
 }

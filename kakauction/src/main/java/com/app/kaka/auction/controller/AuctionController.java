@@ -1,5 +1,7 @@
 package com.app.kaka.auction.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -34,9 +36,60 @@ public class AuctionController {
 		return "auction/write";
 	}
 	@RequestMapping(value="/write.do", method=RequestMethod.POST)
-	public String write_post(@ModelAttribute AuctionVO vo, Model model){
-		logger.info("경매 등록 처리, 파라미터");
-		return "auction/write";
+	public String write_post(@ModelAttribute AuctionVO auctionVo, @RequestParam String carBirth, @RequestParam String carSize , Model model){
+		logger.info("경매 등록 처리, 파라미터 auctionVo={} ", auctionVo);
+		String carYear = carBirth.substring(0,4);
+		int cY = Integer.parseInt(carYear);
+		if(carSize.equals(auctionService.CAR_SIZE_LIGHT)){
+			auctionVo.setAuctionNoCar(100+cY-2000);
+		}else if(carSize.equals()){
+			auctionVo.setAuctionNoCar(200+cY-2000);
+		}else if(carSize.equals()){
+			auctionVo.setAuctionNoCar(300+cY-2000);
+		}else if(carSize.equals()){
+			auctionVo.setAuctionNoCar(400+cY-2000);
+		}else if(carSize.equals()){
+			auctionVo.setAuctionNoCar(500+cY-2000);
+		}else if(carSize.equals()){
+			auctionVo.setAuctionNoCar(600+cY-2000);
+		}else if(carSize.equals()){
+			auctionVo.setAuctionNoCar(700+cY-2000);
+		}else if(carSize.equals()){
+			auctionVo.setAuctionNoCar(800+cY-2000);
+		}else if(carSize.equals()){
+			auctionVo.setAuctionNoCar(900+cY-2000);
+		}else if(carSize.equals()){
+			auctionVo.setAuctionNoCar(1100+cY-2000);
+		}else if(carSize.equals()){
+			auctionVo.setAuctionNoCar(1200+cY-2000);
+		}else if(carSize.equals()){
+			auctionVo.setAuctionNoCar(1300+cY-2000);
+		}
+		Date from = new Date();
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy");
+		String nowYear = transFormat.format(from);
+		int nY = Integer.parseInt(nowYear);
+		int minus = (nY-cY);
+		int promp = auctionVo.getAuctionPromp();
+		double min=(double)(promp*(minus*0.01));
+		int first = (int)((double)(promp-min));
+		auctionVo.setAuctionFirstprice(first);
+		logger.info("경매초기 입찰가 설정된 auctionVo={} ", auctionVo);
+		
+		String msg="", url="";
+		int cnt = auctionService.insertAuction(auctionVo);
+		if(cnt>0){
+			msg="경매가 등록되었습니다";
+			url="/auction/list.do";
+			auctionService.updateAuctionYn(auctionVo);
+		}else{
+			msg="경매 등록에 실패하였습니다";
+			url="/auction/write.do";
+			
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		return "common/message";
 	}
 	
 	@RequestMapping("/selectCar.do")
@@ -47,5 +100,12 @@ public class AuctionController {
 		logger.info("carNum 넘어왔닝 vo={}",vo);
 		
 		return vo;
+	}
+	
+	@RequestMapping("/list.do")
+	public String listAuction(){
+		logger.info("경매 목록");
+		
+		return "auction/list";
 	}
 }
