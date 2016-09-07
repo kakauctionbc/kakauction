@@ -33,17 +33,16 @@ $( document ).ready( function() {
   });
 });	
 
-
 $(function(){
 	var acc = $('.accordion');
 	var panel = $('.panel');
     for (var i = 0; i < acc.length; i++) {
-    $(acc[i]).click(function(){
-  		panel.slideDown(500);
-  		$(acc[i]).addClass('active');
-  	}, function(){
-		panel.slideUp('fast');
-	});
+    	$(acc[i]).click(function(){
+  			panel.slideDown(500);
+  		}, function(){
+			panel.slideUp('fast');
+		});
+    }
 });
 </script>
 
