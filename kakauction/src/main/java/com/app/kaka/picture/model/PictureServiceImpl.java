@@ -128,4 +128,9 @@ public class PictureServiceImpl implements PictureService{
 	public PictureVO pictureDetail(String carNum) {
 		return pictureDao.pictureDetail(carNum);
 	}
+
+	@Override
+	public List<PictureVO> selectByMemberId(String memberId) {
+		return pictureDao.selectByMemberId(memberId);
+	}
 }

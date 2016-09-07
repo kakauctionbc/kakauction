@@ -16,4 +16,8 @@
 		select * from picture
 		where car_Num=#{carNum}
 	</select>
+	
+	<select id="selectByMemberId" parameterType="string" resultType="pictureVo">
+		select * from picture where member_id=#{memberId}
+	</select>
 </mapper>

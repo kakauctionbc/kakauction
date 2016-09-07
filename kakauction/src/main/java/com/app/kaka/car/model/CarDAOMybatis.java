@@ -1,5 +1,8 @@
 package com.app.kaka.car.model;
 
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +19,11 @@ public class CarDAOMybatis extends SqlSessionDaoSupport implements CarDAO{
 	@Override
 	public CarVO carDetail(String carNum) {
 		return getSqlSession().selectOne(namespace+".selectByCarNum", carNum);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectCarPictureByMemberId(String memberId) {
+		return getSqlSession().selectList(namespace+".selectCarPictureByMemberId", memberId);
 	}
 
 }

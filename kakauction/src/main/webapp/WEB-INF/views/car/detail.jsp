@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>차량 상세보기</title>
-<script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js' />"></script>
+<%@ include file="../design/inc/top.jsp"%>
 <script type="text/javascript">
 	function Div_carphto_onoff(){
 		var n = document.getElementById("carphto_onoff").value;
@@ -29,7 +23,6 @@
 		width: 80px;
 	}
 </style>
-</head>
 <body>
 	<div class="cont_column03 renew"> 
 	<div class="column_l">
@@ -950,5 +943,5 @@
 	</div>
 	<!--//상세하단안내--> 
 	</div>
-</body>
-</html>
+	</body>
+<%@ include file="../design/inc/bottom.jsp"%>

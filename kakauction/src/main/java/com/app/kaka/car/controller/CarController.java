@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -194,4 +195,37 @@ public class CarController {
 		
 		return "car/detail";
 	}
+	
+	@RequestMapping("/list.do")
+	public String carList(HttpSession session, Model model){
+		String memberId = (String) session.getAttribute("memberId");
+		logger.info("등록한 차량 리스트 출력, 파라미터 memberId = {}", memberId);
+		
+		List<Map<String, Object>> carList = carService.selectCarPictureByMemberId(memberId);
+		MemberVO memVo = memberService.selectMemberByUserid(memberId);
+		
+		model.addAttribute("carList", carList);
+		model.addAttribute("memVo", memVo);
+		
+		return "car/list";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

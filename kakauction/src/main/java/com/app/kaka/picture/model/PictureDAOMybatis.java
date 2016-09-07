@@ -1,5 +1,7 @@
 package com.app.kaka.picture.model;
 
+import java.util.List;
+
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,5 +20,10 @@ public class PictureDAOMybatis extends SqlSessionDaoSupport implements PictureDA
 	@Override
 	public PictureVO pictureDetail(String carNum) {
 		return getSqlSession().selectOne(namespace+".selectByCarNum", carNum);
+	}
+
+	@Override
+	public List<PictureVO> selectByMemberId(String memberId) {
+		return getSqlSession().selectList(namespace+".selectByMemberId", memberId);
 	}
 }

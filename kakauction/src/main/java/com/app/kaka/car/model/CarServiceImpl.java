@@ -1,5 +1,8 @@
 package com.app.kaka.car.model;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,11 @@ public class CarServiceImpl implements CarService{
 	@Override
 	public CarVO carDetail(String carNum) {
 		return carDao.carDetail(carNum);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectCarPictureByMemberId(String memberId) {
+		return carDao.selectCarPictureByMemberId(memberId);
 	}
 
 }
