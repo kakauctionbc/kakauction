@@ -50,5 +50,21 @@ public class AuctionServiceImpl implements AuctionService{
 		return auctionDao.selectAll(vo);
 	}
 
+	@Override
+	public int updateAuction(int auctionNo) {
+		return auctionDao.updateAuction(auctionNo);
+	}
+
+	@Override
+	public CarVO selectByCarNum(String carNum) {
+		return auctionDao.selectByCarNum(carNum);
+	}
+
+	@Override
+	public AuctionCarVO selectAuction(int auctionNo) {
+		return auctionDao.selectAuction(auctionNo);
+	}
+	
+
 	
 }

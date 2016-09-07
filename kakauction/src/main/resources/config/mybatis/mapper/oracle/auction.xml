@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="config.mybatis.mapper.oracle.auction">
+
 	<sql id="searchWhere">
 		<where>
 			<if test="searchKeyword!=null and searchKeyword!=''">
@@ -19,6 +20,7 @@
 	<select id="selectAuctionCar" parameterType="String" resultType="AuctionCarVO">
 		select * from auction_car where car_num=#{carNum}
 	</select>
+	
 	<insert id="insertAuction" parameterType="AuctionVO">
 		<selectKey keyProperty="auctionNo" resultType="int" order="BEFORE">
 			select auction_seq.nextval from dual
@@ -51,8 +53,23 @@
 	</select>
 	
 	<select id="selectTotalCount" resultType="int" parameterType="SearchVO">
-		select * from auction order by auction_no
+		select count(*) from auction order by auction_no
 		<include refid="searchWhere"></include>
+	</select>
+	
+	<select id="updateAuction" parameterType="int">
+		update auction
+		set AUCTION_READ_COUNT=AUCTION_READ_COUNT+1
+		where auction_no = #{auctionNo}
+	</select>
+	
+	<select id="selectByCarNum" parameterType="string" resultType="carVo">
+		select * from car
+		where car_num=#{carNum}
+	</select>
+	
+	<select id="selectAuction" resultType="AuctionCarVO" parameterType="int">
+		select * from auction_car2 where auction_no=#{auctionNo}
 	</select>
 	
 </mapper>

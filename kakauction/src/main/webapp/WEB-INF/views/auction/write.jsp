@@ -46,7 +46,7 @@
 						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture20+"'/>")];
 						$("#carPic").append(img);
 						$("#carPic").css("text-align","center");
-						$(".pic").css("width", "180px").css("height", "100px").css("border","1px solid red").css("margin","2px");
+						$(".pic").css("width", "180px").css("height", "100px").css("border","1px solid silver").css("margin","2px");
 						
 						var carNum = vo.carNum;
 						var addr = vo.memberAddr+ vo.memberAddr2;

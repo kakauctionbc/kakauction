@@ -27,4 +27,7 @@ public interface AuctionService {
 	public int updateAuctionYn(AuctionVO vo);
 	public int selectTotalCount(SearchVO vo);
 	public List<AuctionCarVO> selectAll(SearchVO vo);
+	public int updateAuction(int auctionNo);
+	public CarVO selectByCarNum(String carNum);
+	public AuctionCarVO selectAuction(int auctionNo);
 }

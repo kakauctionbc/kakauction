@@ -4,11 +4,11 @@ import java.sql.Timestamp;
 
 public class AuctionVO {
 	
+	private String carNum;
+	private String sellerMemberId;
 	private int auctionNoYear;
 	private int auctionNoCar;
 	private int auctionNo;
-	private String carNum;
-	private String sellerMemberId;
 	private String buyerMemberId;
 	private int auctionPromp; /**즉구가*/
 	private int auctionFirstprice; /** 초기입찰가 */
@@ -16,7 +16,14 @@ public class AuctionVO {
 	private String auctionState;/** 경매상태 */
 	private Timestamp auctionFinish;
 	private Timestamp auctionOpentime;/** 개찰일시 */
+	private int auctionReadCount;
 	
+	public int getAuctionReadCount() {
+		return auctionReadCount;
+	}
+	public void setAuctionReadCount(int auctionReadCount) {
+		this.auctionReadCount = auctionReadCount;
+	}
 	public int getAuctionNo() {
 		return auctionNo;
 	}
@@ -92,10 +99,10 @@ public class AuctionVO {
 	
 	@Override
 	public String toString() {
-		return "AuctionVO [auctionNoYear=" + auctionNoYear + ", auctionNoCar=" + auctionNoCar + ", auctionNo="
-				+ auctionNo + ", carNum=" + carNum + ", sellerMemberId=" + sellerMemberId + ", buyerMemberId="
-				+ buyerMemberId + ", auctionPromp=" + auctionPromp + ", auctionFirstprice=" + auctionFirstprice
-				+ ", auctionRegdate=" + auctionRegdate + ", auctionState=" + auctionState + ", auctionFinish="
-				+ auctionFinish + ", auctionOpentime=" + auctionOpentime + "]";
+		return "AuctionVO [carNum=" + carNum + ", sellerMemberId=" + sellerMemberId + ", auctionNoYear=" + auctionNoYear
+				+ ", auctionNoCar=" + auctionNoCar + ", auctionNo=" + auctionNo + ", buyerMemberId=" + buyerMemberId
+				+ ", auctionPromp=" + auctionPromp + ", auctionFirstprice=" + auctionFirstprice + ", auctionRegdate="
+				+ auctionRegdate + ", auctionState=" + auctionState + ", auctionFinish=" + auctionFinish
+				+ ", auctionOpentime=" + auctionOpentime + ", auctionReadCount=" + auctionReadCount + "]";
 	}
 }

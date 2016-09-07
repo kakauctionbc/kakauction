@@ -22,6 +22,8 @@ import com.app.kaka.car.model.CarVO;
 import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
+import com.app.kaka.op.model.OpService;
+import com.app.kaka.op.model.OpVO;
 
 @Controller
 @RequestMapping("/auction")
@@ -30,6 +32,9 @@ public class AuctionController {
 	
 	@Autowired
 	private AuctionService auctionService;
+	
+	@Autowired
+	private OpService opService;
 	
 	@RequestMapping(value="/write.do", method=RequestMethod.GET)
 	public String write_get(Model model){
@@ -142,5 +147,54 @@ public class AuctionController {
 		model.addAttribute("pagingInfo", pagingInfo);
 		
 		return "auction/list";
+	}
+	
+	@RequestMapping("/updateCount.do")
+	public String updateCount(@RequestParam int auctionNo, Model model){
+		int cnt = auctionService.updateAuction(auctionNo);
+		logger.info("조회수 증가 성공 실패 cnt ={}",cnt);
+		return "redirect:/auction/detail.do?auctionNo="+auctionNo;
+	}
+	
+	@RequestMapping("/detail.do")
+	public String auctionDetail(@RequestParam int auctionNo, Model model){
+		AuctionCarVO acVo = auctionService.selectAuction(auctionNo);
+		model.addAttribute("acVo", acVo);
+		
+		OpVO opVo = opService.opDetail(acVo.getCarNum());
+		if(opVo.getOpAa()==null || opVo.getOpAa().isEmpty()){
+			opVo.setOpAa("");
+		}
+		if(opVo.getOpCon()==null || opVo.getOpCon().isEmpty()){
+			opVo.setOpCon("");
+		}
+		if(opVo.getOpIn()==null || opVo.getOpIn().isEmpty()){
+			opVo.setOpIn("");
+		}
+		if(opVo.getOpOut()==null || opVo.getOpOut().isEmpty()){
+			opVo.setOpOut("");
+		}
+		if(opVo.getOpSafe()==null || opVo.getOpSafe().isEmpty()){
+			opVo.setOpSafe("");
+		}
+		if(opVo.getOpTune()==null || opVo.getOpTune().isEmpty()){
+			opVo.setOpTune("");
+		}
+		
+		String[] opIn = opVo.getOpIn().split(",");
+		String[] opOut = opVo.getOpOut().split(",");
+		String[] opCon = opVo.getOpCon().split(",");
+		String[] opSafe = opVo.getOpSafe().split(",");
+		String[] opAa = opVo.getOpAa().split(",");
+		String[] opTune = opVo.getOpTune().split(",");
+		
+		model.addAttribute("opVo", opVo);
+		model.addAttribute("opIn", opIn);
+		model.addAttribute("opOut", opOut);
+		model.addAttribute("opCon", opCon);
+		model.addAttribute("opSafe", opSafe);
+		model.addAttribute("opAa", opAa);
+		model.addAttribute("opTune", opTune);
+		return "auction/detail";
 	}
 }

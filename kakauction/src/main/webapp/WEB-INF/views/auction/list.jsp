@@ -21,6 +21,11 @@
 	
 
 </script>
+<style>
+	td, th{
+		border: 2px solid silver;
+	}
+</style>
 <form name="frmPage" method="post" action="<c:url value='/auction/list.do'/>">
 	<input type="hidden" name="currentPage">
 	<input type="hidden" name="searchCondition" value="${param.searchCondition }">
@@ -42,40 +47,36 @@
 		<col style="width:10%;" />
 		<col style="width:7%;" />
 		<col style="width:25%;" />
-		<col style="width:7%;" />
+		<col style="width:10%;" />
 		<col style="width:7%;" />		
-		<col style="width:8%;" />		
-		<col style="width:8%;" />		
+		<col style="width:6%;" />		
+		<col style="width:7%;" />		
 		<col style="width:12%;" />		
 		<col style="width:12%;" />		
 		<col style="width:4%;" />		
 	</colgroup>
 	<thead>
-	  <tr>
-	  	<table>
-	  		<tr>
-	  			<th rowspan="2">사진</th>
-	  			<th rowspan="2">차종</th>
-	  			<th>물건명</th>
-	  			<th>연식</th>
-	  			<th>변속기</th>
-	  			<th>감정평가액</th>
-	  			<th>물건상태</th>
-	  			<th>입찰번호</th>
-	  			<th>입찰시작</th>
-	  			<th rowspan="2">조회수</th>
-	  		</tr>
-	  		<tr>
-	  			<th>소재지</th>
-	  			<th>주행거리</th>
-	  			<th>연료</th>
-	  			<th>입찰시작가</th>
-	  			<th>유찰횟수</th>
-	  			<th>물건번호</th>
-	  			<th>입찰마감</th>
-	  		</tr>
-	  	</table>
-	  </tr>
+		<tr>
+  			<th rowspan="2">사진</th>
+  			<th rowspan="2">차종</th>
+  			<th>물건명</th>
+  			<th>연식</th>
+  			<th>변속기</th>
+  			<th>감정평가액</th>
+  			<th>물건상태</th>
+  			<th>입찰번호</th>
+  			<th>입찰시작</th>
+  			<th rowspan="2">조회</th>
+		</tr>
+	  	<tr>
+  			<th>소재지</th>
+  			<th>주행거리</th>
+  			<th>연료</th>
+  			<th>입찰시작가</th>
+  			<th>유찰횟수</th>
+  			<th>물건번호</th>
+  			<th>입찰마감</th>
+	  	</tr>
 	</thead> 
 	<tbody>  
 	<c:if test="${empty alist}">
@@ -89,7 +90,7 @@
 		<!--게시판 내용 반복문 시작  -->		
 		<c:forEach var="vo" items="${alist }">
 			<tr style="text-align: center">
-				<td>${vo.picture1}</td>
+				<td><img alt="사진" height="56px;" width="90px;" src="<c:url value='/picture_upload/${vo.picture1}'/>"></td>
 				<td>${vo.carSize}</td>
 				<td style="text-align: left;">
 					<a href	="<c:url value='/auction/updateCount.do?auctionNo=${vo.auctionNo}'/>">
@@ -104,7 +105,7 @@
 				</td>
 				<td>
 					${vo.carBirth}<br>
-					${vo.carDist}
+					${vo.carDist}km
 				</td>
 				<td>
 					${vo.carAm}<br>
@@ -119,7 +120,7 @@
 					${vo.carFailSell}
 				</td>
 				<td>
-					${vo.auctionNoYear+"-"+vo.auctionNoCar+"-"vo.auctionNo}
+					${vo.auctionNoYear} - ${vo.auctionNoCar} - ${vo.auctionNo}
 				</td>
 				<td>
 					${vo.auctionRegdate}<br>
