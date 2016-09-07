@@ -14,11 +14,13 @@ public class AuctionCarVO {
 	private String carDist;
 	private String carGas;
 	private String carCc;
+	private String carAm;
 	private String carColor;
 	private String carAcci;
 	private Timestamp carRegdate;
 	private String carAuctionYn;
 	private int carFailSell;
+	
 	private String memberName;
 	private String memberAddr;
 	private String memberAddr2;
@@ -29,9 +31,11 @@ public class AuctionCarVO {
 	private int auctionNoYear;
 	private int auctionNoCar;
 	private int auctionNo;
-	
 	private String auctionState;
-	private String carAm;
+	private Timestamp auctionRegdate;
+	private Timestamp auctionFinish;
+	private int auctionFirstprice;
+	private int auctionReadCount;
 	
 	private String picture1;
 	private String picture2;
@@ -54,6 +58,30 @@ public class AuctionCarVO {
 	private String picture19;
 	private String picture20;
 	
+	public Timestamp getAuctionFinish() {
+		return auctionFinish;
+	}
+	public void setAuctionFinish(Timestamp auctionFinish) {
+		this.auctionFinish = auctionFinish;
+	}
+	public int getAuctionReadCount() {
+		return auctionReadCount;
+	}
+	public void setAuctionReadCount(int auctionReadCount) {
+		this.auctionReadCount = auctionReadCount;
+	}
+	public Timestamp getAuctionRegdate() {
+		return auctionRegdate;
+	}
+	public void setAuctionRegdate(Timestamp auctionRegdate) {
+		this.auctionRegdate = auctionRegdate;
+	}
+	public int getAuctionFirstprice() {
+		return auctionFirstprice;
+	}
+	public void setAuctionFirstprice(int auctionFirstprice) {
+		this.auctionFirstprice = auctionFirstprice;
+	}
 	public String getPicture1() {
 		return picture1;
 	}
@@ -337,15 +365,17 @@ public class AuctionCarVO {
 				+ carLoc + ", carBirth=" + carBirth + ", carModel=" + carModel + ", carSize=" + carSize + ", carDist="
 				+ carDist + ", carGas=" + carGas + ", carCc=" + carCc + ", carColor=" + carColor + ", carAcci="
 				+ carAcci + ", carRegdate=" + carRegdate + ", carAuctionYn=" + carAuctionYn + ", carFailSell="
-				+ carFailSell + ", memberName=" + memberName + ", memberAddr=" + memberAddr + ", memberAddr2="
-				+ memberAddr2 + ", memberHp=" + memberHp + ", memberGrade=" + memberGrade + ", memberId=" + memberId
-				+ ", auctionNoYear=" + auctionNoYear + ", auctionNoCar=" + auctionNoCar + ", auctionNo=" + auctionNo
-				+ ", auctionState=" + auctionState + ", carAm=" + carAm + ", picture1=" + picture1 + ", picture2="
-				+ picture2 + ", picture3=" + picture3 + ", picture4=" + picture4 + ", picture5=" + picture5
-				+ ", picture6=" + picture6 + ", picture7=" + picture7 + ", picture8=" + picture8 + ", picture9="
-				+ picture9 + ", picture10=" + picture10 + ", picture11=" + picture11 + ", picture12=" + picture12
-				+ ", picture13=" + picture13 + ", picture14=" + picture14 + ", picture15=" + picture15 + ", picture16="
-				+ picture16 + ", picture17=" + picture17 + ", picture18=" + picture18 + ", picture19=" + picture19
-				+ ", picture20=" + picture20 + "]";
+				+ carFailSell + ", carAm=" + carAm + ", memberName=" + memberName + ", memberAddr=" + memberAddr
+				+ ", memberAddr2=" + memberAddr2 + ", memberHp=" + memberHp + ", memberGrade=" + memberGrade
+				+ ", memberId=" + memberId + ", auctionNoYear=" + auctionNoYear + ", auctionNoCar=" + auctionNoCar
+				+ ", auctionNo=" + auctionNo + ", auctionState=" + auctionState + ", auctionRegdate=" + auctionRegdate
+				+ ", auctionFinish=" + auctionFinish + ", auctionFirstprice=" + auctionFirstprice
+				+ ", auctionReadCount=" + auctionReadCount + ", picture1=" + picture1 + ", picture2=" + picture2
+				+ ", picture3=" + picture3 + ", picture4=" + picture4 + ", picture5=" + picture5 + ", picture6="
+				+ picture6 + ", picture7=" + picture7 + ", picture8=" + picture8 + ", picture9=" + picture9
+				+ ", picture10=" + picture10 + ", picture11=" + picture11 + ", picture12=" + picture12 + ", picture13="
+				+ picture13 + ", picture14=" + picture14 + ", picture15=" + picture15 + ", picture16=" + picture16
+				+ ", picture17=" + picture17 + ", picture18=" + picture18 + ", picture19=" + picture19 + ", picture20="
+				+ picture20 + "]";
 	}
 }

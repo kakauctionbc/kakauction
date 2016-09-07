@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.kaka.car.model.CarVO;
+import com.app.kaka.common.SearchVO;
 
 @Service
 public class AuctionServiceImpl implements AuctionService{
@@ -37,6 +38,16 @@ public class AuctionServiceImpl implements AuctionService{
 	@Override
 	public int updateAuctionYn(AuctionVO vo) {
 		return auctionDao.updateAuctionYn(vo);
+	}
+
+	@Override
+	public int selectTotalCount(SearchVO vo) {
+		return auctionDao.selectTotalCount(vo);
+	}
+
+	@Override
+	public List<AuctionCarVO> selectAll(SearchVO vo) {
+		return auctionDao.selectAll(vo);
 	}
 
 	

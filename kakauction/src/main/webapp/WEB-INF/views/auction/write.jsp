@@ -1,18 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript"
-	src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
+<%@ include file="../design/inc/top.jsp"%>
+<script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		var carNum = "";
 		$("#carList").change(function() {
-			var carNum = $("#carList option:selected").val();
+			carNum = $("#carList option:selected").val();
 			/* var carNum = $(this).val(); */
 			/* var carNum = $("#carList").val(); */
 			if (carNum != null && carNum != -1) {
@@ -30,28 +24,29 @@
 						$("#auctionPromp").attr("value",vo.carPrice);
 						$("#carBirth").attr("value",vo.carBirth);
 						$("#voCarModel").attr("value",vo.carModel);
- 						var img = [$("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture1+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture2+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture3+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture4+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture5+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture6+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture7+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture8+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture9+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture10+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture11+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture12+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture13+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture14+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture15+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture16+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture17+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture18+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture19+"'/>"),
-						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture20+"'/>")];
+ 						var img = [$("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture1+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture2+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture3+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture4+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture5+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture6+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture7+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture8+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture9+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture10+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture11+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture12+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture13+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture14+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture15+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture16+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture17+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture18+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture19+"'/>"),
+						           $("<img class='pic' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture20+"'/>")];
 						$("#carPic").append(img);
-						$(".pic").css("width", "190px").css("height", "100px").css("border","1px solid red");
+						$("#carPic").css("text-align","center");
+						$(".pic").css("width", "180px").css("height", "100px").css("border","1px solid red").css("margin","2px");
 						
 						var carNum = vo.carNum;
 						var addr = vo.memberAddr+ vo.memberAddr2;
@@ -119,6 +114,17 @@
 			}
 		});
 		
+		$("#btAuctionList").click(function(){
+			location.href="<c:url value='/auction/list.do'/>";
+		});
+		
+		$("#btAuctionDefer").click(function(){
+			location.href="<c:url value='/auction/auctionDefer.do?carNum"+carNum+"'/>";
+		});
+		
+		$("#btAuctionDeny").click(function(){
+			location.href="<c:url value='/auction/auctionDeny.do?carNum"+carNum+"'/>";
+		});
 		
 	});
 </script>
@@ -134,8 +140,8 @@
 						<c:if test="${empty carAlist}">
 							<option>등록된 차량이 없습니다</option>
 						</c:if>
-						<option value="-1">차량을 선택하세요</option>
 						<c:if test="${!empty carAlist}">
+						<option value="-1">차량을 선택하세요</option>
 							<c:forEach var="carVo" items="${carAlist}">
 								<option value="${carVo.carNum}">${carVo.carNum}</option>
 							</c:forEach>
@@ -150,10 +156,11 @@
 				<input type="submit" id="btAuctionSubmit" value="경매 등록"> 
 				<input type="button" id="btAuctionDeny" value="경매 거부"> 
 				<input type="button" id="btAuctionDefer" value="경매 보류">
+				<input type="button" id="btAuctionList" value="경매 목록">
 				</td>
 			</tr>
 			<tr>
-				<td height='220px;' id="carPic"></td>
+				<td height='220px;' width="960px;" id="carPic"></td>
 			</tr>
 		</table>
 	</form>
@@ -312,5 +319,4 @@
 	- 물건의 내용은 온비드, 입찰 집행기관 등에서 반드시 재확인 하시기 바랍니다.
 	* 본 정보와 관련하여 발생하는 모든 문제에 대해 어떠한 책임도 지지 않습니다.</pre>
 	</div>
-</body>
-</html>
+<%@ include file="../design/inc/bottom.jsp"%>

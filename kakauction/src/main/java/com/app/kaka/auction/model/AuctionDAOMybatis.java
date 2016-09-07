@@ -6,6 +6,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.app.kaka.car.model.CarVO;
+import com.app.kaka.common.SearchVO;
 
 @Repository
 public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDAO{
@@ -31,7 +32,16 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 	public int updateAuctionYn(AuctionVO vo) {
 		return getSqlSession().update(namespace+".updateAuctionYn", vo);
 	}
-	
-	
+
+	@Override
+	public int selectTotalCount(SearchVO vo) {
+		return getSqlSession().selectOne(namespace+".selectTotalCount",vo);
+	}
+
+	@Override
+	public List<AuctionCarVO> selectAll(SearchVO vo) {
+		List<AuctionCarVO> alist =getSqlSession().selectList(namespace+".selectAll", vo);
+		return alist;
+	}
 
 }

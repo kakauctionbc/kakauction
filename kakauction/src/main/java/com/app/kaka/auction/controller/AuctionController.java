@@ -19,6 +19,9 @@ import com.app.kaka.auction.model.AuctionCarVO;
 import com.app.kaka.auction.model.AuctionService;
 import com.app.kaka.auction.model.AuctionVO;
 import com.app.kaka.car.model.CarVO;
+import com.app.kaka.common.PaginationInfo;
+import com.app.kaka.common.SearchVO;
+import com.app.kaka.common.Utility;
 
 @Controller
 @RequestMapping("/auction")
@@ -38,33 +41,37 @@ public class AuctionController {
 	@RequestMapping(value="/write.do", method=RequestMethod.POST)
 	public String write_post(@ModelAttribute AuctionVO auctionVo, @RequestParam String carBirth, @RequestParam String carSize , Model model){
 		logger.info("경매 등록 처리, 파라미터 auctionVo={} ", auctionVo);
+		
 		String carYear = carBirth.substring(0,4);
 		int cY = Integer.parseInt(carYear);
 		if(carSize.equals(auctionService.CAR_SIZE_LIGHT)){
 			auctionVo.setAuctionNoCar(100+cY-2000);
-		}else if(carSize.equals()){
+		}else if(carSize.equals(auctionService.CAR_SIZE_SMALL)){
 			auctionVo.setAuctionNoCar(200+cY-2000);
-		}else if(carSize.equals()){
+		}else if(carSize.equals(auctionService.CAR_SIZE_ALMOSTMIDDLE)){
 			auctionVo.setAuctionNoCar(300+cY-2000);
-		}else if(carSize.equals()){
+		}else if(carSize.equals(auctionService.CAR_SIZE_MIDDLE)){
 			auctionVo.setAuctionNoCar(400+cY-2000);
-		}else if(carSize.equals()){
+		}else if(carSize.equals(auctionService.CAR_SIZE_LARGE)){
 			auctionVo.setAuctionNoCar(500+cY-2000);
-		}else if(carSize.equals()){
+		}else if(carSize.equals(auctionService.CAR_SIZE_LIMU)){
 			auctionVo.setAuctionNoCar(600+cY-2000);
-		}else if(carSize.equals()){
+		}else if(carSize.equals(auctionService.CAR_SIZE_SPORTS)){
 			auctionVo.setAuctionNoCar(700+cY-2000);
-		}else if(carSize.equals()){
+		}else if(carSize.equals(auctionService.CAR_SIZE_SUV)){
 			auctionVo.setAuctionNoCar(800+cY-2000);
-		}else if(carSize.equals()){
+		}else if(carSize.equals(auctionService.CAR_SIZE_RV)){
 			auctionVo.setAuctionNoCar(900+cY-2000);
-		}else if(carSize.equals()){
+		}else if(carSize.equals(auctionService.CAR_SIZE_POTER)){
+			auctionVo.setAuctionNoCar(1000+cY-2000);
+		}else if(carSize.equals(auctionService.CAR_SIZE_VAN)){
 			auctionVo.setAuctionNoCar(1100+cY-2000);
-		}else if(carSize.equals()){
+		}else if(carSize.equals(auctionService.CAR_SIZE_CAMP)){
 			auctionVo.setAuctionNoCar(1200+cY-2000);
-		}else if(carSize.equals()){
+		}else if(carSize.equals(auctionService.CAR_SIZE_BUS)){
 			auctionVo.setAuctionNoCar(1300+cY-2000);
 		}
+		
 		Date from = new Date();
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy");
 		String nowYear = transFormat.format(from);
@@ -103,8 +110,36 @@ public class AuctionController {
 	}
 	
 	@RequestMapping("/list.do")
-	public String listAuction(){
+	public String listAuction(@ModelAttribute SearchVO searchVo, Model model){
 		logger.info("경매 목록");
+		/*3. 글목록 조회
+		/reBoard/list.do => ReBoardListController
+		=> /reBoard/list.jsp*/
+		//1. 파라미터 읽어오기
+		logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);
+		
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		searchVo.setBlockSize(Utility.BLOCK_SIZE);
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+				
+		//2. db작업 - select
+		List<AuctionCarVO> alist = auctionService.selectAll(searchVo);
+		logger.info("글목록 조회 결과 alist.size()={}", 
+				alist.size());
+		
+		//전체 레코드 개수 조회하기
+		int totalRecord = auctionService.selectTotalCount(searchVo);
+		logger.info("토탈레코드가 궁금 totalRecord={}",totalRecord);
+		pagingInfo.setTotalRecord(totalRecord);
+				
+		//3. 결과 저장, 뷰페이지 리턴
+		model.addAttribute("alist", alist);
+		model.addAttribute("pagingInfo", pagingInfo);
 		
 		return "auction/list";
 	}

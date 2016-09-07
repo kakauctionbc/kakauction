@@ -3,13 +3,14 @@ package com.app.kaka.auction.model;
 import java.util.List;
 
 import com.app.kaka.car.model.CarVO;
+import com.app.kaka.common.SearchVO;
 
 public interface AuctionService {
 	
 	public static final String CAR_SIZE_LIGHT="경차"; //1
 	public static final String CAR_SIZE_SMALL="소형"; //2
-	public static final String CAR_SIZE_MIDDLE="중형"; //3
-	public static final String CAR_SIZE_ALMOSTMIDDLE="준중"; //4
+	public static final String CAR_SIZE_ALMOSTMIDDLE="준중"; //3
+	public static final String CAR_SIZE_MIDDLE="중형"; //4
 	public static final String CAR_SIZE_LARGE="대형"; //5
 	public static final String CAR_SIZE_LIMU="리무진"; //6
 	public static final String CAR_SIZE_SPORTS="스포츠"; //7
@@ -24,4 +25,6 @@ public interface AuctionService {
 	public AuctionCarVO auctionCar(String carNum);
 	public int insertAuction(AuctionVO vo);
 	public int updateAuctionYn(AuctionVO vo);
+	public int selectTotalCount(SearchVO vo);
+	public List<AuctionCarVO> selectAll(SearchVO vo);
 }

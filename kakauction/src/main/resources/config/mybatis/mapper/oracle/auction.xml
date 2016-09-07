@@ -3,7 +3,15 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="config.mybatis.mapper.oracle.auction">
-
+	<sql id="searchWhere">
+		<where>
+			<if test="searchKeyword!=null and searchKeyword!=''">
+				${searchCondition} 
+				like '%' || #{searchKeyword} || '%'
+			</if>
+		</where>
+	</sql>
+	
 	<select id="selectCarList" resultType="AuctionVO">
 		select * from car where car_auction_yn='N'
 	</select>
@@ -24,5 +32,27 @@
 	<update id="updateAuctionYn" parameterType="AuctionVO">
 		update car set car_auction_yn='Y' where car_num=#{carNum} and member_id=#{sellerMemberId}
 	</update>
+	
+	<select id="selectAll" resultType="AuctionCarVO" parameterType="SearchVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, LIST_ALL.*
+		    from
+		        (select * from Auction_Car2
+		        <include refid="searchWhere"></include>
+		        ) LIST_ALL    
+		) 
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}
+			+ #{recordCountPerPage}
+		]]>
+	</select>
+	
+	<select id="selectTotalCount" resultType="int" parameterType="SearchVO">
+		select * from auction order by auction_no
+		<include refid="searchWhere"></include>
+	</select>
 	
 </mapper>
