@@ -8,13 +8,24 @@
 <title>차량등록</title>
 
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js' />"></script>
-
 <script type="text/javascript">
 	
 	$(function(){
-		$("#carReg").click(function(){
-			$("#carBirth").val($("#carBirth1").val()+"년 "+$("#carBirth2").val()+"월");
-			$("#registerCar").submit();
+		$("#carReg").click(function(event){
+			var bool = false;
+			$("input[type='file']").each(function(){
+				if(!$(this).val()){
+					alert("사진은 20장 모두 등록하셔야 합니다");
+					bool = true;
+					return false;
+				}
+			});
+
+			if(!bool){
+				$("#carBirth").val($("#carBirth1").val()+"년 "+$("#carBirth2").val()+"월");
+				$("#registerCar").submit();
+			}
+			
 		});
 	});
 	
