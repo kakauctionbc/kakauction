@@ -9,4 +9,5 @@ public interface MemberDAO {
 	public MemberVO selectMemberByUserid(String memberId);
 	public int updateMember(MemberVO memberVo);
 	public int memberOut(String memberId);
+	public int updateMemberPwd(MemberVO memberVo);
 }

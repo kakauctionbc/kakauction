@@ -4,9 +4,9 @@
 <mapper namespace="config.mybatis.mapper.oracle.member">
 	<insert id="insertMember" parameterType="MemberVO">
 		insert into member(MEMBER_ID, MEMBER_NAME, MEMBER_PWD, MEMBER_JUMIN, MEMBER_EMAIL, MEMBER_HP, 
-		MEMBER_GENDER, MEMBER_ADDR, MEMBER_ADDR2)
+		MEMBER_GENDER, MEMBER_ZIPCODE, MEMBER_ADDR, MEMBER_ADDR2)
 		values(#{memberId},#{memberName},#{memberPwd},#{memberJumin},#{memberEmail},
-		#{memberHp},#{memberGender},#{memberAddr},#{memberAddr2})
+		#{memberHp},#{memberGender},#{memberZipcode},#{memberAddr},#{memberAddr2})
 	</insert>
 	
 	<select id="selectMemberByUserid" parameterType="string" resultType="MemberVO">
@@ -15,7 +15,7 @@
 	
 	<update id="updateMember" parameterType="MemberVO">
 		update member 
-		set MEMBER_EMAIL=#{memberEmail}, MEMBER_HP=#{memberHp}, MEMBER_ADDR=#{memberAddr}, MEMBER_ADDR2=#{memberAddr2}
+		set MEMBER_EMAIL=#{memberEmail}, MEMBER_HP=#{memberHp}, MEMBER_ZIPCODE=#{memberZipcode}, MEMBER_ADDR=#{memberAddr}, MEMBER_ADDR2=#{memberAddr2}
 		where MEMBER_ID=#{memberId}
 	</update>
 	

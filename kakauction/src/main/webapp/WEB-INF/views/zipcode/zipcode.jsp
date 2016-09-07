@@ -21,7 +21,10 @@
 	}
 </style>
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/paging.js'/>"></script>
 <script type="text/javascript">
+	var totlaCount=0;
+	
 	$(document).ready(function(){
 		$("#dong").focus();
 		
@@ -31,46 +34,51 @@
 				$("#dong").focus();
 				return false;
 			}
-			$.ajax({
-				url:"<c:url value='/zipcode/getAddrApi.do'/>"				// 고객사 API 호출할 Controller URL
-				,type:"post"
-				,data:$("#frmZip").serialize() 								// 요청 변수 설정
-				,dataType:"xml"												// 데이터 결과 : XML
-				,success:function(xmlStr){									// xmlStr : 주소 검색 결과 XML 데이터
-					$("#list").html("");									// 결과 출력 영역 초기화
-					var errCode= $(xmlStr).find("errorCode").text();		// 응답코드
-					var errDesc= $(xmlStr).find("errorMessage").text();		// 응답메시지
-					if(errCode != "0"){ 									// 응답에러시 처리
-						alert(errCode+"="+errDesc);
-					}else{
-						if(xmlStr!= null){
-							makeList(xmlStr);								// 결과 XML 데이터 파싱 및 출력
-						}
-					}
-				}
-				,error: function(xhr,status, error){
-					alert("에러발생"+status+":"+error);										// AJAX 호출 에러
-				}
-			});
+			
+			send(1);
 			
 			event.preventDefault();
 		});
 	});
 	
-	function setZipcode(zipcode, address){
-		opener.document.frm1.memberZipcode.value=zipcode;
-		opener.document.frm1.memberAddr.value=address;
-		self.close();
-	}
-	
-	function pageFunc(curPage){
-		document.frmPage.currentPage.value=curPage;
-		frmPage.submit();
+	function send(curPage){
+		$("#currentPage").val(curPage);
+		$.ajax({
+			url:"<c:url value='/zipcode/getAddrApi.do'/>"				// 고객사 API 호출할 Controller URL
+			,type:"post"
+			,data:$("#frmZip").serialize() 								// 요청 변수 설정
+			,dataType:"xml"												// 데이터 결과 : XML
+			,success:function(xmlStr){									// xmlStr : 주소 검색 결과 XML 데이터
+				$("#list").html("");									// 결과 출력 영역 초기화
+				var errCode= $(xmlStr).find("errorCode").text();		// 응답코드
+				var errDesc= $(xmlStr).find("errorMessage").text();		// 응답메시지
+				totalCount= $(xmlStr).find("totalCount").text();		// 총 검색
+				
+				if(errCode != "0"){ 									// 응답에러시 처리
+					alert(errCode+"="+errDesc);
+				}else{
+					if(xmlStr!= null){
+						makeList(xmlStr);								// 결과 XML 데이터 파싱 및 출력
+					}
+				}
+			}
+			,error: function(xhr,status, error){
+				alert("에러발생"+status+":"+error);										// AJAX 호출 에러
+			}
+		});
 	}
 	
 	function makeList(xmlStr){
+		$(".divPage").html("");
+		
+		if (totalCount>0) {
+			$("#divCount").css("text-align","left").html("도로명 주소 검색 결과("+totalCount+"건)")
+		} else {
+			$("#divCount").css("text-align","center").html("해당 데이터는 존재하지 않습니다.");
+			return;
+		}
 		var tableEl = $("<table class='box2'></table>");
-		var trEl = $("<tr></tr>").append("<th>우편번호</th><th>주소</th>");
+		var trEl = $("<tr></tr>").append("<th style='width:20%'>우편번호</th><th style='width:80%'>주소</th>");
 		tableEl.append(trEl);
 		
 		// jquery를 이용한 XML 결과 데이터 파싱
@@ -88,97 +96,69 @@
 			tableEl.append(trEl2);
 		});
 		$("#list").append(tableEl);
+		
+		//페이징 처리
+		var p_blockSize=10;
+		
+		pagination($("#currentPage").val(),
+				$("#countPerPage").val(),
+				p_blockSize, totalCount);
+		
+		//<!-- 이전 블럭으로 이동 -->
+		if (firstPage>1) {
+			var img = $("<img alt='이전블럭으로'>")
+			.attr("src", "<c:url value='/images/first.JPG'/>");
+			
+			var anchor = $("<a href='#'></a>").html(img).attr("onclick","send("+(firstPage-1)+")");
+			
+			$(".divPage").append(anchor);
+		}
+		
+		//<!-- 페이지 번호 추가 -->	
+		//<!-- [1][2][3][4][5][6][7][8][9][10] -->
+		for(var i=firstPage;i<=lastPage;i++){
+			var sp = "";
+			if (i==currentPage) {
+				sp = $("<span style='color:blue;font-weight: bold'>${i}</span>").html(i);
+			} else {
+				sp = $("<a href='#' onclick='send("+i+")'></a>").html("["+i+"]");
+			}
+			$(".divPage").append(sp);
+		}//for
+		//<!--  페이지 번호 끝 -->
+		
+		//<!-- 다음 블럭으로 이동 -->
+		if (lastPage<totalPage) {
+			var img =$("<img alt='다음블럭으로'>").attr("src","<c:url value='/images/last.JPG'/>");
+			var anchor = $("<a href='#' onclick='send("+(lastPage+1)+")'></a>").html(img);
+			
+			$(".divPage").append(anchor);
+		}
 	}	
+	
+	function setZipcode(zipcode, address){
+		opener.document.frm1.memberZipcode.value=zipcode;
+		opener.document.frm1.memberAddr.value=address;
+		self.close();
+	}
 </script>	
 </head>
 <body>
-	<h2>우편번호 검색</h2>
-	<p>찾고 싶으신 주소의 동(읍,면)을 입력하세요</p>
+	<h2>도로면 주소 검색</h2>
+	<p>도로명 주소, 건물명 또는 지번을 입력하세요</p>
+	<p style="color: #006AD5">검색어 예 : 도로명(반포대로 58), 건물명(독립기념관), 지번(삼성동 25)</p>
 	<form name="frmZip" id="frmZip" method="post">
-		<input type="hidden" name="currentPage" value="1"/>				<!-- 요청 변수 설정 (현재 페이지) -->
-	    <input type="hidden" name="countPerPage" value="10"/>				<!-- 요청 변수 설정 (페이지당 출력 개수) -->
+		<input type="hidden" id="currentPage" name="currentPage" value="1"/>				<!-- 요청 변수 설정 (현재 페이지) -->
+	    <input type="hidden" id="countPerPage" name="countPerPage" value="8"/>				<!-- 요청 변수 설정 (페이지당 출력 개수) -->
 	    <input type="hidden" name="confmKey" value="U01TX0FVVEgyMDE2MDcxODIyMDcxMzEzODg5"/>		<!-- 요청 변수 설정 (승인키) -->
 		<label for="dong">지역명</label>
 		<input type="text" name="keyword" id="dong" 
 			value="${param.keyword }">	
 		<input type="submit" value="찾기">	
 	</form>
-	<div id="list">
-	<%-- <c:if test="${alist!=null}">
-		<table 	class="box2" 
-			summary="우편번호 검색 결과에 관한 표로써, 
-			우편번호,주소에 대한 정보를 제공합니다">
-			<colgroup>
-				<col style="width:20%">
-				<col style="width:*">			
-			</colgroup>
-			<thead>
-				<tr>
-					<th scope="col">우편번호</th>
-					<th scope="col">주소</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:if test="${empty alist }">
-					<tr>
-						<td colspan="2" 
-							style="text-align: center">
-							해당하는 데이터가 없습니다.
-						</td>
-					</tr>
-				</c:if>
-				<c:if test="${!empty alist }">
-					<c:forEach var="vo" items="${alist }">
-						<c:set var="address" value="${vo.sido} ${vo.gugun} ${vo.dong}"/>
-						<c:set var="bunji" value="${vo.startbunji}"/>
-						<c:if test="${!empty vo.endbunji }">
-							<c:set var="bunji" value="${vo.startbunji} ~ ${vo.endbunji}"/>
-						</c:if>
-						<!-- 반복 시작 -->
-						<tr>
-							<td>${vo.zipcode }</td>
-							<td>
-							<a href="#" 
-								onclick
-								="setZipcode('${vo.zipcode }','${address }')">
-								${address } ${bunji}
-							</a>
-							</td> 				
-						</tr>
-						<!-- 반복 끝 -->
-					</c:forEach>
-			 	</c:if>
-			</tbody>
-		</table>
-		<div class="divPage">
-			<!-- 이전 블럭으로 이동 -->
-			<c:if test="${pagingInfo.firstPage>1}">
-				<a href="#" onclick="pageFunc(${pagingInfo.firstPage-1})">
-					<img src="<c:url value='/images/first.JPG'/>" alt="이전블럭으로">
-				</a>
-			</c:if>
-			
-			<!-- 페이지 번호 추가 -->						
-			<!-- [1][2][3][4][5][6][7][8][9][10] -->
-			<c:forEach var="i" begin="${pagingInfo.firstPage }" end="${pagingInfo.lastPage }">
-				<c:if test="${i==pagingInfo.currentPage }">
-					<span style="color:blue;font-weight: bold">${i}</span>
-				</c:if>
-				<c:if test="${i!=pagingInfo.currentPage }">
-					<a href="#" onclick="pageFunc(${i})">[${i}]</a>
-				</c:if>
-			</c:forEach>
-			<!--  페이지 번호 끝 -->
-			
-			<!-- 다음 블럭으로 이동 -->
-			<c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
-				<a href="#" onclick="pageFunc(${pagingInfo.lastPage+1})">
-					<img src="<c:url value='/images/last.JPG'/>" alt="다음블럭으로">
-				</a>
-			</c:if>
-		</div>
-	</c:if> --%>
-	</div>
+	<div id="divCount"></div>
+	<div id="list"></div>
+	<div class="divPage"></div>
 </body>
 </html>
 

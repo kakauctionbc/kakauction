@@ -24,4 +24,5 @@ public interface MemberService {
 	public int updateMember(MemberVO memberVo);
 	public int memberOut(String memberId);
 	public int checkMemberJumin(String memberJumin);
+	public int updateMemberPwd(MemberVO memberVo);
 }

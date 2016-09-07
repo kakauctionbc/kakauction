@@ -83,4 +83,22 @@ public class LoginController {
 		
 		return "common/message";
 	}
+	
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session, Model model){
+		//1. 
+		logger.info("로그아웃 처리");
+		
+		//2.
+		//session.invalidate();
+		session.removeAttribute("memberId");
+		session.removeAttribute("memberName");
+		session.removeAttribute("memberGrade");
+		
+		//3.
+		model.addAttribute("msg", "로그아웃되었습니다.");
+		model.addAttribute("url", "/design/index.do");
+		
+		return "common/message";
+	}
 }

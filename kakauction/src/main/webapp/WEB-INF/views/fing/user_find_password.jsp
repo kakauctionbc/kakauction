@@ -15,6 +15,7 @@
 				alert("이메일을 입력하세요");
 				$("#memberEmail").focus();
 				return false;
+				
 			}
 		});
 	});

@@ -3,8 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="../design/inc/top.jsp" %>
+<script type="text/javascript"
+	src="<c:url value='/jquery/jquery-3.1.0.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/js/member.js'/>"></script>
-	
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#wr_submit").click(function(event){
@@ -36,18 +37,10 @@ $(document).ready(function(){
 		}
 	});//click
 	
-	$("#btnChkId").click(function(){
-		var userid=$("#userid").val();
-				
-		window.open(
-		"<c:url value='design/checkUserid.do?userid="
-				+userid+"'/>",	"chkId",
-"width=450,height=250,left=50,top=50,resizable=yes,location=yes");
-	});
 	$(function(){
 		$("#email2 option[value='etc']").click(function () {
    			$("#email3").show();
-		}
+		});
 	});
 });
 </script>
@@ -195,9 +188,9 @@ $(document).ready(function(){
 					<td colspan="3">
 						<ul class="address_ul">
 							<li>
-								<input type="text" name="zipcode" id="zipcode" ReadOnly title="우편번호" style="width: 120px;">
-        						<input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림" >
-        					</li>
+								<input type="text" name="memberZipcode" id="memberZipcode" value="${memVo.memberZipcode }" ReadOnly title="우편번호" style="width: 120px;">
+								<input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림">
+							</li>
 							<li id="address_li">
 								<input type="text" name="memberAddr" id="memberAddr" value="${memVo.memberAddr }" ReadOnly title="주소" style="width:230px;">
 							</li>
@@ -216,119 +209,11 @@ $(document).ready(function(){
 					<button type="submit" id="wr_submit">회원정보수정</button>
 				</li>
 				<li id="btn_cancel">
-					<input type="text">
+					<button type="reset"><a href="<c:url value='/design/index.do'/>" style="text-decoration: none">취소</a></button>
 				</li>
 			</ul>
 		</div>
 	</div>
 	</form>
 </div>
- 
-
-<%@ include file="../design/inc/bottom.jsp"%>
-<script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/js/member.js'/>"></script>
-<script type="text/javascript">
-
-</script>
-
-<style type="text/css">
-	.width_80{
-		width:80px;
-	}
-	.width_350{
-		width:350px;
-	}	
-</style>
-<article>
-<div class="divForm">
-<form name="frm1" id=frm1" method="post" action="<c:url value='/member/memberEdit.do'/>">
-<fieldset>
-	<legend>회원 수정</legend>
-    <div>        
-        <label for="memberName">성명</label>
-        <span>${memVo.memberName }</span>
-    </div>
-    <div>
-        <label for="userid">회원ID</label>
-         <span>${memVo.memberId }</span>
-    </div>
-    <div>
-        <label for="zipcode">주소</label>
-        <input type="text" name="zipcode" id="zipcode" ReadOnly
-        	title="우편번호" class="width_80" style="text-align: center;">
-        <input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림"><br />
-        <span class="sp1">&nbsp;</span>
-        <!-- <input type="text" name="memberAddr" id="memberAddr" ReadOnly title="주소"  class="width_350"  style="padding-left: 10px;"><br /> -->
-        <input type="text" name="memberAddr" id="memberAddr"  title="주소"  class="width_350"  style="padding-left: 10px;" value="${memVo.memberAddr }"><br />
-        <span class="sp1">&nbsp;</span>
-        <input type="text" name="memberAddr2" id="memberAddr2" title="상세주소"  class="width_350"  style="padding-left: 10px;" value="${memVo.memberAddr2 }">
-    </div>
-    <div>
-    	<input type="hidden" name="hp">
-        <label for="hp1">핸드폰</label>&nbsp;
-        <select name="hp1" id="hp1" title="휴대폰 앞자리">
-            <option value="010"
-            	<c:if test="${hp1=='010' }">
-            		selected
-            	</c:if>
-            >010</option>
-            <option value="011"
-            	<c:if test="${hp1=='011' }">
-            		selected
-            	</c:if>
-            >011</option>
-            <option value="016"
-            	<c:if test="${hp1=='016' }">
-            		selected
-            	</c:if>
-            >016</option>
-            <option value="017"
-            	<c:if test="${hp1=='017' }">
-            		selected
-            	</c:if>
-            >017</option>
-            <option value="018"
-            	<c:if test="${hp1=='018' }">
-            		selected
-            	</c:if>
-            >018</option>
-            <option value="019"`
-            	<c:if test="${hp1=='019' }">
-            		selected
-            	</c:if>
-            >019</option>
-       	</select>
-        -
-        <input type="text" name="hp2" id="hp2" maxlength="4" title="휴대폰 가운데자리" value="${hp2}"
-        	class="width_80">-
-        <input type="text" name="hp3" id="hp3" maxlength="4" title="휴대폰 뒷자리" value="${hp3}"
-        	class="width_80">
-        <input type="hidden" name="memberHp" id="memberHp">
-    </div>
-    <div>
-    	
-    </div>
-     <div class="center">
-         <input type="submit" id="wr_submit" value="수정">
-    </div>
-</fieldset>
-
-    <input type ="text" name="chkId" id="chkId">
-    <input type ="text" name="chkId1" id="chkId1">
-        
-</form>
-</div>
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
+<%@ include file="../design/inc/bottom.jsp" %>
