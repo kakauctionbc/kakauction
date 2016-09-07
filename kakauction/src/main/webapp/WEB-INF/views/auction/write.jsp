@@ -12,9 +12,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#carList").change(function() {
-			var carNum = $(
-			"#carList option:selected")
-			.val();
+			var carNum = $("#carList option:selected").val();
 			/* var carNum = $(this).val(); */
 			/* var carNum = $("#carList").val(); */
 			if (carNum != null && carNum != -1) {
@@ -25,6 +23,30 @@
 					dataType : "json",
 					success : function(vo) {
 						alert(vo.carNum);
+						$("#carPic").html("");
+ 						var img = [$("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture1+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture2+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture3+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture4+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture5+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture6+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture7+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture8+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture9+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture10+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture11+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture12+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture13+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture14+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture15+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture16+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture17+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture18+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture19+"'/>"),
+						           $("<img class='pic' style='width:190px;height:100px;' alt='사진'>").attr("src", "<c:url value='/picture_upload/"+vo.picture20+"'/>")];
+						$("#carPic").append(img);
+						$(".pic").css("width", "190px").css("height", "100px");
+						
 						var carNum = vo.carNum;
 						var addr = vo.memberAddr+ vo.memberAddr2;
 						$("#voCarNum").html(carNum);
@@ -64,40 +86,38 @@
 							hisAucInfo = "<td colspan='7'>이전 경매 정보가 존재하지 않습니다</td>";
 						}
 						$("#HisAucInfo").html(hisAucInfo);
-						
 					},
 					error : function(xhr,status,error) {
 						alert("에러=>"+ status+ ":"+ error);
-						}
-					});
-
-				} else if (carNum == -1) {
-					$("#voCarNum").html("");
-					$("#voMAddr").html("");
-					$("#voCarLoc").html("");
-					$("#voCarCompany").html("");
-					$("#voCarComHp").html("");
-					$("#voCarFailSell").html("");
-					$("#voAuctionYN").html("");
-					$("#voMemberGrade").html("");
-					$("#voCarPrice").html("");
-					$("#carVoCarNum").html("");
-					$("#carVoCarBirth").html("");
-					$("#carVoCarGas").html("");
-					$("#carVoCarAm").html("");
-					$("#carVoCarDist").html("");
-					$("#carVoCarCc").html("");
-				}
-			});
+					}
+				});
+			}else if (carNum == -1) {
+				$("#voCarNum").html("");
+				$("#voMAddr").html("");
+				$("#voCarLoc").html("");
+				$("#voCarCompany").html("");
+				$("#voCarComHp").html("");
+				$("#voCarFailSell").html("");
+				$("#voAuctionYN").html("");
+				$("#voMemberGrade").html("");
+				$("#voCarPrice").html("");
+				$("#carVoCarNum").html("");
+				$("#carVoCarBirth").html("");
+				$("#carVoCarGas").html("");
+				$("#carVoCarAm").html("");
+				$("#carVoCarDist").html("");
+				$("#carVoCarCc").html("");
+			}
+		});
+		
+		
 	});
 </script>
 <title>현재 작업 중인 auction/write.jsp</title>
 </head>
 <body>
-	<form action="<c:url value='/auction/write.do'/>" name="auctionWrite"
-		id="auctionWrite" method="post">
-		<table width="960" border="1px solid silver;" cellspacing="0"
-			cellpadding="0" align="center">
+	<form action="<c:url value='/auction/write.do'/>" name="auctionWrite" method="post">
+		<table width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
 			<tr>
 				<td height="30" class="p_10">
 				<span for="auctionNo">물건관리번호	: </span> 
@@ -117,7 +137,7 @@
 				<input type="button" id="btAuctionDefer" value="경매 보류"></td>
 			</tr>
 			<tr>
-				<td height='220px;'>사진 foreach</td>
+				<td height='220px;' id="carPic"></td>
 			</tr>
 		</table>
 	</form>
