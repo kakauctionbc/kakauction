@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../design/inc/top.jsp"%>
 <script type="text/javascript">
 	function Div_carphto_onoff(){
 		var n = document.getElementById("carphto_onoff").value;
@@ -22,8 +21,16 @@
 		height: 80px;
 		width: 80px;
 	}
+	.photoarea{
+		width: 800px;
+		height: 165px;
+	}
+	.photoarea img{
+		width: 180px;
+		height: 160px;
+	}
 </style>
-<body>
+	<br>
 	<div class="cont_column03 renew"> 
 	<div class="column_l">
 	
@@ -34,35 +41,6 @@
 	<!--상세1열(사진,차량정보,판매자정보,확인사항,sns)-->
 	<input type="hidden" name="carNum" id="carNum" value="${carVo.carNum }">
 	<div class="detailA"> 
-		<div>
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture1}'/>">
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture2}'/>">
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture3}'/>">
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture4}'/>">
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture5}'/>">
-		</div>
-		<div>
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture6}'/>">
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture7}'/>">
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture8}'/>">
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture9}'/>">
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture10}'/>">
-		</div>
-		<div>
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture11}'/>">
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture12}'/>">
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture13}'/>">
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture14}'/>">
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture15}'/>">
-		</div>
-		<div>
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture16}'/>">
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture17}'/>">
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture18}'/>">
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture19}'/>">
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture20}'/>">
-		</div>
-		
 	<!--//왼쪽--> 
 	<!--오른쪽-->
 	<div class="rightarea">
@@ -891,34 +869,34 @@
 	<input type="hidden" name="carphto_onoff" id="carphto_onoff" value="on">
 		<div id="Div_carphto_onoff" style=" display:block; padding:0 ; " align="center">
 			<div class="photoarea">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture1}'/>" width="200" alt="차량사진">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture2}'/>" width="200" alt="차량사진">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture3}'/>" width="200" alt="차량사진">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture4}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture1}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture2}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture3}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture4}'/>" width="200" alt="차량사진">
 			</div>
 			<div class="photoarea">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture5}'/>" width="200" alt="차량사진">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture6}'/>" width="200" alt="차량사진">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture7}'/>" width="200" alt="차량사진">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture8}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture5}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture6}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture7}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture8}'/>" width="200" alt="차량사진">
 			</div>
 			<div class="photoarea">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture9}'/>" width="200" alt="차량사진">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture10}'/>" width="200" alt="차량사진">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture11}'/>" width="200" alt="차량사진">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture12}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture9}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture10}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture11}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture12}'/>" width="200" alt="차량사진">
 			</div>
 			<div class="photoarea">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture13}'/>" width="200" alt="차량사진">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture14}'/>" width="200" alt="차량사진">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture15}'/>" width="200" alt="차량사진">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture16}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture13}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture14}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture15}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture16}'/>" width="200" alt="차량사진">
 			</div>
 			<div class="photoarea">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture17}'/>" width="200" alt="차량사진">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture18}'/>" width="200" alt="차량사진">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture19}'/>" width="200" alt="차량사진">
-				<img src="<c:url value='/picture_upload/${pictureVo.picture20}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture17}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture18}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture19}'/>" width="200" alt="차량사진">
+				<img src="<c:url value='/picture_upload/${acVo.picture20}'/>" width="200" alt="차량사진">
 			</div>
 				    
 		</div>
@@ -943,5 +921,3 @@
 	</div>
 	<!--//상세하단안내--> 
 	</div>
-	</body>
-<%@ include file="../design/inc/bottom.jsp"%>
