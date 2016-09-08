@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.app.kaka.common.FileUploadWebUtil;
 import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
@@ -32,6 +33,9 @@ public class NoticeController {
 	
 	@Autowired
 	private NoticeService noticeService;
+	
+	@Autowired
+	private FileUploadWebUtil webUtil;
 	
 	@RequestMapping(value = "/write.do", method = RequestMethod.GET)
 	public String noticeWrite_get(){
@@ -49,15 +53,15 @@ public class NoticeController {
 		
 		//2. db작업 - insert
 		//[1] 파일업로드 처리하기
-		List<Map<String, Object>> fileList = noticeService.fileupload(request);
+		List<Map<String, Object>> fileList = webUtil.fileUpload(request, webUtil.NOTICE_UPLOAD);
 		
 		String fileName = "";		
 		String ofileName = "";
 		long fileSize = 0;
 		for(Map<String, Object> myMap : fileList){
-			fileName = (String) myMap.get("noticeFilename");
-			ofileName = (String) myMap.get("noticeOriginalname");
-			fileSize = (Long) myMap.get("noticeFilesize");
+			fileName = (String) myMap.get("fileName");
+			ofileName = (String) myMap.get("ofileName");
+			fileSize = (Long) myMap.get("fileSize");
 		}//for
 		
 		vo.setNoticeFilename(fileName);
@@ -127,15 +131,15 @@ public class NoticeController {
 	public String noticeEdit_post(HttpServletRequest request, @ModelAttribute NoticeVO noticeVo, Model model){
 		logger.info("글 수정 화면 처리, noticeVo={}",noticeVo);
 		
-		List<Map<String, Object>> fileList = noticeService.fileupload(request);
+		List<Map<String, Object>> fileList = webUtil.fileUpload(request, webUtil.NOTICE_UPLOAD);
 		
 		String fileName = "";		
 		String ofileName = "";
 		long fileSize = 0;
 		for(Map<String, Object> myMap : fileList){
-			fileName = (String) myMap.get("noticeFilename");
-			ofileName = (String) myMap.get("noticeOriginalname");
-			fileSize = (Long) myMap.get("noticeFilesize");
+			fileName = (String) myMap.get("fileName");
+			ofileName = (String) myMap.get("ofileName");
+			fileSize = (Long) myMap.get("fileSize");
 		}//for
 		
 		noticeVo.setNoticeFilename(fileName);
@@ -236,7 +240,7 @@ public class NoticeController {
 		
 		//파일이 첨부된 경우에는 파일도 삭제처리한다
 		if(noticeFilename!=null && !noticeFilename.isEmpty()){
-			String upPath=noticeService.getUploadPath(request);
+			String upPath=webUtil.getUploadPath(request, webUtil.NOTICE_UPLOAD);
 			File delFile = new File(upPath ,noticeFilename);
 			if(delFile.exists()){
 				boolean bool=delFile.delete();
@@ -267,7 +271,7 @@ public class NoticeController {
 		//ModelAndView(String viewName, Map map)		
 		Map<String, Object> map 
 			= new HashMap<String, Object>();
-		String upPath = noticeService.getUploadPath(request);
+		String upPath = webUtil.getUploadPath(request,webUtil.NOTICE_UPLOAD);
 		
 		File file = new File(upPath, noticeFilename);
 		//생성한 파일 객체를 map에 저장한 후 뷰에 넘긴다

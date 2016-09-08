@@ -28,7 +28,7 @@ public class FreeboardController {
 	private Logger logger = LoggerFactory.getLogger(FreeboardController.class);
 	
 	@Autowired
-	private FileUploadWebUtil fileUtil;
+	private FileUploadWebUtil webUtil;
 	
 	@Autowired
 	private FreeboardService freeboardService;
@@ -46,15 +46,15 @@ public class FreeboardController {
 		
 		//2. db작업 - insert
 		//[1]파일 업로드 처리하기
-		List<Map<String, Object>> fileList = freeboardService.fileupload(request);
+		List<Map<String, Object>> fileList = webUtil.fileUpload(request, webUtil.FREEBOARD_UPLOAD);
 		//[2]db에 insert하기
 		String fileName="";
 		String ofileName="";
 		long fileSize=0;
 		for(Map<String, Object> myMap : fileList){
-			fileName = (String)myMap.get("freeboardFilename");
-			ofileName=(String)myMap.get("freeboardOriginalname");
-			fileSize = (Long)myMap.get("freeboardFilesize");
+			fileName = (String)myMap.get("fileName");
+			ofileName=(String)myMap.get("ofileName");
+			fileSize = (Long)myMap.get("fileSize");
 			
 		}//for
 		freeboardVo.setFreeboardFilename(fileName);
@@ -172,7 +172,7 @@ public class FreeboardController {
 		}
 		
 		//2.
-		FreeboardVO freeboardVO =freeboardService.selectByNo(freeboardNo);
+		FreeboardVO freeboardVO = freeboardService.selectByNo(freeboardNo);
 		
 		//3.
 		model.addAttribute("freeboardVO", freeboardVO);
@@ -183,10 +183,9 @@ public class FreeboardController {
 		
 		logger.info("글수정 화면 보여주기, 파라미터 FreeboardVO={}",freeboardVo);
 
-		int uploadType = FileUploadWebUtil.FREEBOARD_UPLOAD;
 		//상품등록시 이미지 업로드
-		logger.info("글 수정 처리 왜 안되냐, request={},uploadType={}",request,uploadType);
-		List<Map<String, Object>> fileList = fileUtil.fileUpload(request, uploadType);
+		logger.info("글 수정 처리 왜 안되냐, request={},uploadType={}",request,webUtil.FREEBOARD_UPLOAD);
+		List<Map<String, Object>> fileList = webUtil.fileUpload(request, webUtil.FREEBOARD_UPLOAD);
 		logger.info("상품 등록 처리 얘는 뭐냐, fileList={}",fileList);
 		//업로드된 파일명 구해오기
 		if(freeboardFilename!=null && !freeboardFilename.isEmpty()){

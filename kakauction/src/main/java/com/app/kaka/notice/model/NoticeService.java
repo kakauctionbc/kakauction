@@ -9,7 +9,6 @@ import com.app.kaka.common.SearchVO;
 
 public interface NoticeService {
 
-	public List<Map<String, Object>> fileupload(HttpServletRequest request);
 	public int insertNotice(NoticeVO vo);
 	public List<NoticeVO> selectAll(SearchVO searchVo);
 	public int selectTotalCount(SearchVO searchVo);
@@ -19,8 +18,4 @@ public interface NoticeService {
 	public int updateReadCount(int noticeNo);
 	public int deleteNotice(Map<String, String> map);
 	public int updateDownCount(int noticeNo);
-	
-	public String getUniqueFileName(String ofileName);
-	public String getUploadPath(HttpServletRequest request);
-	public String getCurrentTime();
 }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.kaka.car.model.CarService;
 import com.app.kaka.car.model.CarVO;
+import com.app.kaka.common.FileUploadWebUtil;
 import com.app.kaka.member.model.MemberService;
 import com.app.kaka.member.model.MemberVO;
 import com.app.kaka.op.model.OpService;
@@ -43,6 +44,9 @@ public class CarController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private FileUploadWebUtil webUtil;
 	
 	@RequestMapping(value = "/register.do", method = RequestMethod.GET)
 	public String carRegister_get(HttpSession session, Model model){
@@ -83,7 +87,7 @@ public class CarController {
 		}
 		
 		//[1]파일 업로드 처리하기
-		List<Map<String, Object>> fileList = pictureService.fileupload(request);
+		List<Map<String, Object>> fileList = webUtil.fileUpload(request, webUtil.PICTURE_UPLOAD);
 		logger.info("여기는 꼰트롤러 fileList={}",fileList.size());
 		//[2]db에 insert하기
 		String fileName="";
@@ -93,8 +97,7 @@ public class CarController {
 		//pictureVo.setCarNum(carVo.getCarNum());
 		//pictureVo.setMemberId(carVo.getMemberId());
 		for(Map<String, Object> myMap : fileList){
-			fileName = (String)myMap.get("picture");
-			System.out.println("fileName = "+fileName);
+			fileName = (String)myMap.get("fileName");
 			if(count==1){
 				pictureVo.setPicture1(fileName);
 			}else if(count==2){
@@ -138,7 +141,6 @@ public class CarController {
 			}
 			count++;
 		}//for
-		logger.info("pictureVo={}",pictureVo);
 		
 		int cCnt = carService.insertCar(carVo);
 		int oCnt = opService.insertOp(opVo);

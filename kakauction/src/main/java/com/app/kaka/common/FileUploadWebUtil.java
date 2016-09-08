@@ -26,8 +26,8 @@ public class FileUploadWebUtil {
 	public static final int FREEBOARD_UPLOAD=1; //freeboard 업로드
 	
 	public static final int NOTICE_UPLOAD=2;//notice 업로드
-
-	public static final int AUCTION_UPLOAD=3;//auction 업로드
+	
+	public static final int PICTURE_UPLOAD=3;//picture 업로드
 
 	private static final Logger logger = LoggerFactory.getLogger(FileUploadWebUtil.class);
 	
@@ -43,6 +43,8 @@ public class FileUploadWebUtil {
 		logger.info("업로드 파일 list.size()={}", fileList.size());
 		
 		Iterator<String> iter = fileMap.keySet().iterator();
+		int numbering = 0; //파일 이름 겹치지 않게 설정(동시에 파일을 넣을 때)
+		
 		while(iter.hasNext()){
 			String key = iter.next();
 			MultipartFile tempFile=fileMap.get(key);
@@ -52,7 +54,7 @@ public class FileUploadWebUtil {
 				String ofileName = tempFile.getOriginalFilename();
 				logger.info("업로드 원본 파일명={}", ofileName);
 				//파일명 변경하기
-				String fileName = getUniqueFileName(ofileName);
+				String fileName = getUniqueFileName(ofileName, numbering++);
 				logger.info("업로드 변경 파일명={}", fileName);
 				//파일 크기 구하기
 				long fileSize = tempFile.getSize();
@@ -79,7 +81,7 @@ public class FileUploadWebUtil {
 		return fileList;
 	}
 	
-	public String getUniqueFileName(String ofileName){
+	public String getUniqueFileName(String ofileName, int numbering){
 		//파일명에 현재시간을 추가해서 변경된 파일명 만들기
 		//abc.txt -> abc + 현재시간 + .txt
 		//=>abc20160818111540123.txt
@@ -90,7 +92,7 @@ public class FileUploadWebUtil {
 		String ext = ofileName.substring(idx);
 		
 		//순수 파일명에 현재시간을 연결한 후 .확장자를 연결한다
-		String fileName = fName+getCurrentTime()+ext;
+		String fileName = fName+getCurrentTime()+numbering+ext;
 		return fileName;
 	}
 	
@@ -114,9 +116,9 @@ public class FileUploadWebUtil {
 			}else if(uploadType==NOTICE_UPLOAD){
 				//NOTICE 업로드
 				realtPath=fileUploadProps.getProperty("notice.upload.path.test");
-			}else if(uploadType==AUCTION_UPLOAD){
+			}else if(uploadType==PICTURE_UPLOAD){
 				//auction 업로드
-				realtPath=fileUploadProps.getProperty("auction.upload.path.test");
+				realtPath=fileUploadProps.getProperty("picture.upload.path.test");
 			}
 			logger.info("테스트 경로 ={}", realtPath);
 		}else{
@@ -127,9 +129,9 @@ public class FileUploadWebUtil {
 			}else if(uploadType==NOTICE_UPLOAD){
 				//NOTICE 업로드
 				realtPath=fileUploadProps.getProperty("notice.upload.path");
-			}else if(uploadType==AUCTION_UPLOAD){
+			}else if(uploadType==PICTURE_UPLOAD){
 				//auction 업로드
-				realtPath=fileUploadProps.getProperty("auction.upload.path");
+				realtPath=fileUploadProps.getProperty("picture.upload.path");
 			}
 			logger.info("실제 경로 ={}", realtPath);
 		}//if

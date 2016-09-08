@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 public interface PictureService {
 
 	public int insertPicture(PictureVO pictureVo);
-	public List<Map<String, Object>> fileupload(HttpServletRequest request);
 	public PictureVO pictureDetail(String carNum);
 	public List<PictureVO> selectByMemberId(String memberId);
-
 }

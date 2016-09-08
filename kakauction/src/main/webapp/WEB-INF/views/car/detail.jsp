@@ -18,7 +18,11 @@
 	}
 </script>
 <style type="text/css">
-	#carImage{
+	.detailA div img{
+		height: 80px;
+		width: 80px;
+	}
+	#Div_carphto_onoff div img{
 		height: 80px;
 		width: 80px;
 	}
