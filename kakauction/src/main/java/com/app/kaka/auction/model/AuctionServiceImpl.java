@@ -64,6 +64,16 @@ public class AuctionServiceImpl implements AuctionService{
 	public AuctionCarVO selectAuction(int auctionNo) {
 		return auctionDao.selectAuction(auctionNo);
 	}
+
+	@Override
+	public int auctionDenyCar(String carNum) {
+		return auctionDao.auctionDenyCar(carNum);
+	}
+
+	@Override
+	public int auctionDeferCar(String carNum) {
+		return auctionDao.auctionDeferCar(carNum);
+	}
 	
 
 	

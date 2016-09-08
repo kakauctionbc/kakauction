@@ -119,11 +119,23 @@
 		});
 		
 		$("#btAuctionDefer").click(function(){
-			location.href="<c:url value='/auction/auctionDefer.do?carNum"+carNum+"'/>";
+			if(carNum==null){
+				alert("차량을 선택하세요");
+				return;
+			}
+			if(confirm("경매 등록 보류 하시겠습니까?")){
+				location.href="<c:url value='/auction/auctionDefer.do?carNum="+carNum+"'/>";
+			}
 		});
 		
 		$("#btAuctionDeny").click(function(){
-			location.href="<c:url value='/auction/auctionDeny.do?carNum"+carNum+"'/>";
+			if(carNum==null){
+				alert("차량을 선택하세요");
+				return;
+			}
+			if(confirm("경매 등록 거부하시겠습니까?")){
+				location.href="<c:url value='/auction/auctionDeny.do?carNum="+carNum+"'/>";
+			}
 		});
 		
 	});

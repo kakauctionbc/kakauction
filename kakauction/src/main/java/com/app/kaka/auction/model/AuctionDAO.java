@@ -15,4 +15,6 @@ public interface AuctionDAO {
 	public int updateAuction(int auctionNo);
 	public CarVO selectByCarNum(String carNum);
 	public AuctionCarVO selectAuction(int auctionNo);
+	public int auctionDenyCar(String carNum);
+	public int auctionDeferCar(String carNum);
 }

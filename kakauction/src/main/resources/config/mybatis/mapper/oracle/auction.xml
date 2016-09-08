@@ -72,4 +72,14 @@
 		select * from auction_car2 where auction_no=#{auctionNo}
 	</select>
 	
+	<update id="auctionDenyCar" parameterType="string">
+		update car
+		set CAR_AUCTION_YN='D'
+		where car_num=#{carNum}
+	</update>	
+	<update id="auctionDeferCar" parameterType="string">
+		update car
+		set CAR_AUCTION_YN='B'
+		where car_num=#{carNum}
+	</update>	
 </mapper>

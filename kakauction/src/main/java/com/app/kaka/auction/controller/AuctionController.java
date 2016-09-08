@@ -152,7 +152,7 @@ public class AuctionController {
 	@RequestMapping("/updateCount.do")
 	public String updateCount(@RequestParam int auctionNo, Model model){
 		int cnt = auctionService.updateAuction(auctionNo);
-		logger.info("조회수 증가 성공 실패 cnt ={}",cnt);
+		logger.info("조회수 증가 auctionNo={}, cnt ={}",auctionNo,cnt);
 		return "redirect:/auction/detail.do?auctionNo="+auctionNo;
 	}
 	
@@ -196,5 +196,47 @@ public class AuctionController {
 		model.addAttribute("opAa", opAa);
 		model.addAttribute("opTune", opTune);
 		return "auction/detail";
+	}
+	
+	@RequestMapping("/auctionDeny.do")
+	public String auctionDeny(@RequestParam String carNum, Model model){
+		
+		int cnt = auctionService.auctionDenyCar(carNum);
+		
+		String msg="", url="";
+		
+		if(cnt>0){
+			msg="경매 등록 거부처리 되었습니다";
+			url="/auction/write.do";
+		}else{
+			msg="경매 등록 거부처리 실패했습니다";
+			url="/auction/write.do";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	@RequestMapping("/auctionDefer.do")
+	public String auctionDeferCar(@RequestParam String carNum, Model model){
+		
+		int cnt = auctionService.auctionDenyCar(carNum);
+		
+		String msg="", url="";
+		
+		if(cnt>0){
+			msg="경매 등록 보류처리 되었습니다";
+			url="/auction/write.do";
+		}else{
+			msg="경매 등록 보류처리 실패했습니다";
+			url="/auction/write.do";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
 	}
 }
