@@ -30,7 +30,7 @@ public class WriteListToExcelFile {
 	        Iterator<MemberVO> iterator = noticeList.iterator();
 	         
 	        int rowIndex = 0;
-	        int excelname=0; // 처음에는 ID 학번등 고정값을 넣기 위해 사용한 변수
+	        int excelname=0; // 처음에 고정값을 넣기 위해 사용한 변수
 	        do{
 	        	MemberVO member = iterator.next();
 	            Row row = sheet.createRow(rowIndex++);
@@ -93,7 +93,7 @@ public class WriteListToExcelFile {
 	     
 	         
 	        //lets write the excel data to file now
-	        FileOutputStream fos = new FileOutputStream(fileName);
+	        FileOutputStream fos = new FileOutputStream("D:\\kaka\\kakauction\\kakauction\\src\\main\\webapp\\excel_download\\"+fileName);
 	        workbook.write(fos);
 	        fos.close();
 	        

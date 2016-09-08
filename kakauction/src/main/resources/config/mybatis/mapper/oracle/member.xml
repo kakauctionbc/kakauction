@@ -45,6 +45,6 @@
 	</update>
 	
 	<select id="selectAllMember" resultType="MemberVO">
-		select * from member order by member_Mileage
+		select * from member
 	</select>
 </mapper>

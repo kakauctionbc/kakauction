@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>indexf.jsp</title>
-</head>
-<body>
-	<h1>엑셀 다운 받고 싶니?</h1>
-	<a href="<c:url value='/excel/downloadExcel.do'/>">여기를 눌러봐</a>
-</body>
-</html>
+<%@ include file="../design/inc/top.jsp" %>
+	<h1>Excel Download</h1>
+	<a href="<c:url value='/excel/downloadExcel.do'/>">고객리스트 엑셀파일 출력</a>
+<%@ include file="../design/inc/bottom.jsp" %>
