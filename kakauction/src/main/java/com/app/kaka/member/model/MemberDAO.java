@@ -1,5 +1,6 @@
 package com.app.kaka.member.model;
 
+import java.util.List;
 
 public interface MemberDAO {
 	public int insertMember(MemberVO memberVo);
@@ -10,4 +11,5 @@ public interface MemberDAO {
 	public int updateMember(MemberVO memberVo);
 	public int memberOut(String memberId);
 	public int updateMemberPwd(MemberVO memberVo);
+	public List<MemberVO> selectAllMember();
 }

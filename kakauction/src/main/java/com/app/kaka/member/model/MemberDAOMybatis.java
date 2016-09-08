@@ -1,5 +1,7 @@
 package com.app.kaka.member.model;
 
+import java.util.List;
+
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
@@ -46,5 +48,10 @@ public class MemberDAOMybatis extends SqlSessionDaoSupport implements MemberDAO 
 	@Override
 	public int updateMemberPwd(MemberVO memberVo) {
 		return getSqlSession().update(namespace+".updatePwd", memberVo);
+	}
+
+	@Override
+	public List<MemberVO> selectAllMember() {
+		return getSqlSession().selectList(namespace+".selectAllMember");
 	}
 }

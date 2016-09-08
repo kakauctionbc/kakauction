@@ -71,8 +71,6 @@
             <props>
                 <prop key="mail.smtp.starttls.enable">true</prop>
                 <prop key="mail.smtp.auth">true</prop>
-               
-               
             </props>
         </property>
        

@@ -1,5 +1,6 @@
 package com.app.kaka.member.model;
 
+import java.util.List;
 
 public interface MemberService {
 	//아이디 중복 확인 시 사용하는 상수
@@ -25,4 +26,5 @@ public interface MemberService {
 	public int memberOut(String memberId);
 	public int checkMemberJumin(String memberJumin);
 	public int updateMemberPwd(MemberVO memberVo);
+	public List<MemberVO> selectAllMember();
 }

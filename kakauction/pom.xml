@@ -14,12 +14,20 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
+		<!-- poi -->
+		<dependency>
+	    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>3.14</version>
+		</dependency>
+		
 		<!-- java mail -->
 	    <dependency>
 	        <groupId>javax.mail</groupId>
 	        <artifactId>mail</artifactId>
 	        <version>1.4.7</version>
 	    </dependency>
+	    
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -204,6 +212,7 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		
 		<!-- apache commons lang -->
 		<dependency>
 			<groupId>commons-lang</groupId>

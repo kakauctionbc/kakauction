@@ -1,5 +1,7 @@
 package com.app.kaka.member.model;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,5 +78,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int updateMemberPwd(MemberVO memberVo) {
 		return memberDao.updateMemberPwd(memberVo);
+	}
+
+	@Override
+	public List<MemberVO> selectAllMember() {
+		return memberDao.selectAllMember();
 	}
 }

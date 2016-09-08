@@ -43,4 +43,8 @@
 	<update id="updatePwd" parameterType="MemberVO">
 		update member set member_pwd =#{memberPwd} where member_id=#{memberId}
 	</update>
+	
+	<select id="selectAllMember" resultType="MemberVO">
+		select * from member order by member_Mileage
+	</select>
 </mapper>
