@@ -3,12 +3,13 @@
 
 
 body, td, th{
-	font-family: 'nanum gothic',맑은 고딕, 한컴돋움, 돋움;
-	font-size: 0.9em;
+	font-family: '고딕',맑은 고딕, 한컴돋움, 돋움;
+	letter-spacing:1px;
+	font-size: 0.7em;
 }
 html, body { margin:0; padding:0;}
 #wrap {
-    height:100%;
+    height:auto;
     margin-top: 0px;
 }
 
@@ -86,14 +87,14 @@ html, body { margin:0; padding:0;}
 }
 #headmenu {
 	float: left;
-	margin-top: 40px;
+	margin-top: 50px;
 }
 #headmenu ul li{
 	float: left;
 	padding-right:20px;
 	font-size:1.2em;
 	font-weight: bold;
-	margin-left: 20px;
+	margin-left: 35px;
 	
 }
 #headmenu ul li a{
@@ -139,7 +140,7 @@ html, body { margin:0; padding:0;}
 #content-member{
 	float: left;
 	margin-left: 950px;
-	padding-right: 10px;
+	padding-right: 20px;
 }
 #content-sell{
  	float: left;	
@@ -147,7 +148,7 @@ html, body { margin:0; padding:0;}
 }
 #content-buy{
 	float: left;
-	padding-right: 30px;
+	padding-right: 40px;
 }
 #content-myinfo{
 	float: left;
@@ -163,7 +164,7 @@ html, body { margin:0; padding:0;}
 	border-top: 1px solid silver;
 }
 #mainicondiv ul{
-	margin-left: 600px;
+	margin-left: 420px;
 	padding-top: 10px;
 }
 #mainicondiv ul li{
@@ -279,7 +280,7 @@ html, body { margin:0; padding:0;}
 #footer{
     width:100%;
 	overflow :hidden;
-	/* position:fixed; */
+	position:fixed;
 	bottom:0px;
 	height:40px;
 	font: normal 11px 'Nanum Gothic';

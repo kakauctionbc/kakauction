@@ -1,21 +1,45 @@
 @CHARSET "utf-8";
 /* body{margin:0} */
 
+#wrapdiv{
+	width: 1000px;
+	margin-left: 450px;
+}
+#wraptop{
+	width:100%;
+	height:40px;
+	margin-bottom: 30px;
+}
+
+#wraptop p{
+	float: right;
+}
+#wraptop p a{
+	text-decoration: blink;
+	
+}
+#pagelogo{
+	clear:both;
+	width:100%;
+	border-bottom:3px solid #534a4a;
+}
+#pagelogo img{
+	padding-bottom: 10px;
+}
+
 body, td, th, span, p{
-	font-family: 'nanum gothic', 맑은 고딕, 한컴돋움, 돋움;
 	font-size: 0.9em;
 	color:#555555;
 }
 	
 td, th{
-	padding:4px;
+	padding:1px;
 }
 
 
 input,Textarea, select {
     font-family:'nanum gothic', 맑은 고딕, 한컴돋움, 돋움;
 	font-size: 0.9em;
-	color:#555555;
 }
 #text{
 	font-size:1.2em;
@@ -30,14 +54,6 @@ input,Textarea, select {
 	text-decoration: none;
 	color: black;
 }
-
-
-.divPdList{
-	width:800px;
-	padding:10px 5px 10px 0;
-	margin:10px 0 35px 3px;
-	border:solid silver 1px;
-}	
 
 .errorMessage{
 	color:red;

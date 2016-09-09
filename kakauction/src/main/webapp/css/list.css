@@ -1,0 +1,101 @@
+@CHARSET "UTF-8";
+
+.divList{
+	width:1000px;
+	padding-top:30px;
+}
+.box2{
+	width: 1000px;
+	border: 1px solid silver;
+	border-collapse: collapse;
+}
+
+.box2 tr th{
+	border-top:1px solid silver;
+	border-bottom:1px solid silver;
+	background: #fffffb;
+	
+}
+.box2 tr td{
+	border-bottom: 1px solid silver;	
+}
+.listTitle th{
+	font-style: normal;
+	font-weight: bold;
+	color:black;
+	font-size:0.8em;
+}
+.listImg{
+	border-right: 1px solid silver;
+}
+.listSize{
+	border-right: 1px solid silver;
+}
+.listName{
+	padding-left:10px;
+}
+.listName a{
+	text-decoration: none;
+	color:black;
+}
+.readCount{
+	color: red;
+	border-left: 1px solid silver;
+}
+
+/* paging */
+
+.pagediv{
+	height: 80px;
+}
+.page{
+	width:100%;
+	display: inline-block;
+	height:50px;
+	padding-top: 30px;
+}
+.page li{
+	display: block;
+	height:20px;
+	float: left;
+}
+.firstPage{
+	margin-left: 350px;
+}
+.page li span{
+	display: block;
+	background-color: #ffffff;
+    border: 2px solid #FEA100;
+    color: #FEA100;
+    font-weight: bold;
+    text-align:center;
+    width: 25px;
+    height: 20px;
+    float: left;
+    
+    
+}
+.page li a{
+	text-decoration: none;
+	font-size: 1.2em;
+	color: black;
+	font-weight: bold;
+	float: left;
+	padding-left:8px;
+	padding-right:8px;
+	
+}
+.page li a:hover{
+	display:inline-block;
+	background-color: #fef3cf;
+	border: 2px solid #fef3cf;
+}
+.writebutton{
+	width: 100%;
+	height: 100px;
+}
+.writebutton button{
+	border-radius: 5px;
+	background: #f2f2ee;
+	float: right;
+}

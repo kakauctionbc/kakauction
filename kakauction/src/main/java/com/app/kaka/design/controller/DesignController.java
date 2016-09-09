@@ -100,5 +100,11 @@ public class DesignController {
 		
 		return "/design/board/carList";
 	}
+	@RequestMapping("/list.do")
+	public String auctionList(){
+		logger.info("차목록 페이지");
+		
+		return "/design/auction/list";
+	}
 	
 }

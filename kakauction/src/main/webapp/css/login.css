@@ -25,6 +25,7 @@
 #pagelogo img{
 	padding-bottom: 10px;
 }
+
 #loginp{
 	width :500px;
 	margin-top: 50px;
@@ -44,10 +45,10 @@
 .simpleForm div{
 	margin-left: 60px;
 }
-input#userid{
+input#memberId{
 	width:170px;
 }
-input#pwd{
+input#memberPwd{
 	width:170px;
 }
 #loginbutton{

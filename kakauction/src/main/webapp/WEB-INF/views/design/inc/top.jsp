@@ -29,6 +29,7 @@ $(function(){
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/layout.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/login.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/register.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/list.css" />
 <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>      
     <![endif]-->
@@ -101,8 +102,8 @@ $(function(){
 			</div>
 			<div id="content-buy">
 				<ul>
-					<li><a href="<c:url value='/auction/list.do'/>">공매리스트</a></li>
-					<li><a href="#">경매리스트</a></li>
+					<li><a href="<c:url value='/auction/list.do'/>">경매리스트</a></li>
+					<li><a href="#">공매리스트</a></li>
 					<li><a href="#">일정안내</a></li>
 				</ul>
 			</div>

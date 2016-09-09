@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../design/inc/top.jsp"%>
+<%@ include file="../inc/top.jsp"%>
 <script type="text/javascript" 
 	src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
 <script type="text/javascript">	
@@ -21,6 +21,11 @@
 	
 
 </script>
+<style>
+	td, th{
+		border: 2px solid silver;
+	}
+</style>
 
 <div id="wrap">
 	<div id="wrapdiv">
@@ -30,8 +35,7 @@
 			</p>
 		</div>
 		<div id="pagelogo">
-			<img
-				src="${pageContext.request.contextPath }/img/auctionList_logo.png"
+			<img src="${pageContext.request.contextPath }/img/auctionList_logo.png"
 				alt="회원가입로고">
 		</div>
 		<form name="frmPage" method="post"
@@ -56,19 +60,19 @@
 				<colgroup>
 					<col style="width: 10%;" />
 					<col style="width: 7%;" />
-					<col style="width: 20%;" />
+					<col style="width: 25%;" />
 					<col style="width: 10%;" />
 					<col style="width: 7%;" />
-					<col style="width: 10%;" />
+					<col style="width: 6%;" />
 					<col style="width: 7%;" />
 					<col style="width: 12%;" />
 					<col style="width: 12%;" />
 					<col style="width: 4%;" />
 				</colgroup>
 				<thead>
-					<tr class="listTitle">
-						<th rowspan="2" class="listImg">사진</th>
-						<th rowspan="2" class="listSize">차종</th>
+					<tr>
+						<th rowspan="2">사진</th>
+						<th rowspan="2">차종</th>
 						<th>물건명</th>
 						<th>연식</th>
 						<th>변속기</th>
@@ -76,7 +80,7 @@
 						<th>물건상태</th>
 						<th>입찰번호</th>
 						<th>입찰시작</th>
-						<th rowspan="2" class="readCount">조회</th>
+						<th rowspan="2">조회</th>
 					</tr>
 					<tr>
 						<th>소재지</th>
@@ -98,10 +102,10 @@
 						<!--게시판 내용 반복문 시작  -->
 						<c:forEach var="vo" items="${alist }">
 							<tr style="text-align: center">
-								<td class="listImg"><img alt="사진" height="56px;" width="90px;"
+								<td><img alt="사진" height="56px;" width="90px;"
 									src="<c:url value='/picture_upload/${vo.picture1}'/>"></td>
-								<td class="listSize">${vo.carSize}</td>
-								<td class="listName" style="text-align: left;"><a
+								<td>${vo.carSize}</td>
+								<td style="text-align: left;"><a
 									href="<c:url value='/auction/updateCount.do?auctionNo=${vo.auctionNo}'/>">
 										${vo.carModel}<br> <c:if
 											test="${fn:length(vo.carLoc)>30}">
@@ -122,41 +126,42 @@
 									${vo.auctionNo}</td>
 								<td>${vo.auctionRegdate}<br> ${vo.auctionFinish }
 								</td>
-								<td class="readCount">${vo.auctionReadCount }</td>
+								<td>${vo.auctionReadCount }</td>
 							</tr>
 						</c:forEach>
 						<!--반복처리 끝  -->
 					</c:if>
-					
 				</tbody>
 			</table>
 		</div>
-		
-		<div class="pagediv">
-			<ul class="page">
-				<!-- 이전 블럭으로 이동 -->
-				<li class="firstPage"><c:if test="${pagingInfo.firstPage>1 }">
-					<a href="#" onclick="pageProc(${pagingInfo.firstPage-1})">&laquo;</a>
-				</c:if></li>
-				<!-- 페이지 번호 추가 -->
-				<!-- [1][2][3][4][5][6][7][8][9][10] -->
-				<li><c:forEach var="i" begin="${pagingInfo.firstPage }" end="${pagingInfo.lastPage }">
-					<c:if test="${i==pagingInfo.currentPage }">
-						<span> ${i }</span>
-					</c:if>
-					<c:if test="${i!=pagingInfo.currentPage }">
-						<a href="#" onclick="pageProc(${i})"> ${i}</a>
-					</c:if>
-				</c:forEach></li>
-				<!--  페이지 번호 끝 -->
-	
-				<!-- 다음 블럭으로 이동 -->
-				<li><c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
-					<a href="#" onclick="pageProc(${pagingInfo.lastPage+1})">&raquo;</a>
-				</c:if></li>
-			</ul>
+		<div class="divPage">
+			<!-- 이전 블럭으로 이동 -->
+			<c:if test="${pagingInfo.firstPage>1 }">
+				<a href="#" onclick="pageProc(${pagingInfo.firstPage-1})"> <img
+					src="<c:url value='/images/first.JPG'/>" alt="이전블럭으로">
+				</a>
+			</c:if>
+
+			<!-- 페이지 번호 추가 -->
+			<!-- [1][2][3][4][5][6][7][8][9][10] -->
+			<c:forEach var="i" begin="${pagingInfo.firstPage }"
+				end="${pagingInfo.lastPage }">
+				<c:if test="${i==pagingInfo.currentPage }">
+					<span style="color: blue; font-weight: bold"> ${i }</span>
+				</c:if>
+				<c:if test="${i!=pagingInfo.currentPage }">
+					<a href="#" onclick="pageProc(${i})"> [${i}]</a>
+				</c:if>
+			</c:forEach>
+			<!--  페이지 번호 끝 -->
+
+			<!-- 다음 블럭으로 이동 -->
+			<c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
+				<a href="#" onclick="pageProc(${pagingInfo.lastPage+1})"> <img
+					src="<c:url value='/images/last.JPG'/>" alt="다음블럭으로">
+				</a>
+			</c:if>
 		</div>
-		
 		<div class="divSearch">
 			<form name="frmSearch" method="post"
 				action="<c:url value='/reBoard/list.do' />">
@@ -178,9 +183,10 @@
 					value="검색">
 			</form>
 		</div>
-		<div class="writebutton">
-			<button type="submit" onclick="<c:url value='/reBoard/write.do'/>">글쓰기</button>
+
+		<div class="divBtn">
+			<a href="<c:url value='/reBoard/write.do'/>"> 글쓰기</a>
 		</div>
 	</div>
 </div>
-<%@ include file="../design/inc/bottom.jsp"%>
+<%@ include file="../inc/bottom.jsp"%>

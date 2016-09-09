@@ -45,123 +45,128 @@ $(function() {
 </script>
 	<div id="mainicondiv">
 		<ul>
-			<%-- <li id="iconone"><a href=""><img
-					src="${pageContext.request.contextPath }/img/sellNow.png"></a></li> --%>
-			<li id="icontwo"><a href="<c:url value='/car/register.do'/>"><img
+			<li id="iconone"><a href="<c:url value='/car/register.do'/>"><img
 					src="${pageContext.request.contextPath }/img/enterCar.png"></a></li>
-			<li id="iconthree"><a href=""><img
+			<li id="icontwo"><a href=""><img
 					src="${pageContext.request.contextPath }/img/buyNow.png"></a></li>
-			<%-- <li id="iconfour"><a href=""><img
-					src="${pageContext.request.contextPath }/img/joinAuction1.png"></a></li> --%>
-			<li id="iconfive"><a href=""><img
+			<li id="iconthree"><a href=""><img
 					src="${pageContext.request.contextPath }/img/joinAuction2.png"></a></li>
+			<li id="iconfour"><a href=""><img
+					src="${pageContext.request.contextPath }/img/freeboard.png"></a></li>
+			<li id="iconfive"><a href=""><img
+					src="${pageContext.request.contextPath }/img/notice.png"></a></li>
 		</ul>
 	</div>
-	<img src="${pageContext.request.contextPath }/img/hot_icon.png" id="hot_icon">
-	<div id="realtime">
-		<div id="realtimehead">
-			<p id="text">실시간 경매 현황</p>
-			<p id="more">
-				<a href="">MORE▶</a>
-			</p>
-		</div>
-		<table id="realtimetable" style="border-collapse:collapse">
-			<tr id="align_center">
-				<th colspan="3">제939차 경매 (2016.08.31)</th>
-			</tr>
-			<tr id="align_center">
-				<td>전체</td>
-				<td>0</td>
-				<td></td>
-			</tr>
-			<tr id="align_center">
-				<td>승용</td>
-				<td>0</td>
-				<td></td>
-			</tr>
-			<tr id="align_center">
-				<td>suv</td>
-				<td>0</td>
-				<td></td>
-			</tr>
-			<tr id="align_center">
-				<td>승합</td>
-				<td>0</td>
-				<td></td>
-			</tr>
-			<tr id="align_center">
-				<td>화물</td>
-				<td>0</td>
-				<td></td>
-			</tr>
-			<tr id="align_center">
-				<td>기타</td>
-				<td>0</td>
-				<td></td>
-			</tr>
-		</table>
-		<div id="realtimeslide">
-			<div id="realtimeslide_hot">
-				<div class="mySlides fade">
-					<img src="${pageContext.request.contextPath }/img/hot_car1.jpg" style="width:220px; height:217px">
-			 	</div>
-			 	<div class="mySlides fade">
-					<img src="${pageContext.request.contextPath }/img/hot_car2.jpg" style="width:220px; height:217px">
-			  	</div>
-			  	<div class="mySlides fade">
-					<img src="${pageContext.request.contextPath }/img/hot_car3.jpg" style="width:220px; height:217px">
-			  	</div>
-			</div>
-		</div>
-	</div>
-	<div id="mainwrap">
-		<div id="quickservice">
-			<div id="quickservicehead">
-				<p id="text">빠른 서비스</p>
-			</div>
-			<div>
-				<p>이미지</p>
-			</div>
-		</div>
-		<div id="notice">
-			<div id="noticehead">
-				<p id="text">공지사항</p>
+		<img src="${pageContext.request.contextPath }/img/hot_icon.png"
+			id="hot_icon">
+		<div id="realtime">
+			<div id="realtimehead">
+				<p id="text">실시간 경매 현황</p>
 				<p id="more">
 					<a href="">MORE▶</a>
 				</p>
 			</div>
-			<div>
-				<p>공지사항</p>
+			<table id="realtimetable" style="border-collapse: collapse">
+				<tr id="align_center">
+					<th colspan="3">제939차 경매 (2016.08.31)</th>
+				</tr>
+				<tr id="align_center">
+					<td>전체</td>
+					<td>0</td>
+					<td></td>
+				</tr>
+				<tr id="align_center">
+					<td>승용</td>
+					<td>0</td>
+					<td></td>
+				</tr>
+				<tr id="align_center">
+					<td>suv</td>
+					<td>0</td>
+					<td></td>
+				</tr>
+				<tr id="align_center">
+					<td>승합</td>
+					<td>0</td>
+					<td></td>
+				</tr>
+				<tr id="align_center">
+					<td>화물</td>
+					<td>0</td>
+					<td></td>
+				</tr>
+				<tr id="align_center">
+					<td>기타</td>
+					<td>0</td>
+					<td></td>
+				</tr>
+			</table>
+			<div id="realtimeslide">
+				<div id="realtimeslide_hot">
+					<div class="mySlides fade">
+						<img src="${pageContext.request.contextPath }/img/hot_car1.jpg"
+							style="width: 220px; height: 217px">
+					</div>
+					<div class="mySlides fade">
+						<img src="${pageContext.request.contextPath }/img/hot_car2.jpg"
+							style="width: 220px; height: 217px">
+					</div>
+					<div class="mySlides fade">
+						<img src="${pageContext.request.contextPath }/img/hot_car3.jpg"
+							style="width: 220px; height: 217px">
+					</div>
+				</div>
 			</div>
 		</div>
-		<div id="schedule">
-			<div id="schedulehead">
-				<p id="text">일정안내</p>
-				<p id="more">
-					<a href="">MORE▶</a>
-				</p>
+		<div id="mainwrap">
+			<div id="quickservice">
+				<div id="quickservicehead">
+					<p id="text">빠른 서비스</p>
+				</div>
+				<div>
+					<p>이미지</p>
+				</div>
 			</div>
-			<div>
-				<p>일정안내</p>
+			<div id="notice">
+				<div id="noticehead">
+					<p id="text">공지사항</p>
+					<p id="more">
+						<a href="">MORE▶</a>
+					</p>
+				</div>
+				<div>
+					<p>공지사항</p>
+				</div>
+			</div>
+			<div id="schedule">
+				<div id="schedulehead">
+					<p id="text">일정안내</p>
+					<p id="more">
+						<a href="">MORE▶</a>
+					</p>
+				</div>
+				<div>
+					<p>일정안내</p>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-</body>
 <script>
 	var slideIndex = 0;
 	showSlides();
-	
+
 	function showSlides() {
-	    var i;
-	    var slides = document.getElementsByClassName("mySlides");
-	    for (i = 0; i < slides.length; i++) {
-	        slides[i].style.display = "none"; 
-	    }
-	    slideIndex++;
-	    if (slideIndex> slides.length) {slideIndex = 1} 
-	    slides[slideIndex-1].style.display = "block"; 
-	    setTimeout(showSlides, 2000); // Change image every 2 seconds
+		var i;
+		var slides = document.getElementsByClassName("mySlides");
+		for (i = 0; i < slides.length; i++) {
+			slides[i].style.display = "none";
+		}
+		slideIndex++;
+		if (slideIndex > slides.length) {
+			slideIndex = 1
+		}
+		slides[slideIndex - 1].style.display = "block";
+		setTimeout(showSlides, 2000); // Change image every 2 seconds
 	}
-	</script>
+</script>
 <%@ include file="../inc/bottom.jsp"%>

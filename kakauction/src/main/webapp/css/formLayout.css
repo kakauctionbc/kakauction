@@ -3,8 +3,8 @@
 		font-size:1.0em; 
 	}
 	.divForm form, .divForm{
-		width: 1080px;
-		}
+		width: 1000px;
+	}
 	.divForm fieldset	{
 		width: 90%;
 		padding: 0;
@@ -148,11 +148,8 @@
 			
 /* 표 css */
 .divList, .divPage, .divSearch, .divRight, .divList table{
-		width:1080px;;
+		width:1000px;;
 	}	
-	.divList{
-		margin-left: 5px;
-	}
 	caption{
 		visibility:hidden;
 		font-size:0.1em;

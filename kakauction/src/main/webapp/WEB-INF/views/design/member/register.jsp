@@ -116,8 +116,8 @@
 	
 	
 <div id="wrap">
-	<div id="registerwrap">
-		<div id="registertop">
+	<div id="mainwrap">
+		<div id="wraptop">
 			<p>
 				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>회원가입>일반회원가입
 			</p>

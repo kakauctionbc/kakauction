@@ -4,16 +4,16 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.0.min.js" ></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#userid").focus();
+		$("#memberId").focus();
 		
 		$("#frmLogin").submit(function(){
-			if($("#userid").val().length<1){
+			if($("#memberId").val().length<1){
 				alert("아이디를 입력하세요");
-				$("#userid").focus();
+				$("#memberId").focus();
 				return false;
-			}else if($("#pwd").val().length<1){
+			}else if($("#memberPwd").val().length<1){
 				alert("비밀번호를 입력하세요");
-				$("#pwd").focus();
+				$("#memberPwd").focus();
 				return false;
 			}
 		});
@@ -23,7 +23,9 @@
 <div id="wrap">
 	<div id="loginwrap">
 		<div id="logintop">
-			<p><a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>회원가입>로그인</p>
+			<p>
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>회원가입>로그인
+			</p>
 		</div>
 		<div id="pagelogo">
 			<img src="${pageContext.request.contextPath }/img/login_logo.png" alt="로그인로고">
@@ -40,17 +42,17 @@
 				action="<c:url value='/login/login.do'/>" >
 				<fieldset>
 					<div>
-						<label for="userid" class="label">
+						<label for="memberId" class="label">
 							아이디</label>
-						<input type="text" name="userid"
-							id="userid" 
+						<input type="text" name="memberId"
+							id="memberId" 
 							value="${cookie.ck_userid.value}">
 					</div>
 					<div>	
-						<label for="pwd"  class="label">
+						<label for="memberPwd"  class="label">
 							비밀번호</label>
-						<input type="password" name="pwd"
-							id="pwd">
+						<input type="password" name="memberPwd"
+							id="memberPwd">
 					</div>
 						<button type="submit" id="loginbutton">Login</button>
 						<input type="checkbox" name="chkSave"
@@ -73,7 +75,6 @@
 					<button type="submit">비밀번호</button>
 				</div>
 			</article>
-			
 		</div>
 	</div>
 </div>
