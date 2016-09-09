@@ -4,8 +4,8 @@
 <body>
 	<div>
     <table class="cartListTbl box2" 
-	summary="장바구니 목록에 관한 표로써, 상품명,가격, 수량, 금액 등의 정보를 제공합니다." style="text-align: center;">
-		<caption>장바구니 목록</caption>
+	summary="공매차량 목록에 관한 표로써, 사진, 차종, 연식, 주행거리, 초기매매가, 등록일 등의 정보를 제공합니다." style="text-align: center;">
+		<caption>공매차랑 목록</caption>
 		<colgroup>
 			<col width="20%" />
 			<col width="20%" />

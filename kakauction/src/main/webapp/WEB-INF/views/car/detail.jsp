@@ -114,7 +114,7 @@
 	<div class="rightarea">
 		<dt> <strong>차량 옵션 정보</strong> </dt>
 		<div class="option">
-			<table id="carOptionTable" summary="차량옵션선택" style="font-size: 0.7em">
+			<table id="carOptionTable" summary="차량옵션선택">
 			<%-- <colgroup>
 				<col width="20%">
 				<col width="20%">

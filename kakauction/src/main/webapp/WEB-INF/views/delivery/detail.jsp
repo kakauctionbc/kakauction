@@ -7,6 +7,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<table class="cartListTbl box2" 
+	summary="경매 결과에 관한 표로써, 			 등의 정보를 제공합니다." style="text-align: center;">
+		<caption>경매 결과</caption>
+		<colgroup>
+			<col width="20%" />
+		</colgroup>
+		<thead>
+		</thead>
+		<tbody>
+			<tr>
+				<td>경매 번호</td>
+				<td>차량 번호</td>
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>

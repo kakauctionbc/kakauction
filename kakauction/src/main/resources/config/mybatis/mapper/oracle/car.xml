@@ -4,9 +4,9 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.car">
 	<insert id="insertCar" parameterType="CarVO">
-		insert into car(car_num, member_id, car_company, car_price, car_loc, car_birth, car_model,
+		insert into car(car_num, seller_member_id, car_company, car_price, car_loc, car_birth, car_model,
 			car_size, car_dist, car_gas, car_cc, car_am, car_color, car_acci, car_regdate, car_auction_yn, car_fail_sell)
-		values(#{carNum}, #{memberId}, #{carCompany}, #{carPrice}, #{carLoc}, #{carBirth}, #{carModel}, #{carSize}, #{carDist},
+		values(#{carNum}, #{sellerMemberId}, #{carCompany}, #{carPrice}, #{carLoc}, #{carBirth}, #{carModel}, #{carSize}, #{carDist},
 		#{carGas}, #{carCc}, #{carAm}, #{carColor}, #{carAcci}, sysdate, 'N', 0)
 	</insert>
 	

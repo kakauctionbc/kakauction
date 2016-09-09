@@ -4,10 +4,10 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.picture">
 	<insert id="insertPicture" parameterType="PictureVO">
-		insert into picture(car_num, member_id, picture_1, picture_2, picture_3, picture_4, picture_5, picture_6, picture_7,
+		insert into picture(car_num, seller_member_id, picture_1, picture_2, picture_3, picture_4, picture_5, picture_6, picture_7,
 		picture_8, picture_9, picture_10, picture_11, picture_12, picture_13, picture_14, picture_15, picture_16, picture_17, 
 		picture_18, picture_19, picture_20)
-		values(#{carNum}, #{memberId}, #{picture1}, #{picture2}, #{picture3}, #{picture4}, #{picture5}, #{picture6}, #{picture7},
+		values(#{carNum}, #{sellerMemberId}, #{picture1}, #{picture2}, #{picture3}, #{picture4}, #{picture5}, #{picture6}, #{picture7},
 		#{picture8}, #{picture9}, #{picture10}, #{picture11}, #{picture12}, #{picture13}, #{picture14}, #{picture15}, #{picture16},
 		#{picture17}, #{picture18}, #{picture19}, #{picture20})
 	</insert>
@@ -18,6 +18,6 @@
 	</select>
 	
 	<select id="selectByMemberId" parameterType="string" resultType="pictureVo">
-		select * from picture where member_id=#{memberId}
+		select * from picture where seller_member_id=#{sellerMemberId}
 	</select>
 </mapper>
