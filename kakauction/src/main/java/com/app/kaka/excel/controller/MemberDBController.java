@@ -52,12 +52,10 @@ public class MemberDBController {
         return "common/message";
     }
 	
-	/*@RequestMapping(value="/downloadExcel.do",method=RequestMethod.GET)
-    public void excelView(Model model) throws Exception{
-        
-        List<MemberVO> memberList=memberService.selectAllMember();
-        logger.info("memberlist들어간건가... memberList.size={}",memberList.size());
-        
-       	WriteListToExcelFile.writeNoticeListToFile("memberList.xls", memberList);
-    }*/
+	@RequestMapping(value="/uploadExcel.do", method=RequestMethod.GET)
+	public String uploadFile_get(){
+		logger.info("업로드 화면 보여주기");
+		
+		return "excel/uploadExcel";
+	}
 }
