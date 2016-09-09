@@ -239,4 +239,11 @@ public class AuctionController {
 		
 		return "common/message";
 	}
+	
+	@RequestMapping("/auctiongo.do")
+	public String doAuction(){
+	      logger.info("경매 하기 화면 보여줌");
+	      
+	      return "auction/doAuction";
+	}
 }
