@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -241,9 +243,17 @@ public class AuctionController {
 	}
 	
 	@RequestMapping("/auctiongo.do")
-	public String doAuction(){
-	      logger.info("경매 하기 화면 보여줌");
+	public String doAuction(HttpSession session, @RequestParam(defaultValue="0") int auctionNo, Model model){
+		String memberId = (String)session.getAttribute("memberId");
+	    logger.info("경매 하기 화면 보여줌, 멤버 아이디 memberId={}",memberId);
+	    
+	    if(auctionNo==0){
+	    	model.addAttribute("msg", "잘못된 url입니다");
+	    	model.addAttribute("url", "/auction/list.do");
+	    	
+	    	return "common/message";
+	    }
 	      
-	      return "auction/auctiongo";
+	    return "auction/auctiongo";
 	}
 }

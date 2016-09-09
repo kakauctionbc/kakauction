@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>현재 진행 중인 경매</title>
-</head>
-<body>
+<%@ include file="../design/inc/top.jsp" %>
+<style type="text/css">
+	table, td{
+		border: 1px solid red;
+	}
+</style>
 	<div>
 		<table>
 			<thead>
 				<tr>
-					<td>KAKAUCTION</td>
-					<td>관심물품a태그</td>
-					<td>부재자응찰?이건뭐지a태그</td>
+					<td><img alt="logo" src="<c:url value='/img/logo.png'/>"></td>
+					<td><a href="#"><img alt="관심경매" src="<c:url value='/img/auctionChoice.png'/>"></a></td>
+					<td><img alt="관심경매" src="<c:url value='/img/blank.png'/>"></td>
 					<td>회원아이디</td>
 					<td>경매 나가기</td>
 				</tr>
@@ -37,14 +37,14 @@
 								<td>db자/수동</td>
 								<td>연료</td>
 								<td>db연료</td>
-								<td rowspan="2">여기는</td>
-								<td rowspan="2">크엉</td>
 							</tr>
 							<tr>
 								<td>연료</td>
 								<td>db연료</td>
 								<td>변경</td>
 								<td>변경쓰는곳</td>
+								<td>여기는</td>
+								<td>크엉</td>
 							</tr>
 							<tr>
 								<td colspan="4">사진1</td>
@@ -59,8 +59,8 @@
 							</tr>
 							<tr>
 								<td>
-									<a href="#">정보 1-cardetailinfo</a>
-									<a href="#">정보 2-sellmemberinfo</a>
+									<a href="#">정보 1-cardetailinfo</a><br>
+									<a href="#">정보 2-sellmemberinfo</a><br>
 									<a href="#">정보 3-auctioninfo</a>
 								</td>
 							</tr>
@@ -99,5 +99,4 @@
 			</tfoot>
 		</table>
 	</div>
-</body>
-</html>
+<%@ include file="../design/inc/bottom.jsp" %>
