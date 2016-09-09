@@ -97,18 +97,31 @@
 	}
 </script>
 <style type="text/css">
+	th{
+		background: #fffffb;
+		padding-left: 10px;
+	}
+	th label{
+		text-align: left;
+	}
+	th img{
+		float: left;
+	}
+	td{
+		padding-left: 10px;
+	}
 	#memberInfoTable td, #memberInfoTable th, #memberInfoTable{
-		border: 1px solid black;
+		border: 1px solid #acacac;
 		border-collapse: collapse;
 	}
 	
 	#carInfoTable td, #carInfoTable th, #carInfoTable{
-		border: 1px solid black;
+		border: 1px solid #acacac;
 		border-collapse: collapse;
 	}
 	
 	#carOptionTable td, #carOptionTable th, #carOptionTable{
-		border: 1px solid black;
+		border: 1px solid #acacac;
 		border-collapse: collapse;
 	}
 	
@@ -132,9 +145,9 @@
 				src="${pageContext.request.contextPath }/img/car_register_logo.png"
 				alt="회원가입로고">
 		</div>
-		<form id="registerCar" name="registerCar" method="post" enctype="multipart/form-data" action="<c:url value='/car/register.do'/>">
+		<form  id="registerCar" name="registerCar" method="post" enctype="multipart/form-data" action="<c:url value='/car/register.do'/>">
 			<div class="title">
-				<p>> 판매자정보</h4>
+				<img src="${pageContext.request.contextPath }/img/sellerInfo.png">
 			</div>
 
 			<table summary="판매자정보 입력" id="memberInfoTable">
@@ -142,7 +155,7 @@
 					<col width="116px">
 					<col width="290px">
 					<col width="116px">
-					<col width="*">
+					<col width="290px">
 				</colgroup>
 				<tbody>
 				<tr>
@@ -152,179 +165,189 @@
 					</td>
 					<th scope="col">아이디</th>
 					<td>
-						<input type="text" name="sellerMemberId" id="sellerMemberId" value="${memVo.memberId }" readonly>
+						<input type="text" name="memberId" id="memberId" style="width: 300px; border: none;" value="${memVo.memberId }" readonly>
 					</td>
 				</tr>
 				<tr>
+					<th scope="col"><label>휴대전화</label></th>
+					<td>
+						${memVo.memberHp }
+                    </td>
+					<th scope="col"><label>이메일</label></th>
+					<td>
+						${memVo.memberEmail }
+					</td>
+                </tr>
+                <tr>
 					<th scope="col">주소</th>
 					<td colspan="3">
 					${memVo.memberAddr }
 					</td>
 				</tr>
 				<tr>
-					<th scope="col">공고기관</th>
-					<td colspan="3"><input type="text" name="carCompany" id="carCompany" style="width: 500px;"></td>
-				</tr>
-				<tr>
-					<th scope="col"><label>이메일</label></th>
-					<td colspan="3">
-						${memVo.memberEmail }
-					</td>
-				</tr>
-				<tr>
-					<th scope="col"><label>휴대전화</label></th>
-					<td colspan="3">
-						${memVo.memberHp }
-                    </td>
+					<th scope="col"><img src="${pageContext.request.contextPath }/img/check.png" alt="필수체크">
+					<label>공고기관</label></th>
+					<td colspan="3"><input type="text" name="carCompany" id="carCompany" style="width: 700px; border: none;"></td>
 				</tr>
 				</tbody>
 			</table>
-		<div>
 			<div>
-				<h4>차량정보 입력</h4>
-			</div>
-			
-			<table id="carInfoTable" summary="차량정보 입력">
-			<colgroup>
-				<col width="116px">
-				<col width="*">
-				<col width="116px">
-				<col width="*">
-			</colgroup>
-			<tbody>
-			<tr>
-				<th scope="col"><label>차량번호</label></th>
-				<td colspan="3">
-					<input type="text" name="carNum" id="carNum"  maxlength="12">
-				</td>
-			</tr>
-			<tr>
-				<th scope="col"><label>차량명</label></th>
-				<td colspan="3">
-                       <span id="id_cardepth">
-						<input type="text" name="carModel" id="carModel">
-				</td>
-			</tr>
-			<tr>
-				<th scope="col"><label>연식</label><span>(최초등록일)</span></th>
-				<td>
-					<select name="carBirth1" id="carBirth1" style="width:89px;" title="년선택">
-						<option value="">선택</option>
-                        <option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option><option value="1979">1979</option><option value="1978">1978</option><option value="1977">1977</option><option value="1976">1976</option><option value="1975">1975</option><option value="1974">1974</option><option value="1973">1973</option><option value="1972">1972</option><option value="1971">1971</option><option value="1970">1970</option><option value="1969">1969</option><option value="1968">1968</option><option value="1967">1967</option><option value="1966">1966</option><option value="1965">1965</option><option value="1964">1964</option><option value="1963">1963</option><option value="1962">1962</option><option value="1961">1961</option><option value="1960">1960</option><option value="1959">1959</option><option value="1958">1958</option><option value="1957">1957</option><option value="1956">1956</option><option value="1955">1955</option><option value="1954">1954</option><option value="1953">1953</option><option value="1952">1952</option><option value="1951">1951</option><option value="1950">1950</option>
-                    </select>
-					년
-					&nbsp;
-					<select name="carBirth2" id="carBirth2" style="width:89px;" title="월선택">
-					<option value="">선택</option>
-						<option value="01">1</option><option value="02">2</option><option value="03">3</option><option value="04">4</option><option value="05">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
-                    </select>
-					월
-					<input type="hidden" name="carBirth" id="carBirth">
-			  	</td>
-				<th scope="col"><label>차종</label></th>
-				<td>
-					<select name="carSize" id="carSize" style="width:89px;" title="년선택">
-						<option value="">선택하세요</option>
-						<option value="경차">경차</option>
-						<option value="소형">소형</option>
-						<option value="준중">준중</option>
-						<option value="중형">중형</option>
-						<option value="대형">대형</option>
-						<option value="리무진">리무진</option>
-						<option value="스포츠카">스포츠카</option>
-						<option value="SUV">SUV</option>
-						<option value="RV">RV</option>
-						<option value="승합차">승합차</option>
-						<option value="밴">밴</option>
-						<option value="캠핑카">캠핑카</option>
-						<option value="버스">버스</option>
-                    </select>
-				</td>
-			</tr>
-			<tr>
-				<th scope="col"><label>변속기</label></th>
-				<td>
-					<select name="carAm" id="carAm" style="width:89px;" title="변속기선택">
-						<option value="" selected>선택하세요</option>
-						<option value="자동">자동</option>
-						<option value="수동">수동</option>
-					</select>
-			  </td>
-				<th scope="col"><label>연료</label></th>
-				<td>
-         			<select name="carGas" style="width:100px;" id="carGas" title="연료선택">
-						<option value="">선택하세요</option>
-						<option value="가솔린">가솔린</option>
-						<option value="디젤">디젤</option>
-						<option value="LPG">LPG</option>
-						<option value="LPG 일반인구입">LPG 일반인구입</option>
-						<option value="가솔린/LPG겸용">가솔린/LPG겸용</option>
-						<option value="가솔린 하이브리드">가솔린 하이브리드</option>
-						<option value="LPG 하이브리드">LPG 하이브리드</option>
-						<option value="디젤 하이브리드">디젤 하이브리드</option>
-						<option value="CNG">CNG</option>
-						<option value="전기">전기</option>
-						<option value="기타">기타</option>
-					</select>
-				</td>
+				<div>
+					<img src="${pageContext.request.contextPath }/img/carInfo.png">
+				</div>
+				
+				<table id="carInfoTable" summary="차량정보 입력">
+				<colgroup>
+					<col width="130px">
+					<col width="130px">
+					<col width="150px">
+					<col width="*">
+				</colgroup>
+				<tbody>
+				<tr>
+					<th scope="col"><img src="${pageContext.request.contextPath }/img/check.png" alt="필수체크">
+					<label>차량번호</label></th>
+					<td colspan="3">
+						<input type="text" name="carNum" id="carNum"  maxlength="12" style="width: 690px; border: none;">
+					</td>
 				</tr>
 				<tr>
-					<th scope="col"><label>배기량</label></th>
+					<th scope="col">
+					<img src="${pageContext.request.contextPath }/img/check.png" alt="필수체크">
+					<label>차량명</label></th>
+					<td colspan="3">
+	                       <span id="id_cardepth">
+							<input type="text" name="carModel" id="carModel" style="width: 690px; border: none;">
+					</td>
+				</tr>
+				<tr>
+					<th scope="col"><label>
+					<img src="${pageContext.request.contextPath }/img/check.png" alt="필수체크">차종</label></th>
 					<td>
-						<input name="carCc" type="text" id="carCc" style="width:78px;" onkeydown="Numberic();" title="배기량" maxlength="4"> cc
-				</td>
-				<th scope="col"><label>주행거리</label></th>
-				<td>
-					<input name="carDist" type="text" id="carDist" style="width:78px;" title="주행거리" onkeydown="Numberic();">
-					<label>km</label>
-			</td>
-			</tr>
-			<tr>
-				<th scope="col"><label>색상</label></th>
-				<td>
-					<select name="carColor" id="carColor" style="width:89px;" title="색상선택">
+						<select name="carSize" id="carSize" style="width:100px; font-size: 1.1em;" title="년선택">
 							<option value="">선택하세요</option>
-							<option value="검정색">검정색</option><option value="검정투톤">검정투톤</option><option value="은색">은색</option><option value="은색투톤">은색투톤</option><option value="흰색">흰색</option><option value="흰색투톤">흰색투톤</option><option value="진주색">진주색</option><option value="진주투톤">진주투톤</option><option value="갈색">갈색</option><option value="금색">금색</option><option value="남색">남색</option><option value="노란색">노란색</option><option value="녹색">녹색</option><option value="베이지색">베이지색</option><option value="보라색">보라색</option><option value="분홍색">분홍색</option><option value="빨간색">빨간색</option><option value="연금색">연금색</option><option value="연두색">연두색</option><option value="은하늘색">은하늘색</option><option value="자주색">자주색</option><option value="주황색">주황색</option><option value="청색">청색</option><option value="진청색">진청색</option><option value="청옥색">청옥색</option><option value="파란색">파란색</option><option value="하늘색">하늘색</option><option value="회색">회색</option><option value="진회색">진회색</option><option value="기타색상">기타색상</option>
-					</select>
-				</td>
-				<th scope="col">
-					<label>사고여부</label>
-				</th>
-				<td>
-					<input name="carAcci" type="radio" id="noAcci" value="N" checked>
-					<label for="noAcci">무사고</label>
-						
-					<input name="carAcci" type="radio" id="acci" value="Y">
-					<label for="acci">사고</label>
-			</td>
-			</tr>
-
-     		<tr>
-				<th scope="col">
-					<label>초기 구입가</label>
-				</th>
-				<td colspan="3">
-					<input name="carPrice" type="text" id="carPrice" style="width:78px;" title="판매가격" onkeydown="Numberic();" maxlength="6">
-					(단위 : 만원)
-					<span>* 허위가격 입력 시 아이디 제명 및 경고없이 삭제됩니다.</span>
-				</td>
-			</tr>
-     		<tr>
-				<th scope="col">
-					<label>차량 현재 위치</label>
-				</th>
-				<td colspan="3">
-					<input name="carLoc" type="text" id="carLoc" style="width:400px;" title="현재위치">
-					<input type="button" id="searchLoc" name="searchLoc" value="장소 검색">
-				</td>
-			</tr>
+							<option value="경차">경차</option>
+							<option value="소형">소형</option>
+							<option value="준중">준중</option>
+							<option value="중형">중형</option>
+							<option value="대형">대형</option>
+							<option value="리무진">리무진</option>
+							<option value="스포츠카">스포츠카</option>
+							<option value="SUV">SUV</option>
+							<option value="RV">RV</option>
+							<option value="승합차">승합차</option>
+							<option value="밴">밴</option>
+							<option value="캠핑카">캠핑카</option>
+							<option value="버스">버스</option>
+	                    </select>
+					</td>
+					<th scope="col"><label>
+					<img src="${pageContext.request.contextPath }/img/check.png" alt="필수체크">연식</label><span>(최초등록일)</span></th>
+					<td>
+						<select name="carBirth1" id="carBirth1" style="width:100px; font-size: 1.1em;" title="년선택">
+							<option value="">선택</option>
+	                        <option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option><option value="1979">1979</option><option value="1978">1978</option><option value="1977">1977</option><option value="1976">1976</option><option value="1975">1975</option><option value="1974">1974</option><option value="1973">1973</option><option value="1972">1972</option><option value="1971">1971</option><option value="1970">1970</option><option value="1969">1969</option><option value="1968">1968</option><option value="1967">1967</option><option value="1966">1966</option><option value="1965">1965</option><option value="1964">1964</option><option value="1963">1963</option><option value="1962">1962</option><option value="1961">1961</option><option value="1960">1960</option><option value="1959">1959</option><option value="1958">1958</option><option value="1957">1957</option><option value="1956">1956</option><option value="1955">1955</option><option value="1954">1954</option><option value="1953">1953</option><option value="1952">1952</option><option value="1951">1951</option><option value="1950">1950</option>
+	                    </select>
+						년
+						&nbsp;
+						<select name="carBirth2" id="carBirth2" style="width:89px;" title="월선택">
+						<option value="">선택</option>
+							<option value="01">1</option><option value="02">2</option><option value="03">3</option><option value="04">4</option><option value="05">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+	                    </select>
+						월
+						<input type="hidden" name="carBirth" id="carBirth">
+				  	</td>
+				</tr>
+				<tr>
+					<th scope="col"><label>
+					<img src="${pageContext.request.contextPath }/img/check.png" alt="필수체크">변속기</label></th>
+					<td>
+						<select name="carAm" id="carAm" style="width:100px; font-size: 1.1em;" title="변속기선택">
+							<option value="" selected>선택하세요</option>
+							<option value="자동">자동</option>
+							<option value="수동">수동</option>
+						</select>
+					</td>
+					<th scope="col"><label>
+					<img src="${pageContext.request.contextPath }/img/check.png" alt="필수체크">연료</label></th>
+					<td>
+	         			<select name="carGas" style="width:100px; font-size: 1.1em;" id="carGas" title="연료선택">
+							<option value="">선택하세요</option>
+							<option value="가솔린">가솔린</option>
+							<option value="디젤">디젤</option>
+							<option value="LPG">LPG</option>
+							<option value="LPG 일반인구입">LPG 일반인구입</option>
+							<option value="가솔린/LPG겸용">가솔린/LPG겸용</option>
+							<option value="가솔린 하이브리드">가솔린 하이브리드</option>
+							<option value="LPG 하이브리드">LPG 하이브리드</option>
+							<option value="디젤 하이브리드">디젤 하이브리드</option>
+							<option value="CNG">CNG</option>
+							<option value="전기">전기</option>
+							<option value="기타">기타</option>
+						</select>
+					</td>
+					</tr>
+					<tr>
+						<th scope="col"><label>
+						<img src="${pageContext.request.contextPath }/img/check.png" alt="필수체크">배기량</label></th>
+						<td>
+							<input name="carCc" type="text" id="carCc" style="width:78px;" onkeydown="Numberic();" title="배기량" maxlength="4"> cc
+						</td>
+						<th scope="col"><label>
+						<img src="${pageContext.request.contextPath }/img/check.png" alt="필수체크">색상</label></th>
+						<td>
+							<select name="carColor" id="carColor" style="width:100px; font-size: 1.1em;" title="색상선택">
+									<option value="">선택하세요</option>
+									<option value="검정색">검정색</option><option value="검정투톤">검정투톤</option><option value="은색">은색</option><option value="은색투톤">은색투톤</option><option value="흰색">흰색</option><option value="흰색투톤">흰색투톤</option><option value="진주색">진주색</option><option value="진주투톤">진주투톤</option><option value="갈색">갈색</option><option value="금색">금색</option><option value="남색">남색</option><option value="노란색">노란색</option><option value="녹색">녹색</option><option value="베이지색">베이지색</option><option value="보라색">보라색</option><option value="분홍색">분홍색</option><option value="빨간색">빨간색</option><option value="연금색">연금색</option><option value="연두색">연두색</option><option value="은하늘색">은하늘색</option><option value="자주색">자주색</option><option value="주황색">주황색</option><option value="청색">청색</option><option value="진청색">진청색</option><option value="청옥색">청옥색</option><option value="파란색">파란색</option><option value="하늘색">하늘색</option><option value="회색">회색</option><option value="진회색">진회색</option><option value="기타색상">기타색상</option>
+							</select>
+						</td>
+				</tr>
+				<tr>
+					<th scope="col"><label>
+					<img src="${pageContext.request.contextPath }/img/check.png" alt="필수체크">주행거리</label></th>
+					<td>
+						<input name="carDist" type="text" id="carDist" style="width:78px;" title="주행거리" onkeydown="Numberic();">
+						<label>km</label>
+					</td>
+					<th scope="col">
+						<label>
+						<img src="${pageContext.request.contextPath }/img/check.png" alt="필수체크">사고여부</label>
+					</th>
+					<td>
+						<input name="carAcci" type="radio" id="noAcci" value="N" checked>
+						<label for="noAcci">무사고</label>
+							
+						<input name="carAcci" type="radio" id="acci" value="Y">
+						<label for="acci">사고</label>
+					</td>
+				</tr>
+	
+	     		<tr>
+					<th scope="col">
+						<label><img src="${pageContext.request.contextPath }/img/check.png" alt="필수체크">초기 구입가</label>
+					</th>
+					<td colspan="3">
+						<input name="carPrice" type="text" id="carPrice" style="width:78px;" title="판매가격" onkeydown="Numberic();" maxlength="6">
+						(단위 : 만원)
+						<span>* 허위가격 입력 시 아이디 제명 및 경고없이 삭제됩니다.</span>
+					</td>
+				</tr>
+	     		<tr>
+					<th scope="col">
+						<label><img src="${pageContext.request.contextPath }/img/check.png" alt="필수체크">차량 현재 위치</label>
+					</th>
+					<td colspan="3">
+						<input name="carLoc" type="text" id="carLoc" style="width:500px; border: none;" title="현재위치">
+						<input type="button" id="searchLoc" name="searchLoc" value="장소 검색">
+					</td>
+				</tr>
 			</tbody>
-		  </table>
-		</div>
+		</table>
+	</div>
 
        
 		<div class="title">
-				<h4>차량옵션선택</h4>
+				<img src="${pageContext.request.contextPath }/img/carOption.png">
 		</div>
 		<div>
 			<table id="carOptionTable" summary="차량옵션선택" style="font-size: 0.7em">
@@ -492,7 +515,7 @@
 		
 <!-- ******************************************************************************************************************************************************************** -->
 		<div class="title">
-			<h4>차량사진 등록</h4>
+			<img src="${pageContext.request.contextPath }/img/carImg_register.png">
 		</div>
 		
 		<div id="car_pictures">
@@ -569,72 +592,16 @@
 				</ul>
 			</div>
 		</div>
-</form>
-<div class="layout2 car_description car_description_top">
-				<h4>판매약관</h4>
-				<fieldset>
-					<legend>판매약관 동의</legend>
-					<div class="terms agree">
-						<p class="txt1">	
-							신뢰할 수 있는 거래환경 조성을 위하여 실매물이 아닌 허위(미끼)매물 판매을 엄격히 제한합니다.<br>
-							소비자와 판매자 보호를 위해 카카옥션은 허위(미끼)매물 판매자에 대해 예고없이 카카옥션 차량등록 서비스 영구 이용정지, 상사 제한, <br>
-							등록된 모든 차량 삭제는 물론 등록비 등 일체비용 환불 불가하오니 반드시 숙지하시기 바랍니다.<br>
-							등록 내용에 따른 모든 책임은 판매자에게 있습니다.
-						</p>
-						<h3>이용 제한 기준</h3>
-						<p class="txt2">			
-							1) 1년 이용정지<br>
-							- 허위(미끼)매물 또는 개인위장매물로 신고된 차량<br>
-							- 판매된 차량을 고의로 판매완료, 삭제하지 않은 차량<br>
-							- 차량의 판매가격이 동급모델 또는 평균 시세대비 낮은 금액으로 등록된 차량<br>
-							- 딜러 판매자가 소속된 단지 매물이 아닌 타 지역(단지) 매물을 등록한 차량<br>
-							- 검열을 위해 관리자가 요청한 소명자료 기간(3일)을 초한 경우<br>
-							- 차량의 실 소유주의 제시가 보다 낮은 금액으로 광고하는 차량<br>
-							- 차량의 실 소유주에게 허위매물로 신고된 차량<br>
-							- 판매가 불가한 차량을 위탁차량으로 위장해 등록된 차량<br>
-							- 딜러 판매자가 개인 ID를 이용해 개인판매자로 등록된 차량<br>
-							- 실 차량과 등록된 차량정보의 내용이 상이하게 등록된 차량<br>
-							- 차량등록증, 성능점검기록부, 사고유무를 허위로 등록된 차량<br>
-							- 판매자정보, 차량정보가 차량설명란의 내용과 상이하게 등록된 차량<br>
-							- 차량 설명란에 차량설명 외에 판매자의 업체광고 및 홍보성 내용이 등록된 차량<br>
-							- 등록 시점의 계절과 맞지 않는 과거의 사진, 판매된 차량사진을 이용해 등록된 차량<br>
-							- 사진 무단도용, 타 사이트 혹은 다른 판매자의 사진을 도용하여 등록된 차량<br>
-							- 차량사진, 동영상 차량번호 등 의도적인 삭제/가림/훼손 하거나 과도한 보정/조작해 등록된 차량<br>
-							- 입력한 개인정보와 차량정보가 실제와 상이한 경우<br>
-							- 허위(미끼)매물 허위 신고 및 보복성으로 신고하는 경우<br>
-							- 신고내용과 다르거나 의미 없는 내용으로만 작성 신고하는 경우 <br><br>
-							2) 영구정지<br>
-							- 이용정지 2회 적발 시<br>
-							- 이용정지자가 다른 ID를 이용해 차량을 등록하거나 등록을 시도하는 경우<br>
-							- 거래가 불가능한 대포차(명의이전 불가차량)나 매매부적합 차량을 등록한 경우<br>
-							- 서버에 무리를 주는 불법 프로그램을 사용해 재등록, 차량등록을 하는 경우<br>
-							- 명백한 사기행위, 소비자원 및 수사기관의 신고 등 부당한 행위를 한 이용자인 경우<br>
-							- 관리자가 검열(차량 관련 서류)을 위해 요청하는 서류를 위조해 보내주는 경우<br>
-							- 한 상사기준 영구 정지 3명 누적 시 해당 상사 영구 이용정지<br>
-							- 카카옥션 관리자 검열을 통한 서류 제출(차량 관련 서류) 요청에 따르지 않는 등 카카옥션 차량등록 기준에 부합하지 않다고 판단될 경우<br>
-							- 타인의 명의를 도용해 차량을 등록한 경우(2006년 9월24일 개정된 주민등록법 제 21조 2항 제 9호의 의거, 3년 이하의 징역 또는 <br>
-							&nbsp;&nbsp;1천만원 이하의 벌금이 부과됨)<br><br>
-							* 광고중인 차량은 물론 판매대기, 판매완료 차량도 적용대상<br>
-							* 허위매물 확인/신고접수 후 3일 이내 관리자 요청 서류을 통한 소명 가능<br>
-							&nbsp;(관리자가 요청한 소명자료 기간은 3일이며, 요청 서류는 허위매물 신고 유형에 따라 검열에 필요한 요청 서류가 다를 수 있음) 
-						</p>
-						<h3>이용 제한 및 환불 안내</h3>
-						<p>			
-							- 차량등록 서비스 이용정지 및 해당 상사제한<br>
-							- 판매(등록)자가 등록한 모든 차량 광고 즉시 노출 중단 및 삭제처리<br>
-							- 이용 제한시 판매(등록)자가 등록한 모든 차량에 대한 등록비 등 일체 비용 환불 불가<br>		
-							※ 허위(미끼)매물 등록 시 위와같은 판매약관에 따라 엄격히 제한되오니 이용하시는데 유의하시기 바랍니다.
-						 </p>
-					</div>
+	</form>
+	<div class="layout2 car_description car_description_top">
+			<iframe id="carregisterAgree" width="820px" height="500px;" src="<c:url value='/design/inc2/carRegister.html'/>"></iframe>
 					<div class="bx">
 						<input type="radio" id="sellerAgree1" name="sellerAgree" checked="" value="1">
 						<label for="sellerAgree1" class="s1">위 내용에 동의합니다.</label>
 						<input type="radio" id="sellerAgree2" name="sellerAgree" value="2">
 						<label for="sellerAgree2" class="s2">위 내용에 동의하지 않습니다. </label>
 					</div>
-				</fieldset>
 			</div>
-
 			<div>
 				<a href="#"></a>
 				<a style="cursor:pointer; text-decoration: none;color: black;" id="carReg" href="#">차량 등록</a>
