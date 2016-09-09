@@ -2,7 +2,7 @@ package com.app.kaka.op.model;
 
 public class OpVO {
 	private String carNum;
-	private String memberId;
+	private String sellerMemberId;
 	private String opOut;
 	private String opIn;
 	private String opCon;
@@ -17,13 +17,15 @@ public class OpVO {
 	public void setCarNum(String carNum) {
 		this.carNum = carNum;
 	}
-
-	public String getMemberId() {
-		return memberId;
+	
+	
+	
+	public String getSellerMemberId() {
+		return sellerMemberId;
 	}
 
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setSellerMemberId(String sellerMemberId) {
+		this.sellerMemberId = sellerMemberId;
 	}
 
 	public String getOpOut() {
@@ -76,7 +78,7 @@ public class OpVO {
 
 	@Override
 	public String toString() {
-		return "OpVO [carNum=" + carNum + ", memberId=" + memberId + ", opOut=" + opOut + ", opIn=" + opIn + ", opCon="
-				+ opCon + ", opSafe=" + opSafe + ", opAa=" + opAa + ", opTune=" + opTune + "]";
+		return "OpVO [carNum=" + carNum + ", sellerMemberId=" + sellerMemberId + ", opOut=" + opOut + ", opIn=" + opIn
+				+ ", opCon=" + opCon + ", opSafe=" + opSafe + ", opAa=" + opAa + ", opTune=" + opTune + "]";
 	}
 }

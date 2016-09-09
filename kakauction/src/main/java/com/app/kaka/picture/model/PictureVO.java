@@ -2,7 +2,7 @@ package com.app.kaka.picture.model;
 
 public class PictureVO {
 	private String carNum;
-	private String memberId;
+	private String sellerMemberId;
 	private String picture1;
 	private String picture2;
 	private String picture3;
@@ -23,14 +23,13 @@ public class PictureVO {
 	private String picture18;
 	private String picture19;
 	private String picture20;
-
 	
-	public String getMemberId() {
-		return memberId;
+	public String getSellerMemberId() {
+		return sellerMemberId;
 	}
 
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setSellerMemberId(String sellerMemberId) {
+		this.sellerMemberId = sellerMemberId;
 	}
 
 	public String getCarNum() {
@@ -203,12 +202,12 @@ public class PictureVO {
 
 	@Override
 	public String toString() {
-		return "PictureVO [carNum=" + carNum + ", memberId=" + memberId + ", picture1=" + picture1 + ", picture2="
-				+ picture2 + ", picture3=" + picture3 + ", picture4=" + picture4 + ", picture5=" + picture5
-				+ ", picture6=" + picture6 + ", picture7=" + picture7 + ", picture8=" + picture8 + ", picture9="
-				+ picture9 + ", picture10=" + picture10 + ", picture11=" + picture11 + ", picture12=" + picture12
-				+ ", picture13=" + picture13 + ", picture14=" + picture14 + ", picture15=" + picture15 + ", picture16="
-				+ picture16 + ", picture17=" + picture17 + ", picture18=" + picture18 + ", picture19=" + picture19
-				+ ", picture20=" + picture20 + "]";
+		return "PictureVO [carNum=" + carNum + ", sellerMemberId=" + sellerMemberId + ", picture1=" + picture1
+				+ ", picture2=" + picture2 + ", picture3=" + picture3 + ", picture4=" + picture4 + ", picture5="
+				+ picture5 + ", picture6=" + picture6 + ", picture7=" + picture7 + ", picture8=" + picture8
+				+ ", picture9=" + picture9 + ", picture10=" + picture10 + ", picture11=" + picture11 + ", picture12="
+				+ picture12 + ", picture13=" + picture13 + ", picture14=" + picture14 + ", picture15=" + picture15
+				+ ", picture16=" + picture16 + ", picture17=" + picture17 + ", picture18=" + picture18 + ", picture19="
+				+ picture19 + ", picture20=" + picture20 + "]";
 	}
 }

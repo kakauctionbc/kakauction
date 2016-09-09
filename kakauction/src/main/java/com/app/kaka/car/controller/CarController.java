@@ -175,7 +175,7 @@ public class CarController {
 		CarVO carVo = carService.carDetail(carNum);
 		OpVO opVo = opService.opDetail(carNum);
 		PictureVO pictureVo = pictureService.pictureDetail(carNum);
-		MemberVO memberVo = memberService.selectMemberByUserid(carVo.getMemberId());
+		MemberVO memberVo = memberService.selectMemberByUserid(carVo.getSellerMemberId());
 		String[] opIn = null;
 		String[] opOut = null;
 		String[] opCon = null;

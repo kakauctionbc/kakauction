@@ -2,7 +2,7 @@ package com.app.kaka.car.model;
 
 public class CarVO {
 	private String carNum;
-	private String memberId;
+	private String sellerMemberId;
 	/** 공고기관 */
 	private String carCompany; 
 	private String carPrice;
@@ -19,33 +19,6 @@ public class CarVO {
 	private String carAuctionYn;
 	private int carFailSell;
 	private String carModel;
-	
-	public CarVO() {
-		
-	}
-
-	public CarVO(String carNum, String memberId, String carCompany, String carPrice, String carLoc, String carBirth,
-			String carSize, String carDist, String carGas, String carCc, String carAm, String carColor, String carAcci,
-			String carRegdate, String carAuctionYn, int carFailSell, String carModel) {
-		super();
-		this.carNum = carNum;
-		this.memberId = memberId;
-		this.carCompany = carCompany;
-		this.carPrice = carPrice;
-		this.carLoc = carLoc;
-		this.carBirth = carBirth;
-		this.carSize = carSize;
-		this.carDist = carDist;
-		this.carGas = carGas;
-		this.carCc = carCc;
-		this.carAm = carAm;
-		this.carColor = carColor;
-		this.carAcci = carAcci;
-		this.carRegdate = carRegdate;
-		this.carAuctionYn = carAuctionYn;
-		this.carFailSell = carFailSell;
-		this.carModel = carModel;
-	}
 
 	public String getCarNum() {
 		return carNum;
@@ -55,12 +28,13 @@ public class CarVO {
 		this.carNum = carNum;
 	}
 
-	public String getMemberId() {
-		return memberId;
+	
+	public String getSellerMemberId() {
+		return sellerMemberId;
 	}
 
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setSellerMemberId(String sellerMemberId) {
+		this.sellerMemberId = sellerMemberId;
 	}
 
 	public String getCarCompany() {
@@ -185,11 +159,11 @@ public class CarVO {
 
 	@Override
 	public String toString() {
-		return "CarVO [carNum=" + carNum + ", memberId=" + memberId + ", carCompany=" + carCompany + ", carPrice="
-				+ carPrice + ", carLoc=" + carLoc + ", carBirth=" + carBirth + ", carSize=" + carSize + ", carDist="
-				+ carDist + ", carGas=" + carGas + ", carCc=" + carCc + ", carAm=" + carAm + ", carColor=" + carColor
-				+ ", carAcci=" + carAcci + ", carRegdate=" + carRegdate + ", carAuctionYn=" + carAuctionYn
-				+ ", carFailSell=" + carFailSell + ", carModel=" + carModel + "]";
+		return "CarVO [carNum=" + carNum + ", sellerMemberId=" + sellerMemberId + ", carCompany=" + carCompany
+				+ ", carPrice=" + carPrice + ", carLoc=" + carLoc + ", carBirth=" + carBirth + ", carSize=" + carSize
+				+ ", carDist=" + carDist + ", carGas=" + carGas + ", carCc=" + carCc + ", carAm=" + carAm
+				+ ", carColor=" + carColor + ", carAcci=" + carAcci + ", carRegdate=" + carRegdate + ", carAuctionYn="
+				+ carAuctionYn + ", carFailSell=" + carFailSell + ", carModel=" + carModel + "]";
 	}
 	
 }

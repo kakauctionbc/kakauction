@@ -244,6 +244,6 @@ public class AuctionController {
 	public String doAuction(){
 	      logger.info("경매 하기 화면 보여줌");
 	      
-	      return "auction/doAuction";
+	      return "auction/auctiongo";
 	}
 }
