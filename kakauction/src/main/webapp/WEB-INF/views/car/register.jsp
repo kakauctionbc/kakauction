@@ -120,12 +120,21 @@
 		border-radius: 40px; 
 	}*/
 </style>
-<form id="registerCar" name="registerCar" method="post" enctype="multipart/form-data" action="<c:url value='/car/register.do'/>">
-	<div id="Content">
-		<h3>국산차 등록</h3>
-		<div>
+<div id="wrap">
+	<div id="wrapdiv">
+		<div id="wraptop">
+			<p>
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>국산차 등록
+			</p>
+		</div>
+		<div id="pagelogo">
+			<img
+				src="${pageContext.request.contextPath }/img/car_register_logo.png"
+				alt="회원가입로고">
+		</div>
+		<form id="registerCar" name="registerCar" method="post" enctype="multipart/form-data" action="<c:url value='/car/register.do'/>">
 			<div class="title">
-				<h4>판매자정보</h4>
+				<p>> 판매자정보</h4>
 			</div>
 
 			<table summary="판매자정보 입력" id="memberInfoTable">
@@ -170,8 +179,6 @@
 				</tr>
 				</tbody>
 			</table>
-		</div>
-
 		<div>
 			<div>
 				<h4>차량정보 입력</h4>
@@ -628,10 +635,11 @@
 				</fieldset>
 			</div>
 
-		<div>
-			<a href="#"></a>
-			<a style="cursor:pointer; text-decoration: none;color: black;" id="carReg" href="#">차량 등록</a>
-		</div>            
+			<div>
+				<a href="#"></a>
+				<a style="cursor:pointer; text-decoration: none;color: black;" id="carReg" href="#">차량 등록</a>
+			</div>            
+		</div>
 	</div>
-</body>
+</div>
 <%@ include file="../design/inc/bottom.jsp" %>
