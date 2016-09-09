@@ -152,7 +152,7 @@
 					</td>
 					<th scope="col">아이디</th>
 					<td>
-						<input type="text" name="memberId" id="memberId" value="${memVo.memberId }" readonly>
+						<input type="text" name="sellerMemberId" id="sellerMemberId" value="${memVo.memberId }" readonly>
 					</td>
 				</tr>
 				<tr>

@@ -18,6 +18,7 @@
 		<tbody>
 			<tr>
 				<td>경매 번호</td>
+				<td>${result["AUCTITON_NO_YEAR"] }</td>
 				<td>차량 번호</td>
 			</tr>
 		</tbody>

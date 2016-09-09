@@ -16,6 +16,6 @@
 	</select>
 	
 	<select id="selectCarPictureByMemberId" parameterType="string" resultType="map">
-		select * from car_picture where member_id=#{memberId} order by car_regdate desc
+		select * from car_picture where seller_member_id=#{sellerMemberId} order by car_regdate desc
 	</select>
 </mapper>
