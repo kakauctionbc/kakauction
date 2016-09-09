@@ -19,7 +19,7 @@
     </style>
 </head>
 <body>
-<div id="map" style="width:800px;height:800px;"></div>
+<div id="map" style="width:800px;height:400px;"></div>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=a156154cfd8364efb32db71b6254e945&libraries=services"></script>
 <script>
 	window.onload=function(){
@@ -114,7 +114,7 @@
 		// 마커에 click 이벤트를 등록합니다
 	    daum.maps.event.addListener(marker, 'click', function() {
 	    	if(!!infowindow){
-				infowindow.close();
+				/* infowindow.close(); */
 				infowindow = null;
 				selectedMarker = null;
 	    	}else{
@@ -125,10 +125,10 @@
 			    iwRemoveable = true; // removeable 속성을 true 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 			    
 				// 인포윈도우를 생성합니다
-			    infowindow = new daum.maps.InfoWindow({
+			    /* infowindow = new daum.maps.InfoWindow({
 			        content : iwContent,
 			        removable : iwRemoveable
-			    });
+			    }); */
 		    	
 		    	// 현재 지도의 레벨을 얻어옵니다
 		        var level = map.getLevel();
@@ -147,11 +147,11 @@
 		            //!!selectedMarker && selectedMarker.infowindow.close();
 	
 		            // 마커 위에 인포윈도우를 표시합니다
-		            infowindow.open(map, marker);
+		            /* infowindow.open(map, marker); */
 			    	//클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
 			        selectedMarker = marker;
 		        }else{
-		        	infowindow.close();
+		        	/* infowindow.close(); */
 		        	selectedMarker = null;
 		        }
 	    	}
@@ -162,18 +162,18 @@
 	
 	daum.maps.event.addListener(map, 'click', function(mouseEvent) {
 		if(!!infowindow){
-			infowindow.close();
+			/* infowindow.close(); */
 	    	selectedMarker = null;
 		}
 
 		// 클릭한 위도, 경도 정보를 가져옵니다 
 	    var latlng = mouseEvent.latLng;
 	    
-	    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-	    message += '경도는 ' + latlng.getLng() + ' 입니다';
+	    /* var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+	    message += '경도는 ' + latlng.getLng() + ' 입니다'; */
 	    
 	    var resultDiv = document.getElementById('result'); 
-	    resultDiv.innerHTML = message;
+	    /* resultDiv.innerHTML = message; */
 	    //////////////////////////////////////////////////////////////////////////
 	    if(!!clickMarker){
 	    	clickMarker.setMap(null);  
@@ -212,7 +212,7 @@
 	    alert("가장 가까운 거리는 "+shortest+"입니다! 가격은 "+(Math.round(shortest*1000000))+"원 입니다!"); */
 	    
 	    if(!!infowindow){
-			infowindow.close();
+			/* infowindow.close(); */
 		}
 		// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
 	    iwContent = '<div style="padding:5px; width: 200px; height: 250px;"> 위치 좌표 : <br>'+findMarker.getPosition()+
@@ -221,12 +221,14 @@
 	    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 	    
 		// 인포윈도우를 생성합니다
-	    infowindow = new daum.maps.InfoWindow({
+	    /* infowindow = new daum.maps.InfoWindow({
 	        content : iwContent,
 	        removable : iwRemoveable
-	    });
+	    }); */
 	    
-	    infowindow.open(map, findMarker);
+	    /* infowindow.open(map, findMarker); */
+	    alert("선택 지점에서 가장 가까운 수령지는 \""+findMarker.getTitle()+"\"입니다.");
+	    $("#buyerLocation").val(findMarker.getTitle());
 	});
 
 	function findNear(clickMarker){
@@ -261,10 +263,11 @@
 		return nearMarker;
 	}
 </script>
-	<form name="inputPlace" id="inputPlace" method="post" action="<c:url value='/map/mapConti.do'/>">
+	<form name="inputPlace" id="inputPlace" method="post" action="<c:url value='/delivery/detail.do?auctionNo=${map["AUCTION_NO"] }'/>">
 		<input type="text" name="place" id="place" value="<%=place %>">
 		<input type="submit" value="검색">
 	</form>
 	<p id="result"></p>
+	<input type="hidden" name="buyerLocation" id="buyerLocation">
 </body>
 </html>
