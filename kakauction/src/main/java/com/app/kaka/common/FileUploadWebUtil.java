@@ -100,7 +100,7 @@ public class FileUploadWebUtil {
 		//현재시간을 밀리초까지 보여주는 메서드
 		Date today = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-		String str = sdf.format(today);
+		String str = sdf.format(today);	
 		return str;
 	}
 	

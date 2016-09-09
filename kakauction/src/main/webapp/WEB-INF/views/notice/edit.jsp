@@ -63,7 +63,7 @@
 				<c:if test="${!empty noticeVo.noticeFilename }">
 					<p style="color: green; padding: 5px 0 5px 135px;">
 						※첨부파일을 새로 지정할 경우 기존 파일
-						<img alt="파일이미지" src="<c:url value='/images/file.gif'/>">
+						<img alt="파일이미지" src="<c:url value='/image/file.gif'/>">
 						${noticeVo.noticeOriginalname}은 삭제됩니다.
 					</p>
 				</c:if>

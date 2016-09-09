@@ -24,8 +24,9 @@
 <body>
 	<form action="<c:url value='/freeboard/edit.do'/>" method="post" name="freeEditFrm" enctype="multipart/form-data">
 		<div>
-			<input type="text" name="freeboardNo" id="freeboardNo" value="${param.freeboardNo}">
-			<input type="text" name="freeboardFilename" id="freeboardFilename" value="${param.freeboardFilename}">
+			<input type="hidden" name="freeboardNo" id="freeboardNo" value="${param.freeboardNo}">
+			<input type="hidden" name="freeboardFilename" id="freeboardFilename" value="${param.freeboardFilename}">
+			<input type="hidden" name="freeboardOriginalname" id="freeboardOriginalname" value="${freeboardVO.freeboardOriginalname}">
 		</div>
 		<div>
 			<label for="memberId">아이디</label>
@@ -41,7 +42,7 @@
 			<c:if test="${!empty freeboardVO.freeboardFilename }">
 				<p style="color: green; padding: 5px 0 5px 135px;">
 					※첨부파일을 새로 지정할 경우 기존 파일<img alt="파일이미지"
-						src="<c:url value='/images/file.gif'/>">
+						src="<c:url value='/image/file.gif'/>">
 					${freeboardVO.freeboardOriginalname}은 삭제됩니다.
 				</p>
 			</c:if>

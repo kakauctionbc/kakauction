@@ -91,7 +91,7 @@
 	
 	<!-- 삭제 -->
 	<delete id="deleteNotice" parameterMap="delParamMap" >
-		{call notice_delete(?, ?, ?)}
+		{call NOTICE_DELETE(?, ?, ?)}
 	</delete>	
 	<!-- 파라미터 순서 => P_NO, P_GROUPNO,p_step -->
 	

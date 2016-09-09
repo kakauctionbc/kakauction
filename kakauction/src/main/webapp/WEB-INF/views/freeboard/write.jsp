@@ -35,7 +35,7 @@
 	<form action="<c:url value='/freeboard/write.do'/>" method="post" name="freeWriteFrm" id="frmWrite" enctype="multipart/form-data">
 		<div>
 			<label for="memberId">아이디</label>
-			<input type="text" name="memberId" id="memberId" readonly="readonly" value="admin">
+			<input type="text" name="memberId" id="memberId" value="${sessionScope.memberId }" readonly>
 		</div>
 		<div>
 			<label for="freeboardTitle">제목</label>

@@ -13,7 +13,7 @@
 		FREEBOARD_FILESIZE, FREEBOARD_ORIGINALNAME)
 		values(#{freeboardNo},#{memberId},#{freeboardTitle},
 		#{freeboardContent},#{freeboardNo},#{freeboardFilename},
-		#{freeboardFilesize},#{freeboardOriginalname});
+		#{freeboardFilesize},#{freeboardOriginalname})
 	</insert>
 	
 	<select id="selectAllFreeboard" resultType="FreeboardVO">

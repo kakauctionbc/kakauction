@@ -46,7 +46,7 @@
 			<a href
 			="<c:url value='/notice/edit.do?noticeNo=${noticeVo.noticeNo}'/>">
 			수정</a> |
-        	<a id="delete" href	="<c:url value='/notice/delete.do?noticeNo=${noticeVo.noticeNo}&noticeFilename=${noticeVo.noticeFilename}'/>">
+        	<a id="delete" href	="<c:url value='/notice/delete.do?noticeNo=${noticeVo.noticeNo}&noticeGroupno=${noticeVo.noticeGroupno }&noticeFilename=${noticeVo.noticeFilename}'/>">
 			삭제</a> |
         	<a href="<c:url value='/notice/list.do'/>">목록</a>			
 		</div>

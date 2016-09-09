@@ -128,7 +128,8 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="/edit.do", method=RequestMethod.POST)
-	public String noticeEdit_post(HttpServletRequest request, @ModelAttribute NoticeVO noticeVo, Model model){
+	public String noticeEdit_post(HttpServletRequest request, @ModelAttribute NoticeVO noticeVo,
+			@RequestParam String oldFileName, Model model){
 		logger.info("글 수정 화면 처리, noticeVo={}",noticeVo);
 		
 		List<Map<String, Object>> fileList = webUtil.fileUpload(request, webUtil.NOTICE_UPLOAD);
@@ -142,6 +143,16 @@ public class NoticeController {
 			fileSize = (Long) myMap.get("fileSize");
 		}//for
 		
+		//파일이 첨부된 경우에는 파일도 삭제처리한다
+		if(oldFileName!=null && !oldFileName.isEmpty()){
+			String upPath=webUtil.getUploadPath(request, webUtil.NOTICE_UPLOAD);
+			File delFile = new File(upPath ,oldFileName);
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+				logger.info("파일 삭제 여부:{}", bool);					
+			}
+		}//if
+				
 		noticeVo.setNoticeFilename(fileName);
 		noticeVo.setNoticeOriginalname(ofileName);
 		noticeVo.setNoticeFilesize(fileSize);
@@ -218,10 +229,11 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("/delete.do")
-	public String deleteNotice(HttpServletRequest request,@ModelAttribute NoticeVO noticeVo, @RequestParam(defaultValue="0")int noticeNo, String noticeFilename,Model model){
-		logger.info("공지 삭제 파라미터 noticeNo={},noticeFilename={}",noticeNo,noticeFilename);
+	public String deleteNotice(HttpServletRequest request,@ModelAttribute NoticeVO noticeVo,
+			@RequestParam String noticeFilename,Model model){
+		logger.info("공지 삭제 파라미터 noticeNo={},noticeFilename={}",noticeVo.getNoticeNo(), noticeFilename);
 		
-		if (noticeNo==0) {
+		if (noticeVo.getNoticeNo()==0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
 			model.addAttribute("url", "/notice/list.do");
 			
@@ -231,8 +243,8 @@ public class NoticeController {
 		//저장 프로시저에서 사용할 map 만들기
 		Map<String, String> map 
 			= new HashMap<String, String>();
+		map.put("noticeNo", noticeVo.getNoticeNo()+"");
 		map.put("noticeGroupno", noticeVo.getNoticeGroupno()+"");
-		map.put("noticeNo", Integer.toString(noticeNo));
 		map.put("noticeStep", noticeVo.getNoticeStep()+"");
 		logger.info("글삭제시 파라미터 map={}", map);
 		
