@@ -75,6 +75,7 @@
         </property>
        
     </bean>
+    
     <bean id="email" class="com.app.kaka.email.Email">
     </bean>
     <bean id="emailSender" class="com.app.kaka.email.EmailSender">
