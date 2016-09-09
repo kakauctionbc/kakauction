@@ -1,14 +1,22 @@
 package com.app.kaka.buyer.model;
 
 public class BuyerVO {
-	private String memberId;
+	private String buyerMemberId;
 	private String buyerLoc;
+	private int auctionNo;
 	
-	public String getMemberId() {
-		return memberId;
+	
+	public String getBuyerMemberId() {
+		return buyerMemberId;
 	}
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setBuyerMemberId(String buyerMemberId) {
+		this.buyerMemberId = buyerMemberId;
+	}
+	public int getAuctionNo() {
+		return auctionNo;
+	}
+	public void setAuctionNo(int auctionNo) {
+		this.auctionNo = auctionNo;
 	}
 	public String getBuyerLoc() {
 		return buyerLoc;
@@ -19,6 +27,6 @@ public class BuyerVO {
 	
 	@Override
 	public String toString() {
-		return "BuyerVO [memberId=" + memberId + ", buyerLoc=" + buyerLoc + "]";
+		return "BuyerVO [buyerMemberId=" + buyerMemberId + ", buyerLoc=" + buyerLoc + ", auctionNo=" + auctionNo + "]";
 	}
 }
