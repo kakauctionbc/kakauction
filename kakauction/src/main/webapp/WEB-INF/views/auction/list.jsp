@@ -179,7 +179,7 @@
 			</form>
 		</div>
 		<div class="writebutton">
-			<button type="submit" onclick="<c:url value='/reBoard/write.do'/>">글쓰기</button>
+			<button type="submit" onclick="<c:url value='/auction/write.do'/>">글쓰기</button>
 		</div>
 	</div>
 </div>
