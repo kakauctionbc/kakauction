@@ -35,11 +35,11 @@
 	<div class="column_l">
 	
 	<div class="title_area">
-		<div>${carVo.carModel }</div>
+		<div>${acVo.carModel }</div>
 	</div>
 	<!--//타이틀탑--> 
 	<!--상세1열(사진,차량정보,판매자정보,확인사항,sns)-->
-	<input type="hidden" name="carNum" id="carNum" value="${carVo.carNum }">
+	<input type="hidden" name="carNum" id="carNum" value="${acVo.carNum }">
 	<div class="detailA"> 
 	<!--//왼쪽--> 
 	<!--오른쪽-->
@@ -47,40 +47,40 @@
 		<dt> <strong>차량 정보</strong> </dt>
 		<dd class="first">
 			<span class="t">초기 구입가</span>
-			<span>${carVo.carPrice }만원</span>
+			<span>${acVo.carPrice }만원</span>
 		</dd>
 		
 		<dd class="first">
 			<span class="t">차량번호</span>
-			<span class="s">${carVo.carNum }</span>
+			<span class="s">${acVo.carNum }</span>
 		</dd>
 		<dd>
 			<span class="t">연식</span> 
-			<span class="s">${carVo.carBirth }</span>
+			<span class="s">${acVo.carBirth }</span>
 		</dd>
 		<dd>
 			<span class="t">주행거리</span>
-			<span class="s">${carVo.carDist } km</span>
+			<span class="s">${acVo.carDist } km</span>
 		</dd>
 		<dd>
 			<span class="t">연료</span>
-			<span class="s">${carVo.carGas }</span>
+			<span class="s">${acVo.carGas }</span>
 		</dd>
 		<dd>
 			<span class="t">배기량</span>
-			<span class="s">${carVo.carCc }cc</span>
+			<span class="s">${acVo.carCc }cc</span>
 		</dd>
 		<dd>
 			<span class="t">변속기</span>
-			<span class="s">${carVo.carAm }</span>
+			<span class="s">${acVo.carAm }</span>
 		</dd>
 		<dd>
 			<span class="t">색상</span>
-			<span class="s">${carVo.carColor }</span>
+			<span class="s">${acVo.carColor }</span>
 		</dd>
 										<dd>
 			<span class="t">사고유무</span>
-			<span class="s">${carVo.carAcci }</span>
+			<span class="s">${acVo.carAcci }</span>
 			</dd>
 		</dl>
 	</div>
@@ -828,11 +828,11 @@
 		<dl>
 			<dt> <strong>판매자정보</strong> </dt>
 			<dd class="first"> <span class="t">판매자</span>
-				<span class="s"> <strong>${carVo.memberName }</strong>
+				<span class="s"> <strong>${acVo.memberName }</strong>
 				<a href="#" style="text-decoration: none; color: black;">쪽지</a>
-				<dd> <span class="t">연락처</span> <span class="s">${carVo.memberHp }</span> </dd>
-				<dd> <span class="t">주소</span> <span class="s"> ${carVo.memberAddr }</span> </dd>
-				<dd> <span class="t">매매상사</span> <span class="s">${carVo.carCompany }</span> </dd>
+				<dd> <span class="t">연락처</span> <span class="s">${acVo.memberHp }</span> </dd>
+				<dd> <span class="t">주소</span> <span class="s"> ${acVo.memberAddr }</span> </dd>
+				<dd> <span class="t">매매상사</span> <span class="s">${acVo.carCompany }</span> </dd>
 			<dd class="pt1">
 			</dd>
 		</dl>

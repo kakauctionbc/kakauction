@@ -11,7 +11,6 @@
 		var sellerMemberId=$("#sellerMemberId").val();
 		var buyerMemberId=$("#byuerMemberId").val();
 		
-		
 		function newrefresh(){
 			$.ajax({
 				url : "<c:url value='/auction/rankAuction.do'/>",
@@ -114,8 +113,8 @@
 								<td>크엉</td>
 							</tr>
 							<tr>
-								<td colspan="4">${auctionGo['PICTURE_1'] }</td>
-								<td colspan="2">${auctionGo['PICTURE_2'] }</td>
+								<td colspan="3"><img alt="${auctionGo['PICTURE_1'] }" src="<c:url value='/picture_upload/${auctionGo["PICTURE_1"] }'/>"></td>
+								<td colspan="3"><img alt="${auctionGo['PICTURE_2'] }" src="<c:url value='/picture_upload/${auctionGo["PICTURE_2"] }'/>"></td>
 							</tr>
 						</table>
 					</td>

@@ -289,7 +289,7 @@ public class AuctionController {
 	    model.addAttribute("auctionGo", auctionGo);
 	    
 	    AuctionCarVO acVo = auctionService.selectAuction(auctionNo);
-		model.addAttribute("carVo", acVo);
+		model.addAttribute("acVo", acVo);
 		
 		OpVO opVo = opService.opDetail(acVo.getCarNum());
 		if(opVo.getOpAa()==null || opVo.getOpAa().isEmpty()){
