@@ -76,13 +76,18 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 	}
 
 	@Override
-	public int insertAuctionRecord(Map<String, Object> auctionmap) {
+	public int insertAuctionRecord(Map<Object, Object> auctionmap) {
 		return getSqlSession().insert(namespace+".insertRecord", auctionmap);
 	}
 
 	@Override
-	public Map<String, Object> selectHighPrice() {
+	public HighPriceVO selectHighPrice() {
 		return getSqlSession().selectOne(namespace+".selectHighPrice");
+	}
+
+	@Override
+	public String selectMemberGrade(String sellerMemberId) {
+		return getSqlSession().selectOne(namespace+".selectMemberGrade", sellerMemberId);
 	}
 	
 	

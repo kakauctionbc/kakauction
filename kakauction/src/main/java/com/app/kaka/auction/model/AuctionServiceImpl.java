@@ -85,15 +85,34 @@ public class AuctionServiceImpl implements AuctionService{
 	}
 
 	@Override
-	public int insertAuctionRecord(Map<String, Object> auctionmap) {
-		Map<String, Object> map = auctionDao.selectHighPrice();
-		logger.info("map 키 값이 궁금해서 찍어보는 map={}",map);
+	public HighPriceVO selectHighPrice() {
+		return auctionDao.selectHighPrice();
+	}
+
+	@Override
+	public int insertAuctionRecord(Map<Object, Object> auctionmap) {
+		HighPriceVO highVo = auctionDao.selectHighPrice();
+		logger.info("highVo 키 값이 궁금해서 찍어보는 highVo={}",highVo);
+		int recordPrice=Integer.parseInt((String)auctionmap.get("recordPrice"));
 		int cnt = 0;
-		if(!map.get("buyer_Member_Id").equals(auctionmap.get("buyerMemberId"))){
-			cnt = auctionDao.insertAuctionRecord(auctionmap);
+		if(highVo!=null){
+			if(!highVo.getBuyerMemberId().equals(auctionmap.get("buyerMemberId"))){
+				int newPrice = highVo.getRecordPrice()+recordPrice;
+				auctionmap.put("recordPrice", newPrice);
+				cnt = auctionDao.insertAuctionRecord(auctionmap);
+			}
 		}
+		logger.info("highVo 키 값이 궁금해서 찍어보는 highVo={}",highVo);
+		logger.info("응찰 결과 cnt={}",cnt);
+		
 		return cnt;
 	}
+
+	@Override
+	public String selectMemberGrade(String sellerMemberId) {
+		return auctionDao.selectMemberGrade(sellerMemberId);
+	}
+
 	
 
 	

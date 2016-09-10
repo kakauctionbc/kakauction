@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.app.kaka.auction.model.AuctionCarVO;
 import com.app.kaka.auction.model.AuctionService;
 import com.app.kaka.auction.model.AuctionVO;
+import com.app.kaka.auction.model.HighPriceVO;
 import com.app.kaka.car.model.CarVO;
 import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
@@ -78,6 +79,14 @@ public class AuctionController {
 			auctionVo.setAuctionNoCar(1200+cY-2000);
 		}else if(carSize.equals(auctionService.CAR_SIZE_BUS)){
 			auctionVo.setAuctionNoCar(1300+cY-2000);
+		}
+		String grade = auctionService.selectMemberGrade(auctionVo.getSellerMemberId());
+		if(grade.equals(auctionService.MEMBER_VIP)){
+			auctionVo.setAuctionFinishTime(3);
+		}else if(grade.equals(auctionService.MEMBER_RVIP)){
+			auctionVo.setAuctionFinishTime(7);
+		}else if(grade.equals(auctionService.MEMBER_VVIP)){
+			auctionVo.setAuctionFinishTime(14);
 		}
 		
 		Date from = new Date();
@@ -264,22 +273,24 @@ public class AuctionController {
 	
 	@RequestMapping("/insertAuctionGo.do")
 	@ResponseBody
-	public String insertAuction(@RequestParam Map<String, Object> auctionmap, Model model){
-		String msg="",url="/auction/auctiongo.do";
-		if(auctionmap==null || auctionmap.isEmpty()){
-			msg="잘못된 url입니다";
-			url="/auction/list.do";
-		}
+	public HighPriceVO insertAuction(@RequestParam Map<Object, Object> auctionmap, Model model){
+		logger.info("auctionmap="+auctionmap);
 		int cnt = auctionService.insertAuctionRecord(auctionmap);
+		HighPriceVO highVo = auctionService.selectHighPrice();
 		if(cnt>0){
-			msg="응찰하셨습니다";
-		}else{
-			msg="응찰에 실패하셨습니다";
+			highVo = auctionService.selectHighPrice();
 		}
-		model.addAttribute("msg", msg);
-		model.addAttribute("url", url);
+		logger.info("highVo="+highVo);
 		
-		return "common/message";
+		return highVo;
 		
+	}
+	
+	@RequestMapping("/rankAuction.do")
+	@ResponseBody
+	public HighPriceVO rankAuction(){
+		HighPriceVO highVo = auctionService.selectHighPrice();
+		logger.info("순위다 순위!! 형은 1명만 보여준다 highVo={}"+highVo);
+		return highVo;
 	}
 }

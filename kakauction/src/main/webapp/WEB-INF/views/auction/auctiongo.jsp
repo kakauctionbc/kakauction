@@ -3,22 +3,47 @@
 <%@ include file="../design/inc/top.jsp" %>
 <script type="text/javascript">
 	$(document).ready(function(){
+		var highMember = "";
+		
+		setInterval(newHighPrice,1000);
+		
+		function newHighPrice(){
+			$.ajax({
+				url : "<c:url value='/auction/rankAuction.do'/>",
+				type : "GET",
+				dataType : "json",
+				success : function(highVo) {
+					highMember=highVo.buyerMemberId;
+					$("#nowHighPrice").html(highVo.recordPrice+ "만원<br>"+highVo.buyerMemberId).css("text-align","right");
+				},
+				error : function(xhr,status,error) {
+					alert("에러=>"+ status+"message=>"+xhr.responseText+ ":"+ error);
+				}
+			});
+		}
 		$("#goAuction").click(function(){
-			var auctionmap = {"auctionNo":$("#auctionNo").val(),"recordPrice":$("#highPrice").val()+50,
+			var auctionNo= $("#auctionNo").val();
+			var carNum=$("#carNum").val();
+			var sellerMemberId=$("#sellerMemberId").val();
+			var buyerMemberId=$("#byuerMemberId").val();
+			var auctionmap = {"auctionNo":$("#auctionNo").val(),"recordPrice":50,
 					"carNum":$("#carNum").val(),"sellerMemberId":$("#sellerMemberId").val(),"buyerMemberId":$("#byuerMemberId").val()};
 			alert("auctionNo="+auctionmap["auctionNo"]+",recordPrice="+auctionmap["recordPrice"]+
 					",carNum="+auctionmap["carNum"]+"sellerMemberId="+auctionmap["sellerMemberId"]+
 					",buyerMemberId="+auctionmap["buyerMemberId"]);
 			$.ajax({
 				url : "<c:url value='/auction/insertAuctionGo.do'/>",
-				data : "auctionmap="+ auctionmap,
+				data : {"auctionNo":auctionNo,"recordPrice":50,	"carNum":carNum,"sellerMemberId":sellerMemberId,"buyerMemberId":buyerMemberId},
 				type : "POST",
 				dataType : "json",
-				success : function() {
-					alert("성공");
+				success : function(highVo) {
+					if(highMember==buyerMemberId){
+						alert("현재 최고가를 응찰하신 회원입니다.");
+					}
+					$("#highPrice").attr("value",highVo.recordPrice);
 				},
 				error : function(xhr,status,error) {
-					alert("에러=>"+ status+ ":"+ error);
+					alert("에러=>"+ status+"message=>"+xhr.responseText+ ":"+ error);
 				}
 			});
 		});
@@ -106,8 +131,8 @@
 								</td>
 								<td colspan="3">경매상태</td>
 								<td>
-									<p>작은 글씨로 최초입찰가</p>
-									<p>억 천 백 십 일 만원</p><br>
+									<p style="text-align: center;">현재 입찰가</p>
+									<p style="text-align: right;">억천백십일만원</p>
 								</td>
 								<td>
 									권리-내가 최고입찰가면 불이 띵동
@@ -120,9 +145,7 @@
 								<td>1</td>
 								<td>2</td>
 								<td>3</td>
-								<td>
-									<h1 id="highPrice">${auctionGo['AUCTION_FIRSTPRICE'] }만원</h1>
-								</td>
+								<td id="nowHighPrice"></td>
 								<td>낙찰</td>
 							</tr>
 						</table>

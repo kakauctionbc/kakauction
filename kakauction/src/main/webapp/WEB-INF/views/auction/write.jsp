@@ -93,6 +93,7 @@
 					}
 				});
 			}else if (carNum == -1) {
+				$("#carNum").html("");
 				$("#carPic").html("");
 				$("#voCarNum").html("");
 				$("#voMAddr").html("");

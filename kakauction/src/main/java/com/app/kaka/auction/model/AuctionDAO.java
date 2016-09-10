@@ -19,6 +19,7 @@ public interface AuctionDAO {
 	public int auctionDenyCar(String carNum);
 	public int auctionDeferCar(String carNum);
 	public Map<String, Object> selectAuctionGo(int auctionNo);
-	public Map<String, Object> selectHighPrice();
-	public int insertAuctionRecord(Map<String, Object> auctionmap);
+	public HighPriceVO selectHighPrice();
+	public int insertAuctionRecord(Map<Object, Object> auctionmap);
+	public String selectMemberGrade(String sellerMemberId);
 }

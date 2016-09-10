@@ -15,7 +15,14 @@ public class AuctionVO {
 	private Timestamp auctionFinish;
 	private Timestamp auctionOpentime;/** 개찰일시 */
 	private int auctionReadCount;
+	private int auctionFinishTime;
 	
+	public int getAuctionFinishTime() {
+		return auctionFinishTime;
+	}
+	public void setAuctionFinishTime(int auctionFinishTime) {
+		this.auctionFinishTime = auctionFinishTime;
+	}
 	public int getAuctionReadCount() {
 		return auctionReadCount;
 	}
@@ -95,7 +102,7 @@ public class AuctionVO {
 				+ ", auctionNoCar=" + auctionNoCar + ", auctionNo=" + auctionNo + ", auctionPromp=" + auctionPromp
 				+ ", auctionFirstprice=" + auctionFirstprice + ", auctionRegdate=" + auctionRegdate + ", auctionState="
 				+ auctionState + ", auctionFinish=" + auctionFinish + ", auctionOpentime=" + auctionOpentime
-				+ ", auctionReadCount=" + auctionReadCount + "]";
+				+ ", auctionReadCount=" + auctionReadCount + ", auctionFinishTime=" + auctionFinishTime + "]";
 	}
 	
 }

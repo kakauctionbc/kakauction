@@ -7,7 +7,12 @@ import com.app.kaka.car.model.CarVO;
 import com.app.kaka.common.SearchVO;
 
 public interface AuctionService {
+	//경매 종료를 위한 회원 등급별 시간
+	public static final String MEMBER_VVIP="VVIP"; //14일
+	public static final String MEMBER_RVIP="RVIP"; //7일
+	public static final String MEMBER_VIP="VIP"; //3일
 	
+	//경매 중간번호를 위한 값
 	public static final String CAR_SIZE_LIGHT="경차"; //1
 	public static final String CAR_SIZE_SMALL="소형"; //2
 	public static final String CAR_SIZE_ALMOSTMIDDLE="준중"; //3
@@ -34,5 +39,7 @@ public interface AuctionService {
 	public int auctionDenyCar(String carNum);
 	public int auctionDeferCar(String carNum);
 	public Map<String, Object> selectAuctionGo(int auctionNo);
-	public int insertAuctionRecord(Map<String, Object> auctionmap);
+	public HighPriceVO selectHighPrice();
+	public int insertAuctionRecord(Map<Object, Object> auctionmap);
+	public String selectMemberGrade(String sellerMemberId);
 }
