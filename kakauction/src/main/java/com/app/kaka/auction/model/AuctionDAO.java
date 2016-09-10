@@ -27,6 +27,7 @@ public interface AuctionDAO {
 	
 	public int insertAuctionRecord(Map<Object, Object> auctionmap);
 	public String selectMemberGrade(String sellerMemberId);
+	
 	public int insertByuer(BuyerVO buyerVo);
-	public List<BuyerVO> selectBuyer();
+	public List<Integer> selectBuyer(String buyerMemberId);
 }

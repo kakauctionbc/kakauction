@@ -44,8 +44,9 @@ public interface AuctionService {
 	public Map<String, Object> selectAuctionGo(int auctionNo);
 	public int insertAuctionRecord(Map<Object, Object> auctionmap);
 	public String selectMemberGrade(String sellerMemberId);
+	
 	public int insertByuer(BuyerVO buyerVo);
-	public List<BuyerVO> selectBuyer();
+	public List<Integer> selectBuyer(String buyerMemberId);
 
 	public HighPriceVO selectHighPrice(int auctionNo);
 	public int selectHighPriceCount(int auctionNo);

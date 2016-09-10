@@ -127,8 +127,8 @@ public class AuctionServiceImpl implements AuctionService{
 	}
 
 	@Override
-	public List<BuyerVO> selectBuyer() {
-		return auctionDao.selectBuyer();
+	public List<Integer> selectBuyer(String buyerMemberId) {
+		return auctionDao.selectBuyer(buyerMemberId);
 	}
 
 	@Override

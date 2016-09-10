@@ -106,15 +106,15 @@
 	</insert>
 	
 	<select id="selectHighPrice" parameterType="int" resultType="HighPriceVO">
-		select * from highPrice where auction_no=#{auctionNo}
+		select * from highPrice where auction_no=#{auctionNo} and rownum=1
 	</select>
 
 	<select id="selectHighPriceCount" parameterType="int" resultType="int">
 		select count(*) from highPrice where auction_no=#{auctionNo}
 	</select>
 	
-	<select id="selectBuyer" resultType="BuyerVO">
-		select * from buyer
+	<select id="selectBuyer" resultType="int" parameterType="string">
+		select auction_no from buyer where buyer_member_id=#{buyerMemeberId}
 	</select>
 	
 </mapper>

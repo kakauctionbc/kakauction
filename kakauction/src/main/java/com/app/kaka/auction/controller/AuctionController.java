@@ -264,22 +264,22 @@ public class AuctionController {
 	    }
 		String memberId = (String)session.getAttribute("memberId");
 	    logger.info("경매 하기 화면 보여줌, 멤버 아이디 memberId={}, auctionNo={}",memberId, auctionNo);
-	    
 	    BuyerVO insBVo = new BuyerVO();
 	    insBVo.setAuctionNo(auctionNo);
 	    insBVo.setBuyerMemberId(memberId);
 	    logger.info("경매 하기 insBVo={}",insBVo);
-	    
-	    List<BuyerVO> alist = auctionService.selectBuyer();
-	    if(alist==null || alist.isEmpty()){
-	    	int cnt = auctionService.insertByuer(insBVo);
-	    	logger.info("경매 하기 cnt={}",cnt);
-	    }
-	    for(BuyerVO bVo : alist){
-	    	logger.info("경매 하기 bVo.getBuyerMemberId()={}, bVo.getAuctionNo()={}",bVo.getBuyerMemberId(),bVo.getAuctionNo());
-	    	if(!bVo.getBuyerMemberId().equals(memberId)){
-	    		int cnt = auctionService.insertByuer(insBVo);
-	    		logger.info("경매 하기 cnt={}",cnt);
+	    int cnt = 0;
+	    List<Integer> dbAuctioNo = auctionService.selectBuyer(memberId);
+	    if(dbAuctioNo==null || dbAuctioNo.size()==0){
+	    	cnt = auctionService.insertByuer(insBVo);
+	    	logger.info("경매 하기 cnt1={}",cnt);
+	    }else{
+	    	for(int no : dbAuctioNo){
+	    		logger.info("경매 하기no={}",no);
+	    		if(no!=auctionNo){
+	    			cnt = auctionService.insertByuer(insBVo);
+	    			logger.info("경매 하기 cnt2={}",cnt);
+	    		}
 	    	}
 	    }
 	

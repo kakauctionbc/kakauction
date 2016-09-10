@@ -98,8 +98,8 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 	}
 
 	@Override
-	public List<BuyerVO> selectBuyer() {
-		return getSqlSession().selectList(namespace+".selectBuyer");
+	public List<Integer> selectBuyer(String buyerMemberId) {
+		return getSqlSession().selectList(namespace+".selectBuyer", buyerMemberId);
 	}
 
 	@Override
