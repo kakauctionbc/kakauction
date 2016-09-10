@@ -87,13 +87,14 @@ public class AuctionServiceImpl implements AuctionService{
 	}
 
 	@Override
-	public HighPriceVO selectHighPrice() {
-		return auctionDao.selectHighPrice();
+	public HighPriceVO selectHighPrice(int auctionNo) {
+		return auctionDao.selectHighPrice(auctionNo);
 	}
 
 	@Override
 	public int insertAuctionRecord(Map<Object, Object> auctionmap) {
-		HighPriceVO highVo = auctionDao.selectHighPrice();
+		int auctionNo=Integer.parseInt((String)auctionmap.get("auctionNo"));
+		HighPriceVO highVo = auctionDao.selectHighPrice(auctionNo);
 		logger.info("highVo 키 값이 궁금해서 찍어보는 highVo={}",highVo);
 		int recordPrice=Integer.parseInt((String)auctionmap.get("recordPrice"));
 		int highPrice=Integer.parseInt((String)auctionmap.get("highPrice"));
@@ -131,8 +132,8 @@ public class AuctionServiceImpl implements AuctionService{
 	}
 
 	@Override
-	public int selectHighPriceCount() {
-		return auctionDao.selectHighPriceCount();
+	public int selectHighPriceCount(int aucionNo) {
+		return auctionDao.selectHighPriceCount(aucionNo);
 	}
 
 	

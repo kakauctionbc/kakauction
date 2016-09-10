@@ -828,11 +828,10 @@
 		<dl>
 			<dt> <strong>판매자정보</strong> </dt>
 			<dd class="first"> <span class="t">판매자</span>
-				<span class="s"> <strong>${memberVo.memberName }</strong>
+				<span class="s"> <strong>${carVo.memberName }</strong>
 				<a href="#" style="text-decoration: none; color: black;">쪽지</a>
-				<dd> <span class="t">연락처</span> <span class="s">${memberVo.memberHp }</span> </dd>
-				<dd> <span class="t">이메일</span> <span class="s">${memberVo.memberEmail }</span> </dd>
-				<dd> <span class="t">주소</span> <span class="s"> ${memberVo.memberAddr }</span> </dd>
+				<dd> <span class="t">연락처</span> <span class="s">${carVo.memberHp }</span> </dd>
+				<dd> <span class="t">주소</span> <span class="s"> ${carVo.memberAddr }</span> </dd>
 				<dd> <span class="t">매매상사</span> <span class="s">${carVo.carCompany }</span> </dd>
 			<dd class="pt1">
 			</dd>

@@ -105,12 +105,12 @@
 		values(#{auctionNo}, #{recordPrice}, sysdate, #{carNum}, #{sellerMemberId}, #{buyerMemberId})
 	</insert>
 	
-	<select id="selectHighPrice" resultType="HighPriceVO">
-		select * from highPrice
+	<select id="selectHighPrice" parameterType="int" resultType="HighPriceVO">
+		select * from highPrice where auction_no=#{auctionNo}
 	</select>
 
-	<select id="selectHighPriceCount" resultType="int">
-		select count(*) from highPrice
+	<select id="selectHighPriceCount" parameterType="int" resultType="int">
+		select count(*) from highPrice where auction_no=#{auctionNo}
 	</select>
 	
 	<select id="selectBuyer" resultType="BuyerVO">

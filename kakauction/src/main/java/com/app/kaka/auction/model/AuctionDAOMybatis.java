@@ -83,8 +83,8 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 	}
 
 	@Override
-	public HighPriceVO selectHighPrice() {
-		return getSqlSession().selectOne(namespace+".selectHighPrice");
+	public HighPriceVO selectHighPrice(int auctionNo) {
+		return getSqlSession().selectOne(namespace+".selectHighPrice", auctionNo);
 	}
 
 	@Override
@@ -103,8 +103,8 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 	}
 
 	@Override
-	public int selectHighPriceCount() {
-		return getSqlSession().selectOne(namespace+".selectHighPriceCount");
+	public int selectHighPriceCount(int auctionNo) {
+		return getSqlSession().selectOne(namespace+".selectHighPriceCount", auctionNo);
 	}
 	
 	

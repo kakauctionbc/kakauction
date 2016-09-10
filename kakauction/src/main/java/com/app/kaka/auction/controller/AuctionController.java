@@ -287,18 +287,58 @@ public class AuctionController {
 	    logger.info("auctionGo 라는 이름의 map={}",auctionGo);
 	    model.addAttribute("memberId", memberId);
 	    model.addAttribute("auctionGo", auctionGo);
-	      
+	    
+	    AuctionCarVO acVo = auctionService.selectAuction(auctionNo);
+		model.addAttribute("carVo", acVo);
+		
+		OpVO opVo = opService.opDetail(acVo.getCarNum());
+		if(opVo.getOpAa()==null || opVo.getOpAa().isEmpty()){
+			opVo.setOpAa("");
+		}
+		if(opVo.getOpCon()==null || opVo.getOpCon().isEmpty()){
+			opVo.setOpCon("");
+		}
+		if(opVo.getOpIn()==null || opVo.getOpIn().isEmpty()){
+			opVo.setOpIn("");
+		}
+		if(opVo.getOpOut()==null || opVo.getOpOut().isEmpty()){
+			opVo.setOpOut("");
+		}
+		if(opVo.getOpSafe()==null || opVo.getOpSafe().isEmpty()){
+			opVo.setOpSafe("");
+		}
+		if(opVo.getOpTune()==null || opVo.getOpTune().isEmpty()){
+			opVo.setOpTune("");
+		}
+		
+		String[] opIn = opVo.getOpIn().split(",");
+		String[] opOut = opVo.getOpOut().split(",");
+		String[] opCon = opVo.getOpCon().split(",");
+		String[] opSafe = opVo.getOpSafe().split(",");
+		String[] opAa = opVo.getOpAa().split(",");
+		String[] opTune = opVo.getOpTune().split(",");
+		
+		model.addAttribute("opVo", opVo);
+		model.addAttribute("opIn", opIn);
+		model.addAttribute("opOut", opOut);
+		model.addAttribute("opCon", opCon);
+		model.addAttribute("opSafe", opSafe);
+		model.addAttribute("opAa", opAa);
+		model.addAttribute("opTune", opTune);
 	    return "auction/auctiongo";
 	}
 	
 	@RequestMapping("/insertAuctionGo.do")
 	@ResponseBody
 	public HighPriceVO insertAuction(@RequestParam Map<Object, Object> auctionmap){
-		logger.info("auctionmap="+auctionmap);
-		HighPriceVO highVo = auctionService.selectHighPrice();
+		
+		int auctionNo = Integer.parseInt((String)auctionmap.get("auctionNo"));
+		logger.info("auctionmap={}, 끝나고 auctionNo={}",auctionmap,auctionNo);
+		
+		HighPriceVO highVo = auctionService.selectHighPrice(auctionNo);
 		int cnt = auctionService.insertAuctionRecord(auctionmap);
 		if(cnt>0){
-			highVo = auctionService.selectHighPrice();
+			highVo = auctionService.selectHighPrice(auctionNo);
 		}
 		logger.info("highVo="+highVo);
 		
@@ -311,13 +351,14 @@ public class AuctionController {
 	public HighPriceVO rankAuction(@RequestParam Map<Object, Object> auctionmap){
 		String sellerid=(String)auctionmap.get("sellerMemberId");
 		int recordPrice=Integer.parseInt((String)auctionmap.get("recordPrice"));
-		int cnt=auctionService.selectHighPriceCount();
+		int auctionNo = Integer.parseInt((String)auctionmap.get("auctionNo"));
+		int cnt=auctionService.selectHighPriceCount(auctionNo);
 		HighPriceVO highVo = new HighPriceVO();
 		if(cnt<=0){
 			highVo.setBuyerMemberId(sellerid);
 			highVo.setRecordPrice(recordPrice);
 		}else{
-			highVo = auctionService.selectHighPrice();
+			highVo = auctionService.selectHighPrice(auctionNo);
 		}
 		return highVo;
 	}

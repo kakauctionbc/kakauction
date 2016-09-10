@@ -21,6 +21,10 @@
 				success : function(highVo) {
 					highMember=highVo.buyerMemberId;
 					$("#nowHighPrice").html(highVo.recordPrice+ "만원<br>"+highVo.buyerMemberId).css("text-align","right");
+					if(sellerMemberId==buyerMemberId){
+						$("#light").css("background","");
+						return;
+					}
 					if(highMember==buyerMemberId){
 						$("#light").css("background","red");
 					}else{
@@ -40,6 +44,11 @@
 				type : "POST",
 				dataType : "json",
 				success : function(highVo) {
+					if(sellerMemberId==buyerMemberId){
+						alert("자신이 등록한 차량의 경매에 참가할 수 없습니다");
+						$("#light").css("background","");
+						return;
+					}
 					if(highMember==highVo.buyerMemberId){
 						alert("현재 최고가를 응찰하신 회원입니다.");
 					}
@@ -159,4 +168,5 @@
 			</tfoot>
 		</table>
 	</div>
+<%@ include file="carDetail.jsp" %>
 <%@ include file="../design/inc/bottom.jsp" %>
