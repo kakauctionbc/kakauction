@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>자유게시판 - 글 상세보기</title>
-</head>
-
-<body>
+<%@ include file="../design/inc/top.jsp"%>
 	<h2>자유게시판 - 글 상세보기</h2>
 	<div class="divForm">
 		<div class="firstDiv">
@@ -49,5 +41,4 @@
 		</div>
 	</div>
 	<jsp:include page="/freeboardreply/comment.do?freeboardNo=${param.freeboardNo }"></jsp:include>
-</body>
-</html>
+<%@ include file="../design/inc/bottom.jsp"%>

@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-<!DOCTYPE HTML>
-<html lang="ko">
-<head>
+<%@ include file="../design/inc/top.jsp"%>
 <title>공지사항 글 목록</title>
-<meta charset="utf-8">
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
 <script type="text/javascript">	
 	$(document).ready(function(){
@@ -32,9 +25,6 @@
 		margin:5px;
 	 }	
 </style>
-	
-</head>	
-<body>
 <!-- http://localhost:9090/mymvc/reBoard
 /list.do?currentPage=5&searchCondition=content&searchKeyword=%ED%95%98 -->
 <form name="frmPage" method="post" action="<c:url value='/notice/list.do'/>">
@@ -194,10 +184,4 @@
     <a href="<c:url value='/notice/write.do'/>" >
 	글쓰기</a>
 </div>
-
-</body>
-</html>
-
-
-
-
+<%@ include file="../design/inc/bottom.jsp"%>

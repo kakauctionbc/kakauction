@@ -79,10 +79,10 @@ $(function(){
 
 		<div id="headmenu">
 			<ul>
-				<li><a href="<%=request.getContextPath()%>/main/in">내차 잘 팔기</a></li>
-				<li><a href="<%=request.getContextPath()%>/main/in">내차 잘 사기</a></li>
-				<li><a href="<%=request.getContextPath()%>/main/in">마이페이지</a></li>
-				<li><a href="<%=request.getContextPath()%>/main/in">고객센터</a></li>
+				<li><a href="<c:url value='/car/register.do'/>">내차 잘 팔기</a></li>
+				<li><a href="<c:url value='/auction/list.do'/>">좋은 차 사기</a></li>
+				<li><a href="#">마이페이지</a></li>
+				<li><a href="#">고객센터</a></li>
 			</ul>
 		</div>
 	</div>

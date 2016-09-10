@@ -47,13 +47,13 @@ $(function() {
 		<ul>
 			<li id="iconone"><a href="<c:url value='/car/register.do'/>"><img
 					src="${pageContext.request.contextPath }/img/enterCar.png"></a></li>
-			<li id="icontwo"><a href=""><img
+			<li id="icontwo"><a href="<c:url value='/auction/list.do'/>"><img
 					src="${pageContext.request.contextPath }/img/buyNow.png"></a></li>
-			<li id="iconthree"><a href=""><img
+			<li id="iconthree"><a href="<c:url value='/auction/list.do'/>"><img
 					src="${pageContext.request.contextPath }/img/joinAuction2.png"></a></li>
-			<li id="iconfour"><a href=""><img
+			<li id="iconfour"><a href="<c:url value='/freeboard/list.do'/>"><img
 					src="${pageContext.request.contextPath }/img/freeboard.png"></a></li>
-			<li id="iconfive"><a href=""><img
+			<li id="iconfive"><a href="<c:url value='/notice/list.do'/>"><img
 					src="${pageContext.request.contextPath }/img/notice.png"></a></li>
 		</ul>
 	</div>

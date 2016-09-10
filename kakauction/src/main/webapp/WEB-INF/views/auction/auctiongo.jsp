@@ -119,7 +119,7 @@
 						</table>
 					</td>
 					<td>
-						<table>
+						<table style="height: 100%;">
 							<tr>
 								<td><input type="button" value="후상담 낙찰결과"></td>
 							</tr>

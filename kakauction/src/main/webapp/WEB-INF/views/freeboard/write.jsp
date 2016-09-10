@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js' />"></script>
+<%@ include file="../design/inc/top.jsp"%>
 <script src="<c:url value='/ckeditor/ckeditor.js'/>" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -30,8 +24,6 @@
 	});
 	
 </script>
-</head>
-<body>
 	<form action="<c:url value='/freeboard/write.do'/>" method="post" name="freeWriteFrm" id="frmWrite" enctype="multipart/form-data">
 		<div>
 			<label for="memberId">아이디</label>
@@ -49,5 +41,4 @@
 		<input type="submit" value="작성">
 		<input type="reset" value="초기화">
 	</form>
-</body>
-</html>
+<%@ include file="../design/inc/bottom.jsp"%>

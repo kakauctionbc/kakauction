@@ -1,16 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="../design/inc/top.jsp"%>
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js' />"></script>
 <script src="<c:url value='/ckeditor/ckeditor.js'/>" type="text/javascript"></script>
-
-<!DOCTYPE>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/mainstyle.css'/>" />
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/clear.css'/>" />
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/formLayout.css'/>" />
@@ -38,8 +29,6 @@
 </script>
 
 <title>카카옥션 공지 쓰기</title>
-</head>
-<body>
 	<div class="divForm">
 	<form name="noticeWrite" id="noticeWrite" method="post" enctype="multipart/form-data" 
 	  action="<c:url value='/notice/edit.do'/>" >
@@ -88,6 +77,4 @@
 	    </fieldset>
 	</form>
 	</div>   
-
-</body>
-</html>
+<%@ include file="../design/inc/bottom.jsp"%>
