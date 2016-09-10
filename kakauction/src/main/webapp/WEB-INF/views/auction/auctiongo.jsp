@@ -3,13 +3,13 @@
 <%@ include file="../design/inc/top.jsp" %>
 <script type="text/javascript">
 	$(document).ready(function(){
-		setInterval(newrefresh,0);
 		var highMember = "";
 		var highPrice = $("#highPrice").val();
 		var auctionNo= $("#auctionNo").val();
 		var carNum=$("#carNum").val();
 		var sellerMemberId=$("#sellerMemberId").val();
 		var buyerMemberId=$("#byuerMemberId").val();
+		setInterval(newrefresh,0);
 		
 		function newrefresh(){
 			$.ajax({
@@ -29,28 +29,29 @@
 					}else{
 						$("#light").css("background","");
 					}
-				},
-/* 				error : function(xhr,status,error) {
+				}/* ,
+				error : function(xhr,status,error) {
 					alert("에러=>"+ status+"message=>"+xhr.responseText+ ":"+ error);
 				} */
 			});
 		}
 		
 		$("#goAuction").click(function(){
+			if(highMember==buyerMemberId){
+				alert("현재 최고가를 응찰하신 회원입니다.");
+				return;
+			}
+			if(sellerMemberId==buyerMemberId){
+				alert("자신이 등록한 차량의 경매에 참가할 수 없습니다");
+				$("#light").css("background","");
+				return;
+			}
 			$.ajax({
 				url : "<c:url value='/auction/insertAuctionGo.do'/>",
 				data : {"auctionNo":auctionNo,"recordPrice":50,	"carNum":carNum,"sellerMemberId":sellerMemberId,"buyerMemberId":buyerMemberId,"highPrice":highPrice},
 				type : "POST",
 				dataType : "json",
 				success : function(highVo) {
-					if(sellerMemberId==buyerMemberId){
-						alert("자신이 등록한 차량의 경매에 참가할 수 없습니다");
-						$("#light").css("background","");
-						return;
-					}
-					if(highMember==highVo.buyerMemberId){
-						alert("현재 최고가를 응찰하신 회원입니다.");
-					}
 					$("#nowHighPrice").html(highVo.recordPrice+"만원<br>"+highVo.buyerMemberId).css("text-align","right");
 					$("#light").css("background","red");
 					
@@ -158,12 +159,15 @@
 								<td>1</td>
 								<td>2</td>
 								<td>3</td>
-								<td id="nowHighPrice"></td>
+								<td id="nowHighPrice" style="text-align: right;">${auctionGo['AUCTION_FIRSTPRICE'] }만원</td>
 								<td>낙찰</td>
 							</tr>
 						</table>
 					</td>
 				</tr>
+				<tr>
+					<td colspan="5">허위매물신고하기</td>
+				<tr>
 			</tfoot>
 		</table>
 	</div>

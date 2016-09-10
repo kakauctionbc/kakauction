@@ -34,8 +34,7 @@
 				src="${pageContext.request.contextPath }/img/auctionList_logo.png"
 				alt="회원가입로고">
 		</div>
-		<form name="frmPage" method="post"
-			action="<c:url value='/auction/list.do'/>">
+		<form name="frmPage" method="post" action="<c:url value='/auction/list.do'/>">
 			<input type="hidden" name="currentPage"> <input type="hidden"
 				name="searchCondition" value="${param.searchCondition }"> <input
 				type="hidden" name="searchKeyword"
@@ -98,8 +97,7 @@
 						<!--게시판 내용 반복문 시작  -->
 						<c:forEach var="vo" items="${alist }">
 							<tr style="text-align: center">
-								<td class="listImg"><img alt="사진" height="56px;" width="90px;"
-									src="<c:url value='/picture_upload/${vo.picture1}'/>"></td>
+								<td class="listImg"><img alt="사진" height="56px;" width="90px;" src="<c:url value='/picture_upload/${vo.picture1}'/>"></td>
 								<td class="listSize">${vo.carSize}</td>
 								<td class="listName" style="text-align: left;"><a
 									href="<c:url value='/auction/updateCount.do?auctionNo=${vo.auctionNo}'/>">
