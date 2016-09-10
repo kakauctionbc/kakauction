@@ -32,7 +32,7 @@
 	</insert>
 	
 	<update id="updateAuctionYn" parameterType="AuctionVO">
-		update car set car_auction_yn='Y' where car_num=#{carNum} and member_id=#{sellerMemberId}
+		update car set car_auction_yn='Y' where car_num=#{carNum} and seller_member_id=#{sellerMemberId}
 	</update>
 	
 	<select id="selectAll" resultType="AuctionCarVO" parameterType="SearchVO">
@@ -81,5 +81,32 @@
 		update car
 		set CAR_AUCTION_YN='B'
 		where car_num=#{carNum}
-	</update>	
+	</update>
+	<select id="selectAuctionGo" parameterType="int" resultType="map">
+		select a.auction_no_year, a.auction_no_car, a.auction_no, a.auction_promp, 
+		a.auction_firstprice, a.auction_regdate, a.auction_state, auction_finish,a.auction_read_count,
+		c.car_num, c.seller_member_id,c.car_model, c.car_size, c.car_price, c.car_birth, c.car_am, 
+		c.car_gas, c.car_dist, p.picture_1, p.picture_2, p.picture_3, p.picture_4, p.picture_5, p.picture_6, p.picture_7
+		, p.picture_8, p.picture_9, p.picture_10, p.picture_11, p.picture_12, p.picture_13, p.picture_14, p.picture_15, 
+		p.picture_16, p.picture_17, p.picture_18, p.picture_19, p.picture_20 
+		from auction a, car c, picture p  
+		where a.car_num=c.car_num
+		and c.car_num=P.car_num 
+		and auction_no=#{auctionNo} and c.car_auction_Yn='Y'
+	</select>
+	
+	<insert id="insertRecord" parameterType="hashmap">
+		insert into record
+		values(#{auctionNo}, #{recordPrice}, sysdate, #{carNum}, #{sellerMemberId}, #{buyerMemberId})
+	</insert>
+	
+	<select id="selectHighPrice" resultType="map">
+		select re.* from
+		(
+		    select buyer_Member_Id, record_Price, rank() over(order by record_regdate desc)
+		    from record
+		) re
+		where rownum =1	
+	</select>
+	
 </mapper>

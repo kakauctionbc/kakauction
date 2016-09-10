@@ -3,6 +3,7 @@ package com.app.kaka.auction.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -245,15 +246,40 @@ public class AuctionController {
 	@RequestMapping("/auctiongo.do")
 	public String doAuction(HttpSession session, @RequestParam(defaultValue="0") int auctionNo, Model model){
 		String memberId = (String)session.getAttribute("memberId");
-	    logger.info("경매 하기 화면 보여줌, 멤버 아이디 memberId={}",memberId);
+	    logger.info("경매 하기 화면 보여줌, 멤버 아이디 memberId={}, auctionNo={}",memberId, auctionNo);
 	    
-	    if(auctionNo==0){
+	    /*if(auctionNo==0){
 	    	model.addAttribute("msg", "잘못된 url입니다");
 	    	model.addAttribute("url", "/auction/list.do");
 	    	
 	    	return "common/message";
-	    }
+	    }*/
+	    Map<String, Object> auctionGo = auctionService.selectAuctionGo(auctionNo);
+	    
+	    model.addAttribute("memberId", memberId);
+	    model.addAttribute("auctionGo", auctionGo);
 	      
 	    return "auction/auctiongo";
+	}
+	
+	@RequestMapping("/insertAuctionGo.do")
+	@ResponseBody
+	public String insertAuction(@RequestParam Map<String, Object> auctionmap, Model model){
+		String msg="",url="/auction/auctiongo.do";
+		if(auctionmap==null || auctionmap.isEmpty()){
+			msg="잘못된 url입니다";
+			url="/auction/list.do";
+		}
+		int cnt = auctionService.insertAuctionRecord(auctionmap);
+		if(cnt>0){
+			msg="응찰하셨습니다";
+		}else{
+			msg="응찰에 실패하셨습니다";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+		
 	}
 }

@@ -1,19 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="../design/inc/top.jsp" %>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#goAuction").click(function(){
+			var auctionmap = {"auctionNo":$("#auctionNo").val(),"recordPrice":$("#highPrice").val()+50,
+					"carNum":$("#carNum").val(),"sellerMemberId":$("#sellerMemberId").val(),"buyerMemberId":$("#byuerMemberId").val()};
+			alert("auctionNo="+auctionmap["auctionNo"]+",recordPrice="+auctionmap["recordPrice"]+
+					",carNum="+auctionmap["carNum"]+"sellerMemberId="+auctionmap["sellerMemberId"]+
+					",buyerMemberId="+auctionmap["buyerMemberId"]);
+			$.ajax({
+				url : "<c:url value='/auction/insertAuctionGo.do'/>",
+				data : "auctionmap="+ auctionmap,
+				type : "POST",
+				dataType : "json",
+				success : function() {
+					alert("성공");
+				},
+				error : function(xhr,status,error) {
+					alert("에러=>"+ status+ ":"+ error);
+				}
+			});
+		});
+	});
+</script>
 <style type="text/css">
 	table, td{
 		border: 1px solid red;
 	}
 </style>
 	<div>
+	<input type="hidden" id="auctionNo" value="${auctionGo['AUCTION_NO'] }">
+	<input type="hidden" id="carNum" value="${auctionGo['CAR_NUM'] }">
+	<input type="hidden" id="sellerMemberId" value="${auctionGo['SELLER_MEMBER_ID'] }">
+	<input type="hidden" id="highPrice" value="${auctionGo['AUCTION_FIRSTPRICE'] }">
+	<input type="hidden" id="byuerMemberId" value="${memberId }">
 		<table>
 			<thead>
 				<tr>
 					<td><img alt="logo" src="<c:url value='/img/logo.png'/>"></td>
 					<td><a href="#"><img alt="관심경매" src="<c:url value='/img/auctionChoice.png'/>"></a></td>
 					<td><img alt="관심경매" src="<c:url value='/img/blank.png'/>"></td>
-					<td>회원아이디</td>
+					<td>${memberId }</td>
 					<td>경매 나가기</td>
 				</tr>
 			</thead>
@@ -22,33 +50,33 @@
 					<td colspan="3">
 						<table>
 							<tr>
-								<th colspan="6">차모델+연식</th>
+								<th colspan="6">${auctionGo['CAR_NUM'] }/${auctionGo['CAR_MODEL'] }(${auctionGo['CAR_SIZE'] })</th>
 							</tr>
 							<tr>
 								<td>년식</td>
-								<td>db년식</td>
+								<td>${auctionGo['CAR_BIRTH'] }</td>
 								<td>주행거리</td>
-								<td>db주행거리km</td>
+								<td><fmt:formatNumber pattern="#,###" value="${auctionGo['CAR_DIST'] }"/>km</td>
 								<td rowspan="2">특이</td>
-								<td rowspan="2">여긴 특이점 쓴당</td>
+								<td rowspan="2">특이점이 뭘까</td>
 							</tr>
 							<tr>
 								<td>변속기</td>
-								<td>db자/수동</td>
+								<td>${auctionGo['CAR_AM'] }</td>
 								<td>연료</td>
-								<td>db연료</td>
+								<td>${auctionGo['CAR_GAS'] }</td>
 							</tr>
 							<tr>
-								<td>연료</td>
-								<td>db연료</td>
+								<td>차량매매가격</td>
+								<td><fmt:formatNumber pattern="#,###" value="${auctionGo['CAR_PRICE'] }"/>원</td>
 								<td>변경</td>
 								<td>변경쓰는곳</td>
 								<td>여기는</td>
 								<td>크엉</td>
 							</tr>
 							<tr>
-								<td colspan="4">사진1</td>
-								<td colspan="2">사진2</td>
+								<td colspan="4">${auctionGo['PICTURE1'] }</td>
+								<td colspan="2">${auctionGo['PICTURE2'] }</td>
 							</tr>
 						</table>
 					</td>
@@ -73,24 +101,28 @@
 					<td colspan="5">
 						<table>
 							<tr>
-								<td rowspan="2">경매번호<br> 여기들어감</td>
+								<td rowspan="2">경매번호<br> 
+									${auctionGo['AUCTION_NO_YEAR'] } - ${auctionGo['AUCTION_NO_CAR'] } -${auctionGo['AUCTION_NO'] }
+								</td>
 								<td colspan="3">경매상태</td>
-								<td rowspan="2">
+								<td>
 									<p>작은 글씨로 최초입찰가</p>
-									<p>억 천 백 십 일</p><br>
-									<h1>현재 최고 입찰가 만원</h1>
+									<p>억 천 백 십 일 만원</p><br>
 								</td>
 								<td>
 									권리-내가 최고입찰가면 불이 띵동
 								</td>
 								<td rowspan="2">
-									<input type="button" value="응찰">
+									<input id="goAuction" type="button" value="응찰">
 								</td>
 							</tr>
 							<tr>
 								<td>1</td>
 								<td>2</td>
 								<td>3</td>
+								<td>
+									<h1 id="highPrice">${auctionGo['AUCTION_FIRSTPRICE'] }만원</h1>
+								</td>
 								<td>낙찰</td>
 							</tr>
 						</table>

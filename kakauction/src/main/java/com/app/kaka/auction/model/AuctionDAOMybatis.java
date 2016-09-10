@@ -1,6 +1,7 @@
 package com.app.kaka.auction.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -67,6 +68,21 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 	@Override
 	public int auctionDeferCar(String carNum) {
 		return getSqlSession().update(namespace+".auctionDeferCar", carNum);
+	}
+
+	@Override
+	public Map<String, Object> selectAuctionGo(int auctionNo) {
+		return getSqlSession().selectOne(namespace+".selectAuctionGo", auctionNo);
+	}
+
+	@Override
+	public int insertAuctionRecord(Map<String, Object> auctionmap) {
+		return getSqlSession().insert(namespace+".insertRecord", auctionmap);
+	}
+
+	@Override
+	public Map<String, Object> selectHighPrice() {
+		return getSqlSession().selectOne(namespace+".selectHighPrice");
 	}
 	
 	

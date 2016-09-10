@@ -1,6 +1,7 @@
 package com.app.kaka.auction.model;
 
 import java.util.List;
+import java.util.Map;
 
 import com.app.kaka.car.model.CarVO;
 import com.app.kaka.common.SearchVO;
@@ -17,4 +18,7 @@ public interface AuctionDAO {
 	public AuctionCarVO selectAuction(int auctionNo);
 	public int auctionDenyCar(String carNum);
 	public int auctionDeferCar(String carNum);
+	public Map<String, Object> selectAuctionGo(int auctionNo);
+	public Map<String, Object> selectHighPrice();
+	public int insertAuctionRecord(Map<String, Object> auctionmap);
 }
