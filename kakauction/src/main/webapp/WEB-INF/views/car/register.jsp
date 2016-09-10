@@ -165,7 +165,7 @@
 					</td>
 					<th scope="col">아이디</th>
 					<td>
-						<input type="text" name="memberId" id="memberId" style="width: 300px; border: none;" value="${memVo.memberId }" readonly>
+						<input type="text" name="sellerMemberId" id="sellerMemberId" style="width: 300px; border: none;" value="${memVo.memberId }" readonly>
 					</td>
 				</tr>
 				<tr>
