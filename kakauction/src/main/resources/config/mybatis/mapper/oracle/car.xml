@@ -18,4 +18,13 @@
 	<select id="selectCarPictureByMemberId" parameterType="string" resultType="map">
 		select * from car_picture where seller_member_id=#{sellerMemberId} order by car_regdate desc
 	</select>
+	
+	<update id="upMemeberGrade" parameterType="string">
+		update member 
+		set member_grade='MEMBER_VIP' where member_id=#{memberId}
+	</update>
+	
+	<select id="selectMemberGrade" parameterType="string" resultType="string">
+		select member_grade from member where member_id=#{memberId}
+	</select>
 </mapper>

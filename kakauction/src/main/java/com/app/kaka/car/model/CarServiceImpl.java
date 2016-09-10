@@ -27,4 +27,14 @@ public class CarServiceImpl implements CarService{
 		return carDao.selectCarPictureByMemberId(memberId);
 	}
 
+	@Override
+	public int upMemeberGrade(String memberId) {
+		return carDao.upMemeberGrade(memberId);
+	}
+
+	@Override
+	public String selectMemberGrade(String memberId) {
+		return carDao.selectMemberGrade(memberId);
+	}
+
 }

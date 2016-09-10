@@ -12,6 +12,7 @@ public interface AuctionService {
 	//경매 종료를 위한 회원 등급별 시간
 	public static final String MEMBER_VVIP="VVIP"; //14일
 	public static final String MEMBER_RVIP="RVIP"; //7일
+	public static final String MEMBER_ADMIN="ADMIN"; //관리자
 	public static final String MEMBER_VIP="VIP"; //3일
 	
 	//경매 중간번호를 위한 값

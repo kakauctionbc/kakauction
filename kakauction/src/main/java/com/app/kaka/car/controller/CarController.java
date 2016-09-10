@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.app.kaka.auction.model.AuctionService;
 import com.app.kaka.car.model.CarService;
 import com.app.kaka.car.model.CarVO;
 import com.app.kaka.common.FileUploadWebUtil;
@@ -32,6 +33,9 @@ import com.app.kaka.picture.model.PictureVO;
 public class CarController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CarController.class);
+	
+	@Autowired
+	private AuctionService acService;
 	
 	@Autowired
 	private CarService carService;
@@ -149,7 +153,7 @@ public class CarController {
 		String msg = "", url = "";
 		if((cCnt>0) && (oCnt>0) && (pCnt>0)){
 			msg = "차량 등록 성공";
-			url = "/design/index.do";
+			url = "/car/updateMember.do?memberId="+carVo.getSellerMemberId();
 		}else{
 			msg = "차량 등록 실패";
 			url = "/car/register.do";
@@ -159,6 +163,16 @@ public class CarController {
 		model.addAttribute("url", url);
 		
 		return "common/message";
+	}
+	
+	@RequestMapping("/updateMember.do")
+	public String updateMember(@RequestParam String memberId, Model model){
+		String memberGrade = carService.selectMemberGrade(memberId);
+		logger.info("memberGrade={},memberId={}",memberGrade,memberId);
+		if(memberGrade==null || "MEMBER".equals(memberGrade)){
+			int cnt = carService.upMemeberGrade(memberId);
+		}
+		return "redirect:/design/index.do";
 	}
 	
 	@RequestMapping("/detail.do")
