@@ -9,6 +9,7 @@
 		var carNum=$("#carNum").val();
 		var sellerMemberId=$("#sellerMemberId").val();
 		var buyerMemberId=$("#byuerMemberId").val();
+		var memberId = $("#nowMemberId").val();
 		setInterval(newrefresh,0);
 		
 		function newrefresh(){
@@ -61,6 +62,10 @@
 				}
 			});
 		});
+		
+		$("#regAucReport").click(function(){
+			window.open("/report/auctionReport.do?auctionNo="+auctionNo+"&memberId="+memberId, "resizable=yes,location=yes");
+		});
 	});
 </script>
 <style type="text/css">
@@ -74,6 +79,7 @@
 	<input type="hidden" id="sellerMemberId" value="${auctionGo['SELLER_MEMBER_ID'] }">
 	<input type="hidden" id="highPrice" value="${auctionGo['AUCTION_FIRSTPRICE'] }">
 	<input type="hidden" id="byuerMemberId" value="${memberId }">
+	<input type="hidden" id="nowMemberId" value="${memberId }">
 		<table>
 			<thead>
 				<tr>
@@ -166,7 +172,11 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="5">허위매물신고하기</td>
+					<td colspan="5">
+						<a href="#" id="regAucReport">
+							<img alt="허위매물신고" src="<c:url value='/img/falseReport.png'/>">
+						</a>
+					</td>
 				<tr>
 			</tfoot>
 		</table>

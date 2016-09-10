@@ -16,6 +16,7 @@ public class AuctionVO {
 	private Timestamp auctionOpentime;/** 개찰일시 */
 	private int auctionReadCount;
 	private int auctionFinishTime;
+	private int auctionReportCount;
 	
 	public int getAuctionFinishTime() {
 		return auctionFinishTime;
@@ -95,14 +96,20 @@ public class AuctionVO {
 	public void setAuctionOpentime(Timestamp auctionOpentime) {
 		this.auctionOpentime = auctionOpentime;
 	}
-	
+	public int getAuctionReportCount() {
+		return auctionReportCount;
+	}
+	public void setAuctionReportCount(int auctionReportCount) {
+		this.auctionReportCount = auctionReportCount;
+	}
 	@Override
 	public String toString() {
 		return "AuctionVO [carNum=" + carNum + ", sellerMemberId=" + sellerMemberId + ", auctionNoYear=" + auctionNoYear
 				+ ", auctionNoCar=" + auctionNoCar + ", auctionNo=" + auctionNo + ", auctionPromp=" + auctionPromp
 				+ ", auctionFirstprice=" + auctionFirstprice + ", auctionRegdate=" + auctionRegdate + ", auctionState="
 				+ auctionState + ", auctionFinish=" + auctionFinish + ", auctionOpentime=" + auctionOpentime
-				+ ", auctionReadCount=" + auctionReadCount + ", auctionFinishTime=" + auctionFinishTime + "]";
+				+ ", auctionReadCount=" + auctionReadCount + ", auctionFinishTime=" + auctionFinishTime
+				+ ", auctionReportCount=" + auctionReportCount + "]";
 	}
 	
 }

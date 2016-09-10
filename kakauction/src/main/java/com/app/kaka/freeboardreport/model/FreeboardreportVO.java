@@ -7,7 +7,6 @@ public class FreeboardreportVO {
 	private int freeboardNo;/* 글번호 */
 	private String freeboardreportContent;/* 신고내용 */
 	private Timestamp freeboardreportRegdate;/* 신고시간 */
-	private int freeboardreportCount;/* 신고횟수 */
 	
 	public String getFreeboardreportPerson() {
 		return freeboardreportPerson;
@@ -33,17 +32,11 @@ public class FreeboardreportVO {
 	public void setFreeboardreportRegdate(Timestamp freeboardreportRegdate) {
 		this.freeboardreportRegdate = freeboardreportRegdate;
 	}
-	public int getFreeboardreportCount() {
-		return freeboardreportCount;
-	}
-	public void setFreeboardreportCount(int freeboardreportCount) {
-		this.freeboardreportCount = freeboardreportCount;
-	}
 	
 	@Override
 	public String toString() {
 		return "FreeboardreportVO [freeboardreportPerson=" + freeboardreportPerson + ", freeboardNo=" + freeboardNo
 				+ ", freeboardreportContent=" + freeboardreportContent + ", freeboardreportRegdate="
-				+ freeboardreportRegdate + ", freeboardreportCount=" + freeboardreportCount + "]";
+				+ freeboardreportRegdate + "]";
 	}
 }

@@ -19,6 +19,7 @@ public class FreeboardVO {
 	private String freeboardOriginalname;/** 파일원본이름 */
 	private int freeboardLike;/** 추천수 */
 	private int freeboardReadCount;
+	private int freeboardreportCount;
 	
 	private int newImgTerm;
 	
@@ -124,6 +125,12 @@ public class FreeboardVO {
 	public void setFreeboardReadCount(int freeboardReadCount) {
 		this.freeboardReadCount = freeboardReadCount;
 	}
+	public int getFreeboardreportCount() {
+		return freeboardreportCount;
+	}
+	public void setFreeboardreportCount(int freeboardreportCount) {
+		this.freeboardreportCount = freeboardreportCount;
+	}
 	@Override
 	public String toString() {
 		return "FreeboardVO [freeboardNo=" + freeboardNo + ", memberId=" + memberId + ", freeboardTitle="
@@ -133,7 +140,8 @@ public class FreeboardVO {
 				+ freeboardDelflag + ", freeboardFilename=" + freeboardFilename + ", freeboardFilesize="
 				+ freeboardFilesize + ", freeboardDowncount=" + freeboardDowncount + ", freeboardOriginalname="
 				+ freeboardOriginalname + ", freeboardLike=" + freeboardLike + ", freeboardReadCount="
-				+ freeboardReadCount + ", newImgTerm=" + newImgTerm + "]";
+				+ freeboardReadCount + ", freeboardreportCount=" + freeboardreportCount + ", newImgTerm=" + newImgTerm
+				+ "]";
 	}
 	
 	

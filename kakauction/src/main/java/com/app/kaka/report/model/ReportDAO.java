@@ -1,5 +1,7 @@
 package com.app.kaka.report.model;
 
-public interface ReportDAO {
+import com.app.kaka.auction.model.AuctionVO;
 
+public interface ReportDAO {
+	public AuctionVO selectAuctionInfo(int auctionNo);
 }
