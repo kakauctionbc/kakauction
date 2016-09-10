@@ -96,6 +96,8 @@ public class AuctionServiceImpl implements AuctionService{
 		HighPriceVO highVo = auctionDao.selectHighPrice();
 		logger.info("highVo 키 값이 궁금해서 찍어보는 highVo={}",highVo);
 		int recordPrice=Integer.parseInt((String)auctionmap.get("recordPrice"));
+		int highPrice=Integer.parseInt((String)auctionmap.get("highPrice"));
+
 		int cnt = 0;
 		if(highVo!=null){
 			if(!highVo.getBuyerMemberId().equals(auctionmap.get("buyerMemberId"))){
@@ -103,6 +105,9 @@ public class AuctionServiceImpl implements AuctionService{
 				auctionmap.put("recordPrice", newPrice);
 				cnt = auctionDao.insertAuctionRecord(auctionmap);
 			}
+		}else{
+			auctionmap.put("recordPrice", recordPrice+highPrice);
+			cnt = auctionDao.insertAuctionRecord(auctionmap);
 		}
 		logger.info("highVo 키 값이 궁금해서 찍어보는 highVo={}",highVo);
 		logger.info("응찰 결과 cnt={}",cnt);
@@ -123,6 +128,11 @@ public class AuctionServiceImpl implements AuctionService{
 	@Override
 	public List<BuyerVO> selectBuyer() {
 		return auctionDao.selectBuyer();
+	}
+
+	@Override
+	public int selectHighPriceCount() {
+		return auctionDao.selectHighPriceCount();
 	}
 
 	

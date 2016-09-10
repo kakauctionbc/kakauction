@@ -46,4 +46,5 @@ public interface AuctionService {
 	public String selectMemberGrade(String sellerMemberId);
 	public int insertByuer(BuyerVO buyerVo);
 	public List<BuyerVO> selectBuyer();
+	public int selectHighPriceCount();
 }

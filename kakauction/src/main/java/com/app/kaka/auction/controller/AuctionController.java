@@ -256,6 +256,12 @@ public class AuctionController {
 	
 	@RequestMapping("/auctiongo.do")
 	public String doAuction(HttpSession session, @RequestParam(defaultValue="0") int auctionNo, Model model){
+	    if(auctionNo==0){
+	    	model.addAttribute("msg", "잘못된 url입니다");
+	    	model.addAttribute("url", "/auction/list.do");
+	    	
+	    	return "common/message";
+	    }
 		String memberId = (String)session.getAttribute("memberId");
 	    logger.info("경매 하기 화면 보여줌, 멤버 아이디 memberId={}, auctionNo={}",memberId, auctionNo);
 	    
@@ -265,6 +271,10 @@ public class AuctionController {
 	    logger.info("경매 하기 insBVo={}",insBVo);
 	    
 	    List<BuyerVO> alist = auctionService.selectBuyer();
+	    if(alist==null || alist.isEmpty()){
+	    	int cnt = auctionService.insertByuer(insBVo);
+	    	logger.info("경매 하기 cnt={}",cnt);
+	    }
 	    for(BuyerVO bVo : alist){
 	    	logger.info("경매 하기 bVo.getBuyerMemberId()={}, bVo.getAuctionNo()={}",bVo.getBuyerMemberId(),bVo.getAuctionNo());
 	    	if(!bVo.getBuyerMemberId().equals(memberId)){
@@ -272,14 +282,9 @@ public class AuctionController {
 	    		logger.info("경매 하기 cnt={}",cnt);
 	    	}
 	    }
-	    if(auctionNo==0){
-	    	model.addAttribute("msg", "잘못된 url입니다");
-	    	model.addAttribute("url", "/auction/list.do");
-	    	
-	    	return "common/message";
-	    }
+	
 	    Map<String, Object> auctionGo = auctionService.selectAuctionGo(auctionNo);
-	    
+	    logger.info("auctionGo 라는 이름의 map={}",auctionGo);
 	    model.addAttribute("memberId", memberId);
 	    model.addAttribute("auctionGo", auctionGo);
 	      
@@ -288,10 +293,10 @@ public class AuctionController {
 	
 	@RequestMapping("/insertAuctionGo.do")
 	@ResponseBody
-	public HighPriceVO insertAuction(@RequestParam Map<Object, Object> auctionmap, Model model){
+	public HighPriceVO insertAuction(@RequestParam Map<Object, Object> auctionmap){
 		logger.info("auctionmap="+auctionmap);
-		int cnt = auctionService.insertAuctionRecord(auctionmap);
 		HighPriceVO highVo = auctionService.selectHighPrice();
+		int cnt = auctionService.insertAuctionRecord(auctionmap);
 		if(cnt>0){
 			highVo = auctionService.selectHighPrice();
 		}
@@ -303,8 +308,17 @@ public class AuctionController {
 	
 	@RequestMapping("/rankAuction.do")
 	@ResponseBody
-	public HighPriceVO rankAuction(){
-		HighPriceVO highVo = auctionService.selectHighPrice();
+	public HighPriceVO rankAuction(@RequestParam Map<Object, Object> auctionmap){
+		String sellerid=(String)auctionmap.get("sellerMemberId");
+		int recordPrice=Integer.parseInt((String)auctionmap.get("recordPrice"));
+		int cnt=auctionService.selectHighPriceCount();
+		HighPriceVO highVo = new HighPriceVO();
+		if(cnt<=0){
+			highVo.setBuyerMemberId(sellerid);
+			highVo.setRecordPrice(recordPrice);
+		}else{
+			highVo = auctionService.selectHighPrice();
+		}
 		return highVo;
 	}
 }

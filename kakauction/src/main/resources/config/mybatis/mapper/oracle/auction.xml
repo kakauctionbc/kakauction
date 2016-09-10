@@ -106,12 +106,11 @@
 	</insert>
 	
 	<select id="selectHighPrice" resultType="HighPriceVO">
-		select re.* from
-		(
-		    select buyer_Member_Id, record_Price, rank() over(order by record_regdate desc) as rank
-		    from record
-		) re
-		where rownum =1
+		select * from highPrice
+	</select>
+
+	<select id="selectHighPriceCount" resultType="int">
+		select count(*) from highPrice
 	</select>
 	
 	<select id="selectBuyer" resultType="BuyerVO">

@@ -3,44 +3,43 @@
 <%@ include file="../design/inc/top.jsp" %>
 <script type="text/javascript">
 	$(document).ready(function(){
+		setInterval(newrefresh,0);
 		var highMember = "";
+		var highPrice = $("#highPrice").val();
+		var auctionNo= $("#auctionNo").val();
+		var carNum=$("#carNum").val();
+		var sellerMemberId=$("#sellerMemberId").val();
+		var buyerMemberId=$("#byuerMemberId").val();
 		
-		setInterval(newHighPrice,1000);
 		
-		function newHighPrice(){
+		function newrefresh(){
 			$.ajax({
 				url : "<c:url value='/auction/rankAuction.do'/>",
-				type : "GET",
+				data : {"auctionNo":auctionNo,"recordPrice":highPrice,"carNum":carNum,"sellerMemberId":sellerMemberId},
+				type : "POST",
 				dataType : "json",
 				success : function(highVo) {
 					highMember=highVo.buyerMemberId;
 					$("#nowHighPrice").html(highVo.recordPrice+ "만원<br>"+highVo.buyerMemberId).css("text-align","right");
 				},
-				error : function(xhr,status,error) {
+/* 				error : function(xhr,status,error) {
 					alert("에러=>"+ status+"message=>"+xhr.responseText+ ":"+ error);
-				}
+				} */
 			});
 		}
+		
 		$("#goAuction").click(function(){
-			var auctionNo= $("#auctionNo").val();
-			var carNum=$("#carNum").val();
-			var sellerMemberId=$("#sellerMemberId").val();
-			var buyerMemberId=$("#byuerMemberId").val();
-			var auctionmap = {"auctionNo":$("#auctionNo").val(),"recordPrice":50,
-					"carNum":$("#carNum").val(),"sellerMemberId":$("#sellerMemberId").val(),"buyerMemberId":$("#byuerMemberId").val()};
-			alert("auctionNo="+auctionmap["auctionNo"]+",recordPrice="+auctionmap["recordPrice"]+
-					",carNum="+auctionmap["carNum"]+"sellerMemberId="+auctionmap["sellerMemberId"]+
-					",buyerMemberId="+auctionmap["buyerMemberId"]);
 			$.ajax({
 				url : "<c:url value='/auction/insertAuctionGo.do'/>",
-				data : {"auctionNo":auctionNo,"recordPrice":50,	"carNum":carNum,"sellerMemberId":sellerMemberId,"buyerMemberId":buyerMemberId},
+				data : {"auctionNo":auctionNo,"recordPrice":50,	"carNum":carNum,"sellerMemberId":sellerMemberId,"buyerMemberId":buyerMemberId,"highPrice":highPrice},
 				type : "POST",
 				dataType : "json",
 				success : function(highVo) {
-					if(highMember==buyerMemberId){
+					if(highVo.buyerMemberId==buyerMemberId){
 						alert("현재 최고가를 응찰하신 회원입니다.");
+						$("#nowHighPrice").html(highVo.recordPrice+"만원<br>"+highVo.buyerMemberId).css("text-align","right");
 					}
-					$("#highPrice").attr("value",highVo.recordPrice);
+					$("#nowHighPrice").html(highVo.recordPrice+"만원<br>"+highVo.buyerMemberId).css("text-align","right");
 				},
 				error : function(xhr,status,error) {
 					alert("에러=>"+ status+"message=>"+xhr.responseText+ ":"+ error);
