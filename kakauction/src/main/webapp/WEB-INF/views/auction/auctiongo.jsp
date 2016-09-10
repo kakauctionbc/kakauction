@@ -21,6 +21,11 @@
 				success : function(highVo) {
 					highMember=highVo.buyerMemberId;
 					$("#nowHighPrice").html(highVo.recordPrice+ "만원<br>"+highVo.buyerMemberId).css("text-align","right");
+					if(highMember==buyerMemberId){
+						$("#light").css("background","red");
+					}else{
+						$("#light").css("background","");
+					}
 				},
 /* 				error : function(xhr,status,error) {
 					alert("에러=>"+ status+"message=>"+xhr.responseText+ ":"+ error);
@@ -35,11 +40,12 @@
 				type : "POST",
 				dataType : "json",
 				success : function(highVo) {
-					if(highVo.buyerMemberId==buyerMemberId){
+					if(highMember==highVo.buyerMemberId){
 						alert("현재 최고가를 응찰하신 회원입니다.");
-						$("#nowHighPrice").html(highVo.recordPrice+"만원<br>"+highVo.buyerMemberId).css("text-align","right");
 					}
 					$("#nowHighPrice").html(highVo.recordPrice+"만원<br>"+highVo.buyerMemberId).css("text-align","right");
+					$("#light").css("background","red");
+					
 				},
 				error : function(xhr,status,error) {
 					alert("에러=>"+ status+"message=>"+xhr.responseText+ ":"+ error);
@@ -66,13 +72,13 @@
 					<td><a href="#"><img alt="관심경매" src="<c:url value='/img/auctionChoice.png'/>"></a></td>
 					<td><img alt="관심경매" src="<c:url value='/img/blank.png'/>"></td>
 					<td>${memberId }</td>
-					<td>경매 나가기</td>
+					<td><a href="<c:url value='/auction/list.do'/>">경매 나가기</a></td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td colspan="3">
-						<table>
+					<td colspan="4">
+						<table style="width: 100%;">
 							<tr>
 								<th colspan="6">${auctionGo['CAR_NUM'] }/${auctionGo['CAR_MODEL'] }(${auctionGo['CAR_SIZE'] })</th>
 							</tr>
@@ -104,7 +110,7 @@
 							</tr>
 						</table>
 					</td>
-					<td colspan="2">
+					<td>
 						<table>
 							<tr>
 								<td><input type="button" value="후상담 낙찰결과"></td>
@@ -123,7 +129,7 @@
 			<tfoot>
 				<tr>
 					<td colspan="5">
-						<table>
+						<table style="width: 100%;">
 							<tr>
 								<td rowspan="2">경매번호<br> 
 									${auctionGo['AUCTION_NO_YEAR'] } - ${auctionGo['AUCTION_NO_CAR'] } -${auctionGo['AUCTION_NO'] }
@@ -134,7 +140,7 @@
 									<p style="text-align: right;">억천백십일만원</p>
 								</td>
 								<td>
-									권리-내가 최고입찰가면 불이 띵동
+									<p id="light">권리</p>
 								</td>
 								<td rowspan="2">
 									<input id="goAuction" type="button" value="응찰">
