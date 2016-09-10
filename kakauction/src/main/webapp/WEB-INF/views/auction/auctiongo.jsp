@@ -37,13 +37,13 @@
 		}
 		
 		$("#goAuction").click(function(){
-			if(highMember==buyerMemberId){
-				alert("현재 최고가를 응찰하신 회원입니다.");
-				return;
-			}
 			if(sellerMemberId==buyerMemberId){
 				alert("자신이 등록한 차량의 경매에 참가할 수 없습니다");
 				$("#light").css("background","");
+				return;
+			}
+			if(highMember==buyerMemberId){
+				alert("현재 최고가를 응찰하신 회원입니다.");
 				return;
 			}
 			$.ajax({

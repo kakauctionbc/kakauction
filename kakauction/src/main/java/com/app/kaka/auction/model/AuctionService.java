@@ -46,7 +46,7 @@ public interface AuctionService {
 	public String selectMemberGrade(String sellerMemberId);
 	
 	public int insertByuer(BuyerVO buyerVo);
-	public List<Integer> selectBuyer(String buyerMemberId);
+	public int selectBuyerByIdNo(BuyerVO buyerVo);
 
 	public HighPriceVO selectHighPrice(int auctionNo);
 	public int selectHighPriceCount(int auctionNo);

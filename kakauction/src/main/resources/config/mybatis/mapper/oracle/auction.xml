@@ -84,6 +84,7 @@
 		set CAR_AUCTION_YN='B'
 		where car_num=#{carNum}
 	</update>
+	
 	<select id="selectAuctionGo" parameterType="int" resultType="map">
 		select a.auction_no_year, a.auction_no_car, a.auction_no, a.auction_promp, 
 		a.auction_firstprice, a.auction_regdate, a.auction_state, auction_finish,a.auction_read_count,
@@ -96,13 +97,21 @@
 		and c.car_num=P.car_num 
 		and auction_no=#{auctionNo} and c.car_auction_Yn='Y'
 	</select>
+	
+	<!-- Buyer -->
 	<insert id="insertBuyer" parameterType="BuyerVO">
 		insert into buyer(buyer_member_id, auction_no)
 		values(#{buyerMemberId},#{auctionNo})
 	</insert>
+	
+	<select id="selectBuyerByIdNo" parameterType="BuyerVO" resultType="int">
+		select count(*) from buyer where buyer_member_id=#{buyerMemberId} and auction_no=#{auctionNo}	
+	</select>
+	
+	<!--Record-->
 	<insert id="insertRecord" parameterType="BuyerVO">
 		insert into record
-		values(#{recordPrice}, sysdate, #{carNum}, #{sellerMemberId}, #{buyerMemberId},#{auctionNo})
+		values(#{auctionNo},#{buyerMemberId},#{recordPrice}, sysdate, #{carNum}, #{sellerMemberId})
 	</insert>
 	
 	<select id="selectHighPrice" parameterType="int" resultType="HighPriceVO">
@@ -111,10 +120,6 @@
 
 	<select id="selectHighPriceCount" parameterType="int" resultType="int">
 		select count(*) from highPrice where auction_no=#{auctionNo}
-	</select>
-	
-	<select id="selectBuyer" resultType="int" parameterType="string">
-		select auction_no from buyer where buyer_member_id=#{buyerMemeberId}
 	</select>
 	
 </mapper>

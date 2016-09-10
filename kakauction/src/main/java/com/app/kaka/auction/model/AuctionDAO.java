@@ -29,5 +29,5 @@ public interface AuctionDAO {
 	public String selectMemberGrade(String sellerMemberId);
 	
 	public int insertByuer(BuyerVO buyerVo);
-	public List<Integer> selectBuyer(String buyerMemberId);
+	public int selectBuyerByIdNo(BuyerVO buyerVo);
 }

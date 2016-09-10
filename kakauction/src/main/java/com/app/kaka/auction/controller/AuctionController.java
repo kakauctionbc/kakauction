@@ -258,34 +258,19 @@ public class AuctionController {
 		String memberId = (String)session.getAttribute("memberId");
 	    logger.info("경매 하기 화면 보여줌, 멤버 아이디 memberId={}, auctionNo={}",memberId, auctionNo);
 	    
-		BuyerVO insBVo = new BuyerVO();
-	    insBVo.setAuctionNo(auctionNo);
-	    insBVo.setBuyerMemberId(memberId);
-	    logger.info("경매 하기 insBVo={}",insBVo);
+		BuyerVO buyerVo = new BuyerVO();
+		buyerVo.setAuctionNo(auctionNo);
+		buyerVo.setBuyerMemberId(memberId);
+	    logger.info("경매 하기 insBVo={}",buyerVo);
 		
-	    int cnt = 0;
-	    List<Integer> dbAuctioNo = auctionService.selectBuyer(memberId);
-	    logger.info("경매 하기 dbAuctioNo.size()={}, dbAuctioNo={}",dbAuctioNo.size(),dbAuctioNo);
+	    int result = auctionService.selectBuyerByIdNo(buyerVo);
+	    logger.info("result={}",result);
 	    
-	    if(dbAuctioNo==null || dbAuctioNo.size()==0){
-	    	cnt = auctionService.insertByuer(insBVo);
+	    if(result==0){
+	    	int cnt = auctionService.insertByuer(buyerVo);
 	    	logger.info("경매 하기 cnt1={}",cnt);
 	    }else{
-	    	for(int i=0; i<dbAuctioNo.size() ;i++){
-	    		int dbNo = dbAuctioNo.get(i);
-	    		logger.info("1dbNo={},i={}",dbNo,i);
-	    		if(dbNo!=auctionNo){
-	    			logger.info("2dbNo={},i={}",dbNo,i);
-	    			cnt = auctionService.insertByuer(insBVo);
-	    			logger.info("경매 하기 cnt2={}",cnt);
-	    			return "redirect:/auction/auctiongo.do?auctionNo="+auctionNo;
-	    		}else if(dbNo==auctionNo){
-	    			logger.info("3dbNo={},i={}",dbNo,i);
-	    			return "redirect:/auction/auctiongo.do?auctionNo="+auctionNo;
-	    		}
-	    		logger.info("경매 하기dbNo={}",dbNo);
-	    	}
-	    	logger.info("경매 하기 마지막 cnt={}",cnt);
+	    	return "redirect:/auction/auctiongo.do?auctionNo="+auctionNo;
 	    }
 	    return "redirect:/auction/auctiongo.do?auctionNo="+auctionNo;
 	}
