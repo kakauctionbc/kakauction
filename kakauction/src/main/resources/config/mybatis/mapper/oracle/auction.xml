@@ -96,8 +96,11 @@
 		and c.car_num=P.car_num 
 		and auction_no=#{auctionNo} and c.car_auction_Yn='Y'
 	</select>
-	
-	<insert id="insertRecord" parameterType="hashmap">
+	<insert id="insertBuyer" parameterType="BuyerVO">
+		insert into buyer(buyer_member_id, auction_no)
+		values(#{buyerMemberId},#{auctionNo})
+	</insert>
+	<insert id="insertRecord" parameterType="BuyerVO">
 		insert into record
 		values(#{auctionNo}, #{recordPrice}, sysdate, #{carNum}, #{sellerMemberId}, #{buyerMemberId})
 	</insert>
@@ -111,5 +114,8 @@
 		where rownum =1
 	</select>
 	
+	<select id="selectBuyer" resultType="BuyerVO">
+		select * from buyer
+	</select>
 	
 </mapper>

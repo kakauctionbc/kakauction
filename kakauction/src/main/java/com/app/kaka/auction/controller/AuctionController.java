@@ -2,6 +2,7 @@ package com.app.kaka.auction.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,7 @@ import com.app.kaka.auction.model.AuctionCarVO;
 import com.app.kaka.auction.model.AuctionService;
 import com.app.kaka.auction.model.AuctionVO;
 import com.app.kaka.auction.model.HighPriceVO;
+import com.app.kaka.buyer.model.BuyerVO;
 import com.app.kaka.car.model.CarVO;
 import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
@@ -257,12 +259,25 @@ public class AuctionController {
 		String memberId = (String)session.getAttribute("memberId");
 	    logger.info("경매 하기 화면 보여줌, 멤버 아이디 memberId={}, auctionNo={}",memberId, auctionNo);
 	    
-	    /*if(auctionNo==0){
+	    BuyerVO insBVo = new BuyerVO();
+	    insBVo.setAuctionNo(auctionNo);
+	    insBVo.setBuyerMemberId(memberId);
+	    logger.info("경매 하기 insBVo={}",insBVo);
+	    
+	    List<BuyerVO> alist = auctionService.selectBuyer();
+	    for(BuyerVO bVo : alist){
+	    	logger.info("경매 하기 bVo.getBuyerMemberId()={}, bVo.getAuctionNo()={}",bVo.getBuyerMemberId(),bVo.getAuctionNo());
+	    	if(!bVo.getBuyerMemberId().equals(memberId)){
+	    		int cnt = auctionService.insertByuer(insBVo);
+	    		logger.info("경매 하기 cnt={}",cnt);
+	    	}
+	    }
+	    if(auctionNo==0){
 	    	model.addAttribute("msg", "잘못된 url입니다");
 	    	model.addAttribute("url", "/auction/list.do");
 	    	
 	    	return "common/message";
-	    }*/
+	    }
 	    Map<String, Object> auctionGo = auctionService.selectAuctionGo(auctionNo);
 	    
 	    model.addAttribute("memberId", memberId);
@@ -290,7 +305,6 @@ public class AuctionController {
 	@ResponseBody
 	public HighPriceVO rankAuction(){
 		HighPriceVO highVo = auctionService.selectHighPrice();
-		logger.info("순위다 순위!! 형은 1명만 보여준다 highVo={}"+highVo);
 		return highVo;
 	}
 }

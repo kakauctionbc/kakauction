@@ -1,5 +1,6 @@
 package com.app.kaka.auction.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.kaka.buyer.model.BuyerVO;
 import com.app.kaka.car.model.CarVO;
 import com.app.kaka.common.SearchVO;
 
@@ -111,6 +113,16 @@ public class AuctionServiceImpl implements AuctionService{
 	@Override
 	public String selectMemberGrade(String sellerMemberId) {
 		return auctionDao.selectMemberGrade(sellerMemberId);
+	}
+
+	@Override
+	public int insertByuer(BuyerVO buyerVo) {
+		return auctionDao.insertByuer(buyerVo);
+	}
+
+	@Override
+	public List<BuyerVO> selectBuyer() {
+		return auctionDao.selectBuyer();
 	}
 
 	

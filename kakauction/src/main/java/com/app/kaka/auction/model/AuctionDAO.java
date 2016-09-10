@@ -1,8 +1,10 @@
 package com.app.kaka.auction.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.app.kaka.buyer.model.BuyerVO;
 import com.app.kaka.car.model.CarVO;
 import com.app.kaka.common.SearchVO;
 
@@ -22,4 +24,6 @@ public interface AuctionDAO {
 	public HighPriceVO selectHighPrice();
 	public int insertAuctionRecord(Map<Object, Object> auctionmap);
 	public String selectMemberGrade(String sellerMemberId);
+	public int insertByuer(BuyerVO buyerVo);
+	public List<BuyerVO> selectBuyer();
 }

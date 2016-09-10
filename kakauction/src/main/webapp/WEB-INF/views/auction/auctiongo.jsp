@@ -100,8 +100,8 @@
 								<td>크엉</td>
 							</tr>
 							<tr>
-								<td colspan="4">${auctionGo['PICTURE1'] }</td>
-								<td colspan="2">${auctionGo['PICTURE2'] }</td>
+								<td colspan="4">${auctionGo['PICTURE_1'] }</td>
+								<td colspan="2">${auctionGo['PICTURE_2'] }</td>
 							</tr>
 						</table>
 					</td>

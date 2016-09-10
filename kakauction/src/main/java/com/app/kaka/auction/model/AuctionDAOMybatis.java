@@ -1,11 +1,13 @@
 package com.app.kaka.auction.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.app.kaka.buyer.model.BuyerVO;
 import com.app.kaka.car.model.CarVO;
 import com.app.kaka.common.SearchVO;
 
@@ -88,6 +90,16 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 	@Override
 	public String selectMemberGrade(String sellerMemberId) {
 		return getSqlSession().selectOne(namespace+".selectMemberGrade", sellerMemberId);
+	}
+
+	@Override
+	public int insertByuer(BuyerVO buyerVo) {
+		return getSqlSession().insert(namespace+".insertBuyer", buyerVo);
+	}
+
+	@Override
+	public List<BuyerVO> selectBuyer() {
+		return getSqlSession().selectList(namespace+".selectBuyer");
 	}
 	
 	
