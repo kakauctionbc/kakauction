@@ -49,7 +49,7 @@
 			}
 			$.ajax({
 				url : "<c:url value='/auction/insertAuctionGo.do'/>",
-				data : {"auctionNo":auctionNo,"recordPrice":50,	"carNum":carNum,"sellerMemberId":sellerMemberId,"buyerMemberId":buyerMemberId,"highPrice":highPrice},
+				data : {"auctionNo":auctionNo,"recordPrice":5,	"carNum":carNum,"sellerMemberId":sellerMemberId,"buyerMemberId":buyerMemberId,"highPrice":highPrice},
 				type : "POST",
 				dataType : "json",
 				success : function(highVo) {
@@ -64,7 +64,8 @@
 		});
 		
 		$("#regAucReport").click(function(){
-			window.open("/report/auctionReport.do?auctionNo="+auctionNo+"&memberId="+memberId, "resizable=yes,location=yes");
+			window.open("<c:url value='/report/auctionReport.do?auctionNo="+auctionNo+"&memberId="+memberId+"'/>", "AuctionReport",
+					"width=412px,height=580px,top=50,left=650,resizable=yes,location=yes");
 		});
 	});
 </script>
@@ -102,8 +103,8 @@
 								<td>${auctionGo['CAR_BIRTH'] }</td>
 								<td>주행거리</td>
 								<td><fmt:formatNumber pattern="#,###" value="${auctionGo['CAR_DIST'] }"/>km</td>
-								<td rowspan="2">특이</td>
-								<td rowspan="2">특이점이 뭘까</td>
+								<td rowspan="2">판매자</td>
+								<td rowspan="2">${auctionGo['SELLER_MEMBER_ID'] }</td>
 							</tr>
 							<tr>
 								<td>변속기</td>

@@ -7,6 +7,11 @@
 		select * from auction where auction_no=#{auctionNo}
 	</select>
 	
+	<select id="selectReportHis" parameterType="BuyerVO" resultType="int">
+		select count(*) from report where buyer_member_id=#{buyerMemberId} and auction_no=#{auctionNo}
+	</select>
+	
+	
 	<sql id="searchWhere">
 		<where>
 			<if test="searchKeyword!=null and searchKeyword!=''">
@@ -33,9 +38,13 @@
 		]]>
 	</select>
 	
-	<select id="selectCompleteReportList" resultType="ReportVO">
-		select * from report where report_result='Y'
-	</select>
+	<insert id="insertAuctionReport" parameterType="ReportVO">
+		<selectKey keyProperty="reportNo" resultType="int" order="BEFORE">
+			select report_seq.nextval from dual
+		</selectKey>
+		insert into report(REPORT_NO,BUYER_MEMBER_ID,AUCTION_NO,REPORT_CARINFO,REPORT_TYPE,REPORT_CONTENT)
+		values(#{reportNo},#{buyerMemberId},#{auctionNo},#{reportCarinfo},#{reportType},#{reportContent})
+	</insert>
 	
 	
 </mapper>

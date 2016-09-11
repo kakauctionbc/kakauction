@@ -3,7 +3,7 @@ package com.app.kaka.report.model;
 public class ReportVO {
 	private int reportNo;
 	private String buyerMemberId;
-	private String auctionNo;
+	private int auctionNo;
 	private String reportCarinfo;
 	private String reportType;
 	private String reportContent;
@@ -20,12 +20,6 @@ public class ReportVO {
 	}
 	public void setBuyerMemberId(String buyerMemberId) {
 		this.buyerMemberId = buyerMemberId;
-	}
-	public String getAuctionNo() {
-		return auctionNo;
-	}
-	public void setAuctionNo(String auctionNo) {
-		this.auctionNo = auctionNo;
 	}
 	public String getReportCarinfo() {
 		return reportCarinfo;
@@ -51,7 +45,12 @@ public class ReportVO {
 	public void setReportResult(String reportResult) {
 		this.reportResult = reportResult;
 	}
-	
+	public int getAuctionNo() {
+		return auctionNo;
+	}
+	public void setAuctionNo(int auctionNo) {
+		this.auctionNo = auctionNo;
+	}
 	@Override
 	public String toString() {
 		return "ReportVO [reportNo=" + reportNo + ", buyerMemberId=" + buyerMemberId + ", auctionNo=" + auctionNo
