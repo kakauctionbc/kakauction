@@ -5,7 +5,7 @@
 	$(document).ready(function(){
 		//{"memoList":[{"no":1,"name":"홍길동","content":"안녕"},{"no":2,"name":"김길동","content":"안녕하세요"},{"no":3,"name":"이길동","content":"hi"}]}
 	
-		$("#map").click(function(){
+		$("#map").click(function(){ 
 			var message = $("#buyerLocation").val();
 		    
 		    var resultDiv = document.getElementById('buyerLoc1'); 

@@ -1,6 +1,7 @@
 package com.app.kaka.freeboard.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
 import com.app.kaka.freeboard.model.FreeboardService;
 import com.app.kaka.freeboard.model.FreeboardVO;
+import com.app.kaka.notice.model.NoticeVO;
 
 @Controller
 @RequestMapping("/freeboard")
@@ -234,5 +236,42 @@ public class FreeboardController {
 		
 		return "common/message";
 
+	}
+	
+	@RequestMapping("/delete.do")
+	public String deleteNotice(HttpServletRequest request,@ModelAttribute FreeboardVO freeboardVo,
+			@RequestParam String freeboardFilename,Model model){
+		logger.info("공지 삭제 파라미터 freeboardVo={},freeboardFilename={}",freeboardVo.getFreeboardNo(), freeboardFilename);
+		
+		if (freeboardVo.getFreeboardNo()==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/freeboard/list.do");
+			
+			return "common/message";
+		}
+		
+		//저장 프로시저에서 사용할 map 만들기
+		Map<String, String> map 
+			= new HashMap<String, String>();
+		map.put("freeboardNo", freeboardVo.getFreeboardNo()+"");
+		map.put("freeboardGroupno", freeboardVo.getFreeboardGroupno()+"");
+		map.put("freeboardStep", freeboardVo.getFreeboardStep()+"");
+		logger.info("글삭제시 파라미터 map={}", map);
+		
+		int cnt = freeboardService.deleteFreeboard(map);
+		
+		//파일이 첨부된 경우에는 파일도 삭제처리한다
+		if(freeboardFilename!=null && !freeboardFilename.isEmpty() && cnt>1){
+			String upPath=webUtil.getUploadPath(request, webUtil.FREEBOARD_UPLOAD);
+			File delFile = new File(upPath ,freeboardFilename);
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+				logger.info("파일 삭제 여부:{}", bool);					
+			}
+		}//if
+		
+		logger.info("공지 삭제 결과, cnt={}",cnt);
+		
+		return "redirect:/freeboard/list.do";
 	}
 }

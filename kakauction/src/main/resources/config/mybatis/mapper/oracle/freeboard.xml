@@ -78,7 +78,19 @@
 		update freeboard set freeboard_readcount=freeboard_readcount+1 where freeboard_no = #{freeboardNo}
 	</update>
 	
-	<delete id="">
+	<parameterMap type="map" id="delParamMap">
+		<parameter property="freeboardNo" javaType="string" 
+			jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="freeboardGroupno" javaType="string" 
+			jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="freeboardStep" javaType="string" 
+			jdbcType="VARCHAR" mode="IN"/>
+	</parameterMap>
+	<!-- 파라미터 순서 => P_NO, P_GROUPNO,p_step -->
 	
-	</delete>
+	<!-- 삭제 -->
+	<delete id="deleteFreeboard" parameterMap="delParamMap" >
+		{call FREEBOARD_DELETE(?, ?, ?)}
+	</delete>	
+	<!-- 파라미터 순서 => P_NO, P_GROUPNO,p_step -->
 </mapper>

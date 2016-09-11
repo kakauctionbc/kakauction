@@ -1,9 +1,9 @@
 package com.app.kaka.freeboard.model;
 
 import java.util.List;
+import java.util.Map;
 
 import com.app.kaka.common.SearchVO;
-import com.app.kaka.qna.model.QnaVO;
 
 public interface FreeboardDAO {
 	public int insertFreeboard(FreeboardVO freeboardVo);
@@ -13,4 +13,5 @@ public interface FreeboardDAO {
 	public FreeboardVO selectByNo(int freeboardNo);
 	public int updateFreeboard(FreeboardVO freeboardVo);
 	public int updateReadCount(int freeboardNo);
+	public int deleteFreeboard(Map<String, String> map);
 }

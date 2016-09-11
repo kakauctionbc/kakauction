@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../design/inc/top.jsp"%>
+<script type="text/javascript">
+	$(function(){
+		$("#delete").click(function(){
+			if(!confirm("글을 삭제하시겠습니까?\n(제목 : ${noticeVo.noticeTitle})")){
+				return false;
+			}
+		});
+	});
+</script>
 <title>공지사항 상세보기</title>
 	<h2>공지사항 상세보기</h2>
 	<div class="divForm">

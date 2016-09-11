@@ -12,7 +12,7 @@
 			});
 	});
 
-	function pageProc(curPage){
+	function pageProc(curPage){ 
 		document.frmPage.currentPage.value=curPage;
 		document.frmPage.submit();
 	}

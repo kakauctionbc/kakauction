@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../design/inc/top.jsp"%>
+<script type="text/javascript">
+	$(function(){
+		$("#df").click(function(){
+			if(!confirm("글을 삭제하시겠습니까?\n(제목 : ${freeVo.freeboardTitle})")){
+				return false;
+			}
+		});
+	});
+</script>
 	<h2>자유게시판 - 글 상세보기</h2>
 	<div class="divForm">
 		<div class="firstDiv">
@@ -35,7 +44,7 @@
 		<div class="center">
 			<a href	="<c:url value='/freeboard/edit.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
 			수정</a> |
-        	<a href	="<c:url value='/freeboard/delete.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
+        	<a id="df" href="<c:url value='/freeboard/delete.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
 			삭제</a> |
         	<a href="<c:url value='/freeboard/list.do'/>">목록</a>			
 		</div>

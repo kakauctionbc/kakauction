@@ -3,7 +3,7 @@
 <%@ include file="../design/inc/top.jsp"%>
 <body>
 	<div>
-    <table class="cartListTbl box2" 
+    <table class="cartListTbl box2"
 	summary="공매차량 목록에 관한 표로써, 사진, 차종, 연식, 주행거리, 초기매매가, 등록일 등의 정보를 제공합니다." style="text-align: center;">
 		<caption>공매차랑 목록</caption>
 		<colgroup>

@@ -31,7 +31,7 @@
 		<div>
 			<label for="freeboardUload">파일첨부</label> 
 			<input type="file" id="freeboardUload" name="freeboardUload" />
-			<c:if test="${!empty freeboardVO.freeboardFilename }">
+			<c:if test="${!empty freeboardVO.freeboardFilename  }">
 				<p style="color: green; padding: 5px 0 5px 135px;">
 					※첨부파일을 새로 지정할 경우 기존 파일<img alt="파일이미지"
 						src="<c:url value='/image/file.gif'/>">

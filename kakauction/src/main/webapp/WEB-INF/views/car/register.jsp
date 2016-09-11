@@ -4,7 +4,7 @@
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js' />"></script>
 <script type="text/javascript">
 	
-	$(function(){
+	$(function(){ 
 		$("#carReg").click(function(event){
 			var bool = false;
 			/* $("input[type='file']").each(function(){

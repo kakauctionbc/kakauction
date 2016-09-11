@@ -1,27 +1,16 @@
 package com.app.kaka.freeboard.model;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.app.kaka.common.SearchVO;
-import com.app.kaka.qna.model.QnaVO;
 
 @Service
 public class FreeboardServiceImpl implements FreeboardService{
@@ -65,6 +54,11 @@ public class FreeboardServiceImpl implements FreeboardService{
 	@Override
 	public int updateReadCount(int freeboardNo) {
 		return freeboardDao.updateReadCount(freeboardNo);
+	}
+
+	@Override
+	public int deleteFreeboard(Map<String, String> map) {
+		return freeboardDao.deleteFreeboard(map);
 	}
 	
 /*	public int updateDownCount(int no){

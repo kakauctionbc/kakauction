@@ -7,7 +7,7 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	String place = request.getParameter("place");
-	if(place==null) place="kakao 스페이스닷원";
+	if(place==null) place="kakao 스페이스닷원"; 
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>지도 ver.9</title>

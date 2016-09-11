@@ -1,13 +1,12 @@
 package com.app.kaka.freeboard.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.app.kaka.common.SearchVO;
-import com.app.kaka.qna.model.QnaVO;
 
 @Repository
 public class FreeboardDAOMybatis extends SqlSessionDaoSupport implements FreeboardDAO{
@@ -50,6 +49,11 @@ public class FreeboardDAOMybatis extends SqlSessionDaoSupport implements Freeboa
 	@Override
 	public int updateReadCount(int freeboardNo) {
 		return getSqlSession().update(namespace+".updateReadCount",freeboardNo);
+	}
+
+	@Override
+	public int deleteFreeboard(Map<String, String> map) {
+		return getSqlSession().delete(namespace+".deleteFreeboard", map);
 	}
 	
 }

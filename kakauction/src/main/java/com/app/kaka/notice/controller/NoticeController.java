@@ -248,10 +248,10 @@ public class NoticeController {
 		map.put("noticeStep", noticeVo.getNoticeStep()+"");
 		logger.info("글삭제시 파라미터 map={}", map);
 		
-		noticeService.deleteNotice(map);
+		int cnt = noticeService.deleteNotice(map);
 		
 		//파일이 첨부된 경우에는 파일도 삭제처리한다
-		if(noticeFilename!=null && !noticeFilename.isEmpty()){
+		if(noticeFilename!=null && !noticeFilename.isEmpty() && cnt>0){
 			String upPath=webUtil.getUploadPath(request, webUtil.NOTICE_UPLOAD);
 			File delFile = new File(upPath ,noticeFilename);
 			if(delFile.exists()){
@@ -260,7 +260,6 @@ public class NoticeController {
 			}
 		}//if
 		
-		int cnt = noticeService.deleteNotice(map);
 		logger.info("공지 삭제 결과, cnt={}",cnt);
 		
 		return "redirect:/notice/list.do";
