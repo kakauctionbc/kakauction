@@ -1,6 +1,9 @@
 package com.app.kaka.qna.controller;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -88,11 +91,80 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value="/write.do", method=RequestMethod.POST)
-	public String insertQna(@ModelAttribute QnaVO qnaVo){
+	public String insertQna(@ModelAttribute QnaVO qnaVo, Model model){
 		logger.info("질문 글쓰기 qnaVo={}",qnaVo);
 		
 		int cnt = qnaService.insertQna(qnaVo);
 		
-		return "redirect:qna/list.do";
+		String msg = "", url ="";
+		if(cnt>0){
+			msg="글이 등록되었습니다";
+			url="/qna/list.do";
+		}else{
+			msg="글 쓰기 실패";
+			url="/qna/write.do";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	@RequestMapping(value="/edit.do", method=RequestMethod.GET)
+	public String noticeEdit_get(@RequestParam(defaultValue="0") int questionNo, Model model){
+		logger.info("글 수정 화면 보여주기, 파라미터 questionNo={}",questionNo);
+		if(questionNo==0){
+			model.addAttribute("msg", "잘못된 url 입니다");
+			model.addAttribute("url", "/qna/list.do");
+			return "common/message";
+		}
+		QnaVO qnaVo = qnaService.selectByNo(questionNo);
+		
+		model.addAttribute("qnaVo", qnaVo);
+		return "qna/edit";
+	}
+	
+	@RequestMapping(value="/edit.do", method=RequestMethod.POST)
+	public String noticeEdit_post(@ModelAttribute QnaVO qnaVo, Model model){
+		logger.info("글 수정 화면 처리, qnaVo={}",qnaVo);
+		
+		int cnt = qnaService.editQna(qnaVo);
+		
+		logger.info("글쓰기 결과, cnt={}", cnt);
+		String msg="", url="";
+		if(cnt>0){
+			msg="수정처리 되었습니다";
+			url="/qna/detail.do?questionNo="+qnaVo.getQuestionNo();
+		}else{
+			msg="수정처리 실패";
+			url="/qna/edit.do?questionNo="+qnaVo.getQuestionNo();
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		//3. 결과저장, 뷰페이지 리턴
+		return "common/message";
+	}
+	
+	@RequestMapping("/delete.do")
+	public String deleteNotice(HttpServletRequest request,@ModelAttribute QnaVO qnaVo,
+			Model model){
+		logger.info("공지 삭제 파라미터 qnaNo={}",qnaVo.getQuestionNo());
+		
+		if (qnaVo.getQuestionNo()==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/qna/list.do");
+			
+			return "common/message";
+		}
+		
+		int cnt = qnaService.deleteQna(qnaVo.getQuestionNo());
+		
+		
+		logger.info("질문 삭제 결과, cnt={}",cnt);
+		
+		return "redirect:/qna/list.do";
 	}
 }

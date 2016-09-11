@@ -8,6 +8,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Q&A</title>
+<script type="text/javascript">
+	$(function(){
+		$("#delete").click(function(){
+			if(!confirm("글을 삭제하시겠습니까?\n(제목 : ${QnaVo.questionTitle})")){
+				return false;
+			}
+		});
+	});
+</script>
 </head>
 <body>
 	<h2>Q&A 글 상세보기</h2>
@@ -29,10 +38,9 @@
 		</div>
 		<div class="center">
 			<a href
-			="<c:url value='/qna/edit.do?no=${QnaVo.questionNo}'/>">
+			="<c:url value='/qna/edit.do?questionNo=${QnaVo.questionNo}'/>">
 			수정</a> |
-        	<a href
-		="<c:url value='/qna/delete.do?no=${QnaVo.questionNo}'/>">
+        	<a id='delete' href ="<c:url value='/qna/delete.do?questionNo=${QnaVo.questionNo}'/>">
 			삭제</a> |
         	<a href="<c:url value='/qna/list.do'/>">목록</a>			
 		</div>

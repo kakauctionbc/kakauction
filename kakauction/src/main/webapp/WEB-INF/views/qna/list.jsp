@@ -91,7 +91,7 @@
 			<tr style="text-align: center">
 				<td>${vo.questionNo}</td>
 				<td style="text-align: left;">
-					<a href="<c:url value='/notice/updateCount.do?no=${vo.questionNo}'/>">
+					<a href="<c:url value='/qna/detail.do?questionNo=${vo.questionNo}'/>">
 						<!-- 제목이 긴 경우 일부만 보여주기 -->
 						<c:if test="${fn:length(vo.questionTitle)>20}">
 							${fn:substring(vo.questionTitle, 0,20)}...

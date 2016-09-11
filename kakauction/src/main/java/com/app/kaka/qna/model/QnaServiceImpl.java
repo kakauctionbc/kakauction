@@ -42,4 +42,14 @@ public class QnaServiceImpl implements QnaService{
 	public int insertQna(QnaVO qnaVo) {
 		return qnaDao.insertQna(qnaVo);
 	}
+
+	@Override
+	public int editQna(QnaVO qnaVo) {
+		return qnaDao.editQna(qnaVo);
+	}
+
+	@Override
+	public int deleteQna(int questionNo) {
+		return qnaDao.deleteQna(questionNo);
+	}
 }

@@ -48,4 +48,15 @@
 		insert into question(QUESTION_NO,MEMBER_ID,QUESTION_TITLE,QUESTION_CONTENT)
 		values(#{questionNo},#{memberId},#{questionTitle},#{questionContent})
 	</insert>
+	
+	<update id="editQna" parameterType="qnaVo">
+		update question
+		set question_title=#{questionTitle}, question_content=#{questionContent}
+		where question_no=#{questionNo}
+	</update>
+	
+	<delete id="deleteQna" parameterType="int">
+		delete question
+		where question_no=#{questionNo}
+	</delete>
 </mapper>

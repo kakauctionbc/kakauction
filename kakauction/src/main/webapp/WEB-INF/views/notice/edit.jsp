@@ -43,8 +43,8 @@
 	            <input type="text" id="noticeTitle" name="noticeTitle" value="${noticeVo.noticeTitle }" />
 	        </div>
 	        <div>
-	            <label for="name">작성자</label>
-	            <input type="text" id="memberId" name="memberId" value="${noticeVo.memberId }"/>
+	            <label for="name">작성자</label> : ${noticeVo.memberId }
+	            <input type="hidden" id="memberId" name="memberId" value="${noticeVo.memberId }"/>
 	        </div>
 	       <div>
 				<label for="upfile">파일첨부</label> <input type="file" id="upfile"
@@ -70,9 +70,7 @@
 	        
 	        <div class="center">
 	            <input type = "submit" value="등록"/>
-	            <input type = "Button" name="listPage" id="listPage" value="글목록" 
-	      			onclick
-	="location.href='<c:url value="/notice/list.do"/>';" />         
+	            <input type = "Button" name="listPage" id="listPage" value="글목록"/>         
 	        </div>
 	    </fieldset>
 	</form>

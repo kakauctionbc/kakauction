@@ -31,4 +31,14 @@ public class QnaDAOMybatis extends SqlSessionDaoSupport implements QnaDAO {
 	public int insertQna(QnaVO qnaVo) {
 		return getSqlSession().selectOne(namespace+".insertQna", qnaVo);
 	}
+
+	@Override
+	public int editQna(QnaVO qnaVo) {
+		return getSqlSession().update(namespace+".editQna", qnaVo);
+	}
+
+	@Override
+	public int deleteQna(int questionNo) {
+		return getSqlSession().delete(namespace+".deleteQna", questionNo);
+	}
 }
