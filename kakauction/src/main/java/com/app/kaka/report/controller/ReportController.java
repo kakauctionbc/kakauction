@@ -1,6 +1,10 @@
 package com.app.kaka.report.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,7 +57,7 @@ public class ReportController {
 		model.addAttribute("cnt", cnt);
 		return "report/regReport";
 	}
-	
+
 	@RequestMapping("/insertAuctionReport.do")
 	public String regReport_post(@ModelAttribute ReportVO reportVo, Model model){
 		logger.info("신고를 하자 reportVO={}",reportVo);
@@ -66,6 +70,10 @@ public class ReportController {
 		}else{
 			msg="신고 접수하셨습니다";
 			url="/report/selfClose.do";
+			
+			int ucnt = reportService.updateReportCount(reportVo.getAuctionNo());
+			logger.info("신고수 업데이트 된거니? ucnt={}",cnt);
+			
 		}
 		logger.info("신고를 하자 cnt={}",cnt);
 		
@@ -80,8 +88,8 @@ public class ReportController {
 		return "report/selfClose";
 	}
 	
-	@RequestMapping("/reportList.do")
-	public String listAuction(@ModelAttribute SearchVO searchVo, Model model){
+	@RequestMapping("/reportAdminList.do")
+	public String adminListAuction(@ModelAttribute SearchVO searchVo, Model model){
 		logger.info("내 신고 목록");
 		/*3. 글목록 조회
 		/reBoard/list.do => ReBoardListController
@@ -100,8 +108,7 @@ public class ReportController {
 				
 		//2. db작업 - select
 		List<ReportVO> alist = reportService.selectAll(searchVo);
-		logger.info("글목록 조회 결과 alist.size()={}", 
-				alist.size());
+		logger.info("글목록 조회 결과 alist.size()={}", alist.size());
 		
 		//전체 레코드 개수 조회하기
 		int totalRecord = reportService.selectTotalCount(searchVo);
@@ -112,6 +119,47 @@ public class ReportController {
 		model.addAttribute("alist", alist);
 		model.addAttribute("pagingInfo", pagingInfo);
 		
-		return "auction/list";
+		return "report/list";
+	}
+	
+	
+	@RequestMapping("/reportList.do")
+	public String listAuction(HttpSession session,@RequestParam String orderKey,@ModelAttribute SearchVO searchVo, Model model){
+		logger.info("내 신고 목록");
+		/*3. 글목록 조회
+		/reBoard/list.do => ReBoardListController
+		=> /reBoard/list.jsp*/
+		//1. 파라미터 읽어오기
+		logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);
+		
+		String buyerMemberId = (String)session.getAttribute("memberId");
+
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		searchVo.setBlockSize(Utility.BLOCK_SIZE);
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		
+		searchVo.setSearchKeyword(buyerMemberId);
+		//orderKey는 desc인지 asc인지 
+		searchVo.setSearchCondition(orderKey);
+		
+		//2. db작업 - select
+		List<ReportVO> alist = reportService.selectMemberIdAll(searchVo);
+		logger.info("글목록 조회 결과 alist.size()={}", alist.size());
+		
+		//전체 레코드 개수 조회하기
+		int totalRecord = reportService.selectTotalCount(searchVo);
+		logger.info("토탈레코드가 궁금 totalRecord={}",totalRecord);
+		pagingInfo.setTotalRecord(totalRecord);
+		
+		//3. 결과 저장, 뷰페이지 리턴
+		model.addAttribute("alist", alist);
+		model.addAttribute("pagingInfo", pagingInfo);
+		
+		return "report/list";
 	}
 }

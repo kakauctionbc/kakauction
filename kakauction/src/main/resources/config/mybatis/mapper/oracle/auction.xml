@@ -20,9 +20,11 @@
 	<select id="selectAuctionCar" parameterType="string" resultType="AuctionCarVO">
 		select * from auction_car where car_num=#{carNum}
 	</select>
+	
 	<select id="selectMemberGrade" parameterType="string" resultType="string">
 		select member_grade from member where member_id=#{sellerMemberId}
 	</select>
+	
 	<insert id="insertAuction" parameterType="AuctionVO">
 		<selectKey keyProperty="auctionNo" resultType="int" order="BEFORE">
 			select auction_seq.nextval from dual

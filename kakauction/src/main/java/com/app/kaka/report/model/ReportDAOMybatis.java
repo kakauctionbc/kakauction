@@ -1,12 +1,16 @@
 package com.app.kaka.report.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.app.kaka.auction.model.AuctionCarVO;
 import com.app.kaka.auction.model.AuctionVO;
 import com.app.kaka.common.SearchVO;
+
+import oracle.net.aso.s;
 
 @Repository
 public class ReportDAOMybatis extends SqlSessionDaoSupport implements ReportDAO{
@@ -30,14 +34,22 @@ public class ReportDAOMybatis extends SqlSessionDaoSupport implements ReportDAO{
 
 	@Override
 	public int selectTotalCount(SearchVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return getSqlSession().selectOne(namespace+".selectTotalCount",vo);
 	}
 
 	@Override
 	public List<ReportVO> selectAll(SearchVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return getSqlSession().selectList(namespace+".selectAll", vo);
+	}
+
+	@Override
+	public List<ReportVO> selectMemberIdAll(SearchVO searchVo) {
+		return getSqlSession().selectList(namespace+".selectMemberIdAll", searchVo);
+	}
+
+	@Override
+	public int updateReportCount(int auctionNo) {
+		return getSqlSession().update(namespace+".updateReportCount",auctionNo);
 	}
 
 }

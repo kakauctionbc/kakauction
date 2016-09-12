@@ -1,6 +1,7 @@
 package com.app.kaka.report.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,14 +32,22 @@ public class ReportServiceImpl implements ReportService{
 
 	@Override
 	public int selectTotalCount(SearchVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return reportDao.selectTotalCount(vo);
 	}
 
 	@Override
 	public List<ReportVO> selectAll(SearchVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return reportDao.selectAll(vo);
+	}
+
+	@Override
+	public List<ReportVO> selectMemberIdAll(SearchVO searchVo) {
+		return reportDao.selectMemberIdAll(searchVo);
+	}
+
+	@Override
+	public int updateReportCount(int auctionNo) {
+		return reportDao.updateReportCount(auctionNo);
 	}
 
 }

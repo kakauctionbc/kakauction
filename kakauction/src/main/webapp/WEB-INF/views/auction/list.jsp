@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../design/inc/top.jsp"%>
-<script type="text/javascript" 
+	<script type="text/javascript" 
 	src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
 <script type="text/javascript">	
 	$(document).ready(function(){
@@ -13,20 +13,16 @@
 				$(this).css("background","");
 			});
 	});
-
 	function pageProc(curPage){
 		document.frmPage.currentPage.value=curPage;
 		document.frmPage.submit();
 	}
-	
-
 </script>
-
 <div id="wrap">
 	<div id="wrapdiv">
 		<div id="wraptop">
 			<p>
-				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>경매리스트
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>신고리스트
 			</p>
 		</div>
 		<div id="pagelogo">

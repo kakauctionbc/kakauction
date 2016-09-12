@@ -3,14 +3,6 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="config.mybatis.mapper.oracle.report">
-	<select id="selectAuctionInfo" parameterType="int" resultType="AuctionVO">
-		select * from auction where auction_no=#{auctionNo}
-	</select>
-	
-	<select id="selectReportHis" parameterType="BuyerVO" resultType="int">
-		select count(*) from report where buyer_member_id=#{buyerMemberId} and auction_no=#{auctionNo}
-	</select>
-	
 	
 	<sql id="searchWhere">
 		<where>
@@ -20,6 +12,33 @@
 			</if>
 		</where>
 	</sql>
+
+	<insert id="insertAuctionReport" parameterType="ReportVO">
+		<selectKey keyProperty="reportNo" resultType="int" order="BEFORE">
+			select report_seq.nextval from dual
+		</selectKey>
+		insert into report(REPORT_NO,BUYER_MEMBER_ID,AUCTION_NO,REPORT_CARINFO,REPORT_TYPE,REPORT_CONTENT)
+		values(#{reportNo},#{buyerMemberId},#{auctionNo},#{reportCarinfo},#{reportType},#{reportContent})
+	</insert>
+	
+	<update id="updateReportCount" parameterType="int">
+		update auction
+		set auction_report_count=auction_report_count+1
+		where auction_no=#{auctionNo}
+	</update>
+	
+	<select id="selectAuctionInfo" parameterType="int" resultType="AuctionVO">
+		select * from auction where auction_no=#{auctionNo}
+	</select>
+	
+	<select id="selectReportHis" parameterType="BuyerVO" resultType="int">
+		select count(*) from report where buyer_member_id=#{buyerMemberId} and auction_no=#{auctionNo}
+	</select>
+	
+	<select id="selectTotalCount" resultType="int" parameterType="SearchVO">
+		select count(*) from report order by report_no
+		<include refid="searchWhere"></include>
+	</select>
 	
 	<select id="selectAll" resultType="ReportVO" parameterType="SearchVO">
 		select *
@@ -27,7 +46,9 @@
 		(
 		    select rownum as RNUM, LIST_ALL.*
 		    from
-		        (select * from result_view
+		        (select * from report_no, buyer_member_id, auction_no, report_carInfo, 
+		        report_type, report_content, report_result
+		        from report
 		        <include refid="searchWhere"></include>
 		        ) LIST_ALL    
 		) 
@@ -38,13 +59,32 @@
 		]]>
 	</select>
 	
-	<insert id="insertAuctionReport" parameterType="ReportVO">
-		<selectKey keyProperty="reportNo" resultType="int" order="BEFORE">
-			select report_seq.nextval from dual
-		</selectKey>
-		insert into report(REPORT_NO,BUYER_MEMBER_ID,AUCTION_NO,REPORT_CARINFO,REPORT_TYPE,REPORT_CONTENT)
-		values(#{reportNo},#{buyerMemberId},#{auctionNo},#{reportCarinfo},#{reportType},#{reportContent})
-	</insert>
+	<sql id="orderKey">
+		<where>
+			order by  report_No
+			<if test="searchKeyword!=null and searchKeyword!=''">
+				#{searchKeyword}
+			</if>
+		</where>
+	</sql>
 	
-	
+	<select id="selectMemberIdAll" resultType="ReportVO" parameterType="SearchVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, LIST_ALL.*
+		    from
+		        (select * from report_no, buyer_member_id, auction_no, report_carInfo, 
+		        report_type, report_content, report_result
+		        from report
+		        where buyer_member_id=#{searchKeyword}
+		        <include refid="orderKey"></include>
+		        ) LIST_ALL    
+		) 
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}
+			+ #{recordCountPerPage}
+		]]>
+	</select>
 </mapper>

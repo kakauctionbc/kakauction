@@ -6,8 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>" ></script>
+<script src="<c:url value='/ckeditor/ckeditor.js'/>" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		CKEDITOR.replace('reportContent');
+		CKEDITOR.editorConfig = function( config ) {
+			config.width = 500;     // 500 pixels wide.
+		}
 		var cnt = $("#cnt").val();
 		if(cnt!=0){
 			self.close();
@@ -16,8 +21,8 @@
 			self.close();
 		});
 		$("#frmReport").submit(function(){
-			if(!$("#reportContent").val()){
-				alert("신고 내용을 작성해주셔야합니다.");
+			if(!$("#reportContent").val().length<15){
+				alert("신고 내용은 15자 이상 작성해주셔야합니다.");
 				event.preventDefault();
 			}
 		});
@@ -70,6 +75,7 @@
 						<option value="허위정보">허위정보</option>
 						<option value="과장정보">과장정보</option>
 						<option value="판매자허위정보">판매자허위정보</option>
+						<option value="판매자허위정보">기타</option>
 					</select>
 				</td>
 				<td>
@@ -83,7 +89,8 @@
 			</tr>
 			<tr>
 				<td colspan="4">
-					<textarea id="reportContent" name="reportContent" rows="9" cols="50"></textarea>
+					<!-- <textarea id="reportContent" name="reportContent" rows="9" cols="50"></textarea> -->
+					<textarea id="reportContent" name="reportContent" ></textarea>
 				</td>
 			</tr>
 			<tr>
