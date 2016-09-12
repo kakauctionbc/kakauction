@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.1.0.min.js" ></script>
+<script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
 <script type="text/javascript">
 $(function(){
   var show = $('#headmenu');
@@ -39,13 +39,12 @@ $(function(){
 	<header>
 	<!-- header -->
 		<div id="header">
-				<ul class="views">					
+			<div id=headerdiv>
+				<ul>					
 					<!-- 로그인이 안된 경우 -->	
 					<c:if test="${empty sessionScope.memberId }">
 						<li><a href="<c:url value='/board/list.do'/>">고객센터</a></li>					
-						<li>|</li>
 						<li><a href="<c:url value='/member/agreement.do'/>">회원가입</a></li>
-						<li>|</li>	            
 						<li><a href="<c:url value='/login/login.do'/>">로그인</a></li>
 					</c:if>
 					<!-- 로그인된 경우 -->
@@ -58,8 +57,8 @@ $(function(){
 								${sessionScope.memberName}님</span>
 						</li> 
 					</c:if>
-					
 				</ul>				
+			</div>
 		</div>
 	</header>
 	<div id="middle">
@@ -103,7 +102,7 @@ $(function(){
 			<div id="content-buy">
 				<ul>
 					<li><a href="<c:url value='/auction/list.do'/>">경매리스트</a></li>
-					<li><a href="#">공매리스트</a></li>
+					<li><a href="<c:url value='/auction/list.do'/>">공매리스트</a></li>
 					<li><a href="#">일정안내</a></li>
 				</ul>
 			</div>
@@ -119,9 +118,8 @@ $(function(){
 			</div>
 			<div id="content-notice">
 				<ul>
-					<li><a href="#">공지사항</a></li>
-					<li><a href="#">FAQ</a></li>
-					<li><a href="#">시세</a></li>
+					<li><a href="<c:url value='/notice/list.do'/>">공지사항</a></li>
+					<li><a href="<c:url value='/qna/list.do'/>">QNA</a></li>
 					<li><a href="#">이용안내</a></li>
 				</ul>
 			</div>

@@ -45,16 +45,31 @@ $(function() {
 </script>
 	<div id="mainicondiv">
 		<ul>
-			<li id="iconone"><a href="<c:url value='/car/register.do'/>"><img
-					src="${pageContext.request.contextPath }/img/enterCar.png"></a></li>
-			<li id="icontwo"><a href=""><img
-					src="${pageContext.request.contextPath }/img/buyNow.png"></a></li>
-			<li id="iconthree"><a href=""><img
-					src="${pageContext.request.contextPath }/img/joinAuction2.png"></a></li>
-			<li id="iconfour"><a href=""><img
-					src="${pageContext.request.contextPath }/img/freeboard.png"></a></li>
-			<li id="iconfive"><a href=""><img
-					src="${pageContext.request.contextPath }/img/notice.png"></a></li>
+			<li id="iconone">
+				<a href="<c:url value='/car/register.do'/>">
+					<img src="${pageContext.request.contextPath }/img/enterCar.png">
+				</a>
+			</li>
+			<li id="icontwo">
+				<a href="<c:url value='/auction/list.do'/>">
+					<img src="${pageContext.request.contextPath }/img/buyNow.png">
+				</a>
+			</li>
+			<li id="iconthree">
+				<a href="<c:url value='/auction/list.do'/>">
+					<img src="${pageContext.request.contextPath }/img/joinAuction2.png">
+				</a>
+			</li>
+			<li id="iconfour">
+				<a href="<c:url value='/freeboard/list.do'/>">
+					<img src="${pageContext.request.contextPath }/img/freeboard.png">
+				</a>
+			</li>
+			<li id="iconfive">
+				<a href="<c:url value='/notice/list.do'/>">
+					<img src="${pageContext.request.contextPath }/img/notice.png">
+				</a>
+			</li>
 		</ul>
 	</div>
 		<img src="${pageContext.request.contextPath }/img/hot_icon.png"
@@ -63,7 +78,7 @@ $(function() {
 			<div id="realtimehead">
 				<p id="text">실시간 경매 현황</p>
 				<p id="more">
-					<a href="">MORE▶</a>
+					<a href="<c:url value='/auction/list.do'/>">MORE▶</a>
 				</p>
 			</div>
 			<table id="realtimetable" style="border-collapse: collapse">
@@ -131,7 +146,7 @@ $(function() {
 				<div id="noticehead">
 					<p id="text">공지사항</p>
 					<p id="more">
-						<a href="">MORE▶</a>
+						<a href="<c:url value='/notice/list.do'/>">MORE▶</a>
 					</p>
 				</div>
 				<div>
