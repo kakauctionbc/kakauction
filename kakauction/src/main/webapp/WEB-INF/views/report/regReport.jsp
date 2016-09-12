@@ -10,9 +10,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		CKEDITOR.replace('reportContent');
-		CKEDITOR.editorConfig = function( config ) {
-			config.width = 500;     // 500 pixels wide.
-		}
+		CKEDITOR.instances.MCONT.resize( 50, 300 );
 		var cnt = $("#cnt").val();
 		if(cnt!=0){
 			self.close();
