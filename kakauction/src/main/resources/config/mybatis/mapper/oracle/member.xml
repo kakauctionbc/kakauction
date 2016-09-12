@@ -9,6 +9,21 @@
 		#{memberHp},#{memberGender},#{memberZipcode},#{memberAddr},#{memberAddr2})
 	</insert>
 	
+	<insert id="addExcel" parameterType="java.util.HashMap">
+		insert all
+		<foreach collection="list" item="item" separator=" ">
+		into member(
+				MEMBER_ID, MEMBER_NAME, MEMBER_PWD, MEMBER_JUMIN, MEMBER_EMAIL, MEMBER_HP, 
+				MEMBER_GENDER, MEMBER_ZIPCODE, MEMBER_ADDR, MEMBER_ADDR2
+		)values	
+			(
+			#{item.memberId},#{item.memberName},#{item.memberPwd},#{item.memberJumin},#{item.memberEmail},
+			#{item.memberHp},#{item.memberGender},#{item.memberZipcode},#{item.memberAddr},#{item.memberAddr2}
+			)
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	
 	<select id="selectMemberByUserid" parameterType="string" resultType="MemberVO">
 		select * from member where member_id = #{memberId}
 	</select>
