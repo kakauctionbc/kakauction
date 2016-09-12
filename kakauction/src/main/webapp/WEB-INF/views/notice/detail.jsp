@@ -11,8 +11,12 @@
 	});
 </script>
 <title>공지사항 상세보기</title>
-	<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.prevNoticeNo}'/>">이전글</a>
-	<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.nextNoticeNo}'/>">다음글</a>
+	<c:if test="${!empty noticeVo.prevNoticeNo }">
+		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.prevNoticeNo}'/>">이전글</a>
+	</c:if>
+	<c:if test="${!empty noticeVo.nextNoticeNo }"> 
+		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.nextNoticeNo}'/>">다음글</a>
+	</c:if>
 	<h2>공지사항 상세보기</h2>
 	<div class="divForm">
 		<div class="firstDiv">
