@@ -19,7 +19,7 @@
 		    from
 		        (select question_no, member_id, question_title,
 					question_regdate, question_content,
-					question_return,
+					question_return, question_only,
 					(sysdate-question_regdate)*24 as newImgTerm
 		        from question
 		        <include refid="searchWhere"></include>

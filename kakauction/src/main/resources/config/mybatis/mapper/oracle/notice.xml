@@ -66,7 +66,14 @@
 	
 	<!-- 수정 또는 디테일에서 쓸 셀렉트 -->
 	<select id="selectByNo" parameterType="int" resultType="NoticeVO">
-		select * from notice where notice_no=#{noticeNo}
+		select n.*,
+		<![CDATA[
+		(select max(notice_no) from notice where notice_no<#{noticeNo}) as PREV_NOTICE_NO,
+		(select notice_title from notice where notice_no=(select max(notice_no) from notice where notice_no<#{noticeNo})) as PREV_NOTICE_TITLE,
+		(select min(notice_no) from notice where notice_no>#{noticeNo}) as NEXT_NOTICE_NO,
+		(select notice_title from notice where notice_no=(select min(notice_no) from notice where notice_no>#{noticeNo})) as NEXT_NOTICE_TITLE
+		]]>
+		from notice n where notice_no=#{noticeNo}
 	</select>
 	
 	<!-- 공지사항 수정 시 비밀번호 체크용 -->

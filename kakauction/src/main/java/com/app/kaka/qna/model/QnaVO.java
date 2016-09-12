@@ -9,6 +9,7 @@ public class QnaVO {
 	private String questionContent;
 	private Timestamp questionRegdate;
 	private String questionReturn;
+	private String questionOnly;
 	
 	private int newImgTerm;
 	
@@ -48,6 +49,12 @@ public class QnaVO {
 	public void setQuestionTitle(String questionTitle) {
 		this.questionTitle = questionTitle;
 	}
+	public String getQuestionOnly() {
+		return questionOnly;
+	}
+	public void setQuestionOnly(String questionOnly) {
+		this.questionOnly = questionOnly;
+	}
 	public int getNewImgTerm() {
 		return newImgTerm;
 	}
@@ -57,8 +64,8 @@ public class QnaVO {
 	
 	@Override
 	public String toString() {
-		return "QnaVO [memberId=" + memberId + ", questionContent=" + questionContent + ", questionNo=" + questionNo
-				+ ", questionRegdate=" + questionRegdate + ", questionReturn=" + questionReturn + ", questionTitle="
-				+ questionTitle + ", newImgTerm=" + newImgTerm + "]";
+		return "QnaVO [questionNo=" + questionNo + ", memberId=" + memberId + ", questionTitle=" + questionTitle
+				+ ", questionContent=" + questionContent + ", questionRegdate=" + questionRegdate + ", questionReturn="
+				+ questionReturn + ", questionOnly=" + questionOnly + ", newImgTerm=" + newImgTerm + "]";
 	}
 }

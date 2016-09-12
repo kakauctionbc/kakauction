@@ -20,6 +20,11 @@ public class NoticeVO {
 	
 	private int newImgTerm;
 	
+	private int prevNoticeNo;
+	private int nextNoticeNo;
+	private String prevNoticeTitle;
+	private String nextNoticeTitle;
+	
 	public int getNoticeNo() {
 		return noticeNo;
 	}
@@ -110,7 +115,30 @@ public class NoticeVO {
 	public void setNewImgTerm(int newImgTerm) {
 		this.newImgTerm = newImgTerm;
 	}
-	
+	public int getPrevNoticeNo() {
+		return prevNoticeNo;
+	}
+	public void setPrevNoticeNo(int prevNoticeNo) {
+		this.prevNoticeNo = prevNoticeNo;
+	}
+	public int getNextNoticeNo() {
+		return nextNoticeNo;
+	}
+	public void setNextNoticeNo(int nextNoticeNo) {
+		this.nextNoticeNo = nextNoticeNo;
+	}
+	public String getPrevNoticeTitle() {
+		return prevNoticeTitle;
+	}
+	public void setPrevNoticeTitle(String prevNoticeTitle) {
+		this.prevNoticeTitle = prevNoticeTitle;
+	}
+	public String getNextNoticeTitle() {
+		return nextNoticeTitle;
+	}
+	public void setNextNoticeTitle(String nextNoticeTitle) {
+		this.nextNoticeTitle = nextNoticeTitle;
+	}
 	@Override
 	public String toString() {
 		return "NoticeVO [noticeNo=" + noticeNo + ", memberId=" + memberId + ", noticeTitle=" + noticeTitle
@@ -118,7 +146,9 @@ public class NoticeVO {
 				+ noticeReadCount + ", noticeGroupno=" + noticeGroupno + ", noticeStep=" + noticeStep + ", noticeSort="
 				+ noticeSort + ", noticeDelflag=" + noticeDelflag + ", noticeFilename=" + noticeFilename
 				+ ", noticeFilesize=" + noticeFilesize + ", noticeDowncount=" + noticeDowncount
-				+ ", noticeOriginalname=" + noticeOriginalname + ", newImgTerm=" + newImgTerm + "]";
+				+ ", noticeOriginalname=" + noticeOriginalname + ", newImgTerm=" + newImgTerm + ", prevNoticeNo="
+				+ prevNoticeNo + ", nextNoticeNo=" + nextNoticeNo + ", prevNoticeTitle=" + prevNoticeTitle
+				+ ", nextNoticeTitle=" + nextNoticeTitle + "]";
 	}
 	
 }

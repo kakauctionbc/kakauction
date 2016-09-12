@@ -11,11 +11,18 @@
 					.css("cursor","pointer");
 			}, function(){
 				$(this).css("background","");
-			});
+		});
+		
+		$("#countPerPage").change(function(){
+			$("#selectedCountPerPage").val($("#countPerPage").val());
+			$("#currentPage").val(1);
+			$("#frmPage").submit();
+		});
 	});
 
 	function pageProc(curPage){
 		document.frmPage.currentPage.value=curPage;
+		document.frmPage.selectedCountPerPage.value=${selectedCountPerPage };
 		document.frmPage.submit();
 	}
 </script>
@@ -27,10 +34,11 @@
 </style>
 <!-- http://localhost:9090/mymvc/reBoard
 /list.do?currentPage=5&searchCondition=content&searchKeyword=%ED%95%98 -->
-<form name="frmPage" method="post" action="<c:url value='/notice/list.do'/>">
-	<input type="hidden" name="currentPage">
+<form name="frmPage" id="frmPage" method="post" action="<c:url value='/notice/list.do'/>">
+	<input type="hidden" id="currentPage" name="currentPage">
 	<input type="hidden" name="searchCondition" value="${param.searchCondition }">
-	<input type="hidden" name="searchKeyword" value="${searchVO.searchKeyword }">	
+	<input type="hidden" name="searchKeyword" value="${searchVO.searchKeyword }">
+	<input type="hidden" id="selectedCountPerPage" name="selectedCountPerPage">
 </form>
 
 <h2>공지사항</h2>
@@ -45,6 +53,24 @@
 	<p>전체 조회 결과 
 		- ${pagingInfo.totalRecord }건 조회되었습니다</p>
 </c:if>
+<select name="countPerPage" id="countPerPage" style="width:100px; font-size: 1.1em;" title="페이지당 갯수">
+	<option value="20"
+		<c:if test="${selectedCountPerPage=='20' }">
+			selected
+		</c:if>>20개씩 보기</option>
+	<option value="30"
+		<c:if test="${selectedCountPerPage=='30' }">
+			selected
+		</c:if>>30개씩 보기</option>
+	<option value="50"
+		<c:if test="${selectedCountPerPage=='50' }">
+			selected
+		</c:if>>50개씩 보기</option>
+	<option value="100"
+		<c:if test="${selectedCountPerPage=='100' }">
+			selected
+		</c:if>>100개씩 보기</option>
+</select>
 
 <table class="box2"
 	 	summary="공지사항에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">

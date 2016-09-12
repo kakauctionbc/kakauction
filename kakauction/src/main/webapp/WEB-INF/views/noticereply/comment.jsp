@@ -103,5 +103,14 @@
 			</fieldset>
 		</div>
 	</form>
+	
+	<c:if test="${!empty noticeVo.prevNoticeNo }">
+		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.prevNoticeNo}'/>">이전글</a> | 
+		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.prevNoticeNo}'/>">${noticeVo.prevNoticeTitle }</a>
+	</c:if>
+	<c:if test="${!empty noticeVo.nextNoticeNo }"> 
+		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.nextNoticeNo}'/>">다음글</a> | 
+		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.nextNoticeNo}'/>">${noticeVo.nextNoticeTitle }</a>
+	</c:if>
 </body>
 </html>

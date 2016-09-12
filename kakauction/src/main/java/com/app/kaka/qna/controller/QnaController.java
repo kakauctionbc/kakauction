@@ -34,17 +34,17 @@ public class QnaController {
 	private QnaService qnaService;
 	
 	@RequestMapping("/list.do")
-	public String qnaList(@ModelAttribute SearchVO searchVo,
+	public String qnaList(@ModelAttribute SearchVO searchVo, @RequestParam(defaultValue="20")int selectedCountPerPage,
 			Model model){
 		logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);
 		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
-		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setRecordCountPerPage(selectedCountPerPage);
 		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 		
 		searchVo.setBlockSize(Utility.BLOCK_SIZE);
-		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		searchVo.setRecordCountPerPage(selectedCountPerPage);
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 				
 		//2. db작업 - select

@@ -298,7 +298,36 @@
 						<td>
 							<select name="carColor" id="carColor" style="width:100px; font-size: 1.1em;" title="색상선택">
 									<option value="">선택하세요</option>
-									<option value="검정색">검정색</option><option value="검정투톤">검정투톤</option><option value="은색">은색</option><option value="은색투톤">은색투톤</option><option value="흰색">흰색</option><option value="흰색투톤">흰색투톤</option><option value="진주색">진주색</option><option value="진주투톤">진주투톤</option><option value="갈색">갈색</option><option value="금색">금색</option><option value="남색">남색</option><option value="노란색">노란색</option><option value="녹색">녹색</option><option value="베이지색">베이지색</option><option value="보라색">보라색</option><option value="분홍색">분홍색</option><option value="빨간색">빨간색</option><option value="연금색">연금색</option><option value="연두색">연두색</option><option value="은하늘색">은하늘색</option><option value="자주색">자주색</option><option value="주황색">주황색</option><option value="청색">청색</option><option value="진청색">진청색</option><option value="청옥색">청옥색</option><option value="파란색">파란색</option><option value="하늘색">하늘색</option><option value="회색">회색</option><option value="진회색">진회색</option><option value="기타색상">기타색상</option>
+									<option value="검정색">검정색</option>
+									<option value="검정투톤">검정투톤</option>
+									<option value="은색">은색</option>
+									<option value="은색투톤">은색투톤</option>
+									<option value="흰색">흰색</option
+									><option value="흰색투톤">흰색투톤</option>
+									<option value="진주색">진주색</option>
+									<option value="진주투톤">진주투톤</option>
+									<option value="갈색">갈색</option>
+									<option value="금색">금색</option>
+									<option value="남색">남색</option>
+									<option value="노란색">노란색</option>
+									<option value="녹색">녹색</option>
+									<option value="베이지색">베이지색</option>
+									<option value="보라색">보라색</option>
+									<option value="분홍색">분홍색</option>
+									<option value="빨간색">빨간색</option>
+									<option value="연금색">연금색</option>
+									<option value="연두색">연두색</option>
+									<option value="은하늘색">은하늘색</option>
+									<option value="자주색">자주색</option>
+									<option value="주황색">주황색</option>
+									<option value="청색">청색</option>
+									<option value="진청색">진청색</option>
+									<option value="청옥색">청옥색</option>
+									<option value="파란색">파란색</option>
+									<option value="하늘색">하늘색</option>
+									<option value="회색">회색</option>
+									<option value="진회색">진회색</option>
+									<option value="기타색상">기타색상</option>
 							</select>
 						</td>
 				</tr>
