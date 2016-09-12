@@ -30,6 +30,7 @@ $(function(){
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/login.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/register.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/list.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/carRegister.css" />
 <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>      
     <![endif]-->
@@ -44,13 +45,13 @@ $(function(){
 					<!-- 로그인이 안된 경우 -->	
 					<c:if test="${empty sessionScope.memberId }">
 						<li><a href="<c:url value='/board/list.do'/>">고객센터</a></li>					
-						<li><a href="<c:url value='/member/agreement.do'/>">회원가입</a></li>
+						<li><a href="<c:url value='/member/agreement.do'/>" id="boderli">회원가입</a></li>
 						<li><a href="<c:url value='/login/login.do'/>">로그인</a></li>
 					</c:if>
 					<!-- 로그인된 경우 -->
 					<c:if test="${!empty sessionScope.memberId }">
-						<li><a href="<c:url value='/member/memberOut.do'/>">회원탈퇴</a></li>	            
-						<li><a href="<c:url value='/member/pwdCheck.do'/>">회원정보수정</a></li>	            
+						<li><a href="<c:url value='/member/memberOut.do'/>" >회원탈퇴</a></li>	            
+						<li><a href="<c:url value='/member/pwdCheck.do'/>" id="boderli">회원정보수정</a></li>	            
 						<li><a href="<c:url value='/login/logout.do'/>">로그아웃</a></li>
 						<li>
 							<span style="font-size:1em; color:blue;">
@@ -62,27 +63,29 @@ $(function(){
 		</div>
 	</header>
 	<div id="middle">
-		<div id="wraplogo">
-			<a href="${pageContext.request.contextPath }/design/index.do">
-			<img alt="로고 이미지" src="${pageContext.request.contextPath }/img/logo.png" /></a>
-		</div>
-		<div id="mainsearch">
-			<select id="totalsearch" name="search">
-		    <option id="total" value="통합검색">통합검색</option>
-		    <option value="판매자">판매자</option>
-		    <option value="차종">차종</option>
-			</select>
-			<input id="keyword" name="keyword" fw-filter="" fw-label="검색어" fw-msg="" class="inputTypeText" onmousedown="" value="" type="text"  />
-			<p id="search_btn"><a href=""><img src="<%=request.getContextPath()%>/img/search.png" alt="검색" onclick="" width="25px" height="25px"/></a></p>
-		</div>
+		<div id="middlediv">
+			<div id="wraplogo">
+				<a href="${pageContext.request.contextPath }/design/index.do">
+				<img alt="로고 이미지" src="${pageContext.request.contextPath }/img/logo.png" /></a>
+			</div>
+			<div id="mainsearch">
+				<select id="totalsearch" name="search">
+			    <option id="total" value="통합검색">통합검색</option>
+			    <option value="판매자">판매자</option>
+			    <option value="차종">차종</option>
+				</select>
+				<input id="keyword" name="keyword" fw-filter="" fw-label="검색어" fw-msg="" class="inputTypeText" onmousedown="" value="" type="text"  />
+				<p id="search_btn"><a href=""><img src="<%=request.getContextPath()%>/img/search.png" alt="검색" onclick="" width="25px" height="25px"/></a></p>
+			</div>
 
-		<div id="headmenu">
-			<ul>
-				<li><a href="<c:url value='/car/register.do'/>">내차 잘 팔기</a></li>
-				<li><a href="<c:url value='/auction/list.do'/>">좋은 차 사기</a></li>
-				<li><a href="#">마이페이지</a></li>
-				<li><a href="#">고객센터</a></li>
-			</ul>
+			<div id="headmenu">
+				<ul>
+					<li><a href="<c:url value='/car/register.do'/>">내차 잘 팔기</a></li>
+					<li><a href="<c:url value='/auction/list.do'/>">좋은 차 사기</a></li>
+					<li><a href="#">마이페이지</a></li>
+					<li><a href="#">고객센터</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 		<div id="headmenu-content">

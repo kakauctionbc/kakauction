@@ -192,7 +192,7 @@
 				</tbody>
 			</table>
 			<div>
-				<div>
+				<div class="title">
 					<img src="${pageContext.request.contextPath }/img/carInfo.png">
 				</div>
 				
