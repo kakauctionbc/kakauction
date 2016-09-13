@@ -18,7 +18,9 @@
 	border: 1px solid silver;
 	padding-left: 10px;
 }
-
+.boder1img td{
+	border: 1px solid silver;
+}
 
 #carphto_onoff{
 	width:1000px;
@@ -26,6 +28,7 @@
 }
 #regAucReport img{
 	float: right;
+	padding-top:5px;
 }
 .auctionCarName{
 	border: none;
@@ -33,3 +36,14 @@
 	font-size: 1.3em;
 	font-weight: bold;
 }
+.auctionTable{
+	margin-top: 20px;
+	background: #e3e3e3;
+	border-radius: 10px;
+	border: 1px solid red;
+}
+.auctionTable tr td{
+	border: 1px solid red;
+	font-size: 0.9em;
+	font-weight: bold;
+	text-align: center;
