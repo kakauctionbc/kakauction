@@ -24,4 +24,9 @@ public class ExcelDAOMybatis extends SqlSessionDaoSupport implements ExcelDAO  {
 	public List<CarVO> excelCarList() {
 		return getSqlSession().selectList(namespace2+".selectAllCar");
 	}
+
+	@Override
+	public void excelAddCar(Map<String, Object> map) {
+		getSqlSession().insert(namespace2+".addExcelCar", map);
+	}
 }

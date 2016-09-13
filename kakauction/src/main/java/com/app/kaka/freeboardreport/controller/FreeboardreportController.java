@@ -51,13 +51,14 @@ public class FreeboardreportController {
 		logger.info("신고자 아이디 memberId={}",memberId);
 		logger.info("글 신고 파람 reportVo={}",reportVo);
 		
-		reportVo.setFreeboardreportPerson(memberId);
-		
+		reportVo.setMemberId(memberId);
+				
 		int cnt = reportService.insertReport(reportVo);
 		
-		String msg="", url="/report/selfClose.do";
+		String msg="", url="";
 		if (cnt>0) {
 			msg = "글이 신고되었습니다.";
+			url = "/freeboard/selfClose.do";
 		} else {
 			msg = "신고 실패!";
 			url = "/freeboard/freeboardReport.do?freeboardNo="+reportVo.getFreeboardNo();

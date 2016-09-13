@@ -73,7 +73,7 @@ public class MemberDBController {
 	}
 	
 	@RequestMapping(value="/uploadExcel.do", method=RequestMethod.POST)
-	public String uploadFile_post(MultipartHttpServletRequest request){
+	public String uploadFile_post(MultipartHttpServletRequest request,Model model){
 		MultipartFile file = request.getFile("excel");
 		logger.info("받아온 파일의 이름 file={}",file);
 		
@@ -118,7 +118,9 @@ public class MemberDBController {
 		
 		excelService.excelAdd(map);
 		
+		model.addAttribute("msg", "성공성공");
+		model.addAttribute("url", "/login/login.do");
 		
-		return "redrect:/login/login.do";
+		return "common/message";
 	}
 }

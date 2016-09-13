@@ -102,7 +102,7 @@
 	<!-- 파라미터 순서 => P_NO, P_GROUPNO,p_step -->
 	
 	<insert id="insertReport" parameterType="FreeboardreportVO">
-		insert into FREEBOARDREPORT(FREEBOARDREPORT_PERSON,freeboard_no,freeboardreport_content)
-		values(#{freeboardreportPerson},#{freeboardNo},#{freeboardreportContent})
+		insert into FREEREPORT(FREEBOARD_NO,MEMBER_ID,FREEREPORT_TITLE,FREEREPORT_TYPE,FREEREPORT_CONTENT) 
+		values(#{freeboardNo},#{memberId},#{freereportTitle},#{freereportType},#{freereportContent})
 	</insert>
 </mapper>

@@ -6,4 +6,20 @@
 	<select id="selectAllCar" resultType="carVo">
 		select * from car order by CAR_REGDATE desc
 	</select>
+	
+	<insert id="addExcelCar" parameterType="java.util.HashMap">
+		insert all
+		<foreach collection="list" item="item" separator=" ">
+		into car(
+			car_num, seller_member_id, car_company, car_price, car_loc, car_birth, car_model,
+			car_size, car_dist, car_gas, car_cc, car_am, car_color, car_acci
+		)values	
+		(
+			#{item.carNum}, #{item.sellerMemberId}, #{item.carCompany}, #{item.carPrice}, 
+			#{item.carLoc}, #{item.carBirth}, #{item.carModel}, #{item.carSize}, #{item.carDist},
+			#{item.carGas}, #{item.carCc}, #{item.carAm}, #{item.carColor}, #{item.carAcci}
+		)
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
 </mapper>

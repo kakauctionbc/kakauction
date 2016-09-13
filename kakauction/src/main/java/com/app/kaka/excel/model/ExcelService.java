@@ -13,4 +13,5 @@ public interface ExcelService {
 	
 	//입력시
 	public void excelAdd(Map<String, Object> map);
+	public void excelAddCar(Map<String, Object> map);
 }

@@ -78,6 +78,7 @@
 <div class="reportForm">
 	<form action="<c:url value='/freeboard/freeboardReport.do'/>" method="post" name="frmReport" id="frmReport">
 		<input type="hidden" name="freeboardNo" id="freeboardNo" value="${freeVo.freeboardNo }">
+		<input type="hidden" name=""> 
 		<div class="title">
 			<h1 class="title_font">신고하기</h1>
 		</div>
@@ -116,7 +117,7 @@
 					</ul>
 				</li>
 				<li>
-					<input type="radio" name="freeboardreportContent" id="freeboardreportContent" value="etc">
+					<input type="radio" name="freeboardreportContent2" id="freeboardreportContent" value="etc">
 					<label class="fr2" for="freeboardReportContent">기타</label>
 				</li>
 			</ul>

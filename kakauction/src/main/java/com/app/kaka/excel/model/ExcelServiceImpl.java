@@ -23,4 +23,9 @@ public class ExcelServiceImpl implements ExcelService {
 	public List<CarVO> excelCarList() {
 		return excelDao.excelCarList();
 	}
+
+	@Override
+	public void excelAddCar(Map<String, Object> map) {
+		excelDao.excelAddCar(map);
+	}
 }
