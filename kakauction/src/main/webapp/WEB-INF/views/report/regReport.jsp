@@ -9,10 +9,8 @@
 <script src="<c:url value='/ckeditor/ckeditor.js'/>" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		CKEDITOR.replace('reportContent');
-		CKEDITOR.instances.MCONT.resize( 50, 300 );
 		var cnt = $("#cnt").val();
-		if(cnt!=0){
+		if(cnt!=0 || ncnt!=0){
 			self.close();
 		}
 		$("#selfClose").click(function(){
@@ -29,12 +27,14 @@
 <style type="text/css">
 	td{
 		text-align: center;
+		border: 1px solid silver;
 	}
 </style>
 </head>
 <body>
 	<div>
 		<input type="hidden" id="cnt" value="${cnt }">
+		<input type="hidden" name="reportCarinfo" value="${ncnt }">
 		<form action="<c:url value='/report/insertAuctionReport.do'/>" method="post" id="frmReport">
 			<input type="hidden" name="buyerMemberId" value="${memberId }">
 			<input type="hidden" name="auctionNo" value="${auctionVo.auctionNo }">
@@ -44,7 +44,7 @@
 				<td colspan="4"><img alt="카카옥션" src="<c:url value='/img/auctionRegReportToplogo.png'/>"></td>
 			</tr>
 			<tr>
-				<td colspan="4" style="text-align: left;padding-left: 25px;">카카옥션 불량 경매 신고</td>
+				<td colspan="4" style="text-align:left;font-size: 0.7em;">회원님께서 허위매물/팔린매물로 인해 겪은 불편 사항을 적어주세요</td>
 			</tr>
 			<tr>
 				<td>
@@ -69,11 +69,10 @@
 				<td>
 					<select name="reportType">
 						<option value="허위매물">허위매물</option>
-						<option value="고의응찰">고의응찰</option>
-						<option value="허위정보">허위정보</option>
-						<option value="과장정보">과장정보</option>
-						<option value="판매자허위정보">판매자허위정보</option>
-						<option value="판매자허위정보">기타</option>
+						<option value="팔린매물">팔린매물</option>
+						<option value="개인위장매물">개인위장매물</option>
+						<option value="대포차">대포차</option>
+						<option value="기타">기타</option>
 					</select>
 				</td>
 				<td>
@@ -87,8 +86,7 @@
 			</tr>
 			<tr>
 				<td colspan="4">
-					<!-- <textarea id="reportContent" name="reportContent" rows="9" cols="50"></textarea> -->
-					<textarea id="reportContent" name="reportContent" ></textarea>
+					<textarea id="reportContent" name="reportContent" rows="9" cols="50"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -96,6 +94,9 @@
 					<input type="submit" value="신고하기">
 					<input type="button" id="selfClose" value="돌아가기">
 				</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="text-align:left;font-size: 0.6em;background-image: url('<c:url value="/img/auctionRegReportBottomplogo.png"/>');">만일, 허위 사실을 신고한 경우 무고죄로 형사처분 또는 징계처분을 받게 됩니다.</td>
 			</tr>
 			<tr>
 				<td colspan="4"><img alt="카카옥션" src="<c:url value='/img/auctionRegReportBottomplogo.png'/>"></td>
