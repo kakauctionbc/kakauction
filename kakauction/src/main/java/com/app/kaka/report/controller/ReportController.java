@@ -1,8 +1,6 @@
 package com.app.kaka.report.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.app.kaka.auction.model.AuctionCarVO;
 import com.app.kaka.auction.model.AuctionVO;
 import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
@@ -40,21 +37,33 @@ public class ReportController {
 		reportVo.setAuctionNo(auctionNo);
 		reportVo.setBuyerMemberId(memberId);
 		
+		AuctionVO auctionVo = reportService.selectAuctionInfo(auctionNo);
+		
 		int cnt = reportService.selectReportHis(reportVo);
 		logger.info("cnt={}",cnt);
 
 		if(cnt>0){
 			model.addAttribute("msg", "이미 신고하신 차량입니다.");
 			model.addAttribute("url", "/report/selfClose.do");
-			model.addAttribute("cnt",cnt);
+			model.addAttribute("also",cnt);
 			return "common/message";
 		}
 		
-		AuctionVO auctionVo = reportService.selectAuctionInfo(auctionNo);
+		cnt = reportService.selectReportMy(reportVo);
+		logger.info("cnt={}",cnt);
+		if(cnt>0){
+			model.addAttribute("msg","자신이 등록한 경매입니다.");
+			model.addAttribute("url","/report/selfClose.do");
+			model.addAttribute("self",cnt);
+			return "common/message";
+		}
+		
 		logger.info("auctionVo={}",auctionVo);
 		model.addAttribute("memberId", memberId);
 		model.addAttribute("auctionVo", auctionVo);
+		model.addAttribute("url", "report");
 		model.addAttribute("cnt", cnt);
+		
 		return "report/regReport";
 	}
 

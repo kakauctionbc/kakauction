@@ -52,4 +52,9 @@ public class ReportDAOMybatis extends SqlSessionDaoSupport implements ReportDAO{
 		return getSqlSession().update(namespace+".updateReportCount",auctionNo);
 	}
 
+	@Override
+	public int selectReportMy(ReportVO vo) {
+		return getSqlSession().selectOne(namespace+".selectReportMy",vo);
+	}
+
 }

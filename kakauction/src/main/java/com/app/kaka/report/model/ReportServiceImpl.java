@@ -1,7 +1,6 @@
 package com.app.kaka.report.model;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +47,11 @@ public class ReportServiceImpl implements ReportService{
 	@Override
 	public int updateReportCount(int auctionNo) {
 		return reportDao.updateReportCount(auctionNo);
+	}
+
+	@Override
+	public int selectReportMy(ReportVO vo) {
+		return reportDao.selectReportMy(vo);
 	}
 
 }

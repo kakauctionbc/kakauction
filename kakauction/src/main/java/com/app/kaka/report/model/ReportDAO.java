@@ -15,4 +15,6 @@ public interface ReportDAO {
 	public int selectTotalCount(SearchVO vo);
 	public List<ReportVO> selectAll(SearchVO vo);
 	public List<ReportVO> selectMemberIdAll(SearchVO searchVo);
+	
+	public int selectReportMy(ReportVO vo);
 }

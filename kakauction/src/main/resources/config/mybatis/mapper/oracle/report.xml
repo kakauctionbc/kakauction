@@ -17,7 +17,7 @@
 		<selectKey keyProperty="reportNo" resultType="int" order="BEFORE">
 			select report_seq.nextval from dual
 		</selectKey>
-		insert into report(REPORT_NO,BUYER_MEMBER_ID,AUCTION_NO,REPORT_CARINFO,REPORT_TYPE,REPORT_CONTENT)
+		insert into report(REPORT_NO,BUYER_MEMBER_ID,AUCTION_NO,report_title,REPORT_TYPE,REPORT_CONTENT)
 		values(#{reportNo},#{buyerMemberId},#{auctionNo},#{reportCarinfo},#{reportType},#{reportContent})
 	</insert>
 	
@@ -26,6 +26,10 @@
 		set auction_report_count=auction_report_count+1
 		where auction_no=#{auctionNo}
 	</update>
+	
+	<select id="selectReportMy" parameterType="ReportVO" resultType="int">
+		select count(*) from auction where seller_member_id=#{buyerMemberId} and auction_No=#{auctionNo}
+	</select>
 	
 	<select id="selectAuctionInfo" parameterType="int" resultType="AuctionVO">
 		select * from auction where auction_no=#{auctionNo}
@@ -59,14 +63,6 @@
 		]]>
 	</select>
 	
-	<sql id="orderKey">
-		<where>
-			order by  report_No
-			<if test="searchKeyword!=null and searchKeyword!=''">
-				#{searchKeyword}
-			</if>
-		</where>
-	</sql>
 	
 	<select id="selectMemberIdAll" resultType="ReportVO" parameterType="SearchVO">
 		select *
@@ -78,7 +74,6 @@
 		        report_type, report_content, report_result
 		        from report
 		        where buyer_member_id=#{searchKeyword}
-		        <include refid="orderKey"></include>
 		        ) LIST_ALL    
 		) 
 		<![CDATA[

@@ -8,7 +8,14 @@ public class ReportVO {
 	private String reportType;
 	private String reportContent;
 	private String reportResult;
+	private String sellerMemberId;
 	
+	public String getSellerMemberId() {
+		return sellerMemberId;
+	}
+	public void setSellerMemberId(String sellerMemberId) {
+		this.sellerMemberId = sellerMemberId;
+	}
 	public int getReportNo() {
 		return reportNo;
 	}
@@ -55,6 +62,6 @@ public class ReportVO {
 	public String toString() {
 		return "ReportVO [reportNo=" + reportNo + ", buyerMemberId=" + buyerMemberId + ", auctionNo=" + auctionNo
 				+ ", reportCarinfo=" + reportCarinfo + ", reportType=" + reportType + ", reportContent=" + reportContent
-				+ ", reportResult=" + reportResult + "]";
+				+ ", reportResult=" + reportResult + ", sellerMemberId=" + sellerMemberId + "]";
 	}
 }
