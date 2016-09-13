@@ -31,6 +31,7 @@ $(function(){
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/register.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/list.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/carRegister.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/auctiongo.css" />
 <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>      
     <![endif]-->
@@ -82,7 +83,7 @@ $(function(){
 				<ul>
 					<li><a href="<c:url value='/car/register.do'/>">내차 잘 팔기</a></li>
 					<li><a href="<c:url value='/auction/list.do'/>">좋은 차 사기</a></li>
-					<li><a href="#">마이페이지</a></li>
+					<li><a href="/member/myInfo.do">마이페이지</a></li>
 					<li><a href="#">고객센터</a></li>
 				</ul>
 			</div>
@@ -111,12 +112,11 @@ $(function(){
 			</div>
 			<div id="content-myinfo">
 				<ul>
-					<li><a href="#">출품현황</a></li>
-					<li><a href="#">경매낙찰현황</a></li>
-					<li><a href="#">공매입찰현황</a></li>
-					<li><a href="#">클레임신청현황</a></li>
-					<li><a href="#">관심물품</a></li>
-					<li><a href="#">포인트</a></li>
+					<li><a href="/auction/auctionSuccess.do">경매낙찰현황</a></li>
+					<li><a href="/auction/myAuctionList.do">경매입찰현황</a></li>
+					<li><a href="/report/auctionReportList.do">불량경매신고</a></li>
+					<li><a href="/auction/favAuctin.do">관심물품</a></li>
+					<li><a href="/freeboard/myFreeboardList.do">내가 쓴 글</a></li>
 				</ul>
 			</div>
 			<div id="content-notice">

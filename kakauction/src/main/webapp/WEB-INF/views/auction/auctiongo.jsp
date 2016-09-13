@@ -69,16 +69,11 @@
 		});
 	});
 </script>
-<style type="text/css">
-	table, td{
-		border: 1px solid red;
-	}
-</style>
 <div id="wrap">
 	<div id="wrapdiv">
 		<div id="wraptop">
 			<p>
-				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>관심경메
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>관심경매
 			</p>
 		</div>
 		<div>
@@ -88,7 +83,7 @@
 			<input type="hidden" id="highPrice" value="${auctionGo['AUCTION_FIRSTPRICE'] }">
 			<input type="hidden" id="byuerMemberId" value="${memberId }">
 			<input type="hidden" id="nowMemberId" value="${memberId }">
-			<table>
+			<table class="auctiongotable">
 				<thead>
 					<tr>
 						<td><img alt="logo" src="<c:url value='/img/logo.png'/>"></td>
@@ -100,8 +95,8 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td colspan="4">
-							<table style="width: 100%;">
+						<td colspan="4" style="border: none;">
+							<table style="width: 100%; border-collapse: collapse;">
 								<tr>
 									<th colspan="6">${auctionGo['CAR_NUM'] }/${auctionGo['CAR_MODEL'] }(${auctionGo['CAR_SIZE'] })</th>
 								</tr>
@@ -133,8 +128,8 @@
 								</tr>
 							</table>
 						</td>
-						<td>
-							<table style="height: 100%;">
+						<td style="border: none;">
+							<table style="height: 100%; border-collapse: collapse;">
 								<tr>
 									<td><input type="button" value="후상담 낙찰결과"></td>
 								</tr>
@@ -151,8 +146,8 @@
 				</tbody>
 				<tfoot>
 					<tr>
-						<td colspan="5">
-							<table style="width: 100%;">
+						<td colspan="5" style="border: none;">
+							<table style="width: 100%; border-collapse: collapse;">
 								<tr>
 									<td rowspan="2">경매번호<br> 
 										${auctionGo['AUCTION_NO_YEAR'] } - ${auctionGo['AUCTION_NO_CAR'] } -${auctionGo['AUCTION_NO'] }
@@ -180,7 +175,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="5">
+						<td colspan="5" style="border: none;">
 							<a href="#" id="regAucReport">
 								<img alt="허위매물신고" src="<c:url value='/img/falseReport.png'/>">
 							</a>

@@ -1,2 +1,16 @@
 @CHARSET "UTF-8";
 
+.auctiongotable thead tr td{
+	border: none;
+}
+.auctiongotable tbody td{
+	border: none;
+}
+
+.auctiongotable tr th{
+	border: 1px solid silver;
+}
+
+.auctiongotable tr td{
+	border: 1px solid silver;
+}
