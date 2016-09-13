@@ -11,12 +11,18 @@
 			});
 			
 		$("#btReport").click(function(){
-			window.open("/kaka/freeboard/freeboardReport.do?freeboardNo="+freeboardNo,
-					"zip",
-			"width=700,height=600,left=10,top=50,resizable=yes,location=yes");
-		});//zipcode click
+	         window.open("/kaka/freeboard/freeboardReport.do?freeboardNo="+freeboardNo,
+	               "zip",
+	         "width=700,height=600,left=10,top=50,resizable=yes,location=yes");
+	      });//zipcode click
 	});
 </script>
+	<c:if test="${freeVo.prevFreeboardNo!='0' }">
+		<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${freeVo.prevFreeboardNo}'/>">다음글</a>
+	</c:if>
+	<c:if test="${freeVo.nextFreeboardNo!='0' }"> 
+		<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${freeVo.nextFreeboardNo}'/>">이전글</a>
+	</c:if>
 	<h2>자유게시판 - 글 상세보기</h2>
 	<div class="divForm">
 		<input type="hidden" name="freeboardNo" id="freeboardNo" value="${freeVo.freeboardNo }">
@@ -50,18 +56,18 @@
 			<p class="content">${freeVo.freeboardContent}</p>
 		</div>
 		<div class="center">
-			<c:if test="${freeVo.memberId == sessionScope.memberId }">
-				<a href	="<c:url value='/freeboard/edit.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
-				수정</a> |
-	        	<a id="df" href="<c:url value='/freeboard/delete.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
-				삭제</a> |
-	        	<a href="<c:url value='/freeboard/list.do'/>">목록</a>			
-			</c:if>
-			<c:if test="${freeVo.memberId != sessionScope.memberId }">
-				<a href="<c:url value='/freeboard/list.do'/>">목록</a>
-				<button id="btReport">신고하기</button>
-			</c:if>
-		</div>
+         <c:if test="${freeVo.memberId == sessionScope.memberId }">
+            <a href   ="<c:url value='/freeboard/edit.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
+            수정</a> |
+              <a id="df" href="<c:url value='/freeboard/delete.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
+            삭제</a> |
+              <a href="<c:url value='/freeboard/list.do'/>">목록</a>         
+         </c:if>
+         <c:if test="${freeVo.memberId != sessionScope.memberId }">
+            <a href="<c:url value='/freeboard/list.do'/>">목록</a>
+            <button id="btReport">신고하기</button>
+         </c:if>
+      </div>
 	</div>
 	<jsp:include page="/freeboardreply/comment.do?freeboardNo=${param.freeboardNo }"></jsp:include>
 <%@ include file="../design/inc/bottom.jsp"%>

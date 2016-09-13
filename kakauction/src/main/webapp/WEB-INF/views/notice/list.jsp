@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../design/inc/top.jsp"%>
 <title>공지사항 글 목록</title>
-<script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
 <script type="text/javascript">	
 	$(document).ready(function(){
 		$(".divList .box2 tbody tr")

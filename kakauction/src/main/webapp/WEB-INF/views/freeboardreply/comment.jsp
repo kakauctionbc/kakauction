@@ -103,5 +103,15 @@
 			</fieldset>
 		</div>
 	</form>
+	<c:if test="${freeVo.prevFreeboardNo!='0' }">
+		<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${freeVo.prevFreeboardNo}'/>">다음글</a> | 
+		<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${freeVo.prevFreeboardNo}'/>">${freeVo.prevFreeboardTitle }</a>
+	</c:if>
+	<br>
+	<c:if test="${freeVo.nextFreeboardNo!='0' }"> 
+		<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${freeVo.nextFreeboardNo}'/>">이전글</a> |
+		<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${freeVo.nextFreeboardNo}'/>">${freeVo.nextFreeboardTitle }</a>
+	</c:if>
+	
 </body>
 </html>

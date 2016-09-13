@@ -25,11 +25,11 @@ public class WriteListToExcelFile {
 	            throw new Exception("invalid file name, should be xls or xlsx");
 	        }
 	         
-	        Sheet sheet = workbook.createSheet("cordova");
+	        Sheet sheet = workbook.createSheet("회원");
 	         
 	        Iterator<MemberVO> iterator = noticeList.iterator();
 	         
-	        int rowIndex = 0;
+	        int rowIndex=0;
 	        int excelname=0; // 처음에 고정값을 넣기 위해 사용한 변수
 	        do{
 	        	MemberVO member = iterator.next();
@@ -60,8 +60,8 @@ public class WriteListToExcelFile {
 	                 cell9.setCellValue("마일리지");
 	                 Cell cell10 = row.createCell(10);
 	                 cell10.setCellValue("등급");
+	                 
 	                 excelname++;
-	                
 	            }else{  // 다음부터는 순차적으로 값이 들어감 
 	                 
 	                 Cell cell0 = row.createCell(0);

@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.app.kaka.freeboard.model.FreeboardService;
 import com.app.kaka.freeboard.model.FreeboardVO;
 import com.app.kaka.freeboardreport.model.FreeboardreportService;
 import com.app.kaka.freeboardreport.model.FreeboardreportVO;
+import com.app.kaka.member.model.MemberVO;
 
 @Controller
 @RequestMapping("/freeboard")
@@ -53,11 +55,13 @@ public class FreeboardreportController {
 		
 		int cnt = reportService.insertReport(reportVo);
 		
-		String msg="", url="/freeboard/detail.do?freeboardNo="+reportVo.getFreeboardNo();
+		String msg="", url="/report/selfClose.do";
 		if (cnt>0) {
 			msg = "글이 신고되었습니다.";
 		} else {
 			msg = "신고 실패!";
+			url = "/freeboard/freeboardReport.do?freeboardNo="+reportVo.getFreeboardNo();
+			
 		}
 		
 		return "common/message";

@@ -112,8 +112,11 @@
 	
 	<!--Record-->
 	<insert id="insertRecord" parameterType="BuyerVO">
+		<selectKey keyProperty="recordNo" resultType="int" order="BEFORE">
+			select record_seq.nextval from dual
+		</selectKey>
 		insert into record
-		values(#{auctionNo},#{buyerMemberId},#{recordPrice}, sysdate, #{carNum}, #{sellerMemberId})
+		values(#{recordNo},#{buyerMemberId},#{recordPrice},#{auctionNo}, sysdate, #{carNum}, #{sellerMemberId})
 	</insert>
 	
 	<select id="selectHighPrice" parameterType="int" resultType="HighPriceVO">

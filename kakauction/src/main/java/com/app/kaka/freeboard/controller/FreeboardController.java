@@ -138,17 +138,17 @@ public class FreeboardController {
 	}
 	
 	@RequestMapping("/list.do")
-	public String freeboardList(@ModelAttribute SearchVO searchVo,
+	public String freeboardList(@ModelAttribute SearchVO searchVo, @RequestParam(defaultValue="20") int selectedCountPerPage,
 			Model model){
 		logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);
 		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
-		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setRecordCountPerPage(selectedCountPerPage);
 		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 		
 		searchVo.setBlockSize(Utility.BLOCK_SIZE);
-		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		searchVo.setRecordCountPerPage(selectedCountPerPage);
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		
 		//2. db작업 - select
@@ -163,6 +163,7 @@ public class FreeboardController {
 		//3. 결과 저장, 뷰페이지 리턴
 		model.addAttribute("alist", alist);
 		model.addAttribute("pagingInfo", pagingInfo);
+		model.addAttribute("selectedCountPerPage", selectedCountPerPage);
 		
 		return "freeboard/list";
 	}

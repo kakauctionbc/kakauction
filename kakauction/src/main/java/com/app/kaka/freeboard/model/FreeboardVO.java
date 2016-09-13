@@ -23,6 +23,11 @@ public class FreeboardVO {
 	
 	private int newImgTerm;
 	
+	private int prevFreeboardNo;
+	private int nextFreeboardNo;
+	private String prevFreeboardTitle;
+	private String nextFreeboardTitle;
+	
 	public int getFreeboardNo() {
 		return freeboardNo;
 	}
@@ -131,6 +136,30 @@ public class FreeboardVO {
 	public void setFreeboardreportCount(int freeboardreportCount) {
 		this.freeboardreportCount = freeboardreportCount;
 	}
+	public int getPrevFreeboardNo() {
+		return prevFreeboardNo;
+	}
+	public void setPrevFreeboardNo(int prevFreeboardNo) {
+		this.prevFreeboardNo = prevFreeboardNo;
+	}
+	public int getNextFreeboardNo() {
+		return nextFreeboardNo;
+	}
+	public void setNextFreeboardNo(int nextFreeboardNo) {
+		this.nextFreeboardNo = nextFreeboardNo;
+	}
+	public String getPrevFreeboardTitle() {
+		return prevFreeboardTitle;
+	}
+	public void setPrevFreeboardTitle(String prevFreeboardTitle) {
+		this.prevFreeboardTitle = prevFreeboardTitle;
+	}
+	public String getNextFreeboardTitle() {
+		return nextFreeboardTitle;
+	}
+	public void setNextFreeboardTitle(String nextFreeboardTitle) {
+		this.nextFreeboardTitle = nextFreeboardTitle;
+	}
 	@Override
 	public String toString() {
 		return "FreeboardVO [freeboardNo=" + freeboardNo + ", memberId=" + memberId + ", freeboardTitle="
@@ -141,7 +170,8 @@ public class FreeboardVO {
 				+ freeboardFilesize + ", freeboardDowncount=" + freeboardDowncount + ", freeboardOriginalname="
 				+ freeboardOriginalname + ", freeboardLike=" + freeboardLike + ", freeboardReadCount="
 				+ freeboardReadCount + ", freeboardreportCount=" + freeboardreportCount + ", newImgTerm=" + newImgTerm
-				+ "]";
+				+ ", prevFreeboardNo=" + prevFreeboardNo + ", nextFreeboardNo=" + nextFreeboardNo
+				+ ", prevFreeboardTitle=" + prevFreeboardTitle + ", nextFreeboardTitle=" + nextFreeboardTitle + "]";
 	}
 	
 	
