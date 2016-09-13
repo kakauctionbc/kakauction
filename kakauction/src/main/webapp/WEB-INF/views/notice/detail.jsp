@@ -11,10 +11,10 @@
 	});
 </script>
 <title>공지사항 상세보기</title>
-	<c:if test="${!empty noticeVo.prevNoticeNo }">
+	<c:if test="${noticeVo.prevNoticeNo!='0' }">
 		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.prevNoticeNo}'/>">이전글</a>
 	</c:if>
-	<c:if test="${!empty noticeVo.nextNoticeNo }"> 
+	<c:if test="${noticeVo.nextNoticeNo!='0' }"> 
 		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.nextNoticeNo}'/>">다음글</a>
 	</c:if>
 	<h2>공지사항 상세보기</h2>
