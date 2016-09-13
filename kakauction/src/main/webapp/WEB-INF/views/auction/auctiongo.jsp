@@ -86,19 +86,21 @@
 			<table class="auctiongotable">
 				<thead>
 					<tr>
-						<td><img alt="logo" src="<c:url value='/img/logo.png'/>"></td>
-						<td><a href="#"><img alt="관심경매" src="<c:url value='/img/auctionChoice.png'/>"></a></td>
-						<td><img alt="관심경매" src="<c:url value='/img/blank.png'/>"></td>
-						<td>${memberId }</td>
-						<td><a href="<c:url value='/auction/list.do'/>">경매 나가기</a></td>
+						<td style="width: 600px;"><a href="#"><img alt="관심경매" src="<c:url value='/img/auctionChoice.png'/>"></a></td>
+						<td style="width: 200px;"><img alt="관심경매" src="<c:url value='/img/blank.png'/>"></td>
+						<td style="width: 70px; color: blue;">${memberId }<span>님</span></td>
+						<td style="width: 120px; text-align: right;"><a href="<c:url value='/auction/list.do'/>">
+								<img alt="경매나가기" src="<c:url value='/img/auctionOut_icon.png'/>">	
+							</a>
+						</td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td colspan="4" style="border: none;">
-							<table style="width: 100%; border-collapse: collapse;">
+							<table style="width: 100%; border-collapse: collapse; border: none;">
 								<tr>
-									<th colspan="6">${auctionGo['CAR_NUM'] }/${auctionGo['CAR_MODEL'] }(${auctionGo['CAR_SIZE'] })</th>
+									<th colspan="6" class="auctionCarName">${auctionGo['CAR_NUM'] }/${auctionGo['CAR_MODEL'] }(${auctionGo['CAR_SIZE'] })</th>
 								</tr>
 								<tr>
 									<td>년식</td>
@@ -123,23 +125,11 @@
 									<td>크엉</td>
 								</tr>
 								<tr>
-									<td colspan="3"><img alt="${auctionGo['PICTURE_1'] }" src="<c:url value='/picture_upload/${auctionGo["PICTURE_1"] }'/>"></td>
-									<td colspan="3"><img alt="${auctionGo['PICTURE_2'] }" src="<c:url value='/picture_upload/${auctionGo["PICTURE_2"] }'/>"></td>
-								</tr>
-							</table>
-						</td>
-						<td style="border: none;">
-							<table style="height: 100%; border-collapse: collapse;">
-								<tr>
-									<td><input type="button" value="후상담 낙찰결과"></td>
-								</tr>
-								<tr>
-									<td>
-										<a href="#">정보 1-cardetailinfo</a><br>
-										<a href="#">정보 2-sellmemberinfo</a><br>
-										<a href="#">정보 3-auctioninfo</a>
-									</td>
-								</tr>
+									<td colspan="3"><img alt="${auctionGo['PICTURE_1'] }" src="<c:url value='/img/auctionCar1.jpg'/>" style="width: 500px;"></td>
+									<td colspan="3"><img alt="${auctionGo['PICTURE_1'] }" src="<c:url value='/img/auctionCar3.jpg'/>" style="width: 500px;"></td>
+<%-- 									<td colspan="3"><img alt="${auctionGo['PICTURE_1'] }" src="<c:url value='/picture_upload/${auctionGo["PICTURE_1"] }'/>"></td> --%>
+<%-- 									<td colspan="3"><img alt="${auctionGo['PICTURE_2'] }" src="<c:url value='/picture_upload/${auctionGo["PICTURE_2"] }'/>"></td>
+ --%>								</tr>
 							</table>
 						</td>
 					</tr>
@@ -177,7 +167,7 @@
 					<tr>
 						<td colspan="5" style="border: none;">
 							<a href="#" id="regAucReport">
-								<img alt="허위매물신고" src="<c:url value='/img/falseReport.png'/>">
+								<img alt="허위매물신고" src="<c:url value='/img/report_icon.png'/>">
 							</a>
 						</td>
 					<tr>

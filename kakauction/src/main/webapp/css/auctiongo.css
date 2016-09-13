@@ -1,5 +1,6 @@
 @CHARSET "UTF-8";
 
+
 .auctiongotable thead tr td{
 	border: none;
 }
@@ -13,4 +14,14 @@
 
 .auctiongotable tr td{
 	border: 1px solid silver;
+}
+#carphto_onoff{
+	width:1000px;
+	height: 860px;
+}
+#regAucReport img{
+	float: right;
+}
+.auctionCarName{
+	border: none;
 }

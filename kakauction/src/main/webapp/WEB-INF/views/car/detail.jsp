@@ -39,7 +39,7 @@
 	<input type="hidden" name="carNum" id="carNum" value="${carVo.carNum }">
 	<div class="detailA"> 
 		<div>
-			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture1}'/>">
+			<img alt="차량 사진" id="carImage" src="<c:url value='/img/auctionCar1.jpg'/>">
 			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture2}'/>">
 			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture3}'/>">
 			<img alt="차량 사진" id="carImage" src="<c:url value='/picture_upload/${pictureVo.picture4}'/>">
