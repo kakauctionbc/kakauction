@@ -52,7 +52,15 @@ public class FreeboardreportController {
 		logger.info("글 신고 파람 reportVo={}",reportVo);
 		
 		reportVo.setMemberId(memberId);
-				
+		
+		if (reportVo.getFreereportType()=="음란물") {
+			reportVo.setFreereportContent("부적절한 홍보 게시글");
+		}
+		
+		if (reportVo.getFreereportType()=="광고글") {
+			reportVo.setFreereportContent("음란성 또는 청소년에게 부적합한 내용");
+		}
+		
 		int cnt = reportService.insertReport(reportVo);
 		
 		String msg="", url="";

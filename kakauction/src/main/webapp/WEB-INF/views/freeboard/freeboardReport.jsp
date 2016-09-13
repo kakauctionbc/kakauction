@@ -12,7 +12,7 @@
 	$(document).ready(function(){
 		
 		$("input[type=radio]").change(function(){
-			if($(this).val()=="etc"){
+			if($(this).val()=="기타"){
 				$("#repoCon").css("visibility", "visible");
 				$("#repoCon").focus();
 			}else{
@@ -78,7 +78,8 @@
 <div class="reportForm">
 	<form action="<c:url value='/freeboard/freeboardReport.do'/>" method="post" name="frmReport" id="frmReport">
 		<input type="hidden" name="freeboardNo" id="freeboardNo" value="${freeVo.freeboardNo }">
-		<input type="hidden" name=""> 
+		<input type="hidden" name="freereportTitle" id="freereportTitle" value="${freeVo.freeboardTitle }">
+		
 		<div class="title">
 			<h1 class="title_font">신고하기</h1>
 		</div>
@@ -95,8 +96,8 @@
 			<a href="#">운영원칙 자세히 보기 ▶</a>
 			<ul class="reportType">
 				<li>
-					<input type="radio" name="freeboardreportContent" id="freeboardreportContent" value="부적절한 홍보 게시글">
-					<label class="fr2" for="freeboardReportContent">부적절한 홍보 게시글</label>
+					<input type="radio" name="freereportType" id="freereportType" value="광고글">
+					<label class="fr2" for="freereportType">부적절한 홍보 게시글</label>
 					<span class="more"><a href="#">더보기</a></span>
 					<ul class="advertising">
 						<li>불법 사행성, 도박 사이트를 홍보하는 경우</li>
@@ -107,8 +108,8 @@
 					</ul>
 				</li>
 				<li>
-					<input type="radio" name="freeboardreportContent" id="freeboardreportContent" value="음란성 또는 청소년에게 부적합한 내용">
-					<label class="fr2" for="freeboardReportContent">음란성 또는 청소년에게 부적합한 내용</label>
+					<input type="radio" name="freereportType" id="freereportType" value="음란물">
+					<label class="fr2" for="freereportType">음란성 또는 청소년에게 부적합한 내용</label>
 					<span class="more"><a href="#">더보기</a></span>
 					<ul class="advertising">
 						<li>음란물 또는 음란한 행위(노골적인 성행위 장면)를 묘사하는 이미지/동영상</li>
@@ -117,11 +118,11 @@
 					</ul>
 				</li>
 				<li>
-					<input type="radio" name="freeboardreportContent2" id="freeboardreportContent" value="etc">
-					<label class="fr2" for="freeboardReportContent">기타</label>
+					<input type="radio" name="freereportType" id="freereportType" value="기타">
+					<label class="fr2" for="freereportType">기타</label>
 				</li>
 			</ul>
-			<textarea class="text_area" name="freeboardreportContent" id="repoCon" rows="7" cols="100" style="visibility: hidden"></textarea>
+			<textarea class="text_area" name="freereportContent" id="repoCon" rows="7" cols="100" style="visibility: hidden"></textarea>
 			</div>
 		<hr>
 		<div class="menu">
