@@ -53,7 +53,7 @@
 			<input type="hidden" name="carphto_onoff" id="carphto_onoff" value="on">
 			<div id="Div_carphto_onoff" style=" display:block; padding:0 ; " align="center">
 				<div class="photoarea">
-					<img src="<c:url value='/img/auction1.jpg'/>" width="200" alt="차량사진">
+					<img src="<c:url value='/picture_upload/${acVo.picture1}'/>" width="200" alt="차량사진">
 					<img src="<c:url value='/picture_upload/${acVo.picture2}'/>" width="200" alt="차량사진">
 					<img src="<c:url value='/picture_upload/${acVo.picture3}'/>" width="200" alt="차량사진">
 					<img src="<c:url value='/picture_upload/${acVo.picture4}'/>" width="200" alt="차량사진">

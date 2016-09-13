@@ -98,38 +98,36 @@
 				<tbody>
 					<tr>
 						<td colspan="4" style="border: none;">
-							<table style="width: 100%; border-collapse: collapse; border: none;">
+							<table style="width: 100%;" class="carInfo">
 								<tr>
 									<th colspan="6" class="auctionCarName">${auctionGo['CAR_NUM'] }/${auctionGo['CAR_MODEL'] }(${auctionGo['CAR_SIZE'] })</th>
 								</tr>
-								<tr>
-									<td>년식</td>
+								<tr class="boder1">
+									<th>년식</th>
 									<td>${auctionGo['CAR_BIRTH'] }</td>
-									<td>주행거리</td>
+									<th>주행거리</th>
 									<td><fmt:formatNumber pattern="#,###" value="${auctionGo['CAR_DIST'] }"/>km</td>
-									<td rowspan="2">판매자</td>
+									<th rowspan="2">판매자</th>
 									<td rowspan="2">${auctionGo['SELLER_MEMBER_ID'] }</td>
 								</tr>
-								<tr>
-									<td>변속기</td>
+								<tr class="boder1">
+									<th>변속기</th>
 									<td>${auctionGo['CAR_AM'] }</td>
-									<td>연료</td>
+									<th>연료</th>
 									<td>${auctionGo['CAR_GAS'] }</td>
 								</tr>
-								<tr>
-									<td>차량매매가격</td>
+								<tr class="boder1">
+									<th>차량매매가격</th>
 									<td><fmt:formatNumber pattern="#,###" value="${auctionGo['CAR_PRICE'] }"/>원</td>
-									<td>변경</td>
+									<th>변경</th>
 									<td>변경쓰는곳</td>
-									<td>여기는</td>
+									<th>여기는</th>
 									<td>크엉</td>
 								</tr>
-								<tr>
-									<td colspan="3"><img alt="${auctionGo['PICTURE_1'] }" src="<c:url value='/img/auctionCar1.jpg'/>" style="width: 500px;"></td>
-									<td colspan="3"><img alt="${auctionGo['PICTURE_1'] }" src="<c:url value='/img/auctionCar3.jpg'/>" style="width: 500px;"></td>
-<%-- 									<td colspan="3"><img alt="${auctionGo['PICTURE_1'] }" src="<c:url value='/picture_upload/${auctionGo["PICTURE_1"] }'/>"></td> --%>
-<%-- 									<td colspan="3"><img alt="${auctionGo['PICTURE_2'] }" src="<c:url value='/picture_upload/${auctionGo["PICTURE_2"] }'/>"></td>
- --%>								</tr>
+								<tr class="boder1">
+									<td colspan="3"><img alt="${auctionGo['PICTURE_1'] }" src="<c:url value='/picture_upload/${auctionGo["PICTURE_1"] }'/>" style="width: 500px;"></td> 
+									<td colspan="3"><img alt="${auctionGo['PICTURE_2'] }" src="<c:url value='/picture_upload/${auctionGo["PICTURE_2"] }'/>" style="width: 500px;"></td>
+								</tr>
 							</table>
 						</td>
 					</tr>

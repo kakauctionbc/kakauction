@@ -1,20 +1,25 @@
 @CHARSET "UTF-8";
 
-
-.auctiongotable thead tr td{
-	border: none;
+.auctiongotable{
+	border-collapse: collapse;
 }
-.auctiongotable tbody td{
-	border: none;
+.carInfo{
+	border-collapse: collapse;
+	margin-top: 20px;
 }
-
-.auctiongotable tr th{
+.boder1{
 	border: 1px solid silver;
 }
-
-.auctiongotable tr td{
+.boder1 th{
 	border: 1px solid silver;
+	background: #fefff0;
 }
+.boder1 td{
+	border: 1px solid silver;
+	padding-left: 10px;
+}
+
+
 #carphto_onoff{
 	width:1000px;
 	height: 860px;
@@ -24,4 +29,7 @@
 }
 .auctionCarName{
 	border: none;
+	padding-bottom:10px;
+	font-size: 1.3em;
+	font-weight: bold;
 }
