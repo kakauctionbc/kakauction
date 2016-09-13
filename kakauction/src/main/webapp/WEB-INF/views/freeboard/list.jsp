@@ -36,7 +36,7 @@
 <!-- http://localhost:9090/mymvc/reBoard
 /list.do?currentPage=5&searchCondition=content&searchKeyword=%ED%95%98 -->
 <form name="frmPage" id="frmPage" method="post" action="<c:url value='/freeboard/list.do'/>">
-	<input type="hidden" id = currentPage" name="currentPage" value="${searchVo.currentPage }">
+	<input type="hidden" id = "currentPage" name="currentPage" value="${searchVo.currentPage }">
 	<input type="hidden" name="searchCondition" value="${param.searchCondition }">
 	<input type="hidden" name="searchKeyword" value="${searchVO.searchKeyword }">	
 	<input type="hidden" id="selectedCountPerPage" name="selectedCountPerPage">
