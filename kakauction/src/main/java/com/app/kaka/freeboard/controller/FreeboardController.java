@@ -24,6 +24,7 @@ import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
 import com.app.kaka.freeboard.model.FreeboardService;
 import com.app.kaka.freeboard.model.FreeboardVO;
+import com.app.kaka.freeboardreport.model.FreeboardreportVO;
 import com.app.kaka.notice.model.NoticeVO;
 
 @Controller

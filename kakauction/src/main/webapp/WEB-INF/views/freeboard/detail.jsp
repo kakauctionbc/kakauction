@@ -3,15 +3,23 @@
 <%@ include file="../design/inc/top.jsp"%>
 <script type="text/javascript">
 	$(function(){
+		var freeboardNo = $("#freeboardNo").val();
 		$("#df").click(function(){
 			if(!confirm("글을 삭제하시겠습니까?\n(제목 : ${freeVo.freeboardTitle})")){
 				return false;
 			}
-		});
+			});
+			
+		$("#btReport").click(function(){
+			window.open("/kaka/freeboard/freeboardReport.do?freeboardNo="+freeboardNo,
+					"zip",
+			"width=700,height=600,left=10,top=50,resizable=yes,location=yes");
+		});//zipcode click
 	});
 </script>
 	<h2>자유게시판 - 글 상세보기</h2>
 	<div class="divForm">
+		<input type="hidden" name="freeboardNo" id="freeboardNo" value="${freeVo.freeboardNo }">
 		<div class="firstDiv">
 			<span class="sp1">제목</span> 
 			<span>${freeVo.freeboardTitle}</span>
@@ -42,11 +50,17 @@
 			<p class="content">${freeVo.freeboardContent}</p>
 		</div>
 		<div class="center">
-			<a href	="<c:url value='/freeboard/edit.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
-			수정</a> |
-        	<a id="df" href="<c:url value='/freeboard/delete.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
-			삭제</a> |
-        	<a href="<c:url value='/freeboard/list.do'/>">목록</a>			
+			<c:if test="${freeVo.memberId == sessionScope.memberId }">
+				<a href	="<c:url value='/freeboard/edit.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
+				수정</a> |
+	        	<a id="df" href="<c:url value='/freeboard/delete.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
+				삭제</a> |
+	        	<a href="<c:url value='/freeboard/list.do'/>">목록</a>			
+			</c:if>
+			<c:if test="${freeVo.memberId != sessionScope.memberId }">
+				<a href="<c:url value='/freeboard/list.do'/>">목록</a>
+				<button id="btReport">신고하기</button>
+			</c:if>
 		</div>
 	</div>
 	<jsp:include page="/freeboardreply/comment.do?freeboardNo=${param.freeboardNo }"></jsp:include>
