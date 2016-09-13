@@ -104,13 +104,23 @@
 		</div>
 	</form>
 	
-	<c:if test="${!empty noticeVo.prevNoticeNo }">
+	<%-- <c:if test="${noticeVo.prevNoticeNo!='0' } ">
+		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.prevNoticeNo}'/>">이전글</a> | 
+		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.prevNoticeNo}'/>">${noticeVo.prevNoticeTitle }</a> ${noticeVo.prevNoticeNo} | ${!(noticeVo.prevNoticeNo!='0') }
+	</c:if>
+	<br>
+	<c:if test="${noticeVo.nextNoticeNo!='0' } ">
+		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.nextNoticeNo}'/>">다음글</a> | 
+		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.nextNoticeNo}'/>">${noticeVo.nextNoticeTitle }</a> | ${noticeVo.nextNoticeNo}
+	</c:if> --%>
+	<c:if test="${noticeVo.nextNoticeNo!='0' }"> 
+		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.nextNoticeNo}'/>">다음글</a> |
+		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.nextNoticeNo}'/>">${noticeVo.nextNoticeTitle }</a>
+	</c:if>
+	<br>
+	<c:if test="${noticeVo.prevNoticeNo!='0' }">
 		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.prevNoticeNo}'/>">이전글</a> | 
 		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.prevNoticeNo}'/>">${noticeVo.prevNoticeTitle }</a>
-	</c:if>
-	<c:if test="${!empty noticeVo.nextNoticeNo }"> 
-		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.nextNoticeNo}'/>">다음글</a> | 
-		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.nextNoticeNo}'/>">${noticeVo.nextNoticeTitle }</a>
 	</c:if>
 </body>
 </html>
