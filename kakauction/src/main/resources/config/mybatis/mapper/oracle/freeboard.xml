@@ -21,7 +21,14 @@
 	</select> 
 	
 	<select id="selectFreeboardByNo" parameterType="int" resultType="FreeboardVO">
-		select * from freeboard where freeboard_no = #{freeboardNo}
+		select f.*,
+		<![CDATA[
+		(select max(freeboard_no) from freeboard where freeboard_no<#{freeboardNo}) as "NEXT_FREEBOARD_NO",
+		(select freeboard_title from freeboard where freeboard_no=(select max(freeboard_no) from freeboard where freeboard_no<#{freeboardNo})) as "NEXT_FREEBOARD_TITLE",
+		(select min(freeboard_no) from freeboard where freeboard_no>#{freeboardNo}) as "PREV_FREEBOARD_NO",
+		(select freeboard_title from freeboard where freeboard_no=(select min(freeboard_no) from freeboard where freeboard_no>#{freeboardNo})) as "PREV_FREEBOARD_TITLE"
+		]]>
+		from freeboard f where freeboard_no=#{freeboardNo}
 	</select>
 	
 	<sql id="searchWhere">
