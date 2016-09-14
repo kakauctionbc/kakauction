@@ -30,7 +30,7 @@
 	</update>
 	
 	<select id="selectReportMy" parameterType="ReportVO" resultType="int">
-		select count(*) from auction where seller_member_id=#{buyerMemberId} and auction_No=#{auctionNo}
+		select count(*) from auction where seller_member_id=#{reportMemberId} and auction_No=#{originNo}
 	</select>
 	
 	<select id="selectAuctionInfo" parameterType="int" resultType="AuctionVO">
@@ -38,7 +38,7 @@
 	</select>
 	
 	<select id="selectReportHis" parameterType="BuyerVO" resultType="int">
-		select count(*) from report where buyer_member_id=#{buyerMemberId} and auction_no=#{auctionNo}
+		select count(*) from report where report_member_id=#{reportMemberId} and origin_no=#{originNo}
 	</select>
 	
 	<select id="selectTotalCount" resultType="int" parameterType="SearchVO">
@@ -52,8 +52,8 @@
 		(
 		    select rownum as RNUM, LIST_ALL.*
 		    from
-		        (select * from report_no, buyer_member_id, auction_no, report_carInfo, 
-		        report_type, report_content, report_result
+		        (select * from report_no, report_member_id, origin_no, originType, report_title,
+		        report_type, report_content, report_result, report_regdate
 		        from report
 		        <include refid="searchWhere"></include>
 		        ) LIST_ALL    
@@ -72,8 +72,8 @@
 		(
 		    select rownum as RNUM, LIST_ALL.*
 		    from
-		        (select * from report_no, buyer_member_id, auction_no, report_carInfo, 
-		        report_type, report_content, report_result
+		        (select * from report_no, report_member_id, origin_no, origin_type, report_title,
+		        report_type, report_content, report_result, report_regdate
 		        from report
 		        where buyer_member_id=#{searchKeyword}
 		        ) LIST_ALL    

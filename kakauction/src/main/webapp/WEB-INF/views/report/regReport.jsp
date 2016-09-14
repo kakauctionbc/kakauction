@@ -10,18 +10,19 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		var cnt = $("#cnt").val();
-		if(cnt!=0 || ncnt!=0){
+		if(cnt!=0){
 			self.close();
 		}
 		$("#selfClose").click(function(){
 			self.close();
 		});
 		$("#frmReport").submit(function(){
-			if(!$("#reportContent").val().length<15){
+			if($("#reportContent").val().length<15){
 				alert("신고 내용은 15자 이상 작성해주셔야합니다.");
-				event.preventDefault();
+				return false;
 			}
 		});
+		
 	});
 </script>
 <style type="text/css">
@@ -34,11 +35,10 @@
 <body>
 	<div>
 		<input type="hidden" id="cnt" value="${cnt }">
-		<input type="hidden" name="reportCarinfo" value="${ncnt }">
 		<form action="<c:url value='/report/insertAuctionReport.do'/>" method="post" id="frmReport">
-			<input type="hidden" name="buyerMemberId" value="${memberId }">
-			<input type="hidden" name="auctionNo" value="${auctionVo.auctionNo }">
-			<input type="hidden" name="reportCarinfo" value="${auctionVo.carNum }">
+			<input type="hidden" name="reportMemberId" value="${memberId }">
+			<input type="hidden" name="originNo" value="${auctionVo.auctionNo }">
+		<input type="hidden" name="originType" id="originType" value="2">
 		<table>
 			<tr>
 				<td colspan="4"><img alt="카카옥션" src="<c:url value='/img/auctionRegReportToplogo.png'/>"></td>
@@ -76,8 +76,12 @@
 					</select>
 				</td>
 				<td>
-					<p id="buyerMemberId">${memberId }</p>
+					<p id="reportMemberId">${memberId }</p>
 				</td>
+			</tr>
+			<tr>
+				<td>제  목</td>
+				<td colspan="3"><input type="text" name="reportTitle" id="reportTitle"></td>
 			</tr>
 			<tr>
 				<td colspan="4" style="text-align: left;padding-left: 5px;">

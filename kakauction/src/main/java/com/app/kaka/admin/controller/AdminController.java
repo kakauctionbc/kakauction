@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.kaka.auction.controller.AuctionController;
+import com.app.kaka.auction.model.AuctionCarVO;
 import com.app.kaka.auction.model.AuctionService;
 import com.app.kaka.auction.model.AuctionVO;
 import com.app.kaka.car.model.CarVO;
+import com.app.kaka.common.PaginationInfo;
+import com.app.kaka.common.SearchVO;
+import com.app.kaka.common.Utility;
 import com.app.kaka.op.model.OpService;
 
 @Controller
@@ -100,11 +104,45 @@ public class AdminController {
 			auctionService.updateAuctionYn(auctionVo);
 		}else{
 			msg="경매 등록에 실패하였습니다";
-			url="/admin/auctionWrite.do";
+			url="/admin/write.do";
 			
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);
 		return "common/message";
+	}
+	
+	@RequestMapping("/auctionList.do")
+	public String listAuction(@ModelAttribute SearchVO searchVo, Model model){
+		logger.info("경매 목록");
+		/*3. 글목록 조회
+		/reBoard/list.do => ReBoardListController
+		=> /reBoard/list.jsp*/
+		//1. 파라미터 읽어오기
+		logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);
+		
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		searchVo.setBlockSize(Utility.BLOCK_SIZE);
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+				
+		//2. db작업 - select
+		List<AuctionCarVO> alist = auctionService.selectAll(searchVo);
+		logger.info("글목록 조회 결과 alist.size()={}", alist.size());
+		
+		//전체 레코드 개수 조회하기
+		int totalRecord = auctionService.selectTotalCount(searchVo);
+		logger.info("토탈레코드가 궁금 totalRecord={}",totalRecord);
+		pagingInfo.setTotalRecord(totalRecord);
+				
+		//3. 결과 저장, 뷰페이지 리턴
+		model.addAttribute("alist", alist);
+		model.addAttribute("pagingInfo", pagingInfo);
+		
+		return "admin/auctionList";
 	}
 }

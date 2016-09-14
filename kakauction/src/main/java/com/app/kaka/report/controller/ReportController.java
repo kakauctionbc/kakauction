@@ -18,6 +18,7 @@ import com.app.kaka.auction.model.AuctionVO;
 import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
+import com.app.kaka.notice.model.NoticeVO;
 import com.app.kaka.report.model.ReportService;
 import com.app.kaka.report.model.ReportVO;
 
@@ -132,6 +133,38 @@ public class ReportController {
 		return "report/list";
 	}
 	
+	@RequestMapping("/reportAllList.do")
+	public String reportAllList(@ModelAttribute SearchVO searchVo,
+			@RequestParam(defaultValue="20") int selectedCountPerPage,
+			Model model){
+		logger.info("신고 목록 보여주기, 파라미터 searchVo = {}, selectedCountPerPage = {}", searchVo, selectedCountPerPage);
+		
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(selectedCountPerPage);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		searchVo.setBlockSize(Utility.BLOCK_SIZE);
+		searchVo.setRecordCountPerPage(selectedCountPerPage);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+				
+		//2. db작업 - select
+		List<NoticeVO> alist = noticeService.selectAll(searchVo);
+		logger.info("글목록 조회 결과 alist.size()={}", 
+				alist.size());
+		
+		//전체 레코드 개수 조회하기
+		int totalRecord 
+			= noticeService.selectTotalCount(searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+				
+		//3. 결과 저장, 뷰페이지 리턴
+		model.addAttribute("alist", alist);
+		model.addAttribute("pagingInfo", pagingInfo);
+		model.addAttribute("selectedCountPerPage", selectedCountPerPage);
+		
+		return "admin/reportList";
+	}
 	
 	@RequestMapping("/reportList.do")
 	public String listAuction(HttpSession session,@RequestParam String orderKey,@ModelAttribute SearchVO searchVo, Model model){

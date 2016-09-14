@@ -153,7 +153,7 @@
 				src="${pageContext.request.contextPath }/img/auctionList_logo.png"
 				alt="회원가입로고">
 		</div>
-	<form action="<c:url value='/auction/write.do'/>" name="auctionWrite" method="post">
+	<form action="<c:url value='/admin/write.do'/>" name="auctionWrite" method="post">
 		<table width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
 			<tr>
 				<td height="30" class="p_10">
