@@ -42,7 +42,7 @@ public class AuctionController {
 	@Autowired
 	private OpService opService;
 	
-	@RequestMapping(value="/write.do", method=RequestMethod.GET)
+	/*@RequestMapping(value="/write.do", method=RequestMethod.GET)
 	public String write_get(Model model){
 		logger.info("경매 등록 화면 보여주기");
 		List<CarVO> alist = auctionService.carlist();
@@ -116,7 +116,7 @@ public class AuctionController {
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);
 		return "common/message";
-	}
+	}*/
 	
 	@RequestMapping("/selectCar.do")
 	@ResponseBody
