@@ -76,16 +76,19 @@
 	<caption>자유게시판</caption>
 	<colgroup>
 		<col style="width:10%;" />
-		<col style="width:50%;" />
+		<col style="width:40%;" />
 		<col style="width:15%;" />
 		<col style="width:15%;" />
+		<col style="width:10%;" />
 		<col style="width:10%;" />		
 	</colgroup>
 	<thead>
 	  <tr>
 	    <th scope="col">번호</th>
 	    <th scope="col">제목</th>
+	    <th scope="col">신고유형</th>
 	    <th scope="col">신고자</th>
+	    <th scope="col">처리결과</th>
 	    <th scope="col">신고일시</th>
 	  </tr>
 	</thead> 

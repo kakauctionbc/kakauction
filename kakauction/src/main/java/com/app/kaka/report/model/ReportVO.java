@@ -1,38 +1,46 @@
 package com.app.kaka.report.model;
 
+import java.sql.Timestamp;
+
 public class ReportVO {
 	private int reportNo;
-	private String buyerMemberId;
-	private int auctionNo;
-	private String reportCarinfo;
+	private String reportMemberId;
+	private int originNo;
+	private int originType;
+	private String reportTitle;
 	private String reportType;
 	private String reportContent;
 	private String reportResult;
-	private String sellerMemberId;
-	
-	public String getSellerMemberId() {
-		return sellerMemberId;
-	}
-	public void setSellerMemberId(String sellerMemberId) {
-		this.sellerMemberId = sellerMemberId;
-	}
+	private Timestamp reportRegdate;
 	public int getReportNo() {
 		return reportNo;
 	}
 	public void setReportNo(int reportNo) {
 		this.reportNo = reportNo;
 	}
-	public String getBuyerMemberId() {
-		return buyerMemberId;
+	public String getReportMemberId() {
+		return reportMemberId;
 	}
-	public void setBuyerMemberId(String buyerMemberId) {
-		this.buyerMemberId = buyerMemberId;
+	public void setReportMemberId(String reportMemberId) {
+		this.reportMemberId = reportMemberId;
 	}
-	public String getReportCarinfo() {
-		return reportCarinfo;
+	public int getOriginNo() {
+		return originNo;
 	}
-	public void setReportCarinfo(String reportCarinfo) {
-		this.reportCarinfo = reportCarinfo;
+	public void setOriginNo(int originNo) {
+		this.originNo = originNo;
+	}
+	public int getOriginType() {
+		return originType;
+	}
+	public void setOriginType(int originType) {
+		this.originType = originType;
+	}
+	public String getReportTitle() {
+		return reportTitle;
+	}
+	public void setReportTitle(String reportTitle) {
+		this.reportTitle = reportTitle;
 	}
 	public String getReportType() {
 		return reportType;
@@ -52,16 +60,17 @@ public class ReportVO {
 	public void setReportResult(String reportResult) {
 		this.reportResult = reportResult;
 	}
-	public int getAuctionNo() {
-		return auctionNo;
+	public Timestamp getReportRegdate() {
+		return reportRegdate;
 	}
-	public void setAuctionNo(int auctionNo) {
-		this.auctionNo = auctionNo;
+	public void setReportRegdate(Timestamp reportRegdate) {
+		this.reportRegdate = reportRegdate;
 	}
 	@Override
 	public String toString() {
-		return "ReportVO [reportNo=" + reportNo + ", buyerMemberId=" + buyerMemberId + ", auctionNo=" + auctionNo
-				+ ", reportCarinfo=" + reportCarinfo + ", reportType=" + reportType + ", reportContent=" + reportContent
-				+ ", reportResult=" + reportResult + ", sellerMemberId=" + sellerMemberId + "]";
+		return "ReportVO [reportNo=" + reportNo + ", reportMemberId=" + reportMemberId + ", originNo=" + originNo
+				+ ", originType=" + originType + ", reportTitle=" + reportTitle + ", reportType=" + reportType
+				+ ", reportContent=" + reportContent + ", reportResult=" + reportResult + ", reportRegdate="
+				+ reportRegdate + "]";
 	}
 }

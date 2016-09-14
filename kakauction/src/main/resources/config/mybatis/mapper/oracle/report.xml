@@ -17,8 +17,10 @@
 		<selectKey keyProperty="reportNo" resultType="int" order="BEFORE">
 			select report_seq.nextval from dual
 		</selectKey>
-		insert into report(REPORT_NO,BUYER_MEMBER_ID,AUCTION_NO,report_title,REPORT_TYPE,REPORT_CONTENT)
-		values(#{reportNo},#{buyerMemberId},#{auctionNo},#{reportCarinfo},#{reportType},#{reportContent})
+		insert into REPORT(REPORT_NO, REPORT_MEMBER_ID, ORIGIN_NO, ORIGIN_TYPE, 
+		REPORT_TITLE, REPORT_TYPE, REPORT_CONTENT, REPORT_RESULT, REPORT_REGDATE) 
+		values(#{reportNo}, #{reportMemberId},#{originNo},#{originType},#{reportTitle},#{reportType},
+		#{reportContent}, 'N', sysdate)
 	</insert>
 	
 	<update id="updateReportCount" parameterType="int">

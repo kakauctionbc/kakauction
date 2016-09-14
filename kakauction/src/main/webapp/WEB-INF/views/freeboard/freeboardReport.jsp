@@ -77,16 +77,15 @@
 </style>
 <div class="reportForm">
 	<form action="<c:url value='/freeboard/freeboardReport.do'/>" method="post" name="frmReport" id="frmReport">
-		<input type="hidden" name="freeboardNo" id="freeboardNo" value="${freeVo.freeboardNo }">
-		<input type="hidden" name="freereportTitle" id="freereportTitle" value="${freeVo.freeboardTitle }">
+		<input type="hidden" name="originNo" id="freeboardNo" value="${freeVo.freeboardNo }">
+		<input type="hidden" name="originType" id="originType" value="1">
 		
 		<div class="title">
 			<h1 class="title_font">신고하기</h1>
 		</div>
 		<div class="menu">
-			<span class="fr1">제   목 : </span>
-			<span class="fr2">${freeVo.freeboardTitle }</span><br>
-			<span class="fr1">작성자 : </span>
+			<span class="fr1">제   목 : <input type="text" name="reportTitle" id="reportTitle"> </span>
+			<span class="fr1">신고자 : </span>
 			<span class="fr2">${freeVo.memberId }</span>
 		</div>
 		<hr>
@@ -96,8 +95,8 @@
 			<a href="#">운영원칙 자세히 보기 ▶</a>
 			<ul class="reportType">
 				<li>
-					<input type="radio" name="freereportType" id="freereportType" value="광고글">
-					<label class="fr2" for="freereportType">부적절한 홍보 게시글</label>
+					<input type="radio" name="reportType" id="reportType1" value="광고글">
+					<label class="fr2" for="reportType1">부적절한 홍보 게시글</label>
 					<span class="more"><a href="#">더보기</a></span>
 					<ul class="advertising">
 						<li>불법 사행성, 도박 사이트를 홍보하는 경우</li>
@@ -108,8 +107,8 @@
 					</ul>
 				</li>
 				<li>
-					<input type="radio" name="freereportType" id="freereportType" value="음란물">
-					<label class="fr2" for="freereportType">음란성 또는 청소년에게 부적합한 내용</label>
+					<input type="radio" name="reportType" id="reportType2" value="음란물">
+					<label class="fr2" for="reportType2">음란성 또는 청소년에게 부적합한 내용</label>
 					<span class="more"><a href="#">더보기</a></span>
 					<ul class="advertising">
 						<li>음란물 또는 음란한 행위(노골적인 성행위 장면)를 묘사하는 이미지/동영상</li>
@@ -118,11 +117,11 @@
 					</ul>
 				</li>
 				<li>
-					<input type="radio" name="freereportType" id="freereportType" value="기타">
-					<label class="fr2" for="freereportType">기타</label>
+					<input type="radio" name="reportType" id="reportType3" value="기타">
+					<label class="fr2" for="reportType3">기타</label>
 				</li>
 			</ul>
-			<textarea class="text_area" name="freereportContent" id="repoCon" rows="7" cols="100" style="visibility: hidden"></textarea>
+			<textarea class="text_area" name="reportContent" id="repoCon" rows="7" cols="100" style="visibility: hidden"></textarea>
 			</div>
 		<hr>
 		<div class="menu">

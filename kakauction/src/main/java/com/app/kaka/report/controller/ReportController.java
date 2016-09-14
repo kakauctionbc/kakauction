@@ -34,8 +34,8 @@ public class ReportController {
 		logger.info("auctionNo={}",auctionNo);
 
 		ReportVO reportVo = new ReportVO();
-		reportVo.setAuctionNo(auctionNo);
-		reportVo.setBuyerMemberId(memberId);
+		reportVo.setOriginNo(auctionNo);
+		reportVo.setReportMemberId(memberId);
 		
 		AuctionVO auctionVo = reportService.selectAuctionInfo(auctionNo);
 		
@@ -75,12 +75,12 @@ public class ReportController {
 		int cnt=reportService.insertAuctionReport(reportVo);
 		if(cnt<1){
 			msg="신고에 실패하였습니다";
-			url="/report/auctionReport.do?memberId="+reportVo.getBuyerMemberId()+"&auctionNo="+reportVo.getAuctionNo();
+			url="/report/auctionReport.do?memberId="+reportVo.getReportMemberId()+"&auctionNo="+reportVo.getOriginNo();
 		}else{
 			msg="신고 접수하셨습니다";
 			url="/report/selfClose.do";
 			
-			int ucnt = reportService.updateReportCount(reportVo.getAuctionNo());
+			int ucnt = reportService.updateReportCount(reportVo.getOriginNo());
 			logger.info("신고수 업데이트 된거니? ucnt={}",cnt);
 			
 		}
@@ -92,6 +92,7 @@ public class ReportController {
 		
 		return "common/message";
 	}
+	
 	@RequestMapping("/selfClose.do")
 	public String selfClose(){
 		return "report/selfClose";

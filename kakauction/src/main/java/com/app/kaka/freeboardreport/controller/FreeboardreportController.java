@@ -20,6 +20,7 @@ import com.app.kaka.freeboard.model.FreeboardVO;
 import com.app.kaka.freeboardreport.model.FreeboardreportService;
 import com.app.kaka.freeboardreport.model.FreeboardreportVO;
 import com.app.kaka.member.model.MemberVO;
+import com.app.kaka.report.model.ReportVO;
 
 @Controller
 @RequestMapping("/freeboard")
@@ -46,19 +47,19 @@ public class FreeboardreportController {
 	
 	@RequestMapping(value="/freeboardReport.do",method=RequestMethod.POST)
 	@ResponseStatus(value=HttpStatus.OK)
-	public String freeboardReport_post(HttpSession session,@ModelAttribute FreeboardreportVO reportVo, Model model){
+	public String freeboardReport_post(HttpSession session,@ModelAttribute ReportVO reportVo, Model model){
 		String memberId = (String)session.getAttribute("memberId");
 		logger.info("신고자 아이디 memberId={}",memberId);
 		logger.info("글 신고 파람 reportVo={}",reportVo);
 		
-		reportVo.setMemberId(memberId);
+		reportVo.setReportMemberId(memberId);
 		
-		if (reportVo.getFreereportType()=="음란물") {
-			reportVo.setFreereportContent("부적절한 홍보 게시글");
+		if (reportVo.getReportType().equals("음란물")) {
+			reportVo.setReportContent("음란성 또는 청소년에게 부적합한 내용");
 		}
 		
-		if (reportVo.getFreereportType()=="광고글") {
-			reportVo.setFreereportContent("음란성 또는 청소년에게 부적합한 내용");
+		if (reportVo.getReportType().equals("광고글")) {
+			reportVo.setReportContent("부적절한 홍보 게시글");
 		}
 		
 		int cnt = reportService.insertReport(reportVo);
@@ -66,12 +67,15 @@ public class FreeboardreportController {
 		String msg="", url="";
 		if (cnt>0) {
 			msg = "글이 신고되었습니다.";
-			url = "/freeboard/selfClose.do";
+			url = "/report/selfClose.do";
 		} else {
 			msg = "신고 실패!";
-			url = "/freeboard/freeboardReport.do?freeboardNo="+reportVo.getFreeboardNo();
+			url = "/freeboard/freeboardReport.do?freeboardNo="+reportVo.getOriginNo();
 			
 		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
 		
 		return "common/message";
 	}

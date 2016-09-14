@@ -3,6 +3,7 @@ package com.app.kaka.freeboardreport.model;
 import java.sql.Timestamp;
 
 public class FreeboardreportVO {
+	private int reportNo;
 	private int freeboardNo;
 	private String memberId;
 	private String freereportTitle;
@@ -11,6 +12,12 @@ public class FreeboardreportVO {
 	private String freereportResult;
 	private Timestamp freereportRegdate;
 	
+	public int getReportNo() {
+		return reportNo;
+	}
+	public void setReportNo(int reportNo) {
+		this.reportNo = reportNo;
+	}
 	public int getFreeboardNo() {
 		return freeboardNo;
 	}
@@ -56,8 +63,9 @@ public class FreeboardreportVO {
 	
 	@Override
 	public String toString() {
-		return "FreeboardreportVO [freeboardNo=" + freeboardNo + ", memberId=" + memberId + ", freereportTitle="
-				+ freereportTitle + ", freereportType=" + freereportType + ", freereportContent=" + freereportContent
-				+ ", freereportResult=" + freereportResult + ", freereportRegdate=" + freereportRegdate + "]";
+		return "FreeboardreportVO [reportNo=" + reportNo + ", freeboardNo=" + freeboardNo + ", memberId=" + memberId
+				+ ", freereportTitle=" + freereportTitle + ", freereportType=" + freereportType + ", freereportContent="
+				+ freereportContent + ", freereportResult=" + freereportResult + ", freereportRegdate="
+				+ freereportRegdate + "]";
 	}
 }

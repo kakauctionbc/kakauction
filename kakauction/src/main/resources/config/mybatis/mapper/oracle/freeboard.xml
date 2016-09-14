@@ -101,8 +101,13 @@
 	</delete>	
 	<!-- 파라미터 순서 => P_NO, P_GROUPNO,p_step -->
 	
-	<insert id="insertReport" parameterType="FreeboardreportVO">
-		insert into FREEREPORT(FREEBOARD_NO,MEMBER_ID,FREEREPORT_TITLE,FREEREPORT_TYPE,FREEREPORT_CONTENT) 
-		values(#{freeboardNo},#{memberId},#{freereportTitle},#{freereportType},#{freereportContent})
+	<insert id="insertReport" parameterType="reportVO">
+		<selectKey keyProperty="reportNo" resultType="int" order="BEFORE">
+			select report_seq.nextval from dual
+		</selectKey>
+		insert into REPORT(REPORT_NO, REPORT_MEMBER_ID, ORIGIN_NO, ORIGIN_TYPE, 
+		REPORT_TITLE, REPORT_TYPE, REPORT_CONTENT, REPORT_RESULT, REPORT_REGDATE) 
+		values(#{reportNo}, #{reportMemberId},#{originNo},#{originType},#{reportTitle},#{reportType},
+		#{reportContent}, 'N', sysdate)
 	</insert>
 </mapper>
