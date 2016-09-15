@@ -5,19 +5,42 @@
 	src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
 <script type="text/javascript">	
 	$(document).ready(function(){
-		$(".divList .box2 tbody tr")
-			.hover(function(){
-				$(this).css("background","skyblue")
-					.css("cursor","pointer");
-			}, function(){
-				$(this).css("background","");
-			});
+		$(".divList .box2 tbody tr").hover(function(){
+			$(this).css("background","skyblue")
+				.css("cursor","pointer");
+		}, function(){
+			$(this).css("background","");
+		});
+		$("#frmOrderList").submit(function(){
+			if($("#startDay").val().length<1){
+				alert("시작일을 입력하세요");
+				$("#startDay").focus();
+				return false;
+			}else if($("#endDay").val().length<1){
+				alert("종료일을 입력하세요");
+				$("#endDay").focus();
+				return false;
+			}
+		});
 	});
 	function pageProc(curPage){
 		document.frmPage.currentPage.value=curPage;
 		document.frmPage.submit();
 	}
 </script>
+<!-- 페이징 처리를 위한 form 시작-->
+<form name="frmPage" method="post">
+	<input type="hidden" name="startDay" value="${param.startDay}">
+	<input type="hidden" name="endDay" value="${param.endDay}">
+	<input type="hidden" name="currentPage">	
+</form>
+
+<form name="frm1" method="post" id="frmOrderList" action="<c:url value='/auction/myAuctionList.do'/>" >
+	<!-- 조회기간 include -->
+	<%@include file="../design/inc/dateTerm.jsp" %>
+	<input type="submit" value="조회" >
+</form>
+
 <div id="wrap">
 	<div id="wrapdiv">
 		<div id="wraptop">
@@ -36,18 +59,10 @@
 				type="hidden" name="searchKeyword"
 				value="${searchVO.searchKeyword }">
 		</form>
-
+		<div><p>내가 참여한 경매 건 수 : ${alistsize }</p></div>
 		<div class="divList">
-			<c:if test="${!empty param.searchKeyword }">
-				<p>검색어 : ${param.searchKeyword }, ${pagingInfo.totalRecord }건
-					검색되었습니다.</p>
-			</c:if>
-			<c:if test="${empty searchVO.searchKeyword }">
-				<p>전체 조회 결과 - ${pagingInfo.totalRecord }건 조회되었습니다</p>
-			</c:if>
-			<table class="box2"
-				summary="자료실에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
-				<caption>자료실</caption>
+			<table class="box2">
+				<caption>나의 경매리스트</caption>
 				<colgroup>
 					<col style="width: 10%;" />
 					<col style="width: 7%;" />
@@ -62,8 +77,8 @@
 				</colgroup>
 				<thead>
 					<tr class="listTitle">
-						<th rowspan="2" class="listImg">사진</th>
-						<th rowspan="2" class="listSize">차종</th>
+						<th rowspan="2">사진</th>
+						<th rowspan="2">차번호</th>
 						<th>물건명</th>
 						<th>연식</th>
 						<th>변속기</th>
@@ -91,26 +106,27 @@
 					</c:if>
 					<c:if test="${!empty alist}">
 						<!--게시판 내용 반복문 시작  -->
-						<c:forEach var="vo" items="${alist }">
+						<c:forEach var="vo" items="${alist}">
 							<tr style="text-align: center">
 								<c:if test="${vo.auctionState=='END'}">
 									<td colspan="9"><a href="#" style="color: gray;">이미 종료된 경매 입니다</a></td>
 								</c:if>
 								<c:if test="${vo.auctionState!='END'}">
-								<td class="listImg"><img alt="사진" height="56px;" width="90px;" src="<c:url value='/picture_upload/${vo.picture1}'/>"></td>
-								<td class="listSize">${vo.carSize}</td>
+								<td class="listImg">
+									<img alt="사진" height="56px;" width="90px;" src="<c:url value='/picture_upload/${vo.picture1}'/>">
+								</td>
+								<td class="listSize">${vo.carNum}</td>
 								<td class="listName" style="text-align: left;">
-									<a class="auctionTitle${countTd }" href="<c:url value='/auction/updateCount.do?auctionNo=${vo.auctionNo}'/>">
-											${vo.carModel}<br>
+									<a class="auctionTitle" href="<c:url value='/auction/updateCount.do?auctionNo=${vo.auctionNo}'/>">
+											${vo.carLoc}<br>
 										<c:if test="${fn:length(vo.carLoc)>30}">
 											${fn:substring(vo.carLoc, 0,30)}...
 										</c:if> 
 										<c:if test="${fn:length(vo.carLoc)<=30}">
-											${vo.carLoc}
 										</c:if>
 									</a>
 									</td>
-								<td>${vo.carBirth}<br> ${vo.carDist}km
+								<td>${vo.carBirth}<br> <fmt:formatNumber pattern="#,###" value="${vo.carDist}"/>km
 								</td>
 								<td>${vo.carAm}<br> ${vo.carGas}
 								</td>
@@ -118,8 +134,7 @@
 								</td>
 								<td>${vo.auctionState}<br> ${vo.carFailSell}
 								</td>
-								<td>${vo.auctionNoYear} - ${vo.auctionNoCar} -
-									${vo.auctionNo}</td>
+								<td>${vo.auctionNoYear} - ${vo.auctionNoCar}-${vo.auctionNo}</td>
 								<td>${vo.auctionRegdate}<br> ${vo.auctionFinish }
 								</td>
 								</c:if>
@@ -156,31 +171,6 @@
 					<a href="#" onclick="pageProc(${pagingInfo.lastPage+1})">&raquo;</a>
 				</c:if></li>
 			</ul>
-		</div>
-		
-		<div class="divSearch">
-			<form name="frmSearch" method="post"
-				action="<c:url value='/reBoard/list.do' />">
-				<select name="searchCondition">
-					<option value="title"
-						<c:if test="${param.searchCondition=='title'}">
-            		selected
-               </c:if>>제목</option>
-					<option value="content"
-						<c:if test="${param.searchCondition=='content'}">
-            		selected
-               </c:if>>내용</option>
-					<option value="name"
-						<c:if test="${param.searchCondition=='name'}">
-            		selected
-               </c:if>>작성자</option>
-				</select> <input type="text" name="searchKeyword" title="검색어 입력"
-					value="${param.searchKeyword}"> <input type="submit"
-					value="검색">
-			</form>
-		</div>
-		<div class="writebutton">
-			<button type="submit" onclick="<c:url value='/auction/write.do'/>">글쓰기</button>
 		</div>
 	</div>
 </div>

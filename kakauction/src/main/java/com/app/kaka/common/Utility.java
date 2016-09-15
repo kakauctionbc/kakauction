@@ -5,4 +5,7 @@ public class Utility {
 	public static final int BLOCK_SIZE = 10;
 	
 	public static final int REPLY_RECORD_COUNT_PER_PAGE = 50;
+	
+	public static final int MAUCLIST_COUNT_PER_PAGE = 20;
+	
 }

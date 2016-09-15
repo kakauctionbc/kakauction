@@ -93,23 +93,17 @@
 						<!--게시판 내용 반복문 시작  -->
 						<c:forEach var="vo" items="${alist }">
 							<tr style="text-align: center">
-								<c:if test="${vo.auctionState=='END'}">
-									<td colspan="9"><a href="#" style="color: gray;">이미 종료된 경매 입니다</a></td>
-								</c:if>
-								<c:if test="${vo.auctionState!='END'}">
 								<td class="listImg"><img alt="사진" height="56px;" width="90px;" src="<c:url value='/picture_upload/${vo.picture1}'/>"></td>
 								<td class="listSize">${vo.carSize}</td>
-								<td class="listName" style="text-align: left;">
-									<a class="auctionTitle${countTd }" href="<c:url value='/auction/updateCount.do?auctionNo=${vo.auctionNo}'/>">
-											${vo.carModel}<br>
-										<c:if test="${fn:length(vo.carLoc)>30}">
-											${fn:substring(vo.carLoc, 0,30)}...
-										</c:if> 
-										<c:if test="${fn:length(vo.carLoc)<=30}">
-											${vo.carLoc}
-										</c:if>
-									</a>
-									</td>
+								<td class="listName" style="text-align: left;"><a
+									href="<c:url value='/auction/updateCount.do?auctionNo=${vo.auctionNo}'/>">
+										${vo.carModel}<br> <c:if
+											test="${fn:length(vo.carLoc)>30}">
+							${fn:substring(vo.carLoc, 0,30)}...
+						</c:if> <c:if test="${fn:length(vo.carLoc)<=30}">
+							${vo.carLoc}
+						</c:if>
+								</a></td>
 								<td>${vo.carBirth}<br> ${vo.carDist}km
 								</td>
 								<td>${vo.carAm}<br> ${vo.carGas}
@@ -122,7 +116,6 @@
 									${vo.auctionNo}</td>
 								<td>${vo.auctionRegdate}<br> ${vo.auctionFinish }
 								</td>
-								</c:if>
 								<td class="readCount">${vo.auctionReadCount }</td>
 							</tr>
 						</c:forEach>

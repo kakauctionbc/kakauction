@@ -58,6 +58,21 @@ public class AuctionCarVO {
 	private String picture19;
 	private String picture20;
 	
+	private int recordPrice;
+	private String buyerMemberId;
+	
+	public int getRecordPrice() {
+		return recordPrice;
+	}
+	public void setRecordPrice(int recordPrice) {
+		this.recordPrice = recordPrice;
+	}
+	public String getBuyerMemberId() {
+		return buyerMemberId;
+	}
+	public void setBuyerMemberId(String buyerMemberId) {
+		this.buyerMemberId = buyerMemberId;
+	}
 	public Timestamp getAuctionFinish() {
 		return auctionFinish;
 	}
@@ -363,9 +378,9 @@ public class AuctionCarVO {
 	public String toString() {
 		return "AuctionCarVO [carNum=" + carNum + ", carCompany=" + carCompany + ", carPrice=" + carPrice + ", carLoc="
 				+ carLoc + ", carBirth=" + carBirth + ", carModel=" + carModel + ", carSize=" + carSize + ", carDist="
-				+ carDist + ", carGas=" + carGas + ", carCc=" + carCc + ", carColor=" + carColor + ", carAcci="
-				+ carAcci + ", carRegdate=" + carRegdate + ", carAuctionYn=" + carAuctionYn + ", carFailSell="
-				+ carFailSell + ", carAm=" + carAm + ", memberName=" + memberName + ", memberAddr=" + memberAddr
+				+ carDist + ", carGas=" + carGas + ", carCc=" + carCc + ", carAm=" + carAm + ", carColor=" + carColor
+				+ ", carAcci=" + carAcci + ", carRegdate=" + carRegdate + ", carAuctionYn=" + carAuctionYn
+				+ ", carFailSell=" + carFailSell + ", memberName=" + memberName + ", memberAddr=" + memberAddr
 				+ ", memberAddr2=" + memberAddr2 + ", memberHp=" + memberHp + ", memberGrade=" + memberGrade
 				+ ", memberId=" + memberId + ", auctionNoYear=" + auctionNoYear + ", auctionNoCar=" + auctionNoCar
 				+ ", auctionNo=" + auctionNo + ", auctionState=" + auctionState + ", auctionRegdate=" + auctionRegdate
@@ -376,6 +391,6 @@ public class AuctionCarVO {
 				+ ", picture10=" + picture10 + ", picture11=" + picture11 + ", picture12=" + picture12 + ", picture13="
 				+ picture13 + ", picture14=" + picture14 + ", picture15=" + picture15 + ", picture16=" + picture16
 				+ ", picture17=" + picture17 + ", picture18=" + picture18 + ", picture19=" + picture19 + ", picture20="
-				+ picture20 + "]";
+				+ picture20 + ", recordPrice=" + recordPrice + ", buyerMemberId=" + buyerMemberId + "]";
 	}
 }

@@ -3,15 +3,99 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="config.mybatis.mapper.oracle.auction">
-
+	
 	<sql id="searchWhere">
 		<where>
 			<if test="searchKeyword!=null and searchKeyword!=''">
-				${searchCondition} 
-				like '%' || #{searchKeyword} || '%'
+				${searchCondition} like '%' || #{searchKeyword} || '%'
 			</if>
 		</where>
 	</sql>
+	
+	<sql id="listWhere">
+		<where>
+			<![CDATA[
+			auction_finish>=sysdate
+			]]>
+			<if test="searchKeyword!=null and searchKeyword!=''">
+				and ${searchCondition} like '%' || #{searchKeyword} || '%'
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectAucList" resultType="AuctionCarVO" parameterType="SearchVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, LIST_ALL.*
+		    from
+		        (select * from Auction_Car2
+		        <include refid="listWhere"></include>
+		        ) LIST_ALL    
+		) 
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}
+			+ #{recordCountPerPage}
+		]]>
+	</select>
+	
+	<select id="selectListCount" resultType="int" parameterType="SearchVO">
+		select count(*) from auction 
+		<include refid="listWhere"></include>
+		order by auction_no
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	<select id="selectAuctionNoList" resultType="AuctionVO">
+		<![CDATA[
+		select * from auction where auction_finish<=sysdate
+		]]>
+	</select>
+	
+	<select id="selAucBuyerList" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(*) from auction a, buyer b where a.auction_no=b.auction_no and a.auction_finish<=sysdate and a.auction_no=#{auctionNo}
+		]]>
+	</select>
+	
+	<insert id="insertFailSellCar" parameterType="int">
+		<selectKey keyProperty="failAucNo" resultType="int" order="BEFORE">
+			select failauc_seq.nextval from dual
+		</selectKey>
+		insert into failauc(fail_Auc_No,auction_no)
+		values(#{failAucNo},#{auctioNo})
+	</insert>
+	
+	<select id="selectFailauc" parameterType="int" resultType="int">
+		select count(*) from failauc where auction_no=#{auctionNo} 
+	</select>
+
+	<update id="carFailSailUpdate" parameterType="hashmap">
+		update car
+		set car_fail_sell=#{carFailSell}
+		where car_num=#{carNum}
+	</update>
+	
+	<select id="selectRecordByRecordNo" parameterType="int" resultType="RecordVO">
+		select * from(
+			select RANK() OVER (order by record_price desc )as rk,record.*  from record where auction_no=#{auctionNo}
+		)where rk=1
+	</select>
+	
+	<insert id="insertLastBuyer" parameterType="RecordVO">
+		<selectKey keyProperty="lbNo" resultType="int" order="BEFORE">
+			select lb_seq.nextval from dual
+		</selectKey>
+		insert into LASTBUYER(LB_NO, RECORD_NO, BUYER_MEMBER_ID, RECORD_PRICE)
+		values(#{lbNo},#{recordNo},#{buyerMemberId},#{recordPrice} )
+	</insert>
+	
 	
 	<select id="selectCarList" resultType="AuctionVO">
 		select * from car where car_auction_yn='N'
@@ -19,6 +103,10 @@
 	
 	<select id="selectAuctionCar" parameterType="string" resultType="AuctionCarVO">
 		select * from auction_car where car_num=#{carNum}
+	</select>
+
+	<select id="MyAuctionListView" parameterType="string" resultType="hashmap">
+		select * from MyAuctionListView where BUYER_MEMBER_ID=#{memberId}
 	</select>
 	
 	<select id="selectMemberGrade" parameterType="string" resultType="string">
@@ -55,6 +143,29 @@
 			+ #{recordCountPerPage}
 		]]>
 	</select>
+	
+	<select id="selectList" resultType="AuctionCarVO" parameterType="SearchVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, LIST_ALL.*
+		    from
+		        (select * from Auction_Car3
+		        <include refid="searchWhere"></include>
+		        ) LIST_ALL
+		) 
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}
+			+ #{recordCountPerPage}
+		]]>
+	</select>
+	
+	<update id="updateAuctionState" parameterType="AuctionVO">
+		update auction
+		set AUCTION_STATE=#{auctionState}
+		where auction_no=#{auctionNo}
+	</update>
 	
 	<select id="selectTotalCount" resultType="int" parameterType="SearchVO">
 		select count(*) from auction order by auction_no
@@ -125,6 +236,50 @@
 
 	<select id="selectHighPriceCount" parameterType="int" resultType="int">
 		select count(*) from highPrice where auction_no=#{auctionNo}
+	</select>
+	
+	<sql id="myAuctionListWhere">
+		<where>
+		dateformat>=#{startDay}
+		</where>
+		<![CDATA[
+		and record_regdate< to_date(#{endDay})+1
+		]]>
+		<if test="memberId!=null and memberId!=''">
+			and buyer_member_id=#{memberId}
+		</if>
+	</sql>
+	
+	<select id="selectMyAuctionList" parameterType="DateSearchVO" resultType="AuctionCarVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, myAuction_List.*
+		    from
+		    (
+		        select *
+		        from MyAuctionListView
+				<include refid="myAuctionListWhere"></include>
+				order by record_regdate desc
+		    ) myAuction_List
+		)	
+		<![CDATA[	
+		where RNUM> #{firstRecordIndex} 
+		and RNUM<= #{firstRecordIndex} + #{recordCountPerPage}
+		]]>
+	</select>
+	
+	<select id="selectMyAuctionListCount" parameterType="DateSearchVO" resultType="int">
+		select count(*) from MyAuctionListView
+		<include refid="myAuctionListWhere"></include>
+	</select>
+	
+	<select id="selectRecordByAuctionNo" parameterType="int" resultType="RecordVO">
+		select * from record where auction_no=#{auctionNo}
+	</select>
+	
+	<select id="selRecordByBuyer" parameterType="hashmap" resultType="int">
+		select count(*) from lastbuyer where buyer_member_id=#{buyerMemberId} and record_price=#{recordPrice} 
 	</select>
 	
 </mapper>

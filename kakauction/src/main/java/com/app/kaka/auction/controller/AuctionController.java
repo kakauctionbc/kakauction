@@ -1,5 +1,7 @@
 package com.app.kaka.auction.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -17,13 +19,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.kaka.auction.model.AuctionCarVO;
 import com.app.kaka.auction.model.AuctionService;
+import com.app.kaka.auction.model.AuctionVO;
 import com.app.kaka.auction.model.HighPriceVO;
 import com.app.kaka.buyer.model.BuyerVO;
+import com.app.kaka.common.DateSearchVO;
 import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
 import com.app.kaka.op.model.OpService;
 import com.app.kaka.op.model.OpVO;
+import com.app.kaka.record.model.RecordVO;
 
 @Controller
 @RequestMapping("/auction")
@@ -124,7 +129,41 @@ public class AuctionController {
 	
 	@RequestMapping("/list.do")
 	public String listAuction(@ModelAttribute SearchVO searchVo, Model model){
+		auctionService.updateState();
 		logger.info("경매 목록");
+		//1. 파라미터 읽어오기
+		logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);
+		
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		searchVo.setBlockSize(Utility.BLOCK_SIZE);
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		
+		List<AuctionCarVO> alist = auctionService.selectAucList(searchVo);
+		//2. db작업 - select
+		logger.info("글목록 조회 결과 alist.size()={}", alist.size());
+		
+		//전체 레코드 개수 조회하기
+		int totalRecord = auctionService.selectListCount(searchVo);
+		logger.info("토탈레코드가 궁금 totalRecord={}",totalRecord);
+		pagingInfo.setTotalRecord(totalRecord);
+				
+		//3. 결과 저장, 뷰페이지 리턴
+		model.addAttribute("alist", alist);
+		model.addAttribute("alistsize", alist.size());
+		model.addAttribute("pagingInfo", pagingInfo);
+		
+		return "auction/list";
+	}
+	
+	@RequestMapping("/todayList.do")
+	public String todayListAuction(@ModelAttribute SearchVO searchVo, Model model){
+		logger.info("경매 목록");
+		auctionService.updateState();
 		/*3. 글목록 조회
 		/reBoard/list.do => ReBoardListController
 		=> /reBoard/list.jsp*/
@@ -139,18 +178,15 @@ public class AuctionController {
 		searchVo.setBlockSize(Utility.BLOCK_SIZE);
 		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-				
-		//2. db작업 - select
-		List<AuctionCarVO> alist = auctionService.selectAll(searchVo);
-		logger.info("글목록 조회 결과 alist.size()={}", alist.size());
 		
 		//전체 레코드 개수 조회하기
-		int totalRecord = auctionService.selectTotalCount(searchVo);
+		int totalRecord = auctionService.selectListCount(searchVo);
 		logger.info("토탈레코드가 궁금 totalRecord={}",totalRecord);
 		pagingInfo.setTotalRecord(totalRecord);
-				
+		List<AuctionCarVO> alist = auctionService.selectAucList(searchVo);
 		//3. 결과 저장, 뷰페이지 리턴
 		model.addAttribute("alist", alist);
+		model.addAttribute("alistsize", alist.size());
 		model.addAttribute("pagingInfo", pagingInfo);
 		
 		return "auction/list";
@@ -246,6 +282,7 @@ public class AuctionController {
 		
 		return "common/message";
 	}
+	
 	@RequestMapping("/beforeAuctionGo.do")
 	public String beforeAuctionGo(HttpSession session, @RequestParam(defaultValue="0") int auctionNo, Model model){
 		String memberId = (String)session.getAttribute("memberId");
@@ -267,6 +304,7 @@ public class AuctionController {
 	    }
 	    return "redirect:/auction/auctiongo.do?auctionNo="+auctionNo;
 	}
+	
 	@RequestMapping("/auctiongo.do")
 	public String doAuction(HttpSession session, @RequestParam(defaultValue="0") int auctionNo, Model model){
 	    if(auctionNo==0){
@@ -385,5 +423,51 @@ public class AuctionController {
 			//logger.info("7 highVo={}",highVo);
 		}
 		return highVo;
+	}
+	
+	@RequestMapping("/myAuctionList.do")
+	public String myAuction(@ModelAttribute DateSearchVO vo, HttpSession session, Model model){
+		auctionService.updateState();
+		logger.info("경매 목록");
+		String memberId = (String)session.getAttribute("memberId");
+		vo.setMemberId(memberId);
+		/*3. 글목록 조회
+		/reBoard/list.do => ReBoardListController
+		=> /reBoard/list.jsp*/
+		//1. 파라미터 읽어오기
+		logger.info("글목록 조회, 파라미터 vo={}", vo);
+		if(vo.getStartDay()==null || vo.getStartDay().isEmpty()){				
+			Date d = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String today = sdf.format(d);
+			
+			vo.setStartDay(today);
+			vo.setEndDay(today);
+		}
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.MAUCLIST_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(vo.getCurrentPage());
+		logger.info("글목록 조회, 파라미터 vo={}", vo);
+		
+		vo.setBlockSize(Utility.BLOCK_SIZE);
+		vo.setRecordCountPerPage(Utility.MAUCLIST_COUNT_PER_PAGE);
+		vo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("글목록 조회, 파라미터 vo={}", vo);
+		
+		//2. db작업 - select
+		List<AuctionCarVO> alist = auctionService.selectAucList(vo);
+		logger.info("글목록 조회 결과 alist.size()={}", alist.size());
+		//전체 레코드 개수 조회하기
+		int totalRecord = auctionService.selectMyAuctionListCount(vo);
+		logger.info("토탈레코드가 궁금 totalRecord={}",totalRecord);
+		pagingInfo.setTotalRecord(totalRecord);
+				
+		//3. 결과 저장, 뷰페이지 리턴
+		model.addAttribute("alist", alist);
+		model.addAttribute("alistsize", alist.size());
+		model.addAttribute("pagingInfo", pagingInfo);
+		
+		return "auction/myAuctionList";
 	}
 }

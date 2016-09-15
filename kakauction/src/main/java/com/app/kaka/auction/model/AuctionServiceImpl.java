@@ -1,5 +1,6 @@
 package com.app.kaka.auction.model;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,9 @@ import org.springframework.stereotype.Service;
 
 import com.app.kaka.buyer.model.BuyerVO;
 import com.app.kaka.car.model.CarVO;
+import com.app.kaka.common.DateSearchVO;
 import com.app.kaka.common.SearchVO;
+import com.app.kaka.record.model.RecordVO;
 
 @Service
 public class AuctionServiceImpl implements AuctionService{
@@ -45,17 +48,31 @@ public class AuctionServiceImpl implements AuctionService{
 	public int updateAuctionYn(AuctionVO vo) {
 		return auctionDao.updateAuctionYn(vo);
 	}
-
+	//경매 리스트 종료된 건 보이지 않음
 	@Override
 	public int selectTotalCount(SearchVO vo) {
 		return auctionDao.selectTotalCount(vo);
+	}
+	
+	@Override
+	public int selectListCount(SearchVO vo) {
+		return auctionDao.selectListCount(vo);
 	}
 
 	@Override
 	public List<AuctionCarVO> selectAll(SearchVO vo) {
 		return auctionDao.selectAll(vo);
 	}
-
+	@Override
+	public List<AuctionCarVO> selectList(SearchVO vo){
+		return auctionDao.selectList(vo);
+	}
+	
+	@Override
+	public int updateAuctionState(AuctionVO vo) {
+		return auctionDao.updateAuctionState(vo);
+	}
+	
 	@Override
 	public int updateAuction(int auctionNo) {
 		return auctionDao.updateAuction(auctionNo);
@@ -116,7 +133,116 @@ public class AuctionServiceImpl implements AuctionService{
 		return auctionDao.selectHighPriceCount(aucionNo);
 	}
 
+	@Override
+	public List<AuctionCarVO> selectMyAuctionList(DateSearchVO vo){
+		return auctionDao.selectMyAuctionList(vo);
+	}
+
+	@Override
+	public int selectMyAuctionListCount(DateSearchVO vo) {
+		return auctionDao.selectMyAuctionListCount(vo);
+	}
+
+	@Override
+	public List<AuctionVO> selectAuctionNoList() {
+		return auctionDao.selectAuctionNoList();
+	}
+
+	@Override
+	public int selAucBuyerList(int auctionNo) {
+		return auctionDao.selAucBuyerList(auctionNo);
+	}
+
+	@Override
+	public int carFailSailUpdate(Map<String, Object> map) {
+		return auctionDao.carFailSailUpdate(map);
+	}
+
+	@Override
+	public RecordVO selectRecordByRecordNo(int auctionNo) {
+		return auctionDao.selectRecordByRecordNo(auctionNo);
+	}
+
+	@Override
+	public int insertLastBuyer(RecordVO vo) {
+		return auctionDao.insertLastBuyer(vo);
+	}
 	
+	@Override
+	public int insertFailSellCar(int auctionNo) {
+		return auctionDao.insertFailSellCar(auctionNo);
+	}
+	
+	@Override
+	public int selectFailauc(int auctionNo) {
+		return auctionDao.selectFailauc(auctionNo);
+	}
+
+	@Override
+	public int selRecordByBuyer(Map<String, Object> map) {
+		return auctionDao.selRecordByBuyer(map);
+	}
+	
+	@Override
+	public List<AuctionCarVO> selectAucList(SearchVO vo) {
+		return auctionDao.selectAucList(vo);
+	}
+
+	@Override
+	public List<RecordVO> selectRecordByAuctionNo(int auctionNo) {
+		return auctionDao.selectRecordByAuctionNo(auctionNo);
+	}
+	
+	public void updateState(){
+		logger.info("경매 상태 업데이트");
+		List<AuctionVO> auctionList = auctionDao.selectAuctionNoList();
+		logger.info("종료된 경매 개수 auctionList={}",auctionList.size());
+		for(AuctionVO vo : auctionList){
+			int auctionNo = vo.getAuctionNo();
+			logger.info("종료된 경매 번호 auctionNo={}",auctionNo);
+			int cnt = auctionDao.selAucBuyerList(auctionNo);
+			if(cnt<1){
+				int failcnt = auctionDao.selectFailauc(auctionNo);
+				if(failcnt>1){
+					int insfailsecar = auctionDao.insertFailSellCar(auctionNo);
+				}
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("carFailSell", failcnt);
+				map.put("carNum", vo.getCarNum());
+				int carfailsell = auctionDao.carFailSailUpdate(map);
+				logger.info("판매실패 경매번호 auctionNo={}, 유찰수={} ",auctionNo,carfailsell);
+			}else if(cnt>1){
+				List<RecordVO> recoVoList = auctionDao.selectRecordByAuctionNo(auctionNo);
+				logger.info("판매가 된 경매 수 : recoVoList.size()={}",recoVoList.size());
+				for(RecordVO reVo:recoVoList){
+					Map<String, Object> map = new HashMap<String, Object>();
+					logger.info("판매가 된 경매 수 : reVo={}",reVo);
+					map.put("buyerMemberId", reVo.getBuyerMemberId());
+					map.put("recordPrice", reVo.getRecordPrice());
+					logger.info("판매가 된 경매 수 : map={},={}",reVo.getBuyerMemberId(),reVo.getRecordPrice());
+					int excnt = auctionDao.selRecordByBuyer(map);
+					if(excnt<1){
+						RecordVO recordVo = auctionDao.selectRecordByRecordNo(auctionNo);
+						int insLastBuyer = auctionDao.insertLastBuyer(recordVo);
+						logger.info("판매완료 경매번호 auctionNo={}, 성공={} ",auctionNo,insLastBuyer);
+					}
+				}
+			}
+		}
+		Date d = new Date();
+		long today = d.getTime();
+		
+		for(AuctionVO vo : auctionList){
+			long finish = vo.getAuctionFinish().getTime();
+			logger.info("today"+today+"finish"+finish+"누가크니:today>finish"+(today>finish));
+			if(today>finish){
+				vo.setAuctionState("END");
+				int cnt = auctionDao.updateAuctionState(vo);
+				logger.info("경매 상태 보고 결과 : "+cnt);
+			}
+		}
+	}
+
 
 	
 }
