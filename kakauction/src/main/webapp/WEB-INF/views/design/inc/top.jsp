@@ -115,8 +115,7 @@ $(function(){
 				<ul>
 					<li><a href="/auction/auctionSuccess.do">경매낙찰현황</a></li>
 					<li><a href="/auction/myAuctionList.do">경매입찰현황</a></li>
-					<li><a href="/report/auctionReportList.do">불량경매신고</a></li>
-					<li><a href="/auction/favAuctin.do">관심물품</a></li>
+					<li><a href="/report/auctionReport.do">불량경매신고</a></li>
 					<li><a href="/freeboard/myFreeboardList.do">내가 쓴 글</a></li>
 				</ul>
 			</div>

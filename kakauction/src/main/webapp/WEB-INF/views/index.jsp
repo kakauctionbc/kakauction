@@ -49,7 +49,7 @@ $(function() {
 					src="${pageContext.request.contextPath }/img/enterCar.png"></a></li>
 			<li id="icontwo"><a href="<c:url value='/auction/list.do'/>"><img
 					src="${pageContext.request.contextPath }/img/buyNow.png"></a></li>
-			<li id="iconthree"><a href="<c:url value='/auction/list.do'/>"><img
+			<li id="iconthree"><a href="<c:url value='/auction/todayList.do'/>"><img
 					src="${pageContext.request.contextPath }/img/joinAuction2.png"></a></li>
 			<li id="iconfour"><a href="<c:url value='/freeboard/list.do'/>"><img
 					src="${pageContext.request.contextPath }/img/freeboard.png"></a></li>
@@ -131,7 +131,7 @@ $(function() {
 				<div id="noticehead">
 					<p id="text">공지사항</p>
 					<p id="more">
-						<a href="">MORE▶</a>
+						<a href="<c:url value='/notice/list.do'/>">MORE▶</a>
 					</p>
 				</div>
 				<div>
@@ -142,7 +142,7 @@ $(function() {
 				<div id="schedulehead">
 					<p id="text">일정안내</p>
 					<p id="more">
-						<a href="">MORE▶</a>
+						<a href="<c:url value='/auction/myAuctionList.do'/>">MORE▶</a>
 					</p>
 				</div>
 				<div>
