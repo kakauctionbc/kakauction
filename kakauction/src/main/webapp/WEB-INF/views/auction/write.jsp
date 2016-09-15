@@ -215,8 +215,7 @@
 				<tr>
 					<th>입찰기간 설정</th>
 					<td>회원등급별 차등시간 
-					<input type="text" id="auctionStartTime" value=""> 
-					<input type="text" id="auctionEndTime" value="">
+					<p id="auctionStartTime"></p> 
 					</td>
 				</tr>
 				<tr>

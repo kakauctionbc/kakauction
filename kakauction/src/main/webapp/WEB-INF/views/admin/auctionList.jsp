@@ -18,6 +18,11 @@
 		document.frmPage.submit();
 	}
 </script>
+<style type="text/css">
+	#right{
+		float: right;
+	}
+</style>
 <div id="wrap">
 	<div id="wrapdiv">
 		<div id="wraptop">
@@ -25,26 +30,20 @@
 				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>신고리스트
 			</p>
 		</div>
+	<div id="right">
+		<a href="<c:url value='/admin/write.do'/>">경매 등록 화면</a>
+	</div>
 		<div id="pagelogo">
-			<img
-				src="${pageContext.request.contextPath }/img/auctionList_logo.png"
-				alt="회원가입로고">
+			<img src="${pageContext.request.contextPath }/img/auctionList_logo.png" alt="회원가입로고">
 		</div>
 		<form name="frmPage" method="post" action="<c:url value='/auction/list.do'/>">
-			<input type="hidden" name="currentPage"> <input type="hidden"
-				name="searchCondition" value="${param.searchCondition }"> <input
-				type="hidden" name="searchKeyword"
-				value="${searchVO.searchKeyword }">
+			<input type="hidden" name="currentPage"> 
+			<input type="hidden" name="searchCondition" value="${param.searchCondition }"> 
+			<input type="hidden" name="searchKeyword" value="${searchVO.searchKeyword }">
 		</form>
 
 		<div class="divList">
-			<c:if test="${!empty param.searchKeyword }">
-				<p>검색어 : ${param.searchKeyword }, ${pagingInfo.totalRecord }건
-					검색되었습니다.</p>
-			</c:if>
-			<c:if test="${empty searchVO.searchKeyword }">
-				<p>전체 조회 결과 - ${pagingInfo.totalRecord }건 조회되었습니다</p>
-			</c:if>
+			<p>전체 목록 - ${pagingInfo.totalRecord }건 조회되었습니다</p>
 			<table class="box2"
 				summary="자료실에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
 				<caption>자료실</caption>
@@ -71,7 +70,7 @@
 						<th>물건상태</th>
 						<th>입찰번호</th>
 						<th>입찰시작</th>
-						<th rowspan="2" class="readCount">조회</th>
+						<th rowspan="2" class="readCount">선택</th>
 					</tr>
 					<tr>
 						<th>소재지</th>
@@ -116,7 +115,7 @@
 									${vo.auctionNo}</td>
 								<td>${vo.auctionRegdate}<br> ${vo.auctionFinish }
 								</td>
-								<td class="readCount">${vo.auctionReadCount }</td>
+								<td class="readCount"><input type="checkbox"></td>
 							</tr>
 						</c:forEach>
 						<!--반복처리 끝  -->
@@ -124,8 +123,11 @@
 					
 				</tbody>
 			</table>
+			<div id="right">
+				<a href="#">경매 강제 종료</a>
+			</div>
 		</div>
-		
+			
 		<div class="pagediv">
 			<ul class="page">
 				<!-- 이전 블럭으로 이동 -->
@@ -150,31 +152,8 @@
 				</c:if></li>
 			</ul>
 		</div>
-		
-		<div class="divSearch">
-			<form name="frmSearch" method="post"
-				action="<c:url value='/reBoard/list.do' />">
-				<select name="searchCondition">
-					<option value="title"
-						<c:if test="${param.searchCondition=='title'}">
-            		selected
-               </c:if>>제목</option>
-					<option value="content"
-						<c:if test="${param.searchCondition=='content'}">
-            		selected
-               </c:if>>내용</option>
-					<option value="name"
-						<c:if test="${param.searchCondition=='name'}">
-            		selected
-               </c:if>>작성자</option>
-				</select> <input type="text" name="searchKeyword" title="검색어 입력"
-					value="${param.searchKeyword}"> <input type="submit"
-					value="검색">
-			</form>
-		</div>
-		<div class="writebutton">
-			<button type="submit" onclick="<c:url value='/auction/write.do'/>">글쓰기</button>
-		</div>
+	<div id="right">
+		<a href="<c:url value='/admin/write.do'/>">경매 등록 화면</a>
 	</div>
 </div>
 <%@ include file="../design/inc/bottom.jsp"%>

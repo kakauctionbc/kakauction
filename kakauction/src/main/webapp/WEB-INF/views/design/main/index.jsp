@@ -119,16 +119,13 @@ $(function() {
 			<div id="realtimeslide">
 				<div id="realtimeslide_hot">
 					<div class="mySlides fade">
-						<img src="${pageContext.request.contextPath }/img/hot_car1.jpg"
-							style="width: 220px; height: 217px">
+						<img src="${pageContext.request.contextPath }/img/hot_car1.jpg" style="width: 220px; height: 217px">
 					</div>
 					<div class="mySlides fade">
-						<img src="${pageContext.request.contextPath }/img/hot_car2.jpg"
-							style="width: 220px; height: 217px">
+						<img src="${pageContext.request.contextPath }/img/hot_car2.jpg" style="width: 220px; height: 217px">
 					</div>
 					<div class="mySlides fade">
-						<img src="${pageContext.request.contextPath }/img/hot_car3.jpg"
-							style="width: 220px; height: 217px">
+						<img src="${pageContext.request.contextPath }/img/hot_car3.jpg" style="width: 220px; height: 217px">
 					</div>
 				</div>
 			</div>
@@ -157,7 +154,7 @@ $(function() {
 				<div id="schedulehead">
 					<p id="text">일정안내</p>
 					<p id="more">
-						<a href="">MORE▶</a>
+						<a href="<c:url value='/auction/myAuctionList.do'/>">MORE▶</a>
 					</p>
 				</div>
 				<div>

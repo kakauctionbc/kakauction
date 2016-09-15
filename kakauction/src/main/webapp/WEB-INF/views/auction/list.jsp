@@ -157,31 +157,6 @@
 				</c:if></li>
 			</ul>
 		</div>
-		
-		<div class="divSearch">
-			<form name="frmSearch" method="post"
-				action="<c:url value='/reBoard/list.do' />">
-				<select name="searchCondition">
-					<option value="title"
-						<c:if test="${param.searchCondition=='title'}">
-            		selected
-               </c:if>>제목</option>
-					<option value="content"
-						<c:if test="${param.searchCondition=='content'}">
-            		selected
-               </c:if>>내용</option>
-					<option value="name"
-						<c:if test="${param.searchCondition=='name'}">
-            		selected
-               </c:if>>작성자</option>
-				</select> <input type="text" name="searchKeyword" title="검색어 입력"
-					value="${param.searchKeyword}"> <input type="submit"
-					value="검색">
-			</form>
-		</div>
-		<div class="writebutton">
-			<button type="submit" onclick="<c:url value='/auction/write.do'/>">글쓰기</button>
-		</div>
 	</div>
 </div>
 <%@ include file="../design/inc/bottom.jsp"%>

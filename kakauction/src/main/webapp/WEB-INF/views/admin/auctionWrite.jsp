@@ -53,7 +53,7 @@
 						$("#voCarNum").html(carNum);
 						$("#voMAddr").html(addr);
 						$("#voCarLoc").html(vo.carLoc);
-						$("#voCarCompany").html(vo.carCompany+ "/불용품");
+						$("#voCarCompany").html(vo.carCompany+ "/불용품").css("align","right");
 						var carCompanyHp = "";
 						if (vo.carCompany != null) {
 							carCompanyHp = vo.carCompany+ "("+ vo.memberName+ ")";
@@ -65,7 +65,7 @@
 						$("#voCarFailSell").html(vo.carFailSell);
 						$("#voAuctionYN").html(vo.auctionNoYear+"-0"+vo.auctionNoCar);
 						$("#voMemberGrade").html("경매 시작으로부터 회원 등급에 따라 달라 집니다");
-						$("#voCarPrice").html("<input type='text' value='"+vo.carPrice+"'>");
+						$("#voCarPrice").html(vo.carPrice+"만원");
 						$("#VoMemberId").html(vo.memberId+"님의 차량 정보 : "+vo.carModel);
 						$("#carVoCarNum").html(vo.carNum);
 						$("#carVoCarBirth").html(vo.carBirth);
@@ -187,8 +187,7 @@
 		</table>
 	</form>
 	<div id="voName"></div>
-		<table width="960" border="1px solid silver;" cellspacing="0"
-			cellpadding="0" align="center">
+		<table width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
 			<thead>차량상세정보
 			</thead>
 			<tbody>
@@ -214,18 +213,15 @@
 				</tr>
 				<tr>
 					<th>입찰기간 설정</th>
-					<td>회원등급별 차등시간 
-					<input type="text" id="auctionStartTime" value=""> 
-					<input type="text" id="auctionEndTime" value="">
-					</td>
+					<td id="memberTime">회원등급별 차등시간 </td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<table>
 							<tr>
 								<th>물건관리 번호</th>
-								<td id="voAuctionYN">경매번호나와라</td>
-								<th>입찰 횟수</th>
+								<td id="voAuctionYN"></td>
+								<th>유찰 횟수</th>
 								<td id="voCarFailSell"></td>
 								<th>물건상태</th>
 								<td></td>
@@ -262,10 +258,8 @@
 			</tbody>
 		</table>
 		<div>
-			<table width="960" border="1px solid silver;" cellspacing="0"
-				cellpadding="0" align="center">
-				<thead>물건 기본 정보
-				</thead>
+			<table width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
+				<thead>물건 기본 정보</thead>
 				<tbody>
 					<tr>
 						<th>차량명</th>

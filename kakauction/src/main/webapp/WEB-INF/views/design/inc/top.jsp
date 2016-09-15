@@ -67,7 +67,7 @@ $(function(){
 	<div id="middle">
 		<div id="middlediv">
 			<div id="wraplogo">
-				<a href="${pageContext.request.contextPath }/design/index.do">
+				<a href="<c:url value='/index.do'/>">
 				<img alt="로고 이미지" src="${pageContext.request.contextPath }/img/logo.png" /></a>
 			</div>
 			<div id="mainsearch">
@@ -77,14 +77,18 @@ $(function(){
 			    <option value="차종">차종</option>
 				</select>
 				<input id="keyword" name="keyword" fw-filter="" fw-label="검색어" fw-msg="" class="inputTypeText" onmousedown="" value="" type="text"  />
-				<p id="search_btn"><a href=""><img src="<%=request.getContextPath()%>/img/search.png" alt="검색" onclick="" width="25px" height="25px"/></a></p>
+				<p id="search_btn">
+				<a href="">
+				<img src="<%=request.getContextPath()%>/img/search.png" alt="검색" onclick="" width="25px" height="25px"/>
+				</a>
+				</p>
 			</div>
 
 			<div id="headmenu">
 				<ul>
 					<li><a href="<c:url value='/car/register.do'/>">내차 잘 팔기</a></li>
 					<li><a href="<c:url value='/auction/list.do'/>">좋은 차 사기</a></li>
-					<li><a href="/member/myInfo.do">마이페이지</a></li>
+					<li><a href="<c:url value='/member/myInfo.do'/>">마이페이지</a></li>
 					<li><a href="#">고객센터</a></li>
 				</ul>
 			</div>
@@ -113,10 +117,10 @@ $(function(){
 			</div>
 			<div id="content-myinfo">
 				<ul>
-					<li><a href="/auction/auctionSuccess.do">경매낙찰현황</a></li>
-					<li><a href="/auction/myAuctionList.do">경매입찰현황</a></li>
-					<li><a href="/report/auctionReport.do">불량경매신고</a></li>
-					<li><a href="/freeboard/myFreeboardList.do">내가 쓴 글</a></li>
+					<li><a href="<c:url value='/auction/auctionSuccess.do'/>">경매낙찰현황</a></li>
+					<li><a href="<c:url value='/auction/myAuctionList.do'/>">경매입찰현황</a></li>
+					<li><a href="<c:url value='/report/auctionReport.do'/>">불량경매신고</a></li>
+					<li><a href="<c:url value='/freeboard/myFreeboardList.do'/>">내가 쓴 글</a></li>
 				</ul>
 			</div>
 			<div id="content-notice">
