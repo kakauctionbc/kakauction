@@ -17,6 +17,9 @@ public interface AuctionDAO {
 	
 	public int selectTotalCount(SearchVO vo);
 	public int selectListCount(SearchVO vo);
+	public int selectTodayCount(SearchVO vo);
+
+	public List<AuctionCarVO> selectTodayList(SearchVO vo);
 	public List<AuctionCarVO> selectAucList(SearchVO vo);
 	public List<AuctionCarVO> selectAll(SearchVO vo);
 	public List<AuctionCarVO> selectList(SearchVO vo);

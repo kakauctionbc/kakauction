@@ -183,7 +183,7 @@ public class AuctionController {
 		int totalRecord = auctionService.selectListCount(searchVo);
 		logger.info("토탈레코드가 궁금 totalRecord={}",totalRecord);
 		pagingInfo.setTotalRecord(totalRecord);
-		List<AuctionCarVO> alist = auctionService.selectAucList(searchVo);
+		List<AuctionCarVO> alist = auctionService.selectTodayList(searchVo);
 		//3. 결과 저장, 뷰페이지 리턴
 		model.addAttribute("alist", alist);
 		model.addAttribute("alistsize", alist.size());
@@ -197,6 +197,52 @@ public class AuctionController {
 		int cnt = auctionService.updateAuction(auctionNo);
 		logger.info("조회수 증가 auctionNo={}, cnt ={}",auctionNo,cnt);
 		return "redirect:/auction/beforeAuctionGo.do?auctionNo="+auctionNo;
+	}
+	
+	@RequestMapping("/myAuctionList.do")
+	public String myAuction(@ModelAttribute DateSearchVO vo, HttpSession session, Model model){
+		auctionService.updateState();
+		logger.info("경매 목록");
+		String memberId = (String)session.getAttribute("memberId");
+		vo.setMemberId(memberId);
+		/*3. 글목록 조회
+		/reBoard/list.do => ReBoardListController
+		=> /reBoard/list.jsp*/
+		//1. 파라미터 읽어오기
+		logger.info("글목록 조회, 파라미터 vo={}", vo);
+		if(vo.getStartDay()==null || vo.getStartDay().isEmpty()){				
+			Date d = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String today = sdf.format(d);
+			
+			vo.setStartDay(today);
+			vo.setEndDay(today);
+		}
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.MAUCLIST_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(vo.getCurrentPage());
+		logger.info("글목록 조회, 파라미터 vo={}", vo);
+		
+		vo.setBlockSize(Utility.BLOCK_SIZE);
+		vo.setRecordCountPerPage(Utility.MAUCLIST_COUNT_PER_PAGE);
+		vo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("글목록 조회, 파라미터 vo={}", vo);
+		
+		//2. db작업 - select
+		List<AuctionCarVO> alist = auctionService.selectAucList(vo);
+		logger.info("글목록 조회 결과 alist.size()={}", alist.size());
+		//전체 레코드 개수 조회하기
+		int totalRecord = auctionService.selectMyAuctionListCount(vo);
+		logger.info("토탈레코드가 궁금 totalRecord={}",totalRecord);
+		pagingInfo.setTotalRecord(totalRecord);
+				
+		//3. 결과 저장, 뷰페이지 리턴
+		model.addAttribute("alist", alist);
+		model.addAttribute("alistsize", alist.size());
+		model.addAttribute("pagingInfo", pagingInfo);
+		
+		return "auction/myAuctionList";
 	}
 	
 	@RequestMapping("/detail.do")
@@ -425,49 +471,4 @@ public class AuctionController {
 		return highVo;
 	}
 	
-	@RequestMapping("/myAuctionList.do")
-	public String myAuction(@ModelAttribute DateSearchVO vo, HttpSession session, Model model){
-		auctionService.updateState();
-		logger.info("경매 목록");
-		String memberId = (String)session.getAttribute("memberId");
-		vo.setMemberId(memberId);
-		/*3. 글목록 조회
-		/reBoard/list.do => ReBoardListController
-		=> /reBoard/list.jsp*/
-		//1. 파라미터 읽어오기
-		logger.info("글목록 조회, 파라미터 vo={}", vo);
-		if(vo.getStartDay()==null || vo.getStartDay().isEmpty()){				
-			Date d = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String today = sdf.format(d);
-			
-			vo.setStartDay(today);
-			vo.setEndDay(today);
-		}
-		PaginationInfo pagingInfo = new PaginationInfo();
-		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
-		pagingInfo.setRecordCountPerPage(Utility.MAUCLIST_COUNT_PER_PAGE);
-		pagingInfo.setCurrentPage(vo.getCurrentPage());
-		logger.info("글목록 조회, 파라미터 vo={}", vo);
-		
-		vo.setBlockSize(Utility.BLOCK_SIZE);
-		vo.setRecordCountPerPage(Utility.MAUCLIST_COUNT_PER_PAGE);
-		vo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-		logger.info("글목록 조회, 파라미터 vo={}", vo);
-		
-		//2. db작업 - select
-		List<AuctionCarVO> alist = auctionService.selectAucList(vo);
-		logger.info("글목록 조회 결과 alist.size()={}", alist.size());
-		//전체 레코드 개수 조회하기
-		int totalRecord = auctionService.selectMyAuctionListCount(vo);
-		logger.info("토탈레코드가 궁금 totalRecord={}",totalRecord);
-		pagingInfo.setTotalRecord(totalRecord);
-				
-		//3. 결과 저장, 뷰페이지 리턴
-		model.addAttribute("alist", alist);
-		model.addAttribute("alistsize", alist.size());
-		model.addAttribute("pagingInfo", pagingInfo);
-		
-		return "auction/myAuctionList";
-	}
 }

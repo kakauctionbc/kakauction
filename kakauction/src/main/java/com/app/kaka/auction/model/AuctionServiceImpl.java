@@ -60,6 +60,16 @@ public class AuctionServiceImpl implements AuctionService{
 	}
 
 	@Override
+	public int selectTodayCount(SearchVO vo) {
+		return auctionDao.selectTodayCount(vo);
+	}
+
+	@Override
+	public List<AuctionCarVO> selectTodayList(SearchVO vo) {
+		return auctionDao.selectTodayList(vo);
+	}
+
+	@Override
 	public List<AuctionCarVO> selectAll(SearchVO vo) {
 		return auctionDao.selectAll(vo);
 	}
@@ -242,7 +252,5 @@ public class AuctionServiceImpl implements AuctionService{
 			}
 		}
 	}
-
-
 	
 }

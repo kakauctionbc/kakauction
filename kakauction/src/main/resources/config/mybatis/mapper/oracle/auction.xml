@@ -22,7 +22,6 @@
 			</if>
 		</where>
 	</sql>
-	
 	<select id="selectAucList" resultType="AuctionCarVO" parameterType="SearchVO">
 		select *
 		from
@@ -39,12 +38,44 @@
 			+ #{recordCountPerPage}
 		]]>
 	</select>
-	
 	<select id="selectListCount" resultType="int" parameterType="SearchVO">
 		select count(*) from auction 
 		<include refid="listWhere"></include>
 		order by auction_no
 	</select>
+	
+	<sql id="todayWhere">
+		<where>
+			<![CDATA[
+			auction_finish=sysdate
+			]]>
+			<if test="searchKeyword!=null and searchKeyword!=''">
+				and ${searchCondition} like '%' || #{searchKeyword} || '%'
+			</if>
+		</where>
+	</sql>
+	<select id="selectTodayList" resultType="AuctionCarVO" parameterType="SearchVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, LIST_ALL.*
+		    from
+		        (select * from Auction_Car2
+		        <include refid="todayWhere"></include>
+		        ) LIST_ALL    
+		) 
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}
+			+ #{recordCountPerPage}
+		]]>
+	</select>
+	<select id="selectTodayCount" resultType="int" parameterType="SearchVO">
+		select count(*) from auction 
+		<include refid="todayWhere"></include>
+		order by auction_no
+	</select>
+	
 	
 	
 	
