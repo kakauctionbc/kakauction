@@ -81,10 +81,10 @@
 							<tr style="text-align: center">
 								<td class="listImg"><img alt="사진" height="56px;" width="90px;" src="<c:url value='/picture_upload/${map["PICTURE_1"]}'/>"></td>
 								<td class="listSize">${map['CAR_SIZE']}</td>
-								<c:if test="${mpa['LB_BUYCAR_YN']=='Y'}">								
+								<c:if test="${map['LB_BUYCAR_YN']=='Y'}">								
 									이미 거래 완료한 차량입니다.
 								</c:if>
-								<c:if test="${mpa['LB_BUYCAR_YN']=='Y'}">								
+								<c:if test="${map['LB_BUYCAR_YN']=='N'}">								
 									<td class="listName" style="text-align: left;">
 										<a class="auctionTitle" href="<c:url value='/delivery/detail.do?auctionNo=${map["AUCTION_NO"]}'/>">
 												${map['CAR_MODEL']}<br>

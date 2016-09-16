@@ -16,9 +16,16 @@ public class DeliveryServiceImpl implements DeliveryService{
 		return deliveryDao.selectARCView(myMap);
 	}
 
+	//구매 확정 후
+	@Override
+	public int updateLastBuyerYn(Map<String, Object> map) {
+		return deliveryDao.updateLastBuyerYn(map);
+	}
+
 	@Override
 	public int insertTrade(Map<String, Object> map) {
 		return deliveryDao.insertTrade(map);
 	}
+
 	
 }

@@ -14,10 +14,17 @@ public class DeliveryDAOMybatis extends SqlSessionDaoSupport implements Delivery
 	public Map<String, Object> selectARCView(Map<String, Object> myMap) {
 		return getSqlSession().selectOne(namespace+".selectARCView", myMap);
 	}
+	
+	//구매 확정 후
+	@Override
+	public int updateLastBuyerYn(Map<String, Object> map) {
+		return getSqlSession().update(namespace+".updateLastBuyerYn", map);
+	}
 
 	@Override
 	public int insertTrade(Map<String, Object> map) {
 		return getSqlSession().insert(namespace+".insertTrade", map);
 	}
+
 	
 }

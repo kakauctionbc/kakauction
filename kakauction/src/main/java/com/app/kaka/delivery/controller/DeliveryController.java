@@ -114,8 +114,10 @@ public class DeliveryController {
 	@RequestMapping("/insertTrade.do")
 	public String insertTrade(@RequestParam Map<String, Object> data, Model model){
 		/*model.addAttribute("requestParam 으로 받은 map", data);
-		int cnt = deliveryService.insertTrade(data);
-		logger.info("거래 성공 cnt={}",cnt);
+		int cnt = deliveryService.updateLastBuyerYn(data);
+		logger.info("거래 성공 최종구매자 상태 업데이트 cnt={}",cnt);
+		cnt = deliveryService.insertTrade(data);
+		logger.info("거래 성공 거래테이블에 입력 cnt={}",cnt);
 		model.addAttribute("data", data);
 		logger.info("model에 담은 data={}",data);*/
 		return "delivery/payment";

@@ -14,4 +14,10 @@
 		insert into trade(TRADE_NO, LB_NO, RECORD_NO, BUYER_MEMBER_ID, RECORD_PRICE, AUCTION_NO, TRADE_TYPE)
 		values(#{tradeNo},#{lbNo},#{recordNo},#{buyerMemberId},#{recordPrice},#{auctionNo},#{tradeType})
 	</insert>
+	
+	<update id="updateLastBuyerYn" parameterType="map">
+		update lastbuyer
+		set lb_Buycar_Yn=#{tradeType}
+		where lb_no= #{lbNo}
+	</update>
 </mapper>
