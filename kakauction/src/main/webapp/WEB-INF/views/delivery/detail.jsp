@@ -17,6 +17,7 @@
 		var memberEmail = $("#memberEmail").val();
 		var memAddr = $("#memAddr").val();
 		var zipcode = $("#zipcode").val();
+		var carNum = $("#carNum").val();
 		
 		$("#map").click(function(){ 
 			var message = $("#buyerLocation").val();
@@ -57,7 +58,7 @@
 			        msg += '결제 금액 : ' + rsp.paid_amount;
 			        msg += '카드 승인번호 : ' + rsp.apply_num;
 			        console.log(msg);
-			        var data={"lbNo":lbNo,"recordNo":recordNo,"auctionNo":auctionNo,"buyerMemberId":buyerMemberId,"recordPrice":recordPrice,"tradeType":"정상결제"};
+			        var data={"lbNo":lbNo,"recordNo":recordNo,"auctionNo":auctionNo,"buyerMemberId":buyerMemberId,"recordPrice":recordPrice,"carNum":carNum,"tradeType":"정상결제"};
 			        location.replace("<c:url value='/delivery/insertTrade.do?data="+data+"'/>");
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
@@ -99,7 +100,7 @@
 				        msg += '결제 금액 : ' + rsp.paid_amount;
 				        msg += '카드 승인번호 : ' + rsp.apply_num;
 				        console.log(msg);
-				        var data={"lbNo":lbNo,"recordNo":recordNo,"auctionNo":auctionNo,"buyerMemberId":buyerMemberId,"recordPrice":recordPrice,"tradeType":"거래취소"};
+				        var data={"lbNo":lbNo,"recordNo":recordNo,"auctionNo":auctionNo,"buyerMemberId":buyerMemberId,"recordPrice":dontPay,"carNum":carNum,"tradeType":"거래취소"};
 				        location.replace("<c:url value='/delivery/insertTrade.do?data="+data+"'/>");
 				    } else {
 				        var msg = '결제에 실패하였습니다.';
@@ -159,7 +160,7 @@
 				<th>경매 번호</th>
 				<td>${map["AUCTIONCODE"] }</td>
 				<th>차량 번호</th>
-				<td>${map["CAR_NUM"] }</td>
+				<td>${map["CAR_NUM"]}</td>
 			</tr>
 			<tr>
 				<th>구매자 아이디</th>
@@ -222,6 +223,7 @@
 			<tr>
 				<th>최종 수령</th>
 				<td>
+					<input type="hidden" id="carNum" value="${map['CAR_NUM']}">
 					<input type="hidden" id="recordNo" value="${map['RECORD_NO']}">
 					<input type="hidden" id="lbNo" value="${map['LB_NO']}">
 					<input type="hidden" id="buyerMemberId" value="${map['BUYER_MEMBER_ID']}">
