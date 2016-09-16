@@ -79,19 +79,24 @@
 						<!--게시판 내용 반복문 시작  -->
 						<c:forEach var="map" items="${alist }">
 							<tr style="text-align: center">
-							<td class="listImg"><img alt="사진" height="56px;" width="90px;" src="<c:url value='/picture_upload/${map["PICTURE_1"]}'/>"></td>
-							<td class="listSize">${map['CAR_SIZE']}</td>
-							<td class="listName" style="text-align: left;">
-								<a class="auctionTitle" href="<c:url value='/auction/updateCount.do?auctionNo=${map["AUCTION_NO"]}'/>">
-										${map['CAR_MODEL']}<br>
-									<c:if test="${fn:length(map['CAR_LOC'])>30}">
-										${fn:substring(map['CAR_LOC'], 0,30)}...
-									</c:if> 
-									<c:if test="${fn:length(map['CAR_LOC'])<=30}">
-										${map['CAR_LOC']}
-									</c:if>
-								</a>
-								</td>
+								<td class="listImg"><img alt="사진" height="56px;" width="90px;" src="<c:url value='/picture_upload/${map["PICTURE_1"]}'/>"></td>
+								<td class="listSize">${map['CAR_SIZE']}</td>
+								<c:if test="${mpa['LB_BUYCAR_YN']=='Y'}">								
+									이미 거래 완료한 차량입니다.
+								</c:if>
+								<c:if test="${mpa['LB_BUYCAR_YN']=='Y'}">								
+									<td class="listName" style="text-align: left;">
+										<a class="auctionTitle" href="<c:url value='/delivery/detail.do?auctionNo=${map["AUCTION_NO"]}'/>">
+												${map['CAR_MODEL']}<br>
+											<c:if test="${fn:length(map['CAR_LOC'])>30}">
+												${fn:substring(map['CAR_LOC'], 0,30)}...
+											</c:if> 
+											<c:if test="${fn:length(map['CAR_LOC'])<=30}">
+												${map['CAR_LOC']}
+											</c:if>
+										</a>
+									</td>
+								</c:if>
 								<td>${map['CAR_BIRTH']}<br> ${map['CAR_DIST']}km
 								</td>
 								<td>${map['CAR_AM']}<br> ${map['CAR_GAS']}

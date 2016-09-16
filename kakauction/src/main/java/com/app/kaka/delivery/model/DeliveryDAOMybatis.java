@@ -11,8 +11,13 @@ public class DeliveryDAOMybatis extends SqlSessionDaoSupport implements Delivery
 	private String namespace = "config.mybatis.mapper.oracle.delivery";
 	
 	@Override
-	public Map<String, Object> selectARCView(int auctionNo) {
-		return getSqlSession().selectOne(namespace+".selectARCView", auctionNo);
+	public Map<String, Object> selectARCView(Map<String, Object> myMap) {
+		return getSqlSession().selectOne(namespace+".selectARCView", myMap);
+	}
+
+	@Override
+	public int insertTrade(Map<String, Object> map) {
+		return getSqlSession().insert(namespace+".insertTrade", map);
 	}
 	
 }

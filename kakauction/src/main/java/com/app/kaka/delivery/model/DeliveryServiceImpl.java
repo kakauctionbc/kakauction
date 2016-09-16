@@ -12,8 +12,13 @@ public class DeliveryServiceImpl implements DeliveryService{
 	private DeliveryDAO deliveryDao;
 	
 	@Override
-	public Map<String, Object> selectARCView(int auctionNo) {
-		return deliveryDao.selectARCView(auctionNo);
+	public Map<String, Object> selectARCView(Map<String, Object> myMap) {
+		return deliveryDao.selectARCView(myMap);
+	}
+
+	@Override
+	public int insertTrade(Map<String, Object> map) {
+		return deliveryDao.insertTrade(map);
 	}
 	
 }

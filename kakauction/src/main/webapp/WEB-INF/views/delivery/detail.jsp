@@ -1,10 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../design/inc/top.jsp" %>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.1.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		//{"memoList":[{"no":1,"name":"홍길동","content":"안녕"},{"no":2,"name":"김길동","content":"안녕하세요"},{"no":3,"name":"이길동","content":"hi"}]}
-	
+		
+		var lbNo = $("#lbNo").val();
+		var recordNo = $("#recordNo").val();
+		var buyerMemberId = $("#buyerMemberId").val();
+		var recordPrice = $("#recordPrice").val();
+		var auctionNo = $("#auctionNo").val();
+		var dontPay = Math.round(recordPrice/10);
+		var memberName = $("#memberName").val();
+		var memberHp = $("#memberHp").val();
+		var memberEmail = $("#memberEmail").val();
+		var memAddr = $("#memAddr").val();
+		var zipcode = $("#zipcode").val();
+		
 		$("#map").click(function(){ 
 			var message = $("#buyerLocation").val();
 		    
@@ -12,6 +25,89 @@
 		    resultDiv.innerHTML = message;
 		    $("#buyerLoc").val(message);
 		}); //click
+		
+		$("#payment").click(function(){
+			var IMP = window.IMP;
+			IMP.init('imp83107498');
+			
+			IMP.request_pay({
+			    pg : 'nice', // version 1.1.0부터 지원.
+			        /*
+			            'kakao':카카오페이,
+			            'inicis':이니시스, 'html5_inicis':이니시스(웹표준결제),
+			            'nice':나이스,
+			            'jtnet':jtnet,
+			            'uplus':LG유플러스
+			        */
+			    pay_method : 'card', // 'card' : 신용카드 | 'trans' : 실시간계좌이체 | 'vbank' : 가상계좌 | 'phone' : 휴대폰소액결제
+			    merchant_uid : 'merchant_' + new Date().getTime(),
+			    name : '주문명:결제테스트',
+			    amount : recordPrice,
+			    buyer_email : memberEmail,
+			    buyer_name : memberName,
+			    buyer_tel : memberHp,
+			    buyer_addr : memAddr,
+			    buyer_postcode : zipcode,
+			    app_scheme : 'iamporttest' //in app browser결제에서만 사용 
+			}, function(rsp) {
+			    if ( rsp.success ) {
+			        var msg = '결제가 완료되었습니다.';
+			        msg += '고유ID : ' + rsp.imp_uid;
+			        msg += '상점 거래ID : ' + rsp.merchant_uid;
+			        msg += '결제 금액 : ' + rsp.paid_amount;
+			        msg += '카드 승인번호 : ' + rsp.apply_num;
+			        console.log(msg);
+			        var data={"lbNo":lbNo,"recordNo":recordNo,"auctionNo":auctionNo,"buyerMemberId":buyerMemberId,"recordPrice":recordPrice,"tradeType":"정상결제"};
+			        location.replace("<c:url value='/delivery/insertTrade.do?data="+data+"'/>");
+			    } else {
+			        var msg = '결제에 실패하였습니다.';
+			        msg += '에러내용 : ' + rsp.error_msg;
+			    }
+			});
+			
+		});
+		
+		$("#dontPay").click(function(){
+			if(confirm("결제 취소시 낙찰금의 10%를 결제하게 됩니다.확인을 누르시면 결제 페이지로 이동합니다.")){
+				var IMP = window.IMP;
+				IMP.init('imp83107498');
+				
+				IMP.request_pay({
+				    pg : 'nice', // version 1.1.0부터 지원.
+				        /*
+				            'kakao':카카오페이,
+				            'inicis':이니시스, 'html5_inicis':이니시스(웹표준결제),
+				            'nice':나이스,
+				            'jtnet':jtnet,
+				            'uplus':LG유플러스
+				        */
+				    pay_method : 'card', // 'card' : 신용카드 | 'trans' : 실시간계좌이체 | 'vbank' : 가상계좌 | 'phone' : 휴대폰소액결제
+				    merchant_uid : 'merchant_' + new Date().getTime(),
+				    name : '주문명:결제테스트',
+				    amount : dontPay,
+				    buyer_email : memberEmail,
+				    buyer_name : memberName,
+				    buyer_tel : memberHp,
+				    buyer_addr : memAddr,
+				    buyer_postcode : zipcode,
+				    app_scheme : 'iamporttest' //in app browser결제에서만 사용 
+				}, function(rsp) {
+				    if ( rsp.success ) {
+				        var msg = '결제가 완료되었습니다.';
+				        msg += '고유ID : ' + rsp.imp_uid;
+				        msg += '상점 거래ID : ' + rsp.merchant_uid;
+				        msg += '결제 금액 : ' + rsp.paid_amount;
+				        msg += '카드 승인번호 : ' + rsp.apply_num;
+				        console.log(msg);
+				        var data={"lbNo":lbNo,"recordNo":recordNo,"auctionNo":auctionNo,"buyerMemberId":buyerMemberId,"recordPrice":recordPrice,"tradeType":"거래취소"};
+				        location.replace("<c:url value='/delivery/insertTrade.do?data="+data+"'/>");
+				    } else {
+				        var msg = '결제에 실패하였습니다.';
+				        msg += '에러내용 : ' + rsp.error_msg;
+				    }
+				});
+			}
+		});
 	});	
 	
 	function Div_carphto_onoff(){
@@ -48,9 +144,7 @@
 <body>
 	<br>
 	<h4>경매 결과</h4>
-	<table class="box2" 
-	summary="경매 결과에 관한 표로써, 경매번호, 차량번호, 구매자아이디, 판매자아이디, 최종입찰시간, 경매 시작가, 경매 최종가격, 차량 종류, 연식, 수령지
-		등의 정보를 제공합니다." style="text-align: center; border: 1px solid silver">
+	<table class="box2" summary="경매 결과에 관한 표로써, 경매번호, 차량번호, 구매자아이디, 판매자아이디, 최종입찰시간, 경매 시작가, 경매 최종가격, 차량 종류, 연식, 수령지 등의 정보를 제공합니다." style="text-align: center; border: 1px solid silver">
 		<caption>경매 결과</caption>
 		<colgroup>
 			<col width="15%" />
@@ -75,13 +169,13 @@
 			</tr>
 			<tr>
 				<th colspan="2">최종 입찰 시간</th>
-				<td colspan="2"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${map['RECORD_REGDATE'] }"/></td>
+				<td colspan="2"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${map['LASTBUYER_REGDATE'] }"/></td>
 			</tr>
 			<tr>
 				<th>경매 시작가</th>
 				<td><fmt:formatNumber pattern="#,###" value="${map['AUCTION_FIRSTPRICE'] }"/> (단위 : 만원)</td>
 				<th>최종 입찰 가격</th>
-				<td><fmt:formatNumber pattern="#,###" value="${map['RECORD_PRICE'] }"/> (단위 : 만원)</td>
+				<td><fmt:formatNumber pattern="#,###" value="${map['RECORD_PRICE']}"/> (단위 : 만원)</td>
 			</tr>
 			<tr>
 				<th>차량 종류</th>
@@ -102,9 +196,8 @@
 	<%-- <jsp:include page="/map/mapConti.do"/> --%>
 	<br>
 	<h4>내 정보</h4>
-	<table class="box2" 
-	summary="경매 결과에 관한 표로써, 경매번호, 차량번호, 구매자아이디, 판매자아이디, 최종입찰시간, 경매 시작가, 경매 최종가격, 차량 종류, 연식, 수령지
-		등의 정보를 제공합니다." style="text-align: center; border: 1px solid silver">
+	<form method="post" action="<c:url value='/delivery/payment.do'/>" name="deliFrm">
+	<table class="box2" summary="경매 결과에 관한 표로써, 경매번호, 차량번호, 구매자아이디, 판매자아이디, 최종입찰시간, 경매 시작가, 경매 최종가격, 차량 종류, 연식, 수령지 등의 정보를 제공합니다." style="text-align: center; border: 1px solid silver">
 		<caption>경매 결과</caption>
 		<colgroup>
 			<col width="20%" />
@@ -126,9 +219,31 @@
 				<th>주소</th>
 				<td>${memVo.memberAddr } ${memVo.memberAddr2 }</td>
 			</tr>
+			<tr>
+				<th>최종 수령</th>
+				<td>
+					<input type="hidden" id="recordNo" value="${map['RECORD_NO']}">
+					<input type="hidden" id="lbNo" value="${map['LB_NO']}">
+					<input type="hidden" id="buyerMemberId" value="${map['BUYER_MEMBER_ID']}">
+					<input type="hidden" id="zipcode" value="${memVo.memberZipcode}">
+					<input type="hidden" id="zipcode" value="${memVo.memberZipcode}">
+					<input type="hidden" id="recordPrice" value="${map['RECORD_PRICE']}">
+					<input type="hidden" id="memberName" value="${memVo.memberName}">
+					<input type="hidden" id="memberHp" value="${memVo.memberHp}">
+					<input type="hidden" id="memberEmail" value="${memVo.memberEmail}">
+					<input type="hidden" id="memAddr" value="${memVo.memberAddr } ${memVo.memberAddr2 }">
+					<input type="hidden" id="auctionNo" value="${map['AUCTION_NO']}">
+					<a id="payment" href="#"><img alt="계약금 지불 페이지" src="<c:url value='/img/paymentIcon.png'/>"></a>
+				</td>
+				<th>계약 취소</th>
+				<td>
+					<a id="dontPay" href="#"><img alt="계약 취소" src="<c:url value='/img/cancelIcon.png'/>"></a>
+				</td>
+			</tr>
 		</tbody>
 	</table>
-	<br>
+	</form>
+	
 	<h4>입찰 차량 상세 정보</h4>
 	<div class="cont_column03 renew"> 
 	<div class="column_l">
@@ -951,8 +1066,15 @@
 			</table> 
 		</div>
 	</div>
+	<div>
+		<dl>
+			<dt>책임한계 및 법적고지</dt>
+			<dd>KAKAUCTION 카카옥션은 판매자가 등록한 매물정보가 노출될 수 있도록 등록 시스템만을 제공하며, <br>
+				판매자가 등록한 매물 정보 및 이와 관련한 실제 거래에 대하여 어떤 책임도 부담하지 않습니다.</dd>
+		</dl>
+	</div>
 	
-	<div class="information mt">
+<%-- 	<div class="information mt">
 		<dl>
 			<dt> <strong>판매자정보</strong> </dt>
 			<dd class="first"> <span class="t">판매자</span>
@@ -1048,5 +1170,5 @@
 	</div>
 	</div>
 	<!--//상세하단안내--> 
-	</div>
+	</div> --%>
 <%@ include file="../design/inc/bottom.jsp" %>

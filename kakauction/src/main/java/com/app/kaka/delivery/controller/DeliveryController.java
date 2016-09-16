@@ -1,5 +1,6 @@
 package com.app.kaka.delivery.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -55,9 +56,13 @@ public class DeliveryController {
 			
 			return "common/message";
 		}
+		Map<String, Object> myMap = new HashMap<String, Object>();
+		myMap.put("buyerMemberId", memberId);
+		myMap.put("auctionNo", auctionNo);
 		
-		Map<String, Object> map = deliveryService.selectARCView(auctionNo);
+		Map<String, Object> map = deliveryService.selectARCView(myMap);
 		MemberVO memVo = memberService.selectMemberByUserid(memberId);
+		logger.info("딜리버리 페이지 간다간다! map = {}", map);
 		
 		model.addAttribute("map", map);
 		model.addAttribute("memVo", memVo);
@@ -105,5 +110,14 @@ public class DeliveryController {
 		model.addAttribute("opTune", opTune);
 		
 		return "delivery/detail";
+	}
+	@RequestMapping("/insertTrade.do")
+	public String insertTrade(@RequestParam Map<String, Object> data, Model model){
+		model.addAttribute("requestParam 으로 받은 map", data);
+		int cnt = deliveryService.insertTrade(data);
+		logger.info("거래 성공 cnt={}",cnt);
+		model.addAttribute("map", data);
+		logger.info("model에 담은 map={}",data);
+		return "delivery/payment";
 	}
 }

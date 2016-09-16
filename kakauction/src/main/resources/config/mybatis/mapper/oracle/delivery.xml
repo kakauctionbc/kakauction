@@ -2,8 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="config.mybatis.mapper.oracle.delivery">
-	<select id="selectARCView" parameterType="int" resultType="map">
-		select * from auction_record_car
-		where auction_no = #{auctionNo}
+	<select id="selectARCView" parameterType="map" resultType="map">
+		select * from auction_lastbuyer_car 
+		where buyer_member_id=#{buyerMemberId} and auction_no=#{auctionNo}
 	</select>
+	
+	<insert id="insertTrade" parameterType="map">
+		<selectKey keyProperty="tradeNo" resultType="int" order="BEFORE">
+			select trade_seq.nextval from dual
+		</selectKey>
+		insert into trade(TRADE_NO, LB_NO, RECORD_NO, BUYER_MEMBER_ID, RECORD_PRICE, AUCTION_NO, TRADE_TYPE)
+		values(#{tradeNo},#{lbNo},#{recordNo},#{buyerMemberId},#{recordPrice},#{auctionNo},#{tradeType})
+	</insert>
 </mapper>
