@@ -2,6 +2,7 @@ package com.app.kaka.auction.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -180,7 +181,7 @@ public class AuctionController {
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		
 		//전체 레코드 개수 조회하기
-		int totalRecord = auctionService.selectListCount(searchVo);
+		int totalRecord = auctionService.selectTodayCount(searchVo);
 		logger.info("토탈레코드가 궁금 totalRecord={}",totalRecord);
 		pagingInfo.setTotalRecord(totalRecord);
 		List<AuctionCarVO> alist = auctionService.selectTodayList(searchVo);
@@ -205,10 +206,6 @@ public class AuctionController {
 		logger.info("경매 목록");
 		String memberId = (String)session.getAttribute("memberId");
 		vo.setMemberId(memberId);
-		/*3. 글목록 조회
-		/reBoard/list.do => ReBoardListController
-		=> /reBoard/list.jsp*/
-		//1. 파라미터 읽어오기
 		logger.info("글목록 조회, 파라미터 vo={}", vo);
 		if(vo.getStartDay()==null || vo.getStartDay().isEmpty()){				
 			Date d = new Date();
@@ -230,12 +227,10 @@ public class AuctionController {
 		logger.info("글목록 조회, 파라미터 vo={}", vo);
 		
 		//2. db작업 - select
-		List<AuctionCarVO> alist = auctionService.selectAucList(vo);
+		List<AuctionCarVO> alist = auctionService.selectMyAuctionList(vo);
 		logger.info("글목록 조회 결과 alist.size()={}", alist.size());
 		//전체 레코드 개수 조회하기
-		int totalRecord = auctionService.selectMyAuctionListCount(vo);
-		logger.info("토탈레코드가 궁금 totalRecord={}",totalRecord);
-		pagingInfo.setTotalRecord(totalRecord);
+		pagingInfo.setTotalRecord(alist.size());
 				
 		//3. 결과 저장, 뷰페이지 리턴
 		model.addAttribute("alist", alist);
@@ -291,7 +286,6 @@ public class AuctionController {
 	public String auctionDeny(@RequestParam String carNum, Model model){
 		
 		int cnt = auctionService.auctionDenyCar(carNum);
-		
 		String msg="", url="";
 		
 		if(cnt>0){
@@ -312,7 +306,6 @@ public class AuctionController {
 	public String auctionDeferCar(@RequestParam String carNum, Model model){
 		
 		int cnt = auctionService.auctionDenyCar(carNum);
-		
 		String msg="", url="";
 		
 		if(cnt>0){
@@ -364,6 +357,13 @@ public class AuctionController {
 	
 	    Map<String, Object> auctionGo = auctionService.selectAuctionGo(auctionNo);
 	    logger.info("auctionGo 라는 이름의 map={}",auctionGo);
+	    String state = (String)auctionGo.get("AUCTION_STATE");
+	    if(state.equals("END")){
+	    	model.addAttribute("msg", "이미 종료된 경매입니다");
+	    	model.addAttribute("url", "/auction/list.do");
+	    	
+	    	return "common/message";
+	    }
 	    model.addAttribute("memberId", memberId);
 	    model.addAttribute("auctionGo", auctionGo);
 	    
@@ -417,8 +417,14 @@ public class AuctionController {
 		int recordPrice=Integer.parseInt((String)auctionmap.get("recordPrice"));
 		int highPrice=Integer.parseInt((String)auctionmap.get("highPrice"));
 		logger.info("auctionmap={}, 끝나고 auctionNo={}",auctionmap,auctionNo);
-		
 		HighPriceVO highVo = new HighPriceVO();
+		String state = auctionService.selectAucBynoToState(auctionNo);
+		if(state.equals("END")){
+			highVo.setBuyerMemberId("종료된 경매입니다");
+			highVo.setRecordPrice(0);
+			highVo.setAuctionState(state);
+			return highVo;
+		}
 		int cnt=auctionService.selectHighPriceCount(auctionNo);
 		logger.info("궁금함 cnt ={}",cnt);
 		
@@ -437,6 +443,7 @@ public class AuctionController {
 		logger.info("cnt="+cnt);
 		if(cnt>0){
 			highVo = auctionService.selectHighPrice(auctionNo);
+			highVo.setAuctionState(state);
 		}
 		logger.info("highVo="+highVo);
 		
@@ -450,14 +457,21 @@ public class AuctionController {
 		//logger.info("1 auctionmap={}",auctionmap);
 		String sellerid=(String)auctionmap.get("sellerMemberId");
 		//logger.info("2 sellerid={}",sellerid);
-		
+		HighPriceVO highVo = new HighPriceVO();
 		int recordPrice=Integer.parseInt((String)auctionmap.get("recordPrice"));
 		int auctionNo = Integer.parseInt((String)auctionmap.get("auctionNo"));
+		String state = auctionService.selectAucBynoToState(auctionNo);
+		if(state.equals("END")){
+			highVo.setBuyerMemberId("종료된 경매입니다");
+			highVo.setRecordPrice(0);
+			highVo.setAuctionState(state);
+			return highVo;
+		}
 		//logger.info("3 recordPrice={}",recordPrice);
 		//logger.info("4 auctionNo={}",auctionNo);
 		
 		int cnt=auctionService.selectHighPriceCount(auctionNo);
-		HighPriceVO highVo = new HighPriceVO();
+		
 		//logger.info("5 cnt={}",cnt);
 		
 		if(cnt<=0){
@@ -466,9 +480,42 @@ public class AuctionController {
 			//logger.info("6 highVo={}",highVo);
 		}else{
 			highVo = auctionService.selectHighPrice(auctionNo);
+			highVo.setAuctionState(state);
 			//logger.info("7 highVo={}",highVo);
 		}
 		return highVo;
+	}
+	
+	@RequestMapping("/auctionSuccess.do")
+	public String auctionSuccess(@ModelAttribute DateSearchVO vo, HttpSession session, Model model){
+		logger.info("낙찰된 경매");
+		String memberId = (String)session.getAttribute("memberId");
+		vo.setMemberId(memberId);
+		logger.info("글목록 조회, 파라미터 vo={}", vo);
+		if(vo.getStartDay()==null || vo.getStartDay().isEmpty()){				
+			Date d = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String today = sdf.format(d);
+			
+			vo.setStartDay(today);
+			vo.setEndDay(today);
+		}
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.MAUCLIST_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(vo.getCurrentPage());
+		
+		vo.setBlockSize(Utility.BLOCK_SIZE);
+		vo.setRecordCountPerPage(Utility.MAUCLIST_COUNT_PER_PAGE);
+		vo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		
+		List<Map<String, Object>> alist = auctionService.selectLastBuyer(vo);
+		model.addAttribute("alist", alist);
+		model.addAttribute("alistsize", alist.size());
+		model.addAttribute("pagingInfo", pagingInfo);
+		
+		return "auction/auctionSuccess";
+		
 	}
 	
 }

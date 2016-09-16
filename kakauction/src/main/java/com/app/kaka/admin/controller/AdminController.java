@@ -35,7 +35,7 @@ public class AdminController {
 	@Autowired
 	private OpService opService;
 	
-	@RequestMapping(value="/write.do", method=RequestMethod.GET)
+	@RequestMapping(value="/auctionWrite.do", method=RequestMethod.GET)
 	public String write_get(Model model){
 		logger.info("경매 등록 화면 보여주기");
 		List<CarVO> alist = auctionService.carlist();
@@ -43,7 +43,7 @@ public class AdminController {
 		return "admin/auctionWrite";
 	}
 	
-	@RequestMapping(value="/write.do", method=RequestMethod.POST)
+	@RequestMapping(value="/auctionWrite.do", method=RequestMethod.POST)
 	public String write_post(@ModelAttribute AuctionVO auctionVo, @RequestParam String carBirth, @RequestParam String carSize , Model model){
 		logger.info("경매 등록 처리, 파라미터 auctionVo={} ", auctionVo);
 		

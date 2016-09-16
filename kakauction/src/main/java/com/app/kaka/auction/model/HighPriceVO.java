@@ -4,7 +4,14 @@ public class HighPriceVO {
 	private String buyerMemberId;
 	private int recordPrice;
 	private int rank;
+	private String auctionState;
 	
+	public String getAuctionState() {
+		return auctionState;
+	}
+	public void setAuctionState(String auctionState) {
+		this.auctionState = auctionState;
+	}
 	public String getBuyerMemberId() {
 		return buyerMemberId;
 	}
@@ -26,6 +33,7 @@ public class HighPriceVO {
 	
 	@Override
 	public String toString() {
-		return "HighPriceVO [buyerMemberId=" + buyerMemberId + ", recordPrice=" + recordPrice + ", rank=" + rank + "]";
+		return "HighPriceVO [buyerMemberId=" + buyerMemberId + ", recordPrice=" + recordPrice + ", rank=" + rank
+				+ ", auctionState=" + auctionState + "]";
 	}
 }

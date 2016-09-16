@@ -36,25 +36,37 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 	public int updateAuctionYn(AuctionVO vo) {
 		return getSqlSession().update(namespace+".updateAuctionYn", vo);
 	}
-
+	//경매 리스트
 	@Override
-	public int selectTotalCount(SearchVO vo) {
-		return getSqlSession().selectOne(namespace+".selectTotalCount",vo);
+	public List<AuctionCarVO> selectAucList(SearchVO vo) {
+		return getSqlSession().selectList(namespace+".selectAucList", vo);
 	}
-	
 	@Override
 	public int selectListCount(SearchVO vo){
 		return getSqlSession().selectOne(namespace+".selectListCount", vo);
 	}
-
+	//오늘의 경매리스트
 	@Override
-	public List<AuctionCarVO> selectAll(SearchVO vo) {
+	public List<AuctionCarVO> selectTodayList(SearchVO vo) {
+		return getSqlSession().selectList(namespace+".selectTodayList", vo);
+	}
+	@Override
+	public int selectTodayCount(SearchVO vo) {
+		return getSqlSession().selectOne(namespace+".selectTodayCount", vo);
+	}
+	//종료된 경매는 리스트에 보이지 않음
+	@Override
+	public int selectTotalCount(SearchVO vo) {
+		return getSqlSession().selectOne(namespace+".selectTotalCount", vo);
+	}
+	//admin에서 불러오는 것들
+	@Override
+	public List<AuctionCarVO> selectAll(SearchVO vo){
 		return getSqlSession().selectList(namespace+".selectAll", vo);
 	}
 	@Override
-	public List<AuctionCarVO> selectList(SearchVO vo) {
-		List<AuctionCarVO> alist =getSqlSession().selectList(namespace+".selectList", vo);
-		return alist;
+	public List<AuctionCarVO> selectList(SearchVO vo){
+		return getSqlSession().selectList(namespace+".selectList", vo);
 	}
 	
 	@Override
@@ -66,11 +78,6 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 	@Override
 	public int updateAuction(int auctionNo) {
 		return getSqlSession().update(namespace+".updateAuction", auctionNo);
-	}
-
-	@Override
-	public CarVO selectByCarNum(String carNum) {
-		return getSqlSession().selectOne(namespace+".selectByCarNum", carNum);
 	}
 
 	@Override
@@ -129,11 +136,6 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 	}
 
 	@Override
-	public int selectMyAuctionListCount(DateSearchVO vo) {
-		return getSqlSession().selectOne(namespace+".selectMyAuctionListCount",vo);
-	}
-
-	@Override
 	public List<AuctionVO> selectAuctionNoList() {
 		return getSqlSession().selectList(namespace+".selectAuctionNoList");
 	}
@@ -173,10 +175,6 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 		return getSqlSession().selectOne(namespace+".selRecordByBuyer", map);
 	}
 
-	@Override
-	public List<AuctionCarVO> selectAucList(SearchVO vo) {
-		return getSqlSession().selectList(namespace+".selectAucList", vo);
-	}
 
 	@Override
 	public List<RecordVO>  selectRecordByAuctionNo(int auctionNo) {
@@ -184,13 +182,33 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 	}
 
 	@Override
-	public int selectTodayCount(SearchVO vo) {
-		return getSqlSession().selectOne(namespace+".selectTodayCount", vo);
+	public String selectAucBynoToState(int auctionNo) {
+		return getSqlSession().selectOne(namespace+".selectAucBynoToState", auctionNo);
 	}
 
 	@Override
-	public List<AuctionCarVO> selectTodayList(SearchVO vo) {
-		return getSqlSession().selectList(namespace+".selectTodayList", vo);
+	public int selectLastBuyerById(RecordVO vo) {
+		return getSqlSession().selectOne(namespace+".selectLastBuyerById", vo);
 	}
+	
+	//낙찰된 경매를 보자
+	@Override
+	public List<Integer> selectMyAuctionById(String memberId) {
+		return getSqlSession().selectList(namespace+".selectMyAuctionById",memberId);
+	}
+	@Override
+	public List<Map<String, Object>> selectLastBuyer(DateSearchVO vo) {
+		return getSqlSession().selectList(namespace+".selectLastBuyer",vo);
+	}
+
+	@Override
+	public int selectLastBuyerCount(String memberId) {
+		return getSqlSession().selectOne(namespace+".selectLastBuyerCount", memberId);
+	}
+
+	
+
+
+
 
 }

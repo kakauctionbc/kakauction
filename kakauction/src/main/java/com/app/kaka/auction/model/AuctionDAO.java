@@ -15,20 +15,31 @@ public interface AuctionDAO {
 	public int insertAuction(AuctionVO vo);
 	public int updateAuctionYn(AuctionVO vo);
 	
-	public int selectTotalCount(SearchVO vo);
-	public int selectListCount(SearchVO vo);
-	public int selectTodayCount(SearchVO vo);
-
-	public List<AuctionCarVO> selectTodayList(SearchVO vo);
+	//전체 리스트
 	public List<AuctionCarVO> selectAucList(SearchVO vo);
-	public List<AuctionCarVO> selectAll(SearchVO vo);
-	public List<AuctionCarVO> selectList(SearchVO vo);
+	public int selectListCount(SearchVO vo);
 	
+	//오늘의 경매 리스트
+	public List<AuctionCarVO> selectTodayList(SearchVO vo);
+	public int selectTodayCount(SearchVO vo);
+	
+	//나의 경매 리스트
+	public List<AuctionCarVO> selectMyAuctionList(DateSearchVO vo);
+	
+	//종료된 경매는 보이지 않음
+	public int selectTotalCount(SearchVO vo);
+	
+	//서비스에서 사용할 애들
 	public int updateAuctionState(AuctionVO vo);
 	public int selRecordByBuyer(Map<String, Object> map);
 	
+	//조회수 증가
 	public int updateAuction(int auctionNo);
-	public CarVO selectByCarNum(String carNum);
+	
+	//admin 에서 불러오는 것들
+	public List<AuctionCarVO> selectAll(SearchVO vo);
+	public List<AuctionCarVO> selectList(SearchVO vo);
+	
 	public AuctionCarVO selectAuction(int auctionNo);
 	public int auctionDenyCar(String carNum);
 	public int auctionDeferCar(String carNum);
@@ -43,9 +54,8 @@ public interface AuctionDAO {
 	public int insertByuer(BuyerVO buyerVo);
 	public int selectBuyerByIdNo(BuyerVO buyerVo);
 	
-	public List<AuctionCarVO> selectMyAuctionList(DateSearchVO vo);
-	public int selectMyAuctionListCount(DateSearchVO vo);
-	
+
+	//종료된 경매에 대한 처리
 	public List<AuctionVO> selectAuctionNoList();
 	public int selAucBuyerList(int auctionNo);
 	
@@ -56,4 +66,13 @@ public interface AuctionDAO {
 	public RecordVO selectRecordByRecordNo(int auctionNo);
 	public List<RecordVO> selectRecordByAuctionNo(int auctionNo);
 	public int insertLastBuyer(RecordVO vo);
+	
+	//낙찰된 경매를 보자
+	public List<Integer> selectMyAuctionById(String memberId);
+	public List<Map<String, Object>> selectLastBuyer(DateSearchVO vo);
+	public int selectLastBuyerCount(String memberId);
+	
+	public String selectAucBynoToState(int auctionNo);
+	
+	public int selectLastBuyerById(RecordVO vo);
 }

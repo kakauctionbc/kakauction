@@ -36,21 +36,31 @@ public interface AuctionService {
 	public int insertAuction(AuctionVO vo);
 	public int updateAuctionYn(AuctionVO vo);
 	
-	
-	public int selectTotalCount(SearchVO vo);
-	public int selectListCount(SearchVO vo);
-	public int selectTodayCount(SearchVO vo);
-
-	public List<AuctionCarVO> selectTodayList(SearchVO vo);
+	//전체 리스트
 	public List<AuctionCarVO> selectAucList(SearchVO vo);
+	public int selectListCount(SearchVO vo);
+	
+	//오늘의 경매 리스트
+	public List<AuctionCarVO> selectTodayList(SearchVO vo);
+	public int selectTodayCount(SearchVO vo);
+	
+	//나의 경매 리스트
+	public List<AuctionCarVO> selectMyAuctionList(DateSearchVO vo);
+	
+	//종료된 경매는 보이지 않음
+	public int selectTotalCount(SearchVO vo);
+	
+	//admin에서 불러오는 것들
 	public List<AuctionCarVO> selectAll(SearchVO vo);
 	public List<AuctionCarVO> selectList(SearchVO vo);
+	
+	
 	public int selRecordByBuyer(Map<String, Object> map);
 	
 	public int updateAuctionState(AuctionVO vo);
 	
 	public int updateAuction(int auctionNo);
-	public CarVO selectByCarNum(String carNum);
+
 	public AuctionCarVO selectAuction(int auctionNo);
 	public int auctionDenyCar(String carNum);
 	public int auctionDeferCar(String carNum);
@@ -64,8 +74,6 @@ public interface AuctionService {
 	public HighPriceVO selectHighPrice(int auctionNo);
 	public int selectHighPriceCount(int auctionNo);
 	
-	public List<AuctionCarVO> selectMyAuctionList(DateSearchVO vo);
-	public int selectMyAuctionListCount(DateSearchVO vo);
 	
 	public List<AuctionVO> selectAuctionNoList();
 	public int selAucBuyerList(int auctionNo);
@@ -78,4 +86,13 @@ public interface AuctionService {
 	public List<RecordVO> selectRecordByAuctionNo(int auctionNo);
 	public int insertLastBuyer(RecordVO vo);
 	public void updateState();
+	
+	//낙찰된 경매를 보자
+	public List<Integer> selectMyAuctionById(String memberId);
+	public List<Map<String, Object>> selectLastBuyer(DateSearchVO vo);
+	public int selectLastBuyerCount(String memberId);
+	
+	public String selectAucBynoToState(int auctionNo);
+	
+	public int selectLastBuyerById(RecordVO vo);
 }

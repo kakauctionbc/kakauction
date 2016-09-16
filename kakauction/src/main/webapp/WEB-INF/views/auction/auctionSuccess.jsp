@@ -18,11 +18,6 @@
 		document.frmPage.submit();
 	}
 </script>
-<style type="text/css">
-	#right{
-		float: right;
-	}
-</style>
 <div id="wrap">
 	<div id="wrapdiv">
 		<div id="wraptop">
@@ -30,20 +25,20 @@
 				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>신고리스트
 			</p>
 		</div>
-	<div id="right">
-		<a href="<c:url value='/admin/auctionWrite.do'/>">경매 등록 화면</a>
-	</div>
 		<div id="pagelogo">
-			<img src="${pageContext.request.contextPath }/img/auctionList_logo.png" alt="회원가입로고">
+			<img
+				src="${pageContext.request.contextPath }/img/auctionList_logo.png"
+				alt="회원가입로고">
 		</div>
 		<form name="frmPage" method="post" action="<c:url value='/auction/list.do'/>">
-			<input type="hidden" name="currentPage"> 
-			<input type="hidden" name="searchCondition" value="${param.searchCondition }"> 
-			<input type="hidden" name="searchKeyword" value="${searchVO.searchKeyword }">
+			<input type="hidden" name="currentPage"> <input type="hidden"
+				name="searchCondition" value="${param.searchCondition }"> <input
+				type="hidden" name="searchKeyword"
+				value="${searchVO.searchKeyword }">
 		</form>
 
 		<div class="divList">
-			<p>전체 목록 - ${pagingInfo.totalRecord }건 조회되었습니다</p>
+			<p>전체 조회 결과 - ${alistsize }건 조회되었습니다</p>
 			<table class="box2">
 				<caption>자료실</caption>
 				<colgroup>
@@ -65,20 +60,13 @@
 						<th>물건명</th>
 						<th>연식</th>
 						<th>변속기</th>
-						<th>감정평가액</th>
-						<th>물건상태</th>
-						<th>입찰번호</th>
-						<th>입찰시작</th>
-						<th rowspan="2" class="readCount">조회수</th>
+						<th rowspan="2">낙찰가</th>
+						<th rowspan="2" class="readCount">조회</th>
 					</tr>
 					<tr>
 						<th>소재지</th>
 						<th>주행거리</th>
 						<th>연료</th>
-						<th>입찰시작가</th>
-						<th>유찰횟수</th>
-						<th>물건번호</th>
-						<th>입찰마감</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -89,33 +77,28 @@
 					</c:if>
 					<c:if test="${!empty alist}">
 						<!--게시판 내용 반복문 시작  -->
-						<c:forEach var="vo" items="${alist }">
+						<c:forEach var="map" items="${alist }">
 							<tr style="text-align: center">
-								<td class="listImg"><img alt="사진" height="56px;" width="90px;" src="<c:url value='/picture_upload/${vo.picture1}'/>"></td>
-								<td class="listSize">${vo.carSize}</td>
-								<td class="listName" style="text-align: left;">
-									<a href="<c:url value='/admin/auctionDetail.do?auctionNo=${vo.auctionNo}'/>">
-										${vo.carModel}<br> 
-									<c:if test="${fn:length(vo.carLoc)>30}">
-										${fn:substring(vo.carLoc, 0,30)}...
+							<td class="listImg"><img alt="사진" height="56px;" width="90px;" src="<c:url value='/picture_upload/${map["PICTURE_1"]}'/>"></td>
+							<td class="listSize">${map['CAR_SIZE']}</td>
+							<td class="listName" style="text-align: left;">
+								<a class="auctionTitle" href="<c:url value='/auction/updateCount.do?auctionNo=${map["AUCTION_NO"]}'/>">
+										${map['CAR_MODEL']}<br>
+									<c:if test="${fn:length(map['CAR_LOC'])>30}">
+										${fn:substring(map['CAR_LOC'], 0,30)}...
 									</c:if> 
-									<c:if test="${fn:length(vo.carLoc)<=30}">
-										${vo.carLoc}
-						</c:if>
-								</a></td>
-								<td>${vo.carBirth}<br> ${vo.carDist}km
+									<c:if test="${fn:length(map['CAR_LOC'])<=30}">
+										${map['CAR_LOC']}
+									</c:if>
+								</a>
 								</td>
-								<td>${vo.carAm}<br> ${vo.carGas}
+								<td>${map['CAR_BIRTH']}<br> ${map['CAR_DIST']}km
 								</td>
-								<td>${vo.carPrice}<br> ${vo.auctionFirstprice}
+								<td>${map['CAR_AM']}<br> ${map['CAR_GAS']}
 								</td>
-								<td>${vo.auctionState}<br> ${vo.carFailSell}
+								<td><fmt:formatNumber pattern="#,###" value="${map['RECORD_PRICE']}"/>만원
 								</td>
-								<td>${vo.auctionNoYear} - ${vo.auctionNoCar} -
-									${vo.auctionNo}</td>
-								<td>${vo.auctionRegdate}<br> ${vo.auctionFinish }
-								</td>
-								<td>${vo.auctionReadCount}</td>
+								<td class="readCount">${map['AUCTION_READ_COUNT']}</td>
 							</tr>
 						</c:forEach>
 						<!--반복처리 끝  -->
@@ -124,6 +107,7 @@
 				</tbody>
 			</table>
 		</div>
+		
 		<div class="pagediv">
 			<ul class="page">
 				<!-- 이전 블럭으로 이동 -->
@@ -147,9 +131,7 @@
 					<a href="#" onclick="pageProc(${pagingInfo.lastPage+1})">&raquo;</a>
 				</c:if></li>
 			</ul>
-		<div id="right">
-			<a href="<c:url value='/admin/auctionWrite.do'/>">경매 등록 화면</a>
-		</div>		
 		</div>
+	</div>
 </div>
 <%@ include file="../design/inc/bottom.jsp"%>

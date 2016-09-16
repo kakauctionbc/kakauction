@@ -116,7 +116,7 @@
 		});
 		
 		$("#btAuctionList").click(function(){
-			location.href="<c:url value='/auction/list.do'/>";
+			location.href="<c:url value='/auction/auctionList.do'/>";
 		});
 		
 		$("#btAuctionDefer").click(function(){
@@ -145,15 +145,13 @@
 	<div id="wrapdiv">
 		<div id="wraptop">
 			<p>
-				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>경매리스트
+				<a href="${pageContext.request.contextPath }/index.do">HOME</a>>경매리스트
 			</p>
 		</div>
 		<div id="pagelogo">
-			<img
-				src="${pageContext.request.contextPath }/img/auctionList_logo.png"
-				alt="회원가입로고">
+			<img src="${pageContext.request.contextPath }/img/auctionList_logo.png" alt="회원가입로고">
 		</div>
-	<form action="<c:url value='/admin/write.do'/>" name="auctionWrite" method="post">
+	<form action="<c:url value='/admin/auctionWrite.do'/>" name="auctionWrite" method="post">
 		<table width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
 			<tr>
 				<td height="30" class="p_10">

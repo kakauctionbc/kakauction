@@ -4,6 +4,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		var highMember = "";
+		var auctionState = "";
 		var highPrice = $("#highPrice").val();
 		var auctionNo= $("#auctionNo").val();
 		var carNum=$("#carNum").val();
@@ -20,6 +21,13 @@
 				dataType : "json",
 				success : function(highVo) {
 					highMember=highVo.buyerMemberId;
+					auctionState=highVo.auctionState;
+					if(auctionState=="END"){
+						$("#nowHighPrice").html("종료된 경매 입니다").css("text-align","right");
+						$("#goAuction").css("display","none");
+						return;
+					}
+					$("#goAuction").show();
 					$("#nowHighPrice").html(highVo.recordPrice+ "만원<br>"+highVo.buyerMemberId).css("text-align","right");
 					if(sellerMemberId==buyerMemberId){
 						$("#light").css("background","");
@@ -38,7 +46,7 @@
 		}
 		
 		$("#goAuction").click(function(){
-			if(sellerMemberId==buyerMemberId){
+ 			if(sellerMemberId==buyerMemberId){
 				alert("자신이 등록한 차량의 경매에 참가할 수 없습니다");
 				$("#light").css("background","");
 				return;
@@ -53,6 +61,14 @@
 				type : "POST",
 				dataType : "json",
 				success : function(highVo) {
+					auctionState=highVo.auctionState;
+					alert(auctionState);
+					if(auctionState=="END"){
+						$("#nowHighPrice").html("종료된 경매 입니다").css("text-align","right");
+						$("#goAuction").css("display","none");
+						return;
+					}
+					$("#goAuction").show();
 					$("#nowHighPrice").html(highVo.recordPrice+"만원<br>"+highVo.buyerMemberId).css("text-align","right");
 					$("#light").css("background","red");
 					
@@ -80,7 +96,7 @@
 			<input type="hidden" id="auctionNo" value="${auctionGo['AUCTION_NO'] }">
 			<input type="hidden" id="carNum" value="${auctionGo['CAR_NUM'] }">
 			<input type="hidden" id="sellerMemberId" value="${auctionGo['SELLER_MEMBER_ID'] }">
-			<input type="hidden" id="highPrice" value="${auctionGo['AUCTION_FIRSTPRICE'] }">
+			<input type="hidden" id="highPrice" value="${auctionGo['AUCTION_FIRSTPRICE']}">
 			<input type="hidden" id="byuerMemberId" value="${memberId }">
 			<input type="hidden" id="nowMemberId" value="${memberId }">
 			<table class="auctiongotable">
