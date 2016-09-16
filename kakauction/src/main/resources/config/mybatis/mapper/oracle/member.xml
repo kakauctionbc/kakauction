@@ -62,4 +62,12 @@
 	<select id="selectAllMember" resultType="MemberVO">
 		select * from member
 	</select>
+	
+	<update id="gradeUpdate" parameterType="MemberVO">
+		update member set member_Grade=${vo.memberGrade } where member_id=#{memberId}
+	</update>
+	
+	<select id="selectMemberCount" parameterType="string" resultType="int">
+		select count(*) from member where member_Grade=#{memberGrade}
+	</select>
 </mapper>
