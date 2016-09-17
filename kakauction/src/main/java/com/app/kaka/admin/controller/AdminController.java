@@ -3,6 +3,7 @@ package com.app.kaka.admin.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,7 @@ import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
 import com.app.kaka.op.model.OpService;
+import com.app.kaka.op.model.OpVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -40,7 +42,7 @@ public class AdminController {
 		logger.info("경매 등록 화면 보여주기");
 		List<CarVO> alist = auctionService.carlist();
 		model.addAttribute("carAlist", alist);
-		return "admin/auctionWrite";
+		return "admin/auction/auctionWrite";
 	}
 	
 	@RequestMapping(value="/auctionWrite.do", method=RequestMethod.POST)
@@ -143,6 +145,59 @@ public class AdminController {
 		model.addAttribute("alist", alist);
 		model.addAttribute("pagingInfo", pagingInfo);
 		
-		return "admin/auctionList";
+		return "admin/auction/auctionList";
+	}
+	@RequestMapping("/auctionDetail.do")
+	public String auctionDetail(@RequestParam int auctionNo, Model model){
+		if(auctionNo==0){
+	    	model.addAttribute("msg", "잘못된 url입니다");
+	    	model.addAttribute("url", "/auction/list.do");
+	    	
+	    	return "common/message";
+	    }
+	    Map<String, Object> auctionGo = auctionService.selectAuctionGo(auctionNo);
+	    logger.info("auctionGo 라는 이름의 map={}",auctionGo);
+
+	    model.addAttribute("auctionGo", auctionGo);
+	    
+	    AuctionCarVO acVo = auctionService.selectAuction(auctionNo);
+		model.addAttribute("acVo", acVo);
+		
+		OpVO opVo = opService.opDetail(acVo.getCarNum());
+		if(opVo.getOpAa()==null || opVo.getOpAa().isEmpty()){
+			opVo.setOpAa("");
+		}
+		if(opVo.getOpCon()==null || opVo.getOpCon().isEmpty()){
+			opVo.setOpCon("");
+		}
+		if(opVo.getOpIn()==null || opVo.getOpIn().isEmpty()){
+			opVo.setOpIn("");
+		}
+		if(opVo.getOpOut()==null || opVo.getOpOut().isEmpty()){
+			opVo.setOpOut("");
+		}
+		if(opVo.getOpSafe()==null || opVo.getOpSafe().isEmpty()){
+			opVo.setOpSafe("");
+		}
+		if(opVo.getOpTune()==null || opVo.getOpTune().isEmpty()){
+			opVo.setOpTune("");
+		}
+		
+		String[] opIn = opVo.getOpIn().split(",");
+		String[] opOut = opVo.getOpOut().split(",");
+		String[] opCon = opVo.getOpCon().split(",");
+		String[] opSafe = opVo.getOpSafe().split(",");
+		String[] opAa = opVo.getOpAa().split(",");
+		String[] opTune = opVo.getOpTune().split(",");
+		
+		model.addAttribute("opVo", opVo);
+		model.addAttribute("opIn", opIn);
+		model.addAttribute("opOut", opOut);
+		model.addAttribute("opCon", opCon);
+		model.addAttribute("opSafe", opSafe);
+		model.addAttribute("opAa", opAa);
+		model.addAttribute("opTune", opTune);
+		
+		return "admin/auction/adminAuctionDetail";
 	}
 }

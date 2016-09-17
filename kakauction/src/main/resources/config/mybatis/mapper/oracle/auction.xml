@@ -321,4 +321,8 @@
 	<select id="selectLastBuyerCount" parameterType="string" resultType="int">
 		select count(*) from lastbuyer where buyer_member_id=#{buyerMembeId}
 	</select>
+	
+	<select id="selectAucByAuctionNo" parameterType="int" resultType="map">
+		
+	</select>
 </mapper>

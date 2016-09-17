@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+#carOptionTable{
+	width: 1000px;
+}
+#carDetailHeader{
+	height: 40px;
+	border-bottom: 1px solid silver;
+}
+.h2{
+	font-size: 20px;
+	font-weight: bold;
+	background: #e3e3e3;
+}
+#carOptionTable td{
+	padding: 0px;
+}
+#carOptionTable td li{
+	border-right: 1px solid silver;
+	border-left: 1px solid silver;
+	padding-right: 10px;
+	padding-left: 10px;
+	height: 25px;
+	font-size: 12px;
+}
+.rightarea dt strong{
+	font-size: 20px;
+	font-weight: bold;
+	padding-bottom: 25px;
+}

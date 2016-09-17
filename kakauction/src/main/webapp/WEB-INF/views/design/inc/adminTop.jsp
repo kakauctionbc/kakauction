@@ -26,14 +26,11 @@ $(function(){
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/mainstyle.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/clear.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/layout.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/adminlayout.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/login.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/register.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/list.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/carRegister.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/auctiongo.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/carList.css" />
-
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/adminCarDetail.css" />
 <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>      
     <![endif]-->
@@ -61,7 +58,7 @@ $(function(){
 								${sessionScope.memberName}님</span>
 						</li> 
 					</c:if>
-				</ul>				
+				</ul>
 			</div>
 		</div>
 	</header>
@@ -69,54 +66,34 @@ $(function(){
 		<div id="middlediv">
 			<div id="wraplogo">
 				<a href="<c:url value='/index.do'/>">
-				<img alt="로고 이미지" src="${pageContext.request.contextPath }/img/logo.png" /></a>
-			</div>
-			<div id="mainsearch">
-				<select id="totalsearch" name="search">
-			    <option id="total" value="통합검색">통합검색</option>
-			    <option value="판매자">판매자</option>
-			    <option value="차종">차종</option>
-				</select>
-				<input id="keyword" name="keyword" fw-filter="" fw-label="검색어" fw-msg="" class="inputTypeText" onmousedown="" value="" type="text"  />
-				<p id="search_btn">
-				<a href="">
-				<img src="<%=request.getContextPath()%>/img/search.png" alt="검색" onclick="" width="25px" height="25px"/>
-				</a>
-				</p>
+				<img alt="로고 이미지" src="<c:url value='/img/logo.png'/>" /></a>
 			</div>
 
 			<div id="headmenu">
 				<ul>
-					<li><a href="<c:url value='/car/register.do'/>">내차 잘 팔기</a></li>
-					<li><a href="<c:url value='/auction/list.do'/>">좋은 차 사기</a></li>
-					<li><a href="<c:url value='/member/myInfo.do'/>">마이페이지</a></li>
-					<li><a href="#">고객센터</a></li>
+					<li><a href="<c:url value='/admin/auctionWrite.do'/>">차량 관리</a></li>
+					<li><a href="<c:url value='/auction/list.do'/>">멤버 관리</a></li>
+					<li><a href="<c:url value='/member/myInfo.do'/>">컨텐츠 관리</a></li>
+					<li><a href="<c:url value='/member/myInfo.do'/>">QNA 관리</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 		<div id="headmenu-content">
+			<div id="content-auction">
+				<ul>
+					<li><a href="<c:url value='/admin/auctionWrite.do'/>">경매신청</a></li>
+					<li><a href="<c:url value='/admin/auctionList.do'/>">경매목록</a></li>
+					<li><a href="<c:url value='/admin/auctionDeferList.do'/>">경매보류목록</a></li>
+				</ul>
+			</div>
 			<div id="content-member">
-					<ul>
-					<li><a href="<c:url value='/member/agreement.do'/>">회원가입</a></li>
-					<li><a href="<c:url value='/member/pwdCheck.do'/>">회원정보수정</a></li>
-					<li><a href="#">회사소개</a></li>
-					<li><a href="#">찾아오시는 길</a></li>
-				</ul>
-			</div>
-			<div id="content-sell">
 				<ul>
-					<li><a href="<c:url value='/car/register.do'/>">경매신청</a></li>
+					<li><a href="<c:url value='/auction/list.do'/>">회원 목록</a></li>
+					<li><a href="<c:url value='/auction/todayList.do'/>">블랙리스트 관리</a></li>
 				</ul>
 			</div>
-			<div id="content-buy">
-				<ul>
-					<li><a href="<c:url value='/auction/list.do'/>">경매리스트</a></li>
-					<li><a href="<c:url value='/auction/todayList.do'/>">공매리스트</a></li>
-					<li><a href="#">일정안내</a></li>
-				</ul>
-			</div>
-			<div id="content-myinfo">
+			<div id="content-info">
 				<ul>
 					<li><a href="<c:url value='/auction/auctionSuccess.do'/>">경매낙찰현황</a></li>
 					<li><a href="<c:url value='/auction/myAuctionList.do'/>">경매입찰현황</a></li>
