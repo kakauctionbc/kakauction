@@ -322,7 +322,11 @@
 		select count(*) from lastbuyer where buyer_member_id=#{buyerMembeId}
 	</select>
 	
-	<select id="selectAucByAuctionNo" parameterType="int" resultType="map">
-		
+	<select id="selectAucByAuctionNo" parameterType="int" resultType="AuctionVO">
+		select * from auction where auction_no = #{auctionNo}
 	</select>
+	
+	<update id="adminUpdateStateStop" parameterType="map">
+		update auction set auction_state=#{auctionState} where auction_no=#{auctionNo}
+	</update>
 </mapper>

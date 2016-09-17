@@ -2,9 +2,9 @@ package com.app.kaka.admin.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +25,7 @@ import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
 import com.app.kaka.op.model.OpService;
 import com.app.kaka.op.model.OpVO;
+import com.app.kaka.record.model.RecordVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -155,10 +156,8 @@ public class AdminController {
 	    	
 	    	return "common/message";
 	    }
-	    Map<String, Object> auctionGo = auctionService.selectAuctionGo(auctionNo);
-	    logger.info("auctionGo 라는 이름의 map={}",auctionGo);
-
-	    model.addAttribute("auctionGo", auctionGo);
+		AuctionVO auctionVo = auctionService.selectAucByAuctionNo(auctionNo);
+	    model.addAttribute("auctionVo", auctionVo);
 	    
 	    AuctionCarVO acVo = auctionService.selectAuction(auctionNo);
 		model.addAttribute("acVo", acVo);
@@ -197,7 +196,27 @@ public class AdminController {
 		model.addAttribute("opSafe", opSafe);
 		model.addAttribute("opAa", opAa);
 		model.addAttribute("opTune", opTune);
+		RecordVO firstMem = auctionService.selectRecordByRecordNo(auctionNo);
+		List<RecordVO> alist = auctionService.selectRecordByAuctionNo(auctionNo);
+		model.addAttribute("firstMem", firstMem);
+		model.addAttribute("alist", alist);
 		
 		return "admin/auction/adminAuctionDetail";
+	}
+	
+	@RequestMapping("/auctionStop.do")
+	public String auctionStop(@RequestParam(defaultValue="0") int auctionNo, Model model){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("auctionState", "END");
+		map.put("auctionNo", "auctionNo");
+		int cnt =auctionService.adminUpdateStateStop(map);
+		if(cnt>0){
+			model.addAttribute("msg", "경매를 종료하였습니다");
+			model.addAttribute("url", "admin/auctionList.do");
+		}else{
+			model.addAttribute("msg", "경매 종료 실패하였습니다");
+			model.addAttribute("url", "admin/auctionDetail.do?auctionNo="+auctionNo);
+		}
+		return "common/message";
 	}
 }

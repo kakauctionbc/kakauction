@@ -75,4 +75,9 @@ public interface AuctionDAO {
 	public String selectAucBynoToState(int auctionNo);
 	
 	public int selectLastBuyerById(RecordVO vo);
+	
+	public AuctionVO selectAucByAuctionNo(int auctionNo);
+	public int adminUpdateStateStop(Map<String, Object> map);
+	
+	
 }

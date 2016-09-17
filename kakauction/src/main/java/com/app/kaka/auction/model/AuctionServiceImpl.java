@@ -278,6 +278,16 @@ public class AuctionServiceImpl implements AuctionService{
 		return auctionDao.selectLastBuyerCount(memberId);
 	}
 
+	@Override
+	public AuctionVO selectAucByAuctionNo(int auctionNo) {
+		return auctionDao.selectAucByAuctionNo(auctionNo);
+	}
+
+	@Override
+	public int adminUpdateStateStop(Map<String, Object> map) {
+		return auctionDao.adminUpdateStateStop(map);
+	}
+
 	
 	
 	

@@ -206,6 +206,16 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 		return getSqlSession().selectOne(namespace+".selectLastBuyerCount", memberId);
 	}
 
+	@Override
+	public AuctionVO selectAucByAuctionNo(int auctionNo) {
+		return getSqlSession().selectOne(namespace+".selectAucByAuctionNo", auctionNo);
+	}
+
+	@Override
+	public int adminUpdateStateStop(Map<String, Object> map) {
+		return getSqlSession().update(namespace+".adminUpdateStateStop", map);
+	}
+
 	
 
 

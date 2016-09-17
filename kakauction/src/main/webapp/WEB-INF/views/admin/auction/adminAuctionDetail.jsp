@@ -3,9 +3,29 @@
 <%@ include file="../../design/inc/adminTop.jsp" %>
 <script type="text/javascript">
 	$(document).ready(function(){
-		
+		$("#auctionMemberList").hide();
+		$("#auctionMember").click(function(){
+			if($("#on_off").val()=="off"){
+				$("#on_off").val("on");
+				$("#auctionMemberList").show();
+				$("#auctionMember").html("현재 입찰한 회원 목록 닫기 ");
+				
+			}else if($("#on_off").val()=="on"){
+				$("#on_off").val("off");
+				$("#auctionMemberList").hide();
+				$("#auctionMember").html("현재 입찰한 회원 목록 보기 ");
+			}
+		});
 	});
 </script>
+<style type="text/css">
+	table{
+		width: 1000px;
+	}
+	td{
+		border: 1px solid silver;
+	}
+</style>
 <div id="wrap">
 	<div id="wrapdiv">
 		<div id="wraptop">
@@ -14,91 +34,84 @@
 			</p>
 		</div>
 		<div>
-			<input type="hidden" id="auctionNo" value="${auctionGo['AUCTION_NO'] }">
-			<input type="hidden" id="carNum" value="${auctionGo['CAR_NUM'] }">
-			<input type="hidden" id="sellerMemberId" value="${auctionGo['SELLER_MEMBER_ID'] }">
-			<input type="hidden" id="highPrice" value="${auctionGo['AUCTION_FIRSTPRICE'] }">
-			<input type="hidden" id="byuerMemberId" value="${memberId }">
-			<input type="hidden" id="nowMemberId" value="${memberId }">
-			<table class="auctiongotable">
-				<thead>
-					<tr>
-						<td style="width: 70px; color: blue;">${memberId }<span>님</span></td>
-						<td style="width: 120px; text-align: right;"><a href="<c:url value='/auction/list.do'/>">
-								<img alt="경매나가기" src="<c:url value='/img/auctionOut_icon.png'/>">	
-							</a>
-						</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td colspan="4" style="border: none;">
-							<table style="width: 100%;" class="carInfo">
-								<tr>
-									<th colspan="6" class="auctionCarName">${auctionGo['CAR_NUM'] }/${auctionGo['CAR_MODEL'] }(${auctionGo['CAR_SIZE'] })</th>
-								</tr>
-								<tr class="boder1">
-									<th>년식</th>
-									<td>${auctionGo['CAR_BIRTH'] }</td>
-									<th>주행거리</th>
-									<td><fmt:formatNumber pattern="#,###" value="${auctionGo['CAR_DIST'] }"/>km</td>
-									<th rowspan="2">판매자</th>
-									<td rowspan="2">${auctionGo['SELLER_MEMBER_ID'] }</td>
-								</tr>
-								<tr class="boder1">
-									<th>변속기</th>
-									<td>${auctionGo['CAR_AM'] }</td>
-									<th>연료</th>
-									<td>${auctionGo['CAR_GAS'] }</td>
-								</tr>
-								<tr class="boder1">
-									<th>차량매매가격</th>
-									<td><fmt:formatNumber pattern="#,###" value="${auctionGo['CAR_PRICE'] }"/>원</td>
-									<th>변경</th>
-									<td>변경쓰는곳</td>
-									<th>여기는</th>
-									<td>크엉</td>
-								</tr>
-								<tr class="boder1img">
-									<td colspan="3"><img alt="${auctionGo['PICTURE_1'] }" src="<c:url value='/picture_upload/${auctionGo["PICTURE_1"] }'/>" style="width: 500px;"></td> 
-									<td colspan="3"><img alt="${auctionGo['PICTURE_2'] }" src="<c:url value='/picture_upload/${auctionGo["PICTURE_2"] }'/>" style="width: 500px;"></td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-				</tbody>
+			<table>
+				<tr>
+					<th style="text-align: right;">현재 신고수</th>
+					<td style="text-align: center;">${auctionVo.auctionReportCount}</td>
+				</tr>
 			</table>
-			<table style="width: 70%; border-collapse: collapse;" class="auctionTable">
+			<table>
 				<tr>
-					<td style="width: 100px;">경매상태</td>
-					<td rowspan="2" style="width: 200px;">경매번호<br> 
-						<span style="color: blue;">${auctionGo['AUCTION_NO_YEAR'] } - ${auctionGo['AUCTION_NO_CAR'] } -${auctionGo['AUCTION_NO'] }</span>
-					</td>
-					<td rowspan="2" style="width: 100px;">
-						<p id="light">권리</p>
-					</td>
-					<td rowspan="4" style="width: 100px;">
-						<input id="goAuction" type="button" value="응찰">
-					</td>
+					<th>
+						경매 진행 상황
+					</th>
 				</tr>
 				<tr>
-					<td>1</td>
-				</tr>
-				<tr>
-					<td>2</td>
 					<td>
-						<p style="text-align: center; padding-bottom: 10px;">현재 입찰가</p>
-						<p style="text-align: right; font-size: 0.8em;">억천백십일만원</p>
+						<table>
+							<tr>
+								<th colspan="3">
+									현재 최고가 회원
+								</th>
+							</tr>
+							<tr>
+								<th>현재 낙찰가</th>
+								<th>현재 낙찰 회원 아이디</th>
+								<th>입찰 시간</th>
+							</tr>
+							<c:if test="${empty firstMem}">
+								<tr><td>현재 입찰한 회원이 없습니다</td></tr>
+							</c:if>
+							<c:if test="${!empty firstMem}">
+								<tr>
+									<td>${firstMem.recordPrice}</td>
+									<td>${firstMem.buyerMemberId}</td>
+									<td>${firstMem.recordRegdate}</td>
+								</tr>
+							</c:if>
+						</table>
 					</td>
-					<td rowspan="2">낙찰</td>
 				</tr>
 				<tr>
-					<td>3</td>
-					<td id="nowHighPrice" style="text-align: right; color: red;">${auctionGo['AUCTION_FIRSTPRICE'] }만원</td>
+					<td>
+						<table>
+							<tr>
+								<input type="hidden" id="on_off" value="off">
+								<th colspan="3" id="auctionMember">
+									현재 입찰한 회원 목록 보기 
+								</th>
+							</tr>
+							<tr>
+								<th>입찰가</th>
+								<th>회원 아이디</th>
+								<th>입찰 시간</th>
+							</tr>
+						</table>
+					</td>
 				</tr>
 			</table>
+			<div id="auctionMemberList">
+				<table>
+					<c:if test="${empty alist }">
+						<tr><td>참여한 회원이 없습니다</td></tr>
+					</c:if>
+					<c:if test="${!empty alist }">
+						<c:forEach var="vo" items="${alist}">
+							<tr>
+								<td><fmt:formatNumber pattern="#,###" value="${vo.recordPrice}"/>만원</td>
+								<td>${vo.buyerMemberId}</td>
+								<td><fmt:formatDate pattern="yyyy-MM-ss HH:mm:ss" value="${vo.recordRegdate}"/></td>
+							</tr>
+						</c:forEach>
+					</c:if>
+				</table>
+			</div>
 		</div>
-<%@ include file="../../auction/carDetail.jsp" %>
+		<br>
+	</div>
+	</div>
+	<br><br>
+<%@ include file="auctionCarDetail.jsp" %>
 </div>
 </body>
 </html>
