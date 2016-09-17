@@ -51,7 +51,7 @@
 					(sysdate-freeboard_regdate)*24 as newImgTerm,
 					freeboard_groupno, freeboard_step, freeboard_sortno, freeboard_delflag,
 					freeboard_filename, freeboard_filesize, freeboard_downcount,
-					freeboard_originalname, freeboard_like
+					freeboard_originalname, freeboard_like, FREEBOARDREPORT_COUNT
 		        from freeboard
 		        <include refid="searchWhere"></include>
 		        order by freeboard_groupno desc, freeboard_sortno asc) LIST_ALL   
