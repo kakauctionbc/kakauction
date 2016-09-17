@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.app.kaka.auction.model.AuctionVO;
 import com.app.kaka.common.SearchVO;
+import com.app.kaka.member.model.MemberVO;
 
 public interface ReportDAO {
 	public AuctionVO selectAuctionInfo(int auctionNo);
@@ -17,4 +18,8 @@ public interface ReportDAO {
 	public List<ReportVO> selectMemberIdAll(SearchVO searchVo);
 	
 	public int selectReportMy(ReportVO vo);
+	public ReportVO selectByNo(int reportNo);
+	public String searchMemberIdFromFB(int originNo);
+	public String searchMemberIdFromAuction(int originNo);
+	public int memberHandle(MemberVO memVo);
 }

@@ -7,12 +7,17 @@ import org.springframework.stereotype.Service;
 
 import com.app.kaka.auction.model.AuctionVO;
 import com.app.kaka.common.SearchVO;
+import com.app.kaka.member.model.MemberDAO;
+import com.app.kaka.member.model.MemberVO;
 
 @Service
 public class ReportServiceImpl implements ReportService{
 	
 	@Autowired
 	private ReportDAO reportDao;
+	
+	@Autowired
+	private MemberDAO memberDao;
 	
 	@Override
 	public AuctionVO selectAuctionInfo(int auctionNo) {
@@ -52,6 +57,40 @@ public class ReportServiceImpl implements ReportService{
 	@Override
 	public int selectReportMy(ReportVO vo) {
 		return reportDao.selectReportMy(vo);
+	}
+
+	@Override
+	public ReportVO selectByNo(int reportNo) {
+		return reportDao.selectByNo(reportNo);
+	}
+
+	@Override
+	public String searchMemberId(ReportVO reportVo) {
+		if(reportVo.getOriginType()==1){
+			return reportDao.searchMemberIdFromFB(reportVo.getOriginNo());
+		}else{
+			return reportDao.searchMemberIdFromAuction(reportVo.getOriginNo());
+		}
+	}
+
+	@Override
+	public int reportHandle(String memberId, String memberGrade) {
+		int cnt = 0;
+		if(memberGrade.equals("강제탈퇴")){
+			cnt = memberDao.memberOut(memberId);
+		}else{
+			MemberVO memVo = new MemberVO();
+			memVo.setMemberId(memberId);
+			if(memberGrade.equals("경고")){
+				memVo.setMemberGrade("WARNING");
+			}else if(memberGrade.equals("활동정지")){
+				memVo.setMemberGrade("STOP");
+			}else if(memberGrade.equals("강등")){
+				memVo.setMemberGrade("MEMBER");
+			}
+			cnt = reportDao.memberHandle(memVo);
+		}
+		return cnt;
 	}
 
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.app.kaka.auction.model.AuctionCarVO;
 import com.app.kaka.auction.model.AuctionVO;
 import com.app.kaka.common.SearchVO;
+import com.app.kaka.member.model.MemberVO;
 
 import oracle.net.aso.s;
 
@@ -55,6 +56,26 @@ public class ReportDAOMybatis extends SqlSessionDaoSupport implements ReportDAO{
 	@Override
 	public int selectReportMy(ReportVO vo) {
 		return getSqlSession().selectOne(namespace+".selectReportMy",vo);
+	}
+
+	@Override
+	public ReportVO selectByNo(int reportNo) {
+		return getSqlSession().selectOne(namespace+".selectByNo", reportNo);
+	}
+
+	@Override
+	public String searchMemberIdFromFB(int originNo) {
+		return getSqlSession().selectOne(namespace+".searchMemberIdFromFB", originNo);
+	}
+
+	@Override
+	public String searchMemberIdFromAuction(int originNo) {
+		return getSqlSession().selectOne(namespace+".searchMemberIdFromAuction", originNo);
+	}
+
+	@Override
+	public int memberHandle(MemberVO memVo) {
+		return getSqlSession().update(namespace+".reportHandle", memVo);
 	}
 
 }

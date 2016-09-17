@@ -47,12 +47,12 @@
 	</select>
 	
 	<select id="selectAll" resultType="ReportVO" parameterType="SearchVO">
-		select *
+		select * 
 		from
 		(
 		    select rownum as RNUM, LIST_ALL.*
 		    from
-		        (select * from report_no, report_member_id, origin_no, originType, report_title,
+		        (select report_no, report_member_id, origin_no, origin_type, report_title,
 		        report_type, report_content, report_result, report_regdate
 		        from report
 		        <include refid="searchWhere"></include>
@@ -84,4 +84,22 @@
 			+ #{recordCountPerPage}
 		]]>
 	</select>
+	
+	<select id="selectByNo" parameterType="int" resultType="reportVo">
+		select * from report where report_No = #{reportNo}
+	</select>
+	
+	<select id="searchMemberIdFromFB" parameterType="int" resultType="String">
+		select member_id from freeboard where freeboard_no = #{originNo}
+	</select>
+	
+	<select id="searchMemberIdFromAuction" parameterType="int" resultType="String">
+		select seller_member_id from auction where auction_no = #{originNo}
+	</select>
+	
+	<update id="reportHandle" parameterType="memberVo">
+		update member
+		set member_grade = #{memberGrade}
+		where member_id = #{memberId}
+	</update>
 </mapper>

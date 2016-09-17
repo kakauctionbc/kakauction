@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../design/inc/top.jsp"%>
 <script type="text/javascript">	
 	$(document).ready(function(){
 		$(".divList .box2 tbody tr").hover(function(){
@@ -72,8 +73,8 @@
 		</c:if>>100개씩 보기</option>
 </select>
 <table class="box2"
-	 	summary="자유게시판에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
-	<caption>자유게시판</caption>
+	 	summary="신고 목록에 관한 표">
+	<caption>신고 목록</caption>
 	<colgroup>
 		<col style="width:10%;" />
 		<col style="width:40%;" />
@@ -96,7 +97,7 @@
 	<c:if test="${empty alist}">
 		<tr>
 			<td colspan="5" class="align_center">
-			해당 데이터가 없습니다
+			신고  데이터가 없습니다
 			</td>
 		</tr>
 	</c:if>
@@ -104,43 +105,30 @@
 		<!--게시판 내용 반복문 시작  -->		
 		<c:forEach var="vo" items="${alist }">
 			<tr style="text-align: center">
-				<td>${vo.freeboardNo}</td>
+				<td>${vo.reportNo}</td>
 				<td style="text-align: left;">
-					<!-- 삭제된 원본글일경우 제목 감추기 -->
-					<c:if test="${vo.freeboardDelflag=='Y' }">
-						삭제된 글입니다.
-					</c:if>
-					<c:if test="${vo.freeboardDelflag!='Y' }">
-						<!-- 답변의 경우 화살표 이미지 보여주기 -->
-						<c:if test="${vo.freeboardStep>0 }">
-							<c:forEach var="i" begin="1" end="${vo.freeboardStep*2 }">
-								&nbsp;
-							</c:forEach>
-							<img alt="화살표 이미지" src="<c:url value="/image/re.gif"/>">
+					<a href="<c:url value='/report/detail.do?reportNo=${vo.reportNo}'/>">
+						<!-- 제목이 긴 경우 일부만 보여주기 -->
+						<c:if test="${fn:length(vo.reportTitle)>30}">
+							${fn:substring(vo.reportTitle, 0,30)}...
 						</c:if>
-						<c:if test="${!empty vo.freeboardFilename }">
-							<img src='<c:url value="/image/file.gif"/>'>
+						<c:if test="${fn:length(vo.reportTitle)<=30}">
+							${vo.reportTitle}
 						</c:if>
-						<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${vo.freeboardNo}'/>">
-							<!-- 제목이 긴 경우 일부만 보여주기 -->
-							<c:if test="${fn:length(vo.freeboardTitle)>30}">
-								${fn:substring(vo.freeboardTitle, 0,30)}...
-							</c:if>
-							<c:if test="${fn:length(vo.freeboardTitle)<=30}">
-								${vo.freeboardTitle}
-							</c:if>
-						</a>
-						<!-- 24시간 이내의 글인 경우 new 이미지 보여주기 -->
-						<c:if test="${vo.newImgTerm<24}">
-							<img src="<c:url value='/image/new.gif'/>" alt="new이미지">
-						</c:if>
-					</c:if>
+					</a>
 				</td>
-				<td>${vo.memberId}</td>
-				<td><fmt:formatDate value="${vo.freeboardRegdate}"
+				<td><c:if test="${vo.originType == 1}">
+					자유게시판 - 
+				</c:if>
+				<c:if test="${vo.originType == 2}">
+					경매 차량 - 
+				</c:if>
+				${vo.reportType }</td>
+				<td>${vo.reportMemberId}</td>
+				<td>${vo.reportResult }</td>
+				<td><fmt:formatDate value="${vo.reportRegdate}"
 					pattern="yyyy-MM-dd"/>
 				</td>
-				<td>${vo.freeboardReadCount}</td>
 			</tr>				
 		</c:forEach>
 		<!--반복처리 끝  -->
@@ -183,20 +171,20 @@
 </div>
 <div class="divSearch">
    	<form name="frmSearch" method="post" 
-   	action="<c:url value='/freeboard/list.do' />" >
+   	action="<c:url value='/report/list.do' />" >
         <select name="searchCondition">
-            <option value="freeboard_title"
-           	   <c:if test="${param.searchCondition=='freeboard_title'}">
+            <option value="report_title"
+           	   <c:if test="${param.searchCondition=='report_title'}">
             		selected
                </c:if>
             >제목</option>
-            <option value="freeboard_content" 
-            	<c:if test="${param.searchCondition=='freeboard_content'}">
+            <option value="report_content" 
+            	<c:if test="${param.searchCondition=='report_content'}">
             		selected
                </c:if>
             >내용</option>
-            <option value="member_id" 
-           		<c:if test="${param.searchCondition=='member_id'}">
+            <option value="report_member_id" 
+           		<c:if test="${param.searchCondition=='report_member_id'}">
             		selected
                </c:if>
             >작성자</option>

@@ -21,17 +21,15 @@ public class MsgController {
 	@Autowired
 	private MsgService msgService;
 	
-	@RequestMapping("/list")
+	/*@RequestMapping("/list")
 	public String msgList(){
 		
-	}
+	}*/
 	
 	@RequestMapping("/write")
 	public String msgWrite_get(@ModelAttribute FreeboardreportVO fVo, @ModelAttribute ReportVO rVo, Model model){
 		logger.info("메세지 작성 페이지, 파라미터 FreeboardReportVO = {}", fVo);
 		logger.info("메세지 작성 페이지, 파라미터 ReportVO = {}", rVo);
-		
-		
 		
 		return "msg/write";
 	}

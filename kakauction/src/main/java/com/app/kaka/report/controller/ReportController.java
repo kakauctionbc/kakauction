@@ -18,6 +18,7 @@ import com.app.kaka.auction.model.AuctionVO;
 import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
+import com.app.kaka.msg.model.MsgService;
 import com.app.kaka.notice.model.NoticeVO;
 import com.app.kaka.report.model.ReportService;
 import com.app.kaka.report.model.ReportVO;
@@ -29,6 +30,9 @@ public class ReportController {
 	
 	@Autowired
 	private ReportService reportService;
+	
+	@Autowired
+	private MsgService msgService;
 	
 	@RequestMapping(value="/auctionReport.do", method=RequestMethod.GET)
 	public String regReport_get(@RequestParam String memberId, @RequestParam int auctionNo, Model model){
@@ -149,13 +153,13 @@ public class ReportController {
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 				
 		//2. db작업 - select
-		List<NoticeVO> alist = noticeService.selectAll(searchVo);
+		List<ReportVO> alist = reportService.selectAll(searchVo);
 		logger.info("글목록 조회 결과 alist.size()={}", 
 				alist.size());
 		
 		//전체 레코드 개수 조회하기
 		int totalRecord 
-			= noticeService.selectTotalCount(searchVo);
+			= reportService.selectTotalCount(searchVo);
 		pagingInfo.setTotalRecord(totalRecord);
 				
 		//3. 결과 저장, 뷰페이지 리턴
@@ -204,5 +208,52 @@ public class ReportController {
 		model.addAttribute("pagingInfo", pagingInfo);
 		
 		return "report/list";
+	}
+	
+	@RequestMapping("/detail.do")
+	public String reportDetail(@RequestParam(defaultValue="0")int reportNo, Model model){
+		logger.info("신고 상세보기, 파라미터 reportNo = {}", reportNo);
+		
+		if (reportNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/report/reportAllList.do");
+			
+			return "common/message";
+		}
+		
+		ReportVO reportVo = reportService.selectByNo(reportNo);
+		logger.info("글 상세 조회 결과, reportVo = {}", reportVo);
+		
+		String reportedMemberId = reportService.searchMemberId(reportVo);
+		logger.info("피신고자 아이디, reportedMemberId = {}", reportedMemberId);
+		
+		model.addAttribute("reportVo", reportVo);
+		model.addAttribute("reportedMemberId", reportedMemberId);
+		
+		return "admin/reportDetail";
+	}
+	
+	@RequestMapping("handle.do")
+	public String reportHandle(@RequestParam String memberId, @RequestParam String memberGrade,
+			@RequestParam int reportNo, Model model){
+		logger.info("신고 처리 실행, 파라미터 memberId = {}, memberGrade = {} ", memberId, memberGrade);
+		int cnt = reportService.reportHandle(memberId, memberGrade);
+		logger.info("신고 처리 결과, cnt = {}", cnt);
+		
+		int cnt1 = msgService.sendMessage(memberId, memberGrade);
+		
+		String msg = "", url = "";
+		if(cnt>0){
+			msg = memberGrade + " 처리 하였습니다";
+			url = "/report/detail.do?reportNo="+reportNo;
+		}else{
+			msg = memberGrade + " 처리 실패";
+			url = "/report/detail.do?reportNo="+reportNo;
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
 	}
 }
