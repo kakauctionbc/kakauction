@@ -23,8 +23,6 @@
 			<table class="auctiongotable">
 				<thead>
 					<tr>
-						<td style="width: 600px;"><a href="#"><img alt="관심경매" src="<c:url value='/img/auctionChoice.png'/>"></a></td>
-						<td style="width: 200px;"><img alt="관심경매" src="<c:url value='/img/blank.png'/>"></td>
 						<td style="width: 70px; color: blue;">${memberId }<span>님</span></td>
 						<td style="width: 120px; text-align: right;"><a href="<c:url value='/auction/list.do'/>">
 								<img alt="경매나가기" src="<c:url value='/img/auctionOut_icon.png'/>">	
