@@ -5,6 +5,7 @@ import java.util.List;
 import com.app.kaka.member.model.MemberVO;
 
 public class MemberListVO {
+	
 	private List<MemberVO> memberItems;
 
 	public List<MemberVO> getMemberItems() {

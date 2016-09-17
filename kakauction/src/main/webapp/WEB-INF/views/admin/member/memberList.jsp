@@ -49,10 +49,10 @@
 		$("#btGrade").click(function(){
 			var count = $("input[type=checkbox]:checked").length;
 			if (count==0) {
-				alert("이벤트로 등록하려는 상품을 먼저 체크하세요");
+				alert("등급변경하려는 아이디를 선택하세요");
 				return false;
 			}else if ($("input[type=checkbox]:checked").length<1){
-				alert("이벤트를 선택하세요");
+				alert("아이디를 선택하세요 선택하세요");
 				return false;
 			}
 		
@@ -63,6 +63,29 @@
 		$("#download").click(function(){
 			
 			frmList.action="<c:url value='/admin/member/memberGrade.do'/>";
+			frmList.submit();
+		});
+		
+		$("#btEventd").click(function(){
+			var count = $("input[type=checkbox]:checked").length;
+			if (count==0) {
+				alert("불량회원등급으로 설정하려는 회원을 선택하세요");
+				return false;
+			}
+			document.frmList.action="<c:url value='/admin/member/memberBlack.do'/>";
+			document.frmList.submit();
+		});
+		
+		//회원 삭제
+		$("#btDel").click(function(){
+			var count = $("input[type=checkbox]:checked").length;
+			
+			if(count==0){
+				alert("삭제하려는 아이디를 먼저 체크하세요");
+				return false;
+			}
+			
+			frmList.action = "<c:url value='/admin/member/memberDelete.do'/>";
 			frmList.submit();
 		});
 	});
@@ -76,13 +99,6 @@
 </script>
 </head>
 <body>
-	<%-- <!-- 페이징 처리를 위한 form 시작-->
-	<form name="frmPage" method="post" action="<c:url value='/admin/member/memberList.do'/>">
-		<input type="hidden" name="memberGrade" value="">
-		<input type="hidden" name="currentPage">	
-	</form>
-	<!-- 페이징 처리 form 끝 --> --%>
-
 	<div class="memList">
 		<form name="frmList" method="post" action="<c:url value='/admin/member/memberList.do'/>">
 			<p>회원목록</p>
@@ -102,8 +118,9 @@
 					<thead>
 						<tr class="check">
 							<th colspan="9">
-								<input class="align_left" type="button" id="btEvent" value="블랙리스트관리">
-								<button class="align_left">삭제</button>
+								<!-- <input class="align_left" type="button" id="btEvent" value="블랙리스트관리"> -->
+								<button class="align_left" type="button" id="btEventd" value="BLACKLIST">불량회원관리</button>
+								<button class="align_left" id="btDel">삭제</button>
 								<button class="align_right"><a href="<c:url value='/admin/member/downloadExcel.do'/>">엑셀 다운로드</a></button>
 							</th>
 						</tr>
@@ -126,10 +143,10 @@
 							<c:set var="i" value="0"/>
 							<c:forEach var="vo" items="${memberList}">
 								<c:if test="${vo.memberGrade!='ADMIN'}">
+								<c:if test="${empty vo.memberOutdate }">
 									<tr class="align_center">
 										<th>
-											<input type="checkbox" name="memberItems[${i}].memberId" value="${vo.memberId }" id="chk_${i}">
-											<input type="hidden" name="memberItems[${i}].memberGrade" value="${vo.memberGrade }">
+											<input type="checkbox" name="memberItems[${i}].memberId" value="${vo.memberId}" id="chk_${i}">
 										</th>
 										<td>${vo.memberName }</td>
 										<td>
@@ -154,7 +171,8 @@
 										</c:if>
 										<td>음</td>
 										<td>나이</td>
-									</tr>						
+									</tr>
+								</c:if>						
 								</c:if>
 								<c:set var="i" value="${i+1}"/> 
 							</c:forEach>
@@ -162,42 +180,14 @@
 						<tr class="check">
 							<th colspan="9">
 								<!-- <input class="align_left" type="button" id="btEvent" value="블랙리스트관리"> -->
-								<button class="align_left" type="button" id="btEvent" name="memberGrade" value="BLACKLIST">블랙리스트관리</button>
-								<button class="align_left">삭제</button>
+								<button class="align_left" type="button" id="btEventd" name="memberGrade" value="BLACKLIST" onclick="btEventd">블랙리스트관리</button>
+								<button class="align_left" id="btDel">삭제</button>
 								<button class="align_right"><a href="<c:url value='/admin/member/downloadExcel.do'/>">엑셀 다운로드</a></button>
 							</th>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-			
-			<%-- <div class="divPage">
-				<!-- 이전 블럭으로 이동 -->
-				<c:if test="${pagingInfo.firstPage>1}">
-					<a href="#" onclick="pageFunc(${pagingInfo.firstPage-1})"> <img
-						src="<c:url value='../images/first.JPG'/>" alt="이전블럭으로">
-					</a>
-				</c:if>
-				<!-- 페이지 번호 추가 -->
-				<!-- [1][2][3][4][5][6][7][8][9][10] -->
-				<c:forEach var="i" begin="${pagingInfo.firstPage }"
-					end="${pagingInfo.lastPage }">
-					<c:if test="${i==pagingInfo.currentPage }">
-						<span style="color: blue; font-weight: bold">${i}</span>
-					</c:if>
-					<c:if test="${i!=pagingInfo.currentPage }">
-						<a href="#" onclick="pageFunc(${i})">[${i}]</a>
-					</c:if>
-				</c:forEach>
-				<!--  페이지 번호 끝 -->
-			
-				<!-- 다음 블럭으로 이동 -->
-				<c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
-					<a href="#" onclick="pageFunc(${pagingInfo.lastPage+1})"> <img
-						src="<c:url value='../images/last.JPG'/>" alt="다음블럭으로">
-					</a>
-				</c:if>
-			</div>  --%>
 			
 			<div class="divRight">
 				선택한 회원을

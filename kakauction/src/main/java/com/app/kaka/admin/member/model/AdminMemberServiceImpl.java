@@ -23,15 +23,14 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	@Transactional
 	public int blackListMember(List<MemberVO> memList) {
 		int cnt = 0;
-		try{
-			for (MemberVO vo : memList) {
-				String memberId = vo.getMemberId();
+		for (MemberVO vo : memList) {
+			String memberId = vo.getMemberId();
+			if (null != memberId ) {
 				cnt = adminDao.blackListMember(vo);
+				
 			}
-		}catch(RuntimeException e){
-			e.printStackTrace();
-			cnt=-1;
 		}
+		
 		return cnt;
 	}
 
@@ -43,8 +42,12 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 				//이미 해당 이벤트로 등록된 상품은 insert하지 않는다=>skip
 				//체크한 상품만 등록
 				String memberId=vo.getMemberId();
-				if(memberId!=null || !memberId.isEmpty()){
+				if(null != memberId){
 					MemberVO memberVo = new MemberVO();
+					/*String memberGrade = memberVo.getMemberGrade();
+					memberVo.setMemberGrade(eventName);*/
+					
+					/*MemberVO memberVo = new MemberVO();
 					String memberGrade = memberVo.getMemberGrade();
 					memberVo.setMemberGrade(eventName);
 					int count
@@ -59,7 +62,10 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 						//등록되어 있지 않은 경우
 						cnt
 						=adminDao.updateMemberGrade(memberVo);
-					}
+					}*/
+					
+					cnt
+					=adminDao.updateMemberGrade(memberVo);
 				}//if
 			}
 		}catch(RuntimeException e){
@@ -67,6 +73,20 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 			cnt=1;
 			
 		}
+		return cnt;
+	}
+
+	@Override
+	public int adminOutMember(List<MemberVO> memList) {
+		int cnt = 0;
+		for (MemberVO vo : memList) {
+			String memberId = vo.getMemberId();
+			/*System.out.println("memberid === > " + memberId);*/
+			if(null != memberId ){
+				cnt = adminDao.adminOutMember(vo.getMemberId());
+			}
+		}
+		
 		return cnt;
 	}
 

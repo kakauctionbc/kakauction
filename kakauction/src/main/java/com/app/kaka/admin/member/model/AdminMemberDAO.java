@@ -7,7 +7,10 @@ import com.app.kaka.member.model.MemberVO;
 
 public interface AdminMemberDAO {
 	public int updateGrade(MemberVO memberVo);	
+	
 	public int blackListMember(MemberVO memberVo);
-	public int updateMemberGrade(MemberVO vo);
 	public int selectMemberCount(String memberGrade);
+	
+	public int updateMemberGrade(MemberVO vo);
+	public int adminOutMember(String memberId);
 }

@@ -130,4 +130,27 @@ public class AdminMemberController {
         
         return "common/message";
     }
+	
+	@RequestMapping("/memberDelete.do")
+	public String memberDelete(@ModelAttribute MemberListVO memListvo, Model model){
+		logger.info("선택한 회원 삭제 파라미터 memListvo={}",memListvo);
+		
+		List<MemberVO> memList = memListvo.getMemberItems();
+		logger.info("memList.size={}",memList.size());
+		
+		int cnt = adminService.adminOutMember(memList);
+		logger.info("선택한 아이디 삭제 처리 결과, cnt={}",cnt);
+		
+		String msg = "", url = "/admin/member/memberList.do";
+		if (cnt>0) {
+			msg = "선택한 회원을 삭제하였습니다.";
+		}else{
+			msg = "삭제 실패";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
 }

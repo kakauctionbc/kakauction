@@ -30,4 +30,9 @@ public class AdminMemberDAObatis extends SqlSessionDaoSupport implements AdminMe
 	public int blackListMember(MemberVO memberVo) {
 		return getSqlSession().update(namespace+".gradeUpdate", memberVo);
 	}
+
+	@Override
+	public int adminOutMember(String memberId) {
+		return getSqlSession().update(namespace+".outMember", memberId);
+	}
 }
