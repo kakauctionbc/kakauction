@@ -68,11 +68,10 @@ $(function(){
 				<a href="<c:url value='/index.do'/>">
 				<img alt="로고 이미지" src="<c:url value='/img/logo.png'/>" /></a>
 			</div>
-
 			<div id="headmenu">
 				<ul>
 					<li><a href="<c:url value='/admin/auctionWrite.do'/>">차량 관리</a></li>
-					<li><a href="<c:url value='/auction/list.do'/>">멤버 관리</a></li>
+					<li><a href="<c:url value='/admin/member/memberList.do'/>">회원관리</a></li>
 					<li><a href="<c:url value='/member/myInfo.do'/>">컨텐츠 관리</a></li>
 					<li><a href="<c:url value='/member/myInfo.do'/>">QNA 관리</a></li>
 				</ul>
@@ -84,13 +83,14 @@ $(function(){
 				<ul>
 					<li><a href="<c:url value='/admin/auctionWrite.do'/>">경매신청</a></li>
 					<li><a href="<c:url value='/admin/auctionList.do'/>">경매목록</a></li>
-					<li><a href="<c:url value='/admin/auctionDeferList.do'/>">경매보류목록</a></li>
 				</ul>
 			</div>
 			<div id="content-member">
 				<ul>
-					<li><a href="<c:url value='/auction/list.do'/>">회원 목록</a></li>
-					<li><a href="<c:url value='/auction/todayList.do'/>">블랙리스트 관리</a></li>
+					<li><a href="<c:url value='/admin/member/memberList.do'/>">회원 정보 조회</a></li>
+					<li><a href="<c:url value='/admin/member/memberGrade.do'/>">회원 등급 관리</a></li>
+					<li><a href="<c:url value='/admin/member/excelUpload.do'/>">회원 엑셀 일괄등록</a></li>
+					<li><a href="<c:url value='/admin/member/auctionMember.do'/>">경매 회원 조회</a></li>
 				</ul>
 			</div>
 			<div id="content-info">

@@ -152,14 +152,15 @@ body{ margin:0; padding-bottom: 100px;}
 }
 #content-sell{
  	float: left;	
-	padding-right: 45px;
+	padding-right: 55px;
 }
 #content-buy{
 	float: left;
-	padding-right: 40px;
+	padding-right: 48px;
 }
 #content-myinfo{
 	float: left;
+	padding-right: 25px;
 }
 #content-notice{
 	float: left;
