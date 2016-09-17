@@ -64,7 +64,7 @@
 	</select>
 	
 	<update id="gradeUpdate" parameterType="MemberVO">
-		update member set member_Grade=${vo.memberGrade} where member_id=#{memberId}
+		update member set member_Grade=#{memberGrade} where member_id=#{memberId}
 	</update>
 	
 	<select id="selectMemberCount" parameterType="string" resultType="int">

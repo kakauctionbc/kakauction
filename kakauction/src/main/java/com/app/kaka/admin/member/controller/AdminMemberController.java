@@ -40,7 +40,17 @@ public class AdminMemberController {
 		
 		List<MemberVO> memberList = memberService.selectAllMember();
 		logger.info("회원 목록 조회 결과 memberList.size={}",memberList.size());
+		/*
+		String[] result = null;
+		for (MemberVO vo : memberList) {
+			String addr = vo.getMemberAddr();
+			result = addr.split(" ");
+			logger.info("이거 궁금해 ===> "+result[0]);
+
+ 			vo.setMemberAddr(addr);
+		}
 		
+		model.addAttribute("addr", result[0]);*/
 		model.addAttribute("memberList", memberList);
 		
 		return "admin/member/memberList";
@@ -79,7 +89,7 @@ public class AdminMemberController {
 				}
 			}
 		}*/
-		
+	
 		int cnt = adminService.blackListMember(memberList);
 		logger.info("선택한 상품 이벤트 등록결과 cnt={}", cnt);
 		
@@ -137,6 +147,7 @@ public class AdminMemberController {
 		
 		List<MemberVO> memList = memListvo.getMemberItems();
 		logger.info("memList.size={}",memList.size());
+		logger.info("memList={}",memList);
 		
 		int cnt = adminService.adminOutMember(memList);
 		logger.info("선택한 아이디 삭제 처리 결과, cnt={}",cnt);

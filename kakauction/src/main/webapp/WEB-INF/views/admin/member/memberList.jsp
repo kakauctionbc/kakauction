@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원 정보 조회</title>
-<script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
+<%@ include file="../../design/inc/adminTop.jsp"%>
 <style type="text/css">
 	.align_center{
 		text-align: center;
@@ -31,7 +25,13 @@
 			$("tbody input[type=checkbox]").prop("checked", this.checked);
 		});
 		
-		$("#btEvent").click(function(){
+		var voValue = "";
+		$(".memberSend").click(function(){
+			voValue = $(".voValue").val();
+			alert(voValue);
+		});
+		
+	/* 	$("#btEvent").click(function(){
 			var count
 			= $("input[type=checkbox]:checked").length;
 			if (count==0) {
@@ -44,8 +44,9 @@
 		
 			frmList.action="<c:url value='/admin/member/memberBlack.do'/>";
 			frmList.submit();
-		});
+		}); */
 		
+		//등급변경
 		$("#btGrade").click(function(){
 			var count = $("input[type=checkbox]:checked").length;
 			if (count==0) {
@@ -60,13 +61,15 @@
 			frmList.submit();
 		});
 		
+		//엑셀 다운로드
 		$("#download").click(function(){
 			
 			frmList.action="<c:url value='/admin/member/memberGrade.do'/>";
 			frmList.submit();
 		});
 		
-		$("#btEventd").click(function(){
+		//불량회원관리
+		$("#btBlack").click(function(){
 			var count = $("input[type=checkbox]:checked").length;
 			if (count==0) {
 				alert("불량회원등급으로 설정하려는 회원을 선택하세요");
@@ -79,6 +82,7 @@
 		//회원 삭제
 		$("#btDel").click(function(){
 			var count = $("input[type=checkbox]:checked").length;
+			alert("선택된 아이들 개수:"+count);
 			
 			if(count==0){
 				alert("삭제하려는 아이디를 먼저 체크하세요");
@@ -88,13 +92,21 @@
 			frmList.action = "<c:url value='/admin/member/memberDelete.do'/>";
 			frmList.submit();
 		});
+		
+		/* //지역 셋팅하기
+		var jumin = $("#memberAddr").val();
+		var addr = jumin.split(" ");
+		var result = addr[0];
+		alert(result);
+		
+		$("#addrResult").val(result); */
 	});
 	
-	function btMember(val) {
-		var memberId = $("#memberId").val();
-		window.open("/kaka/admin/member/memberById.do?memberId="+memberId,
-	               "member",
-	         "width=700,height=600,left=10,top=50,resizable=yes,location=yes");
+	function btMember(memberId) {
+		if(confirm(memberId.value)){
+			return alert();	
+		}
+		/* ; */
 	}
 </script>
 </head>
@@ -119,7 +131,7 @@
 						<tr class="check">
 							<th colspan="9">
 								<!-- <input class="align_left" type="button" id="btEvent" value="블랙리스트관리"> -->
-								<button class="align_left" type="button" id="btEventd" value="BLACKLIST">불량회원관리</button>
+								<button class="align_left" type="button" id="btBlack" value="BLACKLIST">불량회원관리</button>
 								<button class="align_left" id="btDel">삭제</button>
 								<button class="align_right"><a href="<c:url value='/admin/member/downloadExcel.do'/>">엑셀 다운로드</a></button>
 							</th>
@@ -141,7 +153,7 @@
 						</c:if>
 						<c:if test="${!empty memberList}">
 							<c:set var="i" value="0"/>
-							<c:forEach var="vo" items="${memberList}">
+							<c:forEach var="vo" items="${memberList}" varStatus="status">
 								<c:if test="${vo.memberGrade!='ADMIN'}">
 								<c:if test="${empty vo.memberOutdate }">
 									<tr class="align_center">
@@ -150,8 +162,10 @@
 										</th>
 										<td>${vo.memberName }</td>
 										<td>
-											<a href="#" onclick="btMember(this)">${vo.memberId }</a>
-											<input type="hidden" name="memberId" id="memberId" value="${vo.memberId }">
+											<input type="hidden" name="memberId${status.index}" class="voValue" value="${vo.memberId }">
+											<a href="#" onclick="window.open('<c:url value="/admin/member/memberById.do?memberId=${vo.memberId}"/>','member','width=700,height=600,left=10,top=50,resizable=yes,location=yes')" >${vo.memberId}</a>
+											<%-- <a href="#" onclick="return btMember(memberId${status.index})" >${vo.memberId}</a> --%>
+											<%-- <a href="<c:url value='/admin/member/memberById?memberId=${vo.memberId }'/>">${vo.memberId }</a> --%>
 										</td>
 										<c:if test="${vo.memberGrade=='MEMBER_VIP'}">
 											<td>골드회원</td>
@@ -170,7 +184,11 @@
 											<td>여</td>
 										</c:if>
 										<td>음</td>
-										<td>나이</td>
+										<td>
+											<c:set var="string1" value="${vo.memberAddr }"/>
+											<c:set var="string2" value="${fn:split(string1, ' ')}" />
+											${string2[0]}
+										</td>
 									</tr>
 								</c:if>						
 								</c:if>
@@ -180,7 +198,7 @@
 						<tr class="check">
 							<th colspan="9">
 								<!-- <input class="align_left" type="button" id="btEvent" value="블랙리스트관리"> -->
-								<button class="align_left" type="button" id="btEventd" name="memberGrade" value="BLACKLIST" onclick="btEventd">블랙리스트관리</button>
+								<button class="align_left" type="button" id="btBlack" value="BLACKLIST">불량회원관리</button>
 								<button class="align_left" id="btDel">삭제</button>
 								<button class="align_right"><a href="<c:url value='/admin/member/downloadExcel.do'/>">엑셀 다운로드</a></button>
 							</th>
@@ -203,5 +221,4 @@
 			</div>
 		</form>
 	</div>	
-</body>
-</html>
+<%@ include file="../../design/inc/adminBottom.jsp"%>

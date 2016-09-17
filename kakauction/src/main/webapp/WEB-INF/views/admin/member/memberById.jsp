@@ -78,11 +78,7 @@
 			</div>
 			
 			<div class="autionList">
-				<h1>■ 주문정보</h1>
-			</div>
-			
-			<div class="memoList">
-				<h1>■ 회원메모</h1>
+				<h1>■ 경매정보</h1>
 			</div>
 		</form>
 	</div>
