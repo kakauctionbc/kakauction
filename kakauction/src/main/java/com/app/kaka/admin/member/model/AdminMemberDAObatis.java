@@ -10,11 +10,6 @@ public class AdminMemberDAObatis extends SqlSessionDaoSupport implements AdminMe
 	private String namespace="config.mybatis.mapper.oracle.member";
 
 	@Override
-	public int updateGrade(MemberVO memberVo) {
-		return getSqlSession().update(namespace+".gradeUpdate", memberVo);
-	}
-
-	@Override
 	public int updateMemberGrade(MemberVO vo) {
 		return getSqlSession().update(namespace+".gradeUpdate", vo);
 	}

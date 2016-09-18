@@ -86,10 +86,7 @@ public class AdminMemberController {
 				System.out.println("iCnt value === > " + iCnt);
 				if(iCnt < 0){
 					isSuccess = false;
-				}
-			}
 		}*/
-	
 		int cnt = adminService.blackListMember(memberList);
 		logger.info("선택한 상품 이벤트 등록결과 cnt={}", cnt);
 		

@@ -80,9 +80,8 @@
 		});
 		
 		//회원 삭제
-		$("#btDel").click(function(){
+		$(".btDel").click(function(){
 			var count = $("input[type=checkbox]:checked").length;
-			alert("선택된 아이들 개수:"+count);
 			
 			if(count==0){
 				alert("삭제하려는 아이디를 먼저 체크하세요");
@@ -92,14 +91,6 @@
 			frmList.action = "<c:url value='/admin/member/memberDelete.do'/>";
 			frmList.submit();
 		});
-		
-		/* //지역 셋팅하기
-		var jumin = $("#memberAddr").val();
-		var addr = jumin.split(" ");
-		var result = addr[0];
-		alert(result);
-		
-		$("#addrResult").val(result); */
 	});
 	
 	function btMember(memberId) {
@@ -131,8 +122,8 @@
 						<tr class="check">
 							<th colspan="9">
 								<!-- <input class="align_left" type="button" id="btEvent" value="블랙리스트관리"> -->
-								<button class="align_left" type="button" id="btBlack" value="BLACKLIST">불량회원관리</button>
-								<button class="align_left" id="btDel">삭제</button>
+								<button class="align_left" type="button" class="btBlack" value="BLACKLIST">불량회원관리</button>
+								<button class="align_left" class="btDel">삭제</button>
 								<button class="align_right"><a href="<c:url value='/admin/member/downloadExcel.do'/>">엑셀 다운로드</a></button>
 							</th>
 						</tr>
@@ -198,8 +189,8 @@
 						<tr class="check">
 							<th colspan="9">
 								<!-- <input class="align_left" type="button" id="btEvent" value="블랙리스트관리"> -->
-								<button class="align_left" type="button" id="btBlack" value="BLACKLIST">불량회원관리</button>
-								<button class="align_left" id="btDel">삭제</button>
+								<button class="align_left" type="button" class="btBlack" value="BLACKLIST">불량회원관리</button>
+								<button class="align_left" class="btDel">삭제</button>
 								<button class="align_right"><a href="<c:url value='/admin/member/downloadExcel.do'/>">엑셀 다운로드</a></button>
 							</th>
 						</tr>

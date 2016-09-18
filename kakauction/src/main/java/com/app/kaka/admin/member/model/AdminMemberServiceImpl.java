@@ -19,11 +19,6 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	private AdminMemberDAO adminDao;
 
 	@Override
-	public int updateGrade(MemberVO memberVo) {
-		return adminDao.updateGrade(memberVo);
-	}
-	
-	@Override
 	@Transactional
 	public int blackListMember(List<MemberVO> memList) {
 		int cnt = 0;
