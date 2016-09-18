@@ -43,19 +43,19 @@ $(function(){
 			<div id=headerdiv>
 				<ul>					
 					<!-- 로그인이 안된 경우 -->	
-					<c:if test="${empty sessionScope.memberId }">
+					<c:if test="${empty sessionScope.adminUserid }">
 						<li><a href="<c:url value='/board/list.do'/>">고객센터</a></li>					
 						<li><a href="<c:url value='/member/agreement.do'/>" id="boderli">회원가입</a></li>
 						<li><a href="<c:url value='/admin/login/adminLogin.do'/>">로그인</a></li>
 					</c:if>
 					<!-- 로그인된 경우 -->
-					<c:if test="${!empty sessionScope.memberId }">
+					<c:if test="${!empty sessionScope.adminUserid }">
 						<li><a href="<c:url value='/member/memberOut.do'/>" >회원탈퇴</a></li>	            
 						<li><a href="<c:url value='/member/pwdCheck.do'/>" id="boderli">회원정보수정</a></li>	            
 						<li><a href="<c:url value='/login/logout.do'/>">로그아웃</a></li>
 						<li>
 							<span style="font-size:1em; color:blue;">
-								${sessionScope.memberName}님</span>
+								${sessionScope.adminUserid}님</span>
 						</li> 
 					</c:if>
 				</ul>

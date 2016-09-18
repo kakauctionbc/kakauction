@@ -40,6 +40,8 @@ public class LoginController {
 			HttpServletRequest request,
 			HttpServletResponse response,
 			Model model){
+		
+		memVo.setMemberGrade(MemberService.MEMBER_GRADE_MEMBER);
 		logger.info("로그인입력 파라미터 memberVo={}",memVo);
 		logger.info("아이디저장 chkSave={}",chkSave);
 		

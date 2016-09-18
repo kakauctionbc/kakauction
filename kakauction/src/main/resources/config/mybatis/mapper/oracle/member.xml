@@ -36,6 +36,9 @@
 	
 	<select id="selectPwd" parameterType="MemberVO" resultType="string">
 		select MEMBER_PWD from member where MEMBER_ID=#{memberId} and MEMBER_OUTDATE is null
+		<if test="memberGrade=='ADMIN'">
+			and member_grade=#{memberGrade}
+		</if>
 	</select>
 	
 	<select id="selectCountUserid" parameterType="string" resultType="int">

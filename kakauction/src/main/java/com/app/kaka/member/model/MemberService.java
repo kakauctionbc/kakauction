@@ -11,6 +11,10 @@ public interface MemberService {
 	public static final int NONE_EXIST_ID=2;
 	//=> 해당 아이디가 존재하지 않음
 	
+	//관리자로그인관련
+	public static final String MEMBER_GRADE_ADMIN = "ADMIN";
+	public static final String MEMBER_GRADE_MEMBER = "MEMBER";
+	
 	//주민등록번호 확인
 	public static final int EXIST_JUMIN=1;
 	public static final int NONE_EXIST_JUMIN=2;
