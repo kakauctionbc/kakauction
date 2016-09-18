@@ -16,6 +16,6 @@ public class highChartController {
 	
 	@RequestMapping("/")
 	public String allAuctionChart(){
-		
+		return "";
 	}
 }

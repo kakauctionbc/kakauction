@@ -92,6 +92,7 @@ $(function(){
 					<li><a href="<c:url value='/admin/member/memberList.do'/>">회원 정보 조회</a></li>
 					<li><a href="<c:url value='/admin/excel/excelUpload.do'/>">회원 엑셀 일괄등록</a></li>
 					<li><a href="<c:url value='/admin/member/auctionMember.do'/>">경매 회원 조회</a></li>
+					<li><a href="<c:url value='/admin/member/auctionMember.do'/>">경매 회원 조회</a></li>
 				</ul>
 			</div>
 			<div id="content-info">
