@@ -205,11 +205,12 @@
 				<input type="submit" value="검색">
 		    </form>
 		</div>
-		
-		<div class="divBtn">
-		    <a href="<c:url value='/notice/write.do'/>" >
-			글쓰기</a>
-		</div>
+		<c:if test="${sessionScope.memberGrade=='ADMIN' }">
+			<div class="divBtn">
+			    <a href="<c:url value='/notice/write.do'/>" >
+				글쓰기</a>
+			</div>
+		</c:if>
 	</div>
 </div>
 <%@ include file="../design/inc/bottom.jsp"%>

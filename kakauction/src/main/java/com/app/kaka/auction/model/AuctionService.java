@@ -106,4 +106,7 @@ public interface AuctionService {
 	
 	//하이차트
 	public List<Map<String, Object>> selectAuctionDay();
+	
+	//메인페이지
+	public Map<String, Object> selectAllCarSize();
 }

@@ -20,7 +20,7 @@
 		    from
 		        (select * from Auction_Car2
 		        <include refid="searchWhere"></include>
-		        ordert by auction_no desc
+		        order by auction_no desc
 		        ) LIST_ALL    
 		) 
 		<![CDATA[
@@ -364,6 +364,19 @@
 	
 	<select id="selectAuctionDay" resultType="map">
 		select count(auction_no) as cnt, auction_regdate as reg from auction group by auction_regdate order by auction_regdate
+	</select>
+	
+	<select id="selectAllCarSize" resultType="map">
+		select
+		(select count(*) from now_auction_carsize) as TOTAL, 
+		(select count(*) from now_auction_carsize where car_size = '경차') VERYSMALL,
+		(select count(*) from now_auction_carsize where car_size = '소형') SMALL, 
+		(select count(*) from now_auction_carsize where car_size = '중형') HEAVY,
+		(select count(*) from now_auction_carsize where car_size = '준중') COMPACT,
+		(select count(*) from now_auction_carsize where car_size = '대형') FULLHEAVY,
+		(select count(*) from now_auction_carsize where car_size = 'SUV') SUV,
+		(select count(*) from now_auction_carsize where car_size = '승합차') VAN
+		from dual
 	</select>
 	
 </mapper>

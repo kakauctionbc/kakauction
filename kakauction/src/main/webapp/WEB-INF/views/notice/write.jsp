@@ -16,7 +16,7 @@
 				alert("제목을 입력하세요");
 				$("#title").focus();
 				return false;
-			}else if($("#noticeContent").val().length<1){
+			}else if($("#noticeContent").val()==""){
 				alert("내용을 입력하세요");
 				$("#noticeContent").focus();
 				return false;

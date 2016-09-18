@@ -303,6 +303,11 @@ public class AuctionServiceImpl implements AuctionService{
 		return auctionDao.selectAuctionDay();
 	}
 
+	@Override
+	public Map<String, Object> selectAllCarSize() {
+		return auctionDao.selectAllCarSize();
+	}
+
 	
 	
 	
