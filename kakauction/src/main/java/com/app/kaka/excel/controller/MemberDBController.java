@@ -26,7 +26,7 @@ import com.app.kaka.member.model.MemberService;
 import com.app.kaka.member.model.MemberVO;
 
 @Controller
-@RequestMapping("/excel")
+@RequestMapping("/admin/excel")
 public class MemberDBController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberDBController.class);
 	

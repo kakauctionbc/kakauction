@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.app.kaka.common.SearchVO;
 import com.app.kaka.member.model.MemberVO;
 
 @Service
@@ -87,6 +88,16 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		}
 		
 		return cnt;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectAuctionMember(SearchVO searchVo) {
+		return adminDao.selectAuctionMember(searchVo);
+	}
+
+	@Override
+	public int AuctionMemberCount(SearchVO searchVo) {
+		return adminDao.AuctionMemberCount(searchVo);
 	}
 
 }

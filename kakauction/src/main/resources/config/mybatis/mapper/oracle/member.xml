@@ -91,5 +91,20 @@
 		update member set member_Grade=#{memberGrade} where member_id=#{memberId}
 	</update>
 	
+	<select id="selectAuctionMember" parameterType="SearchVO" resultType="map">
+		select * from(
+			select rownum as RNUM, LIST_ALL.* from(
+				select l.buyer_member_id, L.SELLER_MEMBER_ID, l.car_num,l.record_price,m.member_name,m.member_hp,l.LASTBUYER_REGDATE
+				from lastbuyer l, member m where l.buyer_member_id=m.member_id order by lastbuyer_regdate
+			)LIST_ALL
+		)
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}+#{recordCountPerPage}
+		]]>
+	</select>
 	
+	<select id="AuctionMemberCount" parameterType="SearchVO" resultType="int">
+		select count(*) from lastbuyer
+	</select>
 </mapper>
