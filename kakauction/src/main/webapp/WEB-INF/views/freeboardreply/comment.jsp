@@ -22,7 +22,7 @@
 	<div class="comment">
 		<h3>댓글</h3><br>
 		<table class="box2"
-	 		summary="게시판 댓글에 대한 표로써, 작성자, 내용, 작성일시에 대한 정보를 제공합니다." style="width: 500px">
+	 		summary="게시판 댓글에 대한 표로써, 작성자, 내용, 작성일시에 대한 정보를 제공합니다." style="width: 1000px">
 	 		<colgroup>
 				<col style="width:20%;" />
 				<col style="width:60%;" />
