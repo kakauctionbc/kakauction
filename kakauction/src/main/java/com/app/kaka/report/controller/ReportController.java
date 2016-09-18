@@ -18,7 +18,9 @@ import com.app.kaka.auction.model.AuctionVO;
 import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
+import com.app.kaka.member.model.MemberVO;
 import com.app.kaka.msg.model.MsgService;
+import com.app.kaka.msg.model.MsgVO;
 import com.app.kaka.notice.model.NoticeVO;
 import com.app.kaka.report.model.ReportService;
 import com.app.kaka.report.model.ReportVO;
@@ -234,21 +236,21 @@ public class ReportController {
 	}
 	
 	@RequestMapping("handle.do")
-	public String reportHandle(@RequestParam String memberId, @RequestParam String memberGrade,
-			@RequestParam int reportNo, Model model){
-		logger.info("신고 처리 실행, 파라미터 memberId = {}, memberGrade = {} ", memberId, memberGrade);
-		int cnt = reportService.reportHandle(memberId, memberGrade);
+	public String reportHandle(@ModelAttribute MemberVO memVo,
+			@ModelAttribute ReportVO reportVo, @ModelAttribute MsgVO msgVo, Model model){
+		logger.info("신고 처리 실행, 파라미터 memberId = {}, memberGrade = {} ", memVo.getMemberId(), memVo.getMemberGrade());
+		int cnt = reportService.reportHandle(memVo.getMemberId(), memVo.getMemberGrade(), reportVo.getReportNo());
 		logger.info("신고 처리 결과, cnt = {}", cnt);
 		
-		int cnt1 = msgService.sendMessage(memberId, memberGrade);
+		int cnt1 = msgService.sendMessage(memVo, reportVo, msgVo);
 		
 		String msg = "", url = "";
 		if(cnt>0){
-			msg = memberGrade + " 처리 하였습니다";
-			url = "/report/detail.do?reportNo="+reportNo;
+			msg = memVo.getMemberGrade() + " 처리 하였습니다";
+			url = "/report/detail.do?reportNo="+reportVo.getReportNo();
 		}else{
-			msg = memberGrade + " 처리 실패";
-			url = "/report/detail.do?reportNo="+reportNo;
+			msg = memVo.getMemberGrade() + " 처리 실패";
+			url = "/report/detail.do?reportNo="+reportVo.getReportNo();
 		}
 		
 		model.addAttribute("msg", msg);

@@ -5,13 +5,15 @@ import java.sql.Timestamp;
 public class MsgVO {
 	private int msgNo;
 	private int reportNo;
-	private String buyerMemberId;
-	private int freeboardNo;
-	private String memberId;
+	private String reportMemberId;
+	private int originNo;
+	private int originType;
 	private String msgContent;
 	private Timestamp msgRegdate;
 	private String msgTitle;
 	private String msgConfirm;
+	private String memberId;
+	
 	public int getMsgNo() {
 		return msgNo;
 	}
@@ -24,23 +26,23 @@ public class MsgVO {
 	public void setReportNo(int reportNo) {
 		this.reportNo = reportNo;
 	}
-	public String getBuyerMemberId() {
-		return buyerMemberId;
+	public String getReportMemberId() {
+		return reportMemberId;
 	}
-	public void setBuyerMemberId(String buyerMemberId) {
-		this.buyerMemberId = buyerMemberId;
+	public void setReportMemberId(String reportMemberId) {
+		this.reportMemberId = reportMemberId;
 	}
-	public int getFreeboardNo() {
-		return freeboardNo;
+	public int getOriginNo() {
+		return originNo;
 	}
-	public void setFreeboardNo(int freeboardNo) {
-		this.freeboardNo = freeboardNo;
+	public void setOriginNo(int originNo) {
+		this.originNo = originNo;
 	}
-	public String getMemberId() {
-		return memberId;
+	public int getOriginType() {
+		return originType;
 	}
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setOriginType(int originType) {
+		this.originType = originType;
 	}
 	public String getMsgContent() {
 		return msgContent;
@@ -66,11 +68,17 @@ public class MsgVO {
 	public void setMsgConfirm(String msgConfirm) {
 		this.msgConfirm = msgConfirm;
 	}
-
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
 	@Override
 	public String toString() {
-		return "MsgVO [msgNo=" + msgNo + ", reportNo=" + reportNo + ", buyerMemberId=" + buyerMemberId
-				+ ", freeboardNo=" + freeboardNo + ", memberId=" + memberId + ", msgContent=" + msgContent
-				+ ", msgRegdate=" + msgRegdate + ", msgTitle=" + msgTitle + ", msgConfirm=" + msgConfirm + "]";
+		return "MsgVO [msgNo=" + msgNo + ", reportNo=" + reportNo + ", reportMemberId=" + reportMemberId + ", originNo="
+				+ originNo + ", originType=" + originType + ", msgContent=" + msgContent + ", msgRegdate=" + msgRegdate
+				+ ", msgTitle=" + msgTitle + ", msgConfirm=" + msgConfirm + ", memberId=" + memberId + "]";
 	}
+	
 }

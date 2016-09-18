@@ -56,7 +56,7 @@
 		        report_type, report_content, report_result, report_regdate
 		        from report
 		        <include refid="searchWhere"></include>
-		        ) LIST_ALL    
+		        order by report_result, report_no desc) LIST_ALL    
 		) 
 		<![CDATA[
 		where  RNUM> #{firstRecordIndex} 
@@ -101,5 +101,11 @@
 		update member
 		set member_grade = #{memberGrade}
 		where member_id = #{memberId}
+	</update>
+	
+	<update id="reportResult" parameterType="int">
+		update report
+		set report_result = 'Y'
+		where report_no = #{reportNo}
 	</update>
 </mapper>

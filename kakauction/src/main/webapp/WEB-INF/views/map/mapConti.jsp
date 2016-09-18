@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,6 @@
 	        center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
 	        level: 3 // 지도의 확대 레벨
 	    };  
-	
 	// 지도를 생성합니다    
 	var map = new daum.maps.Map(mapContainer, mapOption); 
 	
@@ -54,8 +54,14 @@
 	        title: '카카오', 
 	        latlng: new daum.maps.LatLng(33.450705, 126.570677)
 	    }
-	],
-	selectedMarker = null;
+	];
+	/* var positions = [];
+	for(var location=0; location<${alist.size()}; location++){
+		positions[location]['title'] = ${alist[1].title};
+		positions[location]['latlng'] = ${alist[1].position}
+	} */
+	
+	var selectedMarker = null;
 	
 	//마커 이미지의 이미지 주소입니다
 	var imageSrc = "${pageContext.request.contextPath }/image/icon.png"; 
@@ -267,6 +273,12 @@
 		<input type="text" name="place" id="place" value="<%=place %>">
 		<input type="submit" value="검색">
 	</form>
+	<c:set var="locCount" value="0"/>
+	<c:forEach var="loc" items="${alist }">
+		<input type="hidden" id="locTitle${locCount }" value="${loc.title }">
+		<input type="hidden" id="locPosition${locCount }" value="${loc.position }">
+		<c:set var="locCount" value="${locCount+1 }"/>
+	</c:forEach>
 	<p id="result"></p>
 	<input type="hidden" name="buyerLocation" id="buyerLocation">
 </body>

@@ -22,4 +22,5 @@ public interface ReportDAO {
 	public String searchMemberIdFromFB(int originNo);
 	public String searchMemberIdFromAuction(int originNo);
 	public int memberHandle(MemberVO memVo);
+	public int reportResult(int reportNo);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.app.kaka.auction.model.AuctionVO;
 import com.app.kaka.common.SearchVO;
@@ -74,7 +75,8 @@ public class ReportServiceImpl implements ReportService{
 	}
 
 	@Override
-	public int reportHandle(String memberId, String memberGrade) {
+	@Transactional
+	public int reportHandle(String memberId, String memberGrade, int reportNo) {
 		int cnt = 0;
 		if(memberGrade.equals("강제탈퇴")){
 			cnt = memberDao.memberOut(memberId);
@@ -90,7 +92,11 @@ public class ReportServiceImpl implements ReportService{
 			}
 			cnt = reportDao.memberHandle(memVo);
 		}
-		return cnt;
+		int cnt1 = 0;
+		if(cnt>0){
+			cnt1 = reportDao.reportResult(reportNo);
+		}
+		return cnt1;
 	}
 
 }

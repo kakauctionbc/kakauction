@@ -19,5 +19,5 @@ public interface ReportService {
 	public int selectReportMy(ReportVO vo);
 	public ReportVO selectByNo(int reportNo);
 	public String searchMemberId(ReportVO reportVo);
-	public int reportHandle(String memberId, String memberGrade);
+	public int reportHandle(String memberId, String memberGrade, int reportNo);
 }

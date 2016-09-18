@@ -3,6 +3,49 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="config.mybatis.mapper.oracle.msg">
 	<insert id="insertMsg" parameterType="MsgVO">
-		insert into msg 
+		<selectKey keyProperty="msgNo" resultType="int" order="BEFORE">
+			select MESSAGE_SEQ.nextval from dual
+		</selectKey>
+		insert into msg(msg_no, report_no, report_member_id, origin_no,
+		origin_type, msg_content, msg_title, member_id)
+		values(#{msgNo}, #{reportNo}, #{reportMemberId}, #{originNo}, #{originType},
+		 #{msgContent}, #{msgTitle}, #{memberId})
 	</insert>
+	
+	<select id="selectByMemberId" resultType="msgVo" parameterType="MsgSearchVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, LIST_ALL.*
+		    from
+		        (select msg_no, report_no, report_member_id, origin_no, origin_type,
+		        msg_content, msg_regdate, msg_title, msg_confirm, member_id
+		        from msg
+		        where member_id=#{memberId}
+		        order by msg_confirm, msg_no desc) LIST_ALL   
+		) 
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}
+			+ #{recordCountPerPage}
+		]]>
+	</select>
+	
+	<select id="selectTotalCount" resultType="int" parameterType="SearchVO">
+		select count(*) from msg
+	</select>
+	
+	<select id="newMessage" parameterType="String" resultType="int">
+		select count(*) from msg where member_id = #{memberId} and msg_confirm='N'
+	</select>
+	
+	<select id="selectByMsgNo" parameterType="int" resultType="msgVo">
+		select * from msg where msg_no=#{msgNo}
+	</select>
+	
+	<update id="updateConfirm" parameterType="int">
+		update msg
+		set msg_confirm = 'Y'
+		where msg_no=#{msgNo}
+	</update>
 </mapper>

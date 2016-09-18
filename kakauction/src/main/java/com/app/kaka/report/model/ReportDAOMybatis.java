@@ -78,4 +78,9 @@ public class ReportDAOMybatis extends SqlSessionDaoSupport implements ReportDAO{
 		return getSqlSession().update(namespace+".reportHandle", memVo);
 	}
 
+	@Override
+	public int reportResult(int reportNo) {
+		return getSqlSession().update(namespace+".reportResult", reportNo);
+	}
+
 }
