@@ -44,7 +44,7 @@ public class AdminFreeboardController {
 	@RequestMapping("/freeboardList.do")
 	public String freeboardList(@ModelAttribute SearchVO searchVo, @RequestParam(defaultValue="20") int selectedCountPerPage,
 			Model model){
-		logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);
+		/*logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);*/
 		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
