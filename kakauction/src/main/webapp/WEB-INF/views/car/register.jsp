@@ -7,14 +7,6 @@
 	$(function(){ 
 		$("#carReg").click(function(event){
 			var bool = false;
-			/* $("input[type='file']").each(function(){
-				if(!$(this).val()){
-					alert("사진은 20장 모두 등록하셔야 합니다");
-					bool = true;
-					return false;
-				}
-			}); */
-			
 			
 			if($("#carCompany").val().length<1){
 				alert("공고기관을 입력하세요");
@@ -69,15 +61,27 @@
 				$("#carLoc").focus();
 				bool = true;
 			}else if($("#sellerAgree2:checked").val()=='2'){
-				alert("차량 판매 약관에 동의하세요")
+				alert("차량 판매 약관에 동의하세요");
+				$("#sellerAgree2").focus();
 				bool=true;
 			}
 
+			$("input[type='file']").each(function(){
+				if(!$(this).val()){
+					alert("사진은 20장 모두 등록하셔야 합니다");
+					bool = true;
+					return false;
+				}
+			});
+			
 			if(!bool){
 				$("#carBirth").val($("#carBirth1").val()+"년 "+$("#carBirth2").val()+"월");
 				$("#registerCar").submit();
 			}
 			
+		});
+		$("#myLoc").click(function(){
+			$("#carLoc").val("${memVo.memberAddr }");
 		});
 	});
 	
@@ -95,6 +99,7 @@
 	        reader.readAsDataURL(input.files[0]);
 	    }
 	}
+	
 </script>
 <style type="text/css">
 	th{
@@ -367,7 +372,7 @@
 					</th>
 					<td colspan="3">
 						<input name="carLoc" type="text" id="carLoc" style="width:500px; border: none;" title="현재위치">
-						<input type="button" id="searchLoc" name="searchLoc" value="장소 검색">
+						<input type="button" id="myLoc" name="myLoc" value="내 주소로">
 					</td>
 				</tr>
 			</tbody>

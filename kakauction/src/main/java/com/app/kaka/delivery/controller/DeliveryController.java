@@ -120,6 +120,7 @@ public class DeliveryController {
 		}
 		model.addAttribute("requestParam 으로 받은 map", data);
 		int cnt = deliveryService.updateLastBuyerYn(data);
+		int cnt1 = deliveryService.insertDelivery(data);
 		logger.info("거래 성공 최종구매자 상태 업데이트 cnt={}",cnt);
 		cnt = deliveryService.insertTrade(data);
 		logger.info("거래 성공 거래테이블에 입력 cnt={}",cnt);

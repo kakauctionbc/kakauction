@@ -25,15 +25,17 @@
 		});
 		
 		
-		/* $("#frmReport").submit(function(){
-			if(!$("#freeboardreportContent").is(":checked")){
+		$("#frmReport").submit(function(){
+			if(!$("input[name=reportType]").is(":checked")){
 				alert("신고사유를 선택해야 합니다.");
-				event.preventDefault();
-				$("#freeboardreportContent").focus();
-			}else{
-				return true;
+				$("input[name=reportType]").focus();
+				return false;
+			}else if($("#reportTitle").val()==""){
+				alert("제목을 입력하세요");
+				$("#reportTitle").focus();
+				return false;
 			}
-		}); */
+		});
 	});//document.ready
 </script>	
 <style>
@@ -95,7 +97,7 @@
 			<a href="#">운영원칙 자세히 보기 ▶</a>
 			<ul class="reportType">
 				<li>
-					<input type="radio" name="reportType" id="reportType1" value="광고글">
+					<input type="radio" name="reportType" id="reportType1" value="광고글" checked>
 					<label class="fr2" for="reportType1">부적절한 홍보 게시글</label>
 					<span class="more"><a href="#">더보기</a></span>
 					<ul class="advertising">

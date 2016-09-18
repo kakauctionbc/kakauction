@@ -6,20 +6,20 @@
 	$(document).ready(function(){
 		CKEDITOR.replace('freeboardContent');	
 		
-		$("#frmWrite").submit(function(event){
+		$("#frmWrite").submit(function(){
 			if($("#freeboardTitle").val()==""){
 				alert("제목을 입력하세요");
 				$("#freeboardTitle").focus();
-				event.preventDefault();
-			}else if($("#name").val().length<1){
-				alert("이름을 입력하세요");
-				$("#name").focus();
-				event.preventDefault();
-			}else if($("#pwd").val().length<1){
-				alert("비밀번호를 입력하세요");
-				$("#pwd").focus();
-				event.preventDefault();
+				return false;
+			}else if($("#freeboardContent").val()==""){
+				alert("내용을 입력하세요");
+				$("#freeboardContent").focus();
+				return false;
 			}
+		});
+		
+		$("#list").click(function(){
+			location.href="/kaka/freeboard/list.do";
 		});
 	});
 </script>
@@ -46,6 +46,7 @@
 			<textarea id="freeboardContent" name="freeboardContent" rows="30" cols="40"></textarea>
 			<input type="submit" value="작성" style="margin-left: 450px; margin-right: 10px; margin-top: 10px;">
 			<input type="reset" value="초기화">
+			<input type="button" id="list" value="목록">
 		</form>
 	</div>
 </div>

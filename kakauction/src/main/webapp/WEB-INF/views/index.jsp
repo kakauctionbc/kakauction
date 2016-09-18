@@ -86,32 +86,47 @@ $(function() {
 				</tr>
 				<tr id="align_center">
 					<td>전체</td>
-					<td>0</td>
+					<td>${map["TOTAL"] }</td>
 					<td></td>
 				</tr>
 				<tr id="align_center">
-					<td>승용</td>
-					<td>0</td>
+					<td>경차</td>
+					<td>${map["VERYSMALL"] }</td>
 					<td></td>
 				</tr>
 				<tr id="align_center">
-					<td>suv</td>
-					<td>0</td>
+					<td>소형</td>
+					<td>${map["SMALL"] }</td>
+					<td></td>
+				</tr>
+				<tr id="align_center">
+					<td>중형</td>
+					<td>${map["HEAVY"] }</td>
+					<td></td>
+				</tr>
+				<tr id="align_center">
+					<td>준중</td>
+					<td>${map["COMPACT"] }</td>
+					<td></td>
+				</tr>
+				<tr id="align_center">
+					<td>대형</td>
+					<td>${map["FULLHEAVY"] }</td>
+					<td></td>
+				</tr>
+				<tr id="align_center">
+					<td>SUV</td>
+					<td>${map["SUV"] }</td>
 					<td></td>
 				</tr>
 				<tr id="align_center">
 					<td>승합</td>
-					<td>0</td>
-					<td></td>
-				</tr>
-				<tr id="align_center">
-					<td>화물</td>
-					<td>0</td>
+					<td>${map["VAN"] }</td>
 					<td></td>
 				</tr>
 				<tr id="align_center">
 					<td>기타</td>
-					<td>0</td>
+					<td>${map["TOTAL"]-map["VERYSMALL"]-map["SMALL"]-map["HEAVY"]-map["COMPACT"]-map["FULLHEAVY"]-map["SUV"]-map["VAN"] }</td>
 					<td></td>
 				</tr>
 			</table>

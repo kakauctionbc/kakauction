@@ -27,5 +27,10 @@ public class DeliveryServiceImpl implements DeliveryService{
 		return deliveryDao.insertTrade(map);
 	}
 
+	@Override
+	public int insertDelivery(Map<String, Object> data) {
+		return deliveryDao.insertDelivery(data);
+	}
+
 	
 }

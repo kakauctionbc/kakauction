@@ -58,7 +58,7 @@
 			        msg += '결제 금액 : ' + rsp.paid_amount;
 			        msg += '카드 승인번호 : ' + rsp.apply_num;
 			        console.log(msg);
-			        var data={"lbNo":lbNo,"recordNo":recordNo,"auctionNo":auctionNo,"buyerMemberId":buyerMemberId,"recordPrice":recordPrice,"carNum":carNum,"tradeType":"정상결제"};
+			        var data={"lbNo":lbNo,"recordNo":recordNo,"auctionNo":auctionNo,"buyerMemberId":buyerMemberId,"recordPrice":recordPrice,"carNum":carNum,"title":title,"tradeType":"정상결제"};
 			        location.replace("<c:url value='/delivery/insertTrade.do?data="+data+"'/>");
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
@@ -235,6 +235,7 @@
 					<input type="hidden" id="memberEmail" value="${memVo.memberEmail}">
 					<input type="hidden" id="memAddr" value="${memVo.memberAddr } ${memVo.memberAddr2 }">
 					<input type="hidden" id="auctionNo" value="${map['AUCTION_NO']}">
+					<input type="hidden" id="title">
 					<a id="payment" href="#"><img alt="계약금 지불 페이지" src="<c:url value='/img/paymentIcon.png'/>"></a>
 				</td>
 				<th>계약 취소</th>

@@ -53,6 +53,7 @@ $(function(){
 					</c:if>
 					<!-- 로그인된 경우 -->
 					<c:if test="${!empty sessionScope.memberId }">
+						<li><a href="<c:url value='/msg/myList.do'/>"><jsp:include page="/msg/myMsgAlarm.do"></jsp:include></a></li>
 						<li><a href="<c:url value='/member/memberOut.do'/>" >회원탈퇴</a></li>	            
 						<li><a href="<c:url value='/member/pwdCheck.do'/>" id="boderli">회원정보수정</a></li>	            
 						<li><a href="<c:url value='/login/logout.do'/>">로그아웃</a></li>
@@ -98,7 +99,9 @@ $(function(){
 		<div id="headmenu-content">
 			<div id="content-member">
 					<ul>
-					<li><a href="<c:url value='/member/agreement.do'/>">회원가입</a></li>
+					<c:if test="${empty sessionScope.memberId }">
+						<li><a href="<c:url value='/member/agreement.do'/>">회원가입</a></li>
+					</c:if>
 					<li><a href="<c:url value='/member/pwdCheck.do'/>">회원정보수정</a></li>
 					<li><a href="#">회사소개</a></li>
 					<li><a href="#">찾아오시는 길</a></li>
@@ -120,8 +123,8 @@ $(function(){
 				<ul>
 					<li><a href="<c:url value='/auction/auctionSuccess.do'/>">경매낙찰현황</a></li>
 					<li><a href="<c:url value='/auction/myAuctionList.do'/>">경매입찰현황</a></li>
-					<li><a href="<c:url value='/report/auctionReport.do'/>">불량경매신고</a></li>
-					<li><a href="<c:url value='/freeboard/myFreeboardList.do'/>">내가 쓴 글</a></li>
+					<%-- <li><a href="<c:url value='/report/auctionReport.do'/>">불량경매신고</a></li>
+					<li><a href="<c:url value='/freeboard/myFreeboardList.do'/>">내가 쓴 글</a></li> --%>
 				</ul>
 			</div>
 			<div id="content-notice">

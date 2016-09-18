@@ -450,6 +450,7 @@
 	    /* infowindow.open(map, findMarker); */
 	    alert("선택 지점에서 가장 가까운 수령지는 \""+findMarker.getTitle()+"\"입니다.");
 	    $("#buyerLocation").val(findMarker.getTitle());
+	    $("#title").val(findMarker.getTitle());
 	});
 
 	function findNear(clickMarker){

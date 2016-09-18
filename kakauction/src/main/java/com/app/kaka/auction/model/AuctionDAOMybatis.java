@@ -231,6 +231,11 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 		return getSqlSession().selectList(namespace+".selectAuctionDay");
 	}
 
+	@Override
+	public Map<String, Object> selectAllCarSize() {
+		return getSqlSession().selectOne(namespace+".selectAllCarSize");
+	}
+
 
 	
 

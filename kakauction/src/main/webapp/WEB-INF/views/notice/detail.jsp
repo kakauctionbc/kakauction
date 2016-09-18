@@ -48,11 +48,13 @@
 			<p class="content">${noticeVo.noticeContent}</p>
 		</div>
 		<div class="center">
-			<a href
-			="<c:url value='/notice/edit.do?noticeNo=${noticeVo.noticeNo}'/>">
-			수정</a> |
-        	<a id="delete" href	="<c:url value='/notice/delete.do?noticeNo=${noticeVo.noticeNo}&noticeGroupno=${noticeVo.noticeGroupno }&noticeFilename=${noticeVo.noticeFilename}'/>">
-			삭제</a> |
+			<c:if test="${sessionScope.memberGrade=='ADMIN' }">
+				<a href
+				="<c:url value='/notice/edit.do?noticeNo=${noticeVo.noticeNo}'/>">
+				수정</a> |
+	        	<a id="delete" href	="<c:url value='/notice/delete.do?noticeNo=${noticeVo.noticeNo}&noticeGroupno=${noticeVo.noticeGroupno }&noticeFilename=${noticeVo.noticeFilename}'/>">
+				삭제</a> |
+			</c:if>
         	<a href="<c:url value='/notice/list.do'/>">목록</a>			
 		</div>
 	</div>

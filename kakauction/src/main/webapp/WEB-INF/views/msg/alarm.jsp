@@ -8,8 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${newMsgCount>0 }">
-		메세지(${newMsgCount })
-	</c:if>
+	메세지(${newMsgCount })
 </body>
 </html>

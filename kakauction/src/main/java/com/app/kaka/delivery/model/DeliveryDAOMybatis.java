@@ -26,5 +26,10 @@ public class DeliveryDAOMybatis extends SqlSessionDaoSupport implements Delivery
 		return getSqlSession().insert(namespace+".insertTrade", map);
 	}
 
+	@Override
+	public int insertDelivery(Map<String, Object> data) {
+		return getSqlSession().insert(namespace+".insertDelivery", data);
+	}
+
 	
 }

@@ -226,10 +226,10 @@ public class FreeboardController {
 		int cnt = freeboardService.updateFreeboard(freeboardVo);
 		logger.info("게시글 등록 결과 cnt={}",cnt);
 		if(cnt>0){
-			msg="상품 수정 성공";
+			msg="글 수정 성공";
 			url="/freeboard/list.do";
 		}else{
-			msg="상품 수정 실패";
+			msg="글 수정 실패";
 			url="/freeboard/edit.do";
 		}
 		
