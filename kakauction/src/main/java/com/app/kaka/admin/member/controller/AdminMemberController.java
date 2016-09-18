@@ -153,4 +153,30 @@ public class AdminMemberController {
 		
 		return "common/message";
 	}
+	
+	@RequestMapping("/auctionMember.do")
+	public String auctionMember(@ModelAttribute SearchVO searchVo,Model model){
+		logger.info("경매 참여 회원 보기");
+		
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		searchVo.setBlockSize(Utility.BLOCK_SIZE);
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		
+		int totalRecord = adminService.AuctionMemberCount(searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+		model.addAttribute("totalRecord", totalRecord);
+		
+		List<Map<String, Object>> alist = adminService.selectAuctionMember(searchVo);
+		
+		model.addAttribute("aMemList", alist);
+		model.addAttribute("pagingInfo", pagingInfo);
+		
+		
+		return "admin/member/auctionMember";
+	}
 }

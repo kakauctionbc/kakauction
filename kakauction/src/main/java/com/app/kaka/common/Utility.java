@@ -8,4 +8,5 @@ public class Utility {
 	
 	public static final int MAUCLIST_COUNT_PER_PAGE = 20;
 	
+	public static final int AUCTION_MEMBER_COUNT_PER_PAGE = 15;
 }
