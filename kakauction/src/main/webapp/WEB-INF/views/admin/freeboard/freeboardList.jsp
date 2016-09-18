@@ -39,7 +39,6 @@
 		document.frmPage.selectedCountPerPage.value=${selectedCountPerPage };
 		document.frmPage.submit();
 	}
-	
 
 </script>
 <style type="text/css">
@@ -88,94 +87,98 @@
 			selected
 		</c:if>>100개씩 보기</option>
 </select>
-<table class="box2"
-	 	summary="자유게시판에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
-	<caption>자유게시판</caption>
-	<colgroup>
-		<col style="width:5%;" />
-		<col style="width:5%;" />
-		<col style="width:40%;" />
-		<col style="width:15%;" />
-		<col style="width:15%;" />
-		<col style="width:10%;" />		
-		<col style="width:10%;" />		
-	</colgroup>
-	<thead>
-	  <tr>
-	  	<th><input type="checkbox" name="chkAll" id="chkAll"></th>
-	    <th scope="col">번호</th>
-	    <th scope="col">제목</th>
-	    <th scope="col">작성자</th>
-	    <th scope="col">작성일</th>
-	    <th scope="col">조회수</th>
-	    <th scope="col">신고수</th>
-	  </tr>
-	</thead> 
-	<tbody>  
-	<c:if test="${empty alist}">
-		<tr>
-			<td colspan="5" class="align_center">
-			해당 데이터가 없습니다
-			</td>
-		</tr>
-	</c:if>
-	<c:if test="${!empty alist}">
-		<!--게시판 내용 반복문 시작  -->
-		<c:forEach var="vo" items="${alist }">
-			<tr style="text-align: center">
-				<td><input type="checkbox" name="memberItems[${i}].memberId" value="${vo.freeboardNo}" id="chk_${i}"></td>
-				<td>${vo.freeboardNo}</td>
-				<td style="text-align: left;">
-					<!-- 삭제된 원본글일경우 제목 감추기 -->
-					<c:if test="${vo.freeboardDelflag=='Y' }">
-						<a href="<c:url value='/admin/freeboard/updateCount.do?freeboardNo=${vo.freeboardNo}'/>" style="color: gray;">
-							<!-- 제목이 긴 경우 일부만 보여주기 -->
-							<c:if test="${fn:length(vo.freeboardTitle)>30}">
-								${fn:substring(vo.freeboardTitle, 0,30)}...
+<div class="memList">
+	<form name="frmList" method="post" action="<c:url value='/admin/member/memberList.do'/>">
+		<div style="margin-left: 930px;"><button class="btDel">삭제</button></div>
+		<table class="box2" summary="자유게시판에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
+			<caption>자유게시판</caption>
+			<colgroup>
+				<col style="width:5%;" />
+				<col style="width:5%;" />
+				<col style="width:40%;" />
+				<col style="width:15%;" />
+				<col style="width:15%;" />
+				<col style="width:10%;" />		
+				<col style="width:10%;" />		
+			</colgroup>
+			<thead>
+			  <tr>
+			  	<th><input type="checkbox" name="chkAll" id="chkAll"></th>
+			    <th scope="col">번호</th>
+			    <th scope="col">제목</th>
+			    <th scope="col">작성자</th>
+			    <th scope="col">작성일</th>
+			    <th scope="col">조회수</th>
+			    <th scope="col">신고수</th>
+			  </tr>
+			</thead> 
+			<tbody>  
+			<c:if test="${empty alist}">
+				<tr>
+					<td colspan="5" class="align_center">
+					해당 데이터가 없습니다
+					</td>
+				</tr>
+			</c:if>
+			<c:if test="${!empty alist}">
+				<!--게시판 내용 반복문 시작  -->
+				<c:forEach var="vo" items="${alist }">
+					<tr style="text-align: center">
+						<td><input type="checkbox" name="memberItems[${i}].memberId" value="${vo.freeboardNo}" id="chk_${i}"></td>
+						<td>${vo.freeboardNo}</td>
+						<td style="text-align: left;">
+							<!-- 삭제된 원본글일경우 제목 감추기 -->
+							<c:if test="${vo.freeboardDelflag=='Y' }">
+								<a href="<c:url value='/admin/freeboard/updateCount.do?freeboardNo=${vo.freeboardNo}'/>" style="color: gray;">
+									<!-- 제목이 긴 경우 일부만 보여주기 -->
+									<c:if test="${fn:length(vo.freeboardTitle)>30}">
+										${fn:substring(vo.freeboardTitle, 0,30)}...
+									</c:if>
+									<c:if test="${fn:length(vo.freeboardTitle)<=30}">
+										${vo.freeboardTitle}
+									</c:if>
+								</a>
 							</c:if>
-							<c:if test="${fn:length(vo.freeboardTitle)<=30}">
-								${vo.freeboardTitle}
+							<c:if test="${vo.freeboardDelflag!='Y' }">
+								<!-- 답변의 경우 화살표 이미지 보여주기 -->
+								<c:if test="${vo.freeboardStep>0 }">
+									<c:forEach var="i" begin="1" end="${vo.freeboardStep*2 }">
+										&nbsp;
+									</c:forEach>
+									<img alt="화살표 이미지" src="<c:url value="/image/re.gif"/>">
+								</c:if>
+								<c:if test="${!empty vo.freeboardFilename }">
+									<img src='<c:url value="/image/file.gif"/>'>
+								</c:if>
+								<a href="<c:url value='/admin/freeboard/updateCount.do?freeboardNo=${vo.freeboardNo}'/>">
+									<!-- 제목이 긴 경우 일부만 보여주기 -->
+									<c:if test="${fn:length(vo.freeboardTitle)>30}">
+										${fn:substring(vo.freeboardTitle, 0,30)}...
+									</c:if>
+									<c:if test="${fn:length(vo.freeboardTitle)<=30}">
+										${vo.freeboardTitle}
+									</c:if>
+								</a>
+								<!-- 24시간 이내의 글인 경우 new 이미지 보여주기 -->
+								<c:if test="${vo.newImgTerm<24}">
+									<img src="<c:url value='/image/new.gif'/>" alt="new이미지">
+								</c:if>
 							</c:if>
-						</a>
-					</c:if>
-					<c:if test="${vo.freeboardDelflag!='Y' }">
-						<!-- 답변의 경우 화살표 이미지 보여주기 -->
-						<c:if test="${vo.freeboardStep>0 }">
-							<c:forEach var="i" begin="1" end="${vo.freeboardStep*2 }">
-								&nbsp;
-							</c:forEach>
-							<img alt="화살표 이미지" src="<c:url value="/image/re.gif"/>">
-						</c:if>
-						<c:if test="${!empty vo.freeboardFilename }">
-							<img src='<c:url value="/image/file.gif"/>'>
-						</c:if>
-						<a href="<c:url value='/admin/freeboard/updateCount.do?freeboardNo=${vo.freeboardNo}'/>">
-							<!-- 제목이 긴 경우 일부만 보여주기 -->
-							<c:if test="${fn:length(vo.freeboardTitle)>30}">
-								${fn:substring(vo.freeboardTitle, 0,30)}...
-							</c:if>
-							<c:if test="${fn:length(vo.freeboardTitle)<=30}">
-								${vo.freeboardTitle}
-							</c:if>
-						</a>
-						<!-- 24시간 이내의 글인 경우 new 이미지 보여주기 -->
-						<c:if test="${vo.newImgTerm<24}">
-							<img src="<c:url value='/image/new.gif'/>" alt="new이미지">
-						</c:if>
-					</c:if>
-				</td>
-				<td>${vo.memberId}</td>
-				<td><fmt:formatDate value="${vo.freeboardRegdate}"
-					pattern="yyyy-MM-dd"/>
-				</td>
-				<td>${vo.freeboardReadCount}</td>
-				<td>${vo.freeboardreportCount}</td>
-			</tr>				
-		</c:forEach>
-		<!--반복처리 끝  -->
-	</c:if>
-	</tbody>
-</table>	   
+						</td>
+						<td>${vo.memberId}</td>
+						<td><fmt:formatDate value="${vo.freeboardRegdate}"
+							pattern="yyyy-MM-dd"/>
+						</td>
+						<td>${vo.freeboardReadCount}</td>
+						<td>${vo.freeboardreportCount}</td>
+					</tr>				
+				</c:forEach>
+				<!--반복처리 끝  -->
+			</c:if>
+			</tbody>
+		</table>
+	</form>
+</div>	   
 </div>
 <div class="divPage">
 	<!-- 이전 블럭으로 이동 -->

@@ -118,6 +118,11 @@
 		</tr>
 	</c:if>
 	<c:if test="${!empty alist}">
+		<tr><td>
+			<form action="<c:url value=''/>" method="post" name="delfrm">
+				
+			</form>
+		</td></tr>
 		<!--게시판 내용 반복문 시작  -->
 		<c:forEach var="vo" items="${alist }">
 			<tr style="text-align: center">
@@ -166,7 +171,7 @@
 				<td><fmt:formatDate value="${vo.freeboardRegdate}"
 					pattern="yyyy-MM-dd"/>
 				</td>
-				<td>${vo.freeboardReportCount}</td>
+				<td>${vo.freeboardreportCount}</td>
 			</tr>				
 		</c:forEach>
 		<!--반복처리 끝  -->

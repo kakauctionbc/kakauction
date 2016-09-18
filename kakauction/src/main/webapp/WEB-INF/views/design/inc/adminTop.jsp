@@ -46,7 +46,7 @@ $(function(){
 					<c:if test="${empty sessionScope.memberId }">
 						<li><a href="<c:url value='/board/list.do'/>">고객센터</a></li>					
 						<li><a href="<c:url value='/member/agreement.do'/>" id="boderli">회원가입</a></li>
-						<li><a href="<c:url value='/login/login.do'/>">로그인</a></li>
+						<li><a href="<c:url value='/admin/login/adminLogin.do'/>">로그인</a></li>
 					</c:if>
 					<!-- 로그인된 경우 -->
 					<c:if test="${!empty sessionScope.memberId }">
@@ -72,7 +72,7 @@ $(function(){
 				<ul>
 					<li><a href="<c:url value='/admin/auction/auctionWrite.do'/>">차량 관리</a></li>
 					<li><a href="<c:url value='/admin/member/memberList.do'/>">회원관리</a></li>
-					<li><a href="<c:url value='/admin/auction/auctionList.do'/>">컨텐츠 관리</a></li>
+					<li><a href="<c:url value='/admin/freeboard/freeboardList.do'/>">컨텐츠 관리</a></li>
 					<li><a href="<c:url value='/admin/qna/qnalist.do'/>">QNA 관리</a></li>
 				</ul>
 			</div>
