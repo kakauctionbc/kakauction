@@ -9,7 +9,10 @@
 		</tr>
 		<tr>
 			<td>
-				<c:import url="/admin/highChart/auctionChart.do"/>
+				여기는 원래 하이차트가 들어가야합니다
+				왜왜오래
+				커밋안해주냐
+				이게 여기는 이거야 이거
 			</td>
 			<td>
 			</td>
