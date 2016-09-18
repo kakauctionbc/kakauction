@@ -51,7 +51,7 @@
 	
 <!-- http://localhost:9090/mymvc/reBoard
 /list.do?currentPage=5&searchCondition=content&searchKeyword=%ED%95%98 -->
-<form name="frmPage" id="frmPage" method="post" action="<c:url value='/freeboard/list.do'/>">
+<form name="frmPage" id="frmPage" method="post" action="<c:url value='/admin/freeboard/freeboardList.do'/>">
 	<input type="hidden" id = "currentPage" name="currentPage" value="${searchVo.currentPage }">
 	<input type="hidden" name="searchCondition" value="${param.searchCondition }">
 	<input type="hidden" name="searchKeyword" value="${searchVO.searchKeyword }">	
@@ -169,7 +169,7 @@
 					pattern="yyyy-MM-dd"/>
 				</td>
 				<td>${vo.freeboardReadCount}</td>
-				<td>${vo.freeboardReportCount}</td>
+				<td>${vo.freeboardreportCount}</td>
 			</tr>				
 		</c:forEach>
 		<!--반복처리 끝  -->
