@@ -127,7 +127,7 @@ public class AdminFreeboardController {
 	
 	@RequestMapping("/freeboardDelete.do")
 	public String deleteNotice(HttpServletRequest request,@ModelAttribute FreeboardVO freeboardVo,
-			@RequestParam String freeboardFilename,Model model){
+			@RequestParam String freeboardFilename,Model model,@RequestParam int freeboardNo){
 		logger.info("공지 삭제 파라미터 freeboardVo={},freeboardFilename={}",freeboardVo.getFreeboardNo(), freeboardFilename);
 		
 		if (freeboardVo.getFreeboardNo()==0) {
@@ -137,14 +137,7 @@ public class AdminFreeboardController {
 			return "common/message";
 		}
 		
-		//저장 프로시저에서 사용할 map 만들기
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("freeboardNo", freeboardVo.getFreeboardNo()+"");
-		map.put("freeboardGroupno", freeboardVo.getFreeboardGroupno()+"");
-		map.put("freeboardStep", freeboardVo.getFreeboardStep()+"");
-		logger.info("글삭제시 파라미터 map={}", map);
-		
-		int cnt = freeboardService.deleteFreeboard(map);
+		int cnt = adminfreeService.deleteFreeboardMuti(freeboardNo);
 		
 		//파일이 첨부된 경우에는 파일도 삭제처리한다
 		if(freeboardFilename!=null && !freeboardFilename.isEmpty() && cnt>1){
