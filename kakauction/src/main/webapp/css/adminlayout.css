@@ -142,13 +142,13 @@ body{ margin:0; padding-bottom: 100px;}
 	display: block;
 }
 #headmenu-content ul li{
-	padding-right: 30px;
+	padding-right: 20px;
 	padding-top: 10px;
 }
 #content-auction{
 	float: left;
-	margin-left: 750px;
-	padding-right: 15px;
+	margin-left: 742px;
+	padding-right: 25px;
 }
 #content-member{
  	float: left;	
@@ -156,6 +156,7 @@ body{ margin:0; padding-bottom: 100px;}
 }
 #content-info{
 	float: left;
+	padding-left: 5px;
 	padding-right: 29px;
 }
 #content-notice{

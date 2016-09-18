@@ -110,4 +110,8 @@
 		values(#{reportNo}, #{reportMemberId},#{originNo},#{originType},#{reportTitle},#{reportType},
 		#{reportContent}, 'N', sysdate)
 	</insert>
+	
+	<select id="">
+	
+	</select>
 </mapper>
