@@ -16,6 +16,22 @@
 			$("#currentPage").val(1);
 			$("#frmPage").submit();
 		});
+		
+		$("input[name=chkAll]").click(function(){
+			$("tbody input[type=checkbox]").prop("checked", this.checked);
+		});
+		
+		$(".btDel").click(function(){
+			var count = $("input[type=checkbox]:checked").length;
+			
+			if(count==0){
+				alert("삭제하려는 글를 먼저 체크하세요");
+				return false;
+			}
+			
+			frmList.action = "<c:url value='/admin/freeboard/freeboardDelete.do'/>";
+			frmList.submit();
+		});
 	});
 
 	function pageProc(curPage){ 
@@ -76,7 +92,8 @@
 	 	summary="자유게시판에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
 	<caption>자유게시판</caption>
 	<colgroup>
-		<col style="width:10%;" />
+		<col style="width:5%;" />
+		<col style="width:5%;" />
 		<col style="width:50%;" />
 		<col style="width:15%;" />
 		<col style="width:15%;" />
@@ -84,6 +101,7 @@
 	</colgroup>
 	<thead>
 	  <tr>
+	  	<th><input type="checkbox" name="chkAll" id="chkAll"></th>
 	    <th scope="col">번호</th>
 	    <th scope="col">제목</th>
 	    <th scope="col">작성자</th>
@@ -100,14 +118,23 @@
 		</tr>
 	</c:if>
 	<c:if test="${!empty alist}">
-		<!--게시판 내용 반복문 시작  -->		
+		<!--게시판 내용 반복문 시작  -->
 		<c:forEach var="vo" items="${alist }">
 			<tr style="text-align: center">
+				<td><input type="checkbox" name="memberItems[${i}].memberId" value="${vo.freeboardNo}" id="chk_${i}"></td>
 				<td>${vo.freeboardNo}</td>
 				<td style="text-align: left;">
 					<!-- 삭제된 원본글일경우 제목 감추기 -->
 					<c:if test="${vo.freeboardDelflag=='Y' }">
-						삭제된 글입니다.
+						<a href="<c:url value='/admin/freeboard/updateCount.do?freeboardNo=${vo.freeboardNo}'/>" style="color: gray;">
+							<!-- 제목이 긴 경우 일부만 보여주기 -->
+							<c:if test="${fn:length(vo.freeboardTitle)>30}">
+								${fn:substring(vo.freeboardTitle, 0,30)}...
+							</c:if>
+							<c:if test="${fn:length(vo.freeboardTitle)<=30}">
+								${vo.freeboardTitle}
+							</c:if>
+						</a>
 					</c:if>
 					<c:if test="${vo.freeboardDelflag!='Y' }">
 						<!-- 답변의 경우 화살표 이미지 보여주기 -->
@@ -120,7 +147,7 @@
 						<c:if test="${!empty vo.freeboardFilename }">
 							<img src='<c:url value="/image/file.gif"/>'>
 						</c:if>
-						<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${vo.freeboardNo}'/>">
+						<a href="<c:url value='/admin/freeboard/updateCount.do?freeboardNo=${vo.freeboardNo}'/>">
 							<!-- 제목이 긴 경우 일부만 보여주기 -->
 							<c:if test="${fn:length(vo.freeboardTitle)>30}">
 								${fn:substring(vo.freeboardTitle, 0,30)}...

@@ -98,7 +98,7 @@
 	<!-- 삭제 -->
 	<delete id="deleteFreeboard" parameterMap="delParamMap" >
 		{call FREEBOARD_DELETE(?, ?, ?)}
-	</delete>	
+	</delete>
 	<!-- 파라미터 순서 => P_NO, P_GROUPNO,p_step -->
 	
 	<insert id="insertReport" parameterType="reportVO">

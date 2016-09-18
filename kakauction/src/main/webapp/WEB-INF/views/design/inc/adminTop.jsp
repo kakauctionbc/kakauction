@@ -96,15 +96,13 @@ $(function(){
 			</div>
 			<div id="content-info">
 				<ul>
-					<li><a href="<c:url value='/report/auctionReport.do'/>">불량경매신고</a></li>
-					<li><a href="<c:url value='/freeboard/myFreeboardList.do'/>">내가 쓴 글</a></li>
+					<li><a href="<c:url value='/admin/freeboard/freeboardList.do'/>">자유게시판 목록</a></li>
 				</ul>
 			</div>
 			<div id="content-notice">
 				<ul>
-					<li><a href="<c:url value='/notice/list.do'/>">공지사항</a></li>
-					<li><a href="<c:url value='/qna/list.do'/>">QNA</a></li>
-					<li><a href="#">이용안내</a></li>
+					<li><a href="<c:url value='/admin/notice/list.do'/>">공지사항</a></li>
+					<li><a href="<c:url value='/admin/qna/list.do'/>">QNA</a></li>
 				</ul>
 			</div>
 		</div>
