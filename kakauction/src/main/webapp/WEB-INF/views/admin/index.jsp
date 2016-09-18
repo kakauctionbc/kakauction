@@ -9,7 +9,7 @@
 		</tr>
 		<tr>
 			<td>
-				<%@ include file="highChart/auctionChart.jsp" %>
+				<c:import url="<c:url value='/admin/'/>"/>
 			</td>
 			<td>
 			</td>
