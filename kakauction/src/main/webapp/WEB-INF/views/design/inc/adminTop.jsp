@@ -65,15 +65,15 @@ $(function(){
 	<div id="middle">
 		<div id="middlediv">
 			<div id="wraplogo">
-				<a href="<c:url value='/index.do'/>">
+				<a href="<c:url value='/admin/index.do'/>">
 				<img alt="로고 이미지" src="<c:url value='/img/logo.png'/>" /></a>
 			</div>
 			<div id="headmenu">
 				<ul>
-					<li><a href="<c:url value='/admin/auctionWrite.do'/>">차량 관리</a></li>
+					<li><a href="<c:url value='/admin/auction/auctionWrite.do'/>">차량 관리</a></li>
 					<li><a href="<c:url value='/admin/member/memberList.do'/>">회원관리</a></li>
-					<li><a href="<c:url value='/member/myInfo.do'/>">컨텐츠 관리</a></li>
-					<li><a href="<c:url value='/member/myInfo.do'/>">QNA 관리</a></li>
+					<li><a href="<c:url value='/admin/auction/auctionList.do'/>">컨텐츠 관리</a></li>
+					<li><a href="<c:url value='/admin/qna/qnalist.do'/>">QNA 관리</a></li>
 				</ul>
 			</div>
 		</div>
@@ -81,22 +81,21 @@ $(function(){
 		<div id="headmenu-content">
 			<div id="content-auction">
 				<ul>
-					<li><a href="<c:url value='/admin/auctionWrite.do'/>">경매신청</a></li>
-					<li><a href="<c:url value='/admin/auctionList.do'/>">경매목록</a></li>
+					<li><a href="<c:url value='/admin/auction/auctionWrite.do'/>">경매신청</a></li>
+					<li><a href="<c:url value='/admin/auction/auctionList.do'/>">경매목록</a></li>
+					<li><a href="<c:url value='/admin/auction/auctionSuccess.do'/>">낙찰경매현황</a></li>
+					<li><a href="<c:url value='/admin/auction/auctionDenyList.do'/>">경매거부 목록</a></li>
 				</ul>
 			</div>
 			<div id="content-member">
 				<ul>
 					<li><a href="<c:url value='/admin/member/memberList.do'/>">회원 정보 조회</a></li>
-					<li><a href="<c:url value='/admin/member/memberGrade.do'/>">회원 등급 관리</a></li>
 					<li><a href="<c:url value='/admin/member/excelUpload.do'/>">회원 엑셀 일괄등록</a></li>
 					<li><a href="<c:url value='/admin/member/auctionMember.do'/>">경매 회원 조회</a></li>
 				</ul>
 			</div>
 			<div id="content-info">
 				<ul>
-					<li><a href="<c:url value='/auction/auctionSuccess.do'/>">경매낙찰현황</a></li>
-					<li><a href="<c:url value='/auction/myAuctionList.do'/>">경매입찰현황</a></li>
 					<li><a href="<c:url value='/report/auctionReport.do'/>">불량경매신고</a></li>
 					<li><a href="<c:url value='/freeboard/myFreeboardList.do'/>">내가 쓴 글</a></li>
 				</ul>

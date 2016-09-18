@@ -11,12 +11,13 @@
 			/* var carNum = $("#carList").val(); */
 			if (carNum != null && carNum != -1) {
 				$.ajax({
-					url : "<c:url value='/auction/selectCar.do'/>",
+					url : "<c:url value='/admin/auction/selectCar.do'/>",
 					data : "carNum="+ carNum,
 					type : "POST",
 					dataType : "json",
 					success : function(vo) {
 						alert(vo.carNum);
+						console.log(vo.carNum);
 						$("#carPic").html("");
 						$("#carNum").attr("value",vo.carNum);
 						$("#carSize").attr("value",vo.carSize);
@@ -116,17 +117,7 @@
 		});
 		
 		$("#btAuctionList").click(function(){
-			location.href="<c:url value='/admin/auctionList.do'/>";
-		});
-		
-		$("#btAuctionDefer").click(function(){
-			if(carNum==null){
-				alert("차량을 선택하세요");
-				return;
-			}
-			if(confirm("경매 등록 보류 하시겠습니까?")){
-				location.href="<c:url value='/auction/auctionDefer.do?carNum="+carNum+"'/>";
-			}
+			location.href="<c:url value='/admin/auction/auctionList.do'/>";
 		});
 		
 		$("#btAuctionDeny").click(function(){
@@ -135,7 +126,7 @@
 				return;
 			}
 			if(confirm("경매 등록 거부하시겠습니까?")){
-				location.href="<c:url value='/auction/auctionDeny.do?carNum="+carNum+"'/>";
+				location.href="<c:url value='/admin/auction/auctionDeny.do?carNum="+carNum+"'/>";
 			}
 		});
 		
@@ -175,7 +166,6 @@
 				<input type="text" id="voCarModel" readonly="readonly" >
 				<input type="submit" id="btAuctionSubmit" value="경매 등록"> 
 				<input type="button" id="btAuctionDeny" value="경매 거부"> 
-				<input type="button" id="btAuctionDefer" value="경매 보류">
 				<input type="button" id="btAuctionList" value="경매 목록">
 				</td>
 			</tr>

@@ -99,4 +99,8 @@ public interface AuctionService {
 	public AuctionVO selectAucByAuctionNo(int auctionNo);
 	
 	public int adminUpdateStateStop(Map<String, Object> map);
+	
+	//거부된 경매
+	public int carUpadeAuctionDeny(String carNum);
+	public List<CarVO> selectDenyCar(SearchVO searchVo);
 }

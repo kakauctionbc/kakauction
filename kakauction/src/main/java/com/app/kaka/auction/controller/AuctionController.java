@@ -2,7 +2,6 @@ package com.app.kaka.auction.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.kaka.auction.model.AuctionCarVO;
 import com.app.kaka.auction.model.AuctionService;
-import com.app.kaka.auction.model.AuctionVO;
 import com.app.kaka.auction.model.HighPriceVO;
 import com.app.kaka.buyer.model.BuyerVO;
 import com.app.kaka.common.DateSearchVO;
@@ -29,7 +27,6 @@ import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
 import com.app.kaka.op.model.OpService;
 import com.app.kaka.op.model.OpVO;
-import com.app.kaka.record.model.RecordVO;
 
 @Controller
 @RequestMapping("/auction")
@@ -117,16 +114,6 @@ public class AuctionController {
 		model.addAttribute("url",url);
 		return "common/message";
 	}*/
-	
-	@RequestMapping("/selectCar.do")
-	@ResponseBody
-	public AuctionCarVO selectCar(@RequestParam String carNum){
-		logger.info("carNum 넘어왔닝 carNum={}",carNum);
-		AuctionCarVO vo = auctionService.auctionCar(carNum);
-		logger.info("carNum 넘어왔닝 vo={}",vo);
-		
-		return vo;
-	}
 	
 	@RequestMapping("/list.do")
 	public String listAuction(@ModelAttribute SearchVO searchVo, Model model){

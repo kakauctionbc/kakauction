@@ -22,6 +22,12 @@
 	#right{
 		float: right;
 	}
+	td, th{
+		border: 1px solid silver;
+	}
+	th{
+		background: #fafaf3;
+	}
 </style>
 <div id="wrap">
 	<div id="wrapdiv">
@@ -46,7 +52,7 @@
 			<p>전체 목록 - ${pagingInfo.totalRecord }건 조회되었습니다</p>
 			<table class="box2">
 				<caption>자료실</caption>
-				<colgroup>
+				<!-- <colgroup>
 					<col style="width: 10%;" />
 					<col style="width: 7%;" />
 					<col style="width: 20%;" />
@@ -57,28 +63,21 @@
 					<col style="width: 12%;" />
 					<col style="width: 12%;" />
 					<col style="width: 4%;" />
-				</colgroup>
+				</colgroup> -->
 				<thead>
 					<tr class="listTitle">
-						<th rowspan="2" class="listImg">사진</th>
-						<th rowspan="2" class="listSize">차종</th>
+						<th class="listSize">차종</th>
+						<th rowspan="2">판매자</th>
 						<th>물건명</th>
 						<th>연식</th>
 						<th>변속기</th>
-						<th>감정평가액</th>
-						<th>물건상태</th>
-						<th>입찰번호</th>
-						<th>입찰시작</th>
-						<th rowspan="2" class="readCount">조회수</th>
+						<th rowspan="2">유찰횟수</th>
 					</tr>
 					<tr>
+						<th class="listSize">차량번호</th>
 						<th>소재지</th>
 						<th>주행거리</th>
 						<th>연료</th>
-						<th>입찰시작가</th>
-						<th>유찰횟수</th>
-						<th>물건번호</th>
-						<th>입찰마감</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -89,43 +88,25 @@
 					</c:if>
 					<c:if test="${!empty alist}">
 						<!--게시판 내용 반복문 시작  -->
-						<c:forEach var="vo" items="${alist }">
+						<c:forEach var="vo" items="${alist }" varStatus="status">
 							<tr style="text-align: center">
-								<td class="listImg"><img alt="사진" height="56px;" width="90px;" src="<c:url value='/picture_upload/${vo.picture1}'/>"></td>
-								<td class="listSize">${vo.carSize}</td>
-								<c:if test="${vo.auctionState=='END' }">
-									<td class="listName" style="text-align: center;">
-										<a href="<c:url value='/admin/auction/auctionDetail.do?auctionNo=${vo.auctionNo}'/>">
-											[종료]<br>${vo.carModel} 
-										</a>
-									</td>
-								</c:if>
-								<c:if test="${vo.auctionState!='END' }">
-									<td class="listName" style="text-align: left;">
-										<a href="<c:url value='/admin/auction/auctionDetail.do?auctionNo=${vo.auctionNo}'/>">
-											${vo.carModel}<br> 
-										<c:if test="${fn:length(vo.carLoc)>30}">
-											${fn:substring(vo.carLoc, 0,30)}...
-										</c:if> 
-										<c:if test="${fn:length(vo.carLoc)<=30}">
-											${vo.carLoc}
-										</c:if>
-										</a>
-									</td>
-								</c:if>
+								<td class="listSize">${vo.carSize}<br>${vo.carNum}</td>
+								<td><a href="#" onclick="window.open('<c:url value="/admin/member/memberById.do?memberId=${vo.sellerMemberId}"/>','member','width=700,height=600,left=10,top=50,resizable=yes,location=yes')" >${vo.sellerMemberId}</a></td>
+								<td class="listName" style="text-align: left;">
+									${vo.carModel}<br> 
+									<c:if test="${fn:length(vo.carLoc)>30}">
+										${fn:substring(vo.carLoc, 0,30)}...
+									</c:if> 
+									<c:if test="${fn:length(vo.carLoc)<=30}">
+										${vo.carLoc}
+									</c:if>
+								</td>
 								<td>${vo.carBirth}<br> ${vo.carDist}km
 								</td>
 								<td>${vo.carAm}<br> ${vo.carGas}
 								</td>
-								<td>${vo.carPrice}<br> ${vo.auctionFirstprice}
+								<td>${vo.carFailSell}
 								</td>
-								<td>${vo.auctionState}<br> ${vo.carFailSell}
-								</td>
-								<td>${vo.auctionNoYear} - ${vo.auctionNoCar} -
-									${vo.auctionNo}</td>
-								<td>${vo.auctionRegdate}<br> ${vo.auctionFinish }
-								</td>
-								<td>${vo.auctionReadCount}</td>
 							</tr>
 						</c:forEach>
 						<!--반복처리 끝  -->
@@ -161,5 +142,25 @@
 			<a href="<c:url value='/admin/auction/auctionWrite.do'/>">경매 등록 화면</a>
 		</div>		
 		</div>
+		<div class="divSearch">
+	   	<form name="frmSearch" method="post" 
+	   	action="<c:url value='/admin/auction/auctionDenyList.do' />" >
+	        <select name="searchCondition">
+	            <option value="car_num"
+	           	   <c:if test="${param.searchCondition=='car_num'}">
+	            		selected
+	               </c:if>
+	            >차량번호</option>
+	            <option value="seller_member_id" 
+	            	<c:if test="${param.searchCondition=='seller_member_id'}">
+	            		selected
+	               </c:if>
+	            >판매자</option>
+	        </select>   
+	        <input type="text" name="searchKeyword" 
+	        	title="검색어 입력" value="${param.searchKeyword}" >   
+			<input type="submit" value="검색">
+	    </form>
+</div>
 </div>
 <%@ include file="../../design/inc/adminBottom.jsp"%>

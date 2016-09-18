@@ -298,11 +298,15 @@
 	</select>
 	
 	<sql id="lastbuyerWhere">
-		and lastbuyer_regdate>=#{startDay}
-		<![CDATA[
-		and lastbuyer_regdate< to_date(#{endDay})+1
+		<if test="startDay!=null and startDay!=''">
+			and lastbuyer_regdate>=#{startDay}
+			<![CDATA[
+			and lastbuyer_regdate< to_date(#{endDay})+1
 		]]>
-		and buyer_member_id=#{memberId}
+		</if>
+		<if test="memberId!=null and memberId!=''">
+			and buyer_member_id=#{memberId}
+		</if>
 	</sql>
 	
 	<select id="selectLastBuyerById" parameterType="RecordVO" resultType="int">
@@ -329,4 +333,34 @@
 	<update id="adminUpdateStateStop" parameterType="map">
 		update auction set auction_state=#{auctionState} where auction_no=#{auctionNo}
 	</update>
+	
+	<update id="carUpadeAuctionDeny" parameterType="string">
+		update car
+		set CAR_AUCTION_YN='D'
+		where car_num=#{carNum}
+	</update>
+	
+	<sql id="searchDeny">
+		<if test="searchKeyword!=null and searchKeyword!=''">
+			and ${searchCondition} like '%' || #{searchKeyword} || '%'
+		</if>
+	</sql>
+	
+	<select id="selectDenyCar" resultType="CarVO" parameterType="SearchVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, LIST_ALL.*
+		    from
+		        (select * from car
+		       	where CAR_AUCTION_YN='D'
+		       	<include refid="searchDeny"></include>
+		        ) LIST_ALL    
+		)
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}+#{recordCountPerPage}
+		]]>
+	</select>
+	
 </mapper>

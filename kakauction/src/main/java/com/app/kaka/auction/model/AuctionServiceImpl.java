@@ -288,6 +288,16 @@ public class AuctionServiceImpl implements AuctionService{
 		return auctionDao.adminUpdateStateStop(map);
 	}
 
+	@Override
+	public int carUpadeAuctionDeny(String carNum) {
+		return auctionDao.carUpadeAuctionDeny(carNum);
+	}
+
+	@Override
+	public List<CarVO> selectDenyCar(SearchVO searchVo) {
+		return auctionDao.selectDenyCar(searchVo);
+	}
+
 	
 	
 	

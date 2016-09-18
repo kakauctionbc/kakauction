@@ -216,6 +216,17 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 		return getSqlSession().update(namespace+".adminUpdateStateStop", map);
 	}
 
+	@Override
+	public int carUpadeAuctionDeny(String carNum) {
+		return getSqlSession().update(namespace+".carUpadeAuctionDeny",carNum);
+	}
+
+	@Override
+	public List<CarVO> selectDenyCar(SearchVO searchVo) {
+		return getSqlSession().selectList(namespace+".selectDenyCar", searchVo);
+	}
+
+
 	
 
 
