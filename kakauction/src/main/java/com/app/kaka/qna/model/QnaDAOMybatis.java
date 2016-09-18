@@ -1,13 +1,11 @@
 package com.app.kaka.qna.model;
 
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.app.kaka.common.SearchVO;
-import com.app.kaka.qnareply.model.QnareplyVO;
 
 @Repository
 public class QnaDAOMybatis extends SqlSessionDaoSupport implements QnaDAO {
@@ -15,7 +13,7 @@ public class QnaDAOMybatis extends SqlSessionDaoSupport implements QnaDAO {
 	private String namespace="config.mybatis.mapper.oracle.qna";
 
 	@Override
-	public List<Map<String, Object>> selectAll(SearchVO searchVo) {
+	public List<QnareplyVO> selectAll(SearchVO searchVo) {
 		return getSqlSession().selectList(namespace+".selectAll", searchVo);
 	}
 

@@ -84,28 +84,28 @@
 		<!--게시판 내용 반복문 시작  -->		
 		<c:forEach var="vo" items="${alist }">
 			<tr style="text-align: center">
-				<td>${vo['QUESTION_NO']}</td>
+				<td>${vo.questionNo}</td>
 				<td style="text-align: left;">
-					<c:if test="${vo['QUESTION_RETURN']=='N'}">
-					<a href="<c:url value='/admin/qnareply/detail.do?questionNo=${vo["QUESTION_NO"]}'/>">
+					<c:if test="${vo.questionReturn=='N'}">
+					<a href="<c:url value='/admin/qnareply/detail.do?questionNo=${vo.questionNo}'/>">
 					</c:if>
 						<!-- 제목이 긴 경우 일부만 보여주기 -->
-						<c:if test="${fn:length(vo['QUESTION_TITLE'])>20}">
-							${fn:substring(vo['QUESTION_TITLE'], 0,20)}...
+						<c:if test="${fn:length(vo.questionTitle)>20}">
+							${fn:substring(vo.questionTitle, 0,20)}...
 						</c:if>
-						<c:if test="${fn:length(vo['QUESTION_TITLE'])<=30}">
-							${vo['QUESTION_TITLE']}
+						<c:if test="${fn:length(vo.questionTitle)<=30}">
+							${vo.questionTitle}
 						</c:if>
 					</a>
 					<!-- 24시간 이내의 글인 경우 new 이미지 보여주기 -->
-					<c:if test="${vo['NEWIMGTERM']<24}">
+					<c:if test="${vo.newImgTerm<24}">
 						<img src="<c:url value='/image/new.gif'/>" alt="new이미지">
 					</c:if>
 				</td>
-				<td>${vo['MEMBER_ID']}</td>
-				<td><fmt:formatDate value="${vo['QUESTION_REGDATE']}" pattern="yyyy-MM-dd"/>
+				<td>${vo.memberId}</td>
+				<td><fmt:formatDate value="${vo.questionRegdate}" pattern="yyyy-MM-dd"/>
 				</td>
-				<td>${vo['QUESTION_RETURN']}</td>
+				<td>${vo.questionReturn}</td>
 			</tr>				
 		</c:forEach>
 		<!--반복처리 끝  -->

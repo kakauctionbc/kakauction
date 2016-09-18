@@ -1,7 +1,6 @@
 package com.app.kaka.qna.model;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import javax.annotation.Resource;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.kaka.common.SearchVO;
-import com.app.kaka.qnareply.model.QnareplyVO;
 
 @Service
 public class QnaServiceImpl implements QnaService{
@@ -26,7 +24,7 @@ public class QnaServiceImpl implements QnaService{
 	private Properties fileUploadProperties;
 
 	@Override
-	public List<Map<String, Object>> selectAll(SearchVO searchVo) {
+	public List<QnareplyVO> selectAll(SearchVO searchVo) {
 		return qnaDao.selectAll(searchVo);
 	}
 

@@ -1,9 +1,6 @@
 package com.app.kaka.qna.controller;
 
-import java.io.File;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
-import com.app.kaka.notice.model.NoticeVO;
 import com.app.kaka.qna.model.QnaService;
 import com.app.kaka.qna.model.QnaVO;
+import com.app.kaka.qna.model.QnareplyVO;
 
 @Controller
 @RequestMapping("/qna")
@@ -49,7 +46,7 @@ public class QnaController {
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 				
 		//2. db작업 - select
-		List<Map<String, Object>> alist = qnaService.selectAll(searchVo);
+		List<QnareplyVO> alist = qnaService.selectAll(searchVo);
 		logger.info("글목록 조회 결과 alist.size()={}", 
 				alist.size());
 		

@@ -107,17 +107,16 @@
 				<td>${vo.questionNo}</td>
 				<td>${vo.memberId}</td>
 				<td style="text-align: left;">
+				<input type="hidden" id="on_off" value="off">
 					<table>
-						<input type="hidden" id="on_off" value="off">
-						<tr>
 							<c:if test="${fn:length(vo.questionTitle)<=30}">
-								<td id="qnaTit">
+							<tr><td id="qnaTit">
 									${vo.questionTitle}
-								</td></tr>
+							</td></tr>
 							</c:if>
 							<!-- 제목이 긴 경우 일부만 보여주기 -->
 							<c:if test="${fn:length(vo.questionTitle)>20}">
-								<td id="qnaTit">
+								<tr><td id="qnaTit">
 									${fn:substring(vo.questionTitle, 0,20)}...
 								</td></tr>
 								<tr><td>${fn:substring(vo.questionTitle, 20)}</td></tr>
@@ -127,6 +126,10 @@
 								${vo.questionContent}
 								<br><br>
 								<p>작성일 : <fmt:formatDate value="${vo.questionRegdate}" pattern="yyyy-MM-dd"/></p>
+								<c:if test="${vo.questionReturn=='Y'}">
+									-답변-<br>
+									${vo.ansContent}
+								</c:if>
 							</td>
 						</tr>
 					</table>
