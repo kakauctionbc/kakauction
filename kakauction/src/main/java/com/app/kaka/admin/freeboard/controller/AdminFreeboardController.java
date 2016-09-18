@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.app.kaka.admin.member.model.FreeboardListVO;
 import com.app.kaka.common.FileUploadWebUtil;
 import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
 import com.app.kaka.freeboard.model.FreeboardService;
 import com.app.kaka.freeboard.model.FreeboardVO;
+import com.app.kaka.member.model.MemberVO;
 
 @Controller
 @RequestMapping("/admin/freeboard")
@@ -181,5 +183,29 @@ public class AdminFreeboardController {
 		model.addAttribute("selectedCountPerPage", selectedCountPerPage);
 		
 		return "admin/freeboard/reportFreeboardList";
+	}
+	
+	@RequestMapping("/freeboardDeleteMuti.do")
+	public String freeboardDelete(@ModelAttribute FreeboardListVO listVo, Model model){
+		/*logger.info("선택한 회원 삭제 파라미터 memListvo={}",memListvo);
+		
+		List<MemberVO> memList = memListvo.getMemberItems();
+		logger.info("memList.size={}",memList.size());
+		logger.info("memList={}",memList);
+		
+		int cnt = adminService.adminOutMember(memList);
+		logger.info("선택한 아이디 삭제 처리 결과, cnt={}",cnt);
+		
+		String msg = "", url = "/admin/member/memberList.do";
+		if (cnt>0) {
+			msg = "선택한 회원을 삭제하였습니다.";
+		}else{
+			msg = "삭제 실패";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";*/
 	}
 }

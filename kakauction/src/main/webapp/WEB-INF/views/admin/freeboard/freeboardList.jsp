@@ -29,7 +29,7 @@
 				return false;
 			}
 			
-			frmList.action = "<c:url value='/admin/freeboard/freeboardDelete.do'/>";
+			frmList.action = "<c:url value='/admin/freeboard/freeboardDeleteMuti.do'/>";
 			frmList.submit();
 		});
 	});
@@ -90,6 +90,7 @@
 <div class="memList">
 	<form name="frmList" method="post" action="<c:url value='/admin/member/memberList.do'/>">
 		<div style="margin-left: 930px;"><button class="btDel">삭제</button></div>
+
 		<table class="box2" summary="자유게시판에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
 			<caption>자유게시판</caption>
 			<colgroup>
@@ -124,7 +125,7 @@
 				<!--게시판 내용 반복문 시작  -->
 				<c:forEach var="vo" items="${alist }">
 					<tr style="text-align: center">
-						<td><input type="checkbox" name="memberItems[${i}].memberId" value="${vo.freeboardNo}" id="chk_${i}"></td>
+						<td><input type="checkbox" name="freeboardItems[${i}].freeboardNo" value="${vo.freeboardNo}" id="chk_${i}"></td>
 						<td>${vo.freeboardNo}</td>
 						<td style="text-align: left;">
 							<!-- 삭제된 원본글일경우 제목 감추기 -->
@@ -177,6 +178,7 @@
 			</c:if>
 			</tbody>
 		</table>
+		<div style="margin-left: 930px;"><button class="btDel">삭제</button></div>
 	</form>
 </div>	   
 </div>
