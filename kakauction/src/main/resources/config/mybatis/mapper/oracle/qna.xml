@@ -59,4 +59,12 @@
 		delete question
 		where question_no=#{questionNo}
 	</delete>
+	
+	<insert id="insertQnareply" parameterType="QnareplyVO">
+		<selectKey keyProperty="ansNo" resultType="int" order="BEFORE">
+			select ans_seq.nextval from dual
+		</selectKey>
+		insert into qnareply(ANS_NO,QUESTION_NO,MEMBER_ID,ANS_CONTENT)
+		values(#{ansNo},#{questionNo},#{memberId},#{ansContent})
+	</insert>
 </mapper>

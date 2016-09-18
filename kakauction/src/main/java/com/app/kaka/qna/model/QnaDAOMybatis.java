@@ -6,6 +6,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.app.kaka.common.SearchVO;
+import com.app.kaka.qnareply.model.QnareplyVO;
 
 @Repository
 public class QnaDAOMybatis extends SqlSessionDaoSupport implements QnaDAO {
@@ -40,5 +41,10 @@ public class QnaDAOMybatis extends SqlSessionDaoSupport implements QnaDAO {
 	@Override
 	public int deleteQna(int questionNo) {
 		return getSqlSession().delete(namespace+".deleteQna", questionNo);
+	}
+
+	@Override
+	public int insertQnareply(QnareplyVO vo) {
+		return getSqlSession().insert(namespace+".insertQnareply", vo);
 	}
 }

@@ -3,17 +3,17 @@ package com.app.kaka.qnareply.model;
 import java.security.Timestamp;
 
 public class QnareplyVO {
-	private int answerNo;/* 답변번호 */
+	private int ansNo;/* 답변번호 */
 	private int questionNo;/* 질문번호 */
 	private String memberId; /* 아이디 */
-	private String answerContent;/* 답변내용 */
-	private Timestamp answerTime;/* 답변시간 */
+	private String ansContent;/* 답변내용 */
+	private Timestamp ansTime;/* 답변시간 */
 	
-	public int getAnswerNo() {
-		return answerNo;
+	public int getAnsNo() {
+		return ansNo;
 	}
-	public void setAnswerNo(int answerNo) {
-		this.answerNo = answerNo;
+	public void setAnsNo(int ansNo) {
+		this.ansNo = ansNo;
 	}
 	public int getQuestionNo() {
 		return questionNo;
@@ -27,23 +27,22 @@ public class QnareplyVO {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	public String getAnswerContent() {
-		return answerContent;
+	public String getAnsContent() {
+		return ansContent;
 	}
-	public void setAnswerContent(String answerContent) {
-		this.answerContent = answerContent;
+	public void setAnsContent(String ansContent) {
+		this.ansContent = ansContent;
 	}
-	public Timestamp getAnswerTime() {
-		return answerTime;
+	public Timestamp getAnsTime() {
+		return ansTime;
 	}
-	public void setAnswerTime(Timestamp answerTime) {
-		this.answerTime = answerTime;
+	public void setAnsTime(Timestamp ansTime) {
+		this.ansTime = ansTime;
 	}
 	
 	@Override
 	public String toString() {
-		return "QnareplyVO [answerNo=" + answerNo + ", questionNo=" + questionNo + ", memberId=" + memberId
-				+ ", answerContent=" + answerContent + ", answerTime=" + answerTime + "]";
+		return "QnareplyVO [ansNo=" + ansNo + ", questionNo=" + questionNo + ", memberId=" + memberId + ", ansContent="
+				+ ansContent + ", ansTime=" + ansTime + "]";
 	}
-	
 }

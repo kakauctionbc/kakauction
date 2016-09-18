@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.kaka.common.PaginationInfo;
@@ -18,6 +19,7 @@ import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
 import com.app.kaka.qna.model.QnaService;
 import com.app.kaka.qna.model.QnaVO;
+import com.app.kaka.qnareply.model.QnareplyVO;
 
 @Controller
 @RequestMapping("/admin/qnareply")
@@ -74,5 +76,23 @@ public class AdminQnaController {
 		model.addAttribute("QnaVo", QnaVo);
 		
 		return "admin/qnareply/detail";
+	}
+	
+	@RequestMapping(value="/write.do", method=RequestMethod.POST)
+	public String qnaReWrite(@ModelAttribute QnareplyVO vo, Model model){
+		logger.info("파라미터 vo={}", vo);
+		int cnt = qnaService.insertQnareply(vo);
+		String msg="", url="";
+		if(cnt>0){
+			msg="답변 작성하였습니다";
+			url="/admin/qnareply/list.do";
+		}else{
+			msg="답변 작성실패하였습니다";
+			url="/admin/qnareply/detail.do?questionNo="+vo.getQuestionNo();
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "";
 	}
 }

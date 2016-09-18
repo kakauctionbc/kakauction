@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.kaka.common.SearchVO;
+import com.app.kaka.qnareply.model.QnareplyVO;
 
 @Service
 public class QnaServiceImpl implements QnaService{
@@ -51,5 +52,10 @@ public class QnaServiceImpl implements QnaService{
 	@Override
 	public int deleteQna(int questionNo) {
 		return qnaDao.deleteQna(questionNo);
+	}
+
+	@Override
+	public int insertQnareply(QnareplyVO vo) {
+		return qnaDao.insertQnareply(vo);
 	}
 }
