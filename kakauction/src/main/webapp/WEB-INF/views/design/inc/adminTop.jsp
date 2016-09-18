@@ -73,7 +73,7 @@ $(function(){
 					<li><a href="<c:url value='/admin/auction/auctionWrite.do'/>">차량 관리</a></li>
 					<li><a href="<c:url value='/admin/member/memberList.do'/>">회원관리</a></li>
 					<li><a href="<c:url value='/admin/freeboard/freeboardList.do'/>">컨텐츠 관리</a></li>
-					<li><a href="<c:url value='/admin/qna/qnalist.do'/>">QNA 관리</a></li>
+					<li><a href="<c:url value='/admin/qnareply/qnalist.do'/>">QNA 관리</a></li>
 				</ul>
 			</div>
 		</div>
@@ -92,6 +92,7 @@ $(function(){
 					<li><a href="<c:url value='/admin/member/memberList.do'/>">회원 정보 조회</a></li>
 					<li><a href="<c:url value='/admin/excel/uploadExcel.do'/>">엑셀 일괄 등록</a></li>
 					<li><a href="<c:url value='/admin/member/auctionMember.do'/>">경매 회원 조회</a></li>
+					<li><a href="<c:url value='/report/reportAllList.do'/>">신고목록</a></li>
 				</ul>
 			</div>
 			<div id="content-info">

@@ -71,7 +71,7 @@ public class QnaController {
 		
 		if (questionNo==0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
-			model.addAttribute("url", "/list.do");
+			model.addAttribute("url", "/qna/list.do");
 			
 			return "common/message";
 		}
@@ -87,17 +87,23 @@ public class QnaController {
 	@RequestMapping(value="write.do", method=RequestMethod.GET)
 	public String insertQna_get(HttpSession session, Model model){
 		logger.info("질문 게시판 글쓰기 보여주기");
-		String memberId = (String)session.getAttribute("memberid");
+		String memberId = (String)session.getAttribute("memberId");
+		logger.info("질문 게시판 memberId={}", memberId);
+		if(memberId==null || memberId.isEmpty()){
+			model.addAttribute("msg", "비정상적인 접근입니다.");
+			model.addAttribute("url", "/login/login.do");
+			
+			return "common/message";
+		}
 		model.addAttribute("memberId", memberId);
 		return "qna/write";
 	}
-	
 	@RequestMapping(value="/write.do", method=RequestMethod.POST)
 	public String insertQna(@ModelAttribute QnaVO qnaVo, Model model){
 		logger.info("질문 글쓰기 qnaVo={}",qnaVo);
 		
 		int cnt = qnaService.insertQna(qnaVo);
-		
+
 		String msg = "", url ="";
 		if(cnt>0){
 			msg="글이 등록되었습니다";

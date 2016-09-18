@@ -62,7 +62,7 @@
 				dataType : "json",
 				success : function(highVo) {
 					auctionState=highVo.auctionState;
-					alert(auctionState);
+					alert("입찰하였습니다");
 					if(auctionState=="END"){
 						$("#nowHighPrice").html("종료된 경매 입니다").css("text-align","right");
 						$("#goAuction").css("display","none");
@@ -135,10 +135,8 @@
 								<tr class="boder1">
 									<th>차량매매가격</th>
 									<td><fmt:formatNumber pattern="#,###" value="${auctionGo['CAR_PRICE'] }"/>원</td>
-									<th>변경</th>
-									<td>변경쓰는곳</td>
-									<th>여기는</th>
-									<td>크엉</td>
+									<th colspan="2">경매 번호</th>
+									<td colspan="2">${auctionGo['AUCTION_NO_YEAR'] } - ${auctionGo['AUCTION_NO_CAR'] } -${auctionGo['AUCTION_NO'] }</td>
 								</tr>
 								<tr class="boder1img">
 									<td colspan="3"><img alt="${auctionGo['PICTURE_1'] }" src="<c:url value='/picture_upload/${auctionGo["PICTURE_1"] }'/>" style="width: 500px;"></td> 

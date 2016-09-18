@@ -8,8 +8,8 @@ public class QnaVO {
 	private String questionTitle;
 	private String questionContent;
 	private Timestamp questionRegdate;
-	private String questionReturn;
 	private String questionOnly;
+	private String questionReturn;
 	
 	private int newImgTerm;
 	

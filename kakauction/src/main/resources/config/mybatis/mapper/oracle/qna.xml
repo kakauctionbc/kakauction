@@ -43,7 +43,7 @@
 	
 	<insert id="insertQna" parameterType="QnaVO">
 		<selectKey keyProperty="questionNo" resultType="int" order="BEFORE">
-			select question_seq.nextval from dual
+			select qna_seq.nextval from dual
 		</selectKey>
 		insert into question(QUESTION_NO,MEMBER_ID,QUESTION_TITLE,QUESTION_CONTENT)
 		values(#{questionNo},#{memberId},#{questionTitle},#{questionContent})
