@@ -168,10 +168,8 @@ public class AuctionController {
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		
 		//전체 레코드 개수 조회하기
-		int totalRecord = auctionService.selectTodayCount(searchVo);
-		logger.info("토탈레코드가 궁금 totalRecord={}",totalRecord);
-		pagingInfo.setTotalRecord(totalRecord);
 		List<AuctionCarVO> alist = auctionService.selectTodayList(searchVo);
+		pagingInfo.setTotalRecord(alist.size());
 		//3. 결과 저장, 뷰페이지 리턴
 		model.addAttribute("alist", alist);
 		model.addAttribute("alistsize", alist.size());

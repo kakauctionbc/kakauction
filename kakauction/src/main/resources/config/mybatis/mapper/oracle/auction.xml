@@ -20,12 +20,12 @@
 		    from
 		        (select * from Auction_Car2
 		        <include refid="searchWhere"></include>
+		        ordert by auction_no desc
 		        ) LIST_ALL    
 		) 
 		<![CDATA[
 		where  RNUM> #{firstRecordIndex} 
-			and RNUM<= #{firstRecordIndex}
-			+ #{recordCountPerPage}
+			and RNUM<= #{firstRecordIndex}+ #{recordCountPerPage}
 		]]>
 	</select>
 	
@@ -88,8 +88,7 @@
 		(
 		    select rownum as RNUM, LIST_ALL.*
 		    from
-		        (select * from Auction_Car3
-		        <include refid="todayWhere"></include>
+		        (select * from Auction_Car3 where auction_state!='END'
 		        ) LIST_ALL    
 		) 
 		<![CDATA[
