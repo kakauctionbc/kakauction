@@ -8,7 +8,9 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	String place = request.getParameter("place");
-	if(place==null) place="kakao 스페이스닷원"; 
+	if(place==null){
+		place="서울시청"; 
+	}
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>지도 ver.9</title>
@@ -30,8 +32,8 @@
 	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
-	        center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-	        level: 3 // 지도의 확대 레벨
+	        center: new daum.maps.LatLng(37.532595, 126.982751), // 지도의 중심좌표
+	        level: 7 // 지도의 확대 레벨
 	    };  
 	// 지도를 생성합니다    
 	var map = new daum.maps.Map(mapContainer, mapOption); 
@@ -39,20 +41,233 @@
 	//마커를 표시할 위치와 title 객체 배열입니다 
 	var positions = [
 	    {
-	        title: '근린공원',
-	        latlng: new daum.maps.LatLng(33.451393, 126.570738)
+	        title: '노원 중고차 경매장',
+	        latlng: new daum.maps.LatLng(37.654993, 127.071099)
 	    },
 	    {
-	        title: '생태연못', 
-	        latlng: new daum.maps.LatLng(33.450936, 126.569477)
+	        title: '강북 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.642328, 127.011625)
 	    },
 	    {
-	        title: '텃밭', 
-	        latlng: new daum.maps.LatLng(33.450879, 126.569940)
+	        title: '구리 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.594972, 127.131191
+)
 	    },
 	    {
-	        title: '카카오', 
-	        latlng: new daum.maps.LatLng(33.450705, 126.570677)
+	        title: '광진 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.544268, 127.087288)
+	    },
+	    {
+	        title: '동대문 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.581772, 127.048930)
+	    },
+	    {
+	        title: '종로 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.595619, 126.977919)
+	    },
+	    {
+	        title: '성북 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.606573, 127.032276)
+	    },
+	    {
+	        title: '용산 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.531009, 126.980761)
+	    },
+	    {
+	        title: '명동 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.559410, 126.986548)
+	    },
+	    {
+	        title: '서대문 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.582336, 126.926478)
+	    },
+	    {
+	        title: '고양 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.658929, 126.830661)
+	    },
+	    {
+	        title: '김포 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.617185, 126.713321)
+	    },
+	    {
+	        title: '영등포 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.518889, 126.903374)
+	    },
+	    {
+	        title: '까치산 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.530795, 126.847243)
+	    },
+	    {
+	        title: '광명 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.479928, 126.865075)
+	    },
+	    {
+	        title: '송파 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.501878, 127.096648)
+	    },
+	    {
+	        title: '강남 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.497007, 127.045618)
+	    },
+	    {
+	        title: '동작 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.497573, 126.931628)
+	    },
+	    {
+	        title: '서초 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.476257, 127.006353)
+	    },
+	    {
+	        title: '안양 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.392923, 126.958284)
+	    },
+	    {
+	        title: '파주 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.779458, 126.840921)
+	    },
+	    {
+	        title: '가평 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.833767, 127.521295)
+	    },
+	    {
+	        title: '춘천 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.846193, 127.777333)
+	    },
+	    {
+	        title: '강원 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.776881, 128.311262)
+	    },
+	    {
+	        title: '원주 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.328271, 127.951046)
+	    },
+	    {
+	        title: '정선 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.371071, 128.668288)
+	    },
+	    {
+	        title: '화성 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.184396, 126.871008)
+	    },
+	    {
+	        title: '수원 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.299800, 127.015181)
+	    },
+	    {
+	        title: '인천 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.387020, 126.679873)
+	    },
+	    {
+	        title: '광주 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.410463, 127.258132)
+	    },
+	    {
+	        title: '과천 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.319745, 126.922070)
+	    },
+	    {
+	        title: '이천 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.262046, 127.448066)
+	    },
+	    {
+	        title: '오산 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.129080, 127.078527)
+	    },
+	    {
+	        title: '제천 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(37.132119, 128.213627)
+	    },
+	    {
+	        title: '안성 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(36.990385, 127.273929)
+	    },
+	    {
+	        title: '충주 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(36.977745, 127.940916)
+	    },
+	    {
+	        title: '천안 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(36.796799, 127.175712)
+	    },
+	    {
+	        title: '홍성 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(36.593454, 126.666016)
+	    },
+	    {
+	        title: '청주 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(36.647867, 127.581900)
+	    },
+	    {
+	        title: '영주 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(36.785802, 128.626834)
+	    },
+	    {
+	        title: '안동 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(36.548900, 128.741926)
+	    },
+	    {
+	        title: '세종 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(36.464397, 127.283491)
+	    },
+	    {
+	        title: '대전 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(36.321076, 127.385603)
+	    },
+	    {
+	        title: '상주 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(36.389981, 128.150630)
+	    },
+	    {
+	        title: '익산 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(35.938716, 127.975197)
+	    },
+	    {
+	        title: '전주 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(35.818627, 127.167865)
+	    },
+	    {
+	        title: '구미 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(36.106442, 128.351167)
+	    },
+	    {
+	        title: '대구 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(35.863357, 128.607768)
+	    },
+	    {
+	        title: '포항 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(36.034875, 129.389404)
+	    },
+	    {
+	        title: '경주 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(35.830445, 129.230299)
+	    },
+	    {
+	        title: '울산 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(35.537605, 129.340693)
+	    },
+	    {
+	        title: '부산 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(35.154394, 129.104949)
+	    },
+	    {
+	        title: '광주 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(35.135682, 126.857467)
+	    },
+	    {
+	        title: '진주 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(35.162718, 128.138700)
+	    },
+	    {
+	        title: '보성 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(34.757305, 127.070622)
+	    },
+	    {
+	        title: '제주 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(33.482931, 126.495961)
+	    },
+	    {
+	        title: '서귀포 중고차 경매장', 
+	        latlng: new daum.maps.LatLng(33.255028, 126.502081)
 	    }
 	];
 	/* var positions = [];
@@ -176,10 +391,10 @@
 	    var latlng = mouseEvent.latLng;
 	    
 	    /* var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-	    message += '경도는 ' + latlng.getLng() + ' 입니다'; */
-	    
+	    message += '경도는 ' + latlng.getLng() + ' 입니다';
+	    alert(message);
 	    var resultDiv = document.getElementById('result'); 
-	    /* resultDiv.innerHTML = message; */
+	    resultDiv.innerHTML = message; */
 	    //////////////////////////////////////////////////////////////////////////
 	    if(!!clickMarker){
 	    	clickMarker.setMap(null);  
