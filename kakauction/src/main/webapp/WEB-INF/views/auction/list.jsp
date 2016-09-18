@@ -22,7 +22,7 @@
 	<div id="wrapdiv">
 		<div id="wraptop">
 			<p>
-				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>신고리스트
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>경매리스트
 			</p>
 		</div>
 		<div id="pagelogo">

@@ -9,3 +9,35 @@
 	padding-bottom: 10px;
 }
 
+.imgfile{
+	width: 900px;
+}
+.imgfile input{
+	display: none;
+}
+
+#carOptionTable{
+	width: 830px;
+}
+.h2{
+	font-size: 1.2em;
+	font-weight: bold;
+}
+#car_pictures{
+	margin-bottom: 30px;
+}
+.car_description{
+	margin-left: 50px;
+}
+.bx{
+	margin-top: 20px;
+	margin-left: 250px;
+	margin-bottom: 30px;
+}
+#carReg{
+	margin-left: 420px;
+	font-size: 1.5em;
+}
+#carReg a:HOVER {
+	text-decoration: blink;
+}

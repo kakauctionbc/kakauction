@@ -14,6 +14,13 @@
 	});
 	
 </script>
+<div id="wrap">
+	<div id="wrapdiv">
+		<div id="wraptop">
+			<p>
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>자유게시판>글 수정
+			</p>
+		</div>	
 	<form action="<c:url value='/freeboard/edit.do'/>" method="post" name="freeEditFrm" enctype="multipart/form-data">
 		<div>
 			<input type="hidden" name="freeboardNo" id="freeboardNo" value="${param.freeboardNo}">
@@ -43,4 +50,6 @@
 		<input type="submit" value="수정">
 		<input type="reset" value="초기화">
 	</form>
+	</div>
+</div>
 <%@ include file="../design/inc/bottom.jsp"%>

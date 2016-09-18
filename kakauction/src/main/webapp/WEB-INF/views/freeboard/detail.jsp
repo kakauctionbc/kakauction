@@ -17,6 +17,13 @@
 	      });//zipcode click
 	});
 </script>
+<div id="wrap">
+	<div id="wrapdiv">
+		<div id="wraptop">
+			<p>
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>자유게시판>글 상세보기
+			</p>
+		</div>	
 	<c:if test="${freeVo.prevFreeboardNo!='0' }">
 		<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${freeVo.prevFreeboardNo}'/>">다음글</a>
 	</c:if>
@@ -70,4 +77,6 @@
       </div>
 	</div>
 	<jsp:include page="/freeboardreply/comment.do?freeboardNo=${param.freeboardNo }"></jsp:include>
+	</div>
+</div>
 <%@ include file="../design/inc/bottom.jsp"%>

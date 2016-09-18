@@ -137,7 +137,7 @@
 	<div id="wrapdiv">
 		<div id="wraptop">
 			<p>
-				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>국산차 등록
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>경매 등록
 			</p>
 		</div>
 		<div id="pagelogo">
@@ -549,29 +549,27 @@
 		
 		<div id="car_pictures">
            <div class="imgfile">
-		       <img id="UploadedImg1" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg2" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg3" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg4" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg5" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg6" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg7" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg8" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg9" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg10" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg11" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg12" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg13" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg14" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg15" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg16" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg17" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg18" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg19" src="" style="width: 80px; height: 80px;"/> 
-		       <img id="UploadedImg20" src="" style="width: 80px; height: 80px;"/> 
-		    </div>
-		    <div>
-		    
+		   		<label for="imageFileUpload1"><img id="UploadedImg1" src="" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload2"><img id="UploadedImg2" src="" style="width: 80px; height: 80px;"/></label>
+		       	<label for="imageFileUpload3"><img id="UploadedImg3" src="" style="width: 80px; height: 80px;"/></label>
+		       	<label for="imageFileUpload4"><img id="UploadedImg4" src="" style="width: 80px; height: 80px;"/></label> 
+		      	<label for="imageFileUpload5"><img id="UploadedImg5" src="" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload6"><img id="UploadedImg6" src="" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload7"><img id="UploadedImg7" src="" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload8"><img id="UploadedImg8" src="" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload9"><img id="UploadedImg9" src="" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload10"><img id="UploadedImg10" src="" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload11"><img id="UploadedImg11" src="" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload12"><img id="UploadedImg12" src="" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload13"><img id="UploadedImg13" src="" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload14"><img id="UploadedImg14" src="" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload15"><img id="UploadedImg15" src="" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload16"><img id="UploadedImg16" src="" style="width: 80px; height: 80px;"/></label> 
+		 	   	<label for="imageFileUpload17"><img id="UploadedImg17" src="" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload18"><img id="UploadedImg18" src="" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload19"><img id="UploadedImg19" src="" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload20"><img id="UploadedImg20" src="" style="width: 80px; height: 80px;"/></label> 
+	      		
 	      		<input type='file' id="imageFileUpload1" name="imageFileUpload1" onchange="readURL(this, 1);" accept="image/*"/>
 				<input type='file' id="imageFileUpload2" name="imageFileUpload2" onchange="readURL(this, 2);" accept="image/*"/>
 			    <input type='file' id="imageFileUpload3" name="imageFileUpload3" onchange="readURL(this, 3);" accept="image/*"/>
@@ -592,6 +590,9 @@
 			    <input type='file' id="imageFileUpload18" name="imageFileUpload18" onchange="readURL(this, 18);" accept="image/*"/>
 			    <input type='file' id="imageFileUpload19" name="imageFileUpload19" onchange="readURL(this, 19);" accept="image/*"/>
 			    <input type='file' id="imageFileUpload20" name="imageFileUpload20" onchange="readURL(this, 20);" accept="image/*"/>
+		    </div>
+		    <div>
+		    
 				    
 		      <input type="hidden" id="picture1" name="picture1">
 		      <input type="hidden" id="picture2" name="picture2">
@@ -622,8 +623,8 @@
 			</div>
 		</div>
 	</form>
-	<div class="layout2 car_description car_description_top">
-			<iframe id="carregisterAgree" width="820px" height="500px;" src="<c:url value='/design/inc2/carRegister.html'/>"></iframe>
+	<div class="car_description">
+			<iframe id="carregisterAgree" width="850px" height="500px;" src="<c:url value='/inc2/carRegister.html'/>"></iframe>
 					<div class="bx">
 						<input type="radio" id="sellerAgree1" name="sellerAgree" checked="" value="1">
 						<label for="sellerAgree1" class="s1">위 내용에 동의합니다.</label>
@@ -633,7 +634,7 @@
 			</div>
 			<div>
 				<a href="#"></a>
-				<a style="cursor:pointer; text-decoration: none;color: black;" id="carReg" href="#">차량 등록</a>
+				<a style="cursor:pointer; color: black;" id="carReg" href="#">차량 등록</a>
 			</div>            
 		</div>
 	</div>
