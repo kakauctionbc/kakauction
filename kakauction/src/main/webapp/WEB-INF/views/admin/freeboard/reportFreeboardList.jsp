@@ -94,10 +94,9 @@
 	<colgroup>
 		<col style="width:5%;" />
 		<col style="width:5%;" />
-		<col style="width:40%;" />
+		<col style="width:50%;" />
 		<col style="width:15%;" />
 		<col style="width:15%;" />
-		<col style="width:10%;" />		
 		<col style="width:10%;" />		
 	</colgroup>
 	<thead>
@@ -107,7 +106,6 @@
 	    <th scope="col">제목</th>
 	    <th scope="col">작성자</th>
 	    <th scope="col">작성일</th>
-	    <th scope="col">조회수</th>
 	    <th scope="col">신고수</th>
 	  </tr>
 	</thead> 
@@ -168,7 +166,6 @@
 				<td><fmt:formatDate value="${vo.freeboardRegdate}"
 					pattern="yyyy-MM-dd"/>
 				</td>
-				<td>${vo.freeboardReadCount}</td>
 				<td>${vo.freeboardReportCount}</td>
 			</tr>				
 		</c:forEach>

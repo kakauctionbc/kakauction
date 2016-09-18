@@ -17,4 +17,6 @@ public interface FreeboardService {
 	public int updateFreeboard(FreeboardVO freeboardVo);
 	public int updateReadCount(int freeboardNo);
 	public int deleteFreeboard(Map<String, String> map);
+	
+	public List<FreeboardVO> reportFreeboardList(SearchVO vo);
 }

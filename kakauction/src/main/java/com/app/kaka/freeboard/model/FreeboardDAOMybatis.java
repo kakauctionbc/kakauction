@@ -55,5 +55,10 @@ public class FreeboardDAOMybatis extends SqlSessionDaoSupport implements Freeboa
 	public int deleteFreeboard(Map<String, String> map) {
 		return getSqlSession().delete(namespace+".deleteFreeboard", map);
 	}
+
+	@Override
+	public List<FreeboardVO> reportFreeboardList(SearchVO vo) {
+		return getSqlSession().selectList(namespace+".reportFreeboardList", vo);
+	}
 	
 }

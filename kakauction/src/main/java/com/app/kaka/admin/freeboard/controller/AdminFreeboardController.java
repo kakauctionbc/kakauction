@@ -52,6 +52,7 @@ public class AdminFreeboardController {
 		//2. db작업 - select
 		List<FreeboardVO> alist = freeboardService.selectAll(searchVo);
 		//logger.info("글목록 조회 결과 alist.size()={}", alist.size());
+		logger.info("글목록 조회, 파라미터 alist={}", alist);
 		
 		//전체 레코드 개수 조회하기
 		int totalRecord = freeboardService.selectTotalCount(searchVo);
@@ -152,5 +153,33 @@ public class AdminFreeboardController {
 		logger.info("공지 삭제 결과, cnt={}",cnt);
 		
 		return "redirect:/admin/freeboard/freeboardList.do";
+	}
+	
+	@RequestMapping("/reportFreeboardList.do")
+	public String reportFreeboard(@ModelAttribute SearchVO searchVo, @RequestParam(defaultValue="20") int selectedCountPerPage,
+			Model model){
+		
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(selectedCountPerPage);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		searchVo.setBlockSize(Utility.BLOCK_SIZE);
+		searchVo.setRecordCountPerPage(selectedCountPerPage);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		
+		//2. db작업 - select
+		List<FreeboardVO> alist = freeboardService.reportFreeboardList(searchVo);
+		//logger.info("글목록 조회 결과 alist.size()={}", alist.size());
+		
+		//전체 레코드 개수 조회하기
+		pagingInfo.setTotalRecord(alist.size());
+		
+		//3. 결과 저장, 뷰페이지 리턴
+		model.addAttribute("alist", alist);
+		model.addAttribute("pagingInfo", pagingInfo);
+		model.addAttribute("selectedCountPerPage", selectedCountPerPage);
+		
+		return "admin/freeboard/reportFreeboardList";
 	}
 }

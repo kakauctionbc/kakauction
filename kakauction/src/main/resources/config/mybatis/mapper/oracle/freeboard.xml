@@ -111,7 +111,18 @@
 		#{reportContent}, 'N', sysdate)
 	</insert>
 	
-	<select id="">
-	
+	<select id="reportFreeboardList" parameterType="SearchVO" resultType="FreeboardVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, LIST_ALL.*
+		    from
+		        (
+					select * from freeboard 
+		<![CDATA[
+		where FREEBOARDREPORT_COUNT>0 ) LIST_ALL)
+		RNUM> #{firstRecordIndex} 
+		and RNUM<= #{firstRecordIndex} + #{recordCountPerPage}
+		]]>
 	</select>
 </mapper>

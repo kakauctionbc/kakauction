@@ -60,6 +60,11 @@ public class FreeboardServiceImpl implements FreeboardService{
 	public int deleteFreeboard(Map<String, String> map) {
 		return freeboardDao.deleteFreeboard(map);
 	}
+
+	@Override
+	public List<FreeboardVO> reportFreeboardList(SearchVO vo) {
+		return freeboardDao.reportFreeboardList(vo);
+	}
 	
 /*	public int updateDownCount(int no){
 		return reBoardDao.updateDownCount(no);

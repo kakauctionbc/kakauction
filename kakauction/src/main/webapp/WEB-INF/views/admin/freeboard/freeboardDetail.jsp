@@ -62,7 +62,7 @@
 			<button id="btReport">신고하기</button>
     	</div>
 	</div>
-	<jsp:include page="/freeboardreply/comment.do?freeboardNo=${param.freeboardNo }"></jsp:include>
+	<jsp:include page="/admin/freeboardreply/comment.do?freeboardNo=${param.freeboardNo }"></jsp:include>
 	</div>
 </div>
 <%@ include file="../../design/inc/adminBottom.jsp"%>
