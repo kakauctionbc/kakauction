@@ -5,6 +5,8 @@ import java.util.List;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.app.kaka.common.SearchVO;
+
 @Repository
 public class MemberDAOMybatis extends SqlSessionDaoSupport implements MemberDAO {
 	private String namespace = "config.mybatis.mapper.oracle.member";
@@ -53,5 +55,15 @@ public class MemberDAOMybatis extends SqlSessionDaoSupport implements MemberDAO 
 	@Override
 	public List<MemberVO> selectAllMember() {
 		return getSqlSession().selectList(namespace+".selectAllMember");
+	}
+
+	@Override
+	public List<MemberVO> selectAllMember2(SearchVO searchVo) {
+		return getSqlSession().selectList(namespace+".selectAllMember2", searchVo);
+	}
+
+	@Override
+	public int memberAllCount2(SearchVO searchVo) {
+		return getSqlSession().selectOne(namespace+".selectAllMemberCount", searchVo);
 	}
 }

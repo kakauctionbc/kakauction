@@ -28,7 +28,14 @@
 		padding-top: 10px;
 		padding-left: 10px;
 	}
-</style>	
+</style>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#btClose").click(function(){
+			self.close();
+		});
+	});
+</script>	
 	
 	<div class="memberDetail">
 		<form action="<c:url value='/admin/member/memberById.do'/>" method="post" name="frm1">
@@ -77,8 +84,8 @@
 				</table>
 			</div>
 			
-			<div class="autionList">
-				<h1>■ 경매정보</h1>
+			<div class="button">
+				<button type="button" id="btClose">닫기</button>
 			</div>
 		</form>
 	</div>

@@ -2,6 +2,8 @@ package com.app.kaka.member.model;
 
 import java.util.List;
 
+import com.app.kaka.common.SearchVO;
+
 public interface MemberService {
 	//아이디 중복 확인 시 사용하는 상수
 	//해당 아이디가 존재하는지 여부
@@ -26,5 +28,9 @@ public interface MemberService {
 	public int memberOut(String memberId);
 	public int checkMemberJumin(String memberJumin);
 	public int updateMemberPwd(MemberVO memberVo);
+	//얘는 엑셀
 	public List<MemberVO> selectAllMember();
+	//얘는 리스트
+	public List<MemberVO> selectAllMember2(SearchVO searchVo);
+	public int memberAllCount2(SearchVO searchVo);
 }

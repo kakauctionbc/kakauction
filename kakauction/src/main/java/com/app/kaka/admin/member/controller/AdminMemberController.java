@@ -38,20 +38,24 @@ public class AdminMemberController {
 	public String memberList_get(@ModelAttribute SearchVO searchVo,Model model){
 		logger.info("회원 목록 보여주기");
 		
-		List<MemberVO> memberList = memberService.selectAllMember();
-		logger.info("회원 목록 조회 결과 memberList.size={}",memberList.size());
-		/*
-		String[] result = null;
-		for (MemberVO vo : memberList) {
-			String addr = vo.getMemberAddr();
-			result = addr.split(" ");
-			logger.info("이거 궁금해 ===> "+result[0]);
-
- 			vo.setMemberAddr(addr);
-		}
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 		
-		model.addAttribute("addr", result[0]);*/
-		model.addAttribute("memberList", memberList);
+		searchVo.setBlockSize(Utility.BLOCK_SIZE);
+		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		
+		int totalRecord = memberService.memberAllCount2(searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+		model.addAttribute("totalRecord", totalRecord);
+		
+		List<MemberVO> memberList = memberService.selectAllMember2(searchVo);
+		logger.info("회원 목록 조회 결과 memberList.size={}",memberList.size());
+		
+		model.addAttribute("memList", memberList);
+		model.addAttribute("pagingInfo", pagingInfo);
 		
 		return "admin/member/memberList";
 	}
@@ -75,18 +79,6 @@ public class AdminMemberController {
 		List<MemberVO> memberList = memListVo.getMemberItems();
 		logger.info("선택한 아이디 memberList={}",memberList);
 		
-		/*System.out.println("list size === >" + memberList.size());
-		boolean isSuccess = true;
-		for (MemberVO memberVO : memberList) {
-			String grade = memberVO.getMemberGrade();
-			System.out.println("memervo === > "  + memberVO);
-			if (!grade.equals("BLACKLIST")) {
-				memberVO.setMemberGrade("BLACKLIST");
-				int iCnt = adminService.updateGrade(memberVO);
-				System.out.println("iCnt value === > " + iCnt);
-				if(iCnt < 0){
-					isSuccess = false;
-		}*/
 		int cnt = adminService.blackListMember(memberList);
 		logger.info("선택한 상품 이벤트 등록결과 cnt={}", cnt);
 		
