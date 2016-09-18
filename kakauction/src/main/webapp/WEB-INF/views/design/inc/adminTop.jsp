@@ -97,6 +97,7 @@ $(function(){
 			<div id="content-info">
 				<ul>
 					<li><a href="<c:url value='/admin/freeboard/freeboardList.do'/>">자유게시판 목록</a></li>
+					<li><a href="<c:url value='/admin/freeboard/freeboardList.do'/>">자유게시판 목록</a></li>
 				</ul>
 			</div>
 			<div id="content-notice">
