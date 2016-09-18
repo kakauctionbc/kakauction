@@ -117,7 +117,7 @@
 							<!-- 제목이 긴 경우 일부만 보여주기 -->
 							<c:if test="${fn:length(vo.questionTitle)>20}">
 								<tr><td id="qnaTit">
-									${fn:substring(vo.questionTitle, 0,20)}...
+									${fn:substring(vo.questionTitle, 0,20)}...??
 								</td></tr>
 								<tr><td>${fn:substring(vo.questionTitle, 20)}</td></tr>
 							</c:if>
