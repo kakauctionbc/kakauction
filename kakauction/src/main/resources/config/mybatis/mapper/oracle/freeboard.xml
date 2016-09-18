@@ -96,13 +96,13 @@
 	<!-- 파라미터 순서 => P_NO, P_GROUPNO,p_step -->
 	
 	<!-- 삭제 -->
-	<delete id="deleteFreeboard" parameterMap="delParamMap" >
+	<!-- <delete id="deleteFreeboard" parameterMap="delParamMap" >
 		{call FREEBOARD_DELETE(?, ?, ?)}
-	</delete>
+	</delete> -->
 	<!-- 파라미터 순서 => P_NO, P_GROUPNO,p_step -->
 	
 	<!-- 일괄 삭제 -->
-	<delete id="deleteFreeboardMuti">
+	<delete id="deleteFreeboardMuti" parameterType="int">
 		delete from freeboard where freeboard_no=#{freeboardNo}
 	</delete>
 	
