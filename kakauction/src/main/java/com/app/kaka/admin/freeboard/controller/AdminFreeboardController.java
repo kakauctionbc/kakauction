@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.app.kaka.admin.freeboard.model.AdminFreeboardService;
 import com.app.kaka.admin.member.model.FreeboardListVO;
 import com.app.kaka.common.FileUploadWebUtil;
 import com.app.kaka.common.PaginationInfo;
@@ -33,6 +34,9 @@ public class AdminFreeboardController {
 	
 	@Autowired
 	private FreeboardService freeboardService;
+	
+	@Autowired
+	private AdminFreeboardService adminfreeService;
 	
 	@Autowired
 	private FileUploadWebUtil webUtil;
@@ -186,26 +190,54 @@ public class AdminFreeboardController {
 	}
 	
 	@RequestMapping("/freeboardDeleteMuti.do")
-	public String freeboardDelete(@ModelAttribute FreeboardListVO listVo, Model model){
-		/*logger.info("선택한 회원 삭제 파라미터 memListvo={}",memListvo);
+	public String freeboardDelete(HttpServletRequest request,@RequestParam String freeboardFilename,
+			@ModelAttribute FreeboardListVO freeListVo, Model model){
+		//선택한 상품 삭제
+		//1.
+		logger.info("관리자 - 선택한 글 삭제, 파라미터 "
+				+ "pdListVo={}", freeListVo);
 		
-		List<MemberVO> memList = memListvo.getMemberItems();
-		logger.info("memList.size={}",memList.size());
-		logger.info("memList={}",memList);
+		List<FreeboardVO> freeList = freeListVo.getFreeboardItems();
+		logger.info("freeList.size()={}", freeList.size());
 		
-		int cnt = adminService.adminOutMember(memList);
-		logger.info("선택한 아이디 삭제 처리 결과, cnt={}",cnt);
+		//2.
+		int cnt = adminfreeService.deleteFreeboardMuti(freeList);
+		logger.info("선택한 상품 삭제 처리 결과, cnt={}",cnt);
 		
-		String msg = "", url = "/admin/member/memberList.do";
-		if (cnt>0) {
-			msg = "선택한 회원을 삭제하였습니다.";
+		//파일 삭제 처리
+		String msg="", url="/admin/freeboard/freeboardList.do";
+		if(cnt>0){
+			for(int i=0;i<freeList.size();i++){
+				FreeboardVO fbVo = freeList.get(i);
+				
+				int productNo = fbVo.getFreeboardNo();
+				String fileName = fbVo.getFreeboardFilename();
+				
+				logger.info("i={}", i);
+				logger.info("productNo={}, fileName={}", productNo, fileName);
+				
+				//체크한 상품만 파일 삭제
+				if(productNo!=0){
+					//파일이 첨부된 경우에는 파일도 삭제처리한다
+					if(freeboardFilename!=null && !freeboardFilename.isEmpty() && cnt>0){
+						String upPath=webUtil.getUploadPath(request, webUtil.NOTICE_UPLOAD);
+						File delFile = new File(upPath ,freeboardFilename);
+						if(delFile.exists()){
+							boolean bool=delFile.delete();
+							logger.info("파일 삭제 여부:{}", bool);					
+						}
+					}//if
+				}//if
+			}//for
+			msg="선택한 글을 삭제하였습니다";
 		}else{
-			msg = "삭제 실패";
-		}
+			msg="선택한 글을 삭제하지 못했습니다";
+		}//if
 		
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 		
-		return "common/message";*/
+		//3.
+		return "common/message";
 	}
 }

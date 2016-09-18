@@ -101,6 +101,11 @@
 	</delete>
 	<!-- 파라미터 순서 => P_NO, P_GROUPNO,p_step -->
 	
+	<!-- 일괄 삭제 -->
+	<delete id="deleteFreeboardMuti">
+		delete from freeboard where freeboard_no=#{freeboardNo}
+	</delete>
+	
 	<insert id="insertReport" parameterType="reportVO">
 		<selectKey keyProperty="reportNo" resultType="int" order="BEFORE">
 			select report_seq.nextval from dual

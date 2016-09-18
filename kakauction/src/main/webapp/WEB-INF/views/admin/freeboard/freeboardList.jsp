@@ -125,7 +125,10 @@
 				<!--게시판 내용 반복문 시작  -->
 				<c:forEach var="vo" items="${alist }">
 					<tr style="text-align: center">
-						<td><input type="checkbox" name="freeboardItems[${i}].freeboardNo" value="${vo.freeboardNo}" id="chk_${i}"></td>
+						<td>
+							<input type="checkbox" name="freeboardItems[${i}].freeboardNo" value="${vo.freeboardNo}" id="chk_${i}">
+							<input type="hidden" name="freeboardItems[${i}].freeboardFilename" value="${vo.freeboardFilename}">
+						</td>
 						<td>${vo.freeboardNo}</td>
 						<td style="text-align: left;">
 							<!-- 삭제된 원본글일경우 제목 감추기 -->
