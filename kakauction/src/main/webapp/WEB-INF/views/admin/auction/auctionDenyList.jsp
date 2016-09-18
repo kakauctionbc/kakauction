@@ -42,7 +42,7 @@
 		<div id="pagelogo">
 			<img src="${pageContext.request.contextPath }/img/auctionList_logo.png" alt="회원가입로고">
 		</div>
-		<form name="frmPage" method="post" action="<c:url value='/auction/list.do'/>">
+		<form name="frmPage" method="post" action="<c:url value='admin/auction/auctionDenyList.do'/>">
 			<input type="hidden" name="currentPage"> 
 			<input type="hidden" name="searchCondition" value="${param.searchCondition }"> 
 			<input type="hidden" name="searchKeyword" value="${searchVO.searchKeyword }">

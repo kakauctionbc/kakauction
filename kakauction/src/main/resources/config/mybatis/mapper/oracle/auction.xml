@@ -363,4 +363,8 @@
 		]]>
 	</select>
 	
+	<select id="selectAuctionDay" resultType="map">
+		select count(auction_no) as cnt, auction_regdate as reg from auction group by auction_regdate order by auction_regdate
+	</select>
+	
 </mapper>

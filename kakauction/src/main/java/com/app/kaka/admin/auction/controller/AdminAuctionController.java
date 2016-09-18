@@ -115,11 +115,11 @@ public class AdminAuctionController {
 		int cnt = auctionService.insertAuction(auctionVo);
 		if(cnt>0){
 			msg="경매가 등록되었습니다";
-			url="/admin/auctionList.do";
+			url="/admin/auction/auctionList.do";
 			auctionService.updateAuctionYn(auctionVo);
 		}else{
 			msg="경매 등록에 실패하였습니다";
-			url="/admin/write.do";
+			url="/admin/auction/adminWrite.do";
 			
 		}
 		model.addAttribute("msg",msg);
@@ -220,10 +220,10 @@ public class AdminAuctionController {
 		int cnt =auctionService.adminUpdateStateStop(map);
 		if(cnt>0){
 			model.addAttribute("msg", "경매를 종료하였습니다");
-			model.addAttribute("url", "admin/auctionList.do");
+			model.addAttribute("url", "admin/auction/auctionList.do");
 		}else{
 			model.addAttribute("msg", "경매 종료 실패하였습니다");
-			model.addAttribute("url", "admin/auctionDetail.do?auctionNo="+auctionNo);
+			model.addAttribute("url", "admin/auction/auctionDetail.do?auctionNo="+auctionNo);
 		}
 		return "common/message";
 	}

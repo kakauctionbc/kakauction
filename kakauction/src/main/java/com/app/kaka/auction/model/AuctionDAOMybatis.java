@@ -226,6 +226,11 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 		return getSqlSession().selectList(namespace+".selectDenyCar", searchVo);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectAuctionDay() {
+		return getSqlSession().selectList(namespace+".selectAuctionDay");
+	}
+
 
 	
 

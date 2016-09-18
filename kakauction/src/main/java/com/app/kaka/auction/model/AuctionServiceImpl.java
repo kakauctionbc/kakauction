@@ -298,6 +298,11 @@ public class AuctionServiceImpl implements AuctionService{
 		return auctionDao.selectDenyCar(searchVo);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectAuctionDay() {
+		return auctionDao.selectAuctionDay();
+	}
+
 	
 	
 	

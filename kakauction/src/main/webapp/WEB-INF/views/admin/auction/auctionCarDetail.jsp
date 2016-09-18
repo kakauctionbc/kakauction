@@ -66,7 +66,7 @@
 						<a href="#" class="stopAuction" style="color:#fae100;">경매 강제 종료</a>
 					</td>
 					<td>
-						<a href="<c:url value='/admin/auctionList.do'/>" class="AuctionList" style="color:#fae100;">경매 목록</a>
+						<a href="<c:url value='/admin/auction/auctionList.do'/>" class="AuctionList" style="color:#fae100;">경매 목록</a>
 					</td>
 				</tr>
 			</c:if>
@@ -1238,7 +1238,7 @@
 						<a href="#" class="stopAuction" style="color:#fae100;">경매 강제 종료</a>
 					</td>
 					<td>
-						<a href="<c:url value='/admin/auctionList.do'/>" class="AuctionList" style="color:#fae100;">경매 목록</a>
+						<a href="<c:url value='/admin/auction/auctionList.do'/>" class="AuctionList" style="color:#fae100;">경매 목록</a>
 					</td>
 				</tr>
 			</c:if>

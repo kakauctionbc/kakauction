@@ -9,12 +9,12 @@
 		</tr>
 		<tr>
 			<td>
-				<c:import url="<c:url value='/admin/'/>"/>
+				<c:import url="/admin/highChart/auctionChart.do"/>
 			</td>
 			<td>
 			</td>
 		</tr>
-	
+
 	</table>
 </div>
 

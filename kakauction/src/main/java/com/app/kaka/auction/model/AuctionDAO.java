@@ -83,4 +83,7 @@ public interface AuctionDAO {
 	public int carUpadeAuctionDeny(String carNum);
 	public List<CarVO> selectDenyCar(SearchVO searchVo);
 	
+	//하이차트
+	public List<Map<String, Object>> selectAuctionDay();
+	
 }

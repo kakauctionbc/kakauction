@@ -1,9 +1,13 @@
 package com.app.kaka.admin.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.app.kaka.auction.controller.AuctionController;
@@ -22,7 +26,8 @@ public class AdminController {
 	private OpService opService;
 	
 	@RequestMapping("/index.do")
-	public String adminIndex(){
+	public String adminIndex(Model model){
+		
 		return "admin/index";
 	}
 
