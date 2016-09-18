@@ -62,8 +62,8 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 						cnt
 						=adminDao.updateMemberGrade(memberVo);
 					}*/
+					vo.setMemberGrade(eventName);
 					logger.info("serviceImple에서 찍은 not null memberId={}", memberId);
-					vo.setMemberGrade("BLACKLIST");
 					cnt=adminDao.updateMemberGrade(vo);
 				}//if
 			}

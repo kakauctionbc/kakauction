@@ -11,7 +11,7 @@ public class AdminMemberDAObatis extends SqlSessionDaoSupport implements AdminMe
 
 	@Override
 	public int updateMemberGrade(MemberVO vo) {
-		return getSqlSession().update(namespace+".gradeUpdate", vo);
+		return getSqlSession().update(namespace+".gradeUpdateMember", vo);
 	}
 
 	@Override

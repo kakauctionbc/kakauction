@@ -62,6 +62,22 @@
 	<select id="selectAllMember" resultType="MemberVO">
 		select * from member
 	</select>
+
+	<select id="selectAllMember2" parameterType="SearchVO" resultType="MemberVO">
+		select * from(
+			select rownum as RNUM, LIST_ALL.* from(
+				select * from member where member_Grade!='ADMIN' and member_outdate is null
+			)LIST_ALL
+		)
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}+#{recordCountPerPage}
+		]]>
+	</select>
+	
+	<select id="selectAllMemberCount" parameterType="SearchVO" resultType="int">
+		select count(*) from member where member_Grade!='ADMIN' and member_outdate is null
+	</select>
 	
 	<update id="gradeUpdate" parameterType="MemberVO">
 		update member set member_Grade=#{memberGrade} where member_id=#{memberId}
@@ -70,4 +86,10 @@
 	<select id="selectMemberCount" parameterType="string" resultType="int">
 		select count(*) from member where member_Grade=#{memberGrade}
 	</select>
+	
+	<update id="gradeUpdateMember" parameterType="MemberVO">
+		update member set member_Grade=#{memberGrade} where member_id=#{memberId}
+	</update>
+	
+	
 </mapper>
