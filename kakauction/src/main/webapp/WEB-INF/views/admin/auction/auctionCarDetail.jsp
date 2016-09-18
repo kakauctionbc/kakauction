@@ -60,14 +60,16 @@
 	<div class="sellerInformation">
 	<input type="hidden" id="auctionNo" value="${auctionVo.auctionNo}">
 		<table>
-			<tr>
-				<td>
-					<a href="#" class="stopAuction" style="color:#fae100;">경매 강제 종료</a>
-				</td>
-				<td>
-					<a href="<c:url value='/admin/auctionList.do'/>" class="AuctionList" style="color:#fae100;">경매 목록</a>
-				</td>
-			</tr>
+			<c:if test="${auctionVo.auctionState!='END'}">
+				<tr>
+					<td>
+						<a href="#" class="stopAuction" style="color:#fae100;">경매 강제 종료</a>
+					</td>
+					<td>
+						<a href="<c:url value='/admin/auctionList.do'/>" class="AuctionList" style="color:#fae100;">경매 목록</a>
+					</td>
+				</tr>
+			</c:if>
 		</table>
 	</div>
 	<!--차량사진-->
@@ -1230,14 +1232,16 @@
 				<th>매매상사</th>
 				<td>${acVo.carCompany}</td>
 			</tr>
-			<tr>
-				<td>
-					<a href="#" class="stopAuction" style="color:#fae100;">경매 강제 종료</a>
-				</td>
-				<td>
-					<a href="<c:url value='/admin/auctionList.do'/>" class="AuctionList" style="color:#fae100;">경매 목록</a>
-				</td>
-			</tr>
+			<c:if test="${auctionVo.auctionState!='END'}">
+				<tr>
+					<td>
+						<a href="#" class="stopAuction" style="color:#fae100;">경매 강제 종료</a>
+					</td>
+					<td>
+						<a href="<c:url value='/admin/auctionList.do'/>" class="AuctionList" style="color:#fae100;">경매 목록</a>
+					</td>
+				</tr>
+			</c:if>
 		</table>
 	</div>
 </div>

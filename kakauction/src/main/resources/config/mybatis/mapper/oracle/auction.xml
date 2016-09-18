@@ -318,7 +318,7 @@
 	</select>
 	
 	<select id="selectLastBuyer" parameterType="DateSearchVO" resultType="map">
-		select * from lastbuyer l, auction_car2 a where L.CAR_NUM=a.car_num
+		select * from lastbuyer l, auction_car2 a where L.CAR_NUM=a.car_num and l.seller_member_id=A.MEMBER_ID
 		<include refid="lastbuyerWhere"></include>
 	</select>
 	

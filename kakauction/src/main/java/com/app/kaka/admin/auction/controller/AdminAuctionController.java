@@ -231,14 +231,6 @@ public class AdminAuctionController {
 	@RequestMapping("/auctionSuccess.do")
 	public String auctionSuccess(@ModelAttribute DateSearchVO vo, Model model){
 		logger.info("글목록 조회, 파라미터 vo={}", vo);
-		if(vo.getStartDay()==null || vo.getStartDay().isEmpty()){				
-			Date d = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String today = sdf.format(d);
-			
-			vo.setStartDay(today);
-			vo.setEndDay(today);
-		}
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
 		pagingInfo.setRecordCountPerPage(Utility.MAUCLIST_COUNT_PER_PAGE);
@@ -249,6 +241,8 @@ public class AdminAuctionController {
 		vo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		
 		List<Map<String, Object>> alist = auctionService.selectLastBuyer(vo);
+		logger.info("글목록 조회 alist.size={}, alist={}", alist.size(), alist);
+		pagingInfo.setTotalRecord(alist.size());
 		model.addAttribute("alist", alist);
 		model.addAttribute("alistsize", alist.size());
 		model.addAttribute("pagingInfo", pagingInfo);

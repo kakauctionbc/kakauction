@@ -46,7 +46,7 @@
 			<p>전체 목록 - ${pagingInfo.totalRecord }건 조회되었습니다</p>
 			<table class="box2">
 				<caption>자료실</caption>
-				<colgroup>
+<!-- 				<colgroup>
 					<col style="width: 10%;" />
 					<col style="width: 7%;" />
 					<col style="width: 20%;" />
@@ -57,7 +57,7 @@
 					<col style="width: 12%;" />
 					<col style="width: 12%;" />
 					<col style="width: 4%;" />
-				</colgroup>
+				</colgroup> -->
 				<thead>
 					<tr class="listTitle">
 						<th rowspan="2" class="listImg">사진</th>
@@ -66,7 +66,7 @@
 						<th>연식</th>
 						<th>변속기</th>
 						<th>감정평가액</th>
-						<th>물건상태</th>
+						<th rowspan="2">낙찰회원아이디</th>
 						<th>입찰번호</th>
 						<th>입찰시작</th>
 						<th rowspan="2" class="readCount">조회수</th>
@@ -76,7 +76,6 @@
 						<th>주행거리</th>
 						<th>연료</th>
 						<th>입찰시작가</th>
-						<th>유찰횟수</th>
 						<th>물건번호</th>
 						<th>입찰마감</th>
 					</tr>
@@ -92,40 +91,26 @@
 						<c:forEach var="vo" items="${alist }">
 							<tr style="text-align: center">
 								<td class="listImg"><img alt="사진" height="56px;" width="90px;" src="<c:url value='/picture_upload/${vo.picture1}'/>"></td>
-								<td class="listSize">${vo.carSize}</td>
-								<c:if test="${vo.auctionState=='END' }">
+								<td class="listSize">${vo['CAR_SIZE']}</td>
+								<c:if test="${vo['AUCTION_STATE']=='END' }">
 									<td class="listName" style="text-align: center;">
-										<a href="<c:url value='/admin/auction/auctionDetail.do?auctionNo=${vo.auctionNo}'/>">
-											[종료]<br>${vo.carModel} 
+											[종료]<br>${vo['CAR_MODEL']} 
 										</a>
 									</td>
 								</c:if>
-								<c:if test="${vo.auctionState!='END' }">
-									<td class="listName" style="text-align: left;">
-										<a href="<c:url value='/admin/auction/auctionDetail.do?auctionNo=${vo.auctionNo}'/>">
-											${vo.carModel}<br> 
-										<c:if test="${fn:length(vo.carLoc)>30}">
-											${fn:substring(vo.carLoc, 0,30)}...
-										</c:if> 
-										<c:if test="${fn:length(vo.carLoc)<=30}">
-											${vo.carLoc}
-										</c:if>
-										</a>
-									</td>
-								</c:if>
-								<td>${vo.carBirth}<br> ${vo.carDist}km
+								<td>${vo['CAR_BIRTH']}<br> ${vo['CAR_DIST']}km
 								</td>
-								<td>${vo.carAm}<br> ${vo.carGas}
+								<td>${vo['CAR_AM']}<br> ${vo['CAR_GAS']}
 								</td>
-								<td>${vo.carPrice}<br> ${vo.auctionFirstprice}
+								<td>${vo['CAR_PRICE']}<br> ${vo['AUCTION_FIRSTPRICE']}
 								</td>
-								<td>${vo.auctionState}<br> ${vo.carFailSell}
+								<td><a href="#" onclick="window.open('<c:url value="/admin/member/memberById.do?memberId=${vo['BUYER_MEMBER_ID']}"/>','member','width=700,height=600,left=10,top=50,resizable=yes,location=yes')" >${vo['BUYER_MEMBER_ID'] }</a><br>${vo['LASTBUYER_REGDATE']}
 								</td>
-								<td>${vo.auctionNoYear} - ${vo.auctionNoCar} -
-									${vo.auctionNo}</td>
-								<td>${vo.auctionRegdate}<br> ${vo.auctionFinish }
+								<td>${vo['AUCTION_NO_YEAR']} - ${vo['AUCTION_NO_CAR']} -
+									${vo['AUCTION_NO']}</td>
+								<td>${vo['AUCTION_REGDATE']}<br> ${vo['AUCTION_FINISH']}
 								</td>
-								<td>${vo.auctionReadCount}</td>
+								<td>${vo['AUCTION_READ_COUNT']}</td>
 							</tr>
 						</c:forEach>
 						<!--반복처리 끝  -->

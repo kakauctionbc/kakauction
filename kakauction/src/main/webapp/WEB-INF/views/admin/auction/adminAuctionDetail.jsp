@@ -64,9 +64,9 @@
 							</c:if>
 							<c:if test="${!empty firstMem}">
 								<tr>
-									<td>${firstMem.recordPrice}</td>
+									<td><fmt:formatNumber pattern="#,###" value="${firstMem.recordPrice}"/>만원</td>
 									<td>${firstMem.buyerMemberId}</td>
-									<td>${firstMem.recordRegdate}</td>
+									<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${firstMem.recordRegdate}"/></td>
 								</tr>
 							</c:if>
 						</table>
@@ -100,7 +100,7 @@
 							<tr>
 								<td><fmt:formatNumber pattern="#,###" value="${vo.recordPrice}"/>만원</td>
 								<td>${vo.buyerMemberId}</td>
-								<td><fmt:formatDate pattern="yyyy-MM-ss HH:mm:ss" value="${vo.recordRegdate}"/></td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${vo.recordRegdate}"/></td>
 							</tr>
 						</c:forEach>
 					</c:if>
