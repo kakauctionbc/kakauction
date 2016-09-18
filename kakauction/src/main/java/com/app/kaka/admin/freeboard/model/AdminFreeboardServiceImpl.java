@@ -12,19 +12,13 @@ public class AdminFreeboardServiceImpl implements AdminFreeboardService {
 	private AdminFreeboardDAO admFreeDao;
 
 	@Override
-	@Transactional
 	public int deleteFreeboardMuti(List<FreeboardVO> freeList) {
 		int cnt=0;
-		try{
-			for (FreeboardVO vo : freeList) {
-				int freeboardNo = vo.getFreeboardNo();
-				if (freeboardNo!=0) {
-					cnt = admFreeDao.deleteFreeboardMuti(vo.getFreeboardNo());
-				}
+		for (FreeboardVO vo : freeList) {
+			int freeboardNo = vo.getFreeboardNo();
+			if (freeboardNo!=0) {
+				cnt = admFreeDao.deleteFreeboardMuti(vo.getFreeboardNo());
 			}
-		}catch(RuntimeException e){
-			e.printStackTrace();
-			cnt=-1;
 		}
 		return cnt;
 	}

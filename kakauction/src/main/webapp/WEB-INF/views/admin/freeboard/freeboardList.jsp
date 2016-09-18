@@ -123,11 +123,15 @@
 			</c:if>
 			<c:if test="${!empty alist}">
 				<!--게시판 내용 반복문 시작  -->
+				<c:set var="i" value="0" />
 				<c:forEach var="vo" items="${alist }">
 					<tr style="text-align: center">
 						<td>
 							<input type="checkbox" name="freeboardItems[${i}].freeboardNo" value="${vo.freeboardNo}" id="chk_${i}">
-							<input type="text" name="freeboardItems[${i}].freeboardFilename" value="${vo.freeboardFilename}">
+							<c:set var="name" value="${vo.freeboardFilename}"/>
+							<c:if test="${!empty name}">
+								<input type="text" name="freeboardItems[${i}].freeboardFilename" value="${vo.freeboardFilename}">
+							</c:if>
 						</td>
 						<td>${vo.freeboardNo}</td>
 						<td style="text-align: left;">
@@ -175,7 +179,8 @@
 						</td>
 						<td>${vo.freeboardReadCount}</td>
 						<td>${vo.freeboardreportCount}</td>
-					</tr>				
+					</tr>
+					<c:set var="i" value="${i+1 }" />				
 				</c:forEach>
 				<!--반복처리 끝  -->
 			</c:if>
