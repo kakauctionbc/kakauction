@@ -1,6 +1,7 @@
 package com.app.kaka.admin.qna.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -43,13 +44,12 @@ public class AdminQnaController {
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 				
 		//2. db작업 - select
-		List<QnaVO> alist = qnaService.selectAll(searchVo);
+		List<Map<String, Object>> alist = qnaService.selectAll(searchVo);
 		logger.info("글목록 조회 결과 alist.size()={}", 
 				alist.size());
 		
 		//전체 레코드 개수 조회하기
-		int totalRecord 
-			= qnaService.selectTotalCount(searchVo);
+		int totalRecord=qnaService.selectTotalCount(searchVo);
 		pagingInfo.setTotalRecord(totalRecord);
 				
 		//3. 결과 저장, 뷰페이지 리턴
@@ -84,6 +84,7 @@ public class AdminQnaController {
 		int cnt = qnaService.insertQnareply(vo);
 		String msg="", url="";
 		if(cnt>0){
+			qnaService.updateReturn(vo.getQuestionNo());
 			msg="답변 작성하였습니다";
 			url="/admin/qnareply/list.do";
 		}else{
@@ -93,6 +94,7 @@ public class AdminQnaController {
 		
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
-		return "";
+		
+		return "common/message";
 	}
 }

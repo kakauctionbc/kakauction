@@ -24,6 +24,7 @@
 <style type="text/css">
 	.divForm{
 		margin: 0 auto;
+		margin-top: 50px;
 	}
 	table{
 		width: 800px;
@@ -74,7 +75,7 @@
 				<td><fmt:formatDate pattern="yyyy년 MM월 dd일 " value="${QnaVo.questionRegdate}"/></td>
 			</tr>
 			<tr>
-				<th colspan="3" style="text-align: left;">내용</th>
+				<th colspan="3" style="text-align: center;">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</th>
 			</tr>
 			<tr>
 				<td colspan="3">${QnaVo.questionContent}</td>
@@ -88,7 +89,7 @@
 				</td>
 			</tr>
 		</table>
-		<form action="<c:url value='/admin/qnareply/write.do?qnaNo=${QnaVo.questionNo}'/>">
+		<form action="<c:url value='/admin/qnareply/write.do?qnaNo=${QnaVo.questionNo}'/>" method="post">
 			<table id="replyCon">
 				<tr>
 					<th>원본 글 번호</th>

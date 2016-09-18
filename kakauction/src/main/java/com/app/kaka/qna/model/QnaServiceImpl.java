@@ -1,6 +1,7 @@
 package com.app.kaka.qna.model;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.annotation.Resource;
@@ -25,7 +26,7 @@ public class QnaServiceImpl implements QnaService{
 	private Properties fileUploadProperties;
 
 	@Override
-	public List<QnaVO> selectAll(SearchVO searchVo) {
+	public List<Map<String, Object>> selectAll(SearchVO searchVo) {
 		return qnaDao.selectAll(searchVo);
 	}
 
@@ -57,5 +58,10 @@ public class QnaServiceImpl implements QnaService{
 	@Override
 	public int insertQnareply(QnareplyVO vo) {
 		return qnaDao.insertQnareply(vo);
+	}
+
+	@Override
+	public int updateReturn(int questionNo) {
+		return qnaDao.updateReturn(questionNo);
 	}
 }

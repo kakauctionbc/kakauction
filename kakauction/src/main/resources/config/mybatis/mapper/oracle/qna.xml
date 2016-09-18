@@ -11,17 +11,17 @@
 		</where>
 	</sql>
 	
-	<select id="selectAll" resultType="qnaVo" parameterType="SearchVO">
+	<select id="selectAll" resultType="map" parameterType="SearchVO">
 		select *
-		from
-		(
-		    select rownum as RNUM, LIST_ALL.*
-		    from
-		        (select question_no, member_id, question_title,
-					question_regdate, question_content,
-					question_return, question_only,
+			from
+			(
+			    select rownum as RNUM, LIST_ALL.*
+			    from
+			        (select q.question_no, q.member_id, q.question_title,
+					q.question_regdate, q.question_content,
+					q.question_return, q.question_only,R.ANS_CONTENT, R.ANS_TIME,
 					(sysdate-question_regdate)*24 as newImgTerm
-		        from question
+		       		from question q, QNAREPLY r
 		        <include refid="searchWhere"></include>
 		        order by question_no desc) LIST_ALL    
 		) 
@@ -67,4 +67,10 @@
 		insert into qnareply(ANS_NO,QUESTION_NO,MEMBER_ID,ANS_CONTENT)
 		values(#{ansNo},#{questionNo},#{memberId},#{ansContent})
 	</insert>
+	
+	<update id="updateReturn" parameterType="int">
+		update question
+		set question_return='Y'
+		where question_no=#{questionNo}
+	</update>
 </mapper>

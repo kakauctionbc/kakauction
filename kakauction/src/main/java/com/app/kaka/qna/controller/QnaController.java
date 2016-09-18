@@ -49,7 +49,7 @@ public class QnaController {
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 				
 		//2. db작업 - select
-		List<QnaVO> alist = qnaService.selectAll(searchVo);
+		List<Map<String, Object>> alist = qnaService.selectAll(searchVo);
 		logger.info("글목록 조회 결과 alist.size()={}", 
 				alist.size());
 		

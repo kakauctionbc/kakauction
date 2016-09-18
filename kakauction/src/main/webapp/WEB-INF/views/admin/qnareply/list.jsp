@@ -27,7 +27,10 @@
 	body{
 		padding:5px;
 		margin:5px;
-	 }	
+	 }
+	 .divList, .divPage, .divSearch{
+	 	margin: 0 auto;
+	 }
 </style>
 <!-- http://localhost:9090/mymvc/reBoard
 /list.do?currentPage=5&searchCondition=content&searchKeyword=%ED%95%98 -->
@@ -81,26 +84,28 @@
 		<!--게시판 내용 반복문 시작  -->		
 		<c:forEach var="vo" items="${alist }">
 			<tr style="text-align: center">
-				<td>${vo.questionNo}</td>
+				<td>${vo['QUESTION_NO']}</td>
 				<td style="text-align: left;">
-					<a href="<c:url value='/admin/qnareply/detail.do?questionNo=${vo.questionNo}'/>">
+					<c:if test="${vo['QUESTION_RETURN']=='N'}">
+					<a href="<c:url value='/admin/qnareply/detail.do?questionNo=${vo["QUESTION_NO"]}'/>">
+					</c:if>
 						<!-- 제목이 긴 경우 일부만 보여주기 -->
-						<c:if test="${fn:length(vo.questionTitle)>20}">
-							${fn:substring(vo.questionTitle, 0,20)}...
+						<c:if test="${fn:length(vo['QUESTION_TITLE'])>20}">
+							${fn:substring(vo['QUESTION_TITLE'], 0,20)}...
 						</c:if>
-						<c:if test="${fn:length(vo.questionTitle)<=30}">
-							${vo.questionTitle}
+						<c:if test="${fn:length(vo['QUESTION_TITLE'])<=30}">
+							${vo['QUESTION_TITLE']}
 						</c:if>
 					</a>
 					<!-- 24시간 이내의 글인 경우 new 이미지 보여주기 -->
-					<c:if test="${vo.newImgTerm<24}">
+					<c:if test="${vo['NEWIMGTERM']<24}">
 						<img src="<c:url value='/image/new.gif'/>" alt="new이미지">
 					</c:if>
 				</td>
-				<td>${vo.memberId}</td>
-				<td><fmt:formatDate value="${vo.questionRegdate}" pattern="yyyy-MM-dd"/>
+				<td>${vo['MEMBER_ID']}</td>
+				<td><fmt:formatDate value="${vo['QUESTION_REGDATE']}" pattern="yyyy-MM-dd"/>
 				</td>
-				<td>${vo.questionReturn}</td>
+				<td>${vo['QUESTION_RETURN']}</td>
 			</tr>				
 		</c:forEach>
 		<!--반복처리 끝  -->
