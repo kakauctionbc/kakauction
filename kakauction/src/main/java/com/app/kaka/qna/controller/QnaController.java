@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,9 +85,10 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value="write.do", method=RequestMethod.GET)
-	public String insertQna_get(){
+	public String insertQna_get(HttpSession session, Model model){
 		logger.info("질문 게시판 글쓰기 보여주기");
-		
+		String memberId = (String)session.getAttribute("memberid");
+		model.addAttribute("memberId", memberId);
 		return "qna/write";
 	}
 	

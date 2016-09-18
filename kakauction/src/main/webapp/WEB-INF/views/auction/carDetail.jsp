@@ -1223,7 +1223,6 @@
 					<dt> <strong>판매자정보</strong> </dt>
 					<dd class="first"> <span class="t">판매자</span>
 						<span class="s"> <strong>${acVo.memberName }</strong>
-						<a href="#" style="text-decoration: none; color: black;">쪽지</a>
 						<dd> <span class="t">연락처</span> <span class="s">${acVo.memberHp }</span> </dd>
 						<dd> <span class="t">주소</span> <span class="s"> ${acVo.memberAddr }</span> </dd>
 						<dd> <span class="t">매매상사</span> <span class="s">${acVo.carCompany }</span> </dd>

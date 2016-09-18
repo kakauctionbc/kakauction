@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<%@ include file="../design/inc/top.jsp"%>
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js' />"></script>
 <script src="<c:url value='/ckeditor/ckeditor.js'/>" type="text/javascript"></script>
 
@@ -27,34 +23,34 @@
 				
 				return false;
 			} 
-			
-			/*else if($("#memberId").val().length<1){
-				alert("아이디ㄹ,ㄹ 입력하세요");
-				$("#memberId").focus();
-				event.preventDefault();
-			}else if($("#pwd").val().length<1){
-				alert("비밀번호를 입력하세요");
-				$("#pwd").focus();
-				event.preventDefault();
-			} */
 		});
 	});
-	
 </script>
+<style type="text/css">
+	#QNAheader p{
+		font-size: 25px;
+		font-weight: bold;
+	}
+</style>
 </head>
-<body>
-	<form action="<c:url value='/qna/write.do'/>" method="post" name="frmWrite" id="frmWrite" enctype="multipart/form-data">
-		<div>
-			<label for="memberId">아이디</label>
-			<input type="text" name="memberId" id="memberId" readonly="readonly" value="admin">
-		</div>
-		<div>
-			<label for="freeboardTitle">제목</label>
-			<input type="text" name="questionTitle" id="questionTitle">
-		</div>
-		<textarea id="questionContent" name="questionContent" rows="12" cols="40"></textarea>
-		<input type="submit" value="작성">
-		<input type="reset" value="초기화">
-	</form>
-</body>
-</html>
+	<div style="width: 800px;margin-left: 450px;margin-top: 30px;">	
+		<form action="<c:url value='/qna/write.do'/>" method="post" name="frmWrite" id="frmWrite" enctype="multipart/form-data">
+			<div id="QNAheader">
+				<p style="font-size: 35px;">QNA</p>
+				<p>KAKAUCTION에 질문해주세요. 친절하게 답변해드릴게요.</p>
+				<hr>
+			</div>
+			<div>
+				<label for="memberId">아이디</label>
+				<input type="text" name="memberId" id="memberId" readonly="readonly" value="${memberId}" size="10px;">
+				<label for="freeboardTitle">제목</label>
+				<input type="text" name="questionTitle" id="questionTitle" size="20px;">
+			</div>
+			<br><br>
+			<textarea id="questionContent" name="questionContent" rows="12" cols="40"></textarea>
+			<br><br>
+			<input type="submit" value="작성">
+			<input type="reset" value="초기화">
+		</form>
+	</div>
+<%@ include file="../design/inc/bottom.jsp"%>

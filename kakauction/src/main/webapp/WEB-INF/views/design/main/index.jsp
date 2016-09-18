@@ -56,7 +56,7 @@ $(function() {
 				</a>
 			</li>
 			<li id="iconthree">
-				<a href="<c:url value='/auction/list.do'/>">
+				<a href="<c:url value='/auction/todayList.do'/>">
 					<img src="${pageContext.request.contextPath }/img/joinAuction2.png">
 				</a>
 			</li>
