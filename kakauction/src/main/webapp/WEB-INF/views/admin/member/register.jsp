@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../design/inc/adminTop.jsp"%>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/mainstyle.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/clear.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/layout.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/login.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/register.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/list.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/carRegister.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/auctiongo.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/carList.css" />
 <script type="text/javascript" src="<c:url value='/js/member.js'/>"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
