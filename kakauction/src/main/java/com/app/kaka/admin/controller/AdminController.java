@@ -57,9 +57,11 @@ public class AdminController {
 			HttpServletRequest request,
 			HttpServletResponse response,
 			Model model){
+		
 		memVo.setMemberGrade(MemberService.MEMBER_GRADE_ADMIN);
 		logger.info("관리자 로그인 처리, 파라미터 memVo={}",memVo);
 		logger.info("관리자 로그인 처리, 파라미터 chkSave={}",chkSave);
+		
 		
 		String msg="", url="/admin/login/adminLogin.do";
 		int result = memberService.loginCheck(memVo);
@@ -91,6 +93,7 @@ public class AdminController {
 		}else{
 			msg="로그인 체크 실패";
 		}
+		
 		//3.
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
@@ -113,6 +116,37 @@ public class AdminController {
 		model.addAttribute("msg", "로그아웃되었습니다.");
 		model.addAttribute("url", "/admin/login/adminLogin.do");
 		
+		return "common/message";
+	}
+	
+	@RequestMapping(value="/member/memberAdd.do", method=RequestMethod.GET)
+	public String memberWrite_get(){
+		logger.info("관리자 등록 화면 보여주기");
+		return "admin/member/register";
+	}
+	
+	@RequestMapping(value="/member/memberAdd.do", method=RequestMethod.POST)
+	public String memberWrite_post(@ModelAttribute MemberVO memberVo, Model model){
+		//1.
+		//권한 코드 셋팅
+		memberVo.setMemberGrade(MemberService.MEMBER_GRADE_ADMIN);
+		logger.info("관리자 등록 처리, 파라미터 memberVo={}", memberVo);
+		
+		//2.
+		int cnt = memberService.insertMember(memberVo);
+		logger.info("관리자 등록 처리 결과, cnt={}", cnt);
+		
+		String msg ="",url="";
+		if(cnt>0){
+			msg="관리자 등록되었습니다";
+			url="/admin/index.do";
+		}else{
+			msg="관리자 등록실패";
+			url="/admin/member/memberAdd.do";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		//3.
 		return "common/message";
 	}
 }

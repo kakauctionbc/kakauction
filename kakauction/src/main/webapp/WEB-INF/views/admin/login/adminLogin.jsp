@@ -33,7 +33,7 @@
 		</div>
 		<div id="loginp">
 			<p>
-				카카옥션 사이트 방문을 환영합니다.<br> 사이트의 원활한 사용을 위하여 로그인을 해주시기 바랍니다.
+				관리자님 안녕하세요!
 			</p>
 		</div>
 		<div class="simpleForm">
@@ -59,18 +59,18 @@
 			<article>
 				<div style="width: 100%; height: 30px;"></div>
 				<div id="join">
-					<label for="join" class="label">※ 회원이 아니신가요?</label>
+					<label for="join" class="label">※ 관리자 등록하기</label>
 					<button type="submit"
 						onclick="location.href='${pageContext.request.contextPath }/admin/member/register.do'">관리자등록</button>
 				</div>
-				<div id="searchid">
+				<!-- <div id="searchid">
 					<label for="searchid" class="label">※ 아이디를 잊으셨나요?</label>
 					<button type="submit">아이디</button>
 				</div>
 				<div id="searchpwd">
 					<label for="searchpwd" class="label">※ 비밀번호를 잊으셨나요?</label>
 					<button type="submit">비밀번호</button>
-				</div>
+				</div> -->
 			</article>
 		</div>
 	</div>
