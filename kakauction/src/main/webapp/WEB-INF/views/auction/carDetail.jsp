@@ -15,6 +15,19 @@
 			$("#photoOnoffText").html("◁ 차량 사진 닫기");
 		}
 	}
+	
+$(function(){ 
+	var carImgSrc;
+	$(".carImg").click(function(){
+		carImgSrc = $(this).attr("src");
+		$("#myModal").css("display", "block");
+		$("#img01").attr("src",carImgSrc);
+	});
+	$(".close").click(function() {
+		$("#myModal").css("display", "none");
+	});
+});
+	
 </script>
 <style type="text/css">
 	#carImage{
@@ -25,11 +38,82 @@
 		width: 1000px;
 		height: 165px;
 	}
-	.photoarea img{
+	.carImg {
 		width: 180px;
 		height: 160px;
+	    cursor: pointer;
+	    transition: 0.3s;
 	}
-
+	.carImg:hover {
+		opacity: 0.7;
+	}
+	.modal {
+	    display: none; /* Hidden by default */
+	    position: fixed; /* Stay in place */
+	    z-index: 1; /* Sit on top */
+	    padding-top: 100px; /* Location of the box */
+	    left: 0;
+	    top: 0;
+	    width: 100%; /* Full width */
+	    height: 100%; /* Full height */
+	    overflow: auto; /* Enable scroll if needed */
+	    background-color: rgb(0,0,0); /* Fallback color */
+	    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+	}
+	
+	/* Modal Content (Image) */
+	.modal-content {
+	    margin: auto;
+	    display: block;
+	    width: 80%;
+	    max-width: 700px;
+	}
+	
+	/* Caption of Modal Image (Image Text) - Same Width as the Image */
+	#caption {
+	    margin: auto;
+	    display: block;
+	    width: 80%;
+	    max-width: 700px;
+	    text-align: center;
+	    color: #ccc;
+	    padding: 10px 0;
+	    height: 150px;
+	}
+	
+	/* Add Animation - Zoom in the Modal */
+	.modal-content, #caption { 
+	    -webkit-animation-name: zoom;
+	    -webkit-animation-duration: 0.6s;
+	    animation-name: zoom;
+	    animation-duration: 0.6s;
+	}
+	
+	/* The Close Button */
+	.close {
+	    position: absolute;
+	    top: 15px;
+	    right: 35px;
+	    color: #f1f1f1;
+	    font-size: 40px;
+	    font-weight: bold;
+	    transition: 0.3s;
+	}
+	
+	.close:hover, .close:focus {
+	    color: #bbb;
+	    text-decoration: none;
+	    cursor: pointer;
+	}
+	
+    .modal-content {
+        width: 100%;
+    }
+   @media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
 </style>
 	<!--차량사진-->
 	<div class="tab7_view dealer">
@@ -53,35 +137,37 @@
 					</ul>
 				</div>
 				<div class="photoarea">
-					<img src="<c:url value='/picture_upload/${acVo.picture1}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture2}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture3}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture4}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture5}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture1}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture2}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture3}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture4}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture5}'/>" width="200" alt="차량사진">
 				</div>
-				
 				<div class="photoarea">
-					<img src="<c:url value='/picture_upload/${acVo.picture6}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture7}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture8}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture9}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture10}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture6}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture7}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture8}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture9}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture10}'/>" width="200" alt="차량사진">
 				</div>
-				
 				<div class="photoarea">
-					<img src="<c:url value='/picture_upload/${acVo.picture11}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture12}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture13}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture14}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture15}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture11}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture12}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture13}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture14}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture15}'/>" width="200" alt="차량사진">
 				</div>
-				
 				<div class="photoarea">
-					<img src="<c:url value='/picture_upload/${acVo.picture16}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture17}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture18}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture19}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture20}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture16}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture17}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture18}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture19}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture20}'/>" width="200" alt="차량사진">
+				</div>
+				<div id="myModal" class="modal">
+					<span class="close">×</span>
+						<img class="modal-content" id="img01">
+					<div id="caption"></div>
 				</div>
 			</div>
 			<br><hr>

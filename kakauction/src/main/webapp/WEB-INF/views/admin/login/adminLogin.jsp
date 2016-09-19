@@ -36,7 +36,7 @@
 				관리자님 안녕하세요!
 			</p>
 		</div>
-		<div class="simpleForm">
+		<div class="loginForm">
 			<form name="frmLogin" id="frmLogin" method="post"
 				action="<c:url value='/admin/login/adminLogin.do'/>">
 				<fieldset>
