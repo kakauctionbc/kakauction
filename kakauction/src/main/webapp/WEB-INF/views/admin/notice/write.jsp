@@ -42,7 +42,7 @@
 	        </div>
 	        <div>
 	            <label for="name">작성자</label>
-	            <input type="text" id="memberId" name="memberId" value="${sessionScope.memberId }" readonly/>
+	            <input type="text" id="memberId" name="memberId" value="${sessionScope.adminUserid }" readonly/>
 	        </div>
 	        <div>
 	            <label for="upfile">첨부파일</label>
