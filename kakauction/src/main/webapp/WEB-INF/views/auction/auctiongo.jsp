@@ -92,7 +92,7 @@
 				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>관심경매
 			</p>
 		</div>
-		<div>
+		<div class="auctiongopage">
 			<input type="hidden" id="auctionNo" value="${auctionGo['AUCTION_NO'] }">
 			<input type="hidden" id="carNum" value="${auctionGo['CAR_NUM'] }">
 			<input type="hidden" id="sellerMemberId" value="${auctionGo['SELLER_MEMBER_ID'] }">
@@ -176,11 +176,31 @@
 					<td id="nowHighPrice" style="text-align: right; color: red;">${auctionGo['AUCTION_FIRSTPRICE'] }만원</td>
 				</tr>
 			</table>
-				<div>
-					<a href="#" id="regAucReport">
-						<img alt="허위매물신고" src="<c:url value='/img/report_icon.png'/>">
-					</a>
-				</div>
+			<div class="informationmt">
+				<dl>
+					<dt>
+						<strong>판매자정보</strong>
+					</dt>
+					<dd class="first">
+						<span class="t">판매자</span> <span class="s"> <strong>${acVo.memberName }</strong>
+							<dd>
+								<span class="t">연락처</span> <span class="s">${acVo.memberHp }</span>
+							</dd>
+							<dd>
+								<span class="t">주소</span> <span class="s">
+									${acVo.memberAddr }</span>
+							</dd>
+							<dd>
+								<span class="t">매매상사</span> <span class="s">${acVo.carCompany }</span>
+							</dd>
+							<dd class="pt1"></dd>
+				</dl>
+			</div>
+			<div>
+				<a href="#" id="regAucReport">
+					<img alt="허위매물신고" src="<c:url value='/img/report_icon.png'/>">
+				</a>
+			</div>
 		</div>
 		<div class='Quick_layer'>
 			<div class="Quick" id="QuickMenu"

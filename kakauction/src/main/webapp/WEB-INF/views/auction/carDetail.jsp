@@ -29,13 +29,13 @@
 		width: 180px;
 		height: 160px;
 	}
+
 </style>
 	<!--차량사진-->
 	<div class="tab7_view dealer">
 		<div class="page_tab">
 			<ul class="tab7" id="tab6">
-				<li class="t7"><a href="#tab6" style="text-decoration: none; color: black;">사진정보</a></li>
-				<li class="top"><a href="#" style="text-decoration: none; color: black;">TOP</a></li>
+				<li class="t7"><a href="#tab6" style="text-decoration: none; color: black; font-size: 1.5em;">◎ 상세정보</a></li>
 			</ul>
 		</div>
 	
@@ -45,13 +45,13 @@
 			</div>
 		</div>
 		<div class="carphoto">
-			<div class="top">
-				<ul class="inline">
-					<li>본 이미지는 사업적 용도가 아닌 경우 SNS, 카페, 블로그 등에서 자유롭게 사용이 가능합니다.</li>
-				</ul>
-			</div>
 			<input type="hidden" name="carphto_onoff" id="carphto_onoff" value="on">
 			<div id="Div_carphto_onoff" style=" display:block; padding:0 ; " align="center">
+				<div class="top">
+					<ul class="inline">
+						<li>본 이미지는 사업적 용도가 아닌 경우 SNS, 카페, 블로그 등에서 자유롭게 사용이 가능합니다.</li>
+					</ul>
+				</div>
 				<div class="photoarea">
 					<img src="<c:url value='/picture_upload/${acVo.picture1}'/>" width="200" alt="차량사진">
 					<img src="<c:url value='/picture_upload/${acVo.picture2}'/>" width="200" alt="차량사진">
@@ -84,13 +84,15 @@
 					<img src="<c:url value='/picture_upload/${acVo.picture20}'/>" width="200" alt="차량사진">
 				</div>
 			</div>
+			<br><hr>
 			<div class="detailbottom">
 				<dl>
-					<dt>책임한계 및 법적고지</dt>
+					<dt style="font-weight: bold; font-size: 1.3em;">※책임한계 및 법적고지</dt><br>
 					<dd>보배드림은 판매자가 등록한 매물정보가 노출될 수 있도록 등록 시스템만을 제공하며, <br>
 						판매자가 등록한 매물 정보 및 이와 관련한 실제 거래에 대하여 어떤 책임도 부담하지 않습니다.</dd>
 				</dl>
-			</div>						
+			</div>
+			<br><hr>						
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -1216,19 +1218,6 @@
 						</tbody>
 					</table> 
 				</div>
-			</div>
-	
-			<div class="information mt">
-				<dl>
-					<dt> <strong>판매자정보</strong> </dt>
-					<dd class="first"> <span class="t">판매자</span>
-						<span class="s"> <strong>${acVo.memberName }</strong>
-						<dd> <span class="t">연락처</span> <span class="s">${acVo.memberHp }</span> </dd>
-						<dd> <span class="t">주소</span> <span class="s"> ${acVo.memberAddr }</span> </dd>
-						<dd> <span class="t">매매상사</span> <span class="s">${acVo.carCompany }</span> </dd>
-					<dd class="pt1">
-					</dd>
-				</dl>
 			</div>
 		</div>	
 	</div>

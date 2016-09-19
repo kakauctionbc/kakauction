@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+
+.auctiongopage{
+	margin-bottom: 200px;
+}
 .auctiongotable{
 	border-collapse: collapse;
 }
@@ -40,10 +44,29 @@
 	margin-top: 20px;
 	background: #e3e3e3;
 	border-radius: 10px;
-	border: 1px solid red;
+	margin-bottom: 20px;
+	float: left;
+}
+.informationmt{
+	border-radius: 10px;
+	float: left;
+	margin-left: 40px;
+	background: #c0c0c0;
+	padding: 10px;
+	margin-top: 20px;
+}
+.informationmt dl dt{
+	padding-bottom: 5px;
+}
+.informationmt dl dd{
+	padding-bottom: 4px;
+}
+.informationmt dl dd .t{
+	padding-right: 2px;
+	font-weight: bold;
 }
 .auctionTable tr td{
-	border: 1px solid red;
+	border: 1px solid #c0c0c0;
 	font-size: 0.9em;
 	font-weight: bold;
 	text-align: center;
