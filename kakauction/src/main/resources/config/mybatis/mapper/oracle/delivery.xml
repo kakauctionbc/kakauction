@@ -26,7 +26,7 @@
 			select DELIVERY_SEQ.nextval from dual
 		</selectKey>
 		insert into delivery(deli_no, title, lb_no, record_no, buyer_member_id, record_price)
-		values(${deliNo}, ${title}, #{lbNo}, #{recordNo}, #{buyerMemberId}, #{recordPrice})
+		values(#{deliNo}, #{title}, #{lbNo}, #{recordNo}, #{buyerMemberId}, #{recordPrice})
 		
 	</insert>
 </mapper>

@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -114,18 +115,23 @@ public class DeliveryController {
 		return "delivery/detail";
 	}
 	@RequestMapping("/insertTrade.do")
-	public String insertTrade(@RequestParam Map<Object, Object> data, Model model){
-		if(data==null || data.isEmpty()){
+	@Transactional
+	public String insertTrade(@RequestParam int lbNo,@RequestParam int recordNo,@RequestParam int auctionNo,@RequestParam String buyerMemberId,@RequestParam int recordPrice,
+			@RequestParam String carNum, @RequestParam String title, @RequestParam String tradeType, Model model){
+		if(lbNo==0 || recordNo==0 || auctionNo==0){
 			model.addAttribute("msg", "잘못된 url입니다");
 			model.addAttribute("url", "/index.do");
 			return "common/message";
 		}
-		
-		String buyerMemberId=(String)data.get("buyerMemberId");
-		String tradeType=(String)data.get("tradeType");
-		logger.info("requestParam 으로 받은 map={}", data.isEmpty());
-		logger.info("requestParam 으로 받은 map={}",data);
-		logger.info("캭={}, 퉤={}", buyerMemberId, tradeType);
+		Map<Object, Object> data = new HashMap<Object, Object>();
+		data.put("lbNo", lbNo);
+		data.put("recordNo", recordNo);
+		data.put("auctionNo", auctionNo);
+		data.put("buyerMemberId", buyerMemberId);
+		data.put("recordPrice", recordPrice);
+		data.put("carNum", carNum);
+		data.put("title", title);
+		data.put("tradeType", tradeType);
 		
 		int cnt = deliveryService.updateLastBuyerYn(data);
 		int cnt1 = deliveryService.insertDelivery(data);

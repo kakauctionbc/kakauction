@@ -64,8 +64,7 @@
 			        msg += '결제 금액 : ' + rsp.paid_amount;
 			        msg += '카드 승인번호 : ' + rsp.apply_num;
 			        console.log(msg);
-			        var data={"lbNo":lbNo,"recordNo":recordNo,"auctionNo":auctionNo,"buyerMemberId":buyerMemberId,"recordPrice":recordPrice,"carNum":carNum,"title":title,"tradeType":"정상결제"};
-			        location.replace("<c:url value='/delivery/insertTrade.do?data="+data+"'/>");
+			        location.replace("<c:url value='/delivery/insertTrade.do?lbNo="+lbNo+"&recordNo="+recordNo+"&auctionNo="+auctionNo+"&buyerMemberId="+buyerMemberId+"&recordPrice="+recordPrice+"&carNum="+carNum+"&title="+title+"&tradeType="+"정상결제"+"'/>");
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
 			        msg += '에러내용 : ' + rsp.error_msg;
@@ -75,16 +74,7 @@
 		});
 		
 		$("#timbt").click(function(){
-			map["lbNo"]=lbNo;
-			map["recordNo"]=recordNo;
-			map["auctionNo"]=auctionNo;
-			map["buyerMemberId"]=buyerMemberId;
-			map["recordPrice"]=recordPrice;
-			map["carNum"]=carNum;
-			map["title"]=title;
-			map["tradeType"]="정상결제";
-			alert(map);
-	        location.replace("<c:url value='/delivery/insertTrade.do?data="+map+"'/>");
+	        location.replace("<c:url value='/delivery/insertTrade.do?lbNo="+lbNo+"&recordNo="+recordNo+"&auctionNo="+auctionNo+"&buyerMemberId="+buyerMemberId+"&recordPrice="+recordPrice+"&carNum="+carNum+"&title="+title+"&tradeType="+"정상결제"+"'/>");
 		});
 		
 		$("#dontPay").click(function(){
@@ -120,8 +110,7 @@
 				        msg += '결제 금액 : ' + rsp.paid_amount;
 				        msg += '카드 승인번호 : ' + rsp.apply_num;
 				        console.log(msg);
-				        var data={"lbNo":lbNo,"recordNo":recordNo,"auctionNo":auctionNo,"buyerMemberId":buyerMemberId,"recordPrice":dontPay,"carNum":carNum,"tradeType":tradeType};
-				        location.replace("<c:url value='/delivery/insertTrade.do?data="+data+"'/>");
+				        location.replace("<c:url value='/delivery/insertTrade.do?lbNo="+lbNo+"&recordNo="+recordNo+"&auctionNo="+auctionNo+"&buyerMemberId="+buyerMemberId+"&recordPrice="+dontPay+"&carNum="+carNum+"&title="+title+"&tradeType="+"거래취소"+"'/>");
 				    } else {
 				        var msg = '결제에 실패하였습니다.';
 				        msg += '에러내용 : ' + rsp.error_msg;
