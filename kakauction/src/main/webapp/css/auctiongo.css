@@ -63,6 +63,7 @@
 }
 .informationmt dl dd .t{
 	padding-right: 2px;
+	border: 0px;
 	font-weight: bold;
 }
 .auctionTable tr td{
