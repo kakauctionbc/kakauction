@@ -38,12 +38,46 @@
 	font-weight: bold;
 }
 
-.simpleForm{
+.loginForm{
 	margin-left: 250px;
 	margin-top: 70px;
 }
-.simpleForm div{
+.loginForm div{
 	margin-left: 60px;
+}
+.loginForm form{
+	width:400px;
+}
+.loginForm fieldset{
+	border:0;
+	padding:5px;
+}
+.loginForm legend{
+	color:#555555;
+	padding: 10px 0;
+	margin:10px 0;
+	font-size:1.3em;
+	font-weight: bold;
+}
+.label{
+	width:20%;
+	float:left;		
+	text-align:right;
+	padding:5px 15px 0 0;	
+	font-size:0.9em;	
+	font-weight: bold;
+}
+.loginForm div{
+	padding: 5px 0;
+	margin: 0;
+}	
+.loginForm input[type="text"], .loginForm input[type="password"]{
+	width:40%;
+} 
+.loginForm .p{
+	padding: 5px 15px 15px 0;		
+	font-size:1.0em;
+	/* font-weight:bold; */
 }
 input#memberId{
 	width:170px;
@@ -60,7 +94,7 @@ input#memberPwd{
     height:40px;
 	position: absolute;
 	top: 460px;
-	left: 1030px;
+	left: 1000px;
 	border-radius: 10%;
 	box-shadow: 0 5px 5px lightgray;
 	font-weight: bold;
@@ -74,7 +108,8 @@ input#memberPwd{
 	border-radius: 10%;
 	box-shadow: 0 5px 5px lightgray;
 	font-weight: bold;
-	margin-left: 70px;
+	margin-top:20px;
+	margin-left: 150px;
 	float: left;
 }
 #pwdCheck_main{
@@ -87,6 +122,18 @@ input#memberPwd{
 	box-shadow: 0 5px 5px lightgray;
 	font-weight: bold;
 	margin-left:20px;
+	float: left;
+}
+#memberOut_btn{
+	background-color: #f2f2ee;
+    color: black;
+    cursor: pointer;
+    width: 80px;
+    height:30px;
+	border-radius: 10%;
+	box-shadow: 0 5px 5px lightgray;
+	font-weight: bold;
+	margin-left: 60px;
 	float: left;
 }
 #loginbutton:hover {background-color: #FAE100}

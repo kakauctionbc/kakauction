@@ -28,7 +28,47 @@
 		<div id="pagelogo">
 			<img
 				src="${pageContext.request.contextPath }/img/auctionList_logo.png"
-				alt="회원가입로고">
+				alt="경매리스트로고">
+		</div>
+		<div class="special">
+			<ul>
+				<li class="first">
+					<a href="">
+						<div class="imgbox">
+							<img src="${pageContext.request.contextPath }/img/test_img1.jpg"
+									alt="자동차사진" />
+						</div><span class="txt">기아 뉴 쏘렌토R 2013년형</span></a>
+				</li>
+				<li class="">
+					<a href="">
+						<div class="imgbox">
+							<img src="${pageContext.request.contextPath }/img/test_img2.jpg"
+										alt="자동차사진" />
+						</div><span class="txt">쉐보레(국산) 캡티바 2012년식</span></a>
+				</li>
+				<li class="">
+					<a href="">
+						<div class="imgbox">
+							<img src="${pageContext.request.contextPath }/img/test_img3.jpg"
+								alt="자동차사진" />
+						</div><span class="txt">현대 제네시스 2012년형</span></a>
+				</li>
+				<li class="">
+					<a href="">
+						<div class="imgbox">
+							<img src="${pageContext.request.contextPath }/img/test_img4.jpg"
+								alt="자동차사진" />
+						</div><span class="txt">현대 제네시스 쿠페 2010년형</span></a>
+				</li>
+				<li class="last">
+					<a href="">
+					<div class="imgbox">
+						<img src="${pageContext.request.contextPath }/img/test_img5.jpg"
+							alt="자동차사진" />
+					</div> <span class="txt">현대 아반떼MD 2011년형</span></a>
+				</li>
+			</ul>
+		</div>
 		</div>
 		<form name="frmPage" method="post" action="<c:url value='/auction/list.do'/>">
 			<input type="hidden" name="currentPage"> <input type="hidden"

@@ -38,7 +38,7 @@
 				카카옥션 사이트 방문을 환영합니다.<br> 사이트의 원활한 사용을 위하여 로그인을 해주시기 바랍니다.
 			</p>
 		</div>
-		<div class="simpleForm">
+		<div class="loginForm">
 			<form name="frmLogin" id="frmLogin" method="post"
 				action="<c:url value='/login/login.do'/>">
 				<fieldset>

@@ -32,6 +32,7 @@
 }
 #regAucReport img{
 	float: right;
+	margin-right:35px;
 	padding-top:5px;
 }
 .auctionCarName{
@@ -47,12 +48,19 @@
 	margin-bottom: 20px;
 	float: left;
 }
+.auctionTable tr td{
+	font-size: 0.9em;
+	font-weight: bold;
+	text-align: center;
+}
 .informationmt{
 	border-radius: 10px;
 	float: left;
 	margin-left: 40px;
 	background: #c0c0c0;
-	padding: 10px;
+	padding-left:20px;
+	padding-right:20px;
+	padding-top:10px;
 	margin-top: 20px;
 }
 .informationmt dl dt{
@@ -63,11 +71,19 @@
 }
 .informationmt dl dd .t{
 	padding-right: 2px;
-	border: 0px;
 	font-weight: bold;
 }
-.auctionTable tr td{
-	border: 1px solid #c0c0c0;
-	font-size: 0.9em;
-	font-weight: bold;
-	text-align: center;
+#memberInfoTable td, #memberInfoTable th, #memberInfoTable{
+	border: 1px solid #acacac;
+	border-collapse: collapse;
+}
+
+#carInfoTable td, #carInfoTable th, #carInfoTable{
+	border: 1px solid #acacac;
+	border-collapse: collapse;
+}
+
+#carOptionTable td, #carOptionTable th, #carOptionTable{
+	border: 1px solid #acacac;
+	border-collapse: collapse;
+}

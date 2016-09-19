@@ -7,12 +7,12 @@
 	
 			$("#Div_carphto_onoff").hide();
 			$("#carphto_onoff").val("off") ;
-			$("#photoOnoffText").html("차량 사진 열기");
+			$("#photoOnoffText").html("▶ 차량 사진 열기");
 		}else if(n=="off"){
 	
 			$("#Div_carphto_onoff").show();
 			$("#carphto_onoff").val("on") ;
-			$("#photoOnoffText").html("차량 사진 닫기");
+			$("#photoOnoffText").html("◁ 차량 사진 닫기");
 		}
 	}
 </script>
@@ -41,14 +41,14 @@
 	
 		<div class="pagetitle">
 			<div class="detailbtn01"> <a href="javascript:Div_carphto_onoff();" style="text-decoration: none; color: black;">
-				<pre id="photoOnoffText">차량 사진 닫기</pre></a>
+				<pre id="photoOnoffText">◁ 차량 사진 닫기</pre></a>
 			</div>
 		</div>
 		<div class="carphoto">
 			<input type="hidden" name="carphto_onoff" id="carphto_onoff" value="on">
 			<div id="Div_carphto_onoff" style=" display:block; padding:0 ; " align="center">
 				<div class="top">
-					<ul class="inline">
+					<ul class="inline" style="margin-bottom: 10px;">
 						<li>본 이미지는 사업적 용도가 아닌 경우 SNS, 카페, 블로그 등에서 자유롭게 사용이 가능합니다.</li>
 					</ul>
 				</div>
@@ -151,9 +151,9 @@
 			</div>
 			<br><br>
 			<div class="rightarea">
-				<dt> <strong>차량 옵션 정보</strong> </dt>
+				<dt style="font-size: 1.3em; margin-bottom: 10px; font-weight: bold;"> <strong>▶ 차량 옵션 정보</strong> </dt>
 					<div class="option">
-						<table id="carOptionTable" summary="차량옵션선택" style="font-size: 0.7em">
+						<table id="carOptionTable" summary="차량옵션선택" style="font-size: 0.7em; width: 1000px;">
 							<%-- <colgroup>
 								<col width="20%">
 								<col width="20%">
@@ -1232,7 +1232,7 @@
 		<!--상세하단안내-->
 		<div class="pagetitle">
 			<div class="detailbtn_top">
-			<a href="#" style="text-decoration: none; color: black;">맨 위로 올라가기</a>
+			<a href="#" style="text-decoration: none; color: black; margin-top: 20px; float: right;">맨 위로 올라가기</a>
 		</div>
 	</div>
 	<!--//상세하단안내--> 

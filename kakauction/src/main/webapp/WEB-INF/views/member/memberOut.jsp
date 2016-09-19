@@ -25,8 +25,8 @@ $(document).ready(function(){
 });
 </script>
 <div id="wrap">
-	<div id="loginwrap">
-		<div id="logintop">
+	<div id="wrapdiv">
+		<div id="wraptop">
 			<p><a href="${pageContext.request.contextPath }/member/index.do">HOME</a>>회원탈퇴</p>
 		</div>
 		<div id="pagelogo">
@@ -45,15 +45,15 @@ $(document).ready(function(){
 						<input type="text" name="memberId" id="memberId" value="${memberId }" readonly="readonly">
 					</div>
 					<div>
-						<label for="memberPwd">비밀번호</label>
+						<label for="memberPwd" class="label">비밀번호</label>
 						<input type="password" name="memberPwd" id="memberPwd">
-					</div>
-					<div style="width:100%; margin-top: 20px;">
-						<button type="submit" id="pwdCheck_btn">회원탈퇴</button>
-						<button type="reset" onclick="location.href='${pageContext.request.contextPath }/design/index.do'" id="pwdCheck_main">메인페이지</button>
 					</div>
 				</fieldset>
 			</form>
+			<div style="width:100%; margin-top: 20px;">
+				<button type="submit" id="memberOut_btn">회원탈퇴</button>
+				<button type="reset" onclick="location.href='${pageContext.request.contextPath }/design/index.do'" id="pwdCheck_main">메인페이지</button>
+			</div>
 		</div>
 	</div>
 </div>

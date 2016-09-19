@@ -35,8 +35,10 @@
 					}
 					if(highMember==buyerMemberId){
 						$("#light").css("background","red");
+						$("#lightText").css("color", "yellow")
 					}else{
 						$("#light").css("background","");
+						$("#lightText").css("color", "")
 					}
 				}/* ,
 				error : function(xhr,status,error) {
@@ -149,31 +151,28 @@
 			</table>
 			<table style="width: 70%; border-collapse: collapse;" class="auctionTable">
 				<tr>
-					<td style="width: 100px;">경매상태</td>
-					<td rowspan="2" style="width: 200px;">경매번호<br> 
+					<td style="width: 100px; border-right:1px solid silver;" rowspan="4">경매상태</td>
+					<td style="width: 200px; border-bottom: 1px solid silver; border-right:1px solid silver;" rowspan="2">경매번호<br> 
 						<span style="color: blue;">${auctionGo['AUCTION_NO_YEAR'] } - ${auctionGo['AUCTION_NO_CAR'] } -${auctionGo['AUCTION_NO'] }</span>
 					</td>
-					<td rowspan="2" style="width: 100px;">
-						<p id="light">권리</p>
+					<td style="width: 50px;" id="light" rowspan="2">
+						<p id="lightText">권리</p>
 					</td>
-					<td rowspan="4" style="width: 100px;">
+					<td rowspan="4" style="width: 50px; border-left:1px solid silver;">
 						<input id="goAuction" type="button" value="응찰">
 					</td>
 				</tr>
 				<tr>
-					<td>1</td>
 				</tr>
 				<tr>
-					<td>2</td>
-					<td>
-						<p style="text-align: center; padding-bottom: 10px;">현재 입찰가</p>
-						<p style="text-align: right; font-size: 0.8em;">억천백십일만원</p>
+					<td style="border-right:1px solid silver;">
+						<span style="text-align: center; padding-bottom: 10px; ">현재 입찰가</span><br>
+						<span style="float: right; font-size: 0.8em;">억천백십일만원</span>
 					</td>
 					<td rowspan="2">낙찰</td>
 				</tr>
 				<tr>
-					<td>3</td>
-					<td id="nowHighPrice" style="text-align: right; color: red;">${auctionGo['AUCTION_FIRSTPRICE'] }만원</td>
+					<td id="nowHighPrice" style="text-align: right; color: red; font-size: 1em;">${auctionGo['AUCTION_FIRSTPRICE'] }만원</td>
 				</tr>
 			</table>
 			<div class="informationmt">

@@ -82,6 +82,13 @@
 	}
 	
 /* 로그인, 회원탈퇴 등 */
+	.simpleForm{
+		margin-left: 300px;
+		margin-top: 70px;
+	}
+	.simpleForm div{
+		margin-left: 60px;
+	}
 	.simpleForm form{
 		width:400px;
 	}
@@ -96,7 +103,7 @@
 		font-size:1.3em;
 		font-weight: bold;
 	}
-	.simpleForm .label{
+ 	.label{
 		width:20%;
 		float:left;		
 		text-align:right;

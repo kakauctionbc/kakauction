@@ -24,7 +24,7 @@
 <div id="wrap">
 	<div id="loginwrap">
 		<div id="logintop">
-			<p><a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>회원가입>로그인</p>
+			<p><a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>비밀번호확인</p>
 		</div>
 		<div id="pagelogo">
 			<img src="${pageContext.request.contextPath }/img/pwdCheck_logo.png" alt="비밀번호확인">

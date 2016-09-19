@@ -112,9 +112,6 @@
 	th img{
 		float: left;
 	}
-	td{
-		padding-left: 10px;
-	}
 	#memberInfoTable td, #memberInfoTable th, #memberInfoTable{
 		border: 1px solid #acacac;
 		border-collapse: collapse;
