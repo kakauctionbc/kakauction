@@ -11,7 +11,7 @@
 				alert("제목을 입력하세요");
 				$("#freeboardTitle").focus();
 				return false;
-			}else if($("#freeboardContent").val()==""){
+			}else if($("#freeboardContent").val().length<1){
 				alert("내용을 입력하세요");
 				$("#freeboardContent").focus();
 				return false;

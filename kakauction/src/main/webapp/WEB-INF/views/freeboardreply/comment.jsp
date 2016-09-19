@@ -14,7 +14,7 @@
 		document.frmPage.submit();
 	}
 	
-	$(function(){
+	$(document).ready(function(){
 		$("#replyComment").submit(function(){
 			if($("#freereplyContent").val().length<1){
 				alert("댓글을 입력하세요");
@@ -22,6 +22,22 @@
 				return false;
 			}
 		});
+		
+		$("#btrere").click(function(){
+			if($("#rereplyContent").val().length<1){
+				alert("댓글을 입력하세요");
+				$("#rereplyContent").focus();
+				return false;
+			}
+			
+			$("#frmRere").submit();
+		});
+		
+		for(var i=0;i<${alist.size()};i++){
+			$("#rereply"+i).click(function(){
+				$("#hidden0").toggle();
+			});
+		}
 	});
 </script>
 </head>
@@ -53,6 +69,7 @@
 				</tr>
 			</c:if>
 			<c:if test="${!empty alist }">
+				<c:set var="replyCount" value="0"/>
 				<c:forEach var="freereplyVo" items="${alist }">
 					<tr>
 						<td style="text-align: center">${freereplyVo.memberId }</td>
@@ -60,16 +77,22 @@
 						<td style="text-align: center"><fmt:formatDate value="${freereplyVo.freereplyRegdate }" pattern="yyyy-MM-dd"/></td>
 						<td style="text-align: center">
 							<c:if test="${freereplyVo.memberId==sessionScope.memberId }">
-								<a name="delete">삭제</a>
+								<a href="#" id="delete${replyCount }">삭제</a>
 							</c:if>
 							<c:if test="${freereplyVo.memberId!=sessionScope.memberId }">
-								<a name="rereply">답글</a>
+								<a href="#" id="rereply${replyCount }">답글</a>
 							</c:if>
 						</td>
 					</tr>
-					<input type="hidden" value="${freereplyVo.freereplyNo }">
+					<form action="<c:url value='/freeboardreply/rere.do'/>" method="post" id="frmRere${replyCount }" name="frmRere${replyCount }">
+						<tr style="display: none;" id="hidden${replyCount }">
+								<td colspan="3"><textarea rows="5" cols="165" name="freereplyContent" id="rereplyContent"></textarea></td>
+								<input type="hidden" name="freeboardNo" value="${freereplyVo.freeboardNo }">
+								<td><input type="button" id="btrere" value="등록"></td>
+						</tr>
+					</form>
+					<c:set var="replyCount" value="${replyCount+1 }"/>
 				</c:forEach>
-				<!--반복처리 끝  -->
 			  </c:if>
 	 	</table>
 		<div class="divPage">
