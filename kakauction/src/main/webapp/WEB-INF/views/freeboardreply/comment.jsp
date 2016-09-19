@@ -13,6 +13,16 @@
 		document.frmPage.currentPage.value=curPage;
 		document.frmPage.submit();
 	}
+	
+	$(function(){
+		$("#replyComment").submit(function(){
+			if($("#freereplyContent").val().length<1){
+				alert("댓글을 입력하세요");
+				$("#freereplyContent").focus();
+				return false;
+			}
+		});
+	});
 </script>
 </head>
 <body>
@@ -25,19 +35,21 @@
 	 		summary="게시판 댓글에 대한 표로써, 작성자, 내용, 작성일시에 대한 정보를 제공합니다." style="width: 1000px">
 	 		<colgroup>
 				<col style="width:20%;" />
-				<col style="width:60%;" />
+				<col style="width:50%;" />
 				<col style="width:20%;" />
+				<col style="width:10%;" />
 			</colgroup>
 			<thead>
 				<tr>
 				    <th scope="col">작성자</th>
 				    <th scope="col">내용</th>
 				    <th scope="col">작성일시</th>
+				    <th scope="col"></th>
 				</tr>
 			</thead>
 			<c:if test="${empty alist }">
 				<tr>
-					<td colspan="3" class="align_center">등록된 댓글이 없습니다.</td>
+					<td colspan="4" class="align_center">등록된 댓글이 없습니다.</td>
 				</tr>
 			</c:if>
 			<c:if test="${!empty alist }">
@@ -46,7 +58,16 @@
 						<td style="text-align: center">${freereplyVo.memberId }</td>
 						<td>${freereplyVo.freereplyContent }</td>
 						<td style="text-align: center"><fmt:formatDate value="${freereplyVo.freereplyRegdate }" pattern="yyyy-MM-dd"/></td>
+						<td style="text-align: center">
+							<c:if test="${freereplyVo.memberId==sessionScope.memberId }">
+								<a name="delete">삭제</a>
+							</c:if>
+							<c:if test="${freereplyVo.memberId!=sessionScope.memberId }">
+								<a name="rereply">답글</a>
+							</c:if>
+						</td>
 					</tr>
+					<input type="hidden" value="${freereplyVo.freereplyNo }">
 				</c:forEach>
 				<!--반복처리 끝  -->
 			  </c:if>
@@ -91,11 +112,12 @@
 				<legend>댓글달기</legend>
 					<p style="margin-top: 10px;">
 						<label for="memberId" style="margin-right: 10px;">작성자</label>
-						<input type="text" id="memberId" name="memberId" style="width: 30%" value="${sessionScope.memberId }" readonly>
+						<span>${sessionScope.memberId }</span>
+						<input type="hidden" id="memberId" name="memberId" style="width: 30%" value="${sessionScope.memberId }" readonly>
 					</p>
 					<input type="hidden" name="freereplyGroupno" value="${freeVo.freeboardNo}">
 					<p style="margin-top: 20px;">
-						<textarea rows="5" cols="95" name="freereplyContent"></textarea>
+						<textarea rows="5" cols="95" name="freereplyContent" id="freereplyContent"></textarea>
 					</p>
 					<div style="text-align: center; margin-top: 10px;">
 						<input type="submit" name="commentSubmit" value="확인">
