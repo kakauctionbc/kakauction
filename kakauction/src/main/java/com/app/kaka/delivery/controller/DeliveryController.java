@@ -120,10 +120,13 @@ public class DeliveryController {
 			model.addAttribute("url", "/index.do");
 			return "common/message";
 		}
-
+		
+		String buyerMemberId=(String)data.get("buyerMemberId");
 		String tradeType=(String)data.get("tradeType");
 		logger.info("requestParam 으로 받은 map={}", data.isEmpty());
-		logger.info("캭={}, 퉤={}", (String)data.get("title"), tradeType);
+		logger.info("requestParam 으로 받은 map={}",data);
+		logger.info("캭={}, 퉤={}", buyerMemberId, tradeType);
+		
 		int cnt = deliveryService.updateLastBuyerYn(data);
 		int cnt1 = deliveryService.insertDelivery(data);
 		logger.info("거래 성공 최종구매자 상태 업데이트 cnt={}",cnt);

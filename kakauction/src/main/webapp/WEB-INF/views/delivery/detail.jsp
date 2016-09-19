@@ -20,6 +20,7 @@
 		var carNum = $("#carNum").val();
 		var title = "";
 		var tradeType = "";
+		var map = new Object();
 		alert(lbNo+"~"+recordNo+"~"+buyerMemberId+"!"+title);
 		
 		$("#map").click(function(){ 
@@ -74,7 +75,6 @@
 		});
 		
 		$("#timbt").click(function(){
-			var map = new Object();
 			map["lbNo"]=lbNo;
 			map["recordNo"]=recordNo;
 			map["auctionNo"]=auctionNo;
@@ -82,9 +82,9 @@
 			map["recordPrice"]=recordPrice;
 			map["carNum"]=carNum;
 			map["title"]=title;
-			map["tradeType"]=tradeType;
-			
-	        location.replace("<c:url value='/delivery/insertTrade.do?data="+{"lbNo":lbNo,"recordNo":recordNo,"auctionNo":auctionNo,"buyerMemberId":buyerMemberId,"recordPrice":recordPrice,"carNum":carNum,"title":title,"tradeType":tradeType}+"'/>");
+			map["tradeType"]="정상결제";
+			alert(map);
+	        location.replace("<c:url value='/delivery/insertTrade.do?data="+map+"'/>");
 		});
 		
 		$("#dontPay").click(function(){
