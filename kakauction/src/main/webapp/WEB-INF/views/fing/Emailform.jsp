@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div style="width: 70%">
-		<img alt="test" src="">	
+		<img alt="test" src="emailForm.png">	
 	</div>
 </body>
 </html>

@@ -91,6 +91,7 @@ public class EmailController {
             		+ "<p style='font-weight: bold;'>"+newPwd+"</p><br><br>"
             		+ "<p style='font-weight: bold;'>감사합니다.</p>";*/
 	        String htmlText="<div style='background:#fae100'>"
+	        		+ "<img alt='test' src=''>"
 	        		+"<div style='background:#fae100'>"
 	        		+"<h1 text-align='left'>인증번호를 알려드립니다.</h1><br><br>"
 	        		+"<p style='font-weight: bold;font-size: 2em;'>안녕하세요. kakAution입니다.</p><br>"
@@ -115,10 +116,11 @@ public class EmailController {
 	            email.setReciver(memberEmail);
 	            email.setSubject(memberId+"님 요청하신 임시 비밀번호 입니다.");
 	            emailSender.SendEmail(email);
-	            mav= new ModelAndView("redirect:/fing/randomPwd.do?memberId="+memberId);
+	            /*mav= new ModelAndView("redirect:/fing/randomPwd.do?memberId="+memberId);*/
+	            mav= new ModelAndView("redirect:/login/login.do");
 	            return mav;
 	        }else {
-	            mav=new ModelAndView("redirect:/member/register.do");
+	            mav=new ModelAndView("redirect:/fing/user_find_password.do");
 	            return mav;
 	        }
 	    }
@@ -173,5 +175,12 @@ public class EmailController {
 		   }
 		   
 		   return resultPage;
+	   }
+	   
+	   @RequestMapping(value="/user_find_id.do", method=RequestMethod.GET)
+	   public String memberIdFind(){
+		   logger.info("아이디 찾기 화면입니다.");
+		   
+		   return "fing/user_find_id";
 	   }
 }

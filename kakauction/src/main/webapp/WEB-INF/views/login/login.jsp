@@ -67,11 +67,13 @@
 				</div>
 				<div id="searchid">
 					<label for="searchid" class="label">※ 아이디를 잊으셨나요?</label>
-					<button type="submit">아이디</button>
+					<button type="submit"
+						onclick="location.href='${pageContext.request.contextPath }/fing/user_find_id.do'">아이디</button>
 				</div>
 				<div id="searchpwd">
 					<label for="searchpwd" class="label">※ 비밀번호를 잊으셨나요?</label>
-					<button type="submit">비밀번호</button>
+					<button type="submit"
+						onclick="location.href='${pageContext.request.contextPath }/fing/user_find_password.do'">비밀번호</button>
 				</div>
 			</article>
 		</div>
