@@ -6,7 +6,7 @@ public interface DeliveryDAO {
 	public Map<String, Object> selectARCView(Map<String, Object> myMap);
 	
 	//구매 확정 후
-	public int updateLastBuyerYn(Map<String, Object> map);
-	public int insertTrade(Map<String, Object> map);
-	public int insertDelivery(Map<String, Object> data);
+	public int updateLastBuyerYn(Map<Object, Object> map);
+	public int insertTrade(Map<Object, Object> map);
+	public int insertDelivery(Map<Object, Object> data);
 }

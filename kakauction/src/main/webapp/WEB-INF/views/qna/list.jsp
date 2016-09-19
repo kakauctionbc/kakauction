@@ -147,6 +147,7 @@
 	</tbody>
 </table>	   
 </div>
+<div style="margin-left: 1410px;"><a href="<c:url value='/qna/write.do'/>">글쓰기</a></div>
 <div class="divPage">
 	<!-- 이전 블럭으로 이동 -->
 	<c:if test="${pagingInfo.firstPage>1 }">	
@@ -155,7 +156,6 @@
 					alt="이전블럭으로">
 		</a>	
 	</c:if>
-	
 	<!-- 페이지 번호 추가 -->						
 	<!-- [1][2][3][4][5][6][7][8][9][10] -->
 	<c:forEach var="i" begin="${pagingInfo.firstPage }" 

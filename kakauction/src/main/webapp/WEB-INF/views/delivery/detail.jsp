@@ -18,12 +18,16 @@
 		var memAddr = $("#memAddr").val();
 		var zipcode = $("#zipcode").val();
 		var carNum = $("#carNum").val();
+		var title = "";
+		var tradeType = "";
+		alert(lbNo+"~"+recordNo+"~"+buyerMemberId+"!"+title);
 		
 		$("#map").click(function(){ 
 			var message = $("#buyerLocation").val();
 		    
 		    var resultDiv = document.getElementById('buyerLoc1'); 
 		    resultDiv.innerHTML = message;
+		    title=$("#title").val();
 		    $("#buyerLoc").val(message);
 		}); //click
 		
@@ -52,6 +56,7 @@
 			    app_scheme : 'iamporttest' //in app browser결제에서만 사용 
 			}, function(rsp) {
 			    if ( rsp.success ) {
+			    	tradeType ="정상결제";
 			        var msg = '결제가 완료되었습니다.';
 			        msg += '고유ID : ' + rsp.imp_uid;
 			        msg += '상점 거래ID : ' + rsp.merchant_uid;
@@ -66,6 +71,20 @@
 			    }
 			});
 			
+		});
+		
+		$("#timbt").click(function(){
+			var map = new Object();
+			map["lbNo"]=lbNo;
+			map["recordNo"]=recordNo;
+			map["auctionNo"]=auctionNo;
+			map["buyerMemberId"]=buyerMemberId;
+			map["recordPrice"]=recordPrice;
+			map["carNum"]=carNum;
+			map["title"]=title;
+			map["tradeType"]=tradeType;
+			
+	        location.replace("<c:url value='/delivery/insertTrade.do?data="+{"lbNo":lbNo,"recordNo":recordNo,"auctionNo":auctionNo,"buyerMemberId":buyerMemberId,"recordPrice":recordPrice,"carNum":carNum,"title":title,"tradeType":tradeType}+"'/>");
 		});
 		
 		$("#dontPay").click(function(){
@@ -94,13 +113,14 @@
 				    app_scheme : 'iamporttest' //in app browser결제에서만 사용 
 				}, function(rsp) {
 				    if ( rsp.success ) {
+				    	tradeType ="거래취소";
 				        var msg = '결제가 완료되었습니다.';
 				        msg += '고유ID : ' + rsp.imp_uid;
 				        msg += '상점 거래ID : ' + rsp.merchant_uid;
 				        msg += '결제 금액 : ' + rsp.paid_amount;
 				        msg += '카드 승인번호 : ' + rsp.apply_num;
 				        console.log(msg);
-				        var data={"lbNo":lbNo,"recordNo":recordNo,"auctionNo":auctionNo,"buyerMemberId":buyerMemberId,"recordPrice":dontPay,"carNum":carNum,"tradeType":"거래취소"};
+				        var data={"lbNo":lbNo,"recordNo":recordNo,"auctionNo":auctionNo,"buyerMemberId":buyerMemberId,"recordPrice":dontPay,"carNum":carNum,"tradeType":tradeType};
 				        location.replace("<c:url value='/delivery/insertTrade.do?data="+data+"'/>");
 				    } else {
 				        var msg = '결제에 실패하였습니다.';
@@ -145,6 +165,7 @@
 <body>
 	<br>
 	<h4>경매 결과</h4>
+	<input type="button" id="timbt" value="팀버튼헤헤">
 	<table class="box2" summary="경매 결과에 관한 표로써, 경매번호, 차량번호, 구매자아이디, 판매자아이디, 최종입찰시간, 경매 시작가, 경매 최종가격, 차량 종류, 연식, 수령지 등의 정보를 제공합니다." style="text-align: center; border: 1px solid silver">
 		<caption>경매 결과</caption>
 		<colgroup>

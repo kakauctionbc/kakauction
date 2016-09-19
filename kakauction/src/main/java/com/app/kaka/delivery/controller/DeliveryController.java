@@ -1,7 +1,9 @@
 package com.app.kaka.delivery.controller;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -112,13 +114,16 @@ public class DeliveryController {
 		return "delivery/detail";
 	}
 	@RequestMapping("/insertTrade.do")
-	public String insertTrade(@RequestParam Map<String, Object> data, Model model){
+	public String insertTrade(@RequestParam Map<Object, Object> data, Model model){
 		if(data==null || data.isEmpty()){
 			model.addAttribute("msg", "잘못된 url입니다");
 			model.addAttribute("url", "/index.do");
 			return "common/message";
 		}
-		model.addAttribute("requestParam 으로 받은 map", data);
+
+		String tradeType=(String)data.get("tradeType");
+		logger.info("requestParam 으로 받은 map={}", data.isEmpty());
+		logger.info("캭={}, 퉤={}", (String)data.get("title"), tradeType);
 		int cnt = deliveryService.updateLastBuyerYn(data);
 		int cnt1 = deliveryService.insertDelivery(data);
 		logger.info("거래 성공 최종구매자 상태 업데이트 cnt={}",cnt);

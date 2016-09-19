@@ -1,7 +1,6 @@
 package com.app.kaka.admin.qna.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,7 +19,7 @@ import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
 import com.app.kaka.qna.model.QnaService;
 import com.app.kaka.qna.model.QnaVO;
-import com.app.kaka.qnareply.model.QnareplyVO;
+import com.app.kaka.qna.model.QnareplyVO;
 
 @Controller
 @RequestMapping("/admin/qnareply")
@@ -44,7 +43,7 @@ public class AdminQnaController {
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 				
 		//2. db작업 - select
-		List<Map<String, Object>> alist = qnaService.selectAll(searchVo);
+		List<QnareplyVO> alist = qnaService.selectAll(searchVo);
 		logger.info("글목록 조회 결과 alist.size()={}", 
 				alist.size());
 		

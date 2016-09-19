@@ -17,17 +17,17 @@ public class DeliveryDAOMybatis extends SqlSessionDaoSupport implements Delivery
 	
 	//구매 확정 후
 	@Override
-	public int updateLastBuyerYn(Map<String, Object> map) {
+	public int updateLastBuyerYn(Map<Object, Object> map) {
 		return getSqlSession().update(namespace+".updateLastBuyerYn", map);
 	}
 
 	@Override
-	public int insertTrade(Map<String, Object> map) {
+	public int insertTrade(Map<Object, Object> map) {
 		return getSqlSession().insert(namespace+".insertTrade", map);
 	}
 
 	@Override
-	public int insertDelivery(Map<String, Object> data) {
+	public int insertDelivery(Map<Object, Object> data) {
 		return getSqlSession().insert(namespace+".insertDelivery", data);
 	}
 
