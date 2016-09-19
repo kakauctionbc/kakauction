@@ -99,7 +99,7 @@
 
 <div id="wrap">
 	<form name="frm1" method="post"
-		action="<c:url value="/admin/member/memberAdd.do"/>">
+		action="<c:url value="/admin/member/register.do"/>">
 		<div id="registerwrap">
 			<div id="registertop">
 				<p>

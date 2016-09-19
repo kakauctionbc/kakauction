@@ -119,15 +119,42 @@ public class AdminController {
 		return "common/message";
 	}
 	
-	@RequestMapping(value="/member/memberAdd.do", method=RequestMethod.GET)
+	@RequestMapping(value="/member/register.do", method=RequestMethod.GET)
 	public String memberWrite_get(){
 		logger.info("관리자 등록 화면 보여주기");
 		return "admin/member/register";
 	}
 	
-	@RequestMapping(value="/member/memberAdd.do", method=RequestMethod.POST)
-	public String memberWrite_post(@ModelAttribute MemberVO memberVo, Model model){
+	@RequestMapping(value="/member/register.do", method=RequestMethod.POST)
+	public String memberWrite_post(@ModelAttribute MemberVO memberVo,@RequestParam String hp1, @RequestParam String hp2,
+			@RequestParam String hp3, @RequestParam String jumin1, @RequestParam String jumin2,
+			@RequestParam String email1, @RequestParam String email2, @RequestParam String email3,
+			Model model){
 		//1.
+		String memberHp = memberVo.getMemberHp();
+		if (memberHp==null || memberHp.isEmpty()) {
+			memberVo.setMemberHp(hp1+"-"+hp2+"-"+hp3);
+		}
+		
+		String memberJumin = memberVo.getMemberJumin();
+		
+		if (memberJumin==null || memberJumin.isEmpty()) {
+			memberVo.setMemberJumin(jumin1+"-"+jumin2);
+		}
+		
+		if (email2.equals("etc")){
+			memberVo.setMemberEmail(email1+"@"+email3);
+		}else{
+			memberVo.setMemberEmail(email1+"@"+email2);
+		}
+		
+		
+		String jumin = memberVo.getMemberJumin();
+		logger.info("주민번호 중복 확인, 파라미터 jumin={}",jumin);
+
+		int result = memberService.checkMemberJumin(jumin);
+		logger.info("주민번호 중복확인 결과, result={}",result);
+		
 		//권한 코드 셋팅
 		memberVo.setMemberGrade(MemberService.MEMBER_GRADE_ADMIN);
 		logger.info("관리자 등록 처리, 파라미터 memberVo={}", memberVo);

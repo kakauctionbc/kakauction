@@ -5,9 +5,9 @@
 	<insert id="insertMember" parameterType="MemberVO">
 		<if test="memberGrade=='ADMIN'">
 			insert into member(MEMBER_ID, MEMBER_NAME, MEMBER_PWD, MEMBER_JUMIN, MEMBER_EMAIL, MEMBER_HP, 
-			MEMBER_GENDER, MEMBER_ZIPCODE, MEMBER_ADDR, MEMBER_ADDR2)
+			MEMBER_GENDER, MEMBER_ZIPCODE, MEMBER_ADDR, MEMBER_ADDR2, MEMBER_GRADE)
 			values(#{memberId},#{memberName},#{memberPwd},#{memberJumin},#{memberEmail},
-			#{memberHp},#{memberGender},#{memberZipcode},#{memberAddr},#{memberAddr2})
+			#{memberHp},#{memberGender},#{memberZipcode},#{memberAddr},#{memberAddr2},#{memberGrade})
 		</if>
 		<if test="memberGrade!='ADMIN'">
 			insert into member(MEMBER_ID, MEMBER_NAME, MEMBER_PWD, MEMBER_JUMIN, MEMBER_EMAIL, MEMBER_HP, 
