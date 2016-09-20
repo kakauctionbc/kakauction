@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="../design/inc/top.jsp" %>
+<script type="text/javascript" src="<c:url value='/jquery/jquery.countdown.min.js'/>"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		var highMember = "";
@@ -12,6 +13,16 @@
 		var buyerMemberId=$("#byuerMemberId").val();
 		var memberId = $("#nowMemberId").val();
 		setInterval(newrefresh,0);
+		
+		$().ready(function(){
+			var d = $("#auctionFinish").val();
+			$('#countdown').countdown(d, function(event) {
+				  if($(this).html()=="00 일 00:00:00"){
+					  alert("경매가 마감 되었습니다");
+				  }
+				  $(this).html(event.strftime('%D 일 %H:%M:%S'));
+			});
+		});
 		
 		function newrefresh(){
 			$.ajax({
@@ -87,6 +98,18 @@
 		});
 	});
 </script>
+<style type="text/css">
+	#countdown {
+		color: #1B232F;
+		font-family: Verdana, Arial, sans-serif;
+		font-size: 18px;
+		font-weight: bold;
+		text-decoration: none;
+	}
+	td{
+		border: 1px solid silver;
+	}
+</style>
 <div id="wrap">
 	<div id="wrapdiv">
 		<div id="wraptop">
@@ -104,8 +127,11 @@
 			<table class="auctiongotable">
 				<thead>
 					<tr>
-						<td style="width: 600px;"><a href="#"><img alt="관심경매" src="<c:url value='/img/auctionChoice.png'/>"></a></td>
-						<td style="width: 200px;"><img alt="관심경매" src="<c:url value='/img/blank.png'/>"></td>
+						<td style="width: 600px;" colspan="2">
+							<div id="countdown">
+							<input type="hidden" id="auctionFinish" value="${auctionGo['AUCTION_FINISH']}">
+							</div>
+						</td>
 						<td style="width: 70px; color: blue;">${memberId }<span>님</span></td>
 						<td style="width: 120px; text-align: right;"><a href="<c:url value='/auction/list.do'/>">
 								<img alt="경매나가기" src="<c:url value='/img/auctionOut_icon.png'/>">	
