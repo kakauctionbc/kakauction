@@ -11,10 +11,10 @@
 				$(this).css("background","");
 			});
 		
-		$(".accordion").click(function() {
+/* 		$(".accordion").click(function() {
 			$( this ).toggleClass( "active" );
 			$( this ).next().toggleClass( "show" );
-		});
+		}); */
 		
 		$(".fixedOpen").click(function() {
 			$(this).css("display", "none");
@@ -81,13 +81,34 @@
 	color: blue;
 }
 </style>
-<!-- 상세 검색 -->
-	<div id="mySidenav" class="sidenav">
-		<%@ include file="../detailSearch/detailSearch.jsp" %>
-	</div>
-	<span onclick="openNav()" class="fixedOpen"><img src="<c:url value='/img/sangsae.png'/>"></span>
-	<div id="slideWrap">
-<!-- 상세 검색 -->
+<%-- 		<!--상세검색 -->
+
+		<div id="mySidenav" class="sidenav">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<p style="color: white; font-size: 2.0em; padding-left: 20px;">상세검색</p>
+				<button class="accordion">Section 1</button>
+					<div class="panel">
+						<p>Lorem ipsum...</p>
+				</div>
+			
+				<button class="accordion">Section 2</button>
+					<div class="panel">
+						<p>Lorem ipsum...</p>
+				</div>
+			
+				<button class="accordion">Section 3</button>
+					<div class="panel">
+						<p>Lorem ipsum...</p>
+				</div>
+		</div>
+		<span onclick="openNav()" class="fixedOpen"><img src="<c:url value='/img/sangsae.png'/>"></span>
+
+		<!--상세검색 --> --%>
+		<div id="mySidenav" class="sidenav">
+			<%@ include file="../detailSearch/detailSearch.jsp" %>
+		</div>
+		<span onclick="openNav()" class="fixedOpen"><img src="<c:url value='/img/sangsae.png'/>"></span>
+		<div id="slideWrap">
 <div id="wrap">
 	<div id="wrapdiv">
 		<div id="wraptop">
@@ -148,7 +169,6 @@
 				type="hidden" name="searchKeyword"
 				value="${searchVO.searchKeyword }">
 		</form>
-
 		<div class="carListDiv">
 			<ul>
 				<li><a style="cursor: pointer;" class="on" onclick=""><span>전체</a></li>
@@ -166,9 +186,8 @@
 				<li><a style="cursor: pointer;" class="" onclick="">버스</a></li>
 				<li class="more_btn"><button class="more_btn"></button></li>
 			</ul>
-			
-			
-			<div class="divForm">
+		</div>
+		<div class="divList">
 			<c:if test="${!empty param.searchKeyword }">
 				<p>검색어 : ${param.searchKeyword }, ${pagingInfo.totalRecord }건
 					검색되었습니다.</p>
@@ -176,7 +195,8 @@
 			<c:if test="${empty searchVO.searchKeyword }">
 				<p>전체 조회 결과 - ${pagingInfo.totalRecord }건 조회되었습니다</p>
 			</c:if>
-			<table class="carListTable" summary="자료실에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
+			<table class="box2"
+				summary="자료실에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
 				<caption>자료실</caption>
 				<colgroup>
 					<col style="width: 10%;" />
@@ -262,7 +282,7 @@
 				</tbody>
 			</table>
 		</div>
-		</div>
+		
 		<div class="pagediv">
 			<ul class="page">
 				<!-- 이전 블럭으로 이동 -->
