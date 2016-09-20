@@ -27,4 +27,18 @@ public class FreeReplyDAOMybatis extends SqlSessionDaoSupport implements FreeRep
 		return getSqlSession().selectOne(namespace+".selectTotalCount", searchVo);
 	}
 
+	@Override
+	public int updateSortNo(FreeReplyVO freeReplyVo) {
+		return getSqlSession().update(namespace+".updateSortNo", freeReplyVo);
+	}
+
+	@Override
+	public int insertReply(FreeReplyVO freeReplyVo) {
+		//groupNo는 그대로, sortNo, step는 1증가시킨다
+		freeReplyVo.setFreereplySortno(freeReplyVo.getFreereplySortno()+1);
+		freeReplyVo.setFreereplyStep(freeReplyVo.getFreereplyStep()+1);
+		
+		return getSqlSession().insert(namespace+".insertReply", freeReplyVo);
+	}
+
 }

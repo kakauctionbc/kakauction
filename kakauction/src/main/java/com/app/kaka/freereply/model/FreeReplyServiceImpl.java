@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.app.kaka.common.SearchVO;
 
@@ -26,6 +27,16 @@ public class FreeReplyServiceImpl implements FreeReplyService{
 	@Override
 	public int selectTotalCount(SearchVO searchVo) {
 		return freereplyDao.selectTotalCount(searchVo);
+	}
+
+	@Override
+	@Transactional
+	public int insertReply(FreeReplyVO freeReplyVo) {
+		int cnt = freereplyDao.updateSortNo(freeReplyVo);
+		
+		cnt = freereplyDao.insertReply(freeReplyVo);
+		
+		return cnt;
 	}
 	
 }

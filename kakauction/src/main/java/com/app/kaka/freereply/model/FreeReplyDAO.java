@@ -8,4 +8,8 @@ public interface FreeReplyDAO {
 	public int insertComment(FreeReplyVO vo);
 	public List<FreeReplyVO> selectComment(SearchVO searchVo);
 	public int selectTotalCount(SearchVO searchVo);
+	
+	//대댓글
+	public int updateSortNo(FreeReplyVO freeReplyVo);
+	public int insertReply(FreeReplyVO freeReplyVo);
 }

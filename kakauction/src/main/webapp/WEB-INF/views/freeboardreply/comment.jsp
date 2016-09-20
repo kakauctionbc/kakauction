@@ -33,11 +33,10 @@
 			$("#frmRere").submit();
 		});
 		
-		for(var i=0;i<${alist.size()};i++){
-			$("#rereply"+i).click(function(){
-				$("#hidden0").toggle();
-			});
-		}
+		 $(".flip").click(function(){
+		    	var index = $(this).children().val();
+		    	$("#panel_"+index).slideToggle();
+		});
 	});
 </script>
 </head>
@@ -69,29 +68,30 @@
 				</tr>
 			</c:if>
 			<c:if test="${!empty alist }">
-				<c:set var="replyCount" value="0"/>
-				<c:forEach var="freereplyVo" items="${alist }">
+				<c:forEach var="freereplyVo" items="${alist }" varStatus="vs">
 					<tr>
 						<td style="text-align: center">${freereplyVo.memberId }</td>
 						<td>${freereplyVo.freereplyContent }</td>
 						<td style="text-align: center"><fmt:formatDate value="${freereplyVo.freereplyRegdate }" pattern="yyyy-MM-dd"/></td>
 						<td style="text-align: center">
 							<c:if test="${freereplyVo.memberId==sessionScope.memberId }">
-								<a href="#" id="delete${replyCount }">삭제</a>
+								<a href="#" id="delete">삭제</a>
 							</c:if>
 							<c:if test="${freereplyVo.memberId!=sessionScope.memberId }">
-								<a href="#" id="rereply${replyCount }">답글</a>
+								<div class="flip">
+									<input type="hidden" class="flip" value="${vs.index}" >
+									<a href="#">답글</a>
+								</div>
 							</c:if>
 						</td>
 					</tr>
-					<form action="<c:url value='/freeboardreply/rere.do'/>" method="post" id="frmRere${replyCount }" name="frmRere${replyCount }">
-						<tr style="display: none;" id="hidden${replyCount }">
+					<form action="<c:url value='/freeboardreply/rere.do'/>" method="post" id="frmRere">
+						<tr style="display: none;" id="panel_${vs.index}" >
 								<td colspan="3"><textarea rows="5" cols="165" name="freereplyContent" id="rereplyContent"></textarea></td>
 								<input type="hidden" name="freeboardNo" value="${freereplyVo.freeboardNo }">
 								<td><input type="button" id="btrere" value="등록"></td>
 						</tr>
 					</form>
-					<c:set var="replyCount" value="${replyCount+1 }"/>
 				</c:forEach>
 			  </c:if>
 	 	</table>

@@ -72,4 +72,25 @@ public class FreeReplyController {
 		
 		return "freeboardreply/comment";
 	}
+	
+	@RequestMapping("/rere.do")
+	public String rereply(@ModelAttribute FreeReplyVO freeReplyVo, Model model){
+		logger.info("답변달기 처리 파라미터 freeReplyVo={}", freeReplyVo);
+		
+		int cnt = freereplyService.insertReply(freeReplyVo);
+		logger.info("답변달기 처리 결과, cnt={}", cnt);
+		
+		//3. 결과저장, 뷰 페이지 리턴
+		String msg = "", url = "/freeboard/detail.do?freeboardNo="+freeReplyVo.getFreeboardNo();
+		if(cnt>0){
+			msg = "답변을 달았습니다";
+		}else{
+			msg = "답변달기 실패";
+		}//if
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
 }

@@ -37,4 +37,20 @@
 		select count(*) from freereply
 		where freeboard_no = #{freeboardNo }
 	</select>
+	
+	<update id="updateSortNo" parameterType="freereplyVo">
+		update freereply
+		set sortNo=sortno+1
+		where groupNo=#{freereplyGroupno} and sortNo > #{freereplySortno}
+	</update>
+	
+	<insert id="insertReply" parameterType="freereplyVo">
+		<selectKey keyProperty="freereplyNo" order="BEFORE" resultType="int">
+			select freereply_seq.nextval from dual
+		</selectKey>
+		insert into freereply(freereply_no, freeboard_no, member_id, freereply_content,
+		freereply_groupno, freereply_step, freereply_sortno, freereply_regdate)
+		values(#{freereplyNo}, #{freeboardNo}, #{memberId}, #{freereplyContent},
+			#{freereplyGroupno}, #{freereplyStep}, #{freereplySortno}, #{freereplyRegdate})
+	</insert> 
 </mapper>
