@@ -34,8 +34,7 @@ $(function(){
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/auctiongo.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/board.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/searchSlide.css" />
-
-<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/carList.css" /> --%>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/carList.css" />
 
 <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>      
