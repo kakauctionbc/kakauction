@@ -102,7 +102,8 @@ public class FreeboardController {
 	}
 	
 	@RequestMapping("/detail.do")
-	public String detailFreeboard(@RequestParam(defaultValue="0") int freeboardNo,HttpSession session,
+	public String detailFreeboard(@ModelAttribute SearchVO searchVo, @RequestParam(defaultValue="20") int selectedCountPerPage,
+			@RequestParam(defaultValue="0") int freeboardNo, HttpSession session,
 			HttpServletRequest request, Model model){
 		logger.info("글 상세목록 파라미터 freeboardNo={}",freeboardNo);
 		
@@ -130,10 +131,34 @@ public class FreeboardController {
 			
 			downInfo="다운:"+freeVo.getFreeboardDowncount();
 		}
-		
+		//디테일에 사용된것
 		model.addAttribute("freeVo", freeVo);
 		model.addAttribute("fileInfo", fileInfo);
 		model.addAttribute("downInfo", downInfo);
+		
+		//디테일에 리스트 뽑기
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(selectedCountPerPage);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		searchVo.setBlockSize(Utility.BLOCK_SIZE);
+		searchVo.setRecordCountPerPage(selectedCountPerPage);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		
+		//2. db작업 - select
+		List<FreeboardVO> alist = freeboardService.selectAll(searchVo);
+		//logger.info("글목록 조회 결과 alist.size()={}", alist.size());
+		
+		//전체 레코드 개수 조회하기
+		int totalRecord 
+			= freeboardService.selectTotalCount(searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+		
+		//3. 결과 저장, 뷰페이지 리턴
+		model.addAttribute("alist", alist);
+		model.addAttribute("pagingInfo", pagingInfo);
+		model.addAttribute("selectedCountPerPage", selectedCountPerPage);
 		
 		return "/freeboard/detail";
 	}

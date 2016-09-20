@@ -71,8 +71,8 @@ public class FreeReplyController {
 		pagingInfo.setTotalRecord(totalRecord);
 				
 		//3. 결과 저장, 뷰페이지 리턴
-		model.addAttribute("alist", alist);
-		model.addAttribute("pagingInfo", pagingInfo);
+		model.addAttribute("alist1", alist);
+		model.addAttribute("pagingInfo1", pagingInfo);
 		
 		return "freeboardreply/comment";
 	}
@@ -105,10 +105,10 @@ public class FreeReplyController {
 	public String deleteReply(@ModelAttribute FreeReplyVO freereplyVo, Model model){
 		//저장 프로시저에서 사용할 map 만들기
 		Map<String, String> map  = new HashMap<String, String>();
-		map.put("freereplygroupNo", freereplyVo.getFreereplyGroupno()+"");
-		map.put("freereplyno", freereplyVo.getFreereplyNo()+"");
-		map.put("freereplystep", freereplyVo.getFreereplyStep()+"");
-		logger.info("글삭제시 파라미터 map={}", map);
+		map.put("freereplyGroupno", freereplyVo.getFreereplyGroupno()+"");
+		map.put("freereplyNo", freereplyVo.getFreereplyNo()+"");
+		map.put("freereplyStep", freereplyVo.getFreereplyStep()+"");
+		logger.info("댓글 삭제시 파라미터 map={}", map);
 		
 		int cnt = freereplyService.deleteReply(map);
 		

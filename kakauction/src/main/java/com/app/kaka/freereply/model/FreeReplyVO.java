@@ -11,7 +11,7 @@ public class FreeReplyVO {
 	private int freereplyGroupno;
 	private int freereplyStep;
 	private int freereplySortno;
-	private String freereplyDelfalg;
+	private String freereplyDelflag;
 	
 	public int getFreereplyNo() {
 		return freereplyNo;
@@ -61,18 +61,19 @@ public class FreeReplyVO {
 	public void setFreereplySortno(int freereplySortno) {
 		this.freereplySortno = freereplySortno;
 	}
-	public String getFreereplyDelfalg() {
-		return freereplyDelfalg;
+	
+	public String getFreereplyDelflag() {
+		return freereplyDelflag;
 	}
-	public void setFreereplyDelfalg(String freereplyDelfalg) {
-		this.freereplyDelfalg = freereplyDelfalg;
+	public void setFreereplyDelflag(String freereplyDelflag) {
+		this.freereplyDelflag = freereplyDelflag;
 	}
 	@Override
 	public String toString() {
 		return "FreeReplyVO [freereplyNo=" + freereplyNo + ", freeboardNo=" + freeboardNo + ", memberId=" + memberId
 				+ ", freereplyContent=" + freereplyContent + ", freereplyRegdate=" + freereplyRegdate
 				+ ", freereplyGroupno=" + freereplyGroupno + ", freereplyStep=" + freereplyStep + ", freereplySortno="
-				+ freereplySortno + ", freereplyDelfalg=" + freereplyDelfalg + "]";
+				+ freereplySortno + ", freereplyDelflag=" + freereplyDelflag + "]";
 	}
 	
 	

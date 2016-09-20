@@ -60,7 +60,7 @@
 			#{freereplyGroupno}, #{freereplyStep}, #{freereplySortno}, sysdate)
 	</insert> 
 	
-	<delete id="deleteReBoard" parameterMap="delParamMap" >
+	<delete id="deleteReply" parameterMap="delParamMap" >
 		{call FREEREPLY_DELETE(?, ?, ?)}
-	</delete>	
+	</delete>
 </mapper>

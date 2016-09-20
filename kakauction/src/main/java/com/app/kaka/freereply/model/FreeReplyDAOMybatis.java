@@ -44,7 +44,6 @@ public class FreeReplyDAOMybatis extends SqlSessionDaoSupport implements FreeRep
 
 	@Override
 	public int deleteReply(Map<String, String> map) {
-		System.out.println(map);
 		return getSqlSession().delete(namespace+".deleteReply", map);
 	}
 
