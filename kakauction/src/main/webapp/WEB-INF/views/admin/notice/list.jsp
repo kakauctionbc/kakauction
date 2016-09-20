@@ -25,23 +25,28 @@
 		document.frmPage.submit();
 	}
 </script>
+</style>
 <div id="wrap">
 	<div id="wrapdiv">
 		<div id="wraptop">
 			<p>
 				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>공지사항
 			</p>
-		</div>	
+		</div>
+		<div id="pagelogo">
+			<img
+				src="${pageContext.request.contextPath }/img/notice_logo.png"
+				alt="공지사항로고">
+		</div>
 		<!-- http://localhost:9090/mymvc/reBoard
 		/list.do?currentPage=5&searchCondition=content&searchKeyword=%ED%95%98 -->
-		<form name="frmPage" id="frmPage" method="post" action="<c:url value='/admin/notice/list.do'/>">
+		<form name="frmPage" id="frmPage" method="post" action="<c:url value='/notice/list.do'/>">
 			<input type="hidden" id="currentPage" name="currentPage">
 			<input type="hidden" name="searchCondition" value="${param.searchCondition }">
 			<input type="hidden" name="searchKeyword" value="${searchVO.searchKeyword }">
 			<input type="hidden" id="selectedCountPerPage" name="selectedCountPerPage">
 		</form>
 		
-		<h2>공지사항</h2>
 		<div class="divList">
 		<c:if test="${!empty param.searchKeyword }">
 			<!-- 검색의 경우 -->
@@ -53,7 +58,7 @@
 			<p>전체 조회 결과 
 				- ${pagingInfo.totalRecord }건 조회되었습니다</p>
 		</c:if>
-		<select name="countPerPage" id="countPerPage" style="width:100px; font-size: 1.1em;" title="페이지당 갯수">
+		<select name="countPerPage" id="countPerPage" style="width:100px; font-size: 1.1em; margin-top: 10px;" title="페이지당 갯수">
 			<option value="20"
 				<c:if test="${selectedCountPerPage=='20' }">
 					selected
@@ -120,7 +125,7 @@
 								<c:if test="${!empty vo.noticeFilename }">
 									<img src='<c:url value="/image/file.gif"/>'>
 								</c:if>
-								<a href="<c:url value='/admin/notice/updateCount.do?noticeNo=${vo.noticeNo}'/>">
+								<a href="<c:url value='/notice/updateCount.do?noticeNo=${vo.noticeNo}'/>" style="font-weight: bold; font-size: 1.3em;">
 									<!-- 제목이 긴 경우 일부만 보여주기 -->
 									<c:if test="${fn:length(vo.noticeTitle)>30}">
 										${fn:substring(vo.noticeTitle, 0,30)}...
@@ -147,42 +152,34 @@
 			</tbody>
 		</table>	   
 		</div>
-		<div class="divPage">
-			<!-- 이전 블럭으로 이동 -->
-			<c:if test="${pagingInfo.firstPage>1 }">	
-				<a href="#" onclick="pageProc(${pagingInfo.firstPage-1})">
-					<img src="<c:url value='/image/first.JPG'/>" 
-							alt="이전블럭으로">
-				</a>	
-			</c:if>
-			
-			<!-- 페이지 번호 추가 -->						
-			<!-- [1][2][3][4][5][6][7][8][9][10] -->
-			<c:forEach var="i" begin="${pagingInfo.firstPage }" 
-				end="${pagingInfo.lastPage }">	 
-				<c:if test="${i==pagingInfo.currentPage }">
-					<span style="color:blue;font-weight: bold">
-						${i }</span>
-				</c:if>		
-				<c:if test="${i!=pagingInfo.currentPage }">
-						<a href="#" onclick="pageProc(${i})">
-						[${i}]</a>
-				</c:if>
-			</c:forEach>	
-			<!--  페이지 번호 끝 -->
-			
-			<!-- 다음 블럭으로 이동 -->
-			<c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">	
-				<a href="#" 
-				onclick="pageProc(${pagingInfo.lastPage+1})">
-					<img src="<c:url value='/image/last.JPG'/>" 
-							alt="다음블럭으로">
-				</a>
-			</c:if>
+		
+		<div class="pagediv">
+			<ul class="page">
+				<!-- 이전 블럭으로 이동 -->
+				<li class="firstPage"><c:if test="${pagingInfo.firstPage>1 }">
+					<a href="#" onclick="pageProc(${pagingInfo.firstPage-1})">&laquo;</a>
+				</c:if></li>
+				<!-- 페이지 번호 추가 -->
+				<!-- [1][2][3][4][5][6][7][8][9][10] -->
+				<li><c:forEach var="i" begin="${pagingInfo.firstPage }" end="${pagingInfo.lastPage }">
+					<c:if test="${i==pagingInfo.currentPage }">
+						<span> ${i }</span>
+					</c:if>
+					<c:if test="${i!=pagingInfo.currentPage }">
+						<a href="#" onclick="pageProc(${i})"> ${i}</a>
+					</c:if>
+				</c:forEach></li>
+				<!--  페이지 번호 끝 -->
+	
+				<!-- 다음 블럭으로 이동 -->
+				<li><c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
+					<a href="#" onclick="pageProc(${pagingInfo.lastPage+1})">&raquo;</a>
+				</c:if></li>
+			</ul>
 		</div>
 		<div class="divSearch">
 		   	<form name="frmSearch" method="post" 
-		   	action="<c:url value='/admin/notice/list.do' />" >
+		   	action="<c:url value='/notice/list.do' />" >
 		        <select name="searchCondition">
 		            <option value="notice_title"
 		           	   <c:if test="${param.searchCondition=='notice_title'}">
@@ -205,11 +202,12 @@
 				<input type="submit" value="검색">
 		    </form>
 		</div>
-		
-		<div class="divBtn">
-		    <a href="<c:url value='/admin/notice/write.do'/>" >
-			글쓰기</a>
-		</div>
+		<c:if test="${sessionScope.memberGrade=='ADMIN' }">
+			<div class="write_Btn">
+			    <a href="<c:url value='../admin/notice/write.do'/>" >
+				<img src='<c:url value="/img/write_icon.png"/>'></a>
+			</div>
+		</c:if>
 	</div>
 </div>
 <%@ include file="../../design/inc/adminBottom.jsp"%>
