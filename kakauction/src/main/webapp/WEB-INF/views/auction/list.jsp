@@ -4,13 +4,17 @@
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
 <script type="text/javascript">	
 	$(document).ready(function(){
-		$(".divList .box2 tbody tr")
-			.hover(function(){
+		$(".divList .box2 tbody tr").hover(function(){
 				$(this).css("background","skyblue")
 					.css("cursor","pointer");
 			}, function(){
 				$(this).css("background","");
 			});
+		
+		$(".accordion").click(function() {
+			$( this ).toggleClass( "active" );
+			$( this ).next().toggleClass( "show" );
+		});
 	});
 	function pageProc(curPage){
 		document.frmPage.currentPage.value=curPage;
@@ -19,7 +23,7 @@
 	
 	function openNav() {
 		document.getElementById("mySidenav").style.width = "450px";
-		document.getElementById("slideWrap").style.marginLeft = "100px";
+		document.getElementById("slideWrap").style.marginLeft = "50px";
 	}
 
 	function closeNav() {
@@ -38,12 +42,6 @@
 		});
 	});
 
-	$(function() {
-		$(".accordion").click(function() {
-			$( this ).toggleClass( "active" );
-			$( this ).next().toggleClass( "show" );
-		});
-	});
 </script>
 
 <style type="text/css">
