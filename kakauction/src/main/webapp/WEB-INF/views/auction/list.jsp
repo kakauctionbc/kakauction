@@ -169,24 +169,7 @@
 				type="hidden" name="searchKeyword"
 				value="${searchVO.searchKeyword }">
 		</form>
-		<div class="carListDiv">
-			<ul>
-				<li><a style="cursor: pointer;" class="on" onclick=""><span>전체</a></li>
-				<li><a style="cursor: pointer;" class="" onclick="">경차</a></li>
-				<li><a style="cursor: pointer;" class="" onclick="">소형</a></li>
-				<li><a style="cursor: pointer;" class="" onclick="">준중형</a></li>
-				<li><a style="cursor: pointer;" class="" onclick="">중형</a></li>
-				<li><a style="cursor: pointer;" class="" onclick="">대형</a></li>
-				<li><a style="cursor: pointer;" class="" onclick="">스포츠카</a></li>
-				<li><a style="cursor: pointer;" class="" onclick="">SUV</a></li>
-				<li><a style="cursor: pointer;" class="" onclick="">RV</a></li>
-				<li><a style="cursor: pointer;" class="" onclick="">승합차</a></li>
-				<li><a style="cursor: pointer;" class="" onclick="">밴</a></li>
-				<li><a style="cursor: pointer;" class="" onclick="">화물차</a></li>
-				<li><a style="cursor: pointer;" class="" onclick="">버스</a></li>
-				<li class="more_btn"><button class="more_btn"></button></li>
-			</ul>
-		</div>
+
 		<div class="divList">
 			<c:if test="${!empty param.searchKeyword }">
 				<p>검색어 : ${param.searchKeyword }, ${pagingInfo.totalRecord }건
@@ -199,38 +182,39 @@
 				summary="자료실에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
 				<caption>자료실</caption>
 				<colgroup>
-					<col style="width: 10%;" />
-					<col style="width: 7%;" />
+					<col style="width: 4%;" />
+					<col style="width: 14%;" />
 					<col style="width: 20%;" />
-					<col style="width: 10%;" />
+					<col style="width: 8%;" />
 					<col style="width: 7%;" />
-					<col style="width: 10%;" />
 					<col style="width: 7%;" />
-					<col style="width: 12%;" />
-					<col style="width: 12%;" />
+					<col style="width: 6%;" />
+					<col style="width: 9%;" />
+					<col style="width: 9%;" />
 					<col style="width: 4%;" />
 				</colgroup>
 				<thead>
 					<tr class="listTitle">
-						<th rowspan="2" class="listImg">사진</th>
-						<th rowspan="2" class="listSize">차종</th>
-						<th>물건명</th>
-						<th>연식</th>
-						<th>변속기</th>
-						<th>감정평가액</th>
-						<th>물건상태</th>
-						<th>입찰번호</th>
-						<th>입찰시작</th>
-						<th rowspan="2" class="readCount">조회</th>
-					</tr>
-					<tr>
-						<th>소재지</th>
-						<th>주행거리</th>
-						<th>연료</th>
-						<th>입찰시작가</th>
-						<th>유찰횟수</th>
-						<th>물건번호</th>
-						<th>입찰마감</th>
+						<th colspan="10">
+							<div class="carListDiv">
+								<ul>
+									<li><a style="cursor: pointer;" class="on" onclick=""><span>전체</a></li>
+									<li><a style="cursor: pointer;" class="" onclick="">경차</a></li>
+									<li><a style="cursor: pointer;" class="" onclick="">소형</a></li>
+									<li><a style="cursor: pointer;" class="" onclick="">준중형</a></li>
+									<li><a style="cursor: pointer;" class="" onclick="">중형</a></li>
+									<li><a style="cursor: pointer;" class="" onclick="">대형</a></li>
+									<li><a style="cursor: pointer;" class="" onclick="">스포츠카</a></li>
+									<li><a style="cursor: pointer;" class="" onclick="">SUV</a></li>
+									<li><a style="cursor: pointer;" class="" onclick="">RV</a></li>
+									<li><a style="cursor: pointer;" class="" onclick="">승합차</a></li>
+									<li><a style="cursor: pointer;" class="" onclick="">밴</a></li>
+									<li><a style="cursor: pointer;" class="" onclick="">화물차</a></li>
+									<li><a style="cursor: pointer;" class="" onclick="">버스</a></li>
+									<li class="more_btn"><button class="more_btn"></button></li>
+								</ul>
+							</div>
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -247,40 +231,30 @@
 									<td colspan="9"><a href="#" style="color: gray;">이미 종료된 경매 입니다</a></td>
 								</c:if>
 								<c:if test="${vo.auctionState!='END'}">
-								<td class="listImg"><img alt="사진" height="56px;" width="90px;" src="<c:url value='/picture_upload/${vo.picture1}'/>"></td>
-								<td class="listSize">${vo.carSize}</td>
+								<td class="listCheckbox"><input type="checkbox" id="checklist_1497871" value="1497871" /></td>
+								<td class="listImg"><img alt="사진" height="100px;" width="150px;" src="<c:url value='/picture_upload/${vo.picture1}'/>"></td>
 								<td class="listName" style="text-align: left;">
 									<a class="auctionTitle${countTd }" href="<c:url value='/auction/updateCount.do?auctionNo=${vo.auctionNo}'/>">
 											${vo.carModel}<br>
-										<c:if test="${fn:length(vo.carLoc)>30}">
-											${fn:substring(vo.carLoc, 0,30)}...
-										</c:if> 
-										<c:if test="${fn:length(vo.carLoc)<=30}">
-											${vo.carLoc}
-										</c:if>
 									</a>
 									</td>
-								<td>${vo.carBirth}<br> ${vo.carDist}km
-								</td>
-								<td>${vo.carAm}<br> ${vo.carGas}
-								</td>
-								<td>${vo.carPrice}<br> ${vo.auctionFirstprice}
-								</td>
-								<td>${vo.auctionState}<br> ${vo.carFailSell}
-								</td>
-								<td>${vo.auctionNoYear} - ${vo.auctionNoCar} -
-									${vo.auctionNo}</td>
-								<td>${vo.auctionRegdate}<br> ${vo.auctionFinish }
-								</td>
+								<td>${vo.carBirth}</td>
+								<td>${vo.carDist}km</td>
+								<td>${vo.carFailSell}</td>
+								<td>${vo.auctionState}</td>
+								<td>${vo.auctionRegdate}</td>
+								<td>${vo.auctionFinish }</td>
 								</c:if>
 								<td class="readCount">${vo.auctionReadCount }</td>
 							</tr>
 						</c:forEach>
 						<!--반복처리 끝  -->
 					</c:if>
-					
 				</tbody>
 			</table>
+		</div>
+		<div class="gototop">
+			<a href="#" onclick="">맨위로&#9652;</a>
 		</div>
 		
 		<div class="pagediv">

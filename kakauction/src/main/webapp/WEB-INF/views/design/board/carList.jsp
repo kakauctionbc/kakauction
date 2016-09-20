@@ -317,8 +317,9 @@ $(function(){
 				
 				<tbody>
 					<tr itemscope itemtype="http://schema.org/Article">
-						<td class="input"><input type="checkbox"
-							id="checklist_1497871" value="1497871" /></td>
+						<td class="input">
+							<input type="checkbox"
+								id="checklist_1497871" value="1497871" /></td>
 						<td class="thumb"><a
 							href="mycar_view.php?no=1497871&gubun=K"\> <img
 								src="http://file4.bobaedream.co.kr/direct/2016/01/21/Bg13471453371483_1_s1.jpg"><span
