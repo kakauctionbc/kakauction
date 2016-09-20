@@ -97,10 +97,6 @@
 							${vo.questionTitle}
 						</c:if>
 					</a>
-					<!-- 24시간 이내의 글인 경우 new 이미지 보여주기 -->
-					<c:if test="${vo.newImgTerm<24}">
-						<img src="<c:url value='/image/new.gif'/>" alt="new이미지">
-					</c:if>
 				</td>
 				<td>${vo.memberId}</td>
 				<td><fmt:formatDate value="${vo.questionRegdate}" pattern="yyyy-MM-dd"/>

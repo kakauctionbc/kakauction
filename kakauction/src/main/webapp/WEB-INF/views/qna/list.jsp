@@ -108,7 +108,7 @@
 	<c:if test="${!empty alist}">
 		<!--게시판 내용 반복문 시작  -->
 		<input type="hidden" class="on_off" value="off">
-		<c:forEach var="vo" items="${alist }" varStatus="vs">
+		<c:forEach var="vo" items="${alist}" varStatus="vs">
 			<tr style="text-align: center">
 				<td>${vo.questionNo}</td>
 				<td>${vo.memberId}</td>
@@ -116,7 +116,10 @@
 					<table>
 						<tr>
 							<td>
-								<div class="flip">${vo.questionTitle}<input type="hidden" class="flip" value="${vs.index}" ></div>
+								<div class="flip">
+									${vo.questionTitle}
+									<input type="hidden" class="flip" value="${vs.index}" >
+								</div>
 							</td>
 						</tr>
 					</table>
@@ -140,6 +143,11 @@
 						<tr>
 							<td>		
 								${vo.ansContent}
+							</td>
+						</tr>
+						<tr>
+							<td>		
+								답변 시간 : ${vo.ansTime}
 							</td>
 						</tr>
 						</c:if>

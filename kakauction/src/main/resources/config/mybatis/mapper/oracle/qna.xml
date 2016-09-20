@@ -17,7 +17,10 @@
 			(
 			    select rownum as RNUM, LIST_ALL.*
 			    from
-			        (select * from question order by question_no desc) LIST_ALL    
+			        (select q.question_no, q.member_id,q.question_title, q.question_content, q.question_regdate, q.question_only, 
+					q.question_return, a.ans_content, a.ans_time  
+					from question q left OUTER JOIN qnareply a 
+					on q.question_no=A.question_no order by q.question_no desc) LIST_ALL    
 		) 
 		<![CDATA[
 		where  RNUM> #{firstRecordIndex} 
