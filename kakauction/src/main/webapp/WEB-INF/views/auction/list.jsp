@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../design/inc/top.jsp"%>
-	<script type="text/javascript" 
-	src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
 <script type="text/javascript">	
 	$(document).ready(function(){
 		$(".divList .box2 tbody tr")
@@ -16,16 +15,6 @@
 	function pageProc(curPage){
 		document.frmPage.currentPage.value=curPage;
 		document.frmPage.submit();
-	}
-	
-	var acc = document.getElementsByClassName("accordion");
-	var i;
-
-	for (i = 0; i < acc.length; i++) {
-	    acc[i].onclick = function(){
-	        this.classList.toggle("active");
-	        this.nextElementSibling.classList.toggle("show");
-	    }
 	}
 	
 	function openNav() {
@@ -49,8 +38,14 @@
 		});
 	});
 
-	
+	$(function() {
+		$(".accordion").click(function() {
+			$( this ).toggleClass( "active" );
+			$( this ).next().toggleClass( "show" );
+		});
+	});
 </script>
+
 <style type="text/css">
 .specialList{
 	width: 100%;
