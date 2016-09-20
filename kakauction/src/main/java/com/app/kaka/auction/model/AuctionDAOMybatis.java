@@ -8,8 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import com.app.kaka.buyer.model.BuyerVO;
 import com.app.kaka.car.model.CarVO;
+import com.app.kaka.carsize.model.CarsizeVO;
 import com.app.kaka.common.DateSearchVO;
 import com.app.kaka.common.SearchVO;
+import com.app.kaka.gas.model.GasVO;
 import com.app.kaka.record.model.RecordVO;
 
 @Repository
@@ -131,7 +133,7 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 	}
 
 	@Override
-	public List<AuctionCarVO> selectMyAuctionList(DateSearchVO vo){
+	public List<Map<String, Object>> selectMyAuctionList(DateSearchVO vo){
 		return getSqlSession().selectList(namespace+".selectMyAuctionList", vo);
 	}
 
@@ -234,6 +236,17 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 	@Override
 	public Map<String, Object> selectAllCarSize() {
 		return getSqlSession().selectOne(namespace+".selectAllCarSize");
+	}
+	
+	//상세검색
+	@Override
+	public List<CarsizeVO> selectCarsize() {
+		return getSqlSession().selectList(namespace+".selectCarsize");
+	}
+
+	@Override
+	public List<GasVO> selectCarGas() {
+		return getSqlSession().selectList(namespace+".selectCarGas");
 	}
 
 

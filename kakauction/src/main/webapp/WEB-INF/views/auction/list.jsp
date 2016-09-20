@@ -11,16 +11,17 @@
 				$(this).css("background","");
 			});
 		
-/* 		$(".accordion").click(function() {
+ 		$(".accordion").click(function() {
 			$( this ).toggleClass( "active" );
 			$( this ).next().toggleClass( "show" );
-		}); */
+		});
 		
 		$(".fixedOpen").click(function() {
 			$(this).css("display", "none");
 		});
 		$(".closebtn").click(function() {
-			$(".fixedOpen").css("display","block");
+			$(".fixedOpen").fadeIn(900);
+			/* $(".fixedOpen").css("display","block"); */
 		});
 	});
 	function pageProc(curPage){
@@ -105,7 +106,8 @@
 
 		<!--상세검색 --> --%>
 		<div id="mySidenav" class="sidenav">
-			<%@ include file="../detailSearch/detailSearch.jsp" %>
+			<%-- <%@ include file="../detailSearch/detailSearch.do" %> --%>
+			<c:import url="/auction/detailSearch.do"/>
 		</div>
 		<span onclick="openNav()" class="fixedOpen"><img src="<c:url value='/img/sangsae.png'/>"></span>
 		<div id="slideWrap">
@@ -118,8 +120,7 @@
 			</p>
 		</div>
 		<div id="pagelogo">
-			<img
-				src="${pageContext.request.contextPath }/img/auctionList_logo.png"
+			<img src="${pageContext.request.contextPath }/img/auctionList_logo.png"
 				alt="경매리스트로고">
 		</div>
 		

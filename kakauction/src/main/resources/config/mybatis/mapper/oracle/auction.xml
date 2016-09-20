@@ -253,12 +253,12 @@
 	
 	<sql id="myAuctionListWhere">
 		<where>
-		startD>=#{startDay}
+		buyer_member_id=#{memberId}
 		</where>
 		<![CDATA[
-		and startD< to_date(#{endDay})+1
+		and recordD>=#{startDay}
+		and recordD< to_date(#{endDay})+1
 		]]>
-		and buyer_member_id=#{memberId}
 	</sql>
 	
 	<select id="selectMyAuctionById" parameterType="string" resultType="int">
@@ -272,11 +272,18 @@
 		    select rownum as RNUM, myAuction_List.*
 		    from
 		    (
-		        select distinct a.* from MyAuctionNoList m, auction_car2 a
-				<include refid="myAuctionListWhere"></include>
-				order by auction_finish desc
+		        select a.auction_no_year, a.auction_no_car, m.auction_no, m.buyer_member_id, m.record_price, a.car_num, a.car_company, a.car_price, a.car_loc, a.car_birth, a.car_model, 
+		        a.car_size, a.car_dist,a.car_cc,a.car_color,a.car_acci,a.car_fail_sell,a.member_name,a.member_addr,a.member_addr2,
+		        a.member_hp, a.member_id as seller_member_id, a.picture_1, a.picture_2, a.picture_3, a.picture_4, a.picture_5, a.picture_6
+		        , a.picture_7, a.picture_8, a.picture_9, a.picture_10, a.picture_11, a.picture_12, a.picture_13, a.picture_14, a.picture_15
+		        , a.picture_16, a.picture_17, a.picture_18, a.picture_19, a.picture_20,a.auction_regdate,a.auction_firstprice,a.auction_read_count
+		        , to_char(m.record_regdate,'yyyy-MM-dd') as recordD
+		        from RECORD m left join auction_car2 a
+                on m.auction_no=a.auction_no
+				order by m.record_no desc, m.auction_no
 		    ) myAuction_List
-		)	
+		    <include refid="myAuctionListWhere"></include>
+		)
 		<![CDATA[	
 		where RNUM> #{firstRecordIndex} 
 		and RNUM<= #{firstRecordIndex} + #{recordCountPerPage}
@@ -377,6 +384,14 @@
 		(select count(*) from now_auction_carsize where car_size = 'SUV') SUV,
 		(select count(*) from now_auction_carsize where car_size = '승합차') VAN
 		from dual
+	</select>
+	
+	<select id="selectCarsize" resultType="CarsizeVO">
+		select * from carsize
+	</select>
+
+	<select id="selectCarGas" resultType="GasVO">
+		select * from gas
 	</select>
 	
 </mapper>

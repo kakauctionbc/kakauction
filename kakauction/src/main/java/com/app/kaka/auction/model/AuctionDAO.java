@@ -5,8 +5,10 @@ import java.util.Map;
 
 import com.app.kaka.buyer.model.BuyerVO;
 import com.app.kaka.car.model.CarVO;
+import com.app.kaka.carsize.model.CarsizeVO;
 import com.app.kaka.common.DateSearchVO;
 import com.app.kaka.common.SearchVO;
+import com.app.kaka.gas.model.GasVO;
 import com.app.kaka.record.model.RecordVO;
 
 public interface AuctionDAO {
@@ -24,7 +26,7 @@ public interface AuctionDAO {
 	public int selectTodayCount(SearchVO vo);
 	
 	//나의 경매 리스트
-	public List<AuctionCarVO> selectMyAuctionList(DateSearchVO vo);
+	public List<Map<String, Object>> selectMyAuctionList(DateSearchVO vo);
 	
 	//종료된 경매는 보이지 않음
 	public int selectTotalCount(SearchVO vo);
@@ -88,5 +90,9 @@ public interface AuctionDAO {
 	
 	//메인페이지
 	public Map<String, Object> selectAllCarSize();
+	
+	//상세검색 셀렉트
+	public List<CarsizeVO> selectCarsize();
+	public List<GasVO> selectCarGas();
 	
 }

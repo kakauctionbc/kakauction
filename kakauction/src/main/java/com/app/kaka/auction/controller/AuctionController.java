@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,10 +22,13 @@ import com.app.kaka.auction.model.AuctionCarVO;
 import com.app.kaka.auction.model.AuctionService;
 import com.app.kaka.auction.model.HighPriceVO;
 import com.app.kaka.buyer.model.BuyerVO;
+import com.app.kaka.car.model.CarVO;
+import com.app.kaka.carsize.model.CarsizeVO;
 import com.app.kaka.common.DateSearchVO;
 import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
+import com.app.kaka.gas.model.GasVO;
 import com.app.kaka.op.model.OpService;
 import com.app.kaka.op.model.OpVO;
 
@@ -138,8 +142,16 @@ public class AuctionController {
 		int totalRecord = auctionService.selectListCount(searchVo);
 		logger.info("토탈레코드가 궁금 totalRecord={}",totalRecord);
 		pagingInfo.setTotalRecord(totalRecord);
-				
+		
+		/*//상세검색carsizeList
+		List<GasVO> cargasList =auctionService.selectCarGas();
+		List<CarsizeVO> carsizeList =auctionService.selectCarsize();
+		logger.info("carsizeList 궁금 carsizeList={}, size={}",carsizeList, carsizeList.size());
+		logger.info("cargasList 궁금 cargasList={}, size={}",cargasList, cargasList.size());
+		
 		//3. 결과 저장, 뷰페이지 리턴
+		model.addAttribute("carsizeList", carsizeList);
+		model.addAttribute("cargasList", cargasList);*/
 		model.addAttribute("alist", alist);
 		model.addAttribute("alistsize", alist.size());
 		model.addAttribute("pagingInfo", pagingInfo);
@@ -209,7 +221,7 @@ public class AuctionController {
 		logger.info("글목록 조회, 파라미터 vo={}", vo);
 		
 		//2. db작업 - select
-		List<AuctionCarVO> alist = auctionService.selectMyAuctionList(vo);
+		List<Map<String, Object>> alist = auctionService.selectMyAuctionList(vo);
 		logger.info("글목록 조회 결과 alist.size()={}", alist.size());
 		//전체 레코드 개수 조회하기
 		pagingInfo.setTotalRecord(alist.size());
@@ -497,7 +509,21 @@ public class AuctionController {
 		model.addAttribute("pagingInfo", pagingInfo);
 		
 		return "auction/auctionSuccess";
+	}
+	
+	@RequestMapping(value="/detailSearch.do", method=RequestMethod.GET)
+	public String detailSearch(Model model){
+		logger.info("디테일 서치");
+		//상세검색carsizeList
+		List<CarsizeVO> carsizeList =auctionService.selectCarsize();
+		List<GasVO> cargasList =auctionService.selectCarGas();
+		logger.info("carsizeList 궁금 carsizeList={}, size={}",carsizeList, carsizeList.size());
+		logger.info("cargasList 궁금 cargasList={}, size={}",cargasList, cargasList.size());
 		
+		model.addAttribute("carsizeList", carsizeList);
+		model.addAttribute("cargasList", cargasList);
+		
+		return "detailSearch/detailSearch";
 	}
 	
 }

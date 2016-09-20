@@ -16,8 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.app.kaka.buyer.model.BuyerVO;
 import com.app.kaka.car.model.CarVO;
+import com.app.kaka.carsize.model.CarsizeVO;
 import com.app.kaka.common.DateSearchVO;
 import com.app.kaka.common.SearchVO;
+import com.app.kaka.gas.model.GasVO;
 import com.app.kaka.record.model.RecordVO;
 
 @Service
@@ -138,7 +140,7 @@ public class AuctionServiceImpl implements AuctionService{
 	}
 
 	@Override
-	public List<AuctionCarVO> selectMyAuctionList(DateSearchVO vo){
+	public List<Map<String, Object>> selectMyAuctionList(DateSearchVO vo){
 		return auctionDao.selectMyAuctionList(vo);
 	}
 
@@ -251,5 +253,16 @@ public class AuctionServiceImpl implements AuctionService{
 	@Override
 	public Map<String, Object> selectAllCarSize() {
 		return auctionDao.selectAllCarSize();
+	}
+	
+	//상세검색
+	@Override
+	public List<CarsizeVO> selectCarsize() {
+		return auctionDao.selectCarsize();
+	}
+
+	@Override
+	public List<GasVO> selectCarGas() {
+		return auctionDao.selectCarGas();
 	}
 }
