@@ -10,6 +10,23 @@
 		});
 	});
 </script>
+<style type="text/css">
+a{
+	text-decoration: none;
+	color:black;
+}
+a:hover{
+	text-decoration: blink;
+	color: #fae100;
+}
+</style>
+<div id="wrap">
+	<div id="wrapdiv">
+		<div id="wraptop">
+			<p>
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>자유게시판>글 상세보기
+			</p>
+		</div>
 <title>공지사항 상세보기</title>
 	<c:if test="${noticeVo.nextNoticeNo!='0' }"> 
 		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.nextNoticeNo}'/>">다음글</a>
@@ -17,8 +34,7 @@
 	<c:if test="${noticeVo.prevNoticeNo!='0' }">
 		<a href="<c:url value='/notice/updateCount.do?noticeNo=${noticeVo.prevNoticeNo}'/>">이전글</a>
 	</c:if>
-	<h2>공지사항 상세보기</h2>
-	<div class="divForm">
+	<div class="writeForm">
 		<div class="firstDiv">
 			<span class="sp1">제목</span> 
 			<span>${noticeVo.noticeTitle}</span>
@@ -58,5 +74,7 @@
         	<a href="<c:url value='/notice/list.do'/>">목록</a>			
 		</div>
 	</div>
-	<jsp:include page="/notireply/comment.do?noticeNo=${param.noticeNo }"></jsp:include>
+		<jsp:include page="/notireply/comment.do?noticeNo=${param.noticeNo }"></jsp:include>
+	</div>
+</div>
 <%@ include file="../design/inc/bottom.jsp"%>

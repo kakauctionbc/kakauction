@@ -139,7 +139,7 @@
 	<div id="wrapdiv">
 		<div id="wraptop">
 			<p>
-				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>경매 등록
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>경매 신청
 			</p>
 		</div>
 		<div id="pagelogo">
@@ -626,7 +626,7 @@
 		</div>
 	</form>
 	<div class="car_description">
-			<iframe id="carregisterAgree" width="850px" height="500px;" src="<c:url value='/inc2/carRegister.html'/>"></iframe>
+			<iframe id="carregisterAgree" width="900px" height="500px;" src="<c:url value='/inc2/carRegister.html'/>"></iframe>
 					<div class="bx">
 						<input type="radio" id="sellerAgree1" name="sellerAgree" checked="" value="1">
 						<label for="sellerAgree1" class="s1">위 내용에 동의합니다.</label>

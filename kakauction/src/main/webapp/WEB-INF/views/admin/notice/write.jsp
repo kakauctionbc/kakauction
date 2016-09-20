@@ -2,10 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../../design/inc/adminTop.jsp"%>
 <script src="<c:url value='/ckeditor/ckeditor.js'/>" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/mainstyle.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/clear.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/formLayout.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/mystyle.css'/>" />
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -28,45 +24,38 @@
 		});
 	});
 </script>
-
-<title>카카옥션 공지 쓰기</title>
-	<div class="divForm">
-	<form name="noticeWrite" id="noticeWrite" method="post"
-		enctype="multipart/form-data" 
-	  action="<c:url value='/admin/notice/write.do'/>" >
-	 <fieldset>
-		<legend>글쓰기</legend>
-	        <div class="firstDiv">
-	            <label for="title">제목</label>
-	            <input type="text" id="noticeTitle" name="noticeTitle"  />
-	        </div>
-	        <div>
-	            <label for="name">작성자</label>
-	            <input type="text" id="memberId" name="memberId" value="${sessionScope.adminUserid }" readonly/>
-	        </div>
-	        <div>
-	            <label for="upfile">첨부파일</label>
-	            <input type="file" id="upfile" name="upfile" />
-	            (최대 100M)
-	        </div>
-	        <div>  
-	        	<label for="noticeContent">내용</label>
-	        </div>
-	        <div>	        
-	 			<textarea id="noticeContent" name="noticeContent" 
-	 			rows="12" cols="40"></textarea>
-	 			
-	<!--  			<textarea id="content" name="content" 
-	 			rows="12" cols="40" class="ckeditor"></textarea> -->
-	        </div>
-	        
-	        <div class="center">
-	            <input type = "submit" value="등록"/>
-	            <input type = "Button" name="listPage" id="listPage" value="글목록" 
-	      			onclick
-	="location.href='<c:url value="/admin/notice/list.do"/>';" />         
-	        </div>
-	    </fieldset>
-	</form>
-	</div>   
+<div id="wrap">
+	<div id="wrapdiv">
+		<div id="wraptop">
+			<p>
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>공지사항> 글쓰기
+			</p>
+		</div>
+		<div class="writeForm">
+		<legend>공지사항 - 글쓰기</legend>
+	        <div class="firstDiv">	
+				<form action="<c:url value='/freeboard/write.do'/>" method="post" name="freeWriteFrm" id="frmWrite" enctype="multipart/form-data">
+					<div style="padding: 5px 0;">
+						<label for="memberId">아이디</label>
+						<input type="text" name="memberId" id="memberId" value="${sessionScope.memberId }" style="border: none;"readonly>
+					</div>
+					<div style="margin-bottom: 20px;">
+						<label for="freeboardTitle" style="margin-right: 10px;">제 목</label>
+						<input type="text" name="freeboardTitle" id="freeboardTitle" style="width: 950px; height: 30px; border: none;">
+					</div>
+					<div>
+			            <label for="upfile">첨부파일</label>
+				        <input type="file" id="upfile" name="upfile">(최대100M)
+			        </div>
+					<textarea id="freeboardContent" name="freeboardContent" rows="30" cols="40"></textarea>
+			        <div class="center">
+			            <input type = "submit" value="등록"/>
+			            <input type = "Button" name="listPage" id="listPage" value="글목록" 
+			      			onclick="location.href='<c:url value="/admin/notice/list.do"/>';" />         
+			        </div>
+				</form>
+			</div>  
+		</div>
+	</div>
+</div> 
 <%@ include file="../../design/inc/adminBottom.jsp"%>

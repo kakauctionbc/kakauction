@@ -29,21 +29,28 @@
 </script>
 
 <title>카카옥션 공지 쓰기</title>
-	<div class="divForm">
-	<form name="noticeWrite" id="noticeWrite" method="post" enctype="multipart/form-data" 
-	  action="<c:url value='/notice/edit.do'/>" >
-	 <fieldset>
-		<legend>글쓰기</legend>
-		<input type="hidden" name="noticeNo" value="${noticeVo.noticeNo}">
-		<input type="hidden" name="oldFileName" value="${noticeVo.noticeFilename}">
-		<input type="hidden" name="oldFileSize" value="${noticeVo.noticeFilesize}">
-		<input type="hidden" name="oldOriginalFileName" value="${noticeVo.noticeOriginalname}">
+<div id="wrap">
+	<div id="wrapdiv">
+		<div id="wraptop">
+			<p>
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>공지사항>글 수정
+			</p>
+		</div>	
+	<div class="writeForm">
+		<form name="noticeWrite" id="noticeWrite" method="post" enctype="multipart/form-data" 
+	  	action="<c:url value='/notice/edit.do'/>" >
+	 	<fieldset>
+			<legend>공지사항 - 글수정</legend>
+			<input type="hidden" name="noticeNo" value="${noticeVo.noticeNo}">
+			<input type="hidden" name="oldFileName" value="${noticeVo.noticeFilename}">
+			<input type="hidden" name="oldFileSize" value="${noticeVo.noticeFilesize}">
+			<input type="hidden" name="oldOriginalFileName" value="${noticeVo.noticeOriginalname}">
 	        <div class="firstDiv">
 	            <label for="title">제목</label>
-	            <input type="text" id="noticeTitle" name="noticeTitle" value="${noticeVo.noticeTitle }" />
+	            <input type="text" name="noticeTitle" id="noticeTitle" value="${noticeVo.noticeTitle }" style="width: 800px; height: 30px;">
 	        </div>
 	        <div>
-	            <label for="name">작성자</label> : ${noticeVo.memberId }
+	            <label for="name">작성자</label>  ${noticeVo.memberId }
 	            <input type="hidden" id="memberId" name="memberId" value="${noticeVo.memberId }"/>
 	        </div>
 	       <div>
@@ -69,10 +76,12 @@
 	        </div>
 	        
 	        <div class="center">
-	            <input type = "submit" value="등록"/>
+	            <input type = "submit" value="수정"/>
 	            <input type = "Button" name="listPage" id="listPage" value="글목록"/>         
 	        </div>
 	    </fieldset>
 	</form>
-	</div>   
+	</div>
+	</div>
+	</div>
 <%@ include file="../design/inc/bottom.jsp"%>

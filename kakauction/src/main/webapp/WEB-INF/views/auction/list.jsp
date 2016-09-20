@@ -18,6 +18,33 @@
 		document.frmPage.submit();
 	}
 </script>
+<style type="text/css">
+.specialList{
+	width: 100%;
+	height: 100px;
+	margin-top: 20px;
+}
+.specialList ul li{
+	float: left;
+	margin-left: 10px;
+}
+.specialList ul li a{
+	text-decoration: none;
+}
+.first{
+	margin-left: 10px;
+}
+.imgbox img{
+	width: 180px;
+}
+.txt{
+	text-decoration: none;
+}
+.box2 tbody tr td a:hover{
+	text-decoration: underline;
+	color: blue;
+}
+</style>
 <div id="wrap">
 	<div id="wrapdiv">
 		<div id="wraptop">
@@ -30,7 +57,7 @@
 				src="${pageContext.request.contextPath }/img/auctionList_logo.png"
 				alt="경매리스트로고">
 		</div>
-		<div class="special">
+		<div class="specialList">
 			<ul>
 				<li class="first">
 					<a href="">
@@ -39,21 +66,21 @@
 									alt="자동차사진" />
 						</div><span class="txt">기아 뉴 쏘렌토R 2013년형</span></a>
 				</li>
-				<li class="">
+				<li>
 					<a href="">
 						<div class="imgbox">
 							<img src="${pageContext.request.contextPath }/img/test_img2.jpg"
 										alt="자동차사진" />
 						</div><span class="txt">쉐보레(국산) 캡티바 2012년식</span></a>
 				</li>
-				<li class="">
+				<li>
 					<a href="">
 						<div class="imgbox">
 							<img src="${pageContext.request.contextPath }/img/test_img3.jpg"
 								alt="자동차사진" />
 						</div><span class="txt">현대 제네시스 2012년형</span></a>
 				</li>
-				<li class="">
+				<li>
 					<a href="">
 						<div class="imgbox">
 							<img src="${pageContext.request.contextPath }/img/test_img4.jpg"
@@ -69,7 +96,7 @@
 				</li>
 			</ul>
 		</div>
-		</div>
+		<br><br><hr>
 		<form name="frmPage" method="post" action="<c:url value='/auction/list.do'/>">
 			<input type="hidden" name="currentPage"> <input type="hidden"
 				name="searchCondition" value="${param.searchCondition }"> <input

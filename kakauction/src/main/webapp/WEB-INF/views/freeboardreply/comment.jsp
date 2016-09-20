@@ -46,7 +46,7 @@
 		<input type="hidden" name="currentPage">
 	</form>
 	<div class="comment">
-		<h3>댓글</h3><br>
+	<br><br>
 		<table class="box2"
 	 		summary="게시판 댓글에 대한 표로써, 작성자, 내용, 작성일시에 대한 정보를 제공합니다." style="width: 1000px">
 	 		<colgroup>
@@ -95,44 +95,35 @@
 				</c:forEach>
 			  </c:if>
 	 	</table>
-		<div class="divPage">
-			<!-- 이전 블럭으로 이동 -->
-			<c:if test="${pagingInfo.firstPage>1 }">	
-				<a href="#" onclick="pageProc(${pagingInfo.firstPage-1})">
-					<img src="<c:url value='/image/first.JPG'/>" 
-							alt="이전블럭으로">
-				</a>	
-			</c:if>
-			
-			<!-- 페이지 번호 추가 -->						
-			<!-- [1][2][3][4][5][6][7][8][9][10] -->
-			<c:forEach var="i" begin="${pagingInfo.firstPage }" 
-				end="${pagingInfo.lastPage }">	 
-				<c:if test="${i==pagingInfo.currentPage }">
-					<span style="color:blue;font-weight: bold">
-						${i }</span>
-				</c:if>		
-				<c:if test="${i!=pagingInfo.currentPage }">
-						<a href="#" onclick="pageProc(${i})">
-						[${i}]</a>
-				</c:if>
-			</c:forEach>
-			<!--  페이지 번호 끝 -->
-			
-			<!-- 다음 블럭으로 이동 -->
-			<c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
-				<a href="#" 
-				onclick="pageProc(${pagingInfo.lastPage+1})">
-					<img src="<c:url value='/image/last.JPG'/>"
-							alt="다음블럭으로">
-				</a>
-			</c:if>
+		<div class="pagediv">
+			<ul class="page">
+				<!-- 이전 블럭으로 이동 -->
+				<li class="firstPage"><c:if test="${pagingInfo.firstPage>1 }">
+					<a href="#" onclick="pageProc(${pagingInfo.firstPage-1})">&laquo;</a>
+				</c:if></li>
+				<!-- 페이지 번호 추가 -->
+				<!-- [1][2][3][4][5][6][7][8][9][10] -->
+				<li><c:forEach var="i" begin="${pagingInfo.firstPage }" end="${pagingInfo.lastPage }">
+					<c:if test="${i==pagingInfo.currentPage }">
+						<span> ${i }</span>
+					</c:if>
+					<c:if test="${i!=pagingInfo.currentPage }">
+						<a href="#" onclick="pageProc(${i})"> ${i}</a>
+					</c:if>
+				</c:forEach></li>
+				<!--  페이지 번호 끝 -->
+	
+				<!-- 다음 블럭으로 이동 -->
+				<li><c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
+					<a href="#" onclick="pageProc(${pagingInfo.lastPage+1})">&raquo;</a>
+				</c:if></li>
+			</ul>
 		</div>
 	</div>
 	<form id="replyComment" name="replyComment" method="post" action="<c:url value='/freeboardreply/insertComment.do'/>">
-		<div class="commentWrite" style="width: 500px; margin-top: 20px;">
+		<div class="commentWrite" style="width: 1000px; margin-top: 20px;">
 			<fieldset>
-				<legend>댓글달기</legend>
+			<hr style="color: silver;"><br>
 					<p style="margin-top: 10px;">
 						<label for="memberId" style="margin-right: 10px;">작성자</label>
 						<span>${sessionScope.memberId }</span>
@@ -140,7 +131,7 @@
 					</p>
 					<input type="hidden" name="freereplyGroupno" value="${freeVo.freeboardNo}">
 					<p style="margin-top: 20px;">
-						<textarea rows="5" cols="95" name="freereplyContent" id="freereplyContent"></textarea>
+						<textarea rows="5" cols="165" name="freereplyContent" id="freereplyContent"></textarea>
 					</p>
 					<div style="text-align: center; margin-top: 10px;">
 						<input type="submit" name="commentSubmit" value="확인">

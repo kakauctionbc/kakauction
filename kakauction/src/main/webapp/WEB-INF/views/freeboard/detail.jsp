@@ -17,6 +17,16 @@
 	      });//zipcode click
 	});
 </script>
+<style type="text/css">
+a{
+	text-decoration: none;
+	color:black;
+}
+a:hover{
+	text-decoration: blink;
+	color: #fae100;
+}
+</style>
 <div id="wrap">
 	<div id="wrapdiv">
 		<div id="wraptop">
@@ -25,13 +35,12 @@
 			</p>
 		</div>	
 	<c:if test="${freeVo.prevFreeboardNo!='0' }">
-		<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${freeVo.prevFreeboardNo}'/>">다음글</a>
+		<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${freeVo.prevFreeboardNo}'/>" style="float: right;">다음글</a>
 	</c:if>
 	<c:if test="${freeVo.nextFreeboardNo!='0' }"> 
 		<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${freeVo.nextFreeboardNo}'/>">이전글</a>
 	</c:if>
-	<h2>자유게시판 - 글 상세보기</h2>
-	<div class="divForm">
+	<div class="writeForm" style="margin-top: 20px;">
 		<input type="hidden" name="freeboardNo" id="freeboardNo" value="${freeVo.freeboardNo }">
 		<div class="firstDiv">
 			<span class="sp1">제목</span> 

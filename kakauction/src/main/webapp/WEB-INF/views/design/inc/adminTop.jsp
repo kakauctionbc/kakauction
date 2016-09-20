@@ -24,12 +24,14 @@ $(function(){
 <head>
 <meta charset="utf-8" />
 <title>Insert title here</title>
+
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/mainstyle.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/clear.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/adminlayout.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/login.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/list.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/carList.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/board.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/adminCarDetail.css" />
 <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>      

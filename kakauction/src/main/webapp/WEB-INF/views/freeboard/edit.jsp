@@ -20,8 +20,10 @@
 			<p>
 				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>자유게시판>글 수정
 			</p>
-		</div>	
+		</div>
+	<div class="writeForm">
 	<form action="<c:url value='/freeboard/edit.do'/>" method="post" name="freeEditFrm" enctype="multipart/form-data">
+	<legend>자유게시판 - 글수정</legend>
 		<div>
 			<input type="hidden" name="freeboardNo" id="freeboardNo" value="${param.freeboardNo}">
 			<input type="hidden" name="freeboardFilename" id="freeboardFilename" value="${param.freeboardFilename}">
@@ -29,11 +31,11 @@
 		</div>
 		<div>
 			<label for="memberId">아이디</label>
-			<input type="text" name="memberId" id="memberId" readonly="readonly" value="${freeboardVO.memberId}">
+			<input type="text" name="memberId" id="memberId" value="${sessionScope.memberId }" style="border: none;"readonly>
 		</div>
-		<div>
-			<label for="freeboardTitle">제목</label>
-			<input type="text" name="freeboardTitle" id="freeboardTitle" value="${freeboardVO.freeboardTitle}">
+		<div style="margin-bottom: 20px;">
+			<label for="freeboardTitle">제 목</label>
+			<input type="text" name="freeboardTitle" id="freeboardTitle" style="width: 900px; height: 30px;">
 		</div>
 		<div>
 			<label for="freeboardUload">파일첨부</label> 
@@ -47,9 +49,10 @@
 			</c:if>
 		</div>
 		<textarea id="freeboardContent" name="freeboardContent" rows="12" cols="40" >${freeboardVO.freeboardContent}</textarea>
-		<input type="submit" value="수정">
+		<input type="submit" value="수정" style="margin-left: 430px; margin-right: 20px; margin-top: 20px;">
 		<input type="reset" value="초기화">
 	</form>
+	</div>
 	</div>
 </div>
 <%@ include file="../design/inc/bottom.jsp"%>

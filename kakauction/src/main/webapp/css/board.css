@@ -1,0 +1,85 @@
+@CHARSET "UTF-8";
+
+a{
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: blink;
+	color: yellow;
+}
+.writeForm div, .writeForm label, .writeForm .sp1{
+	font-size:1.0em; 
+}
+.writeForm form, .writeForm{
+	width: 1000px;
+}
+.writeForm fieldset	{
+	width: 90%;
+	padding: 0;
+	margin: 0 auto;
+	border: 0;
+	border-bottom: 2px solid #e2e2e2;
+}
+.writeForm legend	{
+	font-weight: bold;
+	color: #555555; /* #7AA3EB; */
+	margin:10px 0;
+	font-size: 1.9em;
+	}	
+.writeForm div	{
+	clear: both;
+	border-bottom: 1px solid #eee;
+	padding: 5px 0;
+	margin: 0;
+	overflow: auto;
+	}	
+.writeForm .firstDiv	{
+	border-top: 2px solid #e2e2e2/* #aacc00 */;
+}
+.writeForm .lastDiv	{
+	border-bottom: 1px solid silver;
+}
+	
+.writeForm label, .writeForm .sp1	{
+	width: 7%;
+	float: left;
+	padding: 3px 15px 0 0;
+	clear: left;		
+	font-weight: bold;
+	}
+.writeForm input[type="text"], .writeForm input[type="password"]{
+	border: 1px solid #DCDDE3;
+	}
+.writeForm.text_width input[type="text"], .writeForm.text_width input[type="password"]{
+	width: 55%;
+	height: 1.2em;
+	font-size: 0.9em;
+	}
+	
+.writeForm input[type="submit"], .writeForm input[type="reset"], 
+.writeForm input[type="button"],	.writeForm button{
+	padding: 2px 10px;
+	/* font-weight: bold; */
+	/* color: #CD1076; */
+	}
+.writeForm textarea	{
+	width: 70%;
+	border: 1px solid #DCDDE3;
+	float: left;
+	}
+.writeForm .center	{
+	border: none;
+	text-align: center;
+	margin:10px 0;
+	}
+.divForm select{		
+	border: 1px solid #DCDDE3;
+	font-size: 0.9em;
+	}
+.writeForm .content{		
+	padding:25px;
+	}	
+
+.writeForm input[type="file"]{
+	margin:2px 0;				
+}
