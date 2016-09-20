@@ -63,7 +63,7 @@ a:hover{
 	/* color: #CD1076; */
 	}
 .writeForm textarea	{
-	width: 70%;
+	width: 100%;
 	border: 1px solid #DCDDE3;
 	float: left;
 	}
@@ -82,4 +82,7 @@ a:hover{
 
 .writeForm input[type="file"]{
 	margin:2px 0;				
+}
+.write_Btn{
+	float: right;
 }

@@ -40,14 +40,14 @@
 						<input type="text" name="memberId" id="memberId" value="${sessionScope.memberId }" style="border: none;"readonly>
 					</div>
 					<div style="margin-bottom: 20px;">
-						<label for="freeboardTitle" style="margin-right: 10px;">제 목</label>
-						<input type="text" name="freeboardTitle" id="freeboardTitle" style="width: 950px; height: 30px; border: none;">
+						<label for="freeboardTitle">제 목</label>
+						<input type="text" name="freeboardTitle" id="freeboardTitle" style="width: 900px; height: 30px; border: none;">
 					</div>
 					<div>
 			            <label for="upfile">첨부파일</label>
 				        <input type="file" id="upfile" name="upfile">(최대100M)
 			        </div>
-					<textarea id="freeboardContent" name="freeboardContent" rows="30" cols="40"></textarea>
+					<textarea id="freeboardContent" name="freeboardContent" rows="20" cols="100"></textarea>
 			        <div class="center">
 			            <input type = "submit" value="등록"/>
 			            <input type = "Button" name="listPage" id="listPage" value="글목록" 
