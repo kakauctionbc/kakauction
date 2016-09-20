@@ -19,4 +19,5 @@ public interface FreeboardService {
 	public int deleteFreeboard(Map<String, String> map);
 	
 	public List<FreeboardVO> reportFreeboardList(SearchVO vo);
+	public int updateDownCount(int freeboardNo);
 }

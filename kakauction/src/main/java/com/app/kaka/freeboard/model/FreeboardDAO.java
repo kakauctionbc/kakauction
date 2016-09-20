@@ -16,4 +16,5 @@ public interface FreeboardDAO {
 	public int deleteFreeboard(Map<String, String> map);
 	
 	public List<FreeboardVO> reportFreeboardList(SearchVO vo);
+	public int updateDownCount(int freeboardNo);
 }

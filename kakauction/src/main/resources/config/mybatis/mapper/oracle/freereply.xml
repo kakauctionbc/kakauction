@@ -9,8 +9,14 @@
 		</selectKey>
 		insert into freereply(freereply_groupno, freeboard_no, freereply_content, member_id, freereply_no, freereply_regdate,
 		freereply_sortno, freereply_step)
-		values(#{freereplyNo},#{freereplyGroupno},#{freereplyContent},#{memberId},#{freereplyNo},sysdate,0,0) 
+		values(#{freereplyNo},#{freeboardNo},#{freereplyContent},#{memberId},#{freereplyNo},sysdate,0,0) 
 	</insert>
+	
+	<parameterMap type="map" id="delParamMap">
+		<parameter property="freereplyNo" javaType="string"  jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="freereplyGroupno" javaType="string" jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="freereplyStep" javaType="string" jdbcType="VARCHAR" mode="IN"/>
+	</parameterMap>
 	
 	<select id="selectComment" parameterType="SearchVO" resultType="freereplyVo">
 		select *
@@ -23,7 +29,7 @@
 					freereply_groupno, freereply_step, freereply_sortno, freereply_delflag
 		        from freereply
 		        where freeboard_no = #{freeboardNo }
-		        order by freereply_no asc, freereply_sortno asc) LIST_ALL    
+		        order by freereply_groupno asc, freereply_step asc, freereply_sortno desc) LIST_ALL    
 		) 
 		<![CDATA[
 		where  RNUM> #{firstRecordIndex} 
@@ -40,8 +46,8 @@
 	
 	<update id="updateSortNo" parameterType="freereplyVo">
 		update freereply
-		set sortNo=sortno+1
-		where groupNo=#{freereplyGroupno} and sortNo > #{freereplySortno}
+		set freereply_sortNo=freereply_sortno+1
+		where freereply_groupNo=#{freereplyGroupno} and freereply_sortNo > #{freereplySortno}
 	</update>
 	
 	<insert id="insertReply" parameterType="freereplyVo">
@@ -51,6 +57,10 @@
 		insert into freereply(freereply_no, freeboard_no, member_id, freereply_content,
 		freereply_groupno, freereply_step, freereply_sortno, freereply_regdate)
 		values(#{freereplyNo}, #{freeboardNo}, #{memberId}, #{freereplyContent},
-			#{freereplyGroupno}, #{freereplyStep}, #{freereplySortno}, #{freereplyRegdate})
+			#{freereplyGroupno}, #{freereplyStep}, #{freereplySortno}, sysdate)
 	</insert> 
+	
+	<delete id="deleteReBoard" parameterMap="delParamMap" >
+		{call FREEREPLY_DELETE(?, ?, ?)}
+	</delete>	
 </mapper>

@@ -1,6 +1,7 @@
 package com.app.kaka.freereply.model;
 
 import java.util.List;
+import java.util.Map;
 
 import com.app.kaka.common.SearchVO;
 
@@ -12,5 +13,6 @@ public interface FreeReplyService {
 	
 	//대댓글
 	public int insertReply(FreeReplyVO freeReplyVo);
+	public int deleteReply(Map<String, String> map);
 
 }

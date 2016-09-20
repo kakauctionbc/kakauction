@@ -9,10 +9,10 @@
 			select FREEBOARD_SEQ.nextval from dual
 		</selectKey>
 		insert into FREEBOARD(FREEBOARD_NO, MEMBER_ID, FREEBOARD_TITLE, 
-		FREEBOARD_CONTENT, FREEBOARD_GROUPNO,FREEBOARD_FILENAME,
+		FREEBOARD_CONTENT, FREEBOARD_GROUPNO,FREEBOARD_DOWNCOUNT, FREEBOARD_FILENAME,
 		FREEBOARD_FILESIZE, FREEBOARD_ORIGINALNAME)
 		values(#{freeboardNo},#{memberId},#{freeboardTitle},
-		#{freeboardContent},#{freeboardNo},#{freeboardFilename},
+		#{freeboardContent},#{freeboardNo},0,#{freeboardFilename},
 		#{freeboardFilesize},#{freeboardOriginalname})
 	</insert>
 	
@@ -130,4 +130,11 @@
 		and RNUM<= #{firstRecordIndex} + #{recordCountPerPage}
 		]]>
 	</select>
+	
+	<!-- 다운수 -->
+	<update id="updateDownCount" parameterType="int">
+		update freeboard
+		set FREEBOARD_DOWNCOUNT = FREEBOARD_DOWNCOUNT+1
+		where FREEBOARD_NO=#{freeboardNo}		
+	</update>
 </mapper>

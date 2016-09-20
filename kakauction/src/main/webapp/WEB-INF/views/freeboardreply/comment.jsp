@@ -23,19 +23,24 @@
 			}
 		});
 		
-		$("#btrere").click(function(){
-			if($("#rereplyContent").val().length<1){
+		$(".btrere").click(function(){
+			var index = $(this).next().val();
+			if($("#rereplyContent"+index).val()==""){
 				alert("댓글을 입력하세요");
-				$("#rereplyContent").focus();
+				$("#rereplyContent"+index).focus();
 				return false;
 			}
-			
-			$("#frmRere").submit();
+			$("#frmRere"+index).submit();
 		});
 		
 		 $(".flip").click(function(){
-		    	var index = $(this).children().val();
-		    	$("#panel_"+index).slideToggle();
+	    	var index = $(this).children().val();
+	    	$("#panel_"+index).slideToggle();
+		});
+		 
+		$(".delete").click(function(){
+			var index = $(this).next().val();
+	    	$("#deleteReply"+index).submit();
 		});
 	});
 </script>
@@ -69,32 +74,63 @@
 			</c:if>
 			<c:if test="${!empty alist }">
 				<c:forEach var="freereplyVo" items="${alist }" varStatus="vs">
-					<tr>
+					<tr 
+						<c:if test="${freereplyVo.freereplyStep>0 }">
+							style="border-top: hidden;"	
+						</c:if>>
 						<td style="text-align: center">${freereplyVo.memberId }</td>
-						<td>${freereplyVo.freereplyContent }</td>
-						<td style="text-align: center"><fmt:formatDate value="${freereplyVo.freereplyRegdate }" pattern="yyyy-MM-dd"/></td>
+						<td>
+							<c:if test="${freereplyVo.freereplyStep>0 }">
+								&nbsp;&nbsp;${freereplyVo.freereplyContent }	
+							</c:if>
+							<c:if test="${freereplyVo.freereplyStep==0 }">
+								${freereplyVo.freereplyContent }	
+							</c:if></td>
+						<td style="text-align: center"><fmt:formatDate value="${freereplyVo.freereplyRegdate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 						<td style="text-align: center">
 							<c:if test="${freereplyVo.memberId==sessionScope.memberId }">
-								<a href="#" id="delete">삭제</a>
+								<a href="#" class="delete">삭제</a>
+								<input type="hidden" class="flip" value="${vs.index}" >
+								<form action="<c:url value='/freeboardreply/delete.do'/>" id="deleteReply${vs.index }" method="post">
+									<input type="hidden" name="freereplyNo" value="${freereplyVo.freereplyNo }">
+									<input type="hidden" name="freereplyGroupno" value="${freereplyVo.freereplyGroupno }">
+									<input type="hidden" name="freereplyStep" value="${freereplyVo.freereplyStep }">
+								</form>
 							</c:if>
 							<c:if test="${freereplyVo.memberId!=sessionScope.memberId }">
-								<div class="flip">
-									<input type="hidden" class="flip" value="${vs.index}" >
-									<a href="#">답글</a>
-								</div>
+								<c:if test="${freereplyVo.freereplyStep==0 }">
+									<div class="flip">
+										<input type="hidden" class="flip" value="${vs.index}" >
+										<a href="#">답글</a>
+									</div>
+								</c:if>
 							</c:if>
 						</td>
 					</tr>
-					<form action="<c:url value='/freeboardreply/rere.do'/>" method="post" id="frmRere">
+					<form action="<c:url value='/freeboardreply/rere.do'/>" method="post" id="frmRere${vs.index }">
 						<tr style="display: none;" id="panel_${vs.index}" >
-								<td colspan="3"><textarea rows="5" cols="165" name="freereplyContent" id="rereplyContent"></textarea></td>
-								<input type="hidden" name="freeboardNo" value="${freereplyVo.freeboardNo }">
-								<td><input type="button" id="btrere" value="등록"></td>
+							<td colspan="3"><textarea rows="5" cols="165" name="freereplyContent" id="rereplyContent${vs.index }"></textarea></td>
+							<input type="hidden" name="freeboardNo" value="${freereplyVo.freeboardNo }">
+							<input type="hidden" name="freereplyStep" value="${freereplyVo.freereplyStep }">
+							<input type="hidden" name="freereplyGroupno" value="${freereplyVo.freereplyGroupno }">
+							<td><input type="button" class="btrere" value="등록"><input type="hidden" class="btrere" value="${vs.index}" ></td>
 						</tr>
 					</form>
 				</c:forEach>
 			  </c:if>
 	 	</table>
+ 		<form id="replyComment" name="replyComment" method="post" action="<c:url value='/freeboardreply/insertComment.do'/>">
+			<div class="commentWrite" style="width: 1000px; margin-top: 20px;">
+				<fieldset>
+					<input type="hidden" id="memberId" name="memberId" style="width: 30%" value="${sessionScope.memberId }" readonly>
+					<input type="hidden" name="freeboardNo" value="${freeVo.freeboardNo}">
+					<p style="margin-top: 20px;">
+						<textarea rows="1" cols="165" name="freereplyContent" id="freereplyContent"></textarea>
+						<input type="submit" name="commentSubmit" value="확인">
+					</p>
+				</fieldset>
+			</div>
+		</form>
 		<div class="pagediv">
 			<ul class="page">
 				<!-- 이전 블럭으로 이동 -->
@@ -120,25 +156,7 @@
 			</ul>
 		</div>
 	</div>
-	<form id="replyComment" name="replyComment" method="post" action="<c:url value='/freeboardreply/insertComment.do'/>">
-		<div class="commentWrite" style="width: 1000px; margin-top: 20px;">
-			<fieldset>
-			<hr style="color: silver;"><br>
-					<p style="margin-top: 10px;">
-						<label for="memberId" style="margin-right: 10px;">작성자</label>
-						<span>${sessionScope.memberId }</span>
-						<input type="hidden" id="memberId" name="memberId" style="width: 30%" value="${sessionScope.memberId }" readonly>
-					</p>
-					<input type="hidden" name="freereplyGroupno" value="${freeVo.freeboardNo}">
-					<p style="margin-top: 20px;">
-						<textarea rows="5" cols="165" name="freereplyContent" id="freereplyContent"></textarea>
-					</p>
-					<div style="text-align: center; margin-top: 10px;">
-						<input type="submit" name="commentSubmit" value="확인">
-					</div>
-			</fieldset>
-		</div>
-	</form>
+	<hr style="color: silver;"><br>
 	<c:if test="${freeVo.prevFreeboardNo!='0' }">
 		<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${freeVo.prevFreeboardNo}'/>">다음글</a> | 
 		<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${freeVo.prevFreeboardNo}'/>">${freeVo.prevFreeboardTitle }</a>

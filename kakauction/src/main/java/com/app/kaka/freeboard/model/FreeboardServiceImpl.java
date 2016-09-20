@@ -66,8 +66,9 @@ public class FreeboardServiceImpl implements FreeboardService{
 		return freeboardDao.reportFreeboardList(vo);
 	}
 	
-/*	public int updateDownCount(int no){
-		return reBoardDao.updateDownCount(no);
-	}*/
+	@Override
+	public int updateDownCount(int freeboardNo){
+		return freeboardDao.updateDownCount(freeboardNo);
+	}
 
 }

@@ -1,6 +1,7 @@
 package com.app.kaka.freereply.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -39,6 +40,12 @@ public class FreeReplyDAOMybatis extends SqlSessionDaoSupport implements FreeRep
 		freeReplyVo.setFreereplyStep(freeReplyVo.getFreereplyStep()+1);
 		
 		return getSqlSession().insert(namespace+".insertReply", freeReplyVo);
+	}
+
+	@Override
+	public int deleteReply(Map<String, String> map) {
+		System.out.println(map);
+		return getSqlSession().delete(namespace+".deleteReply", map);
 	}
 
 }

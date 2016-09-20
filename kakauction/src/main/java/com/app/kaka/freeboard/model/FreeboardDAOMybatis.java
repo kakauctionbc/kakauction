@@ -60,5 +60,10 @@ public class FreeboardDAOMybatis extends SqlSessionDaoSupport implements Freeboa
 	public List<FreeboardVO> reportFreeboardList(SearchVO vo) {
 		return getSqlSession().selectList(namespace+".reportFreeboardList", vo);
 	}
+
+	@Override
+	public int updateDownCount(int freeboardNo) {
+		return getSqlSession().delete(namespace+".updateDownCount", freeboardNo);
+	}
 	
 }

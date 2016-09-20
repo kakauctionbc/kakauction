@@ -1,6 +1,10 @@
 package com.app.kaka.freereply.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +37,7 @@ public class FreeReplyController {
 		int cnt = freereplyService.insertComment(vo);
 		logger.info("댓글달기 결과 cnt = {}", cnt);
 		
-		String msg = "", url = "/freeboard/detail.do?freeboardNo="+vo.getFreereplyGroupno();
+		String msg = "", url = "/freeboard/detail.do?freeboardNo="+vo.getFreeboardNo();
 		if(cnt>0){
 			msg = "댓글을 달았습니다!";
 		}else{
@@ -74,8 +78,11 @@ public class FreeReplyController {
 	}
 	
 	@RequestMapping("/rere.do")
-	public String rereply(@ModelAttribute FreeReplyVO freeReplyVo, Model model){
-		logger.info("답변달기 처리 파라미터 freeReplyVo={}", freeReplyVo);
+	public String rereply(@ModelAttribute FreeReplyVO freeReplyVo, HttpSession session, Model model){
+		String memberId = (String)session.getAttribute("memberId");
+		freeReplyVo.setMemberId(memberId);
+		
+		logger.info("답변달기 처리 파라미터 freeReplyVo = {}", freeReplyVo);
 		
 		int cnt = freereplyService.insertReply(freeReplyVo);
 		logger.info("답변달기 처리 결과, cnt={}", cnt);
@@ -87,6 +94,30 @@ public class FreeReplyController {
 		}else{
 			msg = "답변달기 실패";
 		}//if
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	@RequestMapping("/delete.do")
+	public String deleteReply(@ModelAttribute FreeReplyVO freereplyVo, Model model){
+		//저장 프로시저에서 사용할 map 만들기
+		Map<String, String> map  = new HashMap<String, String>();
+		map.put("freereplygroupNo", freereplyVo.getFreereplyGroupno()+"");
+		map.put("freereplyno", freereplyVo.getFreereplyNo()+"");
+		map.put("freereplystep", freereplyVo.getFreereplyStep()+"");
+		logger.info("글삭제시 파라미터 map={}", map);
+		
+		int cnt = freereplyService.deleteReply(map);
+		
+		String msg = "", url = "/freeboard/detail.do?freeboardNo="+freereplyVo.getFreeboardNo();
+		if(cnt>0){
+			msg = "댓글을 삭제하였습니다";
+		}else{
+			msg = "댓글 삭제 실패";
+		}
 		
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);

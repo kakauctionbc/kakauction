@@ -1,6 +1,7 @@
 package com.app.kaka.freereply.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,5 +39,10 @@ public class FreeReplyServiceImpl implements FreeReplyService{
 		
 		return cnt;
 	}
-	
+
+	@Override
+	public int deleteReply(Map<String, String> map) {
+		return freereplyDao.deleteReply(map);
+	}
+
 }

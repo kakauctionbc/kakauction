@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.app.kaka.common.FileUploadWebUtil;
 import com.app.kaka.common.PaginationInfo;
@@ -275,5 +276,31 @@ public class FreeboardController {
 		logger.info("공지 삭제 결과, cnt={}",cnt);
 		
 		return "redirect:/freeboard/list.do";
+	}
+	
+	@RequestMapping("/download.do")
+	public ModelAndView download(@RequestParam(defaultValue="0") int freeboardNo, @RequestParam String freeboardFilename,
+			HttpServletRequest request,Model model){
+		logger.info("다운로드 파라미터, noticeNo={},fileName={}",freeboardNo, freeboardFilename);
+		
+		int cnt = freeboardService.updateDownCount(freeboardNo);
+		logger.info("다운로드 수 증가 freeboardNo={}",freeboardNo);
+		
+		//3.
+		//다운로드할 파일정보를 이용해서 파일 객체를 
+		//만든 후 뷰에 넘긴다
+		
+		//ModelAndView(String viewName, Map map)		
+		Map<String, Object> map 
+			= new HashMap<String, Object>();
+		String upPath = webUtil.getUploadPath(request,webUtil.FREEBOARD_UPLOAD);
+		
+		File file = new File(upPath, freeboardFilename);
+		//생성한 파일 객체를 map에 저장한 후 뷰에 넘긴다
+		map.put("myfile", file);
+		
+		ModelAndView mav = new ModelAndView("downloadView", map);
+		
+		return mav;
 	}
 }
