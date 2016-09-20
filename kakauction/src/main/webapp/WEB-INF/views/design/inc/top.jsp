@@ -117,7 +117,7 @@ $(function(){
 			<div id="content-buy">
 				<ul>
 					<li><a href="<c:url value='/auction/list.do'/>">경매리스트</a></li>
-					<li><a href="<c:url value='/auction/todayList.do'/>">공매리스트</a></li>
+					<li><a href="<c:url value='/auction/todayList.do'/>">오늘마감경매</a></li>
 					<li><a href="#">일정안내</a></li>
 				</ul>
 			</div>

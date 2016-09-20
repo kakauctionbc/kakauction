@@ -50,11 +50,11 @@
 						return;
 					}
 					if(highMember==buyerMemberId){
-						$("#light").css("background","red");
-						$("#lightText").css("color", "yellow")
+						$("#light").css("background","#8eff67");
+						$("#lightText").css("color", "black");
 					}else{
 						$("#light").css("background","");
-						$("#lightText").css("color", "")
+						$("#lightText").css("color", "");
 					}
 				}/* ,
 				error : function(xhr,status,error) {
@@ -89,6 +89,7 @@
 					$("#goAuction").show();
 					$("#nowHighPrice").html(highVo.recordPrice+"만원<br>"+highVo.buyerMemberId).css("text-align","right");
 					$("#light").css("background","red");
+					$("#lightText").css("color", "black");
 					
 				},
 				error : function(xhr,status,error) {
@@ -111,9 +112,7 @@
 		font-weight: bold;
 		text-decoration: none;
 	}
-	td{
-		border: 1px solid silver;
-	}
+
 </style>
 <div id="wrap">
 	<div id="wrapdiv">
@@ -133,6 +132,7 @@
 				<thead>
 					<tr>
 						<td style="width: 600px;" colspan="2">
+							<div>종료까지 남은 시간 : </div>
 							<div id="countdown">
 							<input type="hidden" id="auctionFinish" value="${auctionGo['AUCTION_FINISH']}">
 							</div>
