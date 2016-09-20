@@ -12,17 +12,22 @@
 		var sellerMemberId=$("#sellerMemberId").val();
 		var buyerMemberId=$("#byuerMemberId").val();
 		var memberId = $("#nowMemberId").val();
+		
 		setInterval(newrefresh,0);
 		
-		$().ready(function(){
-			var d = $("#auctionFinish").val();
-			$('#countdown').countdown(d, function(event) {
-				  if($(this).html()=="00 일 00:00:00"){
-					  alert("경매가 마감 되었습니다");
-				  }
-				  $(this).html(event.strftime('%D 일 %H:%M:%S'));
-			});
+		var d = $("#auctionFinish").val();
+		var today=new Date("yyyy-MM-dd HH:mm:ss");
+		
+		$('#countdown').countdown(d, function(event) {
+			  if($(this).html()=="00 일 00:00:00"){
+				  alert("경매가 마감 되었습니다");
+			  }
+			  if(event.strftime("%M")<10){
+				  $(this).css("color","red");
+			  }
+			  $(this).html(event.strftime('%D 일 %H:%M:%S'));
 		});
+
 		
 		function newrefresh(){
 			$.ajax({
