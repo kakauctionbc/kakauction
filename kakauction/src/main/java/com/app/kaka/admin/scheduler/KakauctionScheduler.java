@@ -23,7 +23,7 @@ public class KakauctionScheduler {
 	@Autowired
 	private AuctionDAO auctionDao;
 	
-	@Scheduled(fixedDelay = 1000) 
+	@Scheduled(fixedDelay = 2000) 
 	public void reFresh(){
 		logger.info("경매 상태 업데이트");
 		List<AuctionVO> auctionList = auctionDao.selectAuctionNoList();
