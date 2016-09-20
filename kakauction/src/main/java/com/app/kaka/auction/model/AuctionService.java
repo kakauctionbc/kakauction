@@ -85,7 +85,6 @@ public interface AuctionService {
 	public RecordVO selectRecordByRecordNo(int auctionNo);
 	public List<RecordVO> selectRecordByAuctionNo(int auctionNo);
 	public int insertLastBuyer(RecordVO vo);
-	public void updateState();
 	
 	//낙찰된 경매를 보자
 	public List<Integer> selectMyAuctionById(String memberId);

@@ -17,13 +17,7 @@
 			(
 			    select rownum as RNUM, LIST_ALL.*
 			    from
-			        (select q.question_no, q.member_id, q.question_title,
-					q.question_regdate, q.question_content,
-					q.question_return, q.question_only,R.ANS_CONTENT, R.ANS_TIME,
-					(sysdate-question_regdate)*24 as newImgTerm
-		       		from question q, QNAREPLY r
-		        <include refid="searchWhere"></include>
-		        order by question_no desc) LIST_ALL    
+			        (select * from question order by question_no desc) LIST_ALL    
 		) 
 		<![CDATA[
 		where  RNUM> #{firstRecordIndex} 

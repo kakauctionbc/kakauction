@@ -5,7 +5,14 @@ import java.sql.Timestamp;
 public class QnareplyVO extends QnaVO{
 	private String ansContent;
 	private Timestamp ansTime;
+	private int ansNo;
 	
+	public int getAnsNo() {
+		return ansNo;
+	}
+	public void setAnsNo(int ansNo) {
+		this.ansNo = ansNo;
+	}
 	public String getAnsContent() {
 		return ansContent;
 	}
@@ -21,7 +28,7 @@ public class QnareplyVO extends QnaVO{
 	
 	@Override
 	public String toString() {
-		return "QnareplyVO [ansContent=" + ansContent + ", ansTime=" + ansTime + ", toString()=" + super.toString()
-				+ "]";
+		return "QnareplyVO [ansContent=" + ansContent + ", ansTime=" + ansTime + ", ansNo=" + ansNo + ", toString()="
+				+ super.toString() + "]";
 	}
 }

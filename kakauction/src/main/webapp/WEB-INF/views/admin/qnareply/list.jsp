@@ -172,11 +172,4 @@
     </form>
 </div>
 
-<div class="divBtn">
-    <a href="<c:url value='/qna/write.do'/>" >
-	글쓰기</a>
-</div>
-
-
-
 <%@ include file="../../design/inc/adminBottom.jsp"%>

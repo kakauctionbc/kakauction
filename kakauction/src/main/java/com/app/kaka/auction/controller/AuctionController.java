@@ -117,7 +117,6 @@ public class AuctionController {
 	
 	@RequestMapping("/list.do")
 	public String listAuction(@ModelAttribute SearchVO searchVo, Model model){
-		auctionService.updateState();
 		logger.info("경매 목록");
 		//1. 파라미터 읽어오기
 		logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);
@@ -151,7 +150,6 @@ public class AuctionController {
 	@RequestMapping("/todayList.do")
 	public String todayListAuction(@ModelAttribute SearchVO searchVo, Model model){
 		logger.info("경매 목록");
-		auctionService.updateState();
 		/*3. 글목록 조회
 		/reBoard/list.do => ReBoardListController
 		=> /reBoard/list.jsp*/
@@ -187,7 +185,6 @@ public class AuctionController {
 	
 	@RequestMapping("/myAuctionList.do")
 	public String myAuction(@ModelAttribute DateSearchVO vo, HttpSession session, Model model){
-		auctionService.updateState();
 		logger.info("경매 목록");
 		String memberId = (String)session.getAttribute("memberId");
 		vo.setMemberId(memberId);

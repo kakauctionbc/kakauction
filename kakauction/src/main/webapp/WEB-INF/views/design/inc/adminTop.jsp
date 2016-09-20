@@ -101,7 +101,7 @@ $(function(){
 			<div id="content-notice">
 				<ul>
 					<li><a href="<c:url value='/admin/notice/list.do'/>">공지사항</a></li>
-					<li><a href="<c:url value='/admin/qna/list.do'/>">QNA</a></li>
+					<li><a href="<c:url value='/admin/qnareply/qnalist.do'/>">QNA</a></li>
 				</ul>
 			</div>
 		</div>

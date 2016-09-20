@@ -41,12 +41,6 @@
 	}
 
 </script>
-<style type="text/css">
-	body{
-		padding:5px;
-		margin:5px;
-	 }	
-</style>
 	
 <!-- http://localhost:9090/mymvc/reBoard
 /list.do?currentPage=5&searchCondition=content&searchKeyword=%ED%95%98 -->

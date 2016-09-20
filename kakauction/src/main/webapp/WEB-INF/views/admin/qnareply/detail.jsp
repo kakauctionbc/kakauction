@@ -85,7 +85,7 @@
 					<input type="hidden" id="on_off" value="off">
 		        	|<a id="formMaker">답변</a>			
 		        	|
-		        	<a href="<c:url value='/admin/qnareply/list.do'/>">목록</a>|			
+		        	<a href="<c:url value='/admin/qnareply/qnalist.do'/>">목록</a>|			
 				</td>
 			</tr>
 		</table>

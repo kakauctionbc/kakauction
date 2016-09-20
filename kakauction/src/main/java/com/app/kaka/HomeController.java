@@ -36,4 +36,9 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping("/timer.do")
+	public String timer(){
+		return "auction/timer";
+	}
+	
 }

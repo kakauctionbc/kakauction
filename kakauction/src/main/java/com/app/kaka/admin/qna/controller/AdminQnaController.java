@@ -29,7 +29,7 @@ public class AdminQnaController {
 	@Autowired
 	private QnaService qnaService;
 	
-	@RequestMapping("/list.do")
+	@RequestMapping("/qnalist.do")
 	public String qnaList(@ModelAttribute SearchVO searchVo, @RequestParam(defaultValue="20")int selectedCountPerPage, Model model){
 		logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);
 		
@@ -85,7 +85,7 @@ public class AdminQnaController {
 		if(cnt>0){
 			qnaService.updateReturn(vo.getQuestionNo());
 			msg="답변 작성하였습니다";
-			url="/admin/qnareply/list.do";
+			url="/admin/qnareply/qnalist.do";
 		}else{
 			msg="답변 작성실패하였습니다";
 			url="/admin/qnareply/detail.do?questionNo="+vo.getQuestionNo();
