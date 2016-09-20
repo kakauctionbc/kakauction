@@ -173,7 +173,7 @@ public class AuctionController {
 		model.addAttribute("alistsize", alist.size());
 		model.addAttribute("pagingInfo", pagingInfo);
 		
-		return "auction/list";
+		return "auction/todayList";
 	}
 	
 	@RequestMapping("/updateCount.do")

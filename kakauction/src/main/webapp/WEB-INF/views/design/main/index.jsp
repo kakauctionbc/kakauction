@@ -3,12 +3,12 @@
 <%@ include file="../inc/top.jsp"%>
 <script type="text/javascript">
 $(function() {
-		var icon = $('#iconone img');
-		icon.hover(function() {
-			icon.attr("src", icon.attr("src").replace(".png","Big.png"))
-		}, function() {
-			icon.attr("src", icon.attr("src").replace("Big.png",".png"))
-		});
+	var icon = $('#iconone img');
+	icon.hover(function() {
+		icon.attr("src", icon.attr("src").replace(".png","Big.png"))
+	}, function() {
+		icon.attr("src", icon.attr("src").replace("Big.png",".png"))
+	});
 });
 $(function() {
 	var icon = $('#icontwo img');
@@ -57,7 +57,7 @@ $(function() {
 			</li>
 			<li id="iconthree">
 				<a href="<c:url value='/auction/todayList.do'/>">
-					<img src="${pageContext.request.contextPath }/img/joinAuction2.png">
+					<img src="${pageContext.request.contextPath }/img/todayAuction.png">
 				</a>
 			</li>
 			<li id="iconfour">

@@ -22,13 +22,13 @@
 	<div id="wrapdiv">
 		<div id="wraptop">
 			<p>
-				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>신고리스트
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>오늘마감경매
 			</p>
 		</div>
 		<div id="pagelogo">
 			<img
-				src="${pageContext.request.contextPath }/img/auctionList_logo.png"
-				alt="회원가입로고">
+				src="${pageContext.request.contextPath }/img/todayAuction_logo.png"
+				alt="오늘마감경매로고">
 		</div>
 		<form name="frmPage" method="post" action="<c:url value='/auction/list.do'/>">
 			<input type="hidden" name="currentPage"> <input type="hidden"
@@ -171,9 +171,6 @@
 					value="${param.searchKeyword}"> <input type="submit"
 					value="검색">
 			</form>
-		</div>
-		<div class="writebutton">
-			<button type="submit" onclick="<c:url value='/auction/write.do'/>">글쓰기</button>
 		</div>
 	</div>
 </div>

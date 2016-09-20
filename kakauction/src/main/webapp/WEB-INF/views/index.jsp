@@ -57,7 +57,7 @@ $(function() {
 			</li>
 			<li id="iconthree">
 				<a href="<c:url value='/auction/todayList.do'/>">
-				<img src="<c:url value='/img/joinAuction2.png'/>">
+				<img src="<c:url value='/img/todayAuction.png'/>">
 				</a>
 			</li>
 			<li id="iconfour">
