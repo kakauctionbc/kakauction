@@ -61,8 +61,7 @@ a:hover{
 		<div>
 			<span class="sp1">첨부파일</span> 
 			<span>
-			<a href
-				="<c:url value='/freeboard/download.do?no=${freeVo.freeboardNo}&fileName=${freeVo.freeboardFilename}'/>">
+			<a href="<c:url value='/freeboard/download.do?no=${freeVo.freeboardNo}&fileName=${freeVo.freeboardFilename}'/>">
 				${fileInfo }
 			</a>
 			</span>
@@ -72,20 +71,22 @@ a:hover{
 			<p class="content">${freeVo.freeboardContent}</p>
 		</div>
 		<div class="center">
-         <c:if test="${freeVo.memberId == sessionScope.memberId }">
-            <a href   ="<c:url value='/freeboard/edit.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
-            수정</a> |
-              <a id="df" href="<c:url value='/freeboard/delete.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
-            삭제</a> |
-              <a href="<c:url value='/freeboard/list.do'/>">목록</a>         
-         </c:if>
-         <c:if test="${freeVo.memberId != sessionScope.memberId }">
-            <a href="<c:url value='/freeboard/list.do'/>">목록</a>
-            <button id="btReport">신고하기</button>
-         </c:if>
+	<jsp:include page="/freeboardreply/comment.do?freeboardNo=${param.freeboardNo }"></jsp:include>
+    <c:if test="${freeVo.memberId == sessionScope.memberId }">
+       <a href   ="<c:url value='/freeboard/edit.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
+       수정</a> |
+         <a id="df" href="<c:url value='/freeboard/delete.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
+       삭제</a> |
+         <a href="<c:url value='/freeboard/list.do'/>">목록</a>         
+    </c:if>
+    <c:if test="${freeVo.memberId != sessionScope.memberId }">
+       <img src="<c:url value='/img/report_icon.png'/>" id="btReport" style="float: right;">
+    	<a href="<c:url value='/freeboard/list.do'/>">목록</a>
+    </c:if>
       </div>
 	</div>
-	<jsp:include page="/freeboardreply/comment.do?freeboardNo=${param.freeboardNo }"></jsp:include>
+	<br>
+	
 	</div>
 </div>
 <%@ include file="../design/inc/bottom.jsp"%>

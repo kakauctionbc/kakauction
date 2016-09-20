@@ -17,6 +17,39 @@
 		document.frmPage.currentPage.value=curPage;
 		document.frmPage.submit();
 	}
+	
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+	    acc[i].onclick = function(){
+	        this.classList.toggle("active");
+	        this.nextElementSibling.classList.toggle("show");
+	    }
+	}
+	
+	function openNav() {
+		document.getElementById("mySidenav").style.width = "450px";
+		document.getElementById("slideWrap").style.marginLeft = "100px";
+	}
+
+	function closeNav() {
+		document.getElementById("mySidenav").style.width = "0";
+		document.getElementById("slideWrap").style.marginLeft = "0";
+	}
+	$( document ).ready( function() {
+		  var Offset = $( '.offset' ).offset();
+		  $( window ).scroll( function() {
+		    if ( $( document ).scrollTop() > Offset.top ) {
+		      $( '.sidenav' ).addClass( 'searchFixed' );
+		    }
+		    else {
+		      $( '.sidenav' ).removeClass( 'searchFixed' );
+		    }
+		});
+	});
+
+	
 </script>
 <style type="text/css">
 .specialList{
@@ -45,11 +78,36 @@
 	color: blue;
 }
 </style>
+		<!--상세검색 -->
+
+		<div id="mySidenav" class="sidenav">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<p style="color: white; font-size: 2.0em; padding-left: 20px;">상세검색</p>
+				<button class="accordion">Section 1</button>
+				<div class="panel">
+					<p>Lorem ipsum...</p>
+				</div>
+			
+				<button class="accordion">Section 2</button>
+				<div class="panel">
+					<p>Lorem ipsum...</p>
+				</div>
+			
+				<button class="accordion">Section 3</button>
+				<div class="panel">
+					<p>Lorem ipsum...</p>
+				</div>
+		</div>
+
+
+		<!--상세검색 -->
+		<div id="slideWrap">
 <div id="wrap">
 	<div id="wrapdiv">
 		<div id="wraptop">
+			<div class="offset"></div>
 			<p>
-				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>경매리스트
+					<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>경매리스트
 			</p>
 		</div>
 		<div id="pagelogo">
@@ -57,6 +115,8 @@
 				src="${pageContext.request.contextPath }/img/auctionList_logo.png"
 				alt="경매리스트로고">
 		</div>
+		
+		<span onclick="openNav()">open</span>
 		<div class="specialList">
 			<ul>
 				<li class="first">
@@ -225,5 +285,6 @@
 			</ul>
 		</div>
 	</div>
+</div>
 </div>
 <%@ include file="../design/inc/bottom.jsp"%>

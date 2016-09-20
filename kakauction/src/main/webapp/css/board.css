@@ -35,9 +35,13 @@ a:hover{
 	}	
 .writeForm .firstDiv	{
 	border-top: 2px solid #e2e2e2/* #aacc00 */;
+	border-bottom:2px solid #e2e2e2;
+	background: #fffff2;
 }
 .writeForm .lastDiv	{
-	border-bottom: 1px solid silver;
+	border-top: 1px solid #e2e2e2/* #aacc00 */;
+	border-bottom:2px solid #e2e2e2;
+	background: #fffff2;
 }
 	
 .writeForm label, .writeForm .sp1	{
@@ -46,7 +50,8 @@ a:hover{
 	padding: 3px 15px 0 0;
 	clear: left;		
 	font-weight: bold;
-	}
+}
+
 .writeForm input[type="text"], .writeForm input[type="password"]{
 	border: 1px solid #DCDDE3;
 	}

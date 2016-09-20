@@ -5,14 +5,14 @@
 }
 
 .sidenav {
-    height: 77.3%;
+    height: 78.3%;
     width: 0;
     position: fixed;
     z-index: 1;
     top: 121px;
     left: 0;
     background-color: #000000;
-    background : rgba(0, 0, 0, 0.8);
+    background : rgba(0, 0, 0, 0.7);
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -61,39 +61,37 @@
 .searchFixed {
   position: fixed;
   top: 0px;
-  height: 89.6%;
+  height: 90.8%;
 }
 
 /* content */
 
-.accordion {
+button.accordion {
     background-color: #eee;
     color: #444;
     cursor: pointer;
     padding: 18px;
     width: 100%;
-    border: none;
     text-align: left;
+    border: none;
     outline: none;
-    font-size: 15px;
     transition: 0.4s;
 }
 
-.accordion.active, .accordion:hover {
+button.accordion.active, button.accordion:hover {
     background-color: #ddd;
 }
 
-.panel {
+div.panel {
     padding: 0 18px;
-    display: none;
     background-color: white;
+    display: none;
 }
 
-.panel.show {
+div.panel.show {
     display: block;
 }
-
-.accordion:after {
+button.accordion:after {
     content: '\02795'; /* Unicode character for "plus" sign (+) */
     font-size: 13px;
     color: #777;
@@ -101,6 +99,6 @@
     margin-left: 5px;
 }
 
-.accordion.active:after {
+button.accordion.active:after {
     content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
