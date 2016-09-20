@@ -15,18 +15,14 @@
 			}, function(){
 				$(this).css("background","");
 			});
+
 		$(document).ready(function(){
-			$("#qnaCon").hide();
-			$("#qnaTit").click(function(){
-				if($("#on_off").val()=="off"){
-					$("#on_off").val("on");
-					$("#qnaCon").show();
-					
-				}else if($("#on_off").val()=="on"){
-					$("#on_off").val("off");
-					$("#qnaCon").hide();
-				}
-			});
+		    $(".flip").click(function(){
+		    	var index = $(this).children().val();
+		    	alert($(this).children().val());
+		    	alert("#panel_"+index);
+		    	$("#panel_"+index).slideToggle();
+		    });
 		});
 	});
 
@@ -39,27 +35,36 @@
 	body{
 		padding:5px;
 		margin:5px;
-	 }
-	 table{
-	 	margin: 0 auto;
-	 	padding: 0;
-	 }
-	 th, td{
-	 	border: 1px solid silver;
-	 }
-	 .divList{
-	 	margin: 0 auto;
-	 }
-	 .divPage, .divSearch{
-	 	margin: 0 auto;
-	 }
-	 h2{
-	 	font-size: 25px;
-	 	font-weight: bold;
-	 }
-	 #qnaTit, #qnaCon{
-	 	text-align: center;
-	 }
+	}
+	table{
+		margin: 0 auto;
+		padding: 0;
+	}
+	th, td{
+		border: 1px solid silver;
+	}
+	.divList{
+		margin: 0 auto;
+	}
+	.divPage, .divSearch{
+		margin: 0 auto;
+	}
+	h2{
+		font-size: 25px;
+		font-weight: bold;
+	}
+	.flip{
+		background-color: #e5eecc;
+	}
+	.hideT{
+		padding: 5px;
+		text-align: center;
+		border: solid 1px #c3c3c3;
+	}
+	.hideT{
+		display: none;
+	}
+	 
 </style>
 <!-- http://localhost:9090/mymvc/reBoard
 /list.do?currentPage=5&searchCondition=content&searchKeyword=%ED%95%98 -->
@@ -101,37 +106,43 @@
 		</tr>
 	</c:if>
 	<c:if test="${!empty alist}">
-		<!--게시판 내용 반복문 시작  -->		
-		<c:forEach var="vo" items="${alist }">
+		<!--게시판 내용 반복문 시작  -->
+		<input type="hidden" class="on_off" value="off">
+		<c:forEach var="vo" items="${alist }" varStatus="vs">
 			<tr style="text-align: center">
 				<td>${vo.questionNo}</td>
 				<td>${vo.memberId}</td>
 				<td style="text-align: left;">
-				<input type="hidden" id="on_off" value="off">
 					<table>
-							<c:if test="${fn:length(vo.questionTitle)<=30}">
-							<tr><td id="qnaTit">
-									${vo.questionTitle}
-							</td></tr>
-							</c:if>
-							<!-- 제목이 긴 경우 일부만 보여주기 -->
-							<c:if test="${fn:length(vo.questionTitle)>20}">
-								<tr><td id="qnaTit">
-									${fn:substring(vo.questionTitle, 0,20)}...??
-								</td></tr>
-								<tr><td>${fn:substring(vo.questionTitle, 20)}</td></tr>
-							</c:if>
-						<tr id="qnaCon">
-							<td class="on_off">
-								${vo.questionContent}
-								<br><br>
-								<p>작성일 : <fmt:formatDate value="${vo.questionRegdate}" pattern="yyyy-MM-dd"/></p>
-								<c:if test="${vo.questionReturn=='Y'}">
-									-답변-<br>
-									${vo.ansContent}
-								</c:if>
+						<tr>
+							<td>
+								<div class="flip">${vo.questionTitle}<input type="hidden" class="flip" value="${vs.index}" ></div>
 							</td>
 						</tr>
+					</table>
+					<table id="panel_${vs.index}" class="hideT">
+						<tr>
+							<td>
+								${vo.questionContent}
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>작성일 : <fmt:formatDate value="${vo.questionRegdate}" pattern="yyyy-MM-dd"/></p>
+							</td>
+						</tr>
+						<c:if test="${vo.questionReturn=='Y'}">
+						<tr>
+							<td>		
+								답변
+							</td>
+						</tr>
+						<tr>
+							<td>		
+								${vo.ansContent}
+							</td>
+						</tr>
+						</c:if>
 					</table>
 				</td>
 				<c:if test="${vo.questionReturn=='N'}">
@@ -140,14 +151,14 @@
 				<c:if test="${vo.questionReturn=='Y'}">
 					<td>O</td>
 				</c:if>
-			</tr>				
+			</tr>
 		</c:forEach>
 		<!--반복처리 끝  -->
 	</c:if>
 	</tbody>
-</table>	   
+</table>
+<a href="<c:url value='/qna/write.do'/>">QNA글쓰기</a> 
 </div>
-<div style="margin-left: 1410px;"><a href="<c:url value='/qna/write.do'/>">글쓰기</a></div>
 <div class="divPage">
 	<!-- 이전 블럭으로 이동 -->
 	<c:if test="${pagingInfo.firstPage>1 }">	
@@ -156,6 +167,7 @@
 					alt="이전블럭으로">
 		</a>	
 	</c:if>
+	
 	<!-- 페이지 번호 추가 -->						
 	<!-- [1][2][3][4][5][6][7][8][9][10] -->
 	<c:forEach var="i" begin="${pagingInfo.firstPage }" 
