@@ -53,6 +53,7 @@
 			</if>
 		</where>
 	</sql>
+	
 	<select id="selectAucList" resultType="AuctionCarVO" parameterType="SearchVO">
 		select * from(
 		    select rownum as RNUM, LIST_ALL.* from(
@@ -60,45 +61,47 @@
 		            select * from(
 		                select * from(
 		                    select * from Auction_Car2
-			                    <if test="carSize1!=null and carSize1!=''">
-			                        where car_size like '%'||'#{carSize1}'||'%' 
-								</if>
-			                    <if test="carSize2!=null and carSize2!=''">
-			                        or car_size like '%'||'#{carSize2}'||'%' 
-								</if>
-			                    <if test="carSize3!=null and carSize3!=''">
-			                        or car_size like '%'||'#{carSize3}'||'%' 
-								</if>
-		                        ) 
-		                    <if test="birth!=null and birth!=''">
+		                    <if test="carSizes!=null and carSizes!=''">
+		                        where car_size in
+			                    <foreach collection="carSizes" item="carSize" index="index" 
+			                    	open="(" close=")" separator=",">
+			                    	#{carSize}
+								</foreach>
+		                    </if>
+		                        )
+		                    <if test="birth1!=null and birth1!=''">
 			                    <![CDATA[
-				                    where birth>to_date(#{birth},'yyyy-mm')
+			                    where birth>=to_date(#{birth1},'yyyy-mm')
 			                    ]]>
-							</if>
+		                    </if>
+		                    <if test="birth2!=null and birth2!=''">
+			                    <![CDATA[
+			                    where birth<=to_date(#{birth2},'yyyy-mm')
+			                    ]]>
+		                    </if>
 		                )
-		                <if test="price1!=null and price1!=''">
-		                <![CDATA[
-		                where AUCTION_FIRSTPRICE>#{price1}
-		                ]]>
-		                </if>
-		                <if test="price2!=null and price2!=''">
-		                <![CDATA[
-		                and AUCTION_FIRSTPRICE<=#{price2}
-		                ]]>
-		                </if>
+		                <if test="priceS!=null and priceS!=''">
+			                <![CDATA[
+			                where AUCTION_FIRSTPRICE>#{priceS}
+			                ]]>
+						</if>
+		                <if test="priceD!=null and priceD!=''">
+			                <![CDATA[
+			                and AUCTION_FIRSTPRICE<=#{priceD}
+			                ]]>
+						</if>
 		        )
-		        <if test="carGas1!=null and carGas1!=''">
-                <![CDATA[
-                where car_gas like '%'||#{carGas1}||'%'
-                ]]>
-                </if>
-		        <if test="carGas2!=null and carGas2!=''">
-                <![CDATA[
-                or car_gas like '%'||#{carGas2}||'%'
-                ]]>
-                </if>
-		    )LIST_ALL 
-		    where car_acci like '%'||'Y'||'%'
+		        <if test="carGases!=null and carGases!=''">
+			        where car_gas in
+			        <foreach collection="carSizes" item="carGas" index="index" 
+	                   	open="(" close=")" separator=",">
+	                   	#{carGas}
+					</foreach>
+		        </if>
+		    )LIST_ALL
+		    <if test="carAcci!=null and carAcci!=''">
+		    	where car_acci like #{carAcci}
+		    </if>
 		)
 		<![CDATA[
 		where  RNUM> #{firstRecordIndex} 
@@ -106,6 +109,7 @@
 			+ #{recordCountPerPage}
 		]]>
 	</select>
+	
 	<select id="selectListCount" resultType="int" parameterType="SearchVO">
 		select count(*) from Auction_Car2 
 		<include refid="listWhere"></include>

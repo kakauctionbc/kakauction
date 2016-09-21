@@ -28,6 +28,7 @@ import com.app.kaka.common.DateSearchVO;
 import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
+import com.app.kaka.common.DetailSearchVO;
 import com.app.kaka.gas.model.GasVO;
 import com.app.kaka.op.model.OpService;
 import com.app.kaka.op.model.OpVO;
@@ -120,7 +121,12 @@ public class AuctionController {
 	}*/
 	
 	@RequestMapping("/list.do")
-	public String listAuction(@ModelAttribute SearchVO searchVo, Model model){
+	public String listAuction(@RequestParam(required=false) String[] carSizes,
+			@RequestParam(required=false) String[] carGases , @RequestParam(required=false) String birth1,
+			@RequestParam(required=false) String birth2,@RequestParam(required=false) String priceS,
+			@RequestParam(required=false) String priceD, @RequestParam(required=false) String auctionFirstprice, 
+			@RequestParam(required=false) String auctionFirstprice2,@ModelAttribute DetailSearchVO searchVo, Model model){
+		
 		logger.info("경매 목록");
 		//1. 파라미터 읽어오기
 		logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);
