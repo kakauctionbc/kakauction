@@ -5,6 +5,11 @@
 <%@ include file="../../design/inc/adminTop.jsp"%>
 <script type="text/javascript">
 	$().ready(function(){
+		CKEDITOR.replace( 'ansContent',{
+			skin:'minimalist',
+			uiColor: '#f8f9ef'
+		});
+		
 		$(document).ready(function(){
 			$("#replyCon").hide();
 			$("#formMaker").click(function(){

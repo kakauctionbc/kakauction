@@ -5,7 +5,11 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
-		CKEDITOR.replace('noticeContent');	
+		/* CKEDITOR.replace('noticeContent');	 */
+		CKEDITOR.replace( 'noticeContent',{
+			skin:'minimalist',
+			uiColor: '#f8f9ef'
+		});
 		
 		var instance = CKEDITOR.instances.noticeContent;
 		instance.updateElement();

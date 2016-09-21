@@ -4,8 +4,11 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		CKEDITOR.replace('freeboardContent');
-		
+		/* CKEDITOR.replace('freeboardContent'); */
+		CKEDITOR.replace( 'freeboardContent',{
+			skin:'minimalist',
+			uiColor: '#f8f9ef'
+		});
 		$("#frmWrite").submit(function(){
 			var instance = CKEDITOR.instances.freeboardContent;
 			instance.updateElement();
