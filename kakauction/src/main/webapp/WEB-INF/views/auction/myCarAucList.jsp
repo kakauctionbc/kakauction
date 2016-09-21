@@ -10,17 +10,6 @@
 		}, function(){
 			$(this).css("background","");
 		});
-		$("#frmOrderList").submit(function(){
-			if($("#startDay").val().length<1){
-				alert("시작일을 입력하세요");
-				$("#startDay").focus();
-				return false;
-			}else if($("#endDay").val().length<1){
-				alert("종료일을 입력하세요");
-				$("#endDay").focus();
-				return false;
-			}
-		});
 	});
 	function pageProc(curPage){
 		document.frmPage.currentPage.value=curPage;
@@ -32,12 +21,6 @@
 	<input type="hidden" name="startDay" value="${param.startDay}">
 	<input type="hidden" name="endDay" value="${param.endDay}">
 	<input type="hidden" name="currentPage">	
-</form>
-
-<form name="frm1" method="post" id="frmOrderList" action="<c:url value='/auction/myAuctionList.do'/>" >
-	<!-- 조회기간 include -->
-	<%@include file="../design/inc/dateTerm.jsp" %>
-	<input type="submit" value="조회" >
 </form>
 
 <div id="wrap">
@@ -58,7 +41,7 @@
 				type="hidden" name="searchKeyword"
 				value="${searchVO.searchKeyword }">
 		</form>
-		<div><p>내가 참여한 경매 건 수 : ${alistsize }</p></div>
+		<div><p>내가 등록한 차량 경매 건 수 : ${alistsize }</p></div>
 		<div class="divList">
 			<table class="box2">
 				<caption>나의 경매리스트</caption>
@@ -73,12 +56,12 @@
 					<tr class="listTitle">
 						<th rowspan="2">경매 번호</th>
 						<th rowspan="2">차번호</th>
-						<th>연식</th>
-						<th>내 입찰가</th>
+						<th>조회수</th>
+						<th>초기구입가</th>
 						<th>입찰시작</th>
 					</tr>
 					<tr>
-						<th>주행거리</th>
+						<th>신고수</th>
 						<th>경매 시작가</th>
 						<th>입찰마감</th>
 					</tr>
@@ -99,29 +82,29 @@
 								<c:if test="${vo['auctionState']!='END'}">
 								<td>
 									<p style="font-size: 2em;">
-										${vo['auctionNoYear']}-${vo['auctionNoCar']}-${vo['auctionNo']}
+										${vo['AUCTION_NO_YEAR']}-${vo['AUCTION_NO_CAR']}-${vo['AUCTION_NO']}
 									</p>
 								</td>
 								<td class="listName" style="text-align: center;">
 									<a class="auctionTitle" href="<c:url value='/auction/updateCount.do?auctionNo=${vo["auctionNo"]}'/>">
-										${vo['carNum']}<br>
-										<c:if test="${fn:length(vo['carLoc'])>30}">
-											${fn:substring(vo['carLoc'], 0,30)}...
+										${vo['CAR_NUM']}<br>
+										<c:if test="${fn:length(vo['CAR_LOC'])>30}">
+											${fn:substring(vo['CAR_LOC'], 0,30)}...
 										</c:if> 
-										<c:if test="${fn:length(vo['carLoc'])<=30}">
-											${vo['carLoc']}
+										<c:if test="${fn:length(vo['CAR_LOC'])<=30}">
+											${vo['CAR_LOC']}
 										</c:if>
 									</a>
 									</td>
-								<td>${vo['carBirth']}<br> <fmt:formatNumber pattern="#,###" value="${vo['carDist']}"/>km
+								<td>${vo['AUCTION_READ_COUNT']}<br> ${vo['AUCTION_REPORT_COUNT']}"
 								</td>
 								<td>
 									<p style="color:red;font-size: 1.5em;font-weight: bold;">
-										<fmt:formatNumber pattern="#,###" value="${vo['recordPrice']}"/>만원
+										<fmt:formatNumber pattern="#,###" value="${vo['AUCTION_PROMP']}"/>만원
 									</p>
-									<fmt:formatNumber pattern="#,###" value="${vo['auctionFirstprice'] }"/>만원
+									<fmt:formatNumber pattern="#,###" value="${vo['AUCTION_FIRSTPRICE'] }"/>만원
 								</td>
-								<td>${vo['auctionRegdate']}<br> ${vo['auctionFinish']}
+								<td>${vo['AUCTION_REGDATE']}<br> ${vo['AUCTION_FINISH']}
 								</td>
 								</c:if>
 							</tr>

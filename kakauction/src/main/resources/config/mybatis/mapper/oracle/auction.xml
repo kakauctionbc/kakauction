@@ -438,11 +438,8 @@
 	<select id="selectAuctionRecord" resultType="map" parameterType="DateSearchVO">
 		select * from(
 			select rownum as RNUM, myAuction_List.* from(
-			    select a.car_num, a.seller_member_id, a.auction_no_year, a.auction_no_car,a.auction_no, 
-			    a.auction_promp, a.auction_firstprice, a.auction_regdate, a.auction_finish, 
-			    a.auction_read_count, a.auction_report_count, r.buyer_member_id, r.record_price, r.record_regdate 
-			    from auction a, record r 
-			    where a.seller_member_id = r.seller_member_id and a.seller_member_id=#{memberId}
+			    select * from auction
+			    where seller_member_id=#{memberId}
 	    )myAuction_List)
 		<![CDATA[	
 		where RNUM> #{firstRecordIndex} 
