@@ -435,7 +435,7 @@
 		select * from gas
 	</select>
 	
-	<select id="selectAuctionRecord" resultType="map" parameterMap="DateSearchVO">
+	<select id="selectAuctionRecord" resultType="map" parameterType="DateSearchVO">
 		select * from(
 			select rownum as RNUM, myAuction_List.* from(
 			    select a.car_num, a.seller_member_id, a.auction_no_year, a.auction_no_car,a.auction_no, 

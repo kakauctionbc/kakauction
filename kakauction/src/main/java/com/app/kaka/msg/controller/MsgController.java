@@ -112,10 +112,13 @@ public class MsgController {
 	@ResponseBody
 	public int msgAla(HttpSession session, Model model){
 		String memberId = (String) session.getAttribute("memberId");
+		int result = 0;
+		if(memberId!=null && !memberId.isEmpty()){
+			int newMsgCount = msgService.newMessage(memberId);
+			int newAlartCount = alertService.newAlert(memberId);
+			result = newMsgCount+newAlartCount;
+		}
 		
-		int newMsgCount = msgService.newMessage(memberId);
-		int newAlartCount = alertService.newAlert(memberId);
-		
-		return newMsgCount+newAlartCount;
+		return result;
 	}
 }
