@@ -81,7 +81,7 @@ $(function(){
 		<div id="headmenu-content">
 			<div id="content-auction">
 				<ul>
-					<li><a href="<c:url value='/admin/auction/auctionWrite.do'/>">경매신청</a></li>
+					<li><a href="<c:url value='/admin/auction/auctionWrite.do'/>">경매등록</a></li>
 					<li><a href="<c:url value='/admin/auction/auctionList.do'/>">경매목록</a></li>
 					<li><a href="<c:url value='/admin/auction/auctionSuccess.do'/>">낙찰경매현황</a></li>
 					<li><a href="<c:url value='/admin/auction/auctionDenyList.do'/>">경매거부 목록</a></li>
