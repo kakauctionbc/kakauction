@@ -106,7 +106,7 @@
 			</div>
 			<div id="pagelogo">
 				<%-- <img src="${pageContext.request.contextPath }/img/auctionList_logo.png" alt="회원가입로고"> --%>
-				<h1>회원 조회관리</h1>
+				<h1>회원 정보 조회</h1>
 			</div>
 			<div class="divSearch">
 			   	<form name="frmSearch" method="post" action="<c:url value='/admin/member/memberSearchList.do' />" >

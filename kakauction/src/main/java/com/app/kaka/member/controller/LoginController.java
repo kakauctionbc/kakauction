@@ -41,6 +41,19 @@ public class LoginController {
 			HttpServletResponse response,
 			Model model){
 		logger.info("로그인입력 파라미터 memberVo={}",memVo);
+		
+		String memberId = memVo.getMemberId();
+		logger.info("memberId={}",memberId);
+		
+		String memberGrade = memberService.whereMemberGrade(memberId);
+		logger.info("memberGrade={}",memberGrade);
+		if (memberGrade.equals("BLACKLIST")) {
+			model.addAttribute("msg", "신고로 차단된 회원입니다.");
+			model.addAttribute("url", "/login/login.do");
+			
+			return "common/message";
+		}
+		
 		logger.info("아이디저장 chkSave={}",chkSave);
 		
 		int result = memberService.loginCheck(memVo);
