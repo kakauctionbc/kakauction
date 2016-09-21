@@ -143,7 +143,7 @@ public class AuctionController {
 		logger.info("토탈레코드가 궁금 totalRecord={}",totalRecord);
 		pagingInfo.setTotalRecord(totalRecord);
 		
-		/*//상세검색carsizeList
+		//상세검색carsizeList
 		List<GasVO> cargasList =auctionService.selectCarGas();
 		List<CarsizeVO> carsizeList =auctionService.selectCarsize();
 		logger.info("carsizeList 궁금 carsizeList={}, size={}",carsizeList, carsizeList.size());
@@ -151,7 +151,7 @@ public class AuctionController {
 		
 		//3. 결과 저장, 뷰페이지 리턴
 		model.addAttribute("carsizeList", carsizeList);
-		model.addAttribute("cargasList", cargasList);*/
+		model.addAttribute("cargasList", cargasList);
 		model.addAttribute("alist", alist);
 		model.addAttribute("alistsize", alist.size());
 		model.addAttribute("pagingInfo", pagingInfo);

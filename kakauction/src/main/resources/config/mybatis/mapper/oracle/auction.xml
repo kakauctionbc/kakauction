@@ -54,15 +54,52 @@
 		</where>
 	</sql>
 	<select id="selectAucList" resultType="AuctionCarVO" parameterType="SearchVO">
-		select *
-		from
-		(
-		    select rownum as RNUM, LIST_ALL.*
-		    from
-		        (select * from Auction_Car2
-		        <include refid="listWhere"></include>
-		        ) LIST_ALL    
-		) 
+		select * from(
+		    select rownum as RNUM, LIST_ALL.* from(
+		        select * from(
+		            select * from(
+		                select * from(
+		                    select * from Auction_Car2
+			                    <if test="carSize1!=null and carSize1!=''">
+			                        where car_size like '%'||'#{carSize1}'||'%' 
+								</if>
+			                    <if test="carSize2!=null and carSize2!=''">
+			                        or car_size like '%'||'#{carSize2}'||'%' 
+								</if>
+			                    <if test="carSize3!=null and carSize3!=''">
+			                        or car_size like '%'||'#{carSize3}'||'%' 
+								</if>
+		                        ) 
+		                    <if test="birth!=null and birth!=''">
+			                    <![CDATA[
+				                    where birth>to_date(#{birth},'yyyy-mm')
+			                    ]]>
+							</if>
+		                )
+		                <if test="price1!=null and price1!=''">
+		                <![CDATA[
+		                where AUCTION_FIRSTPRICE>#{price1}
+		                ]]>
+		                </if>
+		                <if test="price2!=null and price2!=''">
+		                <![CDATA[
+		                and AUCTION_FIRSTPRICE<=#{price2}
+		                ]]>
+		                </if>
+		        )
+		        <if test="carGas1!=null and carGas1!=''">
+                <![CDATA[
+                where car_gas like '%'||#{carGas1}||'%'
+                ]]>
+                </if>
+		        <if test="carGas2!=null and carGas2!=''">
+                <![CDATA[
+                or car_gas like '%'||#{carGas2}||'%'
+                ]]>
+                </if>
+		    )LIST_ALL 
+		    where car_acci like '%'||'Y'||'%'
+		)
 		<![CDATA[
 		where  RNUM> #{firstRecordIndex} 
 			and RNUM<= #{firstRecordIndex}
