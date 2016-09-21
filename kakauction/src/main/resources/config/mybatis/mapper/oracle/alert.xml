@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.alert">
+	<insert id="sendDeferCar" parameterType="AlertVO">
+		<selectKey keyProperty="alertNo" resultType="int" order="BEFORE">
+			select ALERT_SEQ.nextval from dual
+		</selectKey>
+		insert into alert(alert_no, car_num, seller_member_id, alert_type, alert_content, alert_regdate, alert_title, alert_confirm)
+		values(#{alertNo}, #{carNum}, #{sellerMemberId}, #{alertType}, #{alertContent}, sysdate, #{alertTitle}, 'N' )
+	</insert>
+
+	<insert id="sendDenyCar" parameterType="AlertVO">
+		<selectKey keyProperty="alertNo" resultType="int" order="BEFORE">
+			select ALERT_SEQ.nextval from dual
+		</selectKey>
+		insert into alert(alert_no, car_num, seller_member_id, alert_type, alert_content, alert_regdate, alert_title, alert_confirm)
+		values(#{alertNo}, #{carNum}, #{sellerMemberId}, #{alertType}, #{alertContent}, sysdate, #{alertTitle}, 'N' )
+	</insert>
+	
+	<select id="newAlert" parameterType="string" resultType="int">
+		select count(*) from alert where seller_member_id = #{memberId} and alert_confirm='N'
+	</select>
+	
+	<select id="selectByAlertNo" parameterType="int" resultType="AlertVO">
+		select * from alert where alert_no=#{alertNo}
+	</select>
+</mapper>
