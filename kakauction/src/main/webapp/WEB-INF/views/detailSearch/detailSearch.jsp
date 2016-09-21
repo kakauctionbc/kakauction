@@ -23,7 +23,7 @@
 		width: 1000px;
 		height: 30px;
 	}
-	label{
+	#laname{
 		text-align: center;
 		font-size: 15px;
 		border: 1px solid silver;
@@ -37,12 +37,8 @@
 			<c:forEach var="cslist" items="${carsizeList}" varStatus="vs">
 				<div class="carSizes" style="height: 25px;">
 					<input type="checkbox" name="carSizes" id="carSizes${vs.index}" value="${cslist.carSize}">
-					<label for="carSizes${vs.index}" class="laname" style="width: 200px;">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label for="carSizes${vs.index}" id="laname">
 					${cslist.carSize}
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</label>
 				</div>
 			</c:forEach>
