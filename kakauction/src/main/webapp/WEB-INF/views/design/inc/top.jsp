@@ -135,7 +135,7 @@ $(function(){
 			<div id="content-notice">
 				<ul>
 					<li><a href="<c:url value='/notice/list.do'/>">공지사항</a></li>
-					<li><a href="<c:url value='/qna/list.do'/>">QNA</a></li>
+					<li><a href="<c:url value='/qna/list.do'/>">Q&A</a></li>
 					<li><a href="#">이용안내</a></li>
 				</ul>
 			</div>
