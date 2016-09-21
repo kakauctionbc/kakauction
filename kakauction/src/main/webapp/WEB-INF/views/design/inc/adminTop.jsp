@@ -6,8 +6,8 @@
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
 <script type="text/javascript">
 $(function(){
-  var show = $('#headmenu');
-  var content = $('#headmenu-content');
+  var show = $('#admin-headmenu');
+  var content = $('#admin-headmenu-content');
   	show.hover(function(){
   		content.slideDown(500);
   	});
@@ -70,7 +70,7 @@ $(function(){
 				<a href="<c:url value='/admin/index.do'/>">
 				<img alt="로고 이미지" src="<c:url value='/img/logo.png'/>" /></a>
 			</div>
-			<div id="headmenu">
+			<div id="admin-headmenu">
 				<ul>
 					<li><a href="<c:url value='/admin/auction/auctionWrite.do'/>">차량 관리</a></li>
 					<li><a href="<c:url value='/admin/member/memberList.do'/>">회원관리</a></li>
@@ -80,8 +80,8 @@ $(function(){
 			</div>
 		</div>
 	</div>
-		<div id="headmenu-content">
-			<div id="content-auction">
+		<div id="admin-headmenu-content">
+			<div id="admin-content-auction">
 				<ul>
 					<li><a href="<c:url value='/admin/auction/auctionWrite.do'/>">경매등록</a></li>
 					<li><a href="<c:url value='/admin/auction/auctionList.do'/>">경매목록</a></li>
@@ -89,7 +89,7 @@ $(function(){
 					<li><a href="<c:url value='/admin/auction/auctionDenyList.do'/>">경매거부 목록</a></li>
 				</ul>
 			</div>
-			<div id="content-member">
+			<div id="admin-content-member">
 				<ul>
 					<li><a href="<c:url value='/admin/member/memberList.do'/>">회원 정보 조회</a></li>
 					<li><a href="<c:url value='/admin/excel/uploadExcel.do'/>">엑셀 일괄 등록</a></li>
@@ -97,12 +97,12 @@ $(function(){
 					<li><a href="<c:url value='/report/reportAllList.do'/>">신고목록</a></li>
 				</ul>
 			</div>
-			<div id="content-info">
+			<div id="admin-content-info">
 				<ul>
 					<li><a href="<c:url value='/admin/freeboard/freeboardList.do'/>">자유게시판 목록</a></li>
 				</ul>
 			</div>
-			<div id="content-notice">
+			<div id="admin-content-notice">
 				<ul>
 					<li><a href="<c:url value='/admin/notice/list.do'/>">공지사항</a></li>
 					<li><a href="<c:url value='/admin/qnareply/qnalist.do'/>">QNA</a></li>

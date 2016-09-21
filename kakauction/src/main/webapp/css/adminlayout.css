@@ -92,29 +92,29 @@ body{ margin:0; padding-bottom: 100px;}
 	margin-bottom: 5px;
 	margin-top: 5px;
 }
-#headmenu {
+#admin-headmenu {
 	float: left;
 	margin-top: 60px;
 }
-#headmenu ul li{
+#admin-headmenu ul li{
 	float: left;
-	padding-right:20px;
+	padding-right:30px;
 	font-size:1.2em;
 	font-weight: bold;
 	margin-left: 35px;
 	
 }
-#headmenu ul li a{
+#admin-headmenu ul li a{
 	text-decoration: none;
 	color: #646464;
 }
-#headmenu ul li a:hover{
+#admin-headmenu ul li a:hover{
 	text-decoration: blink;
 	font-weight: bold;
 	color: black;
 }
 
-#headmenu-content {
+#admin-headmenu-content {
 	display: none;
 	position: absolute;
 	top:120px;
@@ -126,42 +126,42 @@ body{ margin:0; padding-bottom: 100px;}
 	overflow: hidden;
 }
 
-#headmenu-content a {
+#admin-headmenu-content a {
 	text-decoration: none;
 	display: block;
 	color: gray;
 	padding-bottom: 10px;
 }
 
-#headmenu-content a:hover {
+#admin-headmenu-content a:hover {
 	text-decoration: none;
 	color: black;
 }
 
-#headmenu ul li a:hover #headmenu-content {
+#admin-headmenu ul li a:hover #headmenu-content {
 	display: block;
 }
-#headmenu-content ul li{
+#admin-headmenu-content ul li{
 	padding-right: 20px;
 	padding-top: 10px;
 }
-#content-auction{
-	float: left;
-	margin-left: 742px;
-	padding-right: 25px;
+#admin-content-auction{
+	float:left;
+	margin-left: 748px;
+	padding-right: 18px;
 }
-#content-member{
- 	float: left;	
-	padding-right: 0px;
+#admin-content-member{
+	float:left;
+	padding-right: 8px;
 }
-#content-info{
-	float: left;
-	padding-left: 5px;
-	padding-right: 29px;
+#admin-content-info{
+	float:left;
+	padding-right: 20px;
 }
-#content-notice{
-	float: left;
+#admin-content-notice{
+	float:left;
 }
+
 #mainicondiv{
 	width: 100%;
 	height: 250px;
