@@ -25,10 +25,16 @@
 		document.frmPage.submit();
 	}
 	
-	function showMessage(msgNo){
-		window.open("/kaka/msg/detail.do?msgNo="+msgNo,
-				"detail",
-		"width=500,height=500,left=10,top=50,resizable=yes,location=yes");
+	function showMessage(no, type){
+		if(type=="1" || type=="2"){
+			window.open("/kaka/msg/detail.do?msgNo="+no,
+					"detail",
+			"width=500,height=500,left=10,top=50,resizable=yes,location=yes");
+		}else{
+			window.open("/kaka/alert/detail.do?alertNo="+no,
+					"detail",
+			"width=500,height=500,left=10,top=50,resizable=yes,location=yes");
+		}
 	}
 
 </script>
@@ -41,14 +47,14 @@
 	
 <!-- http://localhost:9090/mymvc/reBoard
 /list.do?currentPage=5&searchCondition=content&searchKeyword=%ED%95%98 -->
-<form name="frmPage" id="frmPage" method="post" action="<c:url value='/freeboard/list.do'/>">
+<form name="frmPage" id="frmPage" method="post" action="<c:url value='/msg/myList.do'/>">
 	<input type="hidden" id = "currentPage" name="currentPage" value="${searchVo.currentPage }">
 	<input type="hidden" name="searchCondition" value="${param.searchCondition }">
 	<input type="hidden" name="searchKeyword" value="${searchVO.searchKeyword }">	
 	<input type="hidden" id="selectedCountPerPage" name="selectedCountPerPage">
 </form>
 
-<h2>받은 신고 쪽지함</h2>
+<h2>받은 쪽지함</h2>
 <div class="divList">
 <c:if test="${!empty param.searchKeyword }">
 	<!-- 검색의 경우 -->
@@ -93,7 +99,6 @@
 	    <th scope="col">번호</th>
 	    <th scope="col">제목</th>
 	    <th scope="col">신고유형</th>
-	    <th scope="col">신고자</th>
 	    <th scope="col">쪽지 수신일</th>
 	  </tr>
 	</thead> 
@@ -109,28 +114,33 @@
 		<!--게시판 내용 반복문 시작  -->
 		<c:forEach var="vo" items="${alist }">
 			<tr style="text-align: center">
-				<td>${vo.msgNo}</td>
+				<td>${vo["MSG_NO"]}</td>
 				<td style="text-align: left;">
-					<a onclick="showMessage(${vo.msgNo})">
+					<a onclick="showMessage(${vo['MSG_NO']},'${vo['TYPE'] }')">
 						<!-- 제목이 긴 경우 일부만 보여주기 -->
-						<c:if test="${fn:length(vo.msgTitle)>30}">
-							${fn:substring(vo.msgTitle, 0,30)}...
+						<c:if test="${fn:length(vo['TITLE'])>30}">
+							${fn:substring(vo['TITLE'], 0,30)}...
 						</c:if>
-						<c:if test="${fn:length(vo.msgTitle)<=30}">
-							${vo.msgTitle}
+						<c:if test="${fn:length(vo['TITLE'])<=30}">
+							${vo['TITLE']}
 						</c:if>
 					</a>
 				</td>
 				<td>
-					<c:if test="${vo.originType == 1}">
+					<c:if test="${vo['TYPE'] == '1'}">
 						자유게시판
 					</c:if>
-					<c:if test="${vo.originType == 2}">
+					<c:if test="${vo['TYPE'] == '2'}">
 						경매 차량
 					</c:if>
+					<c:if test="${vo['TYPE'] == 'DENY'}">
+						차량 등록 거부
+					</c:if>
+					<c:if test="${vo['TYPE'] == 'DEFER'}">
+						경매 등록 보류
+					</c:if>
 				</td>
-				<td>${vo.reportMemberId}</td>
-				<td><fmt:formatDate value="${vo.msgRegdate}"
+				<td><fmt:formatDate value="${vo['REGDATE']}"
 					pattern="yyyy-MM-dd"/>
 				</td>
 			</tr>				
@@ -175,23 +185,18 @@
 </div>
 <div class="divSearch">
    	<form name="frmSearch" method="post" 
-   	action="<c:url value='/freeboard/list.do' />" >
+   	action="<c:url value='/msg/myList.do' />" >
         <select name="searchCondition">
-            <option value="freeboard_title"
-           	   <c:if test="${param.searchCondition=='freeboard_title'}">
+            <option value="title"
+           	   <c:if test="${param.searchCondition=='title'}">
             		selected
                </c:if>
             >제목</option>
-            <option value="freeboard_content" 
-            	<c:if test="${param.searchCondition=='freeboard_content'}">
+            <option value="content" 
+            	<c:if test="${param.searchCondition=='content'}">
             		selected
                </c:if>
             >내용</option>
-            <option value="member_id" 
-           		<c:if test="${param.searchCondition=='member_id'}">
-            		selected
-               </c:if>
-            >작성자</option>
         </select>   
         <input type="text" name="searchKeyword" 
         	title="검색어 입력" value="${param.searchKeyword}" >   

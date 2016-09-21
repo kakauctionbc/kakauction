@@ -65,7 +65,7 @@ public interface AuctionService {
 
 	public AuctionCarVO selectAuction(int auctionNo);
 	public int auctionDenyCar(String carNum);
-	public int auctionDeferCar(String carNum);
+	public int auctionDeferCar(String carNum, String sellerMemberId);
 	public Map<String, Object> selectAuctionGo(int auctionNo);
 	public int insertAuctionRecord(Map<Object, Object> auctionmap);
 	public String selectMemberGrade(String sellerMemberId);
@@ -102,7 +102,7 @@ public interface AuctionService {
 	public int adminUpdateStateStop(Map<String, Object> map);
 	
 	//거부된 경매
-	public int carUpadeAuctionDeny(String carNum);
+	public int carUpadeAuctionDeny(String carNum, String sellerMemberId);
 	public List<CarVO> selectDenyCar(SearchVO searchVo);
 	
 	//하이차트

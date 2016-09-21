@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.app.kaka.alert.model.AlertService;
 import com.app.kaka.auction.model.AuctionCarVO;
 import com.app.kaka.auction.model.AuctionService;
 import com.app.kaka.auction.model.AuctionVO;
@@ -251,7 +252,7 @@ public class AdminAuctionController {
 	}
 	
 	@RequestMapping("/auctionDeny.do")
-	public String auctionDeny(@RequestParam String carNum, Model model){
+	public String auctionDeny(@RequestParam String carNum, @RequestParam String sellerMemberId, Model model){
 		logger.info("경매 거부 화면 carNum={}", carNum);
 		if(carNum==null || carNum.isEmpty()){
 			model.addAttribute("msg", "잘못된 url입니다");
@@ -259,7 +260,7 @@ public class AdminAuctionController {
 	    	
 	    	return "common/message";
 		}
-		int cnt = auctionService.carUpadeAuctionDeny(carNum);
+		int cnt = auctionService.carUpadeAuctionDeny(carNum, sellerMemberId);
 		String msg="", url="/admin/auction/auctionWrite.do";
 		if(cnt>0){
 			msg="경매 등록 거부하였습니다";
@@ -301,5 +302,30 @@ public class AdminAuctionController {
 		model.addAttribute("pagingInfo", pagingInfo);
 		
 		return "admin/auction/auctionDenyList";
+	}
+	
+	@RequestMapping("/auctionDefer.do")
+	public String auctionDefer(@RequestParam String carNum, @RequestParam String sellerMemberId, Model model){
+		logger.info("경매 거부 화면 carNum={}", carNum);
+		if(carNum==null || carNum.isEmpty()){
+			model.addAttribute("msg", "잘못된 url입니다");
+	    	model.addAttribute("url", "/admin/auction/auctionList.do");
+	    	
+	    	return "common/message";
+		}
+		int cnt = auctionService.auctionDeferCar(carNum, sellerMemberId);
+		
+		String msg="", url="/admin/auction/auctionWrite.do";
+		if(cnt>0){
+			msg="경매 등록 보류하였습니다";
+		}else{
+			msg="경매 등록 보류 실패하였습니다";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		logger.info("경매 목록");
+		return "common/message";
 	}
 }

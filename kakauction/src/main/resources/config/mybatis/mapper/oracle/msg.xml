@@ -12,18 +12,29 @@
 		 #{msgContent}, #{msgTitle}, #{memberId})
 	</insert>
 	
-	<select id="selectByMemberId" resultType="msgVo" parameterType="MsgSearchVO">
-		select *
-		from
-		(
-		    select rownum as RNUM, LIST_ALL.*
-		    from
-		        (select msg_no, report_no, report_member_id, origin_no, origin_type,
-		        msg_content, msg_regdate, msg_title, msg_confirm, member_id
-		        from msg
-		        where member_id=#{memberId}
-		        order by msg_confirm, msg_no desc) LIST_ALL   
-		) 
+	<select id="selectByMemberId" resultType="map" parameterType="MsgSearchVO">
+		select * from(
+		select rownum as Rnum, TOT.* from(
+		select TOTAL.* from(
+		    select msg_no, to_char(report_no) as origin, 
+		        member_id,
+		        to_char(origin_type) as type, to_char(msg_content) as content, 
+		        msg_regdate as regdate, to_char(msg_title) as title, 
+		        msg_confirm as confirm FROM msg
+		    UNION ALL
+		    SELECT alert_no, to_char(car_num), 
+		        seller_member_id,
+		        to_char(alert_type), to_char(alert_content), 
+		        alert_regdate as regdate, to_char(alert_title), 
+		        alert_confirm as confirm FROM alert
+		    ) TOTAL
+		    order by confirm, regdate desc) TOT
+		    where member_id = #{memberId}
+		    <if test="searchKeyword!=null and searchKeyword!=''">
+				and ${searchCondition} 
+				like '%' || #{searchKeyword} || '%'
+			</if>)
+		   
 		<![CDATA[
 		where  RNUM> #{firstRecordIndex} 
 			and RNUM<= #{firstRecordIndex}

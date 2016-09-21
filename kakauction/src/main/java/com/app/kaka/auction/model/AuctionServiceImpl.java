@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.app.kaka.alert.model.AlertService;
 import com.app.kaka.buyer.model.BuyerVO;
 import com.app.kaka.car.model.CarVO;
 import com.app.kaka.carsize.model.CarsizeVO;
@@ -28,6 +29,9 @@ public class AuctionServiceImpl implements AuctionService{
 	
 	@Autowired
 	private AuctionDAO auctionDao;
+	
+	@Autowired
+	private AlertService alertService;
 	
 	@Resource(name="fileUploadProperties")
 	private Properties fileUploadProperties;
@@ -100,7 +104,10 @@ public class AuctionServiceImpl implements AuctionService{
 	}
 
 	@Override
-	public int auctionDeferCar(String carNum) {
+	@Transactional
+	public int auctionDeferCar(String carNum, String sellerMemberId) {
+		int cnt = alertService.sendDeferCar(carNum, sellerMemberId);
+		
 		return auctionDao.auctionDeferCar(carNum);
 	}
 
@@ -236,7 +243,10 @@ public class AuctionServiceImpl implements AuctionService{
 	}
 
 	@Override
-	public int carUpadeAuctionDeny(String carNum) {
+	@Transactional
+	public int carUpadeAuctionDeny(String carNum, String sellerMemberId) {
+		int cnt = alertService.sendDenyCar(carNum, sellerMemberId);
+				
 		return auctionDao.carUpadeAuctionDeny(carNum);
 	}
 

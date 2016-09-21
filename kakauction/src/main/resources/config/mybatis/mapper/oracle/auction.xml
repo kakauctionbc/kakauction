@@ -248,7 +248,7 @@
 	</update>	
 	<update id="auctionDeferCar" parameterType="string">
 		update car
-		set CAR_AUCTION_YN='B'
+		set CAR_AUCTION_YN='F'
 		where car_num=#{carNum}
 	</update>
 	

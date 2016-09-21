@@ -1,6 +1,7 @@
 package com.app.kaka.msg.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -18,7 +19,7 @@ public class MsgDAOMybatis extends SqlSessionDaoSupport implements MsgDAO{
 	}
 
 	@Override
-	public List<MsgVO> selectByMemberId(MsgSearchVO searchVo) {
+	public List<Map<String, Object>> selectByMemberId(MsgSearchVO searchVo) {
 		return getSqlSession().selectList(namespace+".selectByMemberId", searchVo);
 	}
 

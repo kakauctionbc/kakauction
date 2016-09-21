@@ -1,6 +1,7 @@
 package com.app.kaka.msg.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.app.kaka.alert.model.AlertService;
 import com.app.kaka.common.MsgSearchVO;
 import com.app.kaka.common.PaginationInfo;
 import com.app.kaka.common.SearchVO;
@@ -31,6 +33,9 @@ public class MsgController {
 	
 	@Autowired
 	private MsgService msgService;
+	
+	@Autowired
+	private AlertService alertService;
 	
 	/*@RequestMapping("/list")
 	public String msgList(){
@@ -54,7 +59,7 @@ public class MsgController {
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		
 		//2. db작업 - select
-		List<MsgVO> alist = msgService.selectByMemberId(searchVo);
+		List<Map<String, Object>> alist = msgService.selectByMemberId(searchVo);
 		logger.info("글목록 조회 결과 alist.size()={}", alist.size());
 		
 		//전체 레코드 개수 조회하기
@@ -70,7 +75,7 @@ public class MsgController {
 		return "msg/myList";
 	}
 	
-	@RequestMapping("/detail")
+	@RequestMapping("/detail.do")
 	public String msgDetail(@RequestParam(defaultValue="0")int msgNo, Model model){
 		if (msgNo==0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
@@ -95,8 +100,9 @@ public class MsgController {
 		logger.info("새로운 알람 보여주기, 파라미터 memberId = {}", memberId);
 		
 		int newMsgCount = msgService.newMessage(memberId);
+		int newAlartCount = alertService.newAlert(memberId);
 		
-		model.addAttribute("newMsgCount", newMsgCount);
+		model.addAttribute("newMsgCount", newMsgCount+newAlartCount);
 		
 		return "msg/alarm";
 	}
