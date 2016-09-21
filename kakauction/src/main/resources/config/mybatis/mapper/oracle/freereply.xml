@@ -63,4 +63,10 @@
 	<delete id="deleteReply" parameterMap="delParamMap" >
 		{call FREEREPLY_DELETE(?, ?, ?)}
 	</delete>
+	
+	<update id="editComment" parameterType="freereplyVo">
+		update freereply
+		set freereply_content = #{freereplyContent}, freereply_regdate = sysdate
+		where freereply_no = #{freereplyNo}
+	</update>
 </mapper>

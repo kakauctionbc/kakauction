@@ -14,5 +14,6 @@ public interface FreeReplyService {
 	//대댓글
 	public int insertReply(FreeReplyVO freeReplyVo);
 	public int deleteReply(Map<String, String> map);
+	public int editComment(FreeReplyVO freereplyVo);
 
 }

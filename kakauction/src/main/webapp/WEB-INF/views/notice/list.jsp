@@ -147,7 +147,7 @@ a{
 								</c:if>
 							</c:if>
 						</td>
-						<td>${vo.memberId}</td>
+						<td>관리자</td>
 						<td><fmt:formatDate value="${vo.noticeRegdate}"
 							pattern="yyyy-MM-dd"/>
 						</td>

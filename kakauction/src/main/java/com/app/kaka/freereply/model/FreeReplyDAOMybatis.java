@@ -47,4 +47,9 @@ public class FreeReplyDAOMybatis extends SqlSessionDaoSupport implements FreeRep
 		return getSqlSession().delete(namespace+".deleteReply", map);
 	}
 
+	@Override
+	public int editComment(FreeReplyVO freereplyVo) {
+		return getSqlSession().update(namespace+".editComment", freereplyVo);
+	}
+
 }

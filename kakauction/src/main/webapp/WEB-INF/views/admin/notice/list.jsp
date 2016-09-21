@@ -204,7 +204,7 @@
 		</div>
 		<c:if test="${sessionScope.memberGrade=='ADMIN' }">
 			<div class="write_Btn">
-			    <a href="<c:url value='../admin/notice/write.do'/>" >
+			    <a href="<c:url value='/admin/notice/write.do'/>" >
 				<img src='<c:url value="/img/write_icon.png"/>'></a>
 			</div>
 		</c:if>

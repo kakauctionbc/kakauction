@@ -32,10 +32,6 @@ public class NoticeDAOMybatis extends SqlSessionDaoSupport implements NoticeDAO{
 		return getSqlSession().selectOne(namespace+".selectByNo", noticeNo);
 	}
 	
-	@Override
-	public String selectByNoIdPwd(String memberId) {
-		return getSqlSession().selectOne(namespace+".selectByNoIdPwd", memberId);
-	}
 	public int editNotice(NoticeVO noticeVo){
 		return getSqlSession().update(namespace+".editNotice", noticeVo);
 	}

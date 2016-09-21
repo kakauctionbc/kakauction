@@ -124,4 +124,21 @@ public class FreeReplyController {
 		
 		return "common/message";
 	}
+	
+	@RequestMapping("/edit.do")
+	public String editComment(@ModelAttribute FreeReplyVO freereplyVo, Model model){
+		int cnt = freereplyService.editComment(freereplyVo);
+		logger.info("댓글수정 결과 cnt = {}", cnt);
+		
+		String msg = "", url = "/freeboard/detail.do?freeboardNo="+freereplyVo.getFreeboardNo();
+		if(cnt>0){
+			msg = "댓글을 수정했습니다";
+		}else{
+			msg = "댓글수정 실패";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "common/message";
+	}
 }

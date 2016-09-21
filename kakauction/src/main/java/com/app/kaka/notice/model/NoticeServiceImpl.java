@@ -55,11 +55,6 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public String selectByNoIdPwd(String memberId) {
-		return noticeDao.selectByNoIdPwd(memberId);
-	}
-
-	@Override
 	public int editNotice(NoticeVO noticeVo) {
 		return noticeDao.editNotice(noticeVo);
 	}

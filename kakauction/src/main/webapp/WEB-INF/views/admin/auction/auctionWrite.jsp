@@ -129,6 +129,16 @@
 				location.href="<c:url value='/admin/auction/auctionDeny.do?carNum="+carNum+"'/>";
 			}
 		});
+
+		$("#btAuctionDefer").click(function(){
+			if(carNum==null){
+				alert("차량을 선택하세요");
+				return;
+			}
+			if(confirm("경매등록을 보류 하시겠습니까?")){
+				location.href="<c:url value='/admin/auction/auctionDefer.do?carNum="+carNum+"'/>";
+			}
+		});
 		
 	});
 </script>
@@ -166,6 +176,7 @@
 				<input type="text" id="voCarModel" readonly="readonly" >
 				<input type="submit" id="btAuctionSubmit" value="경매 등록"> 
 				<input type="button" id="btAuctionDeny" value="경매 거부"> 
+				<input type="button" id="btAuctionDefer" value="경매 보류"> 
 				<input type="button" id="btAuctionList" value="경매 목록">
 				</td>
 			</tr>

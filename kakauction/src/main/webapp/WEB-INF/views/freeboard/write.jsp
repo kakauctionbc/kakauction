@@ -4,14 +4,17 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		CKEDITOR.replace('freeboardContent');	
+		CKEDITOR.replace('freeboardContent');
 		
 		$("#frmWrite").submit(function(){
+			var instance = CKEDITOR.instances.freeboardContent;
+			instance.updateElement();
+			
 			if($("#freeboardTitle").val()==""){
 				alert("제목을 입력하세요");
 				$("#freeboardTitle").focus();
 				return false;
-			}else if($("#freeboardContent").val().length<1){
+			}else if(instance.getData() == ""){
 				alert("내용을 입력하세요");
 				$("#freeboardContent").focus();
 				return false;
@@ -21,6 +24,7 @@
 		$("#list").click(function(){
 			location.href="/kaka/freeboard/list.do";
 		});
+		
 	});
 </script>
 <div id="wrap">

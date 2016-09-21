@@ -28,6 +28,10 @@
 			$("#currentPage").val(1);
 			$("#frmPage").submit();
 		});
+		
+		$("#thisBoard").click(function(){
+			alert("현재글 입니다");
+		});
 	});
 
 	function pageProc(curPage){ 
@@ -92,7 +96,7 @@ a:hover{
 		</div>
 		<div class="center">
          <c:if test="${freeVo.memberId == sessionScope.memberId }">
-            <a href   ="<c:url value='/freeboard/edit.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
+            <a href ="<c:url value='/freeboard/edit.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
             수정</a> |
               <a id="df" href="<c:url value='/freeboard/delete.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
             삭제</a> |
@@ -119,16 +123,6 @@ a:hover{
 		</form>
 
 		<div class="divList">
-		<c:if test="${!empty param.searchKeyword }">
-			<!-- 검색의 경우 -->
-			<p>검색어 : ${param.searchKeyword }, 
-				${pagingInfo.totalRecord }건 검색되었습니다.</p>
-		</c:if>
-		<c:if test="${empty searchVO.searchKeyword }">
-			<!-- 전체 조회의 경우 -->
-			<p>전체 조회 결과 
-				- ${pagingInfo.totalRecord }건 조회되었습니다</p>
-		</c:if>
 		<select name="countPerPage" id="countPerPage" style="width:100px; font-size: 1.1em; margin-top: 10px;" title="페이지당 갯수">
 			<option value="20"
 				<c:if test="${selectedCountPerPage=='20' }">
@@ -195,7 +189,15 @@ a:hover{
 								<c:if test="${!empty vo.freeboardFilename }">
 									<img src='<c:url value="/image/file.gif"/>'>
 								</c:if>
-								<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${vo.freeboardNo}'/>">
+								
+								<a style="font-weight: bold; font-size: 1.3em;"
+									<c:if test="${freeVo.freeboardNo==vo.freeboardNo }">
+										id="thisBoard"
+									</c:if>
+									<c:if test="${freeVo.freeboardNo!=vo.freeboardNo }">
+										href="<c:url value='/freeboard/updateCount.do?freeboardNo=${vo.freeboardNo}'/>"
+									</c:if>
+									>
 									<!-- 제목이 긴 경우 일부만 보여주기 -->
 									<c:if test="${fn:length(vo.freeboardTitle)>30}">
 										${fn:substring(vo.freeboardTitle, 0,30)}...

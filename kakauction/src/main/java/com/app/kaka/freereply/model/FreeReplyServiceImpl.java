@@ -45,4 +45,9 @@ public class FreeReplyServiceImpl implements FreeReplyService{
 		return freereplyDao.deleteReply(map);
 	}
 
+	@Override
+	public int editComment(FreeReplyVO freereplyVo) {
+		return freereplyDao.editComment(freereplyVo);
+	}
+
 }

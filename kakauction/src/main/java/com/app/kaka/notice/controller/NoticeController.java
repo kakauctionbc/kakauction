@@ -178,7 +178,8 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("/detail.do")
-	public String detailNotice(@RequestParam(defaultValue="0") int noticeNo, HttpServletRequest request, Model model){
+	public String detailNotice(@ModelAttribute SearchVO searchVo, @RequestParam(defaultValue="20") int selectedCountPerPage,
+			@RequestParam(defaultValue="0") int noticeNo, HttpServletRequest request, Model model){
 		logger.info("공지글 보기 파라미터 noticeNo={}",noticeNo);
 		
 		if (noticeNo==0) {
@@ -208,6 +209,30 @@ public class NoticeController {
 		model.addAttribute("noticeVo", noticeVo);
 		model.addAttribute("fileInfo", fileInfo);
 		model.addAttribute("downInfo", downInfo);
+		
+		//공지사항 리스트
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(selectedCountPerPage);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		searchVo.setBlockSize(Utility.BLOCK_SIZE);
+		searchVo.setRecordCountPerPage(selectedCountPerPage);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+				
+		//2. db작업 - select
+		List<NoticeVO> alist = noticeService.selectAll(searchVo);
+		logger.info("글목록 조회 결과 alist.size()={}", 
+				alist.size());
+		
+		//전체 레코드 개수 조회하기
+		int totalRecord = noticeService.selectTotalCount(searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+				
+		//3. 결과 저장, 뷰페이지 리턴
+		model.addAttribute("alist", alist);
+		model.addAttribute("pagingInfo", pagingInfo);
+		model.addAttribute("selectedCountPerPage", selectedCountPerPage);
 		
 		return "notice/detail";
 	}

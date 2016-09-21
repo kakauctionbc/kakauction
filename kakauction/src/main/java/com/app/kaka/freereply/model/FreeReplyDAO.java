@@ -14,4 +14,5 @@ public interface FreeReplyDAO {
 	public int updateSortNo(FreeReplyVO freeReplyVo);
 	public int insertReply(FreeReplyVO freeReplyVo);
 	public int deleteReply(Map<String, String> map);
+	public int editComment(FreeReplyVO freereplyVo);
 }

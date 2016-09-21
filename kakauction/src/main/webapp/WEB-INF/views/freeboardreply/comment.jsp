@@ -42,7 +42,17 @@
 	    	var index = $(this).next().val();
 	    	$("#editPanel_"+index).slideToggle();
 		});
-		 
+		
+		$(".btEdit").click(function(){
+			var index = $(this).next().val();
+			if($("#editContent"+index).val()==""){
+				alert("댓글을 입력하세요");
+				$("#rereplyContent"+index).focus();
+				return false;
+			}
+			$("#frmEdit"+index).submit();
+		});
+		
 		$(".delete").click(function(){
 			if(confirm("정말 삭제하시겠습니까?")){
 				var index = $(this).next().val();
@@ -108,14 +118,15 @@
 									<input type="hidden" name="freereplyGroupno" value="${freereplyVo.freereplyGroupno }">
 									<input type="hidden" name="freereplyStep" value="${freereplyVo.freereplyStep }">
 								</form>
-								<a href="#" class="edit">수정</a> | 
+								<a class="edit">수정</a> | 
 								<input type="hidden" class="flip" value="${vs.index}" >
-								<a href="#" class="delete">삭제</a>
+								<a class="delete">삭제</a>
 								<input type="hidden" class="flip" value="${vs.index}" >
 								<form action="<c:url value='/freeboardreply/edit.do'/>" method="post" id="frmEdit${vs.index }">
 									<tr style="display: none;" id="editPanel_${vs.index}" >
 										<td colspan="3"><textarea rows="5" cols="165" name="freereplyContent" id="editContent${vs.index }"></textarea></td>
-										<input type="hidden" name="freeboardNo" value="${freereplyVo.freeboardNo }">
+										<input type="hidden" name="freereplyNo" value="${freereplyVo.freereplyNo }">
+										<input type="hidden" name="freeboardNo" value="${freeVo.freeboardNo }">
 										<td><input type="button" class="btEdit" value="수정"><input type="hidden" class="btEdit" value="${vs.index}" ></td>
 									</tr>
 								</form>
@@ -124,7 +135,7 @@
 								<c:if test="${freereplyVo.freereplyStep==0 }">
 									<div class="flip">
 										<input type="hidden" class="flip" value="${vs.index}" >
-										<a href="#">답글</a>
+										<a>답글</a>
 									</div>
 								</c:if>
 							</c:if>
@@ -179,7 +190,7 @@
 			</ul>
 		</div>
 	</div>
-	<hr style="color: silver;"><br>
+	
 	<c:if test="${freeVo.prevFreeboardNo!='0' }">
 		<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${freeVo.prevFreeboardNo}'/>">다음글</a> | 
 		<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${freeVo.prevFreeboardNo}'/>">${freeVo.prevFreeboardTitle }</a>
@@ -189,6 +200,6 @@
 		<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${freeVo.nextFreeboardNo}'/>">이전글</a> |
 		<a href="<c:url value='/freeboard/updateCount.do?freeboardNo=${freeVo.nextFreeboardNo}'/>">${freeVo.nextFreeboardTitle }</a>
 	</c:if>
-	
+	<hr style="color: silver;"><br>
 </body>
 </html>
