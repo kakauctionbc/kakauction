@@ -24,14 +24,22 @@
 
 </script>
 <style type="text/css">
-	body{
-		padding:5px;
-		margin:5px;
-	 }
 	 .divList, .divPage, .divSearch{
 	 	margin: 0 auto;
 	 }
 </style>
+<div id="wrap">
+	<div id="wrapdiv">
+		<div id="wraptop">
+			<p>
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>Q&A 관리
+			</p>
+		</div>
+		<div id="pagelogo">
+			<img
+				src="${pageContext.request.contextPath }/img/QNA_logo.png"
+				alt="회원가입로고">
+		</div>
 <!-- http://localhost:9090/mymvc/reBoard
 /list.do?currentPage=5&searchCondition=content&searchKeyword=%ED%95%98 -->
 <form name="frmPage" method="post" action="<c:url value='/qna/list.do'/>">
@@ -40,7 +48,6 @@
 	<input type="hidden" name="searchKeyword" value="${searchVO.searchKeyword }">	
 </form>
 
-<h2>Q&A</h2>
 <div class="divList">
 <c:if test="${!empty param.searchKeyword }">
 	<!-- 검색의 경우 -->
@@ -166,6 +173,8 @@
         	title="검색어 입력" value="${param.searchKeyword}" >   
 		<input type="submit" value="검색">
     </form>
+</div>
+</div>
 </div>
 
 <%@ include file="../../design/inc/adminBottom.jsp"%>

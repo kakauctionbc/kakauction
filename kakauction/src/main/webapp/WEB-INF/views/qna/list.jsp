@@ -109,7 +109,7 @@
 		</div>
 		<div id="pagelogo">
 			<img
-				src="${pageContext.request.contextPath }/img/QNA_logo.png"
+				src="${pageContext.request.contextPath }/img/qna_icon.png"
 				alt="회원가입로고">
 		</div>
 		<!-- http://localhost:9090/mymvc/reBoard
