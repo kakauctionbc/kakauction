@@ -55,6 +55,9 @@ $(function(){
 					</c:if>
 					<!-- 로그인된 경우 -->
 					<c:if test="${!empty sessionScope.memberId }">
+						<c:if test="${sessionScope.memberGrade=='ADMIN' }">
+							<li><a href="<c:url value='/admin/index.do'/>">관리자 페이지</a></li>
+						</c:if>
 						<li><a href="<c:url value='/msg/myList.do'/>"><jsp:include page="/msg/myMsgAlarm.do"></jsp:include></a></li>
 						<li><a href="<c:url value='/member/memberOut.do'/>" >회원탈퇴</a></li>	            
 						<li><a href="<c:url value='/member/pwdCheck.do'/>" id="boderli">회원정보수정</a></li>	            

@@ -45,17 +45,18 @@ $(function(){
 			<div id=headerdiv>
 				<ul>					
 					<!-- 로그인이 안된 경우 -->	
-					<c:if test="${empty sessionScope.adminUserid }">
+					<c:if test="${empty sessionScope.memberId }">
 						<li><a href="<c:url value='/board/list.do'/>">고객센터</a></li>					
 						<li><a href="<c:url value='/admin/login/adminLogin.do'/>">로그인</a></li>
 					</c:if>
 					<!-- 로그인된 경우 -->
-					<c:if test="${!empty sessionScope.adminUserid }">
+					<c:if test="${!empty sessionScope.memberId }">
+						<li><a href="<c:url value='/index.do'/>">홈페이지로</a></li>
 						<li><a href="<c:url value='/admin/member/register.do'/>" id="boderli">관리자등록</a></li>
 						<li><a href="<c:url value='/login/logout.do'/>">로그아웃</a></li>
 						<li>
 							<span style="font-size:1em; color:blue;">
-								${sessionScope.adminUserid}님</span>
+								${sessionScope.memberId}님</span>
 						</li> 
 					</c:if>
 				</ul>

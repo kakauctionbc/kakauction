@@ -70,11 +70,11 @@ public class AdminController {
 			MemberVO memberVo = memberService.selectMemberByUserid(memVo.getMemberId());
 			//[1]세션에 저장
 			HttpSession session = request.getSession();
-			session.setAttribute("adminUserid", memVo.getMemberId());
-			session.setAttribute("adminUserName", memberVo.getMemberName());
-			session.setAttribute("adminGrade", memVo.getMemberGrade());
+			session.setAttribute("memberId", memVo.getMemberId());
+			session.setAttribute("memberName", memberVo.getMemberName());
+			session.setAttribute("memberGrade", memVo.getMemberGrade());
 			//[2]쿠키에 저장
-			Cookie ck = new Cookie("admin_ck_userid",memVo.getMemberId());
+			Cookie ck = new Cookie("ck_userid",memVo.getMemberId());
 			if(chkSave!=null){
 				ck.setMaxAge(1000*24*60*60); //1000일
 				response.addCookie(ck);
@@ -108,9 +108,9 @@ public class AdminController {
 		
 		//2.
 		//session.invalidate();
-		session.removeAttribute("adminUserid");
-		session.removeAttribute("adminUserName");
-		session.removeAttribute("adminGrade");
+		session.removeAttribute("memberId");
+		session.removeAttribute("memberName");
+		session.removeAttribute("memberGrade");
 		
 		//3.
 		model.addAttribute("msg", "로그아웃되었습니다.");
