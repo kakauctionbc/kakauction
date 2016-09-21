@@ -468,7 +468,6 @@ public class AuctionController {
 			highVo.setAuctionState(state);
 			return highVo;
 		}
-		//logger.info("3 recordPrice={}",recordPrice);
 		//logger.info("4 auctionNo={}",auctionNo);
 		
 		int cnt=auctionService.selectHighPriceCount(auctionNo);

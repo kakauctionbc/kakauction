@@ -23,10 +23,10 @@
 		width: 1000px;
 		height: 30px;
 	}
-	.laname{
+	label{
+		text-align: center;
+		font-size: 15px;
 		border: 1px solid silver;
-		width: 100px;
-		height: 20px;
 	}
 </style>
 <div id="mySidenav" class="sidenav">
@@ -37,7 +37,13 @@
 			<c:forEach var="cslist" items="${carsizeList}" varStatus="vs">
 				<div class="carSizes" style="height: 25px;">
 					<input type="checkbox" name="carSizes" id="carSizes${vs.index}" value="${cslist.carSize}">
-					<label for="carSizes${vs.index}" class="laname" style="width: 200px;">${cslist.carSize}</label>
+					<label for="carSizes${vs.index}" class="laname" style="width: 200px;">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					${cslist.carSize}
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</label>
 				</div>
 			</c:forEach>
 		</div> 
@@ -53,7 +59,13 @@
 			<c:forEach var="cglist" items="${cargasList}" varStatus="vs">
 				<div class="carGases" style="height: 25px;">
 					<input type="checkbox" name="carGases" id="carGas${vs.index}" value="${cglist.carGas}">
-					<label for="carGas${vs.index}" class="laname" style="width: 200px;">${cglist.carGas}</label>
+					<label for="carGas${vs.index}" class="laname">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					${cglist.carGas}
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</label>
 				</div>
 			</c:forEach>
 		</div>
