@@ -58,6 +58,15 @@ public class AdminController {
 			HttpServletResponse response,
 			Model model){
 		
+		String memberId = memVo.getMemberId();
+		String memberGrade = memberService.whereMemberGrade(memberId);
+		if (!memberGrade.equals("ADMIN")) {
+			model.addAttribute("msg", "등록되지 않은 아이디입니다.");
+			model.addAttribute("url", "/admin/login/adminLogin.do");
+			
+			return "common/message";
+		}
+		
 		memVo.setMemberGrade(MemberService.MEMBER_GRADE_ADMIN);
 		logger.info("관리자 로그인 처리, 파라미터 memVo={}",memVo);
 		logger.info("관리자 로그인 처리, 파라미터 chkSave={}",chkSave);
@@ -114,7 +123,7 @@ public class AdminController {
 		
 		//3.
 		model.addAttribute("msg", "로그아웃되었습니다.");
-		model.addAttribute("url", "/admin/login/adminLogin.do");
+		model.addAttribute("url", "/admin/index.do");
 		
 		return "common/message";
 	}
