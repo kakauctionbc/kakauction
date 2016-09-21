@@ -6,6 +6,7 @@ public interface AlertDAO {
 	
 	int newAlert(String memberId);
 	
+	int updateAlertConfirm(int alertNo);
 	AlertVO selectByAlertNo(int alertNo);
 
 }

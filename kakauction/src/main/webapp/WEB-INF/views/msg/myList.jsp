@@ -88,18 +88,17 @@
 	 	summary="받은 신고 쪽지에 관한 표">
 	<caption>받은 신고 쪽지함</caption>
 	<colgroup>
-		<col style="width:10%;" />
+		<col style="width:25%;" />
 		<col style="width:50%;" />
-		<col style="width:15%;" />
 		<col style="width:15%;" />
 		<col style="width:10%;" />		
 	</colgroup>
 	<thead>
 	  <tr>
-	    <th scope="col">번호</th>
+	    <th scope="col">쪽지 유형</th>
 	    <th scope="col">제목</th>
-	    <th scope="col">신고유형</th>
 	    <th scope="col">쪽지 수신일</th>
+	    <th scope="col">확인여부</th>
 	  </tr>
 	</thead> 
 	<tbody>  
@@ -114,7 +113,20 @@
 		<!--게시판 내용 반복문 시작  -->
 		<c:forEach var="vo" items="${alist }">
 			<tr style="text-align: center">
-				<td>${vo["MSG_NO"]}</td>
+				<td>
+					<c:if test="${vo['TYPE'] == '1'}">
+						자유게시판 신고
+					</c:if>
+					<c:if test="${vo['TYPE'] == '2'}">
+						경매 차량 신고
+					</c:if>
+					<c:if test="${vo['TYPE'] == 'DENY'}">
+						차량 등록 거부
+					</c:if>
+					<c:if test="${vo['TYPE'] == 'DEFER'}">
+						경매 등록 보류
+					</c:if>
+				</td>
 				<td style="text-align: left;">
 					<a onclick="showMessage(${vo['MSG_NO']},'${vo['TYPE'] }')">
 						<!-- 제목이 긴 경우 일부만 보여주기 -->
@@ -126,23 +138,10 @@
 						</c:if>
 					</a>
 				</td>
-				<td>
-					<c:if test="${vo['TYPE'] == '1'}">
-						자유게시판
-					</c:if>
-					<c:if test="${vo['TYPE'] == '2'}">
-						경매 차량
-					</c:if>
-					<c:if test="${vo['TYPE'] == 'DENY'}">
-						차량 등록 거부
-					</c:if>
-					<c:if test="${vo['TYPE'] == 'DEFER'}">
-						경매 등록 보류
-					</c:if>
-				</td>
 				<td><fmt:formatDate value="${vo['REGDATE']}"
 					pattern="yyyy-MM-dd"/>
 				</td>
+				<td>${vo['CONFIRM'] }</td>
 			</tr>				
 		</c:forEach>
 		<!--반복처리 끝  -->

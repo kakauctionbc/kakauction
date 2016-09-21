@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.kaka.alert.model.AlertService;
 import com.app.kaka.common.MsgSearchVO;
@@ -105,5 +106,16 @@ public class MsgController {
 		model.addAttribute("newMsgCount", newMsgCount+newAlartCount);
 		
 		return "msg/alarm";
+	}
+	
+	@RequestMapping("/myMsgAla.do")
+	@ResponseBody
+	public int msgAla(HttpSession session, Model model){
+		String memberId = (String) session.getAttribute("memberId");
+		
+		int newMsgCount = msgService.newMessage(memberId);
+		int newAlartCount = alertService.newAlert(memberId);
+		
+		return newMsgCount+newAlartCount;
 	}
 }

@@ -26,4 +26,10 @@
 	<select id="selectByAlertNo" parameterType="int" resultType="AlertVO">
 		select * from alert where alert_no=#{alertNo}
 	</select>
+	
+	<update id="updateAlertConfirm" parameterType="int">
+		update alert
+		set alert_confirm = 'Y'
+		where alert_no=#{alertNo}
+	</update>
 </mapper>

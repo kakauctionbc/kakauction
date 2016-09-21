@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AlertServiceImpl implements AlertService{
@@ -59,8 +60,16 @@ public class AlertServiceImpl implements AlertService{
 	}
 
 	@Override
+	@Transactional
 	public AlertVO selectByAlertNo(int alertNo) {
-		return alertDao.selectByAlertNo(alertNo);
+		int cnt = alertDao.updateAlertConfirm(alertNo);
+		
+		AlertVO alertVo = null;
+		if(cnt>0){
+			alertVo = alertDao.selectByAlertNo(alertNo);
+		}
+				
+		return alertVo;
 	}
 
 }

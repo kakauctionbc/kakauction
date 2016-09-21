@@ -27,26 +27,26 @@
 			</tr>
 			<tr>
 				<td>
-					<p>신고 제목<p>
+					<p>쪽지 제목<p>
 				</td>
-				<td colspan="3">${msgVo.msgTitle }</td>
+				<td colspan="3">${alertVo.alertTitle }</td>
 			</tr>
 			<tr>
 				<td>
-					<p>신고자 ID</p>
+					<p>보낸 사람</p>
 				</td>
 				<td>
-					<p>${msgVo.reportMemberId }</p>
+					<p>관리자</p>
 				</td>
 				<td>
-					<p>신고유형</p>
+					<p>쪽지 유형</p>
 				</td>
 				<td>
-					<c:if test="${msgVo.originType == 1}">
-						자유게시판
+					<c:if test="${alertVo.alertType == 'DENY'}">
+						차량 등록 거부
 					</c:if>
-					<c:if test="${msgVo.originType == 2}">
-						경매 차량
+					<c:if test="${alertVo.alertType == 'DEFER'}">
+						차량 등록 보류
 					</c:if>
 				</td>
 			</tr>
@@ -55,7 +55,7 @@
 					<p>쪽지 수신일</p>
 				</td>
 				<td colspan="3">
-					${msgVo.msgRegdate }
+					${alertVo.alertRegdate }
 				</td>
 			</tr>
 			<tr>
@@ -65,7 +65,7 @@
 			</tr>
 			<tr>
 				<td colspan="4">
-					<textarea id="msgContent" name="msgContent" readonly rows="5" cols="50">${msgVo.msgContent }</textarea>
+					<textarea id="msgContent" name="msgContent" readonly rows="5" cols="50">${alertVo.alertContent }</textarea>
 				</td>
 			</tr>
 			<tr>

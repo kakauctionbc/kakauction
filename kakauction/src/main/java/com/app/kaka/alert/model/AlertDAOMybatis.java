@@ -28,4 +28,9 @@ public class AlertDAOMybatis extends SqlSessionDaoSupport implements AlertDAO{
 		return getSqlSession().selectOne(namespace+".selectByAlertNo", alertNo);
 	}
 
+	@Override
+	public int updateAlertConfirm(int alertNo) {
+		return getSqlSession().update(namespace+".updateAlertConfirm", alertNo);
+	}
+
 }
