@@ -1,7 +1,10 @@
 package com.app.kaka.member.model;
 
 import java.util.List;
+import java.util.Map;
 
+import com.app.kaka.admin.member.model.MemberBean;
+import com.app.kaka.common.MemDeSearchVO;
 import com.app.kaka.common.SearchVO;
 
 public interface MemberService {
@@ -14,6 +17,10 @@ public interface MemberService {
 	//관리자로그인관련
 	public static final String MEMBER_GRADE_ADMIN = "ADMIN";
 	public static final String MEMBER_GRADE_MEMBER = "MEMBER";
+	
+	//등급 제한 관련
+	public static final String MEMBER_GRADE_BLACK = "BLACKLIST";
+	public static final String MEMBER_GRADE_STOP = "STOP";
 	
 	//주민등록번호 확인
 	public static final int EXIST_JUMIN=1;
@@ -37,4 +44,10 @@ public interface MemberService {
 	//얘는 리스트
 	public List<MemberVO> selectAllMember2(SearchVO searchVo);
 	public int memberAllCount2(SearchVO searchVo);
+	
+	//검색 리스트
+	public int selectAllMemberCount2(MemDeSearchVO searchVo);
+	
+	public String whereMemberGrade(String memberId);
+	
 }

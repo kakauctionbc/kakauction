@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.app.kaka.common.MemDeSearchVO;
 import com.app.kaka.common.SearchVO;
 
 @Repository
@@ -65,5 +66,15 @@ public class MemberDAOMybatis extends SqlSessionDaoSupport implements MemberDAO 
 	@Override
 	public int memberAllCount2(SearchVO searchVo) {
 		return getSqlSession().selectOne(namespace+".selectAllMemberCount", searchVo);
+	}
+
+	@Override
+	public String whereMemberGrade(String memberId) {
+		return getSqlSession().selectOne(namespace+".whereMemberGrade", memberId);
+	}
+
+	@Override
+	public int selectAllMemberCount2(MemDeSearchVO searchVo) {
+		return getSqlSession().selectOne(namespace+".selectAllMemberCount2", searchVo);
 	}
 }

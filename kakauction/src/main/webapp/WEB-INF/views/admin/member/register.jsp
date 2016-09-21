@@ -11,6 +11,14 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/auctiongo.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/carList.css" />
 <script type="text/javascript" src="<c:url value='/js/member.js'/>"></script>
+<style>
+	h1{
+		font-size: 1.5em;
+		font-weight: bold;
+		padding-top: 10px;
+		padding-left: 10px;
+	}
+</style>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#wr_submit").click(function(event){
@@ -112,13 +120,14 @@
 		<div id="registerwrap">
 			<div id="registertop">
 				<p>
-					<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>회원가입>일반회원가입
+					<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>관리자등록
 				</p>
 			</div>
 			<div id="registerlogo">
-				<img
+				<%-- <img
 					src="${pageContext.request.contextPath }/img/register_logo.png"
-					alt="로그인로고">
+					alt="로그인로고"> --%>
+				<h1>관리자등록</h1>				
 			</div>
 			<div id="step">
 				<img

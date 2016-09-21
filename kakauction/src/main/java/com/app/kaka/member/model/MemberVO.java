@@ -2,6 +2,8 @@ package com.app.kaka.member.model;
 
 import java.sql.Timestamp;
 
+import org.apache.ibatis.type.Alias;
+
 public class MemberVO {
 	private String memberId;
 	private String memberName;

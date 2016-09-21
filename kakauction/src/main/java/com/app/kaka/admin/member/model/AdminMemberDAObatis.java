@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.app.kaka.common.MemDeSearchVO;
 import com.app.kaka.common.SearchVO;
 import com.app.kaka.member.model.MemberVO;
 
@@ -41,5 +42,10 @@ public class AdminMemberDAObatis extends SqlSessionDaoSupport implements AdminMe
 	@Override
 	public int AuctionMemberCount(SearchVO searchVo) {
 		return getSqlSession().selectOne(namespace+".AuctionMemberCount", searchVo);
+	}
+
+	@Override
+	public List<MemberVO> selectPdByConditionForeach(MemDeSearchVO vo) {
+		return getSqlSession().selectList(namespace+".selectSearchMember",vo);
 	}
 }

@@ -2,6 +2,7 @@ package com.app.kaka.member.model;
 
 import java.util.List;
 
+import com.app.kaka.common.MemDeSearchVO;
 import com.app.kaka.common.SearchVO;
 
 public interface MemberDAO {
@@ -18,4 +19,10 @@ public interface MemberDAO {
 	// 멤버리스트
 	public List<MemberVO> selectAllMember2(SearchVO searchVo);
 	public int memberAllCount2(SearchVO searchVo);
+	
+	//검색멤버리스트
+	public int selectAllMemberCount2(MemDeSearchVO searchVo);
+	
+	//접근 등급제한
+	public String whereMemberGrade(String memberId);
 }

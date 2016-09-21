@@ -40,7 +40,6 @@ public class LoginController {
 			HttpServletRequest request,
 			HttpServletResponse response,
 			Model model){
-		
 		logger.info("로그인입력 파라미터 memberVo={}",memVo);
 		logger.info("아이디저장 chkSave={}",chkSave);
 		
@@ -52,7 +51,7 @@ public class LoginController {
 			//로그인 성공
 			//[1] 세션에 저장
 			MemberVO memberVo = memberService.selectMemberByUserid(memVo.getMemberId());
-			
+
 			HttpSession session = request.getSession();
 			session.setAttribute("memberId", memVo.getMemberId());
 			session.setAttribute("memberName", memberVo.getMemberName());

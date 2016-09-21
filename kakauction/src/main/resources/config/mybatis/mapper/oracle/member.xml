@@ -86,8 +86,45 @@
 		]]>
 	</select>
 	
+	<sql id="searchMemberWhere">
+		<where>
+			<if test="searchKeyword!=null and searchKeyword!=''">
+				${searchCondition} like '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="memberGrade!=null and memberGrade!=''">
+				and member_grade=#{memberGrade}
+			</if>
+			<if test="memberGender!=null and memberGender!=''">
+				and member_gender=#{memberGender}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectSearchMember" parameterType="MemDeSearchVO" resultType="MemberVO">
+		select * from(
+			select rownum as RNUM, LIST_ALL.* from(
+				select * from(
+					select * from member 
+					<include refid="searchMemberWhere"></include>
+					)where member_Grade!='ADMIN' and member_outdate is null
+			)LIST_ALL
+		)
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}+#{recordCountPerPage}
+		]]>
+	</select>
+	
 	<select id="selectAllMemberCount" parameterType="SearchVO" resultType="int">
 		select count(*) from member where member_Grade!='ADMIN' and member_outdate is null
+	</select>
+	
+	<select id="selectAllMemberCount2" parameterType="MemDeSearchVO" resultType="int">
+		select count(*) from (
+			select * from member
+			<include refid="searchMemberWhere"></include> 
+		)
+		where member_Grade!='ADMIN' and member_outdate is null
 	</select>
 	
 	<update id="gradeUpdate" parameterType="MemberVO">
@@ -118,4 +155,13 @@
 	<select id="AuctionMemberCount" parameterType="SearchVO" resultType="int">
 		select count(*) from lastbuyer
 	</select>
+	
+	<select id="whereMemberGrade" parameterType="string" resultType="string">
+		select member_grade from member where member_Id=#{memberId}
+	</select>
+	
+	<!-- 마일리지 -->
+	<update id="updateMileage" parameterType="MemberVO">
+		update member set member_mileage=#{memberMileage} where member_id=#{memberId}
+	</update>
 </mapper>

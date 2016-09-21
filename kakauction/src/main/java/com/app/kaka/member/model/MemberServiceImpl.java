@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.kaka.common.MemDeSearchVO;
 import com.app.kaka.common.SearchVO;
 
 @Service
@@ -95,5 +96,15 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int memberAllCount2(SearchVO searchVo) {
 		return memberDao.memberAllCount2(searchVo);
+	}
+
+	@Override
+	public String whereMemberGrade(String memberId) {
+		return memberDao.whereMemberGrade(memberId);
+	}
+
+	@Override
+	public int selectAllMemberCount2(MemDeSearchVO searchVo) {
+		return memberDao.selectAllMemberCount2(searchVo);
 	}
 }

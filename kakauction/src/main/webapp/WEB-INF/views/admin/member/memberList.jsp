@@ -163,8 +163,14 @@
 												<c:if test="${vo.memberGrade=='MEMBER_VIP'}">
 													<td>골드회원</td>
 												</c:if>
+												<c:if test="${vo.memberGrade=='MEMBER_VVIP'}">
+													<td>특별관리회원</td>
+												</c:if>
 												<c:if test="${vo.memberGrade=='MEMBER'}">
 													<td>일반회원</td>
+												</c:if>
+												<c:if test="${vo.memberGrade=='STOP'}">
+													<td>활동정지회원</td>
 												</c:if>
 												<c:if test="${vo.memberGrade=='BLACKLIST'}">
 													<td>불량회원</td>
@@ -255,6 +261,8 @@
 							<select name="eventSel" id="eventSel">
 								<option value="MEMBER">일반회원</option>
 								<option value="MEMBER_VIP">골드회원</option>
+								<option value="MEMBER_VVIP">특별관리회원</option>
+								<option value="STOP">활동정지회원</option>
 								<option value="BLACKLIST">불량회원</option>
 							</select>
 							으로
