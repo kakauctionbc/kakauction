@@ -114,4 +114,7 @@ public interface AuctionService {
 	//상세검색
 	public List<CarsizeVO> selectCarsize();
 	public List<GasVO> selectCarGas();
+	
+	//내가 등록한 차량의 경매를 보자
+	public List<Map<String, Object>> myCarAucList(DateSearchVO searchVo);
 }

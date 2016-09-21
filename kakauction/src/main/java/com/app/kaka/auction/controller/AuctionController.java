@@ -532,4 +532,39 @@ public class AuctionController {
 		return "detailSearch/detailSearch";
 	}
 	
+	//내가 등록한 차량의 경매보기
+	@RequestMapping("/myCarAucList.do")
+	public String myCarAucList(@ModelAttribute DateSearchVO searchVo,HttpSession session, Model model){
+		logger.info("내가 등록한 차량 경매 보기");
+		
+		String memberId = (String)session.getAttribute("memberId");
+		searchVo.setMemberId(memberId);
+		
+		logger.info("글목록 조회, 파라미터 vo={}", searchVo);
+		
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.MAUCLIST_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		logger.info("글목록 조회, 파라미터 vo={}", searchVo);
+		
+		searchVo.setBlockSize(Utility.BLOCK_SIZE);
+		searchVo.setRecordCountPerPage(Utility.MAUCLIST_COUNT_PER_PAGE);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("글목록 조회, 파라미터 vo={}", searchVo);
+		
+		//2. db작업 - select
+		List<Map<String, Object>> alist = auctionService.myCarAucList(searchVo);
+		logger.info("글목록 조회 결과 alist.size()={}", alist.size());
+		//전체 레코드 개수 조회하기
+		pagingInfo.setTotalRecord(alist.size());
+				
+		//3. 결과 저장, 뷰페이지 리턴
+		model.addAttribute("alist", alist);
+		model.addAttribute("alistsize", alist.size());
+		model.addAttribute("pagingInfo", pagingInfo);
+		
+		return "auction/myCarAucList";
+	}
+	
 }

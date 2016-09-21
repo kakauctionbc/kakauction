@@ -275,4 +275,9 @@ public class AuctionServiceImpl implements AuctionService{
 	public List<GasVO> selectCarGas() {
 		return auctionDao.selectCarGas();
 	}
+
+	@Override
+	public List<Map<String, Object>> myCarAucList(DateSearchVO searchVo) {
+		return auctionDao.myCarAucList(searchVo);
+	}
 }
