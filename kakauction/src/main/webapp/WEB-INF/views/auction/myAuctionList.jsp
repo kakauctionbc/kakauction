@@ -64,26 +64,19 @@
 			<table class="box2">
 				<caption>나의 경매리스트</caption>
 				<colgroup>
+					<col style="width: 20%;" />
+					<col style="width: 40%;" />
 					<col style="width: 10%;" />
-					<col style="width: 7%;" />
 					<col style="width: 20%;" />
 					<col style="width: 10%;" />
-					<col style="width: 7%;" />
-					<col style="width: 10%;" />
-					<col style="width: 7%;" />
-					<col style="width: 12%;" />
-					<col style="width: 12%;" />
-					<col style="width: 4%;" />
 				</colgroup>
 				<thead>
 					<tr class="listTitle">
 						<th rowspan="2">경매 번호</th>
-						<th rowspan="2">사진</th>
 						<th rowspan="2">차번호</th>
 						<th>연식</th>
 						<th>내 입찰가</th>
 						<th>입찰시작</th>
-						<th rowspan="2" class="readCount">조회</th>
 					</tr>
 					<tr>
 						<th>주행거리</th>
@@ -94,7 +87,7 @@
 				<tbody>
 					<c:if test="${empty alist}">
 						<tr>
-							<td colspan="10" class="align_center">해당 데이터가 없습니다</td>
+							<td colspan="7" class="align_center">해당 데이터가 없습니다</td>
 						</tr>
 					</c:if>
 					<c:if test="${!empty alist}">
@@ -102,14 +95,15 @@
 						<c:forEach var="vo" items="${alist}">
 							<tr style="text-align: center">
 								<c:if test="${vo['auctionState']=='END'}">
-									<td colspan="9"><a href="#" style="color: gray;">이미 종료된 경매 입니다</a></td>
+									<td colspan="7"><a href="#" style="color: gray;">이미 종료된 경매 입니다</a></td>
 								</c:if>
 								<c:if test="${vo['auctionState']!='END'}">
-								<td>${vo['auctionNoYear']}-${vo['auctionNoCar']}-${vo['auctionNo']}</td>
-								<td class="listImg">
-									<img alt="사진" height="56px;" width="90px;" src="<c:url value='/picture_upload/${vo["picture1"]}'/>">
+								<td>
+									<p style="font-size: 2em;">
+										${vo['auctionNoYear']}-${vo['auctionNoCar']}-${vo['auctionNo']}
+									</p>
 								</td>
-								<td class="listName" style="text-align: left;">
+								<td class="listName" style="text-align: center;">
 									<a class="auctionTitle" href="<c:url value='/auction/updateCount.do?auctionNo=${vo["auctionNo"]}'/>">
 										${vo['carNum']}<br>
 										<c:if test="${fn:length(vo['carLoc'])>30}">
@@ -131,7 +125,6 @@
 								<td>${vo['auctionRegdate']}<br> ${vo['auctionFinish']}
 								</td>
 								</c:if>
-								<td class="readCount">${vo['auctionReadCount']}</td>
 							</tr>
 						</c:forEach>
 						<!--반복처리 끝  -->
