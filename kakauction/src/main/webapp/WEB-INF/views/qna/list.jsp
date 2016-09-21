@@ -16,14 +16,28 @@
 				$(this).css("background","");
 			});
 
-		$(document).ready(function(){
-		    $(".flip").click(function(){
-		    	var index = $(this).children().val();
-		    	alert($(this).children().val());
-		    	alert("#panel_"+index);
-		    	$("#panel_"+index).slideToggle();
-		    });
-		});
+	    $(".flip").click(function(){
+	    	var index = $(this).children().val();
+	    	$(".hiddentd").css("display", "");
+	    	$(".panel_"+index).slideToggle();
+			
+	    	if($("#onoff"+index).val()==1){
+	    		$("#panel1_"+index).slideToggle();
+	    		$("#onoff"+index).val(0);
+	    	}
+	    });
+	    
+	    $(".flip1").click(function(){
+	    	var index = $(this).children().val();
+	    	$(".hiddentd1").css("display", "");
+	    	$("#panel1_"+index).slideToggle();
+	    	
+	    	if($("#onoff"+index).val()==0){
+	    		$("#onoff"+index).val(1);
+	    	}else{
+	    		$("#onoff"+index).val(0);
+	    	}
+	    });
 	});
 
 	function pageProc(curPage){
@@ -49,17 +63,41 @@
 		font-size: 25px;
 		font-weight: bold;
 	}
-	.flip{
-		background-color: #e5eecc;
+	.box2{
+		border-left: none;
+		border-right: none;
 	}
-	.hideT{
-		padding: 5px;
+	.box2 tr th{
+		border-left: none;
+		border-right: none;
+	}
+	.box2 tr td{
+		border-left: none;
+		border-right: none;
+	}
+	.flip:hover{
+		color: #fae100;
+		cursor:pointer;
+		text-decoration: underline;
+	}
+	.flip1{
 		text-align: center;
-		border: solid 1px #c3c3c3;
+		color: black;
+		font-weight: bold;
+		font-size: 1.3em;
+		background: #f1f1f1;
 	}
-	.hideT{
-		display: none;
+	.flip1:hover{
+		text-decoration: blink;
+		color: #fae100;
+		cursor: pointer;
 	}
+	.titletd td{
+		height: 30px;
+		font-size: 1em;
+		font-family: '고딕';
+	}
+
 	 
 </style>
 <div id="wrap">
@@ -125,53 +163,51 @@
 					<!--게시판 내용 반복문 시작  -->
 				<input type="hidden" class="on_off" value="off">
 				<c:forEach var="vo" items="${alist}" varStatus="vs">
-						<table>
-							<tr>
-								<td>${vo.questionNo}</td>
-								<td>${vo.memberId}</td>
-								<td style="text-align: left;">
-									<div class="flip">
-										${vo.questionTitle}<input type="hidden" class="flip" value="${vs.index}" >
-									</div>
-								</td>
-								<td>
-									<p><fmt:formatDate value="${vo.questionRegdate}" pattern="yyyy-MM-dd"/></p>
-								</td>
-								<td>
-									<c:if test="${vo.questionReturn=='N'}">
-										<td>X</td>
-									</c:if>
-									<c:if test="${vo.questionReturn=='Y'}">
-										<td>O</td>
-									</c:if>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="5">
-									<div id="panel_${vs.index}" class="hideT">${vo.questionContent}</div>
-									<div class="flip">답변보기</div>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="5">
-									<div id="panel_${vs.index}" class="hideT">${vo.ansContent}</div>
-									<div>답변 시간 : ${vo.ansTime}</div>
-								</td>
-							</tr>
-						</table>
+					<tr style="text-align: center;" class="titletd" >
+						<td>${vo.questionNo}</td>
+						<td>${vo.memberId}</td>
+						<td style="text-align: left; padding-left: 10px;" class="flip">
+								${vo.questionTitle}
+								</div><input type="hidden" class="flip" value="${vs.index}" >
+								<input type="hidden" class="flip1" value="${vs.index}" >
+								<p style="float: right;"><img src="<c:url value='/img/q_icon.png'/>"></p>
+						</td>
+						<td>
+							<p><fmt:formatDate value="${vo.questionRegdate}" pattern="yyyy-MM-dd"/></p>
+						</td>
+						<c:if test="${vo.questionReturn=='N'}">
+							<td>X</td>
+						</c:if>
+						<c:if test="${vo.questionReturn=='Y'}">
+							<td>O</td>
+						</c:if>
 					</tr>
-						
-<%-- 								<c:if test="${vo.questionReturn=='Y'}">
-
+					<tr>
+						<td class="panel_${vs.index}" colspan="5" style="display: none; background:#f1f1f1;">
+							<div style="padding: 50px 20px 50px 20px;">${vo.questionContent}</div>
+								<c:if test="${vo.questionReturn=='Y'}">
+								<div class="flip1">답변보기<input type="hidden" class="flip1" id="flip1${vs.index }" value="${vs.index}" ></div>
+								<input type="hidden" id="onoff${vs.index }" value="0">
 								</c:if>
- --%>					
+						</td>
+					</tr>
+					<c:if test="${vo.questionReturn=='Y'}">
+					<tr>
+						<td colspan="5" style="display: none; background: #e6e6e5;" id="panel1_${vs.index}">
+							
+							<div style="float: left;"><img src="<c:url value='/img/a_icon.png'/>"></div>
+							<div style="float: left; padding: 50px 20px 50px 20px;">${vo.ansContent}</div>
+							<div style="clear: both; text-align: right;">답변 시간 : ${vo.ansTime}</div>
+							</div>
+						</td>
+					</tr>
+					</c:if>
+				</tr>
 				</c:forEach>
-				<!--반복처리 끝  -->
-			</c:if>
-			</tbody>
+				</c:if>
+				</tbody>
 			</table>
-			</div>
-				<a href="<c:url value='/qna/write.do'/>">QNA글쓰기</a> 
+		</div>
 		<div class="divPage">
 			<!-- 이전 블럭으로 이동 -->
 			<c:if test="${pagingInfo.firstPage>1 }">	
@@ -230,6 +266,7 @@
 				<input type="submit" value="검색">
 		    </form>
 		</div>
+		<a href="<c:url value='/qna/write.do'/>" style="float: right;">글쓰기</a> 
 	</div>
 </div>
 <%@ include file="../design/inc/bottom.jsp"%>
