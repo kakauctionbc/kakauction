@@ -172,7 +172,7 @@ $(function() {
 					</p>
 				</div>
 				<div>
-					<p>일정안내</p>
+					<c:import url="/auction/main_schedule_list.do"></c:import>
 				</div>
 			</div>
 		</div>

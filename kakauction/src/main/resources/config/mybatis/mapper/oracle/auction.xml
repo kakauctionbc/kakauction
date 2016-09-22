@@ -447,4 +447,28 @@
 		]]>
 	</select>
 	
+	<select id="selectAllSchedule" resultType="AuctionVO" parameterType="SearchVO">
+		select * from(
+			select rownum as RNUM, LIST_ALL.* from(
+				select * from auction order by auction_finish desc
+			)LIST_ALL
+		)
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}+#{recordCountPerPage}
+		]]>
+	</select>
+	
+	<select id="selectAllScheduleCount" parameterType="SearchVO" resultType="int">
+		select count(*) from auction order by auction_finish desc
+	</select>
+	
+	<select id="mainSchedule" resultType="AuctionVO">
+		select rownum, auction_no,auction_regdate,auction_finish from( select 
+            auction_no,auction_regdate,auction_finish
+			from auction order by auction_finish desc ) 
+			<![CDATA[
+			where rownum<=7
+			]]>
+	</select>
 </mapper>
