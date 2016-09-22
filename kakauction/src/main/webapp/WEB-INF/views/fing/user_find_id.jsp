@@ -53,13 +53,13 @@ h1{
 			</p>
 		</div>
 		<div id="pagelogo">
-			<img src="${pageContext.request.contextPath }/img/memberOut_logo.png"
-				alt="아이디 찾기">
+			<%-- <img src="${pageContext.request.contextPath }/img/memberOut_logo.png"
+				alt="아이디 찾기"> --%>
 			<h1>아이디 찾기</h1>
 		</div>
 		<div id="loginp">
 			<p>
-				이름과 주민번호 앞 7자리를 입력하여 주십시오.
+				이름과 휴대폰 번호를 입력하세요 '-'포함 예)010-1234-5678
 			</p>
 		</div>
 		<div class="simpleForm">
@@ -70,10 +70,10 @@ h1{
 							이름</label>
 						<input type="text" name="memberName" id="memberName">
 					</div>
-					<div class="jumin">	
-						<label for="memberJumin"  class="label">
-							생년월일</label>
-						<input type="text" name="memberBirth" id="memberBirth">
+					<div class="hp">	
+						<label for="memberHp"  class="label">
+							휴대번호</label>
+						<input type="text" name="memberHp" id="memberHp">
 					</div>
 					<div style="width:100%; margin-top: 20px;">
 						<button type="submit" id="pwdCheck_btn">확인</button>

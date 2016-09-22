@@ -67,7 +67,7 @@
 						<th>변속기</th>
 						<th>감정평가액</th>
 						<th>물건상태</th>
-						<th>입찰번호</th>
+						<th rowspan="2">물건번호</th>
 						<th>입찰시작</th>
 						<th rowspan="2" class="readCount">조회수</th>
 					</tr>
@@ -77,7 +77,6 @@
 						<th>연료</th>
 						<th>입찰시작가</th>
 						<th>유찰횟수</th>
-						<th>물건번호</th>
 						<th>입찰마감</th>
 					</tr>
 				</thead>
