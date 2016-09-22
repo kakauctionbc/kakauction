@@ -73,7 +73,7 @@
 							<option value="강등">강등</option>
 							<option value="강제탈퇴">강제탈퇴</option>
 						</select>
-			            <button id="btHandle">처리하기</button> 
+			            <button id="btHandle">처리하기</button>
 			            <a href="<c:url value='/report/reportAllList.do'/>" style="float: right;">목록</a>         
 			      </div>
 		      </form>
