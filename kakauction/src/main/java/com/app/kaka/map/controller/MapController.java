@@ -22,14 +22,16 @@ public class MapController {
 	private MapService mapService;
 	
 	@RequestMapping("/mapConti.do")
-	public String showMap(Model model){
+	public String showMap(){
 		logger.info("지도 보여주기");
 		
-		List<MapVO> alist = mapService.selectAllMarker();
-		logger.info("location 리스트 = {}", alist);
-		
-		model.addAttribute("alist", alist);
-		
 		return "map/mapConti";
+	}
+	
+	@RequestMapping("/defaultMap.do")
+	public String defaultMap(){
+		logger.info("지도 보여주기");
+		
+		return "map/defaultMap";
 	}
 }

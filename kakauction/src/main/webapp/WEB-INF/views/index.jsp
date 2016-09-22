@@ -41,6 +41,12 @@ $(function() {
 	}, function() {
 		icon.attr("src", icon.attr("src").replace("Big.png",".png"))
 	});
+	
+	$("#showBigMap").click(function(){
+		window.open("/kaka/map/defaultMap.do",
+				"defaultMap",
+		"width=820px,height=420,left=200,top=100,resizable=no,location=yes");
+	});
 });
 </script>
 <style type="text/css">
@@ -155,7 +161,8 @@ $(function() {
 					<p id="text">◎ 빠른 서비스</p>
 				</div>
 				<div>
-					<p>이미지</p>
+					<p><img alt="오시는 길" src="${pageContext.request.contextPath }/img/company.png" style="width: 350px"></p>
+					<p><a id="showBigMap"><img alt="지도 크게보기" src="${pageContext.request.contextPath }/img/showBigMap.png" style="width: 180px"></a></p>
 				</div>
 			</div>
 			<div id="notice">

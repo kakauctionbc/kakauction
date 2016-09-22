@@ -35,10 +35,12 @@
 	
 	<interceptors> 
 		<interceptor>
+	        <mapping path="/admin/*" />
 	        <mapping path="/car/*" />
-	        <mapping path="/auction/*" />
+	        <mapping path="/auction/list.do" />
+	        <mapping path="/auction/todayList.do" />
 	        <mapping path="/excel/*" />
-	        <mapping path="/notice/*" />
+	        <mapping path="/notice/detail.do" />
 	        <mapping path="/freeboard/write.do" />
 	        <mapping path="/freeboard/updateCount.do" />
 	        <mapping path="/freeboard/detail.do" />
