@@ -34,15 +34,37 @@
 
 	marker.setMap(map);
 	
-	var iwContent = '<div style="padding:5px;"> <p style="color:blue; font-decoration:none;">카카옥션 본사</p></div>',
+	var iwContent = '<div style="height: 10px;color:blue; width:140px; text-align: center;">카카옥션 본사</div>',
     iwPosition = new daum.maps.LatLng(37.496585982368316, 127.02476549938709); //인포윈도우 표시 위치입니다
 
 	var infowindow = new daum.maps.InfoWindow({
 	    position : iwPosition, 
 	    content : iwContent 
 	});
-	  
-	infowindow.open(map, marker); 
+	
+    var onoff = null;
+    
+	infowindow.open(map, marker);
+	
+	daum.maps.event.addListener(map, 'click', function(mouseEvent) {
+		if(!onoff){
+			infowindow.close();
+			onoff = 1;
+		}else{
+			infowindow.open(map,marker);
+			onoff = null;
+		}
+	});
+	
+	daum.maps.event.addListener(marker, 'click', function() {
+		if(!onoff){
+			infowindow.close();
+			onoff = 1;
+		}else{
+			infowindow.open(map,marker);
+			onoff = null;
+		}
+	});
 </script>
 </body>
 </html>
