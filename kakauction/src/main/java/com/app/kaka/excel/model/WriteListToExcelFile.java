@@ -93,7 +93,8 @@ public class WriteListToExcelFile {
 	     
 	         
 	        //lets write the excel data to file now
-	        FileOutputStream fos = new FileOutputStream("D:\\kaka\\kakauction\\kakauction\\src\\main\\webapp\\excel_download\\"+fileName);
+/*	        FileOutputStream fos = new FileOutputStream("D:\\kaka\\kakauction\\kakauction\\src\\main\\webapp\\excel_download\\"+fileName);*/
+	        FileOutputStream fos = new FileOutputStream("C:\\Users\\User\\Desktop\\"+fileName);
 	        workbook.write(fos);
 	        fos.close();
 	        

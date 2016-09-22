@@ -3,8 +3,38 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../design/inc/top.jsp" %>
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
+<style type="text/css">
+	.align_center{
+		text-align: center;
+	}
+	.btdel {
+		float:left;
+	}
+	
+	.btBlack{
+		float:left;
+	}
+	.align_right{
+		float:right;
+	}
+	td, th{
+		border: 1px solid silver;
+	}
+	h1{
+		font-size: 2em;
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+	.memTable{
+		margin-top: 10px;
+	}
+	
+	.changeGrade{
+		margin-top: 10px;
+	}
+</style>
 <script type="text/javascript">
-/* 	$(function(){
+	$(function(){
 		$("#excelUpFrom").submit(function(){
 			if($("#excel").val().length<1){
 				alert("파일을 올려주세요");
@@ -22,7 +52,7 @@
 			if(filType!=0) return true; 
 			if(fileType2!=0) return true;
 		});
-	}); */
+	}); 
 </script>
 <style>
 	.upload{

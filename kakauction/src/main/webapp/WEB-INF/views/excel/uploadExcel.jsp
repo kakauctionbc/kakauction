@@ -25,65 +25,98 @@
 	}); */
 </script>
 <style>
-	.upload{
-		width: 700px;
-		height: 700px;
-		margin: 0 auto;
-		margin-top: 100px;
+		.align_center{
+		text-align: center;
 	}
-	.excelTitle{
-		font-size: 1.2em;
-		font-weight: bold;
+	.btdel {
+		float:left;
 	}
-	.Title{
+	
+	.btBlack{
+		float:left;
+	}
+	.align_right{
+		float:right;
+	}
+	td, th{
+		border: 1px solid silver;
+	}
+	h1{
 		font-size: 2em;
 		font-weight: bold;
+		margin-bottom: 10px;
 	}
-	.notice{
-		
+	.memTable{
+		margin-top: 10px;
 	}
-	th{
-		background-color: #f5f4f4;
-	}
-	strong{
-		font-size: 2em;
-		padding-top: 10px;
+	
+	.changeGrade{
+		margin-top: 10px;
 	}
 </style>
-	<div class="upload">
-		<div class="Title">
-			| 회원 엑셀 일괄 등록
+<div id="wrap">
+	<div id="wrapdiv">
+		<div id="wraptop">
+			<p>
+				<a href="${pageContext.request.contextPath }/admin/index.do">HOME</a>>회원관리>회원조회관리
+			</p>
 		</div>
-		<hr>
-		<div class="excelTitle">
-			■ 엑셀 업로드
-			<p class="notice">-엑셀 업로드를 이용하시면 회원 정보를 일괄로 등록하실 수 있습니다.</p>
+		<div id="pagelogo">
+			<%-- <img src="${pageContext.request.contextPath }/img/memberAdminister_logo.png" alt="회원가입로고"> --%>
+			<h1>회원 엑셀 일괄등록</h1>
 		</div>
-		
-		<div class="excelTitle">
-			**주의 사항**
-		</div>
-		<form id="excelUpFrom" method="post" action="<c:url value='/admin/excel/uploadExcel.do'/>" enctype="multipart/form-data">
-			<div class="notice">
-				<p>*엑셀 파일만 업로드 가능합니다.</p>
-				<p>*첫 번째 시트에 데이터가 있어야 합니다. [시트명 : Sheet1]</p>
-				<p>*엑셀 작성 시, 중간에 빈 줄이 없어야 합니다.</p>
-			</div>
-			<div class="form_group">
-				<div class="upFile">
-					<table>
-						<tr>
-							<th>엑셀파일 등록</th>
-							<td>						
-								<input id="excel" type="file" name="excel">
-							</td>
-						</tr>
-					</table>
+		<div class="download">
+			<form action="excelFromDown" method="post" action="<c:url value='/admin/excel/uploadExcel.do'/>" enctype="multipart/form-data">
+				<div>
+					<p>■ 양식 다운로드</p>
+					<p>- 회원 정보 등록을 위하여 먼저 엑셀 양식을 다운받으세요.</p>
 				</div>
-			</div>
-			<div class="form_submit">
-				<button type="submit" id="excelUp">등록하기</button>
-			</div>
-		</form>
+				<div class="form_group">
+					<div class="upFile">
+						<table>
+							<tr>
+								<th>양식 다운로드</th>
+								<td>						
+									<button type="submit" id="excelDown"><a href="#">양식다운로드</a></button>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="upload">
+			<form id="excelUpFrom" method="post" action="<c:url value='/admin/excel/uploadExcel.do'/>" enctype="multipart/form-data">
+				<div>
+					<p>■ 엑셀 업로드</p>
+					<p>- 엑셀 업로드를 이용하시면 회원 정보를 일괄로 등록하실 수 있습니다.</p>
+				</div>
+				<div class="notice">
+					<p>주의 사항<p>
+					<p>*엑셀 파일만 업로드 가능합니다.</p>
+					<p>*첫 번째 시트에 데이터가 있어야 합니다. [시트명 : Sheet1]</p>
+					<p>*엑셀 작성 시, 중간에 빈 줄이 없어야 합니다.</p>
+				</div>
+				<div class="form_group">
+					<div class="upFile">
+						<table>
+							<tr>
+								<th>엑셀파일 등록</th>
+								<td>						
+									<input id="excel" type="file" name="excel">
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="form_submit">
+					<button type="submit" id="excelUp">등록하기</button>
+				</div>
+			</form>
+		</div>
 	</div>
+</div>
+
+
+	
 <%@ include file="../design/inc/adminBottom.jsp" %>
