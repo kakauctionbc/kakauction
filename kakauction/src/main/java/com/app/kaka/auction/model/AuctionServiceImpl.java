@@ -280,4 +280,19 @@ public class AuctionServiceImpl implements AuctionService{
 	public List<Map<String, Object>> myCarAucList(DateSearchVO searchVo) {
 		return auctionDao.myCarAucList(searchVo);
 	}
+
+	@Override
+	public List<AuctionVO> selectAllSchedule(SearchVO searchVo) {
+		return auctionDao.selectAllSchedule(searchVo);
+	}
+
+	@Override
+	public int selectAllScheduleCount(SearchVO searchVo) {
+		return auctionDao.selectAllScheduleCount(searchVo);
+	}
+
+	@Override
+	public List<AuctionVO> mainSchedule() {
+		return auctionDao.mainSchedule();
+	}
 }

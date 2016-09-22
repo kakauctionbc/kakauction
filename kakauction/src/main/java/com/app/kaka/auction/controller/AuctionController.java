@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.kaka.auction.model.AuctionCarVO;
 import com.app.kaka.auction.model.AuctionService;
+import com.app.kaka.auction.model.AuctionVO;
 import com.app.kaka.auction.model.HighPriceVO;
 import com.app.kaka.buyer.model.BuyerVO;
 import com.app.kaka.car.model.CarVO;
@@ -30,6 +31,7 @@ import com.app.kaka.common.SearchVO;
 import com.app.kaka.common.Utility;
 import com.app.kaka.common.DetailSearchVO;
 import com.app.kaka.gas.model.GasVO;
+import com.app.kaka.member.model.MemberVO;
 import com.app.kaka.op.model.OpService;
 import com.app.kaka.op.model.OpVO;
 
@@ -568,9 +570,39 @@ public class AuctionController {
 	}
 	
 	@RequestMapping("/front_schedule_list.do")
-	public String auctionSchedule(){
+	public String auctionSchedule(@ModelAttribute SearchVO searchVo,Model model){
 		logger.info("경매일정창");
 		
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.SCHEDULE_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		searchVo.setBlockSize(Utility.BLOCK_SIZE);
+		searchVo.setRecordCountPerPage(Utility.SCHEDULE_COUNT_PER_PAGE);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		
+		int totalRecord = auctionService.selectAllScheduleCount(searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+		model.addAttribute("totalRecord", totalRecord);
+		
+		List<AuctionVO> auctionList = auctionService.selectAllSchedule(searchVo);
+		logger.info("회원 목록 조회 결과 memberList.size={}",auctionList.size());
+		
+		model.addAttribute("auctionList", auctionList);
+		model.addAttribute("pagingInfo", pagingInfo);
+		
 		return "auction/front_schedule_list";
+	}
+	
+	@RequestMapping("/main_schedule_list.do")
+	public String mainSchedule(Model model){
+		logger.info("메인에 띄우기");
+		
+		List<AuctionVO> mainList = auctionService.mainSchedule();
+		
+		model.addAttribute("schedule", mainList);
+		
+		return "auction/main_schedule_list";
 	}
 }

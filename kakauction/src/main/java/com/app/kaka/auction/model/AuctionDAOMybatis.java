@@ -254,10 +254,19 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 		return getSqlSession().selectList(namespace+".selectAuctionRecord", searchVo);
 	}
 
+	@Override
+	public List<AuctionVO> selectAllSchedule(SearchVO searchVo) {
+		return getSqlSession().selectList(namespace+".selectAllSchedule", searchVo);
+	}
 
-	
+	@Override
+	public int selectAllScheduleCount(SearchVO searchVo) {
+		return getSqlSession().selectOne(namespace+".selectAllScheduleCount", searchVo);
+	}
 
-
-
+	@Override
+	public List<AuctionVO> mainSchedule() {
+		return getSqlSession().selectList(namespace+".mainSchedule");
+	}
 
 }

@@ -117,4 +117,11 @@ public interface AuctionService {
 	
 	//내가 등록한 차량의 경매를 보자
 	public List<Map<String, Object>> myCarAucList(DateSearchVO searchVo);
+	
+	//경매일정
+	public List<AuctionVO> selectAllSchedule(SearchVO searchVo);
+	public int selectAllScheduleCount(SearchVO searchVo);
+	
+	//경매일정 메인창에!
+	public List<AuctionVO> mainSchedule();
 }
