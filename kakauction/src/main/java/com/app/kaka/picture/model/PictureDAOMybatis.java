@@ -26,4 +26,9 @@ public class PictureDAOMybatis extends SqlSessionDaoSupport implements PictureDA
 	public List<PictureVO> selectByMemberId(String memberId) {
 		return getSqlSession().selectList(namespace+".selectByMemberId", memberId);
 	}
+
+	@Override
+	public int editPicture(PictureVO pictureVo) {
+		return getSqlSession().update(namespace+".editPicture", pictureVo);
+	}
 }

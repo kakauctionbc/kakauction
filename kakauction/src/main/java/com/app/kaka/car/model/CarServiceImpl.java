@@ -37,4 +37,19 @@ public class CarServiceImpl implements CarService{
 		return carDao.selectMemberGrade(memberId);
 	}
 
+	@Override
+	public List<CarVO> selectDeferListByMemberId(String memberId) {
+		return carDao.selectDeferListByMemberId(memberId);
+	}
+
+	@Override
+	public Map<String, Object> selectDeferCarDetail(CarVO carVo) {
+		return carDao.selectDeferCarDetail(carVo);
+	}
+
+	@Override
+	public int editCar(CarVO carVo) {
+		return carDao.editCar(carVo);
+	}
+
 }

@@ -10,4 +10,7 @@ public interface CarService {
 	public List<Map<String, Object>> selectCarPictureByMemberId(String memberId);
 	public int upMemeberGrade(String memberId);
 	public String selectMemberGrade(String memberId);
+	public List<CarVO> selectDeferListByMemberId(String memberId);
+	public Map<String, Object> selectDeferCarDetail(CarVO carVo);
+	public int editCar(CarVO carVo);
 }

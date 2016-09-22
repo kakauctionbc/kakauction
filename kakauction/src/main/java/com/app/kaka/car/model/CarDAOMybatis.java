@@ -35,6 +35,21 @@ public class CarDAOMybatis extends SqlSessionDaoSupport implements CarDAO{
 	public String selectMemberGrade(String memberId) {
 		return getSqlSession().selectOne(namespace+".selectMemberGrade", memberId);
 	}
+
+	@Override
+	public List<CarVO> selectDeferListByMemberId(String memberId) {
+		return getSqlSession().selectList(namespace+".selectDeferListByMemberId", memberId);
+	}
+
+	@Override
+	public Map<String, Object> selectDeferCarDetail(CarVO carVo) {
+		return getSqlSession().selectOne(namespace+".selectDeferCarDetail", carVo);
+	}
+
+	@Override
+	public int editCar(CarVO carVo) {
+		return getSqlSession().update(namespace+".editCar", carVo);
+	}
 	
 	
 

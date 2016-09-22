@@ -22,7 +22,7 @@
 	<select id="newAlert" parameterType="string" resultType="int">
 		select count(*) from alert where seller_member_id = #{memberId} and alert_confirm='N'
 	</select>
-	
+	 
 	<select id="selectByAlertNo" parameterType="int" resultType="AlertVO">
 		select * from alert where alert_no=#{alertNo}
 	</select>

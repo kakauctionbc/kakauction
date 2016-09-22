@@ -42,4 +42,9 @@ public class PictureServiceImpl implements PictureService{
 	public List<PictureVO> selectByMemberId(String memberId) {
 		return pictureDao.selectByMemberId(memberId);
 	}
+
+	@Override
+	public int editPicture(PictureVO pictureVo) {
+		return pictureDao.editPicture(pictureVo);
+	}
 }

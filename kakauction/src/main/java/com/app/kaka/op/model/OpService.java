@@ -4,5 +4,6 @@ public interface OpService {
 
 	public int insertOp(OpVO opVo);
 	public OpVO opDetail(String carNum);
+	public int editOp(OpVO opVo);
 
 }

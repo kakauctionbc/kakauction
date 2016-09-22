@@ -19,4 +19,9 @@ public class OpServiceImpl implements OpService{
 		return opDao.opDetail(carNum);
 	}
 
+	@Override
+	public int editOp(OpVO opVo) {
+		return opDao.editOp(opVo);
+	}
+
 }

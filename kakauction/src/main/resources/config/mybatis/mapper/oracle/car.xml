@@ -27,4 +27,14 @@
 	<select id="selectMemberGrade" parameterType="string" resultType="string">
 		select member_grade from member where member_id=#{memberId}
 	</select>
+	
+	<select id="selectDeferListByMemberId" parameterType="String" resultType="CarVO">
+		select * from car
+		where car_auction_yn='F' and seller_member_id=#{memberId}
+		order by car_regdate desc
+	</select>
+	
+	<select id="selectDeferCarDetail" parameterType="CarVO" resultType="map">
+		select * from car_op_picture where seller_member_id = #{sellerMemberId} and car_num = #{carNum}
+	</select>
 </mapper>
