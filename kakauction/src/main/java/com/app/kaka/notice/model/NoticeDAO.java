@@ -16,4 +16,5 @@ public interface NoticeDAO {
 	public int deleteNotice(Map<String, String> map);
 	public int updateDownCount(int noticeNo);
 	
+	public List<NoticeVO> mainNotice();
 }

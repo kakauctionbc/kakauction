@@ -319,4 +319,14 @@ public class NoticeController {
 		
 		return mav;
 	}
+	
+	@RequestMapping("/main_notice_list.do")
+	public String mainNoticeList(Model model){
+		logger.info("main에 보이는 공지");
+		
+		List<NoticeVO> mainNoticeList =	noticeService.mainNotice(); 
+		model.addAttribute("mainNotice", mainNoticeList);
+		
+		return "notice/main_notice_list";
+	}
 }

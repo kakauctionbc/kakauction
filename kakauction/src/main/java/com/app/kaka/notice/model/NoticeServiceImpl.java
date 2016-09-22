@@ -72,4 +72,9 @@ public class NoticeServiceImpl implements NoticeService {
 	public int updateDownCount(int noticeNo) {
 		return noticeDao.updateDownCount(noticeNo);
 	}
+
+	@Override
+	public List<NoticeVO> mainNotice() {
+		return noticeDao.mainNotice();
+	}
 }

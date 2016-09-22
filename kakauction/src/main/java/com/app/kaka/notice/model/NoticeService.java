@@ -17,4 +17,6 @@ public interface NoticeService {
 	public int updateReadCount(int noticeNo);
 	public int deleteNotice(Map<String, String> map);
 	public int updateDownCount(int noticeNo);
+	
+	public List<NoticeVO> mainNotice();
 }

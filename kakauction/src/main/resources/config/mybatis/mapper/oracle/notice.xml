@@ -101,4 +101,14 @@
 		set NOTICE_DOWNCOUNT = NOTICE_DOWNCOUNT+1
 		where notice_no=#{noticeNo}		
 	</update>
+	
+	<!-- 메인뷰 -->
+	<select id="mainNotice" resultType="NoticeVO">
+		select rownum, notice_title,notice_regdate from( select 
+	        notice_title,notice_regdate
+			from notice order by notice_regdate desc ) 
+			<![CDATA[
+			where rownum<=7
+			]]>
+	</select>
 </mapper>

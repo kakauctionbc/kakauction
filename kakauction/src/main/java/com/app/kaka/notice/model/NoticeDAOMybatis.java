@@ -50,4 +50,9 @@ public class NoticeDAOMybatis extends SqlSessionDaoSupport implements NoticeDAO{
 	public int updateDownCount(int noticeNo) {
 		return getSqlSession().delete(namespace+".updateDownCount", noticeNo);
 	}
+
+	@Override
+	public List<NoticeVO> mainNotice() {
+		return getSqlSession().selectList(namespace+".mainNotice");
+	}
 }	
