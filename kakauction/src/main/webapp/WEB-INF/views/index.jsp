@@ -168,7 +168,7 @@ $(function() {
 				<div id="schedulehead">
 					<p id="text">일정안내</p>
 					<p id="more">
-						<a href="<c:url value='/auction/myAuctionList.do'/>">MORE▶</a>
+						<a href="<c:url value='/auction/front_schedule_list.do'/>">MORE▶</a>
 					</p>
 				</div>
 				<div>

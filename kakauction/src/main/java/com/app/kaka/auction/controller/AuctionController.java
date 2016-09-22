@@ -567,4 +567,10 @@ public class AuctionController {
 		return "auction/myCarAucList";
 	}
 	
+	@RequestMapping("/front_schedule_list.do")
+	public String auctionSchedule(){
+		logger.info("경매일정창");
+		
+		return "auction/front_schedule_list";
+	}
 }
