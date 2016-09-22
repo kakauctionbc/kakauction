@@ -14,6 +14,11 @@
 		document.frmPage.submit();
 	}
 </script>
+<style type="text/css">
+	.freereplyContent{
+		width: 1000px;
+	}
+</style>
 </head>
 <body>
 	<form name="frmPage" method="post" action="<c:url value='/freeboard/detail.do?freeboardNo=${freeVo.freeboardNo}'/>">
@@ -91,11 +96,11 @@
 				<legend>댓글달기</legend>
 					<p style="margin-top: 10px;">
 						<label for="memberId" style="margin-right: 10px;">작성자</label>
-						<input type="text" id="memberId" name="memberId" style="width: 30%" value="${sessionScope.memberId }" readonly>
+						<input type="text" id="memberId" name="memberId" style="width: 30%; border: none;" value="${sessionScope.memberId }" readonly>
 					</p>
 					<input type="hidden" name="freereplyGroupno" value="${freeVo.freeboardNo}">
 					<p style="margin-top: 20px;">
-						<textarea rows="5" cols="95" name="freereplyContent"></textarea>
+						<textarea rows="5" cols="95" class="freereplyContent" name="freereplyContent"></textarea>
 					</p>
 					<div style="text-align: center; margin-top: 10px;">
 						<input type="submit" name="commentSubmit" value="확인">

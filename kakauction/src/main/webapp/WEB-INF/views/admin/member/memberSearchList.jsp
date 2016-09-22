@@ -177,7 +177,7 @@
 							<th>개인정보</th>
 							<td colspan="3">
 								<select name="searchCondition" class="searchCondition">
-									<option value="">-선택-</option>
+									<option value="">-- 선택 --</option>
 									<option value="member_name"
 										<c:if test="${param.searchCondition=='member_name'}">
 						            		selected
@@ -207,7 +207,7 @@
 							<th>회원등급</th>
 							<td>
 								<select name=memberGrade>
-									<option value="">--선택--</option>
+									<option value="">-- 선택 --</option>
 									<option value="MEMBER"
 										<c:if test="${param.memberGrade=='MEMBER'}">
 						            		selected

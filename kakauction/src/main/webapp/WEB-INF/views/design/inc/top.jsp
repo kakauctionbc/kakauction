@@ -78,7 +78,7 @@ $(function(){
 				<img alt="로고 이미지" src="${pageContext.request.contextPath }/img/logo.png" /></a>
 			</div>
 			<div id="mainsearch">
-				<select id="totalsearch" name="search">
+				<select id="totalsearch" name="search" style="font-size: 1.2em;">
 			    <option id="total" value="통합검색">통합검색</option>
 			    <option value="판매자">판매자</option>
 			    <option value="차종">차종</option>

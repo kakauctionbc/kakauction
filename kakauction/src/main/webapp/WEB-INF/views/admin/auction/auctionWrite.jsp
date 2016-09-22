@@ -142,20 +142,52 @@
 		
 	});
 </script>
+<style type="text/css">
+.auctionWrite{
+	width: 1000px;
+	border: 1px solid #534a4a;
+	margin-top: 30px;
+}
+.auctionWrite td{
+	border: 1px solid #534a4a;
+}
+.p_10{
+	background:#ebebeb;
+	height: 30px; 
+	padding-left: 10px;
+}
+.p_10 select{
+	font-size: 1.1em;
+}
+.writeDetail{
+	width: 1000px;
+	border: 1px solid #534a4a;
+	margin-top: 30px;
+}
+.writeDetail th{
+	background: #ebebeb;
+	border: 1px solid #534a4a;
+	height: 30px;
+}
+.writeDetail td{
+	border: 1px solid #534a4a;
+}
+
+</style>
 <div id="wrap">
 	<div id="wrapdiv">
 		<div id="wraptop">
 			<p>
-				<a href="${pageContext.request.contextPath }/index.do">HOME</a>>경매리스트
+				<a href="${pageContext.request.contextPath }/index.do">HOME</a>>경매등록
 			</p>
 		</div>
 		<div id="pagelogo">
-			<img src="${pageContext.request.contextPath }/img/auctionList_logo.png" alt="회원가입로고">
+			<img src="${pageContext.request.contextPath }/img/auctionWrite_logo.png" alt="경매등록로고">
 		</div>
 	<form action="<c:url value='/admin/auction/auctionWrite.do'/>" name="auctionWrite" method="post">
-		<table width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
+		<table class="auctionWrite" cellspacing="0" cellpadding="0" align="center">
 			<tr>
-				<td height="30" class="p_10">
+				<td height="30px;" class="p_10">
 				<span for="auctionNo">물건관리번호	: </span> 
 				<select id="carList" name="carNum">
 						<c:if test="${empty carAlist}">
@@ -181,14 +213,12 @@
 				</td>
 			</tr>
 			<tr>
-				<td height='220px;' width="960px;" id="carPic"></td>
+				<td height='220px;' width="1000px;" id="carPic"></td>
 			</tr>
 		</table>
 	</form>
 	<div id="voName"></div>
-		<table width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
-			<thead>차량상세정보
-			</thead>
+		<table class="writeDetail" cellspacing="0" cellpadding="0" align="center">
 			<tbody>
 				<tr>
 					<th>차량상세정보</th>
@@ -216,7 +246,15 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<table>
+						<table style="width: 1000px; border: none;">
+							<colgroup>
+								<col style="width:120px;"/>
+								<col style="width:200px;"/>
+								<col style="width:120px;"/>
+								<col style="width:200px;"/>
+								<col style="width:120px;"/>
+								<col style="width:150px;"/>
+							</colgroup>
 							<tr>
 								<th>물건관리 번호</th>
 								<td id="voAuctionYN"></td>
