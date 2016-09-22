@@ -1824,26 +1824,26 @@
 		
 		<div id="car_pictures">
            <div class="imgfile">
-		   		<label for="imageFileUpload1"><img id="UploadedImg1" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_20']}" style="width: 80px; height: 80px;"/></label> 
-		       	<label for="imageFileUpload2"><img id="UploadedImg2" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_19']}" style="width: 80px; height: 80px;"/></label>
-		       	<label for="imageFileUpload3"><img id="UploadedImg3" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_18']}" style="width: 80px; height: 80px;"/></label>
-		       	<label for="imageFileUpload4"><img id="UploadedImg4" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_17']}" style="width: 80px; height: 80px;"/></label> 
-		      	<label for="imageFileUpload5"><img id="UploadedImg5" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_16']}" style="width: 80px; height: 80px;"/></label> 
-		       	<label for="imageFileUpload6"><img id="UploadedImg6" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_15']}" style="width: 80px; height: 80px;"/></label> 
-		       	<label for="imageFileUpload7"><img id="UploadedImg7" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_14']}" style="width: 80px; height: 80px;"/></label> 
-		       	<label for="imageFileUpload8"><img id="UploadedImg8" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_13']}" style="width: 80px; height: 80px;"/></label> 
-		       	<label for="imageFileUpload9"><img id="UploadedImg9" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_12']}" style="width: 80px; height: 80px;"/></label> 
-		       	<label for="imageFileUpload10"><img id="UploadedImg10" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_11']}" style="width: 80px; height: 80px;"/></label> 
-		       	<label for="imageFileUpload11"><img id="UploadedImg11" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_10']}" style="width: 80px; height: 80px;"/></label> 
-		       	<label for="imageFileUpload12"><img id="UploadedImg12" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_9']}" style="width: 80px; height: 80px;"/></label> 
-		       	<label for="imageFileUpload13"><img id="UploadedImg13" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_8']}" style="width: 80px; height: 80px;"/></label> 
-		       	<label for="imageFileUpload14"><img id="UploadedImg14" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_7']}" style="width: 80px; height: 80px;"/></label> 
-		       	<label for="imageFileUpload15"><img id="UploadedImg15" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_6']}" style="width: 80px; height: 80px;"/></label> 
-		       	<label for="imageFileUpload16"><img id="UploadedImg16" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_5']}" style="width: 80px; height: 80px;"/></label> 
-		 	   	<label for="imageFileUpload17"><img id="UploadedImg17" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_4']}" style="width: 80px; height: 80px;"/></label> 
-		       	<label for="imageFileUpload18"><img id="UploadedImg18" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_3']}" style="width: 80px; height: 80px;"/></label> 
-		       	<label for="imageFileUpload19"><img id="UploadedImg19" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_2']}" style="width: 80px; height: 80px;"/></label> 
-		       	<label for="imageFileUpload20"><img id="UploadedImg20" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_1']}" style="width: 80px; height: 80px;"/></label> 
+		   		<label for="imageFileUpload1"><img id="UploadedImg1" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_1']}" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload2"><img id="UploadedImg2" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_2']}" style="width: 80px; height: 80px;"/></label>
+		       	<label for="imageFileUpload3"><img id="UploadedImg3" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_3']}" style="width: 80px; height: 80px;"/></label>
+		       	<label for="imageFileUpload4"><img id="UploadedImg4" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_4']}" style="width: 80px; height: 80px;"/></label> 
+		      	<label for="imageFileUpload5"><img id="UploadedImg5" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_5']}" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload6"><img id="UploadedImg6" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_6']}" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload7"><img id="UploadedImg7" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_7']}" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload8"><img id="UploadedImg8" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_8']}" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload9"><img id="UploadedImg9" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_9']}" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload10"><img id="UploadedImg10" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_10']}" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload11"><img id="UploadedImg11" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_11']}" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload12"><img id="UploadedImg12" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_12']}" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload13"><img id="UploadedImg13" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_13']}" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload14"><img id="UploadedImg14" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_14']}" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload15"><img id="UploadedImg15" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_15']}" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload16"><img id="UploadedImg16" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_16']}" style="width: 80px; height: 80px;"/></label> 
+		 	   	<label for="imageFileUpload17"><img id="UploadedImg17" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_17']}" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload18"><img id="UploadedImg18" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_18']}" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload19"><img id="UploadedImg19" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_19']}" style="width: 80px; height: 80px;"/></label> 
+		       	<label for="imageFileUpload20"><img id="UploadedImg20" src="${pageContext.request.contextPath }/picture_upload/${map['PICTURE_20']}" style="width: 80px; height: 80px;"/></label> 
 	      		
 	      		<input type='file' id="imageFileUpload1" name="imageFileUpload1" onchange="readURL(this, 1);" accept="image/*"/>
 				<input type='file' id="imageFileUpload2" name="imageFileUpload2" onchange="readURL(this, 2);" accept="image/*"/>
@@ -1868,27 +1868,47 @@
 		    </div>
 		    <div>
 		    
+		    <input type="hidden" id="picture1" name="picture1">
+		    <input type="hidden" id="picture2" name="picture2">
+		    <input type="hidden" id="picture3" name="picture3">
+		    <input type="hidden" id="picture4" name="picture4">
+		    <input type="hidden" id="picture5" name="picture5">
+		    <input type="hidden" id="picture6" name="picture6">
+		    <input type="hidden" id="picture7" name="picture7">
+		    <input type="hidden" id="picture8" name="picture8">
+		    <input type="hidden" id="picture9" name="picture9">
+		    <input type="hidden" id="picture10" name="picture10">
+		    <input type="hidden" id="picture11" name="picture11">
+		    <input type="hidden" id="picture12" name="picture12">
+		    <input type="hidden" id="picture13" name="picture13">
+		    <input type="hidden" id="picture14" name="picture14">
+		    <input type="hidden" id="picture15" name="picture15">
+		    <input type="hidden" id="picture16" name="picture16">
+		    <input type="hidden" id="picture17" name="picture17">
+		    <input type="hidden" id="picture18" name="picture18">
+		    <input type="hidden" id="picture19" name="picture19">
+		    <input type="hidden" id="picture20" name="picture20">
 				    
-		      <input type="hidden" id="originPicture1" name="originPicture1" value="${map['PICTURE_1'] }">
-		      <input type="hidden" id="originPicture2" name="originPicture2" value="${map['PICTURE_2'] }">
-		      <input type="hidden" id="originPicture3" name="originPicture3" value="${map['PICTURE_3'] }">
-		      <input type="hidden" id="originPicture4" name="originPicture4" value="${map['PICTURE_4'] }">
-		      <input type="hidden" id="originPicture5" name="originPicture5" value="${map['PICTURE_5'] }">
-		      <input type="hidden" id="originPicture6" name="originPicture6" value="${map['PICTURE_6'] }">
-		      <input type="hidden" id="originPicture7" name="originPicture7" value="${map['PICTURE_7'] }">
-		      <input type="hidden" id="originPicture8" name="originPicture8" value="${map['PICTURE_8'] }">
-		      <input type="hidden" id="originPicture9" name="originPicture9" value="${map['PICTURE_9'] }">
-		      <input type="hidden" id="originPicture10" name="originPicture10" value="${map['PICTURE_10'] }">
-		      <input type="hidden" id="originPicture11" name="originPicture11" value="${map['PICTURE_11'] }">
-		      <input type="hidden" id="originPicture12" name="originPicture12" value="${map['PICTURE_12'] }">
-		      <input type="hidden" id="originPicture13" name="originPicture13" value="${map['PICTURE_13'] }">
-		      <input type="hidden" id="originPicture14" name="originPicture14" value="${map['PICTURE_14'] }">
-		      <input type="hidden" id="originPicture15" name="originPicture15" value="${map['PICTURE_15'] }">
-		      <input type="hidden" id="originPicture16" name="originPicture16" value="${map['PICTURE_16'] }">
-		      <input type="hidden" id="originPicture17" name="originPicture17" value="${map['PICTURE_17'] }">
-		      <input type="hidden" id="originPicture18" name="originPicture18" value="${map['PICTURE_18'] }">
-		      <input type="hidden" id="originPicture19" name="originPicture19" value="${map['PICTURE_19'] }">
-		      <input type="hidden" id="originPicture20" name="originPicture20" value="${map['PICTURE_20'] }">
+		    <input type="hidden" id="originPicture1" name="originPicture1" value="${map['PICTURE_1'] }">
+		    <input type="hidden" id="originPicture2" name="originPicture2" value="${map['PICTURE_2'] }">
+		    <input type="hidden" id="originPicture3" name="originPicture3" value="${map['PICTURE_3'] }">
+		    <input type="hidden" id="originPicture4" name="originPicture4" value="${map['PICTURE_4'] }">
+		    <input type="hidden" id="originPicture5" name="originPicture5" value="${map['PICTURE_5'] }">
+		    <input type="hidden" id="originPicture6" name="originPicture6" value="${map['PICTURE_6'] }">
+		    <input type="hidden" id="originPicture7" name="originPicture7" value="${map['PICTURE_7'] }">
+		    <input type="hidden" id="originPicture8" name="originPicture8" value="${map['PICTURE_8'] }">
+		    <input type="hidden" id="originPicture9" name="originPicture9" value="${map['PICTURE_9'] }">
+		    <input type="hidden" id="originPicture10" name="originPicture10" value="${map['PICTURE_10'] }">
+		    <input type="hidden" id="originPicture11" name="originPicture11" value="${map['PICTURE_11'] }">
+		    <input type="hidden" id="originPicture12" name="originPicture12" value="${map['PICTURE_12'] }">
+		    <input type="hidden" id="originPicture13" name="originPicture13" value="${map['PICTURE_13'] }">
+		    <input type="hidden" id="originPicture14" name="originPicture14" value="${map['PICTURE_14'] }">
+		    <input type="hidden" id="originPicture15" name="originPicture15" value="${map['PICTURE_15'] }">
+		    <input type="hidden" id="originPicture16" name="originPicture16" value="${map['PICTURE_16'] }">
+		    <input type="hidden" id="originPicture17" name="originPicture17" value="${map['PICTURE_17'] }">
+		    <input type="hidden" id="originPicture18" name="originPicture18" value="${map['PICTURE_18'] }">
+		    <input type="hidden" id="originPicture19" name="originPicture19" value="${map['PICTURE_19'] }">
+		    <input type="hidden" id="originPicture20" name="originPicture20" value="${map['PICTURE_20'] }">
 		    </div>
 			
 			<div class="btn_bottom">

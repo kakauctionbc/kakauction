@@ -1,5 +1,6 @@
 package com.app.kaka.car.controller;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -176,7 +177,7 @@ public class CarController {
 		if(memberGrade==null || "MEMBER".equals(memberGrade)){
 			int cnt = carService.upMemeberGrade(memberId);
 		}
-		return "redirect:/design/index.do";
+		return "redirect:/index.do";
 	}
 	
 	@RequestMapping("/detail.do")
@@ -359,64 +360,389 @@ public class CarController {
 		if(opVo.getOpTune()==null || opVo.getOpTune().isEmpty()){
 			opVo.setOpTune("");
 		}
-		
-		//[1]파일 업로드 처리하기
+
 		List<Map<String, Object>> fileList = webUtil.fileUpload(request, webUtil.PICTURE_UPLOAD);
-		logger.info("여기는 꼰트롤러 fileList={}",fileList.size());
-		//[2]db에 insert하기
 		
-		int count = 1;
+		//바뀐 파일 번호찾기  시작!
+		int changeFileNumber1 = 0;
+		int changeFileNumber2 = 0;
+		int changeFileNumber3 = 0;
+		int changeFileNumber4 = 0;
+		int changeFileNumber5 = 0;
+		int changeFileNumber6 = 0;
+		int changeFileNumber7 = 0;
+		int changeFileNumber8 = 0;
+		int changeFileNumber9 = 0;
+		int changeFileNumber10 = 0;
+		int changeFileNumber11 = 0;
+		int changeFileNumber12 = 0;
+		int changeFileNumber13 = 0;
+		int changeFileNumber14 = 0;
+		int changeFileNumber15 = 0;
+		int changeFileNumber16 = 0;
+		int changeFileNumber17 = 0;
+		int changeFileNumber18 = 0;
+		int changeFileNumber19 = 0;
+		int changeFileNumber20 = 0;
 		
-		//PictureVO pictureVo = new PictureVO();
-		//pictureVo.setCarNum(carVo.getCarNum());
-		//pictureVo.setMemberId(carVo.getMemberId());
+		if(pictureVo.getPicture1()!="" && !pictureVo.getPicture1().isEmpty()){
+			changeFileNumber1 = 1;
+		}
+		if(pictureVo.getPicture2()!="" && !pictureVo.getPicture2().isEmpty()){
+			changeFileNumber2 = 1;
+		}
+		if(pictureVo.getPicture3()!="" && !pictureVo.getPicture3().isEmpty()){
+			changeFileNumber3 = 1;
+		}
+		if(pictureVo.getPicture4()!="" && !pictureVo.getPicture4().isEmpty()){
+			changeFileNumber4 = 1;
+		}
+		if(pictureVo.getPicture5()!="" && !pictureVo.getPicture5().isEmpty()){
+			changeFileNumber5 = 1;
+		}
+		if(pictureVo.getPicture6()!="" && !pictureVo.getPicture6().isEmpty()){
+			changeFileNumber6 = 1;
+		}
+		if(pictureVo.getPicture7()!="" && !pictureVo.getPicture7().isEmpty()){
+			changeFileNumber7 = 1;
+		}
+		if(pictureVo.getPicture8()!="" && !pictureVo.getPicture8().isEmpty()){
+			changeFileNumber8 = 1;
+		}
+		if(pictureVo.getPicture9()!="" && !pictureVo.getPicture9().isEmpty()){
+			changeFileNumber9 = 1;
+		}
+		if(pictureVo.getPicture10()!="" && !pictureVo.getPicture10().isEmpty()){
+			changeFileNumber10 = 1;
+		}
+		if(pictureVo.getPicture11()!="" && !pictureVo.getPicture11().isEmpty()){
+			changeFileNumber11 = 1;
+		}
+		if(pictureVo.getPicture12()!="" && !pictureVo.getPicture12().isEmpty()){
+			changeFileNumber12 = 1;
+		}
+		if(pictureVo.getPicture13()!="" && !pictureVo.getPicture13().isEmpty()){
+			changeFileNumber13 = 1;
+		}
+		if(pictureVo.getPicture14()!="" && !pictureVo.getPicture14().isEmpty()){
+			changeFileNumber14 = 1;
+		}
+		if(pictureVo.getPicture15()!="" && !pictureVo.getPicture15().isEmpty()){
+			changeFileNumber15 = 1;
+		}
+		if(pictureVo.getPicture16()!="" && !pictureVo.getPicture16().isEmpty()){
+			changeFileNumber16 = 1;
+		}
+		if(pictureVo.getPicture17()!="" && !pictureVo.getPicture17().isEmpty()){
+			changeFileNumber17 = 1;
+		}
+		if(pictureVo.getPicture18()!="" && !pictureVo.getPicture18().isEmpty()){
+			changeFileNumber18 = 1;
+		}
+		if(pictureVo.getPicture19()!="" && !pictureVo.getPicture19().isEmpty()){
+			changeFileNumber19 = 1;
+		}
+		if(pictureVo.getPicture20()!="" && !pictureVo.getPicture20().isEmpty()){
+			changeFileNumber20 = 1;
+		}
+		
+		//바뀐 이름 체크
+		String changedFileName1 = "";
+		String changedFileName2 = "";
+		String changedFileName3 = "";
+		String changedFileName4 = "";
+		String changedFileName5 = "";
+		String changedFileName6 = "";
+		String changedFileName7 = "";
+		String changedFileName8 = "";
+		String changedFileName9 = "";
+		String changedFileName10 = "";
+		String changedFileName11 = "";
+		String changedFileName12 = "";
+		String changedFileName13 = "";
+		String changedFileName14 = "";
+		String changedFileName15 = "";
+		String changedFileName16 = "";
+		String changedFileName17 = "";
+		String changedFileName18 = "";
+		String changedFileName19 = "";
+		String changedFileName20 = "";
+		logger.info("pictureVo = {}, originPictureVo = {}", pictureVo, originPictureVo);
+		
 		for(Map<String, Object> myMap : fileList){
 			String fileName = (String)myMap.get("fileName");
-			if(count==1){
-				pictureVo.setPicture1(fileName);
-			}else if(count==2){
-				pictureVo.setPicture2(fileName);
-			}else if(count==3){
-				pictureVo.setPicture3(fileName);
-			}else if(count==4){
-				pictureVo.setPicture4(fileName);
-			}else if(count==5){
-				pictureVo.setPicture5(fileName);
-			}else if(count==6){
-				pictureVo.setPicture6(fileName);
-			}else if(count==7){
-				pictureVo.setPicture7(fileName);
-			}else if(count==8){
-				pictureVo.setPicture8(fileName);
-			}else if(count==9){
-				pictureVo.setPicture9(fileName);
-			}else if(count==10){
-				pictureVo.setPicture10(fileName);
-			}else if(count==11){
-				pictureVo.setPicture11(fileName);
-			}else if(count==12){
-				pictureVo.setPicture12(fileName);
-			}else if(count==13){
-				pictureVo.setPicture13(fileName);
-			}else if(count==14){
-				pictureVo.setPicture14(fileName);
-			}else if(count==15){
-				pictureVo.setPicture15(fileName);
-			}else if(count==16){
-				pictureVo.setPicture16(fileName);
-			}else if(count==17){
-				pictureVo.setPicture17(fileName);
-			}else if(count==18){
-				pictureVo.setPicture18(fileName);
-			}else if(count==19){
-				pictureVo.setPicture19(fileName);
-			}else if(count==20){
-				pictureVo.setPicture20(fileName);
-			}
-			count++;
+			if(changeFileNumber1 == 1){
+				changedFileName1 = fileName;
+				changeFileNumber1 = 2;
+			}else if(changeFileNumber2 == 1){
+				changedFileName2 = fileName;
+				changeFileNumber2 = 2;
+			}else if(changeFileNumber3 == 1){
+				changedFileName3 = fileName;
+				changeFileNumber3 = 2;
+			}else if(changeFileNumber4 == 1){
+				changedFileName4 = fileName;
+				changeFileNumber4 = 2;
+			}else if(changeFileNumber5 == 1){
+				changedFileName5 = fileName;
+				changeFileNumber5 = 2;
+			}else if(changeFileNumber6 == 1){
+				changedFileName6 = fileName;
+				changeFileNumber6 = 2;
+			}else if(changeFileNumber7 == 1){
+				changedFileName7 = fileName;
+				changeFileNumber7 = 2;
+			}else if(changeFileNumber8 == 1){
+				changedFileName8 = fileName;
+				changeFileNumber8 = 2;
+			}else if(changeFileNumber9 == 1){
+				changedFileName9 = fileName;
+				changeFileNumber9 = 2;
+			}else if(changeFileNumber10 == 1){
+				changedFileName10 = fileName;
+				changeFileNumber10 = 2;
+			}else if(changeFileNumber11 == 1){
+				changedFileName11 = fileName;
+				changeFileNumber11 = 2;
+			}else if(changeFileNumber12 == 1){
+				changedFileName12 = fileName;
+				changeFileNumber12 = 2;
+			}else if(changeFileNumber13 == 1){
+				changedFileName13 = fileName;
+				changeFileNumber13 = 2;
+			}else if(changeFileNumber14 == 1){
+				changedFileName14 = fileName;
+				changeFileNumber14 = 2;
+			}else if(changeFileNumber15 == 1){
+				changedFileName15 = fileName;
+				changeFileNumber15 = 2;
+			}else if(changeFileNumber16 == 1){
+				changedFileName16 = fileName;
+				changeFileNumber16 = 2;
+			}else if(changeFileNumber17 == 1){
+				changedFileName17 = fileName;
+				changeFileNumber17 = 2;
+			}else if(changeFileNumber18 == 1){
+				changedFileName18 = fileName;
+				changeFileNumber18 = 2;
+			}else if(changeFileNumber19 == 1){
+				changedFileName19 = fileName;
+				changeFileNumber19 = 2;
+			}else if(changeFileNumber20 == 1){
+				changedFileName20 = fileName;
+				changeFileNumber20 = 2;
+			} 
 		}//for
+		
+		if(changeFileNumber1 == 0){
+			//파일이 변하지 않은 경우
+			pictureVo.setPicture1(originPictureVo.getOriginPicture1());
+		}else if(changeFileNumber1 == 2){
+			//파일이 변한 경우
+			//기존 파일 삭제
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture1());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			//파일1의 이름을 변한 이름으로 바꿈
+			pictureVo.setPicture1(changedFileName1);
+		}
+		if(changeFileNumber2 == 0){
+			pictureVo.setPicture2(originPictureVo.getOriginPicture2());
+		}else if(changeFileNumber2 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture2());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture2(changedFileName2);
+		}
+		if(changeFileNumber3 == 0){
+			pictureVo.setPicture3(originPictureVo.getOriginPicture3());
+		}else if(changeFileNumber3 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture3());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture3(changedFileName3);
+		}
+		if(changeFileNumber4 == 0){
+			pictureVo.setPicture4(originPictureVo.getOriginPicture4());
+		}else if(changeFileNumber4 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture4());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture4(changedFileName4);
+		}
+		if(changeFileNumber5 == 0){
+			pictureVo.setPicture5(originPictureVo.getOriginPicture5());
+		}else if(changeFileNumber5 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture5());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture5(changedFileName5);
+		}
+		if(changeFileNumber6 == 0){
+			pictureVo.setPicture6(originPictureVo.getOriginPicture6());
+		}else if(changeFileNumber6 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture6());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture6(changedFileName6);
+		}
+		if(changeFileNumber7 == 0){
+			pictureVo.setPicture7(originPictureVo.getOriginPicture7());
+		}else if(changeFileNumber7 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture7());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture7(changedFileName7);
+		}
+		if(changeFileNumber8 == 0){
+			pictureVo.setPicture8(originPictureVo.getOriginPicture8());
+		}else if(changeFileNumber8 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture8());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture8(changedFileName8);
+		}
+		if(changeFileNumber9 == 0){
+			pictureVo.setPicture9(originPictureVo.getOriginPicture9());
+		}else if(changeFileNumber9 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture9());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture9(changedFileName9);
+		}
+		if(changeFileNumber10 == 0){
+			pictureVo.setPicture10(originPictureVo.getOriginPicture10());
+		}else if(changeFileNumber10 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture10());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture10(changedFileName10);
+		}
+		if(changeFileNumber11 == 0){
+			pictureVo.setPicture11(originPictureVo.getOriginPicture11());
+		}else if(changeFileNumber11 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture11());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture11(changedFileName11);
+		}
+		if(changeFileNumber12 == 0){
+			pictureVo.setPicture12(originPictureVo.getOriginPicture12());
+		}else if(changeFileNumber12 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture12());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture12(changedFileName12);
+		}
+		if(changeFileNumber13 == 0){
+			pictureVo.setPicture13(originPictureVo.getOriginPicture13());
+		}else if(changeFileNumber13 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture13());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture13(changedFileName13);
+		}
+		if(changeFileNumber14 == 0){
+			pictureVo.setPicture14(originPictureVo.getOriginPicture14());
+		}else if(changeFileNumber14 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture14());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture14(changedFileName14);
+		}
+		if(changeFileNumber15 == 0){
+			pictureVo.setPicture15(originPictureVo.getOriginPicture15());
+		}else if(changeFileNumber15 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture15());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture15(changedFileName15);
+		}
+		if(changeFileNumber16 == 0){
+			pictureVo.setPicture16(originPictureVo.getOriginPicture16());
+		}else if(changeFileNumber16 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture16());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture16(changedFileName16);
+		}
+		if(changeFileNumber17 == 0){
+			pictureVo.setPicture17(originPictureVo.getOriginPicture17());
+		}else if(changeFileNumber17 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture17());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture17(changedFileName17);
+		}
+		if(changeFileNumber18 == 0){
+			pictureVo.setPicture18(originPictureVo.getOriginPicture18());
+		}else if(changeFileNumber18 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture18());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture18(changedFileName18);
+		}
+		if(changeFileNumber19 == 0){
+			pictureVo.setPicture19(originPictureVo.getOriginPicture19());
+		}else if(changeFileNumber19 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture19());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture19(changedFileName19);
+		}
+		if(changeFileNumber20 == 0){
+			pictureVo.setPicture20(originPictureVo.getOriginPicture20());
+		}else if(changeFileNumber20 == 2){
+			String upPath=webUtil.getUploadPath(request, webUtil.PICTURE_UPLOAD);
+			File delFile = new File(upPath, originPictureVo.getOriginPicture20());
+			if(delFile.exists()){
+				boolean bool=delFile.delete();
+			}
+			pictureVo.setPicture20(changedFileName20);
+		}
+		
+		
 		logger.info("차량 등록 처리, 파라미터 carVO = {}, opVo = {}", carVo, opVo);
 		logger.info("pictureVo = {}, originPictureVo = {}", pictureVo, originPictureVo);
+		
 		
 		int cCnt = carService.editCar(carVo);
 		int oCnt = opService.editOp(opVo);

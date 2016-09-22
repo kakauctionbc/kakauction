@@ -26,7 +26,7 @@
 		set picture_1=#{picture1}, picture_2=#{picture2}, picture_3=#{picture3}, picture_4=#{picture4}, picture_5=#{picture5}, 
 		picture_6=#{picture6}, picture_7=#{picture7}, picture_8=#{picture8}, picture_9=#{picture9}, picture_10=#{picture10}, 
 		picture_11=#{picture11}, picture_12=#{picture12}, picture_13=#{picture13}, picture_14=#{picture14}, picture_15=#{picture15}, 
-		picture_16=#{picture16}, picture_17=#{picture17}, picture_18=#{picture18}, picture_19=#{picture19}, picture_20=#{picture20}, 
+		picture_16=#{picture16}, picture_17=#{picture17}, picture_18=#{picture18}, picture_19=#{picture19}, picture_20=#{picture20}
 		where car_num=#{carNum} and seller_member_id=#{sellerMemberId}
 	</update>
 </mapper>
