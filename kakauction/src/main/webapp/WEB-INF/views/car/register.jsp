@@ -80,8 +80,15 @@
 			}
 			
 		});
+		
 		$("#myLoc").click(function(){
 			$("#carLoc").val("${memVo.memberAddr }");
+		});
+		
+		$(".imgfile label img").hover(function(){
+			$(this).css("cursor","pointer");
+		}, function(){
+			$(this).css("cursor","");
 		});
 	});
 	
