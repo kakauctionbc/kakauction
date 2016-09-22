@@ -30,7 +30,7 @@
 </style>
 <div id="mySidenav" class="sidenav">
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-	<p style="color: white; font-size: 2.0em; padding-left: 20px;">상세검색</p>
+	<p>상세검색</p>
  	<button class="accordion">차종</button>
 		<div class="panel">
 			<c:forEach var="cslist" items="${carsizeList}" varStatus="vs">

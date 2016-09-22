@@ -6,6 +6,8 @@
 <style>
 	tbody tr td img{
 		height: 20px;
+		vertical-align: middle;
+		margin-left: 10px;
 	}
 	
 	table {
@@ -14,7 +16,10 @@
 	
 	.align_right{
 		text-align: right;
-	}	
+	}
+	.scheduleTitle{
+		padding-top: 8px;
+	}
 </style>
 <div class="schedule">
 	<table summary="경매 일정을 알려드립니다.">
@@ -25,15 +30,14 @@
 			<c:if test="${!empty schedule}">
 				<c:forEach var="vo" items="${schedule}">
 					<tr>
-						<td class="title">
+						<td class="scheduleTitle">
 							<a href="<c:url value='/auction/auctiongo.do?auctionNo=${vo.auctionNo }'/>">
 							KAKAUCTION
 							<fmt:formatDate value="${vo.auctionRegdate}" pattern="yyyy/MM/dd"/> 
 							 ${vo.auctionNo}회차 경매
 							 </a> 
-						</td>						
-						<td class="align_right">
-							<jsp:useBean id="toDay" class="java.util.Date" />
+							 
+							 <jsp:useBean id="toDay" class="java.util.Date" />
 							<fmt:formatDate var="today" value="${toDay}" pattern="yyyy-MM-dd HH:mm:ss" />
 							<c:if test="${toDay <= vo.auctionFinish }">
 								<img alt="진행" src="${pageContext.request.contextPath }/img/start.png">

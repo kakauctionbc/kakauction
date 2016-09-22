@@ -43,6 +43,11 @@ $(function() {
 	});
 });
 </script>
+<style type="text/css">
+img{
+	vertical-align: middle;
+}
+</style>
 	<div id="mainicondiv">
 		<ul>
 			<li id="iconone">

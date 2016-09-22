@@ -19,10 +19,15 @@
 }
 .sidenav p{
 	margin-bottom: 20px;
+	color: white; 
+	font-size: 2.0em; 
+	padding-left: 40px;
 }
 .sidenav button{
-	width: 450px;
-	margin-left: 20px;
+	width: 600px;
+	margin-left: 40px;
+	font-size: 1.3em;
+	font-family: '고딕';
 }
 .sidenav span{
 	padding: 8px 8px 8px 32px;
@@ -92,8 +97,8 @@ div.panel {
     padding-left:18px;
     background-color: white;
     display: none;
-    margin-left: 20px;
-    width: 432px;
+    margin-left: 40px;
+    width: 582px;
     padding-top: 20px;
     padding-bottom: 10px;
 }

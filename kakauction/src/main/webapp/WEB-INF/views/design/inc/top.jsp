@@ -9,7 +9,7 @@ $(function(){
   var show = $('#headmenu');
   var content = $('#headmenu-content');
   	show.hover(function(){
-  		content.slideDown(500);
+  		content.slideDown(200);
   	});
   	content.hover(function(){
   		content.addClass('Fixed');

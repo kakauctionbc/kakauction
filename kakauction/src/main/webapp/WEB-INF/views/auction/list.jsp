@@ -30,8 +30,8 @@
 	}
 	
 	function openNav() {
-		document.getElementById("mySidenav").style.width = "40%";
-		document.getElementById("slideWrap").style.marginLeft = "350px";
+		document.getElementById("mySidenav").style.width = "36%";
+		document.getElementById("slideWrap").style.marginLeft = "320px";
 	}
 
 	function closeNav() {
@@ -161,14 +161,14 @@
 				<colgroup>
 					<col style="width: 4%;" />
 					<col style="width: 14%;" />
-					<col style="width: 20%;" />
+					<col style="width: 19%;" />
 					<col style="width: 8%;" />
 					<col style="width: 7%;" />
 					<col style="width: 7%;" />
 					<col style="width: 6%;" />
 					<col style="width: 9%;" />
 					<col style="width: 9%;" />
-					<col style="width: 4%;" />
+					<col style="width: 5%;" />
 				</colgroup>
 				<thead>
 					<tr class="listTitle">
@@ -181,14 +181,16 @@
 									<li><a style="cursor: pointer;" class="" onclick="">준중형</a></li>
 									<li><a style="cursor: pointer;" class="" onclick="">중형</a></li>
 									<li><a style="cursor: pointer;" class="" onclick="">대형</a></li>
-									<li><a style="cursor: pointer;" class="" onclick="">스포츠카</a></li>
 									<li><a style="cursor: pointer;" class="" onclick="">SUV</a></li>
 									<li><a style="cursor: pointer;" class="" onclick="">RV</a></li>
+									<li><a style="cursor: pointer;" class="" onclick="">스포츠카</a></li>
 									<li><a style="cursor: pointer;" class="" onclick="">승합차</a></li>
-									<li><a style="cursor: pointer;" class="" onclick="">밴</a></li>
 									<li><a style="cursor: pointer;" class="" onclick="">화물차</a></li>
+									<li><a style="cursor: pointer;" class="" onclick="">밴</a></li>
 									<li><a style="cursor: pointer;" class="" onclick="">버스</a></li>
-									<li class="more_btn"><button class="more_btn"></button></li>
+									<li><a style="cursor: pointer;" class="" onclick="">리무진</a></li>
+									<li><a style="cursor: pointer;" class="" onclick="">캠핑카</a></li>
+									<li style="float: right; border-right:none;">조회수</li>
 								</ul>
 							</div>
 						</th>
