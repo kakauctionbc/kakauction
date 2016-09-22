@@ -42,6 +42,12 @@ $(function() {
 		icon.attr("src", icon.attr("src").replace("Big.png",".png"))
 	});
 	
+	$("#showBigMap").hover(function(){
+		$(this).css("cursor","pointer");
+	},function(){
+		$(this).css("cursor","");
+	});
+	
 	$("#showBigMap").click(function(){
 		window.open("/kaka/map/defaultMap.do",
 				"defaultMap",
