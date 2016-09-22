@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../design/inc/top.jsp"%>
+<%@ include file="../design/inc/adminTop.jsp"%>
 <script type="text/javascript">	
 	$(document).ready(function(){
 		$(".divList .box2 tbody tr").hover(function(){
@@ -26,10 +26,6 @@
 
 </script>
 <style type="text/css">
-	body{
-		padding:5px;
-		margin:5px;
-	 }	
 </style>
 	
 <!-- http://localhost:9090/mymvc/reBoard
@@ -199,4 +195,4 @@
     <a href="<c:url value='/freeboard/write.do'/>" >
 	글쓰기</a>
 </div>
-<%@ include file="../design/inc/bottom.jsp"%>
+<%@ include file="../design/inc/adminBottom.jsp"%>

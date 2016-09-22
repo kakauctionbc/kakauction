@@ -30,6 +30,7 @@
 	.divForm{
 		margin: 0 auto;
 		margin-top: 50px;
+		margin-left: 80px;
 	}
 	table{
 		width: 800px;
@@ -52,66 +53,86 @@
 		text-align: center;
 	}
 	#replyCon th{
-		width:120px;
 		text-align: right;
 		padding-right: 20px;
 	}
 	#replyCon #reCOn{
+		width:600px;
 		padding-bottom: 150px;
 	}
 	#replyCon td{
 		text-align: center;
 	}
 	#ansContent{
-		margin-left: 100px;
+		width: 100%;
 	}
 </style>
-	<h2>Q&A 글 상세보기</h2>
-	<div class="divForm">
-		<table>
-			<tr>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>등록일</th>
-			</tr>
-			<tr>
-				<td>${QnaVo.questionTitle}</td>
-				<td>${QnaVo.memberId}</td>
-				<td><fmt:formatDate pattern="yyyy년 MM월 dd일 " value="${QnaVo.questionRegdate}"/></td>
-			</tr>
-			<tr>
-				<th colspan="3" style="text-align: center;">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</th>
-			</tr>
-			<tr>
-				<td colspan="3">${QnaVo.questionContent}</td>
-			</tr>
-			<tr>
-				<td colspan="3">
-					<input type="hidden" id="on_off" value="off">
-		        	|<a id="formMaker">답변</a>			
-		        	|
-		        	<a href="<c:url value='/admin/qnareply/qnalist.do'/>">목록</a>|			
-				</td>
-			</tr>
-		</table>
-		<form action="<c:url value='/admin/qnareply/write.do?qnaNo=${QnaVo.questionNo}'/>" method="post">
-			<table id="replyCon">
+<div id="wrap">
+	<div id="wrapdiv">
+		<div id="wraptop">
+			<div class="offset"></div>
+			<p>
+					<a href="${pageContext.request.contextPath }/admin/index.do">관리자HOME</a>>Q&A 답변
+			</p>
+		</div>
+		<div id="pagelogo">
+			<img src="${pageContext.request.contextPath }/img/qnaReply_logo.png"
+				alt="경매리스트로고">
+		</div>
+		<div class="divForm">
+			<table style="margin-bottom: 50px;">
+				<colgroup>
+					<col style="width: 20%;" />
+					<col style="width: 60%;" />
+					<col style="width: 20%;" />
+				</colgroup>
 				<tr>
-					<th>원본 글 번호</th>
-					<td><input type="hidden" name="questionNo" value="${QnaVo.questionNo}" readonly="readonly">${QnaVo.questionNo}</td>
+					<th>작성자</th>
+					<th>제목</th>
+					<th>등록일</th>
 				</tr>
 				<tr>
-					<th>질문 회원 아이디</th>
-					<td><input type="hidden" name="memberId" value="${QnaVo.memberId}" readonly="readonly">${QnaVo.memberId}</td>
+					<td>${QnaVo.memberId}</td>
+					<td>${QnaVo.questionTitle}</td>
+					<td><fmt:formatDate pattern="yyyy년 MM월 dd일 " value="${QnaVo.questionRegdate}"/></td>
 				</tr>
 				<tr>
-					<th id="reCOn">답변 내용</th>
-					<td><textarea id="ansContent" name="ansContent" cols="20" rows="10"></textarea></td>
+					<th colspan="3" style="text-align: center;">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</th>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" value="답글 작성"></td>
+					<td colspan="3" style="padding: 20 0 20 0;">${QnaVo.questionContent}</td>
+				</tr>
+				<tr>
+					<td colspan="3" style="border-bottom: none; padding-top: 10px;">
+						<input type="hidden" id="on_off" value="off">
+			        	|<a href="<c:url value='/admin/qnareply/qnalist.do'/>">목록</a>|			
+					</td>
 				</tr>
 			</table>
-		</form>
+			<form action="<c:url value='/admin/qnareply/write.do?qnaNo=${QnaVo.questionNo}'/>" method="post">
+				<table id="replyCon">
+					<colgroup>
+						<col style="width: 15%;" />
+						<col style="width: 20%;" />
+						<col style="width: 20%;" />
+						<col style="width: 40%;" />
+					</colgroup>
+					<tr>
+						<th>원본 글 번호</th>
+						<td><input type="hidden" name="questionNo" value="${QnaVo.questionNo}" readonly="readonly">${QnaVo.questionNo}</td>
+						<th>질문 회원 아이디</th>
+						<td><input type="hidden" name="memberId" value="${QnaVo.memberId}" readonly="readonly">${QnaVo.memberId}</td>
+					</tr>
+					<tr  style="margin-bottom: 20px;">
+						<th id="reCOn">답변 내용</th>
+						<td colspan="3"><textarea id="ansContent" name="ansContent" cols="40" rows="10"></textarea></td>
+					</tr>
+					<tr>
+						<td colspan="4" style="border-bottom: none;"><input type="submit" value="답글 작성"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
 	</div>
+</div>
 <%@ include file="../../design/inc/adminBottom.jsp"%>

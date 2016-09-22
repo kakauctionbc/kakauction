@@ -27,14 +27,14 @@
 	<div id="wrapdiv">
 		<div id="wraptop">
 			<p>
-				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>신고리스트
+				<a href="${pageContext.request.contextPath }/admin/index.do">관리자HOME</a>>낙찰경매현황
 			</p>
 		</div>
 	<div id="right">
 		<a href="<c:url value='/admin/auction/auctionWrite.do'/>">경매 등록 화면</a>
 	</div>
 		<div id="pagelogo">
-			<img src="${pageContext.request.contextPath }/img/auctionList_logo.png" alt="회원가입로고">
+			<img src="${pageContext.request.contextPath }/img/auctionSuccess_logo.png" alt="낙찰현황로고">
 		</div>
 		<form name="frmPage" method="post" action="<c:url value='/admin/auction/auctionSuccess.do'/>">
 			<input type="hidden" name="currentPage"> 
@@ -66,7 +66,7 @@
 						<th>연식</th>
 						<th>변속기</th>
 						<th>감정평가액</th>
-						<th rowspan="2">낙찰회원아이디</th>
+						<th rowspan="2" style="border-left: 1px solid silver; border-right: 1px solid silver;">낙찰회원아이디</th>
 						<th>입찰번호</th>
 						<th>입찰시작</th>
 						<th rowspan="2" class="readCount">조회수</th>

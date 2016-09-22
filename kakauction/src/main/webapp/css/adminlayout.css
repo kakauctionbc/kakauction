@@ -95,13 +95,14 @@ body{ margin:0; padding-bottom: 100px;}
 #admin-headmenu {
 	float: left;
 	margin-top: 60px;
+	margin-left: 250px;
 }
 #admin-headmenu ul li{
 	float: left;
 	padding-right:30px;
 	font-size:1.2em;
 	font-weight: bold;
-	margin-left: 35px;
+	margin-left: 40px;
 	
 }
 #admin-headmenu ul li a{
@@ -147,7 +148,7 @@ body{ margin:0; padding-bottom: 100px;}
 }
 #admin-content-auction{
 	float:left;
-	margin-left: 748px;
+	margin-left: 1005px;
 	padding-right: 18px;
 }
 #admin-content-member{
@@ -156,7 +157,7 @@ body{ margin:0; padding-bottom: 100px;}
 }
 #admin-content-info{
 	float:left;
-	padding-right: 20px;
+	padding-right: 40px;
 }
 #admin-content-notice{
 	float:left;

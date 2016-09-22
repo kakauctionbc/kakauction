@@ -22,12 +22,12 @@
 	<div id="wrapdiv">
 		<div id="wraptop">
 			<p>
-				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>신고리스트
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>나의낙찰현황
 			</p>
 		</div>
 		<div id="pagelogo">
 			<img
-				src="${pageContext.request.contextPath }/img/auctionList_logo.png"
+				src="${pageContext.request.contextPath }/img/auctionSuccess_logo.png"
 				alt="회원가입로고">
 		</div>
 		<form name="frmPage" method="post" action="<c:url value='/auction/list.do'/>">

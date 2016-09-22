@@ -33,14 +33,14 @@
 	<div id="wrapdiv">
 		<div id="wraptop">
 			<p>
-				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>신고리스트
+				<a href="${pageContext.request.contextPath }/admin/index.do">관리자HOME</a>>경매거부목록
 			</p>
 		</div>
 	<div id="right">
 		<a href="<c:url value='/admin/auction/auctionWrite.do'/>">경매 등록 화면</a>
 	</div>
 		<div id="pagelogo">
-			<img src="${pageContext.request.contextPath }/img/auctionList_logo.png" alt="회원가입로고">
+			<img src="${pageContext.request.contextPath }/img/auctionDenyList_logo.png" alt="경매거부목록로고">
 		</div>
 		<form name="frmPage" method="post" action="<c:url value='admin/auction/auctionDenyList.do'/>">
 			<input type="hidden" name="currentPage"> 

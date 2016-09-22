@@ -95,7 +95,7 @@ div.panel {
     margin-left: 20px;
     width: 432px;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 div.panel.show {
@@ -110,6 +110,7 @@ button.accordion:after {
 }
 .carSizes{
 	width: 430px;
+	padding-bottom: 10px;
 }
 button.accordion.active:after {
     content: "\2796"; /* Unicode character for "minus" sign (-) */

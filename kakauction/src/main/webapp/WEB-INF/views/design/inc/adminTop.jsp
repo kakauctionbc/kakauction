@@ -53,8 +53,8 @@ $(function(){
 					<!-- 로그인된 경우 -->
 					<c:if test="${!empty sessionScope.memberId }">
 						<li><a href="<c:url value='/admin/login/logout.do'/>">로그아웃</a></li>
-						<li><a href="<c:url value='/index.do'/>">홈페이지로</a></li>
-						<li><a href="<c:url value='/admin/member/register.do'/>" id="boderli">관리자등록</a></li>
+						<li><a href="<c:url value='/index.do'/>" id="boderli">홈페이지로</a></li>
+						<li><a href="<c:url value='/admin/member/register.do'/>">관리자등록</a></li>
 						<li>
 							<span style="font-size:1em; color:blue;">
 								${sessionScope.memberId}님</span>
