@@ -12,4 +12,10 @@
 		select * from op
 		where car_num=#{carNum}
 	</select>
+	
+	<update id="editOp" parameterType="OpVO">
+		update op
+		set op_in=#{opIn}, op_out=#{opOut}, op_con=#{opCon}, op_safe=#{opSafe}, op_aa=#{opAa}, op_tune=#{opTune}
+		where car_num=#{carNum} and seller_member_id=#{sellerMemberId}
+	</update>
 </mapper>

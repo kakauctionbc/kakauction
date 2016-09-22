@@ -37,4 +37,12 @@
 	<select id="selectDeferCarDetail" parameterType="CarVO" resultType="map">
 		select * from car_op_picture where seller_member_id = #{sellerMemberId} and car_num = #{carNum}
 	</select>
+	
+	<update id="editCar" parameterType="CarVO">
+		update car
+		set car_company=#{carCompany}, car_price=#{carPrice}, car_loc=#{carLoc}, car_birth=#{carBirth}, car_model=#{carModel},
+		car_size=#{carSize}, car_dist=#{carDist}, car_gas=#{carGas}, car_cc=#{carCc}, car_am=#{carAm}, car_color=#{carColor},
+		car_acci=#{carAcci}, car_regdate=sysdate, car_auction_yn='N', car_fail_sell=0
+		where car_num=#{carNum} and seller_member_id=#{sellerMemberId}
+	</update>
 </mapper>
