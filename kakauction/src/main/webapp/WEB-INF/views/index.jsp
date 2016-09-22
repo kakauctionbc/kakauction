@@ -80,7 +80,7 @@ $(function() {
 		<img src="<c:url value='/img/hot_icon.png'/>" id="hot_icon">
 		<div id="realtime">
 			<div id="realtimehead">
-				<p id="text">실시간 경매 현황</p>
+				<p id="text">◈ 실시간 경매 현황</p>
 				<p id="more">
 					<a href="<c:url value='/auction/list.do'/>">MORE▶</a>
 				</p>
@@ -152,7 +152,7 @@ $(function() {
 		<div id="mainwrap">
 			<div id="quickservice">
 				<div id="quickservicehead">
-					<p id="text">빠른 서비스</p>
+					<p id="text">◎ 빠른 서비스</p>
 				</div>
 				<div>
 					<p>이미지</p>
@@ -160,18 +160,18 @@ $(function() {
 			</div>
 			<div id="notice">
 				<div id="noticehead">
-					<p id="text">공지사항</p>
+					<p id="text">◎ 공지사항</p>
 					<p id="more">
 						<a href="<c:url value='/notice/list.do'/>">MORE▶</a>
 					</p>
 				</div>
 				<div>
-					<p>공지사항</p>
+					<c:import url="/notice/main_notice_list.do"></c:import>
 				</div>
 			</div>
 			<div id="schedule">
 				<div id="schedulehead">
-					<p id="text">일정안내</p>
+					<p id="text">◎ 일정안내</p>
 					<p id="more">
 						<a href="<c:url value='/auction/front_schedule_list.do'/>">MORE▶</a>
 					</p>

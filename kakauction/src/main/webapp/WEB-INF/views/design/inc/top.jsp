@@ -128,6 +128,7 @@ $(function(){
 				<ul>
 					<li><a href="<c:url value='/auction/auctionSuccess.do'/>">경매낙찰현황</a></li>
 					<li><a href="<c:url value='/auction/myAuctionList.do'/>">경매입찰현황</a></li>
+					<li><a href="<c:url value='/car/myDeferList.do'/>">내 보류경매</a></li>
 					<%-- <li><a href="<c:url value='/report/auctionReport.do'/>">불량경매신고</a></li>
 					<li><a href="<c:url value='/freeboard/myFreeboardList.do'/>">내가 쓴 글</a></li> --%>
 				</ul>

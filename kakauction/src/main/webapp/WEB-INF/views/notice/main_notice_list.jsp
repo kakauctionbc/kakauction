@@ -10,7 +10,11 @@
 	
 	.align_right{
 		text-align: right;
-	}	
+	}
+	.noticeTitle{
+		padding-top: 8px;
+		padding-left: 10px;
+	}
 </style>
 <div class="schedule">
 	<table summary="경매 일정을 알려드립니다.">
@@ -21,12 +25,12 @@
 			<c:if test="${!empty mainNotice}">
 				<c:forEach var="vo" items="${mainNotice}">
 					<tr>
-						<td class="title">
-							<a href="<c:url value='/auction/auctiongo.do?auctionNo=${vo.noticeNo }'/>">
-								<c:if test="${fn:length(vo.noticeTitle)>20}">
-									${fn:substring(vo.noticeTitle,0,20)}...
+						<td class="noticeTitle">
+							<a href="<c:url value='/notice/detail.do?noticeNo=${vo.noticeNo}'/>">
+								<c:if test="${fn:length(vo.noticeTitle)>15}">
+									${fn:substring(vo.noticeTitle,0,15)}...
 								</c:if>
-								<c:if test="${fn:length(vo.noticeTitle)<=20}">
+								<c:if test="${fn:length(vo.noticeTitle)<=15}">
 									${vo.noticeTitle}
 								</c:if>
 							 </a> 
