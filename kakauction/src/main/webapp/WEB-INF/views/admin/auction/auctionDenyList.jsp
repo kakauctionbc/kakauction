@@ -36,9 +36,9 @@
 				<a href="${pageContext.request.contextPath }/admin/index.do">관리자HOME</a>>경매거부목록
 			</p>
 		</div>
-	<div id="right">
-		<a href="<c:url value='/admin/auction/auctionWrite.do'/>">경매 등록 화면</a>
-	</div>
+		<div id="right">
+			<a href="<c:url value='/admin/auction/auctionWrite.do'/>">경매 등록 화면</a>
+		</div>
 		<div id="pagelogo">
 			<img src="${pageContext.request.contextPath }/img/auctionDenyList_logo.png" alt="경매거부목록로고">
 		</div>
