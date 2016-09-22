@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.app.kaka.admin.model.AdminService;
 import com.app.kaka.auction.controller.AuctionController;
 import com.app.kaka.auction.model.AuctionService;
 import com.app.kaka.member.model.MemberService;
@@ -38,8 +39,26 @@ public class AdminController {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	private AdminService adminService;
+	
 	@RequestMapping("/index.do")
 	public String adminIndex(Model model){
+		int carApply = adminService.selectCountCarApply();
+		int auctionStart = adminService.selectCountAuctionStart();
+		int auctionEnd = adminService.selectCountAuctionEnd();
+		int reportCar = adminService.selectCountReportCar();
+		int reportNo = adminService.selectCountReportNo();
+		int memberJoin = adminService.selectCountMemberJoin();
+		int memberOut = adminService.selectCountMemberOut();
+		
+		model.addAttribute("carApply", carApply);
+		model.addAttribute("auctionStart", auctionStart);
+		model.addAttribute("auctionEnd", auctionEnd);
+		model.addAttribute("reportCar", reportCar);
+		model.addAttribute("reportNo", reportNo);
+		model.addAttribute("memberJoin", memberJoin);
+		model.addAttribute("memberOut", memberOut);
 		
 		return "admin/index";
 	}
@@ -185,4 +204,27 @@ public class AdminController {
 		//3.
 		return "common/message";
 	}
+	
+	/*@RequestMapping("/mainCount.do")
+	public String mainCount(Model model){
+		logger.info("메인 상단에 보일 창입니다.");
+		
+		int carApply = adminService.selectCountCarApply();
+		int auctionStart = adminService.selectCountAuctionStart();
+		int auctionEnd = adminService.selectCountAuctionEnd();
+		int reportCar = adminService.selectCountReportCar();
+		int reportNo = adminService.selectCountReportNo();
+		int memberJoin = adminService.selectCountMemberJoin();
+		int memberOut = adminService.selectCountMemberOut();
+		
+		model.addAttribute("carApply", carApply);
+		model.addAttribute("auctionStart", auctionStart);
+		model.addAttribute("auctionEnd", auctionEnd);
+		model.addAttribute("reportCar", reportCar);
+		model.addAttribute("reportNo", reportNo);
+		model.addAttribute("memberJoin", memberJoin);
+		model.addAttribute("memberOut", memberOut);
+		
+		return "admin/mainCount";
+	}*/
 }

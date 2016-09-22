@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="config.mybatis.mapper.oracle.main">
+	<select id="selectCountCarApply" resultType="int">
+		select count(*) from car where car_auction_yn='N'
+	</select>
+	<select id="selectCountAuctionStart" resultType="int">
+		select count(*) from auction where substr(to_char(AUCTION_FINISH),1,9)>=to_date(sysdate,'yy/MM/dd')
+	</select>
+	<select id="selectCountAuctionEnd" resultType="int">
+		select count(*) from auction where
+		<![CDATA[
+			substr(to_char(AUCTION_FINISH),1,9)<=to_date(sysdate,'yy/MM/dd')
+		]]>
+	</select>
+	<select id="selectCountReportCar" resultType="int">
+		select count(*) from report where origin_type=2 and report_result='N'
+	</select>
+	<select id="selectCountReportNo" resultType="int">
+		select count(*) from report where report_result='N'
+	</select>
+	<select id="selectCountMemberJoin" resultType="int">
+		select count(*) from member where substr(to_char(MEMBER_REGDATE),1,9)=to_date(sysdate,'yy/MM/dd')
+	</select>
+	<select id="selectCountMemberOut" resultType="int">
+		select count(*) from member where substr(to_char(MEMBER_OUTDATE),1,9)=to_date(sysdate,'yy/MM/dd')
+	</select>
+</mapper>
