@@ -13,7 +13,11 @@
 	}
 	.noticeTitle{
 		padding-top: 8px;
-		padding-left: 10px;
+		padding-left: 20px;
+	}
+	.noticeRegdate{
+		padding-top: 8px;
+		padding-left: 20px;
 	}
 </style>
 <div class="schedule">
@@ -35,7 +39,7 @@
 								</c:if>
 							 </a> 
 						</td>						
-						<td class="align_right">
+						<td class="noticeRegdate">
 							<fmt:formatDate value="${vo.noticeRegdate}" pattern="yyyy.MM.dd " />
 						</td>						
 					</tr>

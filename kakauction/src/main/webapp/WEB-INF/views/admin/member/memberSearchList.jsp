@@ -105,15 +105,20 @@
 				</p>
 			</div>
 			<div id="pagelogo">
-				<%-- <img src="${pageContext.request.contextPath }/img/auctionList_logo.png" alt="회원가입로고"> --%>
-				<h1>회원 정보 조회</h1>
+				<img src="${pageContext.request.contextPath }/img/memberAdminister_logo.png" alt="회원가입로고">
 			</div>
 			<div class="divSearch">
 			   	<form name="frmSearch" method="post" action="<c:url value='/admin/member/memberSearchList.do' />" >
 			       <table>
+			       		<colgroup>
+			       			<col style="width: 20%;"/>
+			       			<col style="width: 40%;"/>
+			       			<col style="width: 20%;"/>
+			       			<col style="width: 40%;"/>
+			       		</colgroup>
 						<tr>
-							<th>개인정보<td>
-							<td colspan="2">
+							<th>개인정보</th>
+							<td colspan="3">
 								<select name="searchCondition">
 									<option value="">-선택-</option>
 									<option value="member_name"
