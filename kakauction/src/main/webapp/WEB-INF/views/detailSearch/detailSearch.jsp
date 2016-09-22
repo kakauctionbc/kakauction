@@ -21,7 +21,6 @@
 	.accordion{
 		margin-left:150px;
 		width: 1000px;
-		height: 30px;
 	}
 	#laname{
 		text-align: center;

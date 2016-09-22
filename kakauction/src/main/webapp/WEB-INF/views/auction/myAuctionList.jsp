@@ -27,18 +27,7 @@
 		document.frmPage.submit();
 	}
 </script>
-<!-- 페이징 처리를 위한 form 시작-->
-<form name="frmPage" method="post">
-	<input type="hidden" name="startDay" value="${param.startDay}">
-	<input type="hidden" name="endDay" value="${param.endDay}">
-	<input type="hidden" name="currentPage">	
-</form>
 
-<form name="frm1" method="post" id="frmOrderList" action="<c:url value='/auction/myAuctionList.do'/>" >
-	<!-- 조회기간 include -->
-	<%@include file="../design/inc/dateTerm.jsp" %>
-	<input type="submit" value="조회" >
-</form>
 
 <div id="wrap">
 	<div id="wrapdiv">
@@ -58,7 +47,19 @@
 				type="hidden" name="searchKeyword"
 				value="${searchVO.searchKeyword }">
 		</form>
-		<div><p>내가 참여한 경매 건 수 : ${alistsize }</p></div>
+		<!-- 페이징 처리를 위한 form 시작-->
+		<div style="margin-top: 20px; margin-bottom: 20px;"><p>내가 참여한 경매 건 수 : ${alistsize }</p></div>
+		<form name="frmPage" method="post">
+			<input type="hidden" name="startDay" value="${param.startDay}">
+			<input type="hidden" name="endDay" value="${param.endDay}">
+			<input type="hidden" name="currentPage">	
+		</form>
+		
+		<form name="frm1" method="post" id="frmOrderList" action="<c:url value='/auction/myAuctionList.do'/>" >
+			<!-- 조회기간 include -->
+			<%@include file="../design/inc/dateTerm.jsp" %>
+			<input type="submit" value="조회" >
+		</form>
 		<div class="divList">
 			<table class="box2">
 				<caption>나의 경매리스트</caption>
@@ -73,14 +74,14 @@
 					<tr class="listTitle">
 						<th rowspan="2">경매 번호</th>
 						<th rowspan="2">차번호</th>
-						<th>연식</th>
+						<th style="border-left: 1px solid silver;">연식</th>
 						<th>내 입찰가</th>
-						<th>입찰시작</th>
+						<th style="border-right: 1px solid silver;">입찰시작</th>
 					</tr>
 					<tr>
-						<th>주행거리</th>
+						<th style="border-left: 1px solid silver;">주행거리</th>
 						<th>경매 시작가</th>
-						<th>입찰마감</th>
+						<th style="border-right: 1px solid silver;">입찰마감</th>
 					</tr>
 				</thead>
 				<tbody>
