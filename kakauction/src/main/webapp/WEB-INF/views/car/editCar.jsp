@@ -1888,7 +1888,7 @@
 		    <input type="hidden" id="picture18" name="picture18">
 		    <input type="hidden" id="picture19" name="picture19">
 		    <input type="hidden" id="picture20" name="picture20">
-				    
+			
 		    <input type="hidden" id="originPicture1" name="originPicture1" value="${map['PICTURE_1'] }">
 		    <input type="hidden" id="originPicture2" name="originPicture2" value="${map['PICTURE_2'] }">
 		    <input type="hidden" id="originPicture3" name="originPicture3" value="${map['PICTURE_3'] }">

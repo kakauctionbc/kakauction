@@ -155,6 +155,38 @@ public class MemberController {
 		return "common/message";
 	}
 	
+	@RequestMapping(value="/pwdCheck2.do", method=RequestMethod.GET)
+	public String pwdCheck2_get(HttpSession session, Model model){
+		String memberId = (String)session.getAttribute("memberId");
+		logger.info("회원 수정 전 확인 페이지 memberId={}",memberId);
+		
+		model.addAttribute("memberId", memberId);
+		
+		return "member/pwdCheck2";
+	}
+	
+	@RequestMapping(value="/pwdCheck2.do", method=RequestMethod.POST)
+	public String pwdCheck2_post(@ModelAttribute MemberVO memberVo,HttpSession session,Model model){
+		String memberId = (String)session.getAttribute("memberId");
+		logger.info("회원 수정 아이디 memberId={}",memberId);
+		
+		int result = memberService.loginCheck(memberVo);
+		
+		String msg="",url="/member/pwdCheck2.do";
+		if (result==MemberService.LOGIN_OK) {
+			url="/fing/pwd_Edit.do";
+		}else if (result==MemberService.PWD_DISAGREE) {
+			msg="비밀번호가 틀렸습니다";
+		}else{
+			msg="비밀번호 체크 실패";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
 	@RequestMapping(value="/memberEdit.do", method=RequestMethod.GET)
 	public String memberEdit_get(HttpSession session ,Model model){
 		String memberId = (String)session.getAttribute("memberId");
@@ -226,6 +258,8 @@ public class MemberController {
 		
 		return "common/message";
 	}
+	
+	
 	
 	@RequestMapping(value="/memberOut.do", method=RequestMethod.GET)
 	public String memberOut_get(HttpSession session, Model model){
