@@ -119,7 +119,7 @@ public class MemberDBController {
 		excelService.excelAdd(map);
 		
 		model.addAttribute("msg", "성공성공");
-		model.addAttribute("url", "/login/login.do");
+		model.addAttribute("url", "/admin/member/memberSearchList.do");
 		
 		return "common/message";
 	}
