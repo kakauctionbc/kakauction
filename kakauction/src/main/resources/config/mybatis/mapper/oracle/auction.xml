@@ -453,7 +453,6 @@
 				select * from auction 
 				<![CDATA[
 				where auction_regdate<=sysdate
-				and auction_state!='END'
 				]]>
 				order by auction_finish, auction_no desc
 			)LIST_ALL
