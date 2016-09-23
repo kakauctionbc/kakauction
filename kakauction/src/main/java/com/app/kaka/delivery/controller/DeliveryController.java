@@ -140,6 +140,11 @@ public class DeliveryController {
 			carVo.setCarNum(carNum);
 			carVo.setSellerMemberId(sellerMemberId);
 			int cnt3 = carService.againAuction(carVo, auctionNo);
+			
+			model.addAttribute("msg", "계약 취소 완료 하였습니다");
+			model.addAttribute("url", "/auction/auctionSuccess.do");
+			
+			return "common/message";
 		}
 		
 		int cnt = deliveryService.updateLastBuyerYn(data);

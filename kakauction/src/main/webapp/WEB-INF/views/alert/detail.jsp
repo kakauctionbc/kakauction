@@ -15,7 +15,7 @@
 		//$("#msgContent").html("");
 		
 		$("#registerAgain").click(function(){
-			confirm("경매를 다시 등록하시겠습니까?"){
+			if(confirm("경매를 다시 등록하시겠습니까?")){
 				$("#register").submit();
 			}
 		});
@@ -65,14 +65,16 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="4" style="text-align: left;padding-left: 5px;">
-					신고내용
+				<td colspan="1" style="text-align: left;">
+					취소 차량 번호
+				</td>
+				<td>
+					${alertVo.carNum }
 				</td>
 			</tr>
 			<tr>
 				<td colspan="4">
-					<textarea id="msgContent" name="msgContent" readonly rows="5" cols="50">
-						<p>차량 번호 : ${alertVo.carNum }</p>${alertVo.alertContent }</textarea>
+					<textarea id="msgContent" name="msgContent" readonly rows="5" cols="50">${alertVo.alertContent }</textarea>
 				</td>
 			</tr>
 			<tr>
@@ -91,6 +93,7 @@
 			<input type="hidden" name="carNum" value="${alertVo.carNum }">
 			<input type="hidden" name="sellerMemberId" value="${alertVo.sellerMemberId }">
 			<input type="hidden" name="alertNo" value="${alertVo.alertNo }">
+			<input type="hidden" name="auctionNo" value="${alertVo.auctionNo }">
 		</form>
 	</div>
 </body>

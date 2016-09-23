@@ -133,7 +133,6 @@ public class AuctionController {
 			@RequestParam(required=false) String birth2,@RequestParam(required=false) String priceS,
 			@RequestParam(required=false) String priceD, @RequestParam(required=false) String auctionFirstprice, 
 			@RequestParam(required=false) String auctionFirstprice2,@ModelAttribute DetailSearchVO searchVo, Model model){
-		sc.reFresh();
 		logger.info("경매 목록");
 		//1. 파라미터 읽어오기
 		logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);
@@ -497,6 +496,7 @@ public class AuctionController {
 	
 	@RequestMapping("/auctionSuccess.do")
 	public String auctionSuccess(@ModelAttribute DateSearchVO vo, HttpSession session, Model model){
+		sc.reFresh();
 		logger.info("낙찰된 경매");
 		String memberId = (String)session.getAttribute("memberId");
 		vo.setMemberId(memberId);
@@ -622,19 +622,21 @@ public class AuctionController {
 			
 			return "common/message";
 		}
+		logger.info("재 등록하기 auctionVo = {}", auctionVo);
 		AuctionVO beforeAuctionVo = auctionService.selectAucByAuctionNo(auctionVo.getAuctionNo());
 		
 		String grade = auctionService.selectMemberGrade(auctionVo.getSellerMemberId());
 		
 		if(grade.equals(auctionService.MEMBER_VIP)){
-			auctionVo.setAuctionFinishTime(3);
+			beforeAuctionVo.setAuctionFinishTime(3);
 		}else if(grade.equals(auctionService.MEMBER_RVIP)){
-			auctionVo.setAuctionFinishTime(7);
+			beforeAuctionVo.setAuctionFinishTime(7);
 		}else if(grade.equals(auctionService.MEMBER_VVIP)){
-			auctionVo.setAuctionFinishTime(14);
+			beforeAuctionVo.setAuctionFinishTime(14);
 		}
 		
-		logger.info("경매 재등록하기, 파라미터 AuctionVO = {}", auctionVo);
+		
+		logger.info("경매 재등록하기, 파라미터 AuctionVO = {}", beforeAuctionVo);
 		int cnt = auctionService.againAuction(auctionVo);
 		
 		String msg="", url="/alert/detail.do?alertNo="+alertNo;

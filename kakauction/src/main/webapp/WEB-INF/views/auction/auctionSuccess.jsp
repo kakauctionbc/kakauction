@@ -12,6 +12,10 @@
 			}, function(){
 				$(this).css("background","");
 			});
+		
+		$("#cancleAuction").click(function(){
+			alert("거래 취소하신 경매입니다!");
+		});
 	});
 	function pageProc(curPage){
 		document.frmPage.currentPage.value=curPage;
@@ -84,7 +88,7 @@
 								<c:if test="${map['LB_BUYCAR_YN']=='Y'}">								
 									이미 거래 완료한 차량입니다.
 								</c:if>
-								<c:if test="${map['LB_BUYCAR_YN']=='N'}">								
+								<c:if test="${map['LB_BUYCAR_YN']=='N'}">							
 									<td class="listName" style="text-align: left;">
 										<a class="auctionTitle" href="<c:url value='/delivery/detail.do?auctionNo=${map["AUCTION_NO"]}'/>">
 												${map['CAR_MODEL']}<br>
@@ -94,6 +98,20 @@
 											<c:if test="${fn:length(map['CAR_LOC'])<=30}">
 												${map['CAR_LOC']}
 											</c:if>
+										</a>
+									</td>
+								</c:if>
+								<c:if test="${map['LB_BUYCAR_YN']=='거래취소'}">							
+									<td class="listName" style="text-align: left;">
+										<a class="auctionTitle" id="cancleAuction">
+												${map['CAR_MODEL']}<br>
+											<c:if test="${fn:length(map['CAR_LOC'])>30}">
+												${fn:substring(map['CAR_LOC'], 0,30)}...
+											</c:if> 
+											<c:if test="${fn:length(map['CAR_LOC'])<=30}">
+												${map['CAR_LOC']}
+											</c:if>
+											<p>거래 취소한 경매입니다</p>
 										</a>
 									</td>
 								</c:if>

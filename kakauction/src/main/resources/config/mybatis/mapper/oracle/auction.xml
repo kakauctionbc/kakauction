@@ -489,6 +489,4 @@
 	<select id="selectCarAm" resultType="CarAmVO">
 		select * from carAm
 	</select>
-	
-	<insert id="againAuction"></insert>
 </mapper>

@@ -93,7 +93,7 @@ public class AlertServiceImpl implements AlertService{
 		alertVo.setAuctionNo(auctionNo);
 		
 		alertVo.setAlertType(AlertService.ALERT_AGAIN);
-		return alertDao.sendDeferCar(alertVo);
+		return alertDao.sendAgainAuctionAlert(alertVo);
 	}
 
 }

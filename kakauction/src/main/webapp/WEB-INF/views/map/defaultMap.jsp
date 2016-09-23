@@ -20,28 +20,40 @@
 <script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
-	        center: new daum.maps.LatLng(37.496585982368316, 127.02476549938709), // 지도의 중심좌표
+	        center: new daum.maps.LatLng(37.49660401847674 , 127.02468917330734 ), // 지도의 중심좌표
 	        level: 4 // 지도의 확대 레벨
 	    };  
 	// 지도를 생성합니다    
 	var map = new daum.maps.Map(mapContainer, mapOption); 
 	
-	var markerPosition  = new daum.maps.LatLng(37.496585982368316, 127.02476549938709); 
+	var markerPosition  = new daum.maps.LatLng(37.49660401847674 , 127.02468917330734 ); 
 	
+	//이미지 소스
+	var imageSrc = "${pageContext.request.contextPath }/image/KakaoTalk_20160923_140109866.gif"; 
+	
+	//이미지 크기
+	var imageSize = new daum.maps.Size(70, 70);
+    
+    // 마커 이미지 생성    
+    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
+    
 	var marker = new daum.maps.Marker({
-	    position: markerPosition
+	    position: markerPosition,
+	    image : markerImage
 	});
 
 	marker.setMap(map);
 	
 	var iwContent = '<div style="height: 10px;color:blue; width:140px; text-align: center;">카카옥션 본사</div>',
-    iwPosition = new daum.maps.LatLng(37.496585982368316, 127.02476549938709); //인포윈도우 표시 위치입니다
+    iwPosition = new daum.maps.LatLng(37.49660401847674 , 127.02468917330734 ); //인포윈도우 표시 위치입니다
 
 	var infowindow = new daum.maps.InfoWindow({
 	    position : iwPosition, 
 	    content : iwContent 
 	});
 	
+	
+    
     var onoff = null;
     
 	infowindow.open(map, marker);
