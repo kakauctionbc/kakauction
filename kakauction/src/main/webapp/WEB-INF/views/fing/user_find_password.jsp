@@ -34,7 +34,7 @@
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#pwsearch").click(function(event){
+		$("#pwsearch").submit(function(event){
 			if($("#memberId").val().length < 1){
 				alert("아이디를 입력하세요");
 				$("#memberId").focus();

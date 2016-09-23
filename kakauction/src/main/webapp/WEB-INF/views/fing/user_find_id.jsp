@@ -38,7 +38,7 @@ h1{
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#findId").click(function(event){
+		$("#findId").submit(function(event){
 			if($("#memberName").val().length < 1){
 				alert("이름을 입력하세요");
 				$("#memberName").focus();
