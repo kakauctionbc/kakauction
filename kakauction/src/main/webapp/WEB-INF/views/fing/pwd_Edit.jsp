@@ -9,8 +9,8 @@
 </script>
 	<div id="wrap">
 		<h1>새로운 비밀번호 입력</h1>
-		<p>${param.memberId} 님 이제 새로운 비밀번호를 입력해주세요</p>
-		<form name="frm1" method="post" action="<c:url value='/fing/pwd_Edit.do?memberId=${param.memberId}'/>">
+		<p>${sessionScope.memberId} 님 이제 새로운 비밀번호를 입력해주세요</p>
+		<form name="frm1" method="post" action="<c:url value='/fing/pwd_Edit.do'/>">
 			<table id="passwordEdit">
 				<colgroup>
 					<col width="120" />
@@ -23,7 +23,7 @@
 							</label>
 						</th>
 						<td>
-							<input type="text" name="memberId" id="memberId" value="${param.memberId}" readonly
+							<input type="text" name="memberId" id="memberId" value="${sessionScope.memberId}" readonly
 								style="ime-mode: inactive; width: 160px;">&nbsp;
 						</td>
 					</tr>

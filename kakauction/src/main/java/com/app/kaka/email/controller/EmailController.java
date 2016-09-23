@@ -67,7 +67,7 @@ public class EmailController {
 	   }
 	  
 	   @RequestMapping(value="/user_find_password.do", method=RequestMethod.POST)
-	    public ModelAndView sendEmailAction_post (@ModelAttribute MemberVO memberVo, Model model) throws Exception {
+	    public String sendEmailAction_post (@ModelAttribute MemberVO memberVo, Model model) throws Exception {
 	        ModelAndView mav;
 	        logger.info("받았을까 아이디랑 이메일?? memberVo={}",memberVo);
 	        String memberId = memberVo.getMemberId();
@@ -93,13 +93,13 @@ public class EmailController {
 	        String htmlText="<div style='background:#fae100'>"
 	        		+ "<img alt='test' src=''>"
 	        		+"<div style='background:#fae100'>"
-	        		+"<h1 text-align='left'>인증번호를 알려드립니다.</h1><br><br>"
+	        		+"<h1 text-align='left'>임시 비밀번호를 알려드립니다.</h1><br><br>"
 	        		+"<p style='font-weight: bold;font-size: 2em;'>안녕하세요. kakAution입니다.</p><br>"
-	        		+"<p>kakaAution 비밀번호 찾기 인증번호를 다음과 같이 알려드립니다.</p><br><br>"
+	        		+"<p>kakaAution 비밀번호 찾기 임시비밀번호를 다음과 같이 알려드립니다.</p><br><br>"
 	        		+"</div>"
 	        		+"<div style='background:white;'>"
-	        		+"<p style='color: #fae100'>인증번호 6자리를 진행 중인 화면에 입력해주세요</p>"
-	        		+"<p>인증번호 : <p>"+newPwd
+	        		+"<p style='color: #fae100'>임시 비밀번호로 로그인 하신 후 비밀번호를 변경해 주세요.</p>"
+	        		+"<p>인증번호 : <p>"
 	        		+"<p style='font-weight: bold;'>"+newPwd+"</p><br><br>"
 	        		+"</div>"
 	        		+ "<p style='font-weight: bold;'>감사합니다.</p>"
@@ -117,11 +117,18 @@ public class EmailController {
 	            email.setSubject(memberId+"님 요청하신 임시 비밀번호 입니다.");
 	            emailSender.SendEmail(email);
 	            /*mav= new ModelAndView("redirect:/fing/randomPwd.do?memberId="+memberId);*/
-	            mav= new ModelAndView("redirect:/login/login.do");
-	            return mav;
+	            
+	            model.addAttribute("msg", "임시비밀번호를 해당 이메일로 전송하였습니다.");
+	            model.addAttribute("url", "/login/login.do");
+	            /*mav= new ModelAndView("redirect:/login/login.do");
+	            return mav;*/
+	            return "common/message";
 	        }else {
-	            mav=new ModelAndView("redirect:/fing/user_find_password.do");
-	            return mav;
+	            /*mav=new ModelAndView("redirect:/fing/user_find_password.do");
+	            return mav;*/
+	        	 model.addAttribute("msg", "본인 인증에 실패하였습니다. 다시 입력해주세요");
+		         model.addAttribute("url", "/fing/user_find_password.do");
+	        	 return "common/message";
 	        }
 	    }
 	   
@@ -153,28 +160,32 @@ public class EmailController {
 		   
 	   }
 	   
-	   
 	   @RequestMapping(value="/pwd_Edit.do", method=RequestMethod.GET)
-	   public String pwdEdit_get(@RequestParam String memberId, Model model){
+	   public String pwdEdit_get(Model model){
 		   logger.info("pwd수정창 보여주기");
 		   
 		   return "fing/pwd_Edit";
 	   }
 	   
 	   @RequestMapping(value="/pwd_Edit.do", method=RequestMethod.POST)
-	   public String pwdEdit_post(@ModelAttribute MemberVO memberVo){
+	   public String pwdEdit_post(@ModelAttribute MemberVO memberVo,Model model){
 		   logger.info("회원 비밀번호 수정하기 memberVo={}",memberVo);
 		   
 		   int result = memberService.updateMemberPwd(memberVo);
 		   
-		   String resultPage="";
+		   String msg="",url="";
 		   if (result>0) {
-			   resultPage = "redirect:/fing/pwdEditEnd.do";
+			   msg="비밀번호를 변경하였습니다.";
+			   url="/login/login.do";
 		   } else {
-			   resultPage = "redirect:/fing/pwd_Edit.do";
+			   msg="변경 실패";
+			   url="/fing/pwd_Edit.do";
 		   }
 		   
-		   return resultPage;
+		   model.addAttribute("msg", msg);
+		   model.addAttribute("url", url);
+		   
+		   return "common/message";
 	   }
 	   
 	   @RequestMapping(value="/user_find_id.do", method=RequestMethod.GET)
