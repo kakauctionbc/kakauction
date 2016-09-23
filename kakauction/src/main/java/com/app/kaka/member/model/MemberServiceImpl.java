@@ -112,4 +112,9 @@ public class MemberServiceImpl implements MemberService {
 	public String findMemberId(MemberVO memberVo) {
 		return memberDao.findMemberId(memberVo);
 	}
+
+	@Override
+	public int memberStop(String sellerMemberId) {
+		return memberDao.memberStop(sellerMemberId);
+	}
 }

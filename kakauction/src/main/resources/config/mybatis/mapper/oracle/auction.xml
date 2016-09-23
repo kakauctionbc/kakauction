@@ -489,4 +489,14 @@
 	<select id="selectCarAm" resultType="CarAmVO">
 		select * from carAm
 	</select>
+	
+	<insert id="againAuction" parameterType="AuctionVO">
+		<selectKey keyProperty="auctionNo" resultType="int" order="BEFORE">
+			select auction_seq.nextval from dual
+		</selectKey>
+		insert into auction(AUCTION_NO_YEAR,AUCTION_NO_CAR,AUCTION_NO,
+		CAR_NUM,SELLER_MEMBER_ID,AUCTION_PROMP,AUCTION_FIRSTPRICE,auction_regdate,AUCTION_STATE,auction_finish)
+		values(to_char(sysdate, 'yyyy'),#{auctionNoCar},#{auctionNo},
+		#{carNum},#{sellerMemberId},#{auctionPromp},#{auctionFirstprice}, TRUNC(SYSDATE)+((to_char(sysdate,'hh24')+1)*60)/(24*60), 'START', TRUNC(SYSDATE+#{auctionFinishTime})+((to_char(sysdate,'hh24')+1)*60)/(24*60))
+	</insert>
 </mapper>

@@ -28,4 +28,5 @@ public interface MemberDAO {
 	
 	//찾기
 	public String findMemberId(MemberVO memberVo);
+	public int memberStop(String sellerMemberId);
 }

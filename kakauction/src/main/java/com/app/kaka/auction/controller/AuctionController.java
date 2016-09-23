@@ -637,7 +637,7 @@ public class AuctionController {
 		
 		
 		logger.info("경매 재등록하기, 파라미터 AuctionVO = {}", beforeAuctionVo);
-		int cnt = auctionService.againAuction(auctionVo);
+		int cnt = auctionService.againAuction(beforeAuctionVo);
 		
 		String msg="", url="/alert/detail.do?alertNo="+alertNo;
 		if(cnt>0){

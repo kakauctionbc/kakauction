@@ -51,5 +51,6 @@ public interface MemberService {
 	public String whereMemberGrade(String memberId);
 	
 	public String findMemberId(MemberVO memberVo);
+	public int memberStop(String sellerMemberId);
 	
 }

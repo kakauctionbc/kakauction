@@ -277,7 +277,8 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 
 	@Override
 	public int againAuction(AuctionVO auctionVo) {
-		return getSqlSession().insert(namespace+".insertAuction", auctionVo);
+		System.out.println("인서트 직전 auctionVo"+auctionVo);
+		return getSqlSession().insert(namespace+".againAuction", auctionVo);
 	}
 
 }
