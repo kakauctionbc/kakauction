@@ -163,6 +163,7 @@
 	width: 1000px;
 	border: 1px solid #534a4a;
 	margin-top: 30px;
+	margin-bottom: 30px;
 }
 .writeDetail th{
 	background: #ebebeb;
@@ -172,7 +173,35 @@
 .writeDetail td{
 	border: 1px solid #534a4a;
 }
-
+.carprice th{
+	width: 200px;
+}
+.carprice td{
+	width: 300px;
+}
+.seller th{
+	width:200px;
+}
+.seller td{
+	width: 300px;
+}
+.carInfotable{
+	width:1000px; 
+	borde:1px solid silver;
+}
+.carInfotable th{
+	background: #ebebeb;
+	border: 1px solid #534a4a;
+	height: 30px;
+}
+.carInfotable td{
+	border: 1px solid #534a4a;
+	height: 30px;
+}
+h3{
+	font-size: 1.3em;
+	font-weight: bold;
+}
 </style>
 <div id="wrap">
 	<div id="wrapdiv">
@@ -245,7 +274,7 @@
 					<td id="memberTime">회원등급별 차등시간 </td>
 				</tr>
 				<tr>
-					<td colspan="2">
+					<td colspan="2" style="padding: 0px; border: none;">
 						<table style="width: 1000px; border: none;">
 							<colgroup>
 								<col style="width:120px;"/>
@@ -277,15 +306,15 @@
 				<tr>
 					<td>
 						<table>
-							<tr>
-								<th>최저입찰가</th>
-								<td id="voCarPrice">vo.carPrice</td>
+							<tr class="carPrice">
+								<th >최저입찰가</th>
+								<td id="voCarPrice">${vo.carPrice}</td>
 							</tr>
 						</table>
 					</td>
 					<td>
 						<table>
-							<tr>
+							<tr class="seller">
 								<th>이전책임</th>
 								<td>매수자</td>
 							</tr>
@@ -294,17 +323,25 @@
 				</tr>
 			</tbody>
 		</table>
-		<div>
-			<table width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
-				<thead>물건 기본 정보</thead>
+		<div style="margin-bottom: 30px;">
+			<table class="carInfotable" cellspacing="0" cellpadding="0" align="center">
+				<h3>-물건 기본 정보</h3><br>
 				<tbody>
 					<tr>
 						<th>차량명</th>
 						<td id="VoMemberId"></td>
 					</tr>
 					<tr>
-						<td colspan="2">
+						<td colspan="2" style="padding: 0px;">
 							<table>
+								<colgroup>
+									<col style="width: 100px;"/>
+									<col style="width: 200px;"/>
+									<col style="width: 100px;"/>
+									<col style="width: 300px;"/>
+									<col style="width: 100px;"/>
+									<col style="width: 200px;"/>
+								</colgroup>
 								<tr>
 									<th>차량번호</th>
 									<td id="carVoCarNum"></td>
@@ -331,9 +368,9 @@
 					</tr>
 			</table>
 		</div>
-		<div>
-			<table width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
-				<thead>입찰진행내용</thead>
+		<div style="margin-bottom: 30px;">
+			<table width="1000px;" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
+				<h3>-입찰진행내용</h3><br>
 				<tbody>
 					<tr>
 						<th>입찰번호</th>
@@ -349,9 +386,9 @@
 				</tbody>
 			</table>
 		</div>
-		<div>
-			<table width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
-				<thead>입찰정보</thead>
+		<div style="margin-bottom: 30px;">
+			<table width="1000px;" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
+				<h3>-입찰정보</h3><br>
 				<tbody>
 					<tr>
 						<th>입찰번호</th>
@@ -367,10 +404,10 @@
 				</tbody>
 			</table>
 		</div>
-		<div  width="960" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
-		<pre>- 제공된 정보가 실제 매각물건의 정보와 일치하지 않거나 정보의 제공 이후 중요한 변동사항이 생길 수 있습니다.
-		- 물건의 내용은 온비드, 입찰 집행기관 등에서 반드시 재확인 하시기 바랍니다.
-		* 본 정보와 관련하여 발생하는 모든 문제에 대해 어떠한 책임도 지지 않습니다.</pre>
+		<div  width="1000px" border="1px solid silver;" cellspacing="0" cellpadding="0" >
+		<pre>- 제공된 정보가 실제 매각물건의 정보와 일치하지 않거나 정보의 제공 이후 중요한 변동사항이 생길 수 있습니다.<br>
+- 물건의 내용은 온비드, 입찰 집행기관 등에서 반드시 재확인 하시기 바랍니다.<br>
+* 본 정보와 관련하여 발생하는 모든 문제에 대해 어떠한 책임도 지지 않습니다.</pre>
 		</div>
 	</div>
 </div>
