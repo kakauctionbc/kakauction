@@ -67,7 +67,7 @@
 						<th>변속기</th>
 						<th>감정평가액</th>
 						<th>물건상태</th>
-						<th rowspan="2">물건번호</th>
+						<th rowspan="2" style="border-left: 1px solid silver; border-right: 1px solid silver;">물건번호</th>
 						<th>입찰시작</th>
 						<th rowspan="2" class="readCount">조회수</th>
 					</tr>

@@ -6,16 +6,23 @@
 	font-size: 1.2em;
 }
 #join{
-	margin-left: 30px;
+	margin-left: 42px;
+}
+#join label{
+	width: 160px;
+	margin-right: 27px;
 }
 #searchpwd{
 	margin-left: 30px;
+}
+#searchpwd label{
+	width:200px;
 }
 .name{
 	margin-left: 30px;
 }
 .result{
-	width:500px;
+	width:400px;
 }
 .result td{
 	text-align: center;
@@ -45,6 +52,20 @@ h1{
 		});
 	});	
 </script>
+<style type="text/css">
+#userfind_btn{
+	background-color: #f2f2ee;
+    color: black;
+    cursor: pointer;
+    width: 80px;
+    height:30px;
+	border-radius: 10%;
+	box-shadow: 0 5px 5px lightgray;
+	font-weight: bold;
+	margin-left: 95px;
+	float: left;
+}
+</style>
 <div id="wrap">
 	<div id="loginwrap">
 		<div id="logintop">
@@ -53,9 +74,7 @@ h1{
 			</p>
 		</div>
 		<div id="pagelogo">
-			<%-- <img src="${pageContext.request.contextPath }/img/memberOut_logo.png"
-				alt="아이디 찾기"> --%>
-			<h1>아이디 찾기</h1>
+			<img src="${pageContext.request.contextPath }/img/id_logo.png" alt="아이디 찾기">
 		</div>
 		<div id="loginp">
 			<p>
@@ -68,20 +87,20 @@ h1{
 					<div class="name">
 						<label for="memberName" class="label">
 							이름</label>
-						<input type="text" name="memberName" id="memberName" value="${param.memberName}">
+						<input type="text" name="memberName" id="memberName" value="${param.memberName}" style="width: 200px;">
+						
 					</div>
 					<div class="hp">	
 						<label for="memberHp"  class="label">
 							휴대번호</label>
-						<input type="text" name="memberHp" id="memberHp" value="${param.memberHp}">
+						<input type="text" name="memberHp" id="memberHp" value="${param.memberHp}" style="width: 200px;">
 					</div>
 					<div style="width:100%; margin-top: 20px;">
-						<button type="submit" id="pwdCheck_btn">확인</button>
+						<button type="submit" id="userfind_btn">확인</button>
 						<button type="reset" onclick="location.href='${pageContext.request.contextPath }/design/index.do'" id="pwdCheck_main">취소</button>
 					</div>
 				</fieldset>
-				<article>
-				<div style="width: 100%; height: 30px;"></div>
+				<div style="width: 400px; height: 30px; border-top: 1px solid silver; margin-top: 20px;"></div>
 				<table class="result">
 					<tr class="color">
 						<th>ID 찾기</th>					
@@ -94,10 +113,8 @@ h1{
 						</td>			
 					<tr>
 				</table>
-			</article>
 			</form>
-			<article>
-				<div style="width: 100%; height: 30px;"></div>
+				<div style="width: 400px; height: 5px; border-top: 1px solid silver;"></div>
 				<div id="join">
 					<label for="join" class="label">※ 회원이 아니신가요?</label>
 					<button type="submit"
@@ -108,7 +125,6 @@ h1{
 					<button type="submit"
 						onclick="location.href='${pageContext.request.contextPath }/fing/user_find_password.do'">비밀번호</button>
 				</div>
-			</article>
 		</div>
 	</div>
 </div>

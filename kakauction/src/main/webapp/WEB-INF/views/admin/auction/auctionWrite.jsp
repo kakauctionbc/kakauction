@@ -74,20 +74,6 @@
 						$("#carVoCarAm").html(vo.carAm);
 						$("#carVoCarDist").html(vo.carDist);
 						$("#carVoCarCc").html(vo.carCc);
-						var auctionHis ="";
-						if(vo.carFailSell>=1){
-							auctionHis = "";
-						}else if(vo.carFailSell<1){
-							auctionHis = "<td colspan='7'>이전 경매 정보가 존재하지 않습니다</td>";
-						}
-						$("#selectAuctionHis").html(auctionHis);
-						var hisAucInfo ="";
-						if(vo.carFailSell>=1){
-							hisAucInfo = "";
-						}else if(vo.carFailSell<1){
-							hisAucInfo = "<td colspan='7'>이전 경매 정보가 존재하지 않습니다</td>";
-						}
-						$("#HisAucInfo").html(hisAucInfo);
 					},
 					error : function(xhr,status,error) {
 						alert("에러=>"+ status+ ":"+ error);
@@ -366,42 +352,6 @@ h3{
 						<td>시청 상징물 등 도색된 상태로 매수자가 제거 필요 사진은 해당 차량이 아닐 수 있으므로 실물 확인 바람
 						</td>
 					</tr>
-			</table>
-		</div>
-		<div style="margin-bottom: 30px;">
-			<table width="1000px;" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
-				<h3>-입찰진행내용</h3><br>
-				<tbody>
-					<tr>
-						<th>입찰번호</th>
-						<th>처분방식</th>
-						<th>개찰일시</th>
-						<th>최저입찰가</th>
-						<th>낙찰가</th>
-						<th>낙찰율</th>
-						<th>입찰결과</th>
-					</tr>
-					<tr id="selectAuctionHis">
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div style="margin-bottom: 30px;">
-			<table width="1000px;" border="1px solid silver;" cellspacing="0" cellpadding="0" align="center">
-				<h3>-입찰정보</h3><br>
-				<tbody>
-					<tr>
-						<th>입찰번호</th>
-						<th>회차/차수</th>
-						<th>대금납부</th>
-						<th>납부기한</th>
-						<th>입찰기간</th>
-						<th>개찰일시</th>
-						<th>최저입찰가</th>
-					</tr>
-					<tr id="HisAucInfo">
-					</tr>
-				</tbody>
 			</table>
 		</div>
 		<div  width="1000px" border="1px solid silver;" cellspacing="0" cellpadding="0" >
