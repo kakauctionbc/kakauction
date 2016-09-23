@@ -53,7 +53,6 @@
 						<c:if test="${!empty cookie.admin_ck_userid }">
 								checked
 							</c:if>>
-					<label for="chkSave">아이디 저장하기</label>
 				</fieldset>
 			</form>
 			<article>
