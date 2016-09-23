@@ -1,20 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script type="text/javascript">
-	function Div_carphto_onoff(){
-		var n = document.getElementById("carphto_onoff").value;
-		if(n=="on"){
-	
-			$("#Div_carphto_onoff").hide();
-			$("#carphto_onoff").val("off") ;
-			$("#photoOnoffText").html("차량 사진 열기");
-		}else if(n=="off"){
-	
-			$("#Div_carphto_onoff").show();
-			$("#carphto_onoff").val("on") ;
-			$("#photoOnoffText").html("차량 사진 닫기");
-		}
+function Div_carphto_onoff(){
+	var n = document.getElementById("carphto_onoff").value;
+	if(n=="on"){
+
+		$("#Div_carphto_onoff").hide();
+		$("#carphto_onoff").val("off") ;
+		$("#photoOnoffText").html("▶ 차량 사진 열기");
+	}else if(n=="off"){
+
+		$("#Div_carphto_onoff").show();
+		$("#carphto_onoff").val("on") ;
+		$("#photoOnoffText").html("◁ 차량 사진 닫기");
 	}
+}
+
+	$(function(){ 
+		var carImgSrc;
+		$(".carImg").click(function(){
+			carImgSrc = $(this).attr("src");
+			$("#myModal").css("display", "block");
+			$("#img01").attr("src",carImgSrc);
+		});
+		$(".close").click(function() {
+			$("#myModal").css("display", "none");
+		});
+	});
 	$(document).ready(function(){
 		var auctionNo = $("#auctionNo").val();
 		$(".stopAuction").click(function(){
@@ -56,6 +68,92 @@
 		font-size: 25px;
 		font-weight: bold;
 	}
+		#carImage{
+		height: 80px;
+		width: 80px;
+	}
+	.photoarea{
+		width: 1000px;
+		height: 165px;
+	}
+	.carImg {
+		width: 180px;
+		height: 160px;
+	    cursor: pointer;
+	    transition: 0.3s;
+	}
+	.carImg:hover {
+		opacity: 0.7;
+	}
+	.modal {
+	    display: none; /* Hidden by default */
+	    position: fixed; /* Stay in place */
+	    z-index: 1; /* Sit on top */
+	    padding-top: 100px; /* Location of the box */
+	    left: 0;
+	    top: 0;
+	    width: 100%; /* Full width */
+	    height: 100%; /* Full height */
+	    overflow: auto; /* Enable scroll if needed */
+	    background-color: rgb(0,0,0); /* Fallback color */
+	    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+	}
+	
+	/* Modal Content (Image) */
+	.modal-content {
+	    margin: auto;
+	    display: block;
+	    width: 80%;
+	    max-width: 700px;
+	}
+	
+	/* Caption of Modal Image (Image Text) - Same Width as the Image */
+	#caption {
+	    margin: auto;
+	    display: block;
+	    width: 80%;
+	    max-width: 700px;
+	    text-align: center;
+	    color: #ccc;
+	    padding: 10px 0;
+	    height: 150px;
+	}
+	
+	/* Add Animation - Zoom in the Modal */
+	.modal-content, #caption { 
+	    -webkit-animation-name: zoom;
+	    -webkit-animation-duration: 0.6s;
+	    animation-name: zoom;
+	    animation-duration: 0.6s;
+	}
+	
+	/* The Close Button */
+	.close {
+	    position: absolute;
+	    top: 15px;
+	    right: 35px;
+	    color: #f1f1f1;
+	    font-size: 40px;
+	    font-weight: bold;
+	    transition: 0.3s;
+	}
+	
+	.close:hover, .close:focus {
+	    color: #bbb;
+	    text-decoration: none;
+	    cursor: pointer;
+	}
+	
+    .modal-content {
+        width: 100%;
+    }
+   @media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+    .detailbottom{
+    	float: left;
+    }
 </style>
 
 	<div class="sellerInformation">
@@ -77,64 +175,89 @@
 	<div class="tab7_view dealer">
 		<div class="page_tab">
 			<ul class="tab7" id="tab6">
-				<li class="t7"><a href="#tab6" style="text-decoration: none; color: black;">사진정보</a></li>
+				<li class="t7"><a href="#tab6" style="text-decoration: none; color: black; font-size: 1.5em;">◎ 상세정보</a></li>
 			</ul>
 		</div>
 	
 		<div class="pagetitle">
 			<div class="detailbtn01"> <a href="javascript:Div_carphto_onoff();" style="text-decoration: none; color: black;">
-				<pre id="photoOnoffText">차량 사진 닫기</pre></a>
+				<pre id="photoOnoffText">◁ 차량 사진 닫기</pre></a>
 			</div>
 		</div>
 		<div class="carphoto">
-			<div class="top">
-				<ul class="inline">
-					<li>본 이미지는 사업적 용도가 아닌 경우 SNS, 카페, 블로그 등에서 자유롭게 사용이 가능합니다.</li>
-				</ul>
-			</div>
-			<br><br>
 			<input type="hidden" name="carphto_onoff" id="carphto_onoff" value="on">
 			<div id="Div_carphto_onoff" style=" display:block; padding:0 ; " align="center">
-				<div class="photoarea">
-					<img src="<c:url value='/picture_upload/${acVo.picture1}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture2}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture3}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture4}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture5}'/>" width="200" alt="차량사진">
+				<div class="imgtext">
+					<ul class="inline" style="margin-bottom: 20px; margin-top: 10px;">
+						<li>본 이미지는 사업적 용도가 아닌 경우 SNS, 카페, 블로그 등에서 자유롭게 사용이 가능합니다.</li>
+					</ul>
 				</div>
-				
 				<div class="photoarea">
-					<img src="<c:url value='/picture_upload/${acVo.picture6}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture7}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture8}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture9}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture10}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture1}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture2}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture3}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture4}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture5}'/>" width="200" alt="차량사진">
 				</div>
-				
 				<div class="photoarea">
-					<img src="<c:url value='/picture_upload/${acVo.picture11}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture12}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture13}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture14}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture15}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture6}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture7}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture8}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture9}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture10}'/>" width="200" alt="차량사진">
 				</div>
-				
 				<div class="photoarea">
-					<img src="<c:url value='/picture_upload/${acVo.picture16}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture17}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture18}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture19}'/>" width="200" alt="차량사진">
-					<img src="<c:url value='/picture_upload/${acVo.picture20}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture11}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture12}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture13}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture14}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture15}'/>" width="200" alt="차량사진">
+				</div>
+				<div class="photoarea">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture16}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture17}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture18}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture19}'/>" width="200" alt="차량사진">
+					<img class="carImg" src="<c:url value='/picture_upload/${acVo.picture20}'/>" width="200" alt="차량사진">
+				</div>
+				<div id="myModal" class="modal">
+					<span class="close">×</span>
+						<img class="modal-content" id="img01">
+					<div id="caption"></div>
 				</div>
 			</div>
-			<br><br>
+			<br>
 			<div class="detailbottom">
 				<dl>
-					<dt>책임한계 및 법적고지</dt>
+					<dt style="font-weight: bold; font-size: 1.3em;">※책임한계 및 법적고지</dt><br>
 					<dd>보배드림은 판매자가 등록한 매물정보가 노출될 수 있도록 등록 시스템만을 제공하며, <br>
 						판매자가 등록한 매물 정보 및 이와 관련한 실제 거래에 대하여 어떤 책임도 부담하지 않습니다.</dd>
 				</dl>
 			</div>
+			<div class="sellerInformation">
+				<table>
+					<tr>
+						<th colspan="2" style="font-size: 15px;height: 35px;">판매자 정보</th>
+					</tr>
+					<tr>
+						<th>판매자</th>
+						<td>${acVo.memberName}<a href="#" style="text-decoration: none; color: black;">쪽지</a></td>
+					</tr>
+					<tr>
+						<th>연락처</th>
+						<td>${acVo.memberHp}</td>
+					</tr>
+					<tr>
+						<th>주소</th>
+						<td>${acVo.memberAddr}</td>
+					</tr>
+					<tr>
+						<th>매매상사</th>
+						<td>${acVo.carCompany}</td>
+					</tr>
+				</table>
+			</div>
+			<br>						
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -1212,27 +1335,8 @@
 	<br>
 	<a href="#" style="text-decoration: none; color: black;" id="top">TOP</a>
 	<br>
-	<div class="sellerInformation">
-		<table>
-			<tr>
-				<th colspan="2" style="font-size: 15px;height: 35px;">판매자 정보</th>
-			</tr>
-			<tr>
-				<th>판매자</th>
-				<td>${acVo.memberName}<a href="#" style="text-decoration: none; color: black;">쪽지</a></td>
-			</tr>
-			<tr>
-				<th>연락처</th>
-				<td>${acVo.memberHp}</td>
-			</tr>
-			<tr>
-				<th>주소</th>
-				<td>${acVo.memberAddr}</td>
-			</tr>
-			<tr>
-				<th>매매상사</th>
-				<td>${acVo.carCompany}</td>
-			</tr>
+
+		<div>
 			<c:if test="${auctionVo.auctionState!='END'}">
 				<tr>
 					<td>
@@ -1243,6 +1347,6 @@
 					</td>
 				</tr>
 			</c:if>
-		</table>
-	</div>
+		</div>
+
 </div>
