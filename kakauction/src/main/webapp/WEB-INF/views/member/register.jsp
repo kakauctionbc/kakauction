@@ -248,7 +248,7 @@
 			<div id="btn_area">
 				<ul>
 					<li id="btn_register">
-						<button type="submit">관리자등록</button>
+						<button type="submit">회원가입</button>
 					</li>
 					<li id="btn_cancel">
 						<button type="reset">취소</button>
