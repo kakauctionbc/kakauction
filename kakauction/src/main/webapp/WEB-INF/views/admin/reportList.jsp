@@ -101,7 +101,7 @@
 		<tbody>  
 		<c:if test="${empty alist}">
 			<tr>
-				<td colspan="5" class="align_center">
+				<td colspan="6" class="align_center">
 				신고  데이터가 없습니다
 				</td>
 			</tr>
