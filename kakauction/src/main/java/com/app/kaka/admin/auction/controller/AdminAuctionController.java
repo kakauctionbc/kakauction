@@ -217,7 +217,7 @@ public class AdminAuctionController {
 	public String auctionStop(@RequestParam(defaultValue="0") int auctionNo, Model model){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("auctionState", "END");
-		map.put("auctionNo", "auctionNo");
+		map.put("auctionNo", auctionNo);
 		int cnt =auctionService.adminUpdateStateStop(map);
 		if(cnt>0){
 			model.addAttribute("msg", "경매를 종료하였습니다");
