@@ -60,7 +60,12 @@
 		        select * from(
 		            select * from(
 		                select * from(
-		                    select * from Auction_Car2
+		                	select*from(
+			                    select * from Auction_Car2
+								<![CDATA[
+						        where auction_regdate<=sysdate
+						        ]]>	                	
+		                	)
 		                    <if test="carSizes!=null and carSizes!=''">
 		                        where car_size in
 			                    <foreach collection="carSizes" item="carSize" index="index" 
