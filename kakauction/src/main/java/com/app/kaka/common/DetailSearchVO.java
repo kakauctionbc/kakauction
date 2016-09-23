@@ -7,6 +7,7 @@ public class DetailSearchVO extends SearchVO{
 	//1. 차종
 	private String[] carSizes;
 	private String[] carGases;
+	private String[] carAms;
 	private String birth1;
 	private String birth2;
 	private String priceS;

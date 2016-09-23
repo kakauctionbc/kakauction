@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.app.kaka.alert.model.AlertService;
 import com.app.kaka.buyer.model.BuyerVO;
 import com.app.kaka.car.model.CarVO;
+import com.app.kaka.carAm.model.CarAmVO;
 import com.app.kaka.carsize.model.CarsizeVO;
 import com.app.kaka.common.DateSearchVO;
 import com.app.kaka.common.SearchVO;
@@ -294,5 +295,10 @@ public class AuctionServiceImpl implements AuctionService{
 	@Override
 	public List<AuctionVO> mainSchedule() {
 		return auctionDao.mainSchedule();
+	}
+
+	@Override
+	public List<CarAmVO> selectCarAm() {
+		return auctionDao.selectCarAm();
 	}
 }

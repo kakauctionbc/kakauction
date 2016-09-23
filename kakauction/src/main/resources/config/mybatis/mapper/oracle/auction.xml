@@ -471,4 +471,8 @@
 			where rownum<=7
 			]]>
 	</select>
+	
+	<select id="selectCarAm" resultType="CarAmVO">
+		select * from carAm
+	</select>
 </mapper>

@@ -29,6 +29,12 @@
 	}
 </style>
 <div id="mySidenav" class="sidenav">
+
+	<form action="<c:url value='/auction/list.do'/>" method="post" name="desearchfrm">
+		<input type="hidden" name="auctionFirstprice" size="45" value="${DetailSearchVO.auctionFirstprice}">
+		<input type="hidden" name="auctionFirstprice2" size="45" value="${DetailSearchVO.auctionFirstprice2}">
+	</form>
+	
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	<p>상세검색</p>
  	<button class="accordion">차종</button>
@@ -45,15 +51,16 @@
 
 	<button class="accordion">가격</button>
 		<div class="panel">
-			최소가 <input type="text" name="auctionFirstprice" size="45">만원 ~
-			최대가 <input type="text" name="auctionFirstprice2" size="45">만원
+			최소가 <input type="text" name="auctionFirstprice" size="45" value="${param.auctionFirstprice}">만원 ~
+			최대가 <input type="text" name="auctionFirstprice2" size="45" value="${param.auctionFirstprice2}">만원
 		</div>
 	
 	<button class="accordion">연료</button>
 		<div class="panel">
 			<c:forEach var="cglist" items="${cargasList}" varStatus="vs">
 				<div class="carGases" style="height: 25px;">
-					<input type="checkbox" name="carGases" id="carGas${vs.index}" value="${cglist.carGas}">
+					<input type="checkbox" name="carGases" id="carGas${vs.index}" value="${cglist.carGas}"
+					<c:if test="${param.carGases[vs.index]==cglist.carGas}" >checked</c:if> >
 					<label for="carGas${vs.index}" class="laname">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -65,8 +72,13 @@
 			</c:forEach>
 		</div>
 	
-	<button class="accordion">주행거리</button>
+	<button class="accordion">변속기</button>
 		<div class="panel">
-			<input type="text" name="carDist">
+				<input type="radio" id="carAms" name="carAms">
+				<label for="carAm">무관</label>
+			<c:forEach var="amList" items="${carAmList}">
+				<input type="radio" id="carAms" name="carAms" value="${amList.carAm}">
+				<label for="carAm">${amList.carAm}</label>
+			</c:forEach>
 		</div>
 </div>
