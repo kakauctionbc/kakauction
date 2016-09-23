@@ -221,10 +221,10 @@ public class AdminAuctionController {
 		int cnt =auctionService.adminUpdateStateStop(map);
 		if(cnt>0){
 			model.addAttribute("msg", "경매를 종료하였습니다");
-			model.addAttribute("url", "admin/auction/auctionList.do");
+			model.addAttribute("url", "/admin/auction/auctionList.do");
 		}else{
 			model.addAttribute("msg", "경매 종료 실패하였습니다");
-			model.addAttribute("url", "admin/auction/auctionDetail.do?auctionNo="+auctionNo);
+			model.addAttribute("url", "/admin/auction/auctionDetail.do?auctionNo="+auctionNo);
 		}
 		return "common/message";
 	}
