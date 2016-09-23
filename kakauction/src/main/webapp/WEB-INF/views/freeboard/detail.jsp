@@ -4,6 +4,7 @@
 <script type="text/javascript">
 	$(function(){
 		var freeboardNo = $("#freeboardNo").val();
+		var memberId = $("#nowMem").val();
 		$("#df").click(function(){
 			if(!confirm("글을 삭제하시겠습니까?\n(제목 : ${freeVo.freeboardTitle})")){
 				return false;
@@ -31,6 +32,10 @@
 		
 		$("#thisBoard").click(function(){
 			alert("현재글 입니다");
+		});
+		
+		$("#btlikeBoard").click(function(){
+			window.open("/kaka/freeboard/likeBoard.do?freeboardNo="+freeboardNo+"&memberId="+memberId);
 		});
 	});
 
@@ -106,6 +111,8 @@ a:hover{
             <a href="<c:url value='/freeboard/list.do'/>">목록</a>
             <button id="btReport">신고하기</button>
          </c:if>
+         <input type="hidden" id="nowMem" value="${sessionScope.memberId}">
+         <button id="btlikeBoard">좋아요</button>
       </div>
 	</div>
 	<jsp:include page="/freeboardreply/comment.do?freeboardNo=${param.freeboardNo }"></jsp:include>
