@@ -63,23 +63,38 @@ h1{
 			</p>
 		</div>
 		<div class="simpleForm">
-			<form action="<c:url value='/fing/user_find_password.do'/>" name="findId" id="findId" method="post">
+			<form action="<c:url value='/fing/user_find_id.do'/>" name="findId" id="findId" method="post">
 				<fieldset>
 					<div class="name">
 						<label for="memberName" class="label">
 							이름</label>
-						<input type="text" name="memberName" id="memberName">
+						<input type="text" name="memberName" id="memberName" value="${param.memberName}">
 					</div>
 					<div class="hp">	
 						<label for="memberHp"  class="label">
 							휴대번호</label>
-						<input type="text" name="memberHp" id="memberHp">
+						<input type="text" name="memberHp" id="memberHp" value="${param.memberHp}">
 					</div>
 					<div style="width:100%; margin-top: 20px;">
 						<button type="submit" id="pwdCheck_btn">확인</button>
 						<button type="reset" onclick="location.href='${pageContext.request.contextPath }/design/index.do'" id="pwdCheck_main">취소</button>
 					</div>
 				</fieldset>
+				<article>
+				<div style="width: 100%; height: 30px;"></div>
+				<table class="result">
+					<tr class="color">
+						<th>ID 찾기</th>					
+					<tr>
+					<tr class="color2">
+						<td>
+							<c:if test="${!empty memberId}">
+							<p>귀하의 아이디는 <span>${memberId }</span> 입니다.</p>
+							</c:if>		
+						</td>			
+					<tr>
+				</table>
+			</article>
 			</form>
 			<article>
 				<div style="width: 100%; height: 30px;"></div>
@@ -93,17 +108,6 @@ h1{
 					<button type="submit"
 						onclick="location.href='${pageContext.request.contextPath }/fing/user_find_password.do'">비밀번호</button>
 				</div>
-			</article>
-			<article>
-				<div style="width: 100%; height: 30px;"></div>
-				<table class="result">
-					<tr class="color">
-						<th>ID 찾기</th>					
-					<tr>
-					<tr class="color2">
-						<td><p style="visibility: hidden;">귀하의 아이디는 <span>${vo.memberId }</span> 입니다.</p></td>					
-					<tr>
-				</table>
 			</article>
 		</div>
 	</div>

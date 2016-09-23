@@ -107,4 +107,9 @@ public class MemberServiceImpl implements MemberService {
 	public int selectAllMemberCount2(MemDeSearchVO searchVo) {
 		return memberDao.selectAllMemberCount2(searchVo);
 	}
+
+	@Override
+	public String findMemberId(MemberVO memberVo) {
+		return memberDao.findMemberId(memberVo);
+	}
 }

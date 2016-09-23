@@ -77,4 +77,9 @@ public class MemberDAOMybatis extends SqlSessionDaoSupport implements MemberDAO 
 	public int selectAllMemberCount2(MemDeSearchVO searchVo) {
 		return getSqlSession().selectOne(namespace+".selectAllMemberCount2", searchVo);
 	}
+
+	@Override
+	public String findMemberId(MemberVO memberVo) {
+		return getSqlSession().selectOne(namespace+".findMemberId",memberVo);
+	}
 }

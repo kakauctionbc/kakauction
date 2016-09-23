@@ -25,4 +25,7 @@ public interface MemberDAO {
 	
 	//접근 등급제한
 	public String whereMemberGrade(String memberId);
+	
+	//찾기
+	public String findMemberId(MemberVO memberVo);
 }

@@ -178,8 +178,18 @@ public class EmailController {
 	   }
 	   
 	   @RequestMapping(value="/user_find_id.do", method=RequestMethod.GET)
-	   public String memberIdFind(){
+	   public String memberIdFind_get(){
 		   logger.info("아이디 찾기 화면입니다.");
+		   
+		   return "fing/user_find_id";
+	   }
+	   
+	   @RequestMapping(value="/user_find_id.do", method=RequestMethod.POST)
+	   public String memberIdFind_post(@ModelAttribute MemberVO memberVo,Model model){
+		   logger.info("받아온 아이들 memberVo={}",memberVo);
+		   
+		   String memberId = memberService.findMemberId(memberVo);
+		   model.addAttribute("memberId", memberId);
 		   
 		   return "fing/user_find_id";
 	   }

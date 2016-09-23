@@ -164,4 +164,9 @@
 	<update id="updateMileage" parameterType="MemberVO">
 		update member set member_mileage=#{memberMileage} where member_id=#{memberId}
 	</update>
+	
+	<!-- 아이디 찾기 -->
+	<select id="findMemberId" parameterType="MemberVO" resultType="string">
+		select member_id from member where member_name=#{memberName} and member_hp=#{memberHp} 
+	</select>
 </mapper>
