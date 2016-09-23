@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.app.kaka.buyer.model.BuyerVO;
 import com.app.kaka.car.model.CarVO;
+import com.app.kaka.carAm.model.CarAmVO;
 import com.app.kaka.carsize.model.CarsizeVO;
 import com.app.kaka.common.DateSearchVO;
 import com.app.kaka.common.SearchVO;
@@ -267,6 +268,11 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 	@Override
 	public List<AuctionVO> mainSchedule() {
 		return getSqlSession().selectList(namespace+".mainSchedule");
+	}
+
+	@Override
+	public List<CarAmVO> selectCarAm() {
+		return getSqlSession().selectList(namespace+".selectCarAm");
 	}
 
 }

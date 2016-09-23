@@ -24,6 +24,7 @@ import com.app.kaka.auction.model.AuctionVO;
 import com.app.kaka.auction.model.HighPriceVO;
 import com.app.kaka.buyer.model.BuyerVO;
 import com.app.kaka.car.model.CarVO;
+import com.app.kaka.carAm.model.CarAmVO;
 import com.app.kaka.carsize.model.CarsizeVO;
 import com.app.kaka.common.DateSearchVO;
 import com.app.kaka.common.PaginationInfo;
@@ -155,10 +156,12 @@ public class AuctionController {
 		//상세검색carsizeList
 		List<GasVO> cargasList =auctionService.selectCarGas();
 		List<CarsizeVO> carsizeList =auctionService.selectCarsize();
+		List<CarAmVO> carAmList = auctionService.selectCarAm();
 		logger.info("carsizeList 궁금 carsizeList={}, size={}",carsizeList, carsizeList.size());
 		logger.info("cargasList 궁금 cargasList={}, size={}",cargasList, cargasList.size());
 		
 		//3. 결과 저장, 뷰페이지 리턴
+		model.addAttribute("carAmList", carAmList);
 		model.addAttribute("carsizeList", carsizeList);
 		model.addAttribute("cargasList", cargasList);
 		model.addAttribute("alist", alist);

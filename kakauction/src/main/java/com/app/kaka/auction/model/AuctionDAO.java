@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.app.kaka.buyer.model.BuyerVO;
 import com.app.kaka.car.model.CarVO;
+import com.app.kaka.carAm.model.CarAmVO;
 import com.app.kaka.carsize.model.CarsizeVO;
 import com.app.kaka.common.DateSearchVO;
 import com.app.kaka.common.SearchVO;
@@ -94,6 +95,7 @@ public interface AuctionDAO {
 	//상세검색 셀렉트
 	public List<CarsizeVO> selectCarsize();
 	public List<GasVO> selectCarGas();
+	public List<CarAmVO> selectCarAm();
 	
 	//내가 등록한 차량의 경매를 보자
 	public List<Map<String, Object>> myCarAucList(DateSearchVO searchVo);
@@ -104,4 +106,6 @@ public interface AuctionDAO {
 	
 	//경매일정 메인창에!
 	public List<AuctionVO> mainSchedule();
+	
+	
 }
