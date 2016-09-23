@@ -43,7 +43,7 @@
 	<div id="wrapdiv">
 		<div id="wraptop">
 			<p>
-				<a href="${pageContext.request.contextPath }/admin/index.do">HOME</a>>좋은차사기>일정안내
+				<a href="${pageContext.request.contextPath }/admin/index.do">HOME</a>>좋은 차 사기>일정안내
 			</p>
 		</div>
 		<div id="pagelogo">
@@ -51,7 +51,7 @@
 			<h1>일정안내</h1>
 		</div>
 		
-		<div class="schedule">
+		<div class="schedule" style="margin-left: 100px;">
 			<table
 				summary="경매 일정을 알려드립니다.">
 				<colgroup>

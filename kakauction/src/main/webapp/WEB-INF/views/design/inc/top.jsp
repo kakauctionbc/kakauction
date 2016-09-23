@@ -56,6 +56,7 @@ $(function(){
 					<!-- 로그인된 경우 -->
 					<c:if test="${!empty sessionScope.memberId }">
 						<li><a href="<c:url value='/member/memberOut.do'/>" >회원탈퇴</a></li>	            
+						<li><a href="<c:url value='/member/pwdCheck2.do'/>" style="border-right: 1px solid silver;">비밀번호변경</a></li>	            
 						<li><a href="<c:url value='/member/pwdCheck.do'/>" id="boderli">회원정보수정</a></li>	            
 						<li><a href="<c:url value='/login/logout.do'/>">로그아웃</a></li>
 						<li><a href="<c:url value='/msg/myList.do'/>"><jsp:include page="/msg/myMsgAlarm.do"></jsp:include></a></li>

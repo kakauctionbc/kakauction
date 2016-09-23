@@ -33,11 +33,11 @@
 	<div id="wrapdiv">
 		<div id="wraptop">
 			<p>
-				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>나의 경매 등록 보류 리스트
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>나의 보류 경매 목록
 			</p>
 		</div>
 		<div id="pagelogo">
-			<img src="${pageContext.request.contextPath }/img/auctionList_logo.png" alt="회원가입로고">
+			<img src="${pageContext.request.contextPath }/img/deferList_logo.png" alt="보류경매로고">
 		</div>
 		<form name="frmPage" method="post" action="<c:url value='admin/auction/auctionDenyList.do'/>">
 			<input type="hidden" name="currentPage"> 
