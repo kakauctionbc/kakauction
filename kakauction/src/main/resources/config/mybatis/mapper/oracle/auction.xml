@@ -450,7 +450,11 @@
 	<select id="selectAllSchedule" resultType="AuctionVO" parameterType="SearchVO">
 		select * from(
 			select rownum as RNUM, LIST_ALL.* from(
-				select * from auction order by auction_finish desc
+				select * from auction 
+				<![CDATA[
+				where auction_regdate<=sysdate 
+				]]>
+				order by auction_finish, auction_no desc
 			)LIST_ALL
 		)
 		<![CDATA[
@@ -464,9 +468,13 @@
 	</select>
 	
 	<select id="mainSchedule" resultType="AuctionVO">
-		select rownum, auction_no,auction_regdate,auction_finish from( select 
-            auction_no,auction_regdate,auction_finish
-			from auction order by auction_finish desc ) 
+		select rownum, auction_no,auction_regdate,auction_finish from( 
+			select 
+            auction_no,auction_regdate,auction_finish from auction 
+            <![CDATA[
+			where auction_regdate<=sysdate 
+			]]>
+			order by auction_finish, auction_no desc)
 			<![CDATA[
 			where rownum<=7
 			]]>

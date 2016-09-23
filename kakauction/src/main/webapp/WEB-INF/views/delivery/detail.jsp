@@ -24,7 +24,7 @@
 		alert(lbNo+"~"+recordNo+"~"+buyerMemberId+"!"+title);
 		
 		$("#map").click(function(){ 
-			var message = $("#buyerLocation").val();
+			var message = $("#buyerLoc").val();
 		    
 		    var resultDiv = document.getElementById('buyerLoc1'); 
 		    resultDiv.innerHTML = message;
@@ -33,6 +33,10 @@
 		}); //click
 		
 		$("#payment").click(function(){
+			if($("#title").val().length<1){
+				alert("차량수령지를 지도에서 선택하세요");
+				return false;
+			}
 			var IMP = window.IMP;
 			IMP.init('imp83107498');
 			
@@ -74,6 +78,10 @@
 		});
 		
 		$("#timbt").click(function(){
+			if($("#title").val().length<1){
+				alert("차량수령지를 지도에서 선택하세요");
+				return false;
+			}
 	        location.replace("<c:url value='/delivery/insertTrade.do?lbNo="+lbNo+"&recordNo="+recordNo+"&auctionNo="+auctionNo+"&buyerMemberId="+buyerMemberId+"&recordPrice="+recordPrice+"&carNum="+carNum+"&title="+title+"&tradeType="+"정상결제"+"'/>");
 		});
 		

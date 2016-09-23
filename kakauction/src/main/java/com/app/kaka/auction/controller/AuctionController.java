@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.app.kaka.admin.scheduler.KakauctionScheduler;
 import com.app.kaka.auction.model.AuctionCarVO;
 import com.app.kaka.auction.model.AuctionService;
 import com.app.kaka.auction.model.AuctionVO;
@@ -46,6 +47,9 @@ public class AuctionController {
 	
 	@Autowired
 	private OpService opService;
+	
+	@Autowired
+	private KakauctionScheduler sc;
 	
 	/*@RequestMapping(value="/write.do", method=RequestMethod.GET)
 	public String write_get(Model model){
@@ -129,7 +133,7 @@ public class AuctionController {
 			@RequestParam(required=false) String birth2,@RequestParam(required=false) String priceS,
 			@RequestParam(required=false) String priceD, @RequestParam(required=false) String auctionFirstprice, 
 			@RequestParam(required=false) String auctionFirstprice2,@ModelAttribute DetailSearchVO searchVo, Model model){
-		
+		sc.reFresh();
 		logger.info("경매 목록");
 		//1. 파라미터 읽어오기
 		logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);

@@ -37,7 +37,7 @@
 	
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	<p>상세검색</p>
- 	<button class="accordion">차종</button>
+ 	<p class="accordion">차종</p>
 		<div class="panel">
 			<c:forEach var="cslist" items="${carsizeList}" varStatus="vs">
 				<div class="carSizes" style="height: 25px;">
@@ -49,13 +49,13 @@
 			</c:forEach>
 		</div> 
 
-	<button class="accordion">가격</button>
+	<p class="accordion">가격</p>
 		<div class="panel">
 			최소가 <input type="text" name="auctionFirstprice" size="45" value="${param.auctionFirstprice}">만원 ~
 			최대가 <input type="text" name="auctionFirstprice2" size="45" value="${param.auctionFirstprice2}">만원
 		</div>
 	
-	<button class="accordion">연료</button>
+	<p class="accordion">연료</p>
 		<div class="panel">
 			<c:forEach var="cglist" items="${cargasList}" varStatus="vs">
 				<div class="carGases" style="height: 25px;">
@@ -72,7 +72,7 @@
 			</c:forEach>
 		</div>
 	
-	<button class="accordion">변속기</button>
+	<p class="accordion">변속기</p>
 		<div class="panel">
 				<input type="radio" id="carAms" name="carAms">
 				<label for="carAm">무관</label>

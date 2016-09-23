@@ -73,19 +73,18 @@
 				alert("현재 최고가를 응찰하신 회원입니다.");
 				return;
 			}
+			if(auctionState=="END"){
+				$("#nowHighPrice").html("종료된 경매 입니다").css("text-align","right");
+				$("#goAuction").css("display","none");
+				return;
+			}
 			$.ajax({
 				url : "<c:url value='/auction/insertAuctionGo.do'/>",
 				data : {"auctionNo":auctionNo,"recordPrice":5,	"carNum":carNum,"sellerMemberId":sellerMemberId,"buyerMemberId":buyerMemberId,"highPrice":highPrice},
 				type : "POST",
 				dataType : "json",
 				success : function(highVo) {
-					auctionState=highVo.auctionState;
 					alert("입찰하였습니다");
-					if(auctionState=="END"){
-						$("#nowHighPrice").html("종료된 경매 입니다").css("text-align","right");
-						$("#goAuction").css("display","none");
-						return;
-					}
 					$("#goAuction").show();
 					$("#nowHighPrice").html(highVo.recordPrice+"만원<br>"+highVo.buyerMemberId).css("text-align","right");
 					$("#light").css("background","red");

@@ -9,4 +9,6 @@ public interface DeliveryDAO {
 	public int updateLastBuyerYn(Map<Object, Object> map);
 	public int insertTrade(Map<Object, Object> map);
 	public int insertDelivery(Map<Object, Object> data);
+	public int updateBuyer(Map<Object, Object> data);
+	
 }

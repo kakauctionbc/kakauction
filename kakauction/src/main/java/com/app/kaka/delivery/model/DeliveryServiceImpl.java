@@ -32,5 +32,10 @@ public class DeliveryServiceImpl implements DeliveryService{
 		return deliveryDao.insertDelivery(data);
 	}
 
+	@Override
+	public int updateBuyer(Map<Object, Object> data) {
+		return deliveryDao.updateBuyer(data);
+	}
+
 	
 }

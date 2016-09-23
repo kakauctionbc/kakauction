@@ -132,14 +132,22 @@ public class DeliveryController {
 		data.put("carNum", carNum);
 		data.put("title", title);
 		data.put("tradeType", tradeType);
+		if(tradeType.equals("정상결제")){
+			data.put("buyerLoc", title);
+		}else{
+			data.put("buyerLoc", "");
+		}
 		
 		int cnt = deliveryService.updateLastBuyerYn(data);
 		int cnt1 = deliveryService.insertDelivery(data);
 		logger.info("거래 성공 최종구매자 상태 업데이트 cnt={}",cnt);
 		cnt = deliveryService.insertTrade(data);
 		logger.info("거래 성공 거래테이블에 입력 cnt={}",cnt);
+		cnt = deliveryService.updateBuyer(data);
+		logger.info("구매자 수령지 업데이트 cnt={}",cnt);
 		model.addAttribute("data", data);
 		logger.info("model에 담은 data={}",data);
+		
 		return "delivery/payment";
 	}
 }
