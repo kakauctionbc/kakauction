@@ -57,6 +57,7 @@
 		font-weight: bold;
 	}
 </style>
+
 	<div class="sellerInformation">
 	<input type="hidden" id="auctionNo" value="${auctionVo.auctionNo}">
 		<table>
