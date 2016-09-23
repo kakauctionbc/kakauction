@@ -106,6 +106,7 @@
 				select * from(
 					select * from member 
 					<include refid="searchMemberWhere"></include>
+					order by member_regdate desc
 					)where member_Grade!='ADMIN' and member_outdate is null
 			)LIST_ALL
 		)
