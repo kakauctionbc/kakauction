@@ -19,7 +19,7 @@
 		var auctionNo = $("#auctionNo").val();
 		$(".stopAuction").click(function(){
 			if(confirm("경매를 강제로 중지 하시겠습니까?")){
-				location.href="<c:url value='/admin/auctionStop.do?auctionNo="+auctionNo+"'/>";
+				location.href="<c:url value='/admin/auction/auctionStop.do?auctionNo="+auctionNo+"'/>";
 			}
 		});
 	});
