@@ -594,7 +594,7 @@ public class AuctionController {
 		model.addAttribute("totalRecord", totalRecord);
 		
 		List<AuctionVO> auctionList = auctionService.selectAllSchedule(searchVo);
-		logger.info("회원 목록 조회 결과 memberList.size={}",auctionList.size());
+		logger.info("회원 목록 조회 결과 auctionList.size={}",auctionList.size());
 		
 		model.addAttribute("auctionList", auctionList);
 		model.addAttribute("pagingInfo", pagingInfo);
@@ -607,6 +607,7 @@ public class AuctionController {
 		logger.info("메인에 띄우기");
 		
 		List<AuctionVO> mainList = auctionService.mainSchedule();
+		logger.info("메인에 띄우기 mainList={}",mainList);
 		
 		model.addAttribute("schedule", mainList);
 		

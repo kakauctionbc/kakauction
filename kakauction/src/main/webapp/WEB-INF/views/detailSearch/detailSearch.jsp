@@ -8,7 +8,9 @@
 	});
 	
 	$(document).ready(function(){
-		$(".carSizes").click(function(){
+		 $(":checkbox").click(function(){
+			 
+			 document.desearchfrm.submit();
 		});
 		$(".carGases").click(function(){
 		});
@@ -33,7 +35,7 @@
 	<form action="<c:url value='/auction/list.do'/>" method="post" name="desearchfrm">
 		<input type="hidden" name="auctionFirstprice" size="45" value="${DetailSearchVO.auctionFirstprice}">
 		<input type="hidden" name="auctionFirstprice2" size="45" value="${DetailSearchVO.auctionFirstprice2}">
-	</form>
+
 	
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	<p>상세검색</p>
@@ -81,4 +83,5 @@
 				<label for="carAm">${amList.carAm}</label>
 			</c:forEach>
 		</div>
+	</form>
 </div>

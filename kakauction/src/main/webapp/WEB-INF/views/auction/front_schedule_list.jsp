@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../design/inc/top.jsp"%>
+<script type="text/javascript">
+function pageProc(curPage){
+    document.frmPage.currentPage.value=curPage;
+    document.frmPage.submit();
+ }
+</script>
 <style>
 	td, th{
 		border: 1px solid silver;
@@ -90,10 +96,10 @@
 								<td>
 									<jsp:useBean id="toDay" class="java.util.Date" />
 									<fmt:formatDate var="today" value="${toDay}" pattern="yyyy-MM-dd HH:mm:ss" />
-									<c:if test="${toDay <= vo.auctionFinish }">
+									<c:if test="${vo.auctionState!='END' }">
 										<img alt="진행" src="${pageContext.request.contextPath }/img/start.png">
 									</c:if>
-									<c:if test="${toDay > vo.auctionFinish }">
+									<c:if test="${vo.auctionState=='END' }">
 										<img alt="종료" src="${pageContext.request.contextPath }/img/end.png">
 									</c:if>
 								</td>						

@@ -452,7 +452,7 @@
 			select rownum as RNUM, LIST_ALL.* from(
 				select * from auction 
 				<![CDATA[
-				where auction_regdate<=sysdate 
+				where auction_regdate<=sysdate
 				]]>
 				order by auction_finish, auction_no desc
 			)LIST_ALL
@@ -468,9 +468,9 @@
 	</select>
 	
 	<select id="mainSchedule" resultType="AuctionVO">
-		select rownum, auction_no,auction_regdate,auction_finish from( 
+		select rownum, auction_no,auction_regdate,auction_finish,auction_state from( 
 			select 
-            auction_no,auction_regdate,auction_finish from auction 
+            auction_no,auction_regdate,auction_finish,auction_state from auction 
             <![CDATA[
 			where auction_regdate<=sysdate 
 			]]>
