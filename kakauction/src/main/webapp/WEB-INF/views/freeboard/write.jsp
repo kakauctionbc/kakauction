@@ -42,8 +42,8 @@
 	        <div class="firstDiv">	
 				<form action="<c:url value='/freeboard/write.do'/>" method="post" name="freeWriteFrm" id="frmWrite" enctype="multipart/form-data">
 					<div style="padding: 5px 0;">
-						<label for="memberId">아이디</label>
-						<input type="text" name="memberId" id="memberId" value="${sessionScope.memberId }" style="border: none;"readonly>
+						<label for="memberId1">아이디</label>
+						<input type="text" name="memberId" id="memberId1" value="${sessionScope.memberId }" style="border: none; background: #fffff2;"readonly>
 					</div>
 					<div style="margin-bottom: 20px;">
 						<label for="freeboardTitle" style="margin-right: 10px;">제 목</label>

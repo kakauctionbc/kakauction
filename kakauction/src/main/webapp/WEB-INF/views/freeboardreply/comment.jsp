@@ -159,8 +159,8 @@
 					<input type="hidden" id="memberId" name="memberId" style="width: 30%" value="${sessionScope.memberId }" readonly>
 					<input type="hidden" name="freeboardNo" value="${freeVo.freeboardNo}">
 					<p style="margin-top: 20px;">
-						<textarea rows="1" cols="165" name="freereplyContent" id="freereplyContent"></textarea>
-						<input type="submit" name="commentSubmit" value="확인">
+						<textarea rows="1" cols="165" name="freereplyContent" id="freereplyContent" style="height: 50px;"></textarea>
+						<input type="submit" name="commentSubmit" value="확인" style="margin-left: 480px; margin-top: 20px;">
 					</p>
 				</fieldset>
 			</div>
