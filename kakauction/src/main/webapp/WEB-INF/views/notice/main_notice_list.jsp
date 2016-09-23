@@ -24,7 +24,7 @@
 	<table summary="경매 일정을 알려드립니다.">
 		<tbody>
 			<c:if test="${empty mainNotice}">
-				<td class="align_center" colspan="9">등록된 경매일정이 없습니다.</td>
+				<td class="align_center" colspan="9">작성된 공지사항이 없습니다.</td>
 			</c:if>
 			<c:if test="${!empty mainNotice}">
 				<c:forEach var="vo" items="${mainNotice}">

@@ -151,7 +151,9 @@
 	<form name="frmPage" method="post" action="<c:url value='/admin/member/memberSearchList.do'/>">
 		<input type="hidden" name="currentPage">
 		<input type="hidden" name="searchCondition" value="${param.searchCondition }">
-		<input type="hidden" name="searchKeyword" value="${memDeSearchVO.searchKeyword }">	
+		<input type="hidden" name="searchKeyword" value="${param.searchKeyword }">	
+		<input type="hidden" name="memberGrade" value="${param.memberGrade }">
+		<input type="hidden" name="memberGender" value="${param.memberGender }">
 	</form>
 
 	<div id="wrap">
@@ -199,7 +201,7 @@
 						              	 </c:if>
 									>이메일</option>
 								</select>
-								<input type="text" id="memberSearchKeyword" name="memberSearchKeyword" 
+								<input type="text" id="memberSearchKeyword" name="searchKeyword" 
 									title="검색어 입력" value="${param.searchKeyword}">
 							</td>
 						</tr>
@@ -244,9 +246,17 @@
 							<td>
 								<input type="radio" name="memberGender" id="memberGenderA" value="" checked="checked">
 								<label for="memberGenderA">전체</label> 
-								<input type="radio" name="memberGender" id="memberGenderM" value="M">
+								<input type="radio" name="memberGender" id="memberGenderM" value="M"
+									<c:if test="${param.memberGender=='M'}">
+						            		checked
+						             </c:if>
+								>
 								<label for="memberGenderM">남자</label> 
-								<input type="radio" name="memberGender" id="memberGenderF" value="F">
+								<input type="radio" name="memberGender" id="memberGenderF" value="F"
+									<c:if test="${param.memberGender=='F'}">
+						            		checked
+						             </c:if>
+								>
 								<label for="memberGenderF">여자</label>
 							</td>
 						</tr>
