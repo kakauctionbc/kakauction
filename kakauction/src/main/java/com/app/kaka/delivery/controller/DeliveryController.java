@@ -117,7 +117,7 @@ public class DeliveryController {
 	@RequestMapping("/insertTrade.do")
 	@Transactional
 	public String insertTrade(@RequestParam int lbNo,@RequestParam int recordNo,@RequestParam int auctionNo,@RequestParam String buyerMemberId,@RequestParam int recordPrice,
-			@RequestParam String carNum, @RequestParam String title, @RequestParam String tradeType, Model model){
+			@RequestParam String carNum, @RequestParam String title, @RequestParam String sellerMemberId, @RequestParam String tradeType, Model model){
 		if(lbNo==0 || recordNo==0 || auctionNo==0){
 			model.addAttribute("msg", "잘못된 url입니다");
 			model.addAttribute("url", "/index.do");
@@ -136,6 +136,10 @@ public class DeliveryController {
 			data.put("buyerLoc", title);
 		}else{
 			data.put("buyerLoc", "");
+			CarVO carVo = new CarVO();
+			carVo.setCarNum(carNum);
+			carVo.setSellerMemberId(sellerMemberId);
+			int cnt3 = carService.againAuction(carVo, auctionNo);
 		}
 		
 		int cnt = deliveryService.updateLastBuyerYn(data);

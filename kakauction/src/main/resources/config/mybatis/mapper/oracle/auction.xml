@@ -98,7 +98,7 @@
 		        )
 		        <if test="carGases!=null and carGases!=''">
 			        where car_gas in
-			        <foreach collection="carSizes" item="carGas" index="index" 
+			        <foreach collection="carGases" item="carGas" index="index" 
 	                   	open="(" close=")" separator=",">
 	                   	#{carGas}
 					</foreach>
@@ -489,4 +489,6 @@
 	<select id="selectCarAm" resultType="CarAmVO">
 		select * from carAm
 	</select>
+	
+	<insert id="againAuction"></insert>
 </mapper>

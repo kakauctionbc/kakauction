@@ -5,12 +5,18 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.app.kaka.alert.model.AlertService;
 
 @Service
 public class CarServiceImpl implements CarService{
 
 	@Autowired
 	private CarDAO carDao;
+	
+	@Autowired
+	private AlertService alertService;
 	
 	@Override
 	public int insertCar(CarVO carVo) {
@@ -50,6 +56,18 @@ public class CarServiceImpl implements CarService{
 	@Override
 	public int editCar(CarVO carVo) {
 		return carDao.editCar(carVo);
+	}
+
+	@Override
+	@Transactional
+	public int againAuction(CarVO carVo, int auctionNo) {
+		int cnt = alertService.sendAgainAuctionAlert(carVo, auctionNo);
+		
+		if(cnt>0){
+			return carDao.againAuction(carVo);
+		}
+		
+		return 0;
 	}
 
 }

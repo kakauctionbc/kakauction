@@ -126,4 +126,7 @@ public interface AuctionService {
 	
 	//경매일정 메인창에!
 	public List<AuctionVO> mainSchedule();
+	
+	//경매 재등록하기
+	public int againAuction(AuctionVO auctionVo);
 }

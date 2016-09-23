@@ -10,6 +10,7 @@ public class AlertVO {
 	private String alertContent;
 	private Timestamp alertRegdate;
 	private String alertTitle;
+	private int auctionNo;
 	
 	public int getAlertNo() {
 		return alertNo;
@@ -53,11 +54,18 @@ public class AlertVO {
 	public void setAlertTitle(String alertTitle) {
 		this.alertTitle = alertTitle;
 	}
+	public int getAuctionNo() {
+		return auctionNo;
+	}
+	public void setAuctionNo(int auctionNo) {
+		this.auctionNo = auctionNo;
+	}
+	
 	@Override
 	public String toString() {
 		return "AlertVO [alertNo=" + alertNo + ", carNum=" + carNum + ", SellerMemberId=" + SellerMemberId
 				+ ", alertType=" + alertType + ", alertContent=" + alertContent + ", alertRegdate=" + alertRegdate
-				+ ", alertTitle=" + alertTitle + "]";
+				+ ", alertTitle=" + alertTitle + ", auctionNo=" + auctionNo + "]";
 	}
 	
 }

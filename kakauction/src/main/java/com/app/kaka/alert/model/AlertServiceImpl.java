@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.app.kaka.car.model.CarVO;
+
 @Service
 public class AlertServiceImpl implements AlertService{
 	
@@ -24,7 +26,7 @@ public class AlertServiceImpl implements AlertService{
 		int hour = date.getHours();
 		int minute = date.getMinutes();
 			
-		String alertContent = "경매가 "+year+"년 "+month+"월 "+day+"일 "+hour+":"+minute+"에 보류 되었습니다.\n재등록을 원하시면 양식에 맞춰 수정을 해주십시오.";
+		String alertContent = "경매가 "+year+"년 "+month+"월 "+day+"일 "+hour+":"+minute+"에 보류 되었습니다.\n\n재등록을 원하시면 양식에 맞춰 수정을 해주십시오.";
 		alertVo.setAlertContent(alertContent);
 		String alertTitle = "경매가 보류되었습니다.";
 		alertVo.setAlertTitle(alertTitle);
@@ -70,6 +72,28 @@ public class AlertServiceImpl implements AlertService{
 		}
 				
 		return alertVo;
+	}
+
+	@Override
+	public int sendAgainAuctionAlert(CarVO carVo, int auctionNo) {
+		AlertVO alertVo = new AlertVO();
+		alertVo.setCarNum(carVo.getCarNum());
+		alertVo.setSellerMemberId(carVo.getSellerMemberId());
+		Date date = new Date();
+		int year = date.getYear()+1990;
+		int month = date.getMonth()+1;
+		int day = date.getDate();
+		int hour = date.getHours();
+		int minute = date.getMinutes();
+			
+		String alertContent = "이전 낙찰자가 "+year+"년 "+month+"월 "+day+"일 "+hour+":"+minute+"에 낙찰을 취소하였습니다.\n\n재등록을 원하시면 경매 재등록 버튼을 눌러 주십시오.";
+		alertVo.setAlertContent(alertContent);
+		String alertTitle = "경매 낙찰자가 낙찰을 취소하였습니다.";
+		alertVo.setAlertTitle(alertTitle);
+		alertVo.setAuctionNo(auctionNo);
+		
+		alertVo.setAlertType(AlertService.ALERT_AGAIN);
+		return alertDao.sendDeferCar(alertVo);
 	}
 
 }

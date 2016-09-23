@@ -613,4 +613,41 @@ public class AuctionController {
 		
 		return "auction/main_schedule_list";
 	}
+	
+	@RequestMapping("/againAuction.do")
+	public String againAuction(@ModelAttribute AuctionVO auctionVo, @RequestParam(defaultValue="0") int alertNo, Model model){
+		if (alertNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/msg/myList.do");
+			
+			return "common/message";
+		}
+		AuctionVO beforeAuctionVo = auctionService.selectAucByAuctionNo(auctionVo.getAuctionNo());
+		
+		String grade = auctionService.selectMemberGrade(auctionVo.getSellerMemberId());
+		
+		if(grade.equals(auctionService.MEMBER_VIP)){
+			auctionVo.setAuctionFinishTime(3);
+		}else if(grade.equals(auctionService.MEMBER_RVIP)){
+			auctionVo.setAuctionFinishTime(7);
+		}else if(grade.equals(auctionService.MEMBER_VVIP)){
+			auctionVo.setAuctionFinishTime(14);
+		}
+		
+		logger.info("경매 재등록하기, 파라미터 AuctionVO = {}", auctionVo);
+		int cnt = auctionService.againAuction(auctionVo);
+		
+		String msg="", url="/alert/detail.do?alertNo="+alertNo;
+		if(cnt>0){
+			msg="경매가 재 등록되었습니다";
+			auctionService.updateAuctionYn(auctionVo);
+		}else{
+			msg="경매 등록에 실패하였습니다";
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		
+		return "common/message";
+	}
 }

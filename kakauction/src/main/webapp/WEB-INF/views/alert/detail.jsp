@@ -13,6 +13,12 @@
 			self.close();
 		});
 		//$("#msgContent").html("");
+		
+		$("#registerAgain").click(function(){
+			confirm("경매를 다시 등록하시겠습니까?"){
+				$("#register").submit();
+			}
+		});
 	});
 </script>
 </head>
@@ -21,9 +27,6 @@
 		<table>
 			<tr>
 				<td colspan="4"><img alt="카카옥션" src="<c:url value='/img/auctionRegReportToplogo.png'/>"></td>
-			</tr>
-			<tr>
-				<td colspan="4" style="text-align: left;padding-left: 25px;">카카옥션 불량 경매 신고</td>
 			</tr>
 			<tr>
 				<td>
@@ -48,6 +51,9 @@
 					<c:if test="${alertVo.alertType == 'DEFER'}">
 						차량 등록 보류
 					</c:if>
+					<c:if test="${alertVo.alertType == 'AGAIN'}">
+						경매 재등록
+					</c:if>
 				</td>
 			</tr>
 			<tr>
@@ -65,11 +71,15 @@
 			</tr>
 			<tr>
 				<td colspan="4">
-					<textarea id="msgContent" name="msgContent" readonly rows="5" cols="50">${alertVo.alertContent }</textarea>
+					<textarea id="msgContent" name="msgContent" readonly rows="5" cols="50">
+						<p>차량 번호 : ${alertVo.carNum }</p>${alertVo.alertContent }</textarea>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="4">
+					<c:if test="${alertVo.alertType=='AGAIN' }">
+						<input type="button" id="registerAgain" value="경매 재등록">
+					</c:if>
 					<input type="button" id="selfClose" value="닫기">
 				</td>
 			</tr>
@@ -77,6 +87,11 @@
 				<td colspan="4"><img alt="카카옥션" src="<c:url value='/img/auctionRegReportBottomplogo.png'/>"></td>
 				</tr>
 		</table>
+		<form action="<c:url value='/auction/againAuction.do'/>" method="post" id="register">
+			<input type="hidden" name="carNum" value="${alertVo.carNum }">
+			<input type="hidden" name="sellerMemberId" value="${alertVo.sellerMemberId }">
+			<input type="hidden" name="alertNo" value="${alertVo.alertNo }">
+		</form>
 	</div>
 </body>
 </html>

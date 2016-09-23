@@ -126,6 +126,9 @@
 					<c:if test="${vo['TYPE'] == 'DEFER'}">
 						경매 등록 보류
 					</c:if>
+					<c:if test="${vo['TYPE'] == 'AGAIN'}">
+						경매 재등록
+					</c:if>
 				</td>
 				<td style="text-align: left;">
 					<a onclick="showMessage(${vo['MSG_NO']},'${vo['TYPE'] }')">

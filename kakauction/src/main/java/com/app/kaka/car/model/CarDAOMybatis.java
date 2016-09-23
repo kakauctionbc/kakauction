@@ -50,6 +50,11 @@ public class CarDAOMybatis extends SqlSessionDaoSupport implements CarDAO{
 	public int editCar(CarVO carVo) {
 		return getSqlSession().update(namespace+".editCar", carVo);
 	}
+
+	@Override
+	public int againAuction(CarVO carVo) {
+		return getSqlSession().update(namespace+".againAuction", carVo);
+	}
 	
 	
 

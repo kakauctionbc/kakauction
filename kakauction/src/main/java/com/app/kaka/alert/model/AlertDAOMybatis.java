@@ -3,6 +3,8 @@ package com.app.kaka.alert.model;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.app.kaka.car.model.CarVO;
+
 @Repository
 public class AlertDAOMybatis extends SqlSessionDaoSupport implements AlertDAO{
 
@@ -31,6 +33,11 @@ public class AlertDAOMybatis extends SqlSessionDaoSupport implements AlertDAO{
 	@Override
 	public int updateAlertConfirm(int alertNo) {
 		return getSqlSession().update(namespace+".updateAlertConfirm", alertNo);
+	}
+
+	@Override
+	public int sendAgainAuctionAlert(AlertVO alertVo) {
+		return getSqlSession().insert(namespace+".sendAgainAuction", alertVo);
 	}
 
 }

@@ -20,6 +20,7 @@
 		var carNum = $("#carNum").val();
 		var title = "";
 		var tradeType = "";
+		var sellerMemberId = $("#seller").val();
 		var map = new Object();
 		alert(lbNo+"~"+recordNo+"~"+buyerMemberId+"!"+title);
 		
@@ -84,9 +85,14 @@
 			}
 	        location.replace("<c:url value='/delivery/insertTrade.do?lbNo="+lbNo+"&recordNo="+recordNo+"&auctionNo="+auctionNo+"&buyerMemberId="+buyerMemberId+"&recordPrice="+recordPrice+"&carNum="+carNum+"&title="+title+"&tradeType="+"정상결제"+"'/>");
 		});
+		$("#timbt1").click(function(){
+			if(confirm("거래 취소시 낙찰금의 10%를 결제하게 됩니다. 확인을 누르시면 결제 페이지로 이동합니다.")){
+	        	location.replace("<c:url value='/delivery/insertTrade.do?lbNo="+lbNo+"&recordNo="+recordNo+"&auctionNo="+auctionNo+"&buyerMemberId="+buyerMemberId+"&recordPrice="+dontPay+"&carNum="+carNum+"&title="+title+"&sellerMemberId="+sellerMemberId+"&tradeType="+"거래취소"+"'/>");
+			}
+		});
 		
 		$("#dontPay").click(function(){
-			if(confirm("결제 취소시 낙찰금의 10%를 결제하게 됩니다.확인을 누르시면 결제 페이지로 이동합니다.")){
+			if(confirm("거래 취소시 낙찰금의 10%를 결제하게 됩니다. 확인을 누르시면 결제 페이지로 이동합니다.")){
 				var IMP = window.IMP;
 				IMP.init('imp83107498');
 				
@@ -163,6 +169,7 @@
 	<br>
 	<h4>경매 결과</h4>
 	<input type="button" id="timbt" value="팀버튼헤헤">
+	<input type="button" id="timbt1" value="거래취소버튼헤헤">
 	<table class="box2" summary="경매 결과에 관한 표로써, 경매번호, 차량번호, 구매자아이디, 판매자아이디, 최종입찰시간, 경매 시작가, 경매 최종가격, 차량 종류, 연식, 수령지 등의 정보를 제공합니다." style="text-align: center; border: 1px solid silver">
 		<caption>경매 결과</caption>
 		<colgroup>
@@ -1094,13 +1101,13 @@
 				판매자가 등록한 매물 정보 및 이와 관련한 실제 거래에 대하여 어떤 책임도 부담하지 않습니다.</dd>
 		</dl>
 	</div>
+	<input type="hidden" id="seller" value="${memberVo.memberId }">
 	
 <%-- 	<div class="information mt">
 		<dl>
 			<dt> <strong>판매자정보</strong> </dt>
 			<dd class="first"> <span class="t">판매자</span>
 				<span class="s"> <strong>${memberVo.memberName }</strong>
-				<a href="#" style="text-decoration: none; color: black;">쪽지</a>
 				<dd> <span class="t">연락처</span> <span class="s">${memberVo.memberHp }</span> </dd>
 				<dd> <span class="t">이메일</span> <span class="s">${memberVo.memberEmail }</span> </dd>
 				<dd> <span class="t">주소</span> <span class="s"> ${memberVo.memberAddr }</span> </dd>

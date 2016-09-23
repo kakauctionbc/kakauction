@@ -18,6 +18,14 @@
 		insert into alert(alert_no, car_num, seller_member_id, alert_type, alert_content, alert_regdate, alert_title, alert_confirm)
 		values(#{alertNo}, #{carNum}, #{sellerMemberId}, #{alertType}, #{alertContent}, sysdate, #{alertTitle}, 'N' )
 	</insert>
+
+	<insert id="sendAgainAuction" parameterType="AlertVO">
+		<selectKey keyProperty="alertNo" resultType="int" order="BEFORE">
+			select ALERT_SEQ.nextval from dual
+		</selectKey>
+		insert into alert(alert_no, car_num, seller_member_id, alert_type, alert_content, alert_regdate, alert_title, alert_confirm, auction_no)
+		values(#{alertNo}, #{carNum}, #{sellerMemberId}, #{alertType}, #{alertContent}, sysdate, #{alertTitle}, 'N', #{auctionNo} )
+	</insert>
 	
 	<select id="newAlert" parameterType="string" resultType="int">
 		select count(*) from alert where seller_member_id = #{memberId} and alert_confirm='N'

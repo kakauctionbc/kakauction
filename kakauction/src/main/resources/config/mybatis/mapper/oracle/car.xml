@@ -45,4 +45,11 @@
 		car_acci=#{carAcci}, car_regdate=sysdate, car_auction_yn='N', car_fail_sell=0
 		where car_num=#{carNum} and seller_member_id=#{sellerMemberId}
 	</update>
+	
+	<update id="againAuction" parameterType="CarVO">
+		update car
+		set car_auction_yn = 'A'
+		where car_num=#{carNum} and seller_member_id=#{sellerMemberId}
+	</update>
+	
 </mapper>
