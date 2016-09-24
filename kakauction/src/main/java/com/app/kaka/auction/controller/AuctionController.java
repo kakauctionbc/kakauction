@@ -137,6 +137,7 @@ public class AuctionController {
 		//1. 파라미터 읽어오기
 		logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);
 		logger.info("글목록 조회, 파라미터 carSizes={}", carSizes);
+		logger.info("글목록 조회, 파라미터 carGases={}", carGases);
 		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);

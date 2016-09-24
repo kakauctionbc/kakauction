@@ -8,6 +8,7 @@ import com.app.kaka.car.model.CarVO;
 import com.app.kaka.carAm.model.CarAmVO;
 import com.app.kaka.carsize.model.CarsizeVO;
 import com.app.kaka.common.DateSearchVO;
+import com.app.kaka.common.DetailSearchVO;
 import com.app.kaka.common.SearchVO;
 import com.app.kaka.gas.model.GasVO;
 import com.app.kaka.record.model.RecordVO;
@@ -19,8 +20,8 @@ public interface AuctionDAO {
 	public int updateAuctionYn(AuctionVO vo);
 	
 	//전체 리스트
-	public List<AuctionCarVO> selectAucList(SearchVO vo);
-	public int selectListCount(SearchVO vo);
+	public List<AuctionCarVO> selectAucList(DetailSearchVO vo);
+	public int selectListCount(DetailSearchVO vo);
 	
 	//오늘의 경매 리스트
 	public List<AuctionCarVO> selectTodayList(SearchVO vo);

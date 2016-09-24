@@ -54,7 +54,7 @@
 		</where>
 	</sql>
 	
-	<select id="selectAucList" resultType="AuctionCarVO" parameterType="SearchVO">
+	<select id="selectAucList" resultType="AuctionCarVO" parameterType="DetailSearchVO">
 		select * from(
 		    select rownum as RNUM, LIST_ALL.* from(
 		        select * from(
@@ -115,10 +115,60 @@
 		]]>
 	</select>
 	
-	<select id="selectListCount" resultType="int" parameterType="SearchVO">
-		select count(*) from Auction_Car2 
-		<include refid="listWhere"></include>
-		order by auction_no
+	<select id="selectListCount" resultType="int" parameterType="DetailSearchVO">
+		select count(*) from(
+		    select rownum as RNUM, LIST_ALL.* from(
+		        select * from(
+		            select * from(
+		                select * from(
+		                	select*from(
+			                    select * from Auction_Car2
+								<![CDATA[
+						        where auction_regdate<=sysdate
+						        ]]>	                	
+		                	)
+		                    <if test="carSizes!=null and carSizes!=''">
+		                        where car_size in
+			                    <foreach collection="carSizes" item="carSize" index="index" 
+			                    	open="(" close=")" separator=",">
+			                    	#{carSize}
+								</foreach>
+		                    </if>
+		                        )
+		                    <if test="birth1!=null and birth1!=''">
+			                    <![CDATA[
+			                    where birth>=to_date(#{birth1},'yyyy-mm')
+			                    ]]>
+		                    </if>
+		                    <if test="birth2!=null and birth2!=''">
+			                    <![CDATA[
+			                    where birth<=to_date(#{birth2},'yyyy-mm')
+			                    ]]>
+		                    </if>
+		                )
+		                <if test="priceS!=null and priceS!=''">
+			                <![CDATA[
+			                where AUCTION_FIRSTPRICE>#{priceS}
+			                ]]>
+						</if>
+		                <if test="priceD!=null and priceD!=''">
+			                <![CDATA[
+			                and AUCTION_FIRSTPRICE<=#{priceD}
+			                ]]>
+						</if>
+		        )
+		        <if test="carGases!=null and carGases!=''">
+			        where car_gas in
+			        <foreach collection="carGases" item="carGas" index="index" 
+	                   	open="(" close=")" separator=",">
+	                   	#{carGas}
+					</foreach>
+		        </if>
+		    )LIST_ALL
+		    <if test="carAcci!=null and carAcci!=''">
+		    	where car_acci like #{carAcci}
+		    </if>
+		)
 	</select>
 	
 	<sql id="todayWhere">

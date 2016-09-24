@@ -43,9 +43,14 @@
 		<div class="panel">
 			<c:forEach var="cslist" items="${carsizeList}" varStatus="vs">
 				<div class="carSizes" style="height: 25px;">
-					<input type="checkbox" name="carSizes" id="carSizes${vs.index}" value="${cslist.carSize}">
+					<input type="checkbox" name="carSizes" id="carSizes${vs.index}" value="${cslist.carSize}"
+					<c:if test="${param.carSizes==cslist.carSize }"> checked </c:if>>
 					<label for="carSizes${vs.index}" id="laname">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					${cslist.carSize}
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</label>
 				</div>
 			</c:forEach>
@@ -62,7 +67,7 @@
 			<c:forEach var="cglist" items="${cargasList}" varStatus="vs">
 				<div class="carGases" style="height: 25px;">
 					<input type="checkbox" name="carGases" id="carGas${vs.index}" value="${cglist.carGas}"
-					<c:if test="${param.carGases[vs.index]==cglist.carGas}" >checked</c:if> >
+					<c:if test="${param.carGases==cglist.carGas }"> checked </c:if>>
 					<label for="carGas${vs.index}" class="laname">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -84,4 +89,5 @@
 			</c:forEach>
 		</div>
 	</form>
+	
 </div>

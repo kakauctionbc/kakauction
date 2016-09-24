@@ -24,10 +24,7 @@
 			/* $(".fixedOpen").css("display","block"); */
 		});
 	});
-	function pageProc(curPage){
-		document.frmPage.currentPage.value=curPage;
-		document.frmPage.submit();
-	}
+
 	
 	function openNav() {
 		document.getElementById("mySidenav").style.width = "36%";
@@ -51,7 +48,10 @@
 		});
 	});
 	
-	
+	function pageProc(curPage){
+		document.frmPage.currentPage.value=curPage;
+		document.frmPage.submit();
+	}
 
 </script>
 
@@ -141,10 +141,13 @@
 		</div>
 		<br><br><hr>
 		<form name="frmPage" method="post" action="<c:url value='/auction/list.do'/>">
-			<input type="hidden" name="currentPage"> <input type="hidden"
-				name="searchCondition" value="${param.searchCondition }"> <input
-				type="hidden" name="searchKeyword"
-				value="${searchVO.searchKeyword }">
+			<input type="hidden" name="currentPage"> 
+			<input type="hidden" name="searchCondition" value="${param.searchCondition }"> 
+			<input type="hidden" name="searchKeyword" value="${searchVO.searchKeyword }">
+			<input type="hidden" name="carGas" value="${param.carGas }">
+			<input type="hidden" name="carSize" value="${param.carSize }">
+			<input type="hidden" name="auctionFirstprice" value="${param.auctionFirstprice }">
+			<input type="hidden" name="auctionFirstprice2" value="${param.auctionFirstprice2 }">
 		</form>
 
 		<div class="divList">

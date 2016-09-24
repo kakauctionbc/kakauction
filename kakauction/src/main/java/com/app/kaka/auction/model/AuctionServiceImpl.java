@@ -20,6 +20,7 @@ import com.app.kaka.car.model.CarVO;
 import com.app.kaka.carAm.model.CarAmVO;
 import com.app.kaka.carsize.model.CarsizeVO;
 import com.app.kaka.common.DateSearchVO;
+import com.app.kaka.common.DetailSearchVO;
 import com.app.kaka.common.SearchVO;
 import com.app.kaka.gas.model.GasVO;
 import com.app.kaka.member.model.MemberService;
@@ -62,12 +63,12 @@ public class AuctionServiceImpl implements AuctionService{
 	}
 	
 	@Override
-	public List<AuctionCarVO> selectAucList(SearchVO vo) {
+	public List<AuctionCarVO> selectAucList(DetailSearchVO vo) {
 		return auctionDao.selectAucList(vo);
 	}
 	
 	@Override
-	public int selectListCount(SearchVO vo) {
+	public int selectListCount(DetailSearchVO vo) {
 		return auctionDao.selectListCount(vo);
 	}
 
