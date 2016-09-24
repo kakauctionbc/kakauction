@@ -5,6 +5,7 @@
 	$(function(){
 		var freeboardNo = $("#freeboardNo").val();
 		var memberId = $("#nowMem").val();
+		var writeman = $("#writeman").val();
 		$("#df").click(function(){
 			if(!confirm("글을 삭제하시겠습니까?\n(제목 : ${freeVo.freeboardTitle})")){
 				return false;
@@ -35,7 +36,11 @@
 		});
 		
 		$("#btlikeBoard").click(function(){
-			window.open("/kaka/freeboard/likeBoard.do?freeboardNo="+freeboardNo+"&memberId="+memberId);
+			if(memberId==writeman){
+				alert("자신의 글은 추천 할 수 없습니다");
+				return;
+			}
+			location.href="/kaka/freeboard/likeBoard.do?freeboardNo="+freeboardNo+"&memberId="+memberId;
 		});
 	});
 
@@ -76,7 +81,9 @@ a:hover{
 		</div>
 		<div>
 			<span class="sp1">작성자</span> 
-			<span>${freeVo.memberId}</span>
+			<span>${freeVo.memberId}
+				<input type="hidden" id="writeman" value="${freeVo.memberId}">
+			</span>
 		</div>
 		<div>
 			<span class="sp1">등록일</span> 

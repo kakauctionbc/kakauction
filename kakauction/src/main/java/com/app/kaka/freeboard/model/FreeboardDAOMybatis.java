@@ -65,5 +65,35 @@ public class FreeboardDAOMybatis extends SqlSessionDaoSupport implements Freeboa
 	public int updateDownCount(int freeboardNo) {
 		return getSqlSession().delete(namespace+".updateDownCount", freeboardNo);
 	}
+
+	@Override
+	public int likeBoard(Map<String, Object> map) {
+		return getSqlSession().insert(namespace+".likeBoard", map);
+	}
+
+	@Override
+	public int myLikeCount(Map<String, Object> map) {
+		return getSqlSession().selectOne(namespace+".myLikeCount", map);
+	}
+
+	@Override
+	public int updateLikeBoard(int freeboardNo) {
+		return getSqlSession().update(namespace+".updateLikeBoard", freeboardNo);
+	}
+
+	@Override
+	public int boardLikeCount(int freeboardNo) {
+		return getSqlSession().selectOne(namespace+".boardLikeCount", freeboardNo);
+	}
+
+	@Override
+	public int insertbestFreeboard(int freeboardNo) {
+		return getSqlSession().insert(namespace+".insertbestFreeboard", freeboardNo);
+	}
+
+	@Override
+	public int bestFreeboardcnt(int freeboardNo) {
+		return getSqlSession().selectOne(namespace+".bestFreeboardcnt", freeboardNo);
+	}
 	
 }

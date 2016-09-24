@@ -71,4 +71,34 @@ public class FreeboardServiceImpl implements FreeboardService{
 		return freeboardDao.updateDownCount(freeboardNo);
 	}
 
+	@Override
+	public int likeBoard(Map<String, Object> map) {
+		return freeboardDao.likeBoard(map);
+	}
+
+	@Override
+	public int myLikeCount(Map<String, Object> map) {
+		return freeboardDao.myLikeCount(map);
+	}
+
+	@Override
+	public int updateLikeBoard(int freeboardNo) {
+		return freeboardDao.updateLikeBoard(freeboardNo);
+	}
+
+	@Override
+	public int boardLikeCount(int freeboardNo) {
+		return freeboardDao.boardLikeCount(freeboardNo);
+	}
+
+	@Override
+	public int insertbestFreeboard(int freeboardNo) {
+		return freeboardDao.insertbestFreeboard(freeboardNo);
+	}
+
+	@Override
+	public int bestFreeboardcnt(int freeboardNo) {
+		return freeboardDao.bestFreeboardcnt(freeboardNo);
+	}
+
 }

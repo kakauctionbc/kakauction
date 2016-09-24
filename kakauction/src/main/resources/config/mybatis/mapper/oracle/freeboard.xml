@@ -137,4 +137,35 @@
 		set FREEBOARD_DOWNCOUNT = FREEBOARD_DOWNCOUNT+1
 		where FREEBOARD_NO=#{freeboardNo}		
 	</update>
+	
+	<insert id="likeBoard" parameterType="map">
+		<selectKey keyProperty="likeNo" resultType="int" order="BEFORE">
+			select like_seq.nextval from dual
+		</selectKey>
+		insert into likeman values(#{likeNo},#{freeboardNo},#{memberId})
+	</insert>
+
+	<select id="myLikeCount" parameterType="map" resultType="int">
+		select count(*) from likeman where freeboard_no=#{freeboardNo} and member_id=#{memberId}
+	</select>
+	
+	<update id="updateLikeBoard" parameterType="int">
+		update freeboard set freeboard_like=freeboard_like+1 where freeboard_No=#{freeboardNo}
+	</update>
+	
+	<select id="boardLikeCount" parameterType="int" resultType="int">
+		select count(*) from freeboard where freeboard_No=#{freeboardNo}
+	</select>
+	
+	<select id="bestFreeboardcnt" parameterType="int">
+		select count(*) from bestboard where freeboard_no=#{freeboardNo}	
+	</select>
+	
+	<insert id="insertbestFreeboard" parameterType="int">
+		<selectKey keyProperty="bestNo" resultType="int" order="BEFORE">
+			select bestboard_seq.nextval from dual
+		</selectKey>
+		insert into bestboard(best_no,freeboard_no) values(#{bestNo},#{freeboardNo})
+	</insert>
+	
 </mapper>

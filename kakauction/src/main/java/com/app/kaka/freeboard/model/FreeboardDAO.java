@@ -17,4 +17,11 @@ public interface FreeboardDAO {
 	
 	public List<FreeboardVO> reportFreeboardList(SearchVO vo);
 	public int updateDownCount(int freeboardNo);
+
+	public int likeBoard(Map<String, Object> map);
+	public int myLikeCount(Map<String, Object> map);
+	public int updateLikeBoard(int freeboardNo);
+	public int boardLikeCount(int freeboardNo);
+	public int insertbestFreeboard(int freeboardNo);
+	public int bestFreeboardcnt(int freeboardNo);
 }

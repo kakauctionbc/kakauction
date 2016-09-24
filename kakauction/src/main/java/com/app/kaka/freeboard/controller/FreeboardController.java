@@ -328,4 +328,35 @@ public class FreeboardController {
 		
 		return mav;
 	}
+	
+	@RequestMapping("/likeBoard.do")
+	public String likeBoard(@RequestParam String memberId, @RequestParam int freeboardNo, Model model){
+		logger.info("좋아요 파라미터 memberId={}, auctionNo={}", memberId, freeboardNo);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberId", memberId);
+		map.put("freeboardNo", freeboardNo);
+		
+		int cnt = freeboardService.myLikeCount(map);
+		String msg="", url="/freeboard/detail.do?freeboardNo="+freeboardNo;
+		if(cnt<1){
+			int result = freeboardService.likeBoard(map);
+			msg="추천하셨습니다";
+		}else{
+			msg="이미추천하셨습니다";
+		}
+		int likeCnt = freeboardService.boardLikeCount(freeboardNo);
+		if(likeCnt>9){
+			int recnt = freeboardService.bestFreeboardcnt(freeboardNo);
+			if(recnt<1){
+				recnt = freeboardService.insertbestFreeboard(freeboardNo);
+			}
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		
+		return "common/message";
+	}
+	
 }
