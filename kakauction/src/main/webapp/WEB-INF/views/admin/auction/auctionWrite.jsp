@@ -222,8 +222,8 @@ h3{
 				<input type="hidden" id="carSize" name="carSize">
 				<input type="text" id="voCarModel" readonly="readonly" >
 				<input type="submit" id="btAuctionSubmit" value="경매 등록"> 
-				<input type="button" id="btAuctionDeny" value="경매 거부"> 
 				<input type="button" id="btAuctionDefer" value="경매 보류"> 
+				<input type="button" id="btAuctionDeny" value="경매 거부"> 
 				<input type="button" id="btAuctionList" value="경매 목록">
 				</td>
 			</tr>

@@ -21,9 +21,6 @@
 	});
 </script>
 <style type="text/css">
-	table{
-		width: 1000px;
-	}
 	.border-none td{
 		border: none;
 	}
@@ -39,14 +36,14 @@
 			</p>
 		</div>
 		<div>
-			<table>
+			<table style="width: 1000px;">
 				<tr>
 					<th style="text-align: right;">현재 신고수</th>
 					<td style="text-align: center; border: none; font-size: 1.2em; font-weight: bold; color: red; width: 50px;">
 					${auctionVo.auctionReportCount}</td>
 				</tr>
 			</table>
-			<table>
+			<table style="width: 1000px;">
 				<tr>
 					<th style="padding-bottom: 20px;">
 						<img src="${pageContext.request.contextPath }/img/adminAuctionDetail_logo.png" alt="경매진행상황로고">
@@ -54,7 +51,7 @@
 				</tr>
 				<tr>
 					<td style="border-left: none; border-right: none;">
-						<table>
+						<table style="width: 1000px;">
 							<colgroup>
 								<col style="width: 330px;"/>
 								<col style="width: 330px;"/>
@@ -85,7 +82,7 @@
 				</tr>
 				<tr>
 					<td style="border-left: none; border-right: none;">
-						<table>
+						<table style="width: 1000px;">
 							<col style="width: 330px;"/>
 							<col style="width: 330px;"/>
 							<col style="width: 340px;"/>

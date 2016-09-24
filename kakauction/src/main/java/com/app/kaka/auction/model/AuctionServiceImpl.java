@@ -22,6 +22,7 @@ import com.app.kaka.carsize.model.CarsizeVO;
 import com.app.kaka.common.DateSearchVO;
 import com.app.kaka.common.SearchVO;
 import com.app.kaka.gas.model.GasVO;
+import com.app.kaka.member.model.MemberService;
 import com.app.kaka.record.model.RecordVO;
 
 @Service
@@ -33,6 +34,9 @@ public class AuctionServiceImpl implements AuctionService{
 	
 	@Autowired
 	private AlertService alertService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	@Resource(name="fileUploadProperties")
 	private Properties fileUploadProperties;
@@ -247,7 +251,7 @@ public class AuctionServiceImpl implements AuctionService{
 	@Transactional
 	public int carUpadeAuctionDeny(String carNum, String sellerMemberId) {
 		int cnt = alertService.sendDenyCar(carNum, sellerMemberId);
-				
+		int cnt1 = memberService.memberStop(sellerMemberId);
 		return auctionDao.carUpadeAuctionDeny(carNum);
 	}
 

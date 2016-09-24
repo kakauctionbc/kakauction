@@ -170,4 +170,11 @@
 	<select id="findMemberId" parameterType="MemberVO" resultType="string">
 		select member_id from member where member_name=#{memberName} and member_hp=#{memberHp} 
 	</select>
+	
+	<!-- 멤버 정지 -->
+	<update id="memberStop" parameterType="String">
+		update member
+		set member_grade = 'STOP'
+		where member_id = #{memberId}
+	</update>
 </mapper>

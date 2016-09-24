@@ -152,7 +152,15 @@ function Div_carphto_onoff(){
         width: 100%;
     }
     .detailbottom{
+    	width:500px;
     	float: left;
+    }
+    .sellerInformation{
+    	float: right;
+    }
+    .sellerInformation table{
+    	background:silver;
+    	width: 400px;
     }
 </style>
 
@@ -230,7 +238,7 @@ function Div_carphto_onoff(){
 			<div class="detailbottom">
 				<dl>
 					<dt style="font-weight: bold; font-size: 1.3em;">※책임한계 및 법적고지</dt><br>
-					<dd>보배드림은 판매자가 등록한 매물정보가 노출될 수 있도록 등록 시스템만을 제공하며, <br>
+					<dd>카카옥션은 판매자가 등록한 매물정보가 노출될 수 있도록 등록 시스템만을 제공하며, <br>
 						판매자가 등록한 매물 정보 및 이와 관련한 실제 거래에 대하여 어떤 책임도 부담하지 않습니다.</dd>
 				</dl>
 			</div>
