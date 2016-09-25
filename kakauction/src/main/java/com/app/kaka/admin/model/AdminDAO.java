@@ -1,5 +1,8 @@
 package com.app.kaka.admin.model;
 
+import java.util.List;
+import java.util.Map;
+
 public interface AdminDAO {
 	public int selectCountCarApply();
 	public int selectCountAuctionStart();
@@ -8,4 +11,5 @@ public interface AdminDAO {
 	public int selectCountReportNo();
 	public int selectCountMemberJoin();
 	public int selectCountMemberOut();
+
 }

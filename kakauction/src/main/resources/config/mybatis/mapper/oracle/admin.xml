@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.admin">
+
+	<select id="selectAllauction" resultType="map">
+		select count(*) as cnt, to_char(auction_regdate, 'yyyy-MM') as reg from auction 
+		<![CDATA[
+		where to_char(auction_regdate, 'yyyy-MM')>=to_char(sysdate, 'yyyy')||'-01'
+		]]>
+		group by to_char(auction_regdate, 'yyyy-MM') 
+		order by to_char(auction_regdate, 'yyyy-MM')
+	</select>
+	
+	<select id="selectAllLastBuyer" resultType="map">
+		select count(*) as cnt, to_char(lastbuyer_regdate, 'yyyy-MM') as reg from lastbuyer
+		<![CDATA[
+		where to_char(lastbuyer_regdate, 'yyyy-MM')>=to_char(sysdate, 'yyyy')||'-01'
+		]]>
+		group by to_char(lastbuyer_regdate, 'yyyy-MM') 
+		order by to_char(lastbuyer_regdate, 'yyyy-MM')
+	</select>
+	
+	<select id="selectAllTrade" resultType="map">
+		select count(*) as cnt, to_char(trade_regdate, 'yyyy-MM') as reg from trade
+		<![CDATA[
+		where to_char(trade_regdate, 'yyyy-MM')>=to_char(sysdate, 'yyyy')||'-01'
+		]]>
+		group by to_char(trade_regdate, 'yyyy-MM') 
+		order by to_char(trade_regdate, 'yyyy-MM')
+	</select>
+
+	<select id="selectAllsell" resultType="map">
+		select count(*) as cnt, to_char(trade_regdate, 'yyyy-MM') as reg 
+		from trade where trade_type='정상결제' 
+		<![CDATA[
+		and to_char(trade_regdate, 'yyyy-MM')>=to_char(sysdate, 'yyyy')||'-01'
+		]]>
+		group by to_char(trade_regdate, 'yyyy-MM') 
+		order by to_char(trade_regdate, 'yyyy-MM')
+	</select>
+	
+	<select id="selectAllsellFail" resultType="map">
+		select count(*) as cnt, to_char(trade_regdate, 'yyyy-MM') as reg 
+		from trade where trade_type='거래취소' 
+		<![CDATA[
+		and to_char(trade_regdate, 'yyyy-MM')>=to_char(sysdate, 'yyyy')||'-01'
+		]]>
+		group by to_char(trade_regdate, 'yyyy-MM') 
+		order by to_char(trade_regdate, 'yyyy-MM')
+	</select>
+
+	<select id="selectAllRecord" resultType="map">
+		select count(*) as cnt, to_char(record_regdate, 'yyyy-MM') as reg from record
+		<![CDATA[
+		where to_char(record_regdate, 'yyyy-MM')>=to_char(sysdate, 'yyyy')||'-01'
+		]]>
+		group by to_char(record_regdate, 'yyyy-MM') 
+		order by to_char(record_regdate, 'yyyy-MM')
+	</select>
+	
+</mapper>
