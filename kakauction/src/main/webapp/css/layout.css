@@ -220,15 +220,15 @@ body{ margin-bottom:5px;}
 	border-left: none;
 	border-right: none;
 }
-#realtimeslide{
+.realtimeslide{
 	border: 1px solid silver;
-	width: 820px;
+	width: 220px;
 	height: 220px;
 	float: left;
 	margin-top: 20px;
 	margin-left: 60px;
 }
-#realtimeslide_hot{
+.realtimeslide_hot{
 	width:220px;
 	height:217px;
 	border: 2px solid silver;

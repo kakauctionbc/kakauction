@@ -153,6 +153,10 @@ public class AuctionController {
 		searchVo.setRecordCountPerPage(Utility.RECORD_COUNT_PER_PAGE);
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		
+		List<AuctionCarVO> bestalist = auctionService.bestAuction(5);
+		logger.info("글목록 조회 결과 bestalist.size()={}", bestalist.size());
+		model.addAttribute("bestalist",bestalist);
+		
 		List<AuctionCarVO> alist = auctionService.selectAucList(searchVo);
 		//2. db작업 - select
 		logger.info("글목록 조회 결과 alist.size()={}", alist.size());

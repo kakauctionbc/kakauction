@@ -567,4 +567,13 @@
 		values(to_char(sysdate, 'yyyy'),#{auctionNoCar},#{auctionNo},
 		#{carNum},#{sellerMemberId},#{auctionPromp},#{auctionFirstprice}, TRUNC(SYSDATE)+((to_char(sysdate,'hh24')+1)*60)/(24*60), 'START', TRUNC(SYSDATE+#{auctionFinishTime})+((to_char(sysdate,'hh24')+1)*60)/(24*60))
 	</insert>
+	
+	<select id="bestAuction" resultType="AuctionCarVO" parameterType="int">
+		select rownum, a.* from(
+		select a.* from auction_car2 a, (select distinct auction_no from record) r 
+		where a.auction_no = r.auction_No order by auction_read_count desc
+		<![CDATA[
+		)a where rownum<=#{cnt} order by rownum asc
+		]]>
+	</select>
 </mapper>

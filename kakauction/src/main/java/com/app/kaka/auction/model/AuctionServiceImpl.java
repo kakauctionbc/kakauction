@@ -311,4 +311,9 @@ public class AuctionServiceImpl implements AuctionService{
 	public int againAuction(AuctionVO auctionVo) {
 		return auctionDao.againAuction(auctionVo);
 	}
+
+	@Override
+	public List<AuctionCarVO> bestAuction(int cnt) {
+		return auctionDao.bestAuction(cnt);
+	}
 }

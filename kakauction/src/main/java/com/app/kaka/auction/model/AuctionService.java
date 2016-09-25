@@ -130,4 +130,7 @@ public interface AuctionService {
 	
 	//경매 재등록하기
 	public int againAuction(AuctionVO auctionVo);
+	
+	//베스트 경매
+	public List<AuctionCarVO> bestAuction(int cnt);
 }

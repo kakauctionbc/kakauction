@@ -147,19 +147,23 @@ $(function() {
 					<td></td>
 				</tr>
 			</table>
-			<div id="realtimeslide">
-				<div id="realtimeslide_hot">
-					<div class="mySlides fade">
-						<img src="${pageContext.request.contextPath }/img/hot_car1.jpg" style="width: 220px; height: 217px">
-					</div>
-					<div class="mySlides fade">
-						<img src="${pageContext.request.contextPath }/img/hot_car2.jpg" style="width: 220px; height: 217px">
-					</div>
-					<div class="mySlides fade">
-						<img src="${pageContext.request.contextPath }/img/hot_car3.jpg" style="width: 220px; height: 217px">
+			<c:forEach var="bs" items="${bestalist}">
+				<div class="realtimeslide">
+					<div class="realtimeslide_hot">
+						<a href="<c:url value='/auction/updateCount.do?auctionNo=${bs.auctionNo}'/>">
+								<div class="mySlides fade">
+									<img src="${pageContext.request.contextPath }/picture_upload/${bs.picture1}" style="width: 220px; height: 217px">
+								</div>
+								<div class="mySlides fade">
+									<img src="${pageContext.request.contextPath }/picture_upload/${bs.picture2}" style="width: 220px; height: 217px">
+								</div>
+								<div class="mySlides fade">
+									<img src="${pageContext.request.contextPath }//picture_upload/${bs.picture3}" style="width: 220px; height: 217px">
+								</div>
+						</a>
 					</div>
 				</div>
-			</div>
+			</c:forEach>
 		</div>
 		<div id="mainwrap">
 			<div id="quickservice">
@@ -201,7 +205,7 @@ $(function() {
 
 	function showSlides() {
 		var i;
-		var slides = document.getElementsByClassName("mySlides");
+		var slides = document.getElementsByClassName("mySlidesone");
 		for (i = 0; i < slides.length; i++) {
 			slides[i].style.display = "none";
 		}

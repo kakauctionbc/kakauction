@@ -1,5 +1,6 @@
 package com.app.kaka.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.app.kaka.auction.model.AuctionCarVO;
 import com.app.kaka.auction.model.AuctionService;
 
 @Controller
@@ -23,7 +25,9 @@ public class IndexController {
 		logger.info("index페이지다");
 		
 		Map<String, Object> map = auctionService.selectAllCarSize();
+		List<AuctionCarVO> bestalist = auctionService.bestAuction(3);
 		
+		model.addAttribute("bestalist",bestalist);
 		model.addAttribute("map", map);
 		
 		return "index";

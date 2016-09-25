@@ -4,6 +4,10 @@
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
 <script type="text/javascript">	
 	$(document).ready(function(){
+		$("input[name=chkAll]").click(function(){
+			$("input[type=checkbox]").prop("checked", this.checked);
+		});
+		
 		$(".divList .box2 tbody tr").hover(function(){
 				$(this).css("background","skyblue")
 					.css("cursor","pointer");
@@ -125,41 +129,15 @@
 		
 		<div class="specialList">
 			<ul>
+			<c:forEach var="bs" items="${bestalist}">
 				<li class="first">
-					<a href="">
+					<a href="<c:url value='/auction/updateCount.do?auctionNo=${bs.auctionNo}'/>">
 						<div class="imgbox">
-							<img src="${pageContext.request.contextPath }/img/test_img1.jpg"
+							<img height="100px;" width="150px;" src="${pageContext.request.contextPath }/picture_upload/${bs.picture1}"
 									alt="자동차사진" />
-						</div><span class="txt">기아 뉴 쏘렌토R 2013년형</span></a>
+						</div><span class="txt">${bs.carModel}</span></a>
 				</li>
-				<li>
-					<a href="">
-						<div class="imgbox">
-							<img src="${pageContext.request.contextPath }/img/test_img2.jpg"
-										alt="자동차사진" />
-						</div><span class="txt">쉐보레(국산) 캡티바 2012년식</span></a>
-				</li>
-				<li>
-					<a href="">
-						<div class="imgbox">
-							<img src="${pageContext.request.contextPath }/img/test_img3.jpg"
-								alt="자동차사진" />
-						</div><span class="txt">현대 제네시스 2012년형</span></a>
-				</li>
-				<li>
-					<a href="">
-						<div class="imgbox">
-							<img src="${pageContext.request.contextPath }/img/test_img4.jpg"
-								alt="자동차사진" />
-						</div><span class="txt">현대 제네시스 쿠페 2010년형</span></a>
-				</li>
-				<li class="last">
-					<a href="">
-					<div class="imgbox">
-						<img src="${pageContext.request.contextPath }/img/test_img5.jpg"
-							alt="자동차사진" />
-					</div> <span class="txt">현대 아반떼MD 2011년형</span></a>
-				</li>
+			</c:forEach>
 			</ul>
 		</div>
 		<br><br><hr>
@@ -202,7 +180,8 @@
 							<div class="carListDiv">
 								<ul>
 									<form action="<c:url value='/auction/list.do'/>" method="post" name="listSearch">
-										<li><a style="cursor: pointer;" class="on" onclick=""><span>전체</a></li>
+										<li><a style="cursor: pointer;" class="on" onclick="">
+											<input type="checkbox" name="chkAll" id="chkAll">전체</a></li>
 										<c:forEach var="cslist" items="${carsizeList}" varStatus="vs">
 											<li style="font-size: 0.7em; width: 47px;text-align: center;">
 											<input type="checkbox" class="listSearch" name="carSizes" value="${cslist.carSize}"
@@ -238,8 +217,10 @@
 									<td colspan="9"><a href="#" style="color: gray;">이미 종료된 경매 입니다</a></td>
 								</c:if>
 								<c:if test="${vo.auctionState!='END'}">
-								<td class="listCheckbox"><input type="checkbox" id="checklist_1497871" value="1497871" /></td>
-								<td class="listImg"><img alt="사진" height="100px;" width="150px;" src="<c:url value='/picture_upload/${vo.picture1}'/>"></td>
+								<td class="listCheckbox">
+									<input type="checkbox" id="checklist_1497871" value="1497871" /></td>
+								<td class="listImg">
+									<img alt="사진" height="100px;" width="150px;" src="<c:url value='/picture_upload/${vo.picture1}'/>"></td>
 								<td class="listName" style="text-align: left;">
 									<a class="auctionTitle${countTd }" href="<c:url value='/auction/updateCount.do?auctionNo=${vo.auctionNo}'/>">
 											${vo.carModel}<br>
