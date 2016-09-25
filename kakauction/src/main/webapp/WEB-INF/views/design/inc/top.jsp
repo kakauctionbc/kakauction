@@ -145,7 +145,7 @@ $(function(){
 					<li><a href="<c:url value='/auction/front_schedule_list.do'/>">일정안내</a></li>
 				</ul>
 			</div>
-			<div id="content-myinfo">
+			<div id="content-myinfo">-
 				<ul>
 					<li><a href="<c:url value='/auction/auctionSuccess.do'/>">경매낙찰현황</a></li>
 					<li><a href="<c:url value='/auction/myAuctionList.do'/>">경매입찰현황</a></li>
