@@ -13,5 +13,5 @@ public interface CarService {
 	public List<CarVO> selectDeferListByMemberId(String memberId);
 	public Map<String, Object> selectDeferCarDetail(CarVO carVo);
 	public int editCar(CarVO carVo);
-	public int againAuction(CarVO carVo, int auctionNo);
+	public int againAuction(CarVO carVo, int auctionNo, int recordNo);
 }

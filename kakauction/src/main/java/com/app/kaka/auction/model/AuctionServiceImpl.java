@@ -319,14 +319,12 @@ public class AuctionServiceImpl implements AuctionService{
 
 	@Override
 	@Transactional
-	public int updateCancleAuction(int auctionNo) {
-		int cnt = auctionDao.updateTradeCancleAuction(auctionNo);
-		
-		if(cnt>0){
-			int recordNo = auctionDao.selectCancleRecordNumber(auctionNo);
-			cnt = auctionDao.updateLastBuyerTradeType(recordNo);
-		}
-		
-		return cnt;
+	public int updateCancleAuction(int recordNo) {
+		return auctionDao.updateLastBuyerTradeType(recordNo);
+	}
+
+	@Override
+	public List<Map<String, Object>> myPayList(String memberId) {
+		return auctionDao.myPayList(memberId);
 	}
 }

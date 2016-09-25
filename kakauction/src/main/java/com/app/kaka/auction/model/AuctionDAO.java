@@ -114,8 +114,13 @@ public interface AuctionDAO {
 	//베스트 경매
 	public List<AuctionCarVO> bestAuction(int cnt);
 	
-	//trade, lastBuyer의 tradeType을 결제취소로 업데이트
-	public int updateTradeCancleAuction(int auctionNo);
+	//lastBuyer의 tradeType을 결제취소로 업데이트
 	public int selectCancleRecordNumber(int auctionNo);
 	public int updateLastBuyerTradeType(int recordNo);
+	
+	//trade의 tradeType을 결제취소로 업데이트
+	public int updateTradeCancleAuction(int auctionNo);
+	
+	//내 결제 목록
+	public List<Map<String, Object>> myPayList(String memberId);
 }

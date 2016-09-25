@@ -206,19 +206,43 @@ $(function() {
    function showSlides() {
       var i;
       var slides = document.getElementsByClassName("mySlides");
-      for (i = 0; i < (slides.length/3); i++) {
-         slides[i].style.display = "none";
-         slides[i+3].style.display = "none";
-         slides[i+6].style.display = "none";
-      }
-      slides[slideIndex].style.display = "block";
-      slides[slideIndex +3].style.display = "block";
-      slides[slideIndex +6].style.display = "block";
-      slideIndex++;
-      if (slideIndex == slides.length/3) {
-         slideIndex = 0;
-      }
-      setTimeout(showSlides, 1000);
+       if(slides.length==9){
+         for (i = 0; i < (slides.length/3); i++) {
+            slides[i].style.display = "none";
+            slides[i+3].style.display = "none";
+            slides[i+6].style.display = "none";
+         }
+         slides[slideIndex].style.display = "block";
+         slides[slideIndex +3].style.display = "block";
+         slides[slideIndex +6].style.display = "block";
+         slideIndex++;
+         if (slideIndex == slides.length/3) {
+            slideIndex = 0;
+         }
+         setTimeout(showSlides, 1000);
+		}else if(slides.length==6){
+        for (i = 0; i < (slides.length/2); i++) {
+            slides[i].style.display = "none";
+            slides[i+2].style.display = "none";
+         }
+         slides[slideIndex].style.display = "block";
+         slides[slideIndex +2].style.display = "block";
+         slideIndex++;
+         if (slideIndex == slides.length/2) {
+            slideIndex = 0;
+         }
+         setTimeout(showSlides, 1000);
+       }else if(slides.length==3){
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+         }
+         slides[slideIndex].style.display = "block";
+         slideIndex++;
+         if (slideIndex == slides.length) {
+            slideIndex = 0;
+         }
+         setTimeout(showSlides, 1000);
+       }
    }
 </script>
 <%@ include file="design/inc/bottom.jsp"%>

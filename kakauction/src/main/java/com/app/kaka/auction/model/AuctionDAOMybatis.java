@@ -302,4 +302,9 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 		return getSqlSession().update(namespace+".updateLastBuyerTradeType", recordNo);
 	}
 
+	@Override
+	public List<Map<String, Object>> myPayList(String memberId) {
+		return getSqlSession().selectList(namespace+".myPayList", memberId);
+	}
+
 }

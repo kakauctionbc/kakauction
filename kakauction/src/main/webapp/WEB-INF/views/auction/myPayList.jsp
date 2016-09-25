@@ -1,30 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../design/inc/top.jsp"%>
-<script type="text/javascript" 
-	src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
 <script type="text/javascript">	
-	$(document).ready(function(){
-		$(".divList .box2 tbody tr")
-			.hover(function(){
-				$(this).css("background","skyblue")
-					.css("cursor","pointer");
-			}, function(){
-				$(this).css("background","");
-			});
-		
-		$("#cancleAuction").click(function(){
-			alert("거래 취소하신 경매입니다!");
-		});
-
-		$("#successAuction").click(function(){
-			alert("결제 완료 하신 경매입니다!");
-		});
-	});
-	function pageProc(curPage){
-		document.frmPage.currentPage.value=curPage;
-		document.frmPage.submit();
-	}
 </script>
 <div id="wrap">
 	<div id="leftMenu" style="float: left;">

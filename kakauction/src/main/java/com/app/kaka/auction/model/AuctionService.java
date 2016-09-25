@@ -136,4 +136,7 @@ public interface AuctionService {
 	
 	//trade, lastBuyer의 tradeType을 결제취소로 업데이트
 	public int updateCancleAuction(int auctionNo);
+	
+	//내 결제 목록
+	public List<Map<String, Object>> myPayList(String memberId);
 }

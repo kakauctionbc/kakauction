@@ -665,11 +665,25 @@ public class AuctionController {
 	}
 	
 	@RequestMapping("/myPayList.do")
-	public String myPayList(HttpSession session){
+	public String myPayList(@ModelAttribute SearchVO vo, HttpSession session, Model model){
 		String memberId = (String)session.getAttribute("memberId");
 		logger.info("내 결제 현황 보여주기, 파라미터 memberId = {}", memberId);
 		
-		return "auction/myPatList";
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(Utility.MAUCLIST_COUNT_PER_PAGE);
+		pagingInfo.setCurrentPage(vo.getCurrentPage());
+		
+		vo.setBlockSize(Utility.BLOCK_SIZE);
+		vo.setRecordCountPerPage(Utility.MAUCLIST_COUNT_PER_PAGE);
+		vo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		
+		List<Map<String, Object>> alist = auctionService.myPayList(memberId);
+		model.addAttribute("alist", alist);
+		model.addAttribute("alistsize", alist.size());
+		model.addAttribute("pagingInfo", pagingInfo);
+		
+		return "auction/myPayList";
 	}
 	
 }

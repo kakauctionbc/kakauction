@@ -64,10 +64,10 @@ public class CarServiceImpl implements CarService{
 
 	@Override
 	@Transactional
-	public int againAuction(CarVO carVo, int auctionNo) {
+	public int againAuction(CarVO carVo, int auctionNo, int recordNo) {
 		int cnt = alertService.sendAgainAuctionAlert(carVo, auctionNo);
 		if(cnt>0){
-			cnt = auctionService.updateCancleAuction(auctionNo);
+			cnt = auctionService.updateCancleAuction(recordNo);
 		}
 		
 		if(cnt>0){

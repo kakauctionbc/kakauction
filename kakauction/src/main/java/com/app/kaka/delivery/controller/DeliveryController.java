@@ -140,7 +140,7 @@ public class DeliveryController {
 			CarVO carVo = new CarVO();
 			carVo.setCarNum(carNum);
 			carVo.setSellerMemberId(sellerMemberId);
-			int cnt3 = carService.againAuction(carVo, auctionNo);
+			int cnt3 = carService.againAuction(carVo, auctionNo, recordNo);
 			
 			model.addAttribute("msg", "계약 취소 완료 하였습니다");
 			model.addAttribute("url", "/auction/auctionSuccess.do");
