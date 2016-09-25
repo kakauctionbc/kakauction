@@ -19,6 +19,10 @@
 .box2 tr td{
 	border-bottom: 1px solid silver;	
 }
+
+.box2 tbody tr td{
+	height: 30px;
+}
 .listTitle th{
 	font-style: normal;
 	font-weight: bold;
