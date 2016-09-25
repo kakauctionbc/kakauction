@@ -1,8 +1,13 @@
 package com.app.kaka.excel.model;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -14,7 +19,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.app.kaka.member.model.MemberVO;
 
 public class WriteListToExcelFile {
-	 public static void writeNoticeListToFile(String fileName, List<MemberVO> noticeList) throws Exception{
+	 public static void writeNoticeListToFile(String fileName, List<MemberVO> noticeList,HttpServletResponse response) throws Exception{
 	        Workbook workbook = null;
 	         
 	        if(fileName.endsWith("xlsx")){
@@ -90,13 +95,41 @@ public class WriteListToExcelFile {
 	            
 	            
 	        }while(iterator.hasNext());
+	        
+	        FileOutputStream fileOut = null;
+	        fileOut = new FileOutputStream("C:\\Users\\User\\Desktop\\"+fileName);
+	        workbook.write(fileOut);
+	        fileOut.close();
 	     
-	         
+	        //여기부터 화일 다운로드 창이 자동으로 뜨게 하기 위한 코딩(임시화일을 스트림으로 저장)
+	        File file = new File ("C:\\Users\\User\\Desktop\\"+fileName);  //해당 경로의 파일 객체를 만든다. 
+	        byte[] bytestream = new byte[(int)file.length()];  //파일 스트림을 저장하기 위한 바이트 배열 생성. 
+	        FileInputStream filestream = new FileInputStream(file);   //파일 객체를 스트림으로 불러온다. 
+	        int i = 0, j = 0;   //파일 스트림을 바이트 배열에 넣는다. 
+	        while((i = filestream.read()) != -1) { 
+	         bytestream[j] = (byte)i; 
+	         j++; 
+	        }
+	        filestream.close();   //FileInputStream을 닫아줘야 file이 삭제된다.
+	        try{
+	         boolean  success = file.delete(); //화일을 생성과 동시에 byte[]배열에 입력후 화일은 삭제
+	         if(!success) System.out.println("<script>alert('not success')</script>"); 
+	        } catch(IllegalArgumentException e){ 
+	         System.err.println(e.getMessage()); 
+	        }
+	        
+	        
+	        //response.setContentType("application/x-msdownload;charset=EUC-KR");  //응답 헤더의 Content-Type을 세팅한다.  
+	        response.setHeader("Content-Disposition","attachment; filename="+fileName); //Content-Disposition 헤더에 파일 이름 세팅.
+	        OutputStream outStream = response.getOutputStream();  // 응답 스트림 객체를 생성한다. 
+	        outStream.write(bytestream);  // 응답 스트림에 파일 바이트 배열을 쓴다. 
+	        outStream.close();
+	        
 	        //lets write the excel data to file now
-/*	        FileOutputStream fos = new FileOutputStream("D:\\kaka\\kakauction\\kakauction\\src\\main\\webapp\\excel_download\\"+fileName);*/
+	        /*FileOutputStream fos = new FileOutputStream("D:\\kaka\\kakauction\\kakauction\\src\\main\\webapp\\excel_download\\"+fileName);
 	        FileOutputStream fos = new FileOutputStream("C:\\Users\\User\\Desktop\\"+fileName);
 	        workbook.write(fos);
-	        fos.close();
+	        fos.close();*/
 	        
 	        System.out.println(fileName + " written successfully");
 	    }

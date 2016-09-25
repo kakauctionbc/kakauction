@@ -18,7 +18,14 @@ public class MemberVO {
 	private int memberMileage;
 	private String memberGrade;
 	private Timestamp memberOutdate;
+	private Timestamp memberRegdate;
 	
+	public Timestamp getMemberRegdate() {
+		return memberRegdate;
+	}
+	public void setMemberRegdate(Timestamp memberRegdate) {
+		this.memberRegdate = memberRegdate;
+	}
 	public String getMemberId() {
 		return memberId;
 	}
@@ -97,14 +104,14 @@ public class MemberVO {
 	public void setMemberOutdate(Timestamp memberOutdate) {
 		this.memberOutdate = memberOutdate;
 	}
-	
 	@Override
 	public String toString() {
 		return "MemberVO [memberId=" + memberId + ", memberName=" + memberName + ", memberPwd=" + memberPwd
 				+ ", memberJumin=" + memberJumin + ", memberEmail=" + memberEmail + ", memberHp=" + memberHp
 				+ ", memberGender=" + memberGender + ", memberZipcode=" + memberZipcode + ", memberAddr=" + memberAddr
 				+ ", memberAddr2=" + memberAddr2 + ", memberMileage=" + memberMileage + ", memberGrade=" + memberGrade
-				+ ", memberOutdate=" + memberOutdate + "]";
+				+ ", memberOutdate=" + memberOutdate + ", memberRegdate=" + memberRegdate + "]";
 	}
+	
 	
 }

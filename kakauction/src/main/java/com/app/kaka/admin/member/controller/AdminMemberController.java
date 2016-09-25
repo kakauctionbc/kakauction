@@ -124,13 +124,13 @@ public class AdminMemberController {
 	}
 	
 	@RequestMapping(value="/downloadExcel.do")
-    public String excelView_post(Model model) throws Exception{
+    public String excelView_post(Model model,HttpServletResponse response) throws Exception{
         
         List<MemberVO> memberList=memberService.selectAllMember();
         logger.info("memberlist들어간건가... memberList.size={}",memberList.size());
         
         if (memberList!=null) {
-        	WriteListToExcelFile.writeNoticeListToFile("memberList.xls", memberList);
+        	WriteListToExcelFile.writeNoticeListToFile("memberList.xls", memberList, response);
         	logger.info("modellist 보야워 memberList={}",memberList);
         	model.addAttribute("msg","엑셀 다운로드 성공");
         	model.addAttribute("url","/admin/member/memberSearchList.do");
@@ -138,6 +138,20 @@ public class AdminMemberController {
         
         return "common/message";
     }
+	
+	@RequestMapping("/memberView.do")
+	public String excelDown(Map<String, Object> ModelMap,Model model){
+		List<MemberVO> memberList=memberService.selectAllMember();
+		logger.info("memberlist들어간건가... memberList.size={}",memberList.size());
+        ModelMap.put("list", memberList);
+        	
+        if (memberList!=null) {
+			model.addAttribute("msg", "성공");
+			model.addAttribute("url", "/admin/member/memberList.do");
+		}
+        
+        return "common/message";
+	}
 	
 	@RequestMapping("/memberDelete.do")
 	public String memberDelete(@ModelAttribute MemberListVO memListvo, Model model){
@@ -292,4 +306,10 @@ public class AdminMemberController {
 		model.addAttribute("pagingInfo", pagingInfo);
 		return "admin/member/memberSearchList";
 	}
+	
+	@RequestMapping("/outMemberList.do")
+	public String outMemberList(){
+		return "admin/member/outMemberList";
+	}
+	
 }

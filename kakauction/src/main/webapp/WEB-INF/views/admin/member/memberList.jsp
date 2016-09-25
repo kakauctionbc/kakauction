@@ -129,6 +129,7 @@
 									<button type="button" class="btBlack" value="BLACKLIST">불량회원관리</button>
 									<button class="btDel">삭제</button>
 									<button class="align_right"><a href="<c:url value='/admin/member/downloadExcel.do'/>">엑셀 다운로드</a></button>
+									<button><a href="<c:url value='/admin/member/memberView.do'/>">다운로드</a>
 								</th>
 							</tr>
 							<tr class="listTitle">

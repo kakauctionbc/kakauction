@@ -1,10 +1,18 @@
 package com.app.kaka.excel.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
@@ -49,7 +57,7 @@ public class MemberDBController {
 	}
 	
  
-	@RequestMapping(value="/downloadExcel.do",method=RequestMethod.POST)
+	/*@RequestMapping(value="/downloadExcel.do",method=RequestMethod.POST)
     public String excelView_post(Model model) throws Exception{
         
         List<MemberVO> memberList=memberService.selectAllMember();
@@ -63,7 +71,7 @@ public class MemberDBController {
         }
         
         return "common/message";
-    }
+    }*/
 	
 	@RequestMapping(value="/uploadExcel.do", method=RequestMethod.GET)
 	public String uploadFile_get(){
@@ -118,9 +126,114 @@ public class MemberDBController {
 		
 		excelService.excelAdd(map);
 		
-		model.addAttribute("msg", "성공성공");
+		model.addAttribute("msg", "회원 등록에 성공했습니다.");
 		model.addAttribute("url", "/admin/member/memberSearchList.do");
 		
 		return "common/message";
+	}
+	
+	@RequestMapping(value="/memberView.do")
+	public String excelMember(Map<String, Object> ModelMap){
+		// 리스트 수행 후, 리스트 화면에서 엑셀저장을 클릭하면 excelVeiw가 정상적으로 실행되고
+        // 리스트를 실행하지 않고 index에서 엑셀저장 클릭시 NullPointerException발생
+        
+        // NullPointerException대신 home.jsp를 실행
+        /* asMap은 model의 값을 map으로 변환
+        if(!model.asMap().containsKey("list")){ 
+            return "home"; //list가 안담겨져 있을 때는 엑셀 다운로드 못받도록 하는거임
+        }
+        */
+		 
+        
+       /* // Exception 처리
+        if(!model.asMap().containsKey("list")){
+            throw new NullPointerException(); 
+            //NullPointerException()이 발생하면
+            //exceptinPro()메소드를 실행
+        }*/
+		  
+		List<MemberVO> memberList=memberService.selectAllMember();
+		logger.info("memberlist들어간건가... memberList.size={}",memberList.size());
+        ModelMap.put("excelList", memberList);
+
+        return "admin/member/memberList";
+	}
+	
+	@RequestMapping("/downloadForm.do")
+	public String downloadForm(HttpServletRequest request,HttpServletResponse response){
+		// 파일 업로드된 경로
+	    String root = request.getSession().getServletContext().getRealPath("/");
+	    logger.info("root={}",root);
+	    String savePath = root + "excel_download";
+	    logger.info("이건 뭐람 savePath={}",savePath);
+	 
+	    // 서버에 실제 저장된 파일명
+	    String filename = "member_db_form.xls" ;
+	     
+	    // 실제 내보낼 파일명
+	    String orgfilename = "member_db_form.xls" ;
+	      
+	 
+	    InputStream in = null;
+	    OutputStream os = null;
+	    File file = null;
+	    boolean skip = false;
+	    String client = "";
+	 
+	 
+	    try{
+	        // 파일을 읽어 스트림에 담기
+	        try{
+	            file = new File(savePath, filename);
+	            in = new FileInputStream(file);
+	        }catch(FileNotFoundException fe){
+	            skip = true;
+	        }
+	         
+	        client = request.getHeader("User-Agent");
+	 
+	        // 파일 다운로드 헤더 지정
+	        response.reset() ;
+	        response.setContentType("application/octet-stream");
+	        response.setHeader("Content-Description", "JSP Generated Data");
+	 
+	 
+	        if(!skip){
+	            // IE
+	            if(client.indexOf("MSIE") != -1){
+	                response.setHeader ("Content-Disposition", "attachment; filename="+new String(orgfilename.getBytes("KSC5601"),"ISO8859_1"));
+	 
+	            }else{
+	                // 한글 파일명 처리
+	                orgfilename = new String(orgfilename.getBytes("utf-8"),"iso-8859-1");
+	 
+	                response.setHeader("Content-Disposition", "attachment; filename=\"" + orgfilename + "\"");
+	                response.setHeader("Content-Type", "application/octet-stream; charset=utf-8");
+	            }  
+	             
+	            response.setHeader ("Content-Length", ""+file.length() );
+	 
+	            os = response.getOutputStream();
+	            byte b[] = new byte[(int)file.length()];
+	            int leng = 0;
+	             
+	            while( (leng = in.read(b)) > 0 ){
+	                os.write(b,0,leng);
+	            }
+	 
+	        }else{
+	            response.setContentType("text/html;charset=UTF-8");
+	            System.out.println("<script language='javascript'>alert('파일을 찾을 수 없습니다');history.back();</script>");
+	 
+	        }
+	         
+	        in.close();
+	        os.close();
+	 
+	    }catch(Exception e){
+	      e.printStackTrace();
+	    }
+	    
+	    return "excel/uploadExcel";
 	}
 }

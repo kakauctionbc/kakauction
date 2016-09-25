@@ -4,7 +4,7 @@
 <%@ include file="../design/inc/adminTop.jsp" %>
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
 <script type="text/javascript">
-/* 	$(function(){
+	$(function(){
 		$("#excelUpFrom").submit(function(){
 			if($("#excel").val().length<1){
 				alert("파일을 올려주세요");
@@ -22,7 +22,7 @@
 			if(filType!=0) return true; 
 			if(fileType2!=0) return true;
 		});
-	}); */
+	}); 
 </script>
 <style>
 		.align_center{
@@ -77,7 +77,7 @@
 							<tr>
 								<th>양식 다운로드</th>
 								<td>						
-									<button type="submit" id="excelDown"><a href="#">양식다운로드</a></button>
+									<button type="submit" id="excelDown"><a href="<c:url value='/admin/excel/downloadForm.do'/>">양식다운로드</a></button>
 								</td>
 							</tr>
 						</table>
