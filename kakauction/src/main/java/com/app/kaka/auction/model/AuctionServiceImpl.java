@@ -322,7 +322,7 @@ public class AuctionServiceImpl implements AuctionService{
 	public int updateCancleAuction(int auctionNo) {
 		int cnt = auctionDao.updateTradeCancleAuction(auctionNo);
 		
-		int recordNo = auctionDao.
+		int recordNo = auctionDao.selectCancleRecordNumber(auctionNo);
 		return 
 	}
 }
