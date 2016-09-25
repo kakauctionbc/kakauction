@@ -292,4 +292,14 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 		return getSqlSession().update(namespace+".updateTradeCancleAuction", auctionNo);
 	}
 
+	@Override
+	public int selectCancleRecordNumber(int auctionNo) {
+		return getSqlSession().selectOne(namespace+".selectCancleRecordNumber", auctionNo);
+	}
+
+	@Override
+	public int updateLastBuyerTradeType(int recordNo) {
+		return getSqlSession().update(namespace+".updateLastBuyerTradeType", recordNo);
+	}
+
 }

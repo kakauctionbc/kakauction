@@ -322,7 +322,11 @@ public class AuctionServiceImpl implements AuctionService{
 	public int updateCancleAuction(int auctionNo) {
 		int cnt = auctionDao.updateTradeCancleAuction(auctionNo);
 		
-		int recordNo = auctionDao.selectCancleRecordNumber(auctionNo);
-		return 
+		if(cnt>0){
+			int recordNo = auctionDao.selectCancleRecordNumber(auctionNo);
+			cnt = auctionDao.updateLastBuyerTradeType(recordNo);
+		}
+		
+		return cnt;
 	}
 }

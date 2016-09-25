@@ -582,4 +582,16 @@
 		set trade_type='결제취소'
 		where auction_no=#{auctionNo}
 	</update>
+	
+	<select id="selectCancleRecordNumber" parameterType="int">
+		select record_no from record
+		where auction_no=1
+		and record_regdate=(select max(record_regdate) from record where auction_no=1)
+	</select>
+	
+	<update id="updateLastBuyerTradeType" parameterType="int">
+		update lastbuyer
+		set LB_BUYCAR_YN = '결제취소'
+		where record_no = #{recordNo}
+	</update>
 </mapper>

@@ -116,5 +116,6 @@ public interface AuctionDAO {
 	
 	//trade, lastBuyer의 tradeType을 결제취소로 업데이트
 	public int updateTradeCancleAuction(int auctionNo);
-	public int selectCancleRecordNumber(auctionNo);
+	public int selectCancleRecordNumber(int auctionNo);
+	public int updateLastBuyerTradeType(int recordNo);
 }

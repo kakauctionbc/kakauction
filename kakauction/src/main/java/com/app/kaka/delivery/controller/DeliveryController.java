@@ -136,6 +136,7 @@ public class DeliveryController {
 			data.put("buyerLoc", title);
 		}else if(tradeType.equals("거래취소")){
 			data.put("buyerLoc", "");
+			System.out.println(lbNo+", "+recordNo+", "+auctionNo+", "+buyerMemberId+", "+carNum+", "+title+", "+sellerMemberId+", "+tradeType);
 			CarVO carVo = new CarVO();
 			carVo.setCarNum(carNum);
 			carVo.setSellerMemberId(sellerMemberId);
