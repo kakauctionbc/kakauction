@@ -318,7 +318,6 @@ public class AuctionServiceImpl implements AuctionService{
 	}
 
 	@Override
-	@Transactional
 	public int updateCancleAuction(int recordNo) {
 		return auctionDao.updateLastBuyerTradeType(recordNo);
 	}
