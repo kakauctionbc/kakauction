@@ -97,7 +97,7 @@ a:hover{
 			<span class="sp1">첨부파일</span> 
 			<span>
 			<a href
-				="<c:url value='/freeboard/download.do?no=${freeVo.freeboardNo}&filename=${freeVo.freeboardFilename}'/>">
+				="<c:url value='/freeboard/download.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
 				${fileInfo }
 			</a>
 			</span>
