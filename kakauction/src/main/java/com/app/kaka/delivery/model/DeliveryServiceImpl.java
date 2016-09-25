@@ -19,11 +19,13 @@ public class DeliveryServiceImpl implements DeliveryService{
 	//구매 확정 후
 	@Override
 	public int updateLastBuyerYn(Map<Object, Object> map) {
+		System.out.println("여기 왜 안되냐 딜리버리 서비스에 업데이트 라스트 바이어 와이엔, 파라미터 map : "+map);
 		return deliveryDao.updateLastBuyerYn(map);
 	}
 
 	@Override
 	public int insertTrade(Map<Object, Object> map) {
+		System.out.println("여기가 안되는 거였구만 인서트 트레이드 녀석! map : "+map);
 		return deliveryDao.insertTrade(map);
 	}
 

@@ -481,7 +481,7 @@ public class AuctionController {
 		int recordPrice=Integer.parseInt((String)auctionmap.get("recordPrice"));
 		int auctionNo = Integer.parseInt((String)auctionmap.get("auctionNo"));
 		String state = auctionService.selectAucBynoToState(auctionNo);
-		if(state.equals("END")){
+		if("END".equals(state)){
 			highVo.setBuyerMemberId("종료된 경매입니다");
 			highVo.setRecordPrice(0);
 			highVo.setAuctionState(state);

@@ -130,24 +130,29 @@ public class DeliveryController {
 		data.put("buyerMemberId", buyerMemberId);
 		data.put("recordPrice", recordPrice);
 		data.put("carNum", carNum);
-		data.put("title", title);
 		data.put("tradeType", tradeType);
 		if(tradeType.equals("정상결제")){
 			data.put("buyerLoc", title);
+			data.put("title", title);
 		}else if(tradeType.equals("거래취소")){
-			data.put("buyerLoc", "");
+			data.put("buyerLoc", "거래 취소로 인하여 정보 없음");
+			data.put("title", "거래 취소로 인하여 정보 없음");
 			System.out.println(lbNo+", "+recordNo+", "+auctionNo+", "+buyerMemberId+", "+carNum+", "+title+", "+sellerMemberId+", "+tradeType);
+			System.out.println(data.get("title"));
 			CarVO carVo = new CarVO();
 			carVo.setCarNum(carNum);
 			carVo.setSellerMemberId(sellerMemberId);
 			int cnt3 = carService.againAuction(carVo, auctionNo, recordNo);
+			logger.info("거래 취소 옥션 상태 업데이트 cnt={}",cnt3);
 			
 			int cnt4 = deliveryService.updateLastBuyerYn(data);
+			logger.info("거래 취소 최종구매자 상태 업데이트 cnt={}",cnt4);
+			
 			int cnt5 = deliveryService.insertDelivery(data);
-			logger.info("거래 성공 최종구매자 상태 업데이트 cnt={}",cnt5);
+			logger.info("거래 취소 수령지 추가 cnt={}",cnt5);
 			
 			int cnt6 = deliveryService.insertTrade(data);
-			logger.info("거래 성공 거래테이블에 입력 cnt={}",cnt6);
+			logger.info("거래 취소 거래테이블에 입력 cnt={}",cnt6);
 			
 			int cnt7 = deliveryService.updateBuyer(data);
 			logger.info("구매자 수령지 업데이트 cnt={}",cnt7);
