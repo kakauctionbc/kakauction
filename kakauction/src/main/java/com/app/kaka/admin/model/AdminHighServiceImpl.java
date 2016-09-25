@@ -12,32 +12,32 @@ public class AdminHighServiceImpl implements AdminHighService{
 	private AdminHighDAO adminDao;
 
 	@Override
-	public List<Map<String, Object>> selectAllauction() {
+	public List<String> selectAllauction() {
 		return adminDao.selectAllauction();
 	}
 
 	@Override
-	public List<Map<String, Object>> selectAllLastBuyer() {
+	public List<String> selectAllLastBuyer() {
 		return adminDao.selectAllLastBuyer();
 	}
 
 	@Override
-	public List<Map<String, Object>> selectAllTrade() {
+	public List<String> selectAllTrade() {
 		return adminDao.selectAllTrade();
 	}
 
 	@Override
-	public List<Map<String, Object>> selectAllsell() {
+	public List<String> selectAllsell() {
 		return adminDao.selectAllsell();
 	}
 
 	@Override
-	public List<Map<String, Object>> selectAllsellFail() {
+	public List<String> selectAllsellFail() {
 		return adminDao.selectAllsellFail();
 	}
 
 	@Override
-	public List<Map<String, Object>> selectAllRecord() {
+	public List<String> selectAllRecord() {
 		return adminDao.selectAllRecord();
 	}
 

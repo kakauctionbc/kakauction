@@ -11,32 +11,32 @@ public class AdminHighDAOMybatis extends SqlSessionDaoSupport implements AdminHi
 	private String namespace = "config.mybatis.mapper.oracle.admin";
 	
 	@Override
-	public List<Map<String, Object>> selectAllauction() {
+	public List<String> selectAllauction() {
 		return getSqlSession().selectList(namespace+".selectAllauction");
 	}
 
 	@Override
-	public List<Map<String, Object>> selectAllLastBuyer() {
+	public List<String> selectAllLastBuyer() {
 		return getSqlSession().selectList(namespace+".selectAllLastBuyer");
 	}
 
 	@Override
-	public List<Map<String, Object>> selectAllTrade() {
+	public List<String> selectAllTrade() {
 		return getSqlSession().selectList(namespace+".selectAllTrade");
 	}
 
 	@Override
-	public List<Map<String, Object>> selectAllsell() {
+	public List<String> selectAllsell() {
 		return getSqlSession().selectList(namespace+".selectAllsell");
 	}
 
 	@Override
-	public List<Map<String, Object>> selectAllsellFail() {
+	public List<String> selectAllsellFail() {
 		return getSqlSession().selectList(namespace+".selectAllsellFail");
 	}
 
 	@Override
-	public List<Map<String, Object>> selectAllRecord() {
+	public List<String> selectAllRecord() {
 		return getSqlSession().selectList(namespace+".selectAllRecord");
 	}
 }

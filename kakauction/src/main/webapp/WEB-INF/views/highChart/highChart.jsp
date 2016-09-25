@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +13,15 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 $(function () {
+	var today = new Date();
+	var thisYear=today.getFullYear();
     $('#container').highcharts({
         title: {
-            text: 'Monthly Average Temperature',
+            text: thisYear+'년 경매 현황',
             x: -20 //center
         },
         subtitle: {
-            text: 'Source: WorldClimate.com',
+            text: '',
             x: -20
         },
         xAxis: {
@@ -57,6 +62,6 @@ $(function () {
 </script>
 </head>
 <body>
-
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 </body>
 </html>

@@ -4,60 +4,126 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.admin">
 
-	<select id="selectAllauction" resultType="map">
-		select count(*) as cnt, to_char(auction_regdate, 'yyyy-MM') as reg from auction 
+	<select id="selectAllauction" resultType="string">
+		select * from(
+		SELECT COUNT(DECODE(SUBSTR(to_char(auction_regdate, 'yyyyMM'),5,2),'01',1)) d01 from auction UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(auction_regdate, 'yyyyMM'),5,2),'02',1)) d02 from auction UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(auction_regdate, 'yyyyMM'),5,2),'03',1)) d03 from auction UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(auction_regdate, 'yyyyMM'),5,2),'04',1)) d04 from auction UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(auction_regdate, 'yyyyMM'),5,2),'05',1)) d05 from auction UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(auction_regdate, 'yyyyMM'),5,2),'06',1)) d06 from auction UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(auction_regdate, 'yyyyMM'),5,2),'07',1)) d07 from auction UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(auction_regdate, 'yyyyMM'),5,2),'08',1)) d08 from auction UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(auction_regdate, 'yyyyMM'),5,2),'09',1)) d09 from auction UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(auction_regdate, 'yyyyMM'),5,2),'10',1)) d10 from auction UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(auction_regdate, 'yyyyMM'),5,2),'11',1)) d11 from auction UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(auction_regdate, 'yyyyMM'),5,2),'12',1)) d12 from auction
 		<![CDATA[
-		where to_char(auction_regdate, 'yyyy-MM')>=to_char(sysdate, 'yyyy')||'-01'
+		where to_char(auction_regdate, 'yyyy')=to_char(sysdate,'yyyy')
 		]]>
-		group by to_char(auction_regdate, 'yyyy-MM') 
-		order by to_char(auction_regdate, 'yyyy-MM')
+		)
 	</select>
 	
-	<select id="selectAllLastBuyer" resultType="map">
-		select count(*) as cnt, to_char(lastbuyer_regdate, 'yyyy-MM') as reg from lastbuyer
+	<select id="selectAllLastBuyer" resultType="string">
+		select * from(
+		SELECT COUNT(DECODE(SUBSTR(to_char(lastbuyer_regdate, 'yyyyMM'),5,2),'01',1)) d01 from lastbuyer UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(lastbuyer_regdate, 'yyyyMM'),5,2),'02',1)) d02 from lastbuyer UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(lastbuyer_regdate, 'yyyyMM'),5,2),'03',1)) d03 from lastbuyer UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(lastbuyer_regdate, 'yyyyMM'),5,2),'04',1)) d04 from lastbuyer UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(lastbuyer_regdate, 'yyyyMM'),5,2),'05',1)) d05 from lastbuyer UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(lastbuyer_regdate, 'yyyyMM'),5,2),'06',1)) d06 from lastbuyer UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(lastbuyer_regdate, 'yyyyMM'),5,2),'07',1)) d07 from lastbuyer UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(lastbuyer_regdate, 'yyyyMM'),5,2),'08',1)) d08 from lastbuyer UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(lastbuyer_regdate, 'yyyyMM'),5,2),'09',1)) d09 from lastbuyer UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(lastbuyer_regdate, 'yyyyMM'),5,2),'10',1)) d10 from lastbuyer UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(lastbuyer_regdate, 'yyyyMM'),5,2),'11',1)) d11 from lastbuyer UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(lastbuyer_regdate, 'yyyyMM'),5,2),'12',1)) d12 from lastbuyer
 		<![CDATA[
-		where to_char(lastbuyer_regdate, 'yyyy-MM')>=to_char(sysdate, 'yyyy')||'-01'
+		where to_char(lastbuyer_regdate, 'yyyy')=to_char(sysdate,'yyyy')
 		]]>
-		group by to_char(lastbuyer_regdate, 'yyyy-MM') 
-		order by to_char(lastbuyer_regdate, 'yyyy-MM')
+		)
 	</select>
 	
-	<select id="selectAllTrade" resultType="map">
-		select count(*) as cnt, to_char(trade_regdate, 'yyyy-MM') as reg from trade
+	<select id="selectAllTrade" resultType="string">
+		select * from(
+		SELECT COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'01',1)) d01 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'02',1)) d02 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'03',1)) d03 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'04',1)) d04 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'05',1)) d05 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'06',1)) d06 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'07',1)) d07 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'08',1)) d08 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'09',1)) d09 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'10',1)) d10 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'11',1)) d11 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'12',1)) d12 from trade
 		<![CDATA[
-		where to_char(trade_regdate, 'yyyy-MM')>=to_char(sysdate, 'yyyy')||'-01'
+		where to_char(trade_regdate, 'yyyy')=to_char(sysdate,'yyyy')
 		]]>
-		group by to_char(trade_regdate, 'yyyy-MM') 
-		order by to_char(trade_regdate, 'yyyy-MM')
+		)
 	</select>
 
-	<select id="selectAllsell" resultType="map">
-		select count(*) as cnt, to_char(trade_regdate, 'yyyy-MM') as reg 
-		from trade where trade_type='정상결제' 
+	<select id="selectAllsell" resultType="string">
+		select * from(
+		SELECT COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'01',1)) d01 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'02',1)) d02 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'03',1)) d03 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'04',1)) d04 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'05',1)) d05 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'06',1)) d06 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'07',1)) d07 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'08',1)) d08 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'09',1)) d09 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'10',1)) d10 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'11',1)) d11 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'12',1)) d12 from trade
 		<![CDATA[
-		and to_char(trade_regdate, 'yyyy-MM')>=to_char(sysdate, 'yyyy')||'-01'
+		where to_char(trade_regdate, 'yyyy')=to_char(sysdate,'yyyy')
 		]]>
-		group by to_char(trade_regdate, 'yyyy-MM') 
-		order by to_char(trade_regdate, 'yyyy-MM')
+		and trade_type='정상결제' 
+		)
 	</select>
 	
-	<select id="selectAllsellFail" resultType="map">
-		select count(*) as cnt, to_char(trade_regdate, 'yyyy-MM') as reg 
-		from trade where trade_type='거래취소' 
+	<select id="selectAllsellFail" resultType="string">
+		select * from(
+		SELECT COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'01',1)) d01 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'02',1)) d02 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'03',1)) d03 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'04',1)) d04 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'05',1)) d05 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'06',1)) d06 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'07',1)) d07 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'08',1)) d08 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'09',1)) d09 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'10',1)) d10 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'11',1)) d11 from trade UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(trade_regdate, 'yyyyMM'),5,2),'12',1)) d12 from trade
 		<![CDATA[
-		and to_char(trade_regdate, 'yyyy-MM')>=to_char(sysdate, 'yyyy')||'-01'
+		where to_char(trade_regdate, 'yyyy')=to_char(sysdate,'yyyy')
 		]]>
-		group by to_char(trade_regdate, 'yyyy-MM') 
-		order by to_char(trade_regdate, 'yyyy-MM')
+		and trade_type='거래취소' 
+		)
 	</select>
 
-	<select id="selectAllRecord" resultType="map">
-		select count(*) as cnt, to_char(record_regdate, 'yyyy-MM') as reg from record
+	<select id="selectAllRecord" resultType="string">
+		select * from(
+		SELECT COUNT(DECODE(SUBSTR(to_char(record_regdate, 'yyyyMM'),5,2),'01',1)) d01 from record UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(record_regdate, 'yyyyMM'),5,2),'02',1)) d02 from record UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(record_regdate, 'yyyyMM'),5,2),'03',1)) d03 from record UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(record_regdate, 'yyyyMM'),5,2),'04',1)) d04 from record UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(record_regdate, 'yyyyMM'),5,2),'05',1)) d05 from record UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(record_regdate, 'yyyyMM'),5,2),'06',1)) d06 from record UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(record_regdate, 'yyyyMM'),5,2),'07',1)) d07 from record UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(record_regdate, 'yyyyMM'),5,2),'08',1)) d08 from record UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(record_regdate, 'yyyyMM'),5,2),'09',1)) d09 from record UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(record_regdate, 'yyyyMM'),5,2),'10',1)) d10 from record UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(record_regdate, 'yyyyMM'),5,2),'11',1)) d11 from record UNION ALL
+		select COUNT(DECODE(SUBSTR(to_char(record_regdate, 'yyyyMM'),5,2),'12',1)) d12 from record
 		<![CDATA[
-		where to_char(record_regdate, 'yyyy-MM')>=to_char(sysdate, 'yyyy')||'-01'
+		where to_char(record_regdate, 'yyyyMM')>=to_char(sysdate, 'yyyy')||'-01'
 		]]>
-		group by to_char(record_regdate, 'yyyy-MM') 
-		order by to_char(record_regdate, 'yyyy-MM')
+		)
 	</select>
 	
 </mapper>

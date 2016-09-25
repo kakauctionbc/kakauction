@@ -236,60 +236,47 @@ public class AdminController {
 	
 	@RequestMapping("/highChart.do")
 	public String highChart(Model model){
-		List<Map<String, Object>> allauction = adminHighService.selectAllauction();
-		List<Map<String, Object>> alllastbuyer = adminHighService.selectAllLastBuyer();
-		List<Map<String, Object>> alltrade = adminHighService.selectAllTrade();
-		List<Map<String, Object>> allsell = adminHighService.selectAllsell();
-		List<Map<String, Object>> allsellfail = adminHighService.selectAllsellFail();
-		List<Map<String, Object>> allrecord = adminHighService.selectAllRecord();
-		
-		for(Map<String, Object> allauclist : allauction){
-			String list[] = new String[12];
-			for(int i = 0;i<allauction.size();i++){
-				list[i]= String.valueOf(allauclist.get("CNT"));
-			}
-			model.addAttribute("auctionlist", list);
+		List<String> allauction = adminHighService.selectAllauction();
+		String auclist[]=new String [12];
+		for (int i = 0; i < allauction.size(); i++) {
+			auclist[i]=allauction.get(i);
 		}
+		model.addAttribute("auctionlist", auclist);
 		
-		for(Map<String, Object> alllastbuyerlist : alllastbuyer){
-			String list[] = new String[12];
-			for(int i = 0;i<alllastbuyer.size();i++){
-				list[i]= String.valueOf(alllastbuyerlist.get("CNT"));
-			}
-			model.addAttribute("lastbuyerlist", list);
+		List<String> alllastbuyer = adminHighService.selectAllLastBuyer();
+		String lastlist[]=new String [12];
+		for (int i = 0; i < alllastbuyer.size(); i++) {
+			lastlist[i]=alllastbuyer.get(i);
 		}
+		model.addAttribute("lastbuyerlist", lastlist);
 		
-		for(Map<String, Object> alltradelist : alltrade){
-			String list[] = new String[12];
-			for(int i = 0;i<alltrade.size();i++){
-				list[i]= String.valueOf(alltradelist.get("CNT"));
-			}
-			model.addAttribute("alltradelist", list);
+		List<String> alltrade = adminHighService.selectAllTrade();
+		String tradelist[]=new String [12];
+		for (int i = 0; i < alltrade.size(); i++) {
+			tradelist[i]=alltrade.get(i);
 		}
+		model.addAttribute("alltradelist", tradelist);
 		
-		for(Map<String, Object> allselllist : allsell){
-			String list[] = new String[12];
-			for(int i = 0;i<allsell.size();i++){
-				list[i]= String.valueOf(allselllist.get("CNT"));
-			}
-			model.addAttribute("allselllist", list);
+		List<String> allsell = adminHighService.selectAllsell();
+		String selllist[]=new String [12];
+		for (int i = 0; i < allsell.size(); i++) {
+			selllist[i]=allsell.get(i);
 		}
+		model.addAttribute("allselllist", selllist);
 		
-		for(Map<String, Object> allsellfaillist : allsellfail){
-			String list[] = new String[12];
-			for(int i = 0;i<allsellfail.size();i++){
-				list[i]= String.valueOf(allsellfaillist.get("CNT"));
-			}
-			model.addAttribute("allsellfaillist", list);
+		List<String> allsellfail = adminHighService.selectAllsellFail();
+		String sellfaillist[]=new String [12];
+		for (int i = 0; i < allsellfail.size(); i++) {
+			sellfaillist[i]=allsellfail.get(i);
 		}
+		model.addAttribute("allsellfaillist", sellfaillist);
 
-		for(Map<String, Object> allrecordlist : allrecord){
-			String list[] = new String[12];
-			for(int i = 0;i<allrecord.size();i++){
-				list[i]= String.valueOf(allrecordlist.get("CNT"));
-			}
-			model.addAttribute("allrecordlist", list);
+		List<String> allrecord = adminHighService.selectAllRecord();
+		String recordlist[]=new String [12];
+		for (int i = 0; i < allrecord.size(); i++) {
+			recordlist[i]=allrecord.get(i);
 		}
+		model.addAttribute("allrecordlist", recordlist);
 		
 		return "highChart/highChart";
 	}
