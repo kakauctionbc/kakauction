@@ -92,14 +92,14 @@ $(function() {
 		<img src="<c:url value='/img/hot_icon.png'/>" id="hot_icon">
 		<div id="realtime">
 			<div id="realtimehead">
-				<p id="text">◈ 실시간 경매 현황</p>
+				<p id="text">◈ 현재 경매 현황</p>
 				<p id="more">
 					<a href="<c:url value='/auction/list.do'/>">MORE▶</a>
 				</p>
 			</div>
 			<table id="realtimetable" style="border-collapse: collapse">
 				<tr id="align_center">
-					<th colspan="3">제939차 경매 (2016.08.31)</th>
+					<th colspan="3"><%@ include file="design/main/today.jsp" %> 경매 현황</th>
 				</tr>
 				<tr id="align_center">
 					<td>전체</td>
@@ -164,7 +164,7 @@ $(function() {
 		<div id="mainwrap">
 			<div id="quickservice">
 				<div id="quickservicehead">
-					<p id="text">◎ 빠른 서비스</p>
+					<p id="text">◎회사 위치</p>
 				</div>
 				<div>
 					<p><img alt="오시는 길" src="${pageContext.request.contextPath }/img/company.png" style="width: 350px"></p>

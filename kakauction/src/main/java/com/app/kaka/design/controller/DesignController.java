@@ -107,4 +107,10 @@ public class DesignController {
 		return "/design/auction/list";
 	}
 	
+	@RequestMapping("/today.do")
+	public String today(){
+		logger.info("현재시간 띄우기");
+		
+		return "design/main/today";
+	}
 }

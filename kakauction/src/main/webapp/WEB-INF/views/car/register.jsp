@@ -643,7 +643,7 @@
 			</div>
 			<div>
 				<a href="#"></a>
-				<a style="cursor:pointer; color: black;" id="carReg" href="#">차량 등록</a>
+				<a style="cursor:pointer; color: black;" id="carReg" href="#"><img alt="차량등록" src="<%=request.getContextPath()%>/img/register_car.png"></a>
 			</div>            
 		</div>
 	</div>

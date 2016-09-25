@@ -27,6 +27,12 @@ $(function(){
   		}
   		document.mainfrm.submit();
   	});
+  	
+  	$("#totalSearchButton").hover(function(){
+  		$(this).css("cursor","pointer");
+  	},function(){
+  		$(this).css("cursor","");
+  	})
 });
 
 </script>
@@ -34,7 +40,7 @@ $(function(){
 <html lang="ko">
 <head>
 <meta charset="utf-8" />
-<title>Insert title here</title>
+<title>카카옥션 - 중고차 경매</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/mainstyle.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/clear.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/layout.css" />
@@ -101,9 +107,7 @@ $(function(){
 					<input type="text" id="keyword" name="searchKeyword" fw-label="검색어" class="inputTypeText" value="${param.searchKeyword }">
 					
 					<p id="search_btn">
-						<a href="#" id="mainSearch">
-							<img src="<%=request.getContextPath()%>/img/search.png" alt="검색" onclick="" width="25px" height="25px"/>
-						</a>
+						<img src="<%=request.getContextPath()%>/img/search.png" alt="검색" id="totalSearchButton" onclick="" width="25px" height="25px"/>
 					</p>
 				</form>
 			</div>
