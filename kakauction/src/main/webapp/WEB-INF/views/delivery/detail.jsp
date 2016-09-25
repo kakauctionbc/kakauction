@@ -86,7 +86,7 @@
 		});
 		$("#timbt1").click(function(){
 			if(confirm("거래 취소시 낙찰금의 10%를 결제하게 됩니다. 확인을 누르시면 결제 페이지로 이동합니다.")){
-	        	location.replace("<c:url value='/delivery/insertTrade.do?lbNo="+lbNo+"&recordNo="+recordNo+"&auctionNo="+auctionNo+"&buyerMemberId="+buyerMemberId+"&recordPrice="+dontPay+"&carNum="+carNum+"&title="+title+"&sellerMemberId="+sellerMemberId+"&tradeType="+"거래취소"+"'/>");
+	        	location.replace("<c:url value='/delivery/insertTrade.do?lbNo="+lbNo+"&recordNo="+recordNo+"&auctionNo="+auctionNo+"&buyerMemberId="+buyerMemberId+"&recordPrice="+recordPrice+"&carNum="+carNum+"&title="+title+"&sellerMemberId="+sellerMemberId+"&tradeType="+"거래취소"+"'/>");
 			}
 		});
 		

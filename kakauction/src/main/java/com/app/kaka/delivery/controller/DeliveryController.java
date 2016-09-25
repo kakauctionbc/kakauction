@@ -148,6 +148,7 @@ public class DeliveryController {
 			int cnt4 = deliveryService.updateLastBuyerYn(data);
 			logger.info("거래 취소 최종구매자 상태 업데이트 cnt={}",cnt4);
 			
+			System.out.println("거래취소 수령지 추가 직전 data = "+data);
 			int cnt5 = deliveryService.insertDelivery(data);
 			logger.info("거래 취소 수령지 추가 cnt={}",cnt5);
 			

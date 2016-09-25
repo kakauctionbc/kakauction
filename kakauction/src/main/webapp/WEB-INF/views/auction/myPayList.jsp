@@ -53,7 +53,7 @@
 						<th>물건명</th>
 						<th>연식</th>
 						<th>변속기</th>
-						<th rowspan="2">낙찰가</th>
+						<th rowspan="2">거래가</th>
 						<th rowspan="2" class="readCount">조회</th>
 					</tr>
 					<tr>
@@ -85,7 +85,7 @@
 													${map['CAR_LOC']}
 												</c:if><br>
 											</a>
-											<span style="color: fuchsia;">이미 거래 완료한 차량입니다.</span></td>
+											<span style="color: fuchsia;">거래 완료한 차량입니다.</span></td>
 								</c:if>
 								<c:if test="${map['LB_BUYCAR_YN']=='N'}">							
 									<td class="listName" style="text-align: left;">
@@ -111,21 +111,26 @@
 												${map['CAR_LOC']}
 											</c:if>
 										</a><br>
-										<span style="color: fuchsia;">거래 취소한 차량입니다.</span>
+										<p style="color: fuchsia;">거래 취소한 차량입니다</p>
+										<span style="color: fuchsia;">낙찰금액의 10%를 배상하였습니다.</span>
 									</td>
 								</c:if>
 								<td>${map['CAR_BIRTH']}<br> ${map['CAR_DIST']}km
 								</td>
 								<td>${map['CAR_AM']}<br> ${map['CAR_GAS']}
 								</td>
-								<td><fmt:formatNumber pattern="#,###" value="${map['RECORD_PRICE']}"/>만원
+								<c:if test="${map['LB_BUYCAR_YN']=='거래취소'}">
+									<td><fmt:formatNumber pattern="#,###" value="${map['RECORD_PRICE']/10}"/>만원
+								</c:if>
+								<c:if test="${map['LB_BUYCAR_YN']=='정상결제'}">
+									<td><fmt:formatNumber pattern="#,###" value="${map['RECORD_PRICE']}"/>만원
+								</c:if>
 								</td>
 								<td class="readCount">${map['AUCTION_READ_COUNT']}</td>
 							</tr>
 						</c:forEach>
 						<!--반복처리 끝  -->
 					</c:if>
-					
 				</tbody>
 			</table>
 		</div>
