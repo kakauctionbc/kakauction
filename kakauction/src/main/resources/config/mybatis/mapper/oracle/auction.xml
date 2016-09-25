@@ -598,7 +598,7 @@
 	<select id="myPayList" parameterType="String" resultType="map">
 		select * from lastbuyer l, auction_car2 a
 		where L.CAR_NUM=a.car_num and l.seller_member_id=A.MEMBER_ID
-		and buyer_member_id=#{buyerMemberId} and lb_buycar_yn='정상결제'
+		and buyer_member_id=#{buyerMemberId} and  (lb_buycar_yn='정상결제' or lb_buycar_yn='거래취소')
 	</select>
 	
 </mapper>

@@ -142,6 +142,16 @@ public class DeliveryController {
 			carVo.setSellerMemberId(sellerMemberId);
 			int cnt3 = carService.againAuction(carVo, auctionNo, recordNo);
 			
+			int cnt4 = deliveryService.updateLastBuyerYn(data);
+			int cnt5 = deliveryService.insertDelivery(data);
+			logger.info("거래 성공 최종구매자 상태 업데이트 cnt={}",cnt5);
+			
+			int cnt6 = deliveryService.insertTrade(data);
+			logger.info("거래 성공 거래테이블에 입력 cnt={}",cnt6);
+			
+			int cnt7 = deliveryService.updateBuyer(data);
+			logger.info("구매자 수령지 업데이트 cnt={}",cnt7);
+			
 			model.addAttribute("msg", "계약 취소 완료 하였습니다");
 			model.addAttribute("url", "/auction/auctionSuccess.do");
 			
