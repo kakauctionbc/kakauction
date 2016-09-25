@@ -176,7 +176,7 @@ public class EmailController {
 		   String msg="",url="";
 		   if (result>0) {
 			   msg="비밀번호를 변경하였습니다.";
-			   url="/login/login.do";
+			   url="/index.do";
 		   } else {
 			   msg="변경 실패";
 			   url="/fing/pwd_Edit.do";

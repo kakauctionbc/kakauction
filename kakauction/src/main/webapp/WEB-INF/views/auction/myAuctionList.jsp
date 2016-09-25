@@ -27,13 +27,6 @@
 		document.frmPage.submit();
 	}
 </script>
-	<div id="leftMenu" style="float: left;">
-		<ul>
-			<li><a href="<c:url value='/auction/auctionSuccess.do'/>">경매낙찰현황</a></li>
-			<li><a href="<c:url value='/auction/myAuctionList.do'/>">경매입찰현황</a></li>
-			<li><a href="<c:url value='/car/myDeferList.do'/>">내 보류경매</a></li>
-		</ul>
-	</div>
 <div id="wrap">
 	<div id="wrapdiv">
 		<div id="wraptop">
