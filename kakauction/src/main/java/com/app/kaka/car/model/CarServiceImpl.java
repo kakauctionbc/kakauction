@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.kaka.alert.model.AlertService;
+import com.app.kaka.auction.model.AuctionService;
 
 @Service
 public class CarServiceImpl implements CarService{
@@ -17,6 +18,9 @@ public class CarServiceImpl implements CarService{
 	
 	@Autowired
 	private AlertService alertService;
+	
+	@Autowired
+	private AuctionService auctionService;
 	
 	@Override
 	public int insertCar(CarVO carVo) {
@@ -62,11 +66,13 @@ public class CarServiceImpl implements CarService{
 	@Transactional
 	public int againAuction(CarVO carVo, int auctionNo) {
 		int cnt = alertService.sendAgainAuctionAlert(carVo, auctionNo);
+		if(cnt>0){
+			cnt = auctionService.updateCancleAuction(auctionNo);
+		}
 		
 		if(cnt>0){
 			return carDao.againAuction(carVo);
 		}
-		
 		return 0;
 	}
 

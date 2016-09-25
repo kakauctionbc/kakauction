@@ -576,4 +576,10 @@
 		)a where rownum<=#{cnt} order by rownum asc
 		]]>
 	</select>
+	
+	<update id="updateTradeCancleAuction" parameterType="int">
+		update trade
+		set trade_type='결제취소'
+		where auction_no=#{auctionNo}
+	</update>
 </mapper>

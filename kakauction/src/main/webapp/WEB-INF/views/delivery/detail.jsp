@@ -22,7 +22,6 @@
 		var tradeType = "";
 		var sellerMemberId = $("#seller").val();
 		var map = new Object();
-		alert(lbNo+"~"+recordNo+"~"+buyerMemberId+"!"+title);
 		
 		$("#map").click(function(){ 
 			var message = $("#buyerLoc").val();
@@ -83,7 +82,7 @@
 				alert("차량수령지를 지도에서 선택하세요");
 				return false;
 			}
-	        location.replace("<c:url value='/delivery/insertTrade.do?lbNo="+lbNo+"&recordNo="+recordNo+"&auctionNo="+auctionNo+"&buyerMemberId="+buyerMemberId+"&recordPrice="+recordPrice+"&carNum="+carNum+"&title="+title+"&tradeType="+"정상결제"+"'/>");
+	        location.replace("<c:url value='/delivery/insertTrade.do?lbNo="+lbNo+"&recordNo="+recordNo+"&auctionNo="+auctionNo+"&buyerMemberId="+buyerMemberId+"&recordPrice="+recordPrice+"&carNum="+carNum+"&title="+title+"&sellerMemberId="+sellerMemberId+"&tradeType="+"정상결제"+"'/>");
 		});
 		$("#timbt1").click(function(){
 			if(confirm("거래 취소시 낙찰금의 10%를 결제하게 됩니다. 확인을 누르시면 결제 페이지로 이동합니다.")){

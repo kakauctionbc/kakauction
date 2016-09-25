@@ -316,4 +316,13 @@ public class AuctionServiceImpl implements AuctionService{
 	public List<AuctionCarVO> bestAuction(int cnt) {
 		return auctionDao.bestAuction(cnt);
 	}
+
+	@Override
+	@Transactional
+	public int updateCancleAuction(int auctionNo) {
+		int cnt = auctionDao.updateTradeCancleAuction(auctionNo);
+		
+		int recordNo = auctionDao.
+		return 
+	}
 }

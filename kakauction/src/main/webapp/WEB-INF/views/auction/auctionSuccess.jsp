@@ -92,8 +92,15 @@
 							<tr style="text-align: center">
 								<td class="listImg"><img alt="사진" height="56px;" width="90px;" src="<c:url value='/picture_upload/${map["PICTURE_1"]}'/>"></td>
 								<td class="listSize">${map['CAR_SIZE']}</td>
-								<c:if test="${map['LB_BUYCAR_YN']=='Y'}">								
-									이미 거래 완료한 차량입니다.
+								<c:if test="${map['LB_BUYCAR_YN']=='정상결제'}">								
+									<td class="listName" style="text-align: left;">${map['CAR_MODEL']}<br>
+											<c:if test="${fn:length(map['CAR_LOC'])>30}">
+												${fn:substring(map['CAR_LOC'], 0,30)}...
+											</c:if> 
+											<c:if test="${fn:length(map['CAR_LOC'])<=30}">
+												${map['CAR_LOC']}
+											</c:if><br>
+											<span style="color: fuchsia;">이미 거래 완료한 차량입니다.</span></td>
 								</c:if>
 								<c:if test="${map['LB_BUYCAR_YN']=='N'}">							
 									<td class="listName" style="text-align: left;">
@@ -118,8 +125,8 @@
 											<c:if test="${fn:length(map['CAR_LOC'])<=30}">
 												${map['CAR_LOC']}
 											</c:if>
-											<p>거래 취소한 경매입니다</p>
 										</a>
+										<span style="color: fuchsia;">거래 취소한 차량입니다.</span>
 									</td>
 								</c:if>
 								<td>${map['CAR_BIRTH']}<br> ${map['CAR_DIST']}km
