@@ -1,6 +1,11 @@
 @CHARSET "utf-8";
 /* body{margin:0} */
 
+#wrap{
+	margin: 0 auto;
+	float: left;
+}
+
 #wrapdiv{
 	width: 1000px;
 	margin-left: 450px;
@@ -83,4 +88,10 @@ input,Textarea, select {
 .Fixed {
 	position: fixed;
 	top: 0px;
+}
+#leftMenu{
+	font-size: 25px;
+}
+#leftMenu ul{
+	
 }
