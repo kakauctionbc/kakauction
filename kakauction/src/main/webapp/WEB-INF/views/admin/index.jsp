@@ -41,13 +41,13 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>${carApply }건<td>
-						<td>${auctionStart }건<td>
-						<td>${auctionEnd }건<td>
-						<td>${reportCar }건<td>
-						<td>${reportNo }명<td>
-						<td>${memberJoin }명<td>
-						<td>${memberOut }명<td>
+						<td>${carApply }건</td>
+						<td>${auctionStart }건</td>
+						<td>${auctionEnd }건</td>
+						<td>${reportCar }건</td>
+						<td>${reportNo }명</td>
+						<td>${memberJoin }명</td>
+						<td>${memberOut }명</td>
 					</tr>
 				</tbody>
 			</table>

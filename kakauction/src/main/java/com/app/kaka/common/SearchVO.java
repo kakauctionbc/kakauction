@@ -67,7 +67,7 @@ public class SearchVO {
     }
 
     public void setSearchKeyword(String searchKeyword) {
-    	this.searchKeyword = searchKeyword;
+    	this.searchKeyword=searchKeyword;
     }
 
     public String getSearchUseYn() {

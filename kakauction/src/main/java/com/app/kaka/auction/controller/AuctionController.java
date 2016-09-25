@@ -131,13 +131,17 @@ public class AuctionController {
 	public String listAuction(@RequestParam(required=false) String[] carSizes,
 			@RequestParam(required=false) String[] carGases , @RequestParam(required=false) String birth1,
 			@RequestParam(required=false) String birth2,@RequestParam(required=false) String priceS,
-			@RequestParam(required=false) String priceD, @RequestParam(required=false) String auctionFirstprice, 
-			@RequestParam(required=false) String auctionFirstprice2,@ModelAttribute DetailSearchVO searchVo, Model model){
+			@RequestParam(required=false) String priceD, @ModelAttribute DetailSearchVO searchVo,
+			@RequestParam(defaultValue="0") int openNav, @RequestParam(required=false) String carAms , 
+			@RequestParam(required=false) String searchKeyword, @RequestParam(required=false) String searchCondition,
+			Model model){
 		logger.info("경매 목록");
 		//1. 파라미터 읽어오기
+		logger.info("글목록 조회, 파라미터 searchKeyword={}, searchCondition={}", searchKeyword, searchCondition);
 		logger.info("글목록 조회, 파라미터 searchVo={}", searchVo);
 		logger.info("글목록 조회, 파라미터 carSizes={}", carSizes);
 		logger.info("글목록 조회, 파라미터 carGases={}", carGases);
+		logger.info("글목록 조회, 파라미터 carAms={}", carAms);
 		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(Utility.BLOCK_SIZE);
@@ -165,6 +169,7 @@ public class AuctionController {
 		logger.info("cargasList 궁금 cargasList={}, size={}",cargasList, cargasList.size());
 		
 		//3. 결과 저장, 뷰페이지 리턴
+		model.addAttribute("searchVo", searchVo);
 		model.addAttribute("carAmList", carAmList);
 		model.addAttribute("carsizeList", carsizeList);
 		model.addAttribute("cargasList", cargasList);

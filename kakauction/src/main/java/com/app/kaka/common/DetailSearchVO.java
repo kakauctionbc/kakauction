@@ -7,31 +7,15 @@ public class DetailSearchVO extends SearchVO{
 	//1. 차종
 	private String[] carSizes;
 	private String[] carGases;
-	private String[] carAms;
 	private String birth1;
 	private String birth2;
 	private String priceS;
 	private String priceD;
-	private String auctionFirstprice;
-	private String auctionFirstprice2;
-	private String carAcci;
+	private String carAms;
 	
 	private String year;
 	private String month;
 	
-	//getter/setter
-	public String getYear() {
-		return year;
-	}
-	public void setYear(String year) {
-		this.year = year;
-	}
-	public String getMonth() {
-		return month;
-	}
-	public void setMonth(String month) {
-		this.month = month;
-	}
 	public String[] getCarSizes() {
 		return carSizes;
 	}
@@ -68,32 +52,30 @@ public class DetailSearchVO extends SearchVO{
 	public void setPriceD(String priceD) {
 		this.priceD = priceD;
 	}
-	public String getAuctionFirstprice() {
-		return auctionFirstprice;
+	public String getCarAms() {
+		return carAms;
 	}
-	public void setAuctionFirstprice(String auctionFirstprice) {
-		this.auctionFirstprice = auctionFirstprice;
+	public void setCarAms(String carAms) {
+		this.carAms = carAms;
 	}
-	public String getAuctionFirstprice2() {
-		return auctionFirstprice2;
+	public String getYear() {
+		return year;
 	}
-	public void setAuctionFirstprice2(String auctionFirstprice2) {
-		this.auctionFirstprice2 = auctionFirstprice2;
+	public void setYear(String year) {
+		this.year = year;
 	}
-	
-	public String getCarAcci() {
-		return carAcci;
+	public String getMonth() {
+		return month;
 	}
-	public void setCarAcci(String carAcci) {
-		this.carAcci = carAcci;
+	public void setMonth(String month) {
+		this.month = month;
 	}
 	
 	@Override
 	public String toString() {
 		return "DetailSearchVO [carSizes=" + Arrays.toString(carSizes) + ", carGases=" + Arrays.toString(carGases)
 				+ ", birth1=" + birth1 + ", birth2=" + birth2 + ", priceS=" + priceS + ", priceD=" + priceD
-				+ ", auctionFirstprice=" + auctionFirstprice + ", auctionFirstprice2=" + auctionFirstprice2
-				+ ", carAcci=" + carAcci + ", year=" + year + ", month=" + month + ", toString()=" + super.toString()
+				+ ", carAms=" + carAms + ", year=" + year + ", month=" + month + ", toString()=" + super.toString()
 				+ "]";
 	}
 	

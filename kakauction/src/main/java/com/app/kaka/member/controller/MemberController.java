@@ -301,4 +301,9 @@ public class MemberController {
 		
 		return "common/message";
 	}
+	
+	@RequestMapping("/myInfo.do")
+	public String myInfo(){
+		return "member/myInfo";
+	}
 }

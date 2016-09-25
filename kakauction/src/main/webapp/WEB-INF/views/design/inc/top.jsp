@@ -8,6 +8,7 @@
 $(function(){
   var show = $('#headmenu');
   var content = $('#headmenu-content');
+  var searchCondition = $("#totalsearch").val();
   	show.hover(function(){
   		content.slideDown(200);
   	});
@@ -16,6 +17,16 @@ $(function(){
   	}, function(){
 		content.slideUp('fast');
 	});
+  	
+  	$("#search_btn").click(function(){
+  		alert($("#totalsearch").val());
+  		alert($("#keyword").val());
+  		if($("#totalsearch").val().length<1){
+  			alert("검색조건을 선택하세요");
+  			return;
+  		}
+  		document.mainfrm.submit();
+  	});
 });
 
 </script>
@@ -79,17 +90,22 @@ $(function(){
 				<img alt="로고 이미지" src="${pageContext.request.contextPath }/img/logo.png" /></a>
 			</div>
 			<div id="mainsearch">
-				<select id="totalsearch" name="search" style="font-size: 1.2em;">
-			    <option id="total" value="통합검색">통합검색</option>
-			    <option value="판매자">판매자</option>
-			    <option value="차종">차종</option>
-				</select>
-				<input id="keyword" name="keyword" fw-filter="" fw-label="검색어" fw-msg="" class="inputTypeText" onmousedown="" value="" type="text"  />
-				<p id="search_btn">
-				<a href="">
-				<img src="<%=request.getContextPath()%>/img/search.png" alt="검색" onclick="" width="25px" height="25px"/>
-				</a>
-				</p>
+				<form name="mainfrm" action="<c:url value='/auction/list.do'/>" method="post">
+					
+					<select id="totalsearch" name="searchCondition" style="font-size: 1.2em;">
+				    	<option id="total" value="">선택하세요</option>
+				    	<option value="member_id">판매자</option>
+				    	<option value="car_model">차종</option>
+					</select>
+					
+					<input type="text" id="keyword" name="searchKeyword" fw-label="검색어" class="inputTypeText" value="${param.searchKeyword }">
+					
+					<p id="search_btn">
+						<a href="#" id="mainSearch">
+							<img src="<%=request.getContextPath()%>/img/search.png" alt="검색" onclick="" width="25px" height="25px"/>
+						</a>
+					</p>
+				</form>
 			</div>
 
 			<div id="headmenu">

@@ -23,6 +23,29 @@
 			$(".fixedOpen").fadeIn(900);
 			/* $(".fixedOpen").css("display","block"); */
 		});
+		
+		$(".listSearch").click(function(){
+			$("#openNav").val(1);
+			document.desearchfrm.submit();
+		});
+		
+		$(":radio").click(function(){
+			 $("#openNav").val(1);
+			 document.desearchfrm.submit();
+		});
+		 
+		$("#btSearch").click(function(){
+			document.desearchfrm.submit();
+		});
+		
+		if($("#openNav").val()==1){
+			$(".fixedOpen").css("display","none");
+			openNav();
+			$( ".accordion" ).toggleClass( "active" );
+			$(".mySidenav").css("display","block");
+			$( ".accordion" ).next().toggleClass( "show" );
+			$(".show").css("display","block");
+		}
 	});
 
 	
@@ -178,22 +201,24 @@
 						<th colspan="10">
 							<div class="carListDiv">
 								<ul>
-									<li><a style="cursor: pointer;" class="on" onclick=""><span>전체</a></li>
-									<li><a style="cursor: pointer;" class="" onclick="">경차</a></li>
-									<li><a style="cursor: pointer;" class="" onclick="">소형</a></li>
-									<li><a style="cursor: pointer;" class="" onclick="">준중형</a></li>
-									<li><a style="cursor: pointer;" class="" onclick="">중형</a></li>
-									<li><a style="cursor: pointer;" class="" onclick="">대형</a></li>
-									<li><a style="cursor: pointer;" class="" onclick="">SUV</a></li>
-									<li><a style="cursor: pointer;" class="" onclick="">RV</a></li>
-									<li><a style="cursor: pointer;" class="" onclick="">스포츠카</a></li>
-									<li><a style="cursor: pointer;" class="" onclick="">승합차</a></li>
-									<li><a style="cursor: pointer;" class="" onclick="">화물차</a></li>
-									<li><a style="cursor: pointer;" class="" onclick="">밴</a></li>
-									<li><a style="cursor: pointer;" class="" onclick="">버스</a></li>
-									<li><a style="cursor: pointer;" class="" onclick="">리무진</a></li>
-									<li><a style="cursor: pointer;" class="" onclick="">캠핑카</a></li>
-									<li style="float: right; border-right:none;">조회수</li>
+									<form action="<c:url value='/auction/list.do'/>" method="post" name="listSearch">
+										<li><a style="cursor: pointer;" class="on" onclick=""><span>전체</a></li>
+										<c:forEach var="cslist" items="${carsizeList}" varStatus="vs">
+											<li style="font-size: 0.7em; width: 47px;text-align: center;">
+											<input type="checkbox" class="listSearch" name="carSizes" value="${cslist.carSize}"
+											<c:forEach var="carSizes1" items="${searchVo.carSizes }">
+												<c:if test="${carSizes1==cslist.carSize }"> checked </c:if>
+											</c:forEach> style="display: none;">
+											<input type="hidden" value="carSizes${vs.index }">
+											<label for="carSizes${vs.index}"
+											<c:forEach var="carSizes1" items="${searchVo.carSizes }">
+												<c:if test="${carSizes1==cslist.carSize }"> style="font-size: 1.2em;color:pink" </c:if>
+											</c:forEach>>
+											${cslist.carSize}
+											</label></li>
+										</c:forEach>
+										<li style="float: right; border-right:none;">조회수</li>
+									</form>
 								</ul>
 							</div>
 						</th>

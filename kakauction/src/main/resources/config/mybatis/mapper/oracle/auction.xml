@@ -57,15 +57,18 @@
 	<select id="selectAucList" resultType="AuctionCarVO" parameterType="DetailSearchVO">
 		select * from(
 		    select rownum as RNUM, LIST_ALL.* from(
+		   		select * from(
+		        select * from(
 		        select * from(
 		            select * from(
+		            	select * from(
 		                select * from(
 		                	select*from(
 			                    select * from Auction_Car2
 								<![CDATA[
 						        where auction_regdate<=sysdate
 						        ]]>	                	
-		                	)
+		                		)
 		                    <if test="carSizes!=null and carSizes!=''">
 		                        where car_size in
 			                    <foreach collection="carSizes" item="carSize" index="index" 
@@ -73,7 +76,7 @@
 			                    	#{carSize}
 								</foreach>
 		                    </if>
-		                        )
+	                        )
 		                    <if test="birth1!=null and birth1!=''">
 			                    <![CDATA[
 			                    where birth>=to_date(#{birth1},'yyyy-mm')
@@ -87,12 +90,13 @@
 		                )
 		                <if test="priceS!=null and priceS!=''">
 			                <![CDATA[
-			                where AUCTION_FIRSTPRICE>#{priceS}
+			                where AUCTION_FIRSTPRICE>=#{priceS}
 			                ]]>
 						</if>
+						)
 		                <if test="priceD!=null and priceD!=''">
 			                <![CDATA[
-			                and AUCTION_FIRSTPRICE<=#{priceD}
+			                where AUCTION_FIRSTPRICE<=#{priceD}
 			                ]]>
 						</if>
 		        )
@@ -103,11 +107,16 @@
 	                   	#{carGas}
 					</foreach>
 		        </if>
-		    )LIST_ALL
-		    <if test="carAcci!=null and carAcci!=''">
-		    	where car_acci like #{carAcci}
+		    )
+		    <if test="carAms!=null and carAms!=''">
+		    	where car_am like '%'||#{carAms}||'%'
 		    </if>
-		)
+		    )
+		    <if test="searchKeyword!=null and searchKeyword!=''">
+				where #{searchCondition} like '%'||#{searchKeyword}||'%'
+			</if>
+		)LIST_ALL
+	)
 		<![CDATA[
 		where  RNUM> #{firstRecordIndex} 
 			and RNUM<= #{firstRecordIndex}
@@ -119,14 +128,17 @@
 		select count(*) from(
 		    select rownum as RNUM, LIST_ALL.* from(
 		        select * from(
+				select * from(		        
+				select * from(
 		            select * from(
+		            	select * from(
 		                select * from(
 		                	select*from(
 			                    select * from Auction_Car2
 								<![CDATA[
 						        where auction_regdate<=sysdate
 						        ]]>	                	
-		                	)
+		                		)
 		                    <if test="carSizes!=null and carSizes!=''">
 		                        where car_size in
 			                    <foreach collection="carSizes" item="carSize" index="index" 
@@ -134,7 +146,7 @@
 			                    	#{carSize}
 								</foreach>
 		                    </if>
-		                        )
+	                        )
 		                    <if test="birth1!=null and birth1!=''">
 			                    <![CDATA[
 			                    where birth>=to_date(#{birth1},'yyyy-mm')
@@ -151,9 +163,10 @@
 			                where AUCTION_FIRSTPRICE>#{priceS}
 			                ]]>
 						</if>
+						)
 		                <if test="priceD!=null and priceD!=''">
 			                <![CDATA[
-			                and AUCTION_FIRSTPRICE<=#{priceD}
+			                where AUCTION_FIRSTPRICE<=#{priceD}
 			                ]]>
 						</if>
 		        )
@@ -164,11 +177,16 @@
 	                   	#{carGas}
 					</foreach>
 		        </if>
-		    )LIST_ALL
-		    <if test="carAcci!=null and carAcci!=''">
-		    	where car_acci like #{carAcci}
+		    )
+		    <if test="carAms!=null and carAms!=''">
+		    	where car_am like '%'||#{carAms}||'%'
 		    </if>
-		)
+		    )
+		    <if test="searchKeyword!=null and searchKeyword!=''">
+				where #{searchCondition} like '%'|| #{searchKeyword}|| '%'
+			</if>
+		)LIST_ALL
+	)
 	</select>
 	
 	<sql id="todayWhere">
