@@ -135,6 +135,7 @@ public class AuctionController {
 			@RequestParam(defaultValue="0") int openNav, @RequestParam(required=false) String carAms , 
 			@RequestParam(required=false) String searchKeyword, @RequestParam(required=false) String searchCondition,
 			Model model){
+		sc.reFresh();
 		logger.info("경매 목록");
 		//1. 파라미터 읽어오기
 		logger.info("글목록 조회, 파라미터 searchKeyword={}, searchCondition={}", searchKeyword, searchCondition);
@@ -658,4 +659,37 @@ public class AuctionController {
 		
 		return "common/message";
 	}
+	
+	@RequestMapping("/myPayList.do")
+	public String myPayList(HttpSession session){
+		String memberId = (String)session.getAttribute("memberId");
+		logger.info("내 결제 현황 보여주기, 파라미터 memberId = {}", memberId);
+		
+		return "auction/myPatList";
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
