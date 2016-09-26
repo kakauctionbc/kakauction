@@ -140,6 +140,11 @@
 		border-collapse: collapse;
 	}
 	
+	#carOptionTable th{
+		height: 30px;
+		font-size: 1em;
+	}
+	
 	/* .imgfile{
 		width:80px; 
 		height:80px;
@@ -394,7 +399,7 @@
 				<img src="${pageContext.request.contextPath }/img/carOption.png">
 		</div>
 		<div>
-			<table id="carOptionTable" summary="차량옵션선택" style="font-size: 0.7em">
+			<table id="carOptionTable" summary="차량옵션선택">
 			<%-- <colgroup>
 				<col width="20%">
 				<col width="20%">
@@ -408,7 +413,7 @@
 				<th class="h2" scope="row">편의장치1</th>
 				<th class="h2" scope="row">편의장치2</th>
 				<th class="h2" scope="row">안전장치</th>
-				<th class="h2" scope="row">AV/오디오/항법</th>
+				<th class="h2" scope="row" style="font-size: 0.8em;">AV/오디오/항법</th>
 				<th class="h2" scope="row">튜닝사항</th>
 			</tr>
 			<tr>
@@ -417,7 +422,7 @@
 						<li><input type="checkbox" id="options_95" name="opIn" value="95"> <label for="options_95">파워윈도우</label></li>
 						<li><input type="checkbox" id="options_96" name="opIn" value="96"> <label for="options_96">에어컨</label></li>
 						<li><input type="checkbox" id="options_97" name="opIn" value="97"> <label for="options_97">풀오토에어컨</label></li>
-						<li><input type="checkbox" id="options_98" name="opIn" value="98"> <label for="options_98">좌/우독립에어컨</label></li>
+						<li><input type="checkbox" id="options_98" name="opIn" value="98"> <label for="options_98" style="font-size: 0.7em;">좌/우독립에어컨</label></li>
 						<li><input type="checkbox" id="options_99" name="opIn" value="99"> <label for="options_99">가죽시트</label></li>
 						<li><input type="checkbox" id="options_100" name="opIn" value="100"> <label for="options_100">열선시트</label></li>
 						<li><input type="checkbox" id="options_101" name="opIn" value="101"> <label for="options_101">통풍시트</label></li>
@@ -544,7 +549,7 @@
                		<li style="width:97px"><input type="checkbox" name="opTune" id="options_143" value="143"> <label for="options_143">NA튜닝</label></li>
                		<li style="width:97px"><input type="checkbox" name="opTune" id="options_144" value="144"> <label for="options_144">오디오</label></li>
                		<li style="width:97px"><input type="checkbox" name="opTune" id="options_145" value="145"> <label for="options_145">스트럿바</label></li>
-               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_146" value="146"> <label for="options_146">스테빌라이저</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_146" value="146"> <label for="options_146" style="font-size: 0.7em;">스테빌라이저</label></li>
                		<li style="width:97px"><input type="checkbox" name="opTune" id="options_147" value="147"> <label for="options_147">엔진스왑</label></li>
                		<li style="width:97px"><input type="checkbox" name="opTune" id="options_148" value="148"> <label for="options_148">브레이크</label></li>
                		<li style="width:97px"><input type="checkbox" name="opTune" id="options_149" value="149"> <label for="options_149">스포일러</label></li>
