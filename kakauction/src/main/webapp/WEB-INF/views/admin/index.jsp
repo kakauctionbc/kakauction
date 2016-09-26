@@ -10,6 +10,30 @@
 	td, th{
 		border: 1px solid silver;
 	}
+	.memTable{
+		width: 1000px;
+		border: 1px solid silver;
+		border-collapse: collapse;
+	}
+	.memTable tr th{
+		border-top:1px solid silver;
+		border-bottom:1px solid silver;
+		background: #fffffb;
+		height: 30px;
+		
+	}
+	.memTable tr td{
+		border-bottom: 1px solid silver;
+		text-align: center;
+	}
+	
+	.memTable tbody tr td{
+		height: 50px;
+	}
+	
+	#wrap{
+		height: 120px;
+	}
 </style>
 <div id="wrap">
 	<div id="wrapdiv">
@@ -17,8 +41,8 @@
 			<%-- <img src="${pageContext.request.contextPath }/img/auctionList_logo.png" alt="회원가입로고"> --%>
 			<h1>kakauction 현황</h1>
 		</div>
-		<div calss="memTable">
-			<table summary="메인에 들어갈 것으로 카카옥션에 대한 정보를 제공합니다.">
+		<div>
+			<table summary="메인에 들어갈 것으로 카카옥션에 대한 정보를 제공합니다." class="memTable">
 				<colgroup>
 					<col style="width: *%;" />
 					<col style="width: 14%;" />
