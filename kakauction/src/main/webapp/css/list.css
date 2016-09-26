@@ -11,12 +11,15 @@
 }
 
 .box2 tr th{
+	font-size: 1.3em;
+	height: 35px;
 	border-top:1px solid silver;
 	border-bottom:1px solid silver;
 	background: #fffffb;
 	
 }
 .box2 tr td{
+	height: 40px;
 	border-bottom: 1px solid silver;	
 }
 

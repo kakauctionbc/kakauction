@@ -36,6 +36,11 @@
 		font-size: 15px;
 		border: 1px solid silver;
 	}
+	.laname{
+		text-align: center;
+		font-size: 15px;
+		border: 1px solid silver;
+	}
 </style>
 <div id="mySidenav" class="sidenav">
 
@@ -53,7 +58,7 @@
 					<c:forEach var="carSizes1" items="${searchVo.carSizes }">
 						<c:if test="${carSizes1==cslist.carSize }"> checked </c:if>
 					</c:forEach>>
-					<label for="carSizes${vs.index}" id="laname">
+					<label for="carSizes${vs.index}" id="laname" style="width: 350px">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					${cslist.carSize}
@@ -66,16 +71,16 @@
 
 	<p class="accordion">경매시작가</p>
 		<div class="panel">
-			최소가 <input type="text" name="priceS" size="45" value="${param.priceS}">만원 ~
-			<br>최대가 <input type="text" name="priceD" size="45" value="${param.priceD}">만원
-			<input type="button" id="btSearch" value="검색">
+			최소가 <input type="text" name="priceS" size="45" value="${param.priceS}" style="height: 30px;">&nbsp;&nbsp;만원 ~
+			<br><br>최대가 <input type="text" name="priceD" size="45" value="${param.priceD}" style="height: 30px;">&nbsp;&nbsp;만원
+			<input type="button" id="btSearch" value="검색" style="height: 30px; width: 50px;">
 		</div>
 	
 	<p class="accordion">연료</p>
 		<div class="panel">
 			<c:forEach var="cglist" items="${cargasList}" varStatus="vs">
 				<div class="carGases" style="height: 25px;">
-					<input type="checkbox" name="carGases" id="carGas${vs.index}" value="${cglist.carGas}"
+					<input type="checkbox" name="carGases" class="listSearch1" id="carGas${vs.index}" value="${cglist.carGas}"
 					<c:forEach var="cargas1" items="${searchVo.carGases }">
 						<c:if test="${cargas1==cglist.carGas }"> checked </c:if>
 					</c:forEach>>

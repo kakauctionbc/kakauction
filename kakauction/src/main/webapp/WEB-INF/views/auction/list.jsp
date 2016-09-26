@@ -50,6 +50,10 @@
 			$( ".accordion" ).next().toggleClass( "show" );
 			$(".show").css("display","block");
 		}
+		
+		$("#alreadyFinished").click(function(){
+			alert("이미 종료된 경매입니다.");
+		});
 	});
 
 	
@@ -107,6 +111,9 @@
 .box2 tbody tr td a:hover{
 	text-decoration: underline;
 	color: blue;
+}
+.box2 tbody tr td{
+	font-size: 0.8em;
 }
 </style>
  		<!--상세검색 -->
@@ -214,7 +221,7 @@
 						<c:forEach var="vo" items="${alist }">
 							<tr style="text-align: center">
 								<c:if test="${vo.auctionState=='END'}">
-									<td colspan="9"><a href="#" style="color: gray;">이미 종료된 경매 입니다</a></td>
+									<td colspan="9" style="height: 50px;font-weight: bold;font-size: 1.2em"><a href="#" id="alreadyFinished" style="color: gray;">이미 종료된 경매 입니다</a></td>
 								</c:if>
 								<c:if test="${vo.auctionState!='END'}">
 								<td class="listCheckbox">
