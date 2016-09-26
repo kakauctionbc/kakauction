@@ -30,7 +30,7 @@ $(function () {
         },
         yAxis: {
             title: {
-                text: 'Temperature (°C)'
+                text: '건수'
             },
             plotLines: [{
                 value: 0,
@@ -39,7 +39,7 @@ $(function () {
             }]
         },
         tooltip: {
-            valueSuffix: '°C'
+            valueSuffix: '건'
         },
         legend: {
             layout: 'vertical',
