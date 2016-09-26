@@ -430,9 +430,9 @@
 						<li><input type="checkbox" id="options_103" name="opIn" value="103"> <label for="options_103">버켓시트</label></li>
 						<li><input type="checkbox" id="options_104" name="opIn" value="104"> <label for="options_104">메모리시트</label></li>
 						<li><input type="checkbox" id="options_105" name="opIn" value="105"> <label for="options_105">분할폴딩시트</label></li>
-						<li><input type="checkbox" id="options_106" name="opIn" value="106"> <label for="options_106">운전석전동시트</label></li>
-						<li><input type="checkbox" id="options_107" name="opIn" value="107"> <label for="options_107">동승석전동시트</label></li>
-						<li><input type="checkbox" id="options_108" name="opIn" value="108"> <label for="options_108">뒷좌석전동시트</label></li>
+						<li><input type="checkbox" id="options_106" name="opIn" value="106"> <label for="options_106" style="font-size: 0.7em;">운전석전동시트</label></li>
+						<li><input type="checkbox" id="options_107" name="opIn" value="107"> <label for="options_107" style="font-size: 0.7em;">동승석전동시트</label></li>
+						<li><input type="checkbox" id="options_108" name="opIn" value="108"> <label for="options_108" style="font-size: 0.7em;">뒷좌석전동시트</label></li>
 					</ul>
 					<ul>
 						<li><input type="checkbox" id="options_109" name="opOut" value="109"> <label for="options_109">알루미늄휠</label></li>
@@ -451,7 +451,7 @@
 						<li><input type="checkbox" id="options_42" name="opCon" value="42"> <label for="options_42">스마트키</label></li>
 						<li><input type="checkbox" id="options_43" name="opCon" value="43"> <label for="options_43">엔진스타트버튼</label></li>
 						<li><input type="checkbox" id="options_44" name="opCon" value="44"> <label for="options_44">라이트세척장치</label></li>
-						<li><input type="checkbox" id="options_45" name="opCon" value="45"> <label for="options_45">주차조향보조시스템</label></li>
+						<li><input type="checkbox" id="options_45" name="opCon" value="45"> <label for="options_45" style="font-size: 0.7em;">주차조향보조시스템</label></li>
 						<li><input type="checkbox" id="options_46" name="opCon" value="46"> <label for="options_46">전자주차브레이크</label></li>
 						<li><input type="checkbox" id="options_47" name="opCon" value="47"> <label for="options_47">이모빌라이져</label></li>
 						<li><input type="checkbox" id="options_48" name="opCon" value="48"> <label for="options_48">트립컴퓨터</label></li>
@@ -474,11 +474,11 @@
 						<li><input type="checkbox" id="options_61" name="opCon" value="61"> <label for="options_61">속도감응식핸들</label></li>
 						<li><input type="checkbox" id="options_62" name="opCon" value="62"> <label for="options_62">원격시동장치</label></li>
 						<li><input type="checkbox" id="options_63" name="opCon" value="63"> <label for="options_63">무선도어리모컨</label></li>
-						<li><input type="checkbox" id="options_64" name="opCon" value="64"> <label for="options_64">유아시트고정장치</label></li>
+						<li><input type="checkbox" id="options_64" name="opCon" value="64"> <label for="options_64" style="font-size: 0.7em;">유아시트고정장치</label></li>
 						<li><input type="checkbox" id="options_65" name="opCon" value="65"> <label for="options_65">패들쉬프트</label></li>
 						<li><input type="checkbox" id="options_66" name="opCon" value="66"> <label for="options_66">압축도어</label></li>
 						<li><input type="checkbox" id="options_67" name="opCon" value="67"> <label for="options_67">자동도어잠금</label></li>
-						<li><input type="checkbox" id="options_68" name="opCon" value="68"> <label for="options_68">자동슬라이딩도어</label></li>
+						<li><input type="checkbox" id="options_68" name="opCon" value="68"> <label for="options_68" style="font-size: 0.7em;">자동슬라이딩도어</label></li>
 						<li><input type="checkbox" id="options_69" name="opCon" value="69"> <label for="options_69">전동접이식미러</label></li>
 						<li><input type="checkbox" id="options_70" name="opCon" value="70"> <label for="options_70">냉장고</label></li>
 						<li><input type="checkbox" id="options_71" name="opCon" value="71"> <label for="options_71">루프캐리어</label></li>
@@ -496,7 +496,7 @@
 						<li><input type="checkbox" id="options_79" name="opSafe" value="79"> <label for="options_79">커튼에어백</label></li>
 						<li><input type="checkbox" id="options_80" name="opSafe" value="80"> <label for="options_80">승객감지에어백</label></li>
 						<li><input type="checkbox" id="options_81" name="opSafe" value="81"> <label for="options_81">무릎보호에어백</label></li>
-						<li><input type="checkbox" id="options_82" name="opSafe" value="82"> <label for="options_82">액티브헤드레스트</label></li>
+						<li><input type="checkbox" id="options_82" name="opSafe" value="82"> <label for="options_82" style="font-size: 0.7em;">액티브헤드레스트</label></li>
 						<li><input type="checkbox" id="options_83" name="opSafe" value="83"> <label for="options_83">ABS</label></li>
 						<li><input type="checkbox" id="options_84" name="opSafe" value="84"> <label for="options_84">BAS</label></li>
 						<li><input type="checkbox" id="options_85" name="opSafe" value="85"> <label for="options_85">EBD</label></li>
@@ -508,7 +508,7 @@
 						<li><input type="checkbox" id="options_91" name="opSafe" value="91"> <label for="options_91">후방감지센서</label></li>
 						<li><input type="checkbox" id="options_92" name="opSafe" value="92"> <label for="options_92">전방카메라</label></li>
 						<li><input type="checkbox" id="options_93" name="opSafe" value="93"> <label for="options_93">후방카메라</label></li>
-						<li><input type="checkbox" id="options_94" name="opSafe" value="94"> <label for="options_94">차선이탈경보장치</label></li>
+						<li><input type="checkbox" id="options_94" name="opSafe" value="94"> <label for="options_94" style="font-size: 0.7em;">차선이탈경보장치</label></li>
 					</ul>
 				</td>
 				<td class="opAa">
@@ -520,7 +520,7 @@
 						<li><input type="checkbox" id="options_118" name="opAa" value="118"> <label for="options_118">블루투스</label></li>
 						<li><input type="checkbox" id="options_119" name="opAa" value="119"> <label for="options_119">CD플레이어</label></li>
 						<li><input type="checkbox" id="options_120" name="opAa" value="120"> <label for="options_120">CD체인저</label></li>
-						<li><input type="checkbox" id="options_121" name="opAa" value="121"> <label for="options_121">DVD플레이어</label></li>
+						<li><input type="checkbox" id="options_121" name="opAa" value="121"> <label for="options_121" style="font-size: 0.7em;">DVD플레이어</label></li>
 						<li><input type="checkbox" id="options_122" name="opAa" value="122"> <label for="options_122">DMB</label></li>
 						<li><input type="checkbox" id="options_123" name="opAa" value="123"> <label for="options_123">DivX</label></li>
 						<li><input type="checkbox" id="options_124" name="opAa" value="124"> <label for="options_124">MP3</label></li>
@@ -544,8 +544,8 @@
                		<li style="width:97px"><input type="checkbox" name="opTune" id="options_138" value="138"> <label for="options_138">ECU맵핑</label></li>
                		<li style="width:97px"><input type="checkbox" name="opTune" id="options_139" value="139"> <label for="options_139">터보차저</label></li>
                		<li style="width:97px"><input type="checkbox" name="opTune" id="options_140" value="140"> <label for="options_140">슈퍼차저</label></li>
-               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_141" value="141"> <label for="options_141">다운스프링</label></li>
-               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_142" value="142"> <label for="options_142">일체형쇼바</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_141" value="141"> <label for="options_141" style="font-size: 0.7em;">다운스프링</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_142" value="142"> <label for="options_142" style="font-size: 0.7em;">일체형쇼바</label></li>
                		<li style="width:97px"><input type="checkbox" name="opTune" id="options_143" value="143"> <label for="options_143">NA튜닝</label></li>
                		<li style="width:97px"><input type="checkbox" name="opTune" id="options_144" value="144"> <label for="options_144">오디오</label></li>
                		<li style="width:97px"><input type="checkbox" name="opTune" id="options_145" value="145"> <label for="options_145">스트럿바</label></li>
@@ -554,7 +554,7 @@
                		<li style="width:97px"><input type="checkbox" name="opTune" id="options_148" value="148"> <label for="options_148">브레이크</label></li>
                		<li style="width:97px"><input type="checkbox" name="opTune" id="options_149" value="149"> <label for="options_149">스포일러</label></li>
                		<li style="width:97px"><input type="checkbox" name="opTune" id="options_150" value="150"> <label for="options_150">휠/타이어</label></li>
-               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_151" value="151"> <label for="options_151">에어로파츠</label></li>
+               		<li style="width:97px"><input type="checkbox" name="opTune" id="options_151" value="151"> <label for="options_151" style="font-size: 0.7em;">에어로파츠</label></li>
                	</ul>
 				</td>
 			</tr>

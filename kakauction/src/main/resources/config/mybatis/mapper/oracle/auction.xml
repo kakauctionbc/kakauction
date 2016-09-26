@@ -70,7 +70,7 @@
 						        ]]>	
 						        )
 							    <if test="searchKeyword!=null and searchKeyword!=''">
-									where #{searchCondition} like '%'||#{searchKeyword}||'%'
+									where ${searchCondition} like '%'||#{searchKeyword}||'%'
 								</if>                	
 		                		)
 		                    	<if test="carSizes!=null and carSizes!=''">

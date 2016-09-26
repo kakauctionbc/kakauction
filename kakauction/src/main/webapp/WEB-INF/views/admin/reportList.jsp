@@ -83,8 +83,8 @@
 			<colgroup>
 				<col style="width:10%;" />
 			<col style="width:40%;" />
-			<col style="width:15%;" />
-			<col style="width:15%;" />
+			<col style="width:20%;" />
+			<col style="width:10%;" />
 			<col style="width:10%;" />
 			<col style="width:10%;" />		
 		</colgroup>
@@ -112,9 +112,13 @@
 				<tr style="text-align: center">
 					<td>${vo.reportNo}</td>
 					<td style="text-align: left;">
-						<a href="<c:url value='/report/detail.do?reportNo=${vo.reportNo}'/>">
+						<a href="<c:url value='/report/detail.do?reportNo=${vo.reportNo}'/>"
+							<c:if test="${vo.reportResult=='N' }">
+								style="font-weight: bold;"
+							</c:if>>
 							<!-- 제목이 긴 경우 일부만 보여주기 -->
 							<c:if test="${fn:length(vo.reportTitle)>30}">
+								
 								${fn:substring(vo.reportTitle, 0,30)}...
 							</c:if>
 							<c:if test="${fn:length(vo.reportTitle)<=30}">

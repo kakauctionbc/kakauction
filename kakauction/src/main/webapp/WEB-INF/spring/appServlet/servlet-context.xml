@@ -51,5 +51,23 @@
 	        <beans:ref bean ="loginInterceptor" />
 		</interceptor>
 	</interceptors>
+
+	<interceptors> 
+		<interceptor>
+	        <mapping path="/admin/*" />
+	        <mapping path="/car/*" />
+	        <mapping path="/auction/list.do" />
+	        <mapping path="/auction/auctiongo.do" />
+	        <mapping path="/auction/myAuctionList.do" />
+	        <mapping path="/auction/auctionSuccess.do" />
+	        <mapping path="/auction/todayList.do" />
+	        <mapping path="/auction/updateCount.do" />
+	        <mapping path="/notice/detail.do" />
+	        <mapping path="/freeboard/write.do" />
+	        <mapping path="/freeboard/updateCount.do" />
+	        <mapping path="/freeboard/detail.do" />
+	        <beans:ref bean ="stopMemberInterceptor" />
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>

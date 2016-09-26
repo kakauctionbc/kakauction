@@ -69,7 +69,7 @@ body{ margin-bottom:5px;}
 
 #mainsearch{
 	float:left;
-	width:360px;
+	width:330px;
 	height: 35px;
 	border-bottom: 5px solid #FAE100;
 	margin-top: 37px;	
@@ -83,7 +83,7 @@ body{ margin-bottom:5px;}
 	float: left;
 	margin-left: 15px;
 	border-style: none;
-	width:210px;
+	width:180px;
 	margin-top: 13px;
 }
 #keyword:focus{

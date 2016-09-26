@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 @Component
@@ -21,6 +20,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		//로그인 안된 경우 먼저 로그인하도록 에러 처리
 		HttpSession session= request.getSession();
 		String userid = (String)session.getAttribute("memberId");
+		String memberGrade = (String)session.getAttribute("memberGrade");
 		
 		if(userid==null || userid.isEmpty()){
 			request.setAttribute("msg", "먼저 로그인하세요");
@@ -32,7 +32,18 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			dispatcher.forward(request, response);
 			
 			return false; //다음 컨트롤러가 수행되지 않음
-		}else{		
+		}else{
+			if("STOP".equals(memberGrade)){
+				request.setAttribute("msg", "불량회원입니다");
+				request.setAttribute("url","/index.do");
+				
+				RequestDispatcher dispatcher
+				=request.getRequestDispatcher(
+					"/WEB-INF/views/common/message.jsp");
+				dispatcher.forward(request, response);
+				
+				return false; //다음 컨트롤러가 수행되지 않음
+			}
 			return true;  //다음 컨트롤러가 수행됨
 		}
 	}
