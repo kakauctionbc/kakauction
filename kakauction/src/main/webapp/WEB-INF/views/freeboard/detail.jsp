@@ -59,6 +59,17 @@ a:hover{
 	text-decoration: blink;
 	color: #fae100;
 }
+#btReport{
+	border: 0;
+	outline:  0;
+	background-color: white;
+}
+#btlikeBoard{
+	border: 0;
+	outline:  0;
+	background-color: white;
+	margin-right: 10px;
+}
 </style>
 <div id="wrap">
 	<div id="wrapdiv">
@@ -109,17 +120,17 @@ a:hover{
 		<div class="center">
          <c:if test="${freeVo.memberId == sessionScope.memberId }">
             <a href ="<c:url value='/freeboard/edit.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
-            수정</a> |
+            <img alt="수정" src="<c:url value='/img2/btEdit.png'/>"></a> 
               <a id="df" href="<c:url value='/freeboard/delete.do?freeboardNo=${freeVo.freeboardNo}&freeboardFilename=${freeVo.freeboardFilename}'/>">
-            삭제</a> |
-              <a href="<c:url value='/freeboard/list.do'/>">목록</a>         
+            <img alt="삭제" src="<c:url value='/img2/btDel.png'/>"></a> 
+              <a href="<c:url value='/freeboard/list.do'/>"><img alt="목록" src="<c:url value='/img2/btList2.png'/>"></a>         
          </c:if>
          <c:if test="${freeVo.memberId != sessionScope.memberId }">
-            <a href="<c:url value='/freeboard/list.do'/>">목록</a>
-            <button id="btReport">신고하기</button>
+            <a href="<c:url value='/freeboard/list.do'/>"><img alt="목록" src="<c:url value='/img2/btList.png'/>"></a> 
+            <button id="btReport"><img alt="신고" src="<c:url value='/img2/btReport.png'/>"></button>
+	         <input type="hidden" id="nowMem" value="${sessionScope.memberId}">
+	         <button id="btlikeBoard"><img alt="좋아요" src="<c:url value='/img2/btLike.png'/>"></button>
          </c:if>
-         <input type="hidden" id="nowMem" value="${sessionScope.memberId}">
-         <button id="btlikeBoard">좋아요</button>
       </div>
 	</div>
 	<jsp:include page="/freeboardreply/comment.do?freeboardNo=${param.freeboardNo }"></jsp:include>
