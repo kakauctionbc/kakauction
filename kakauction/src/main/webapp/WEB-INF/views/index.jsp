@@ -171,7 +171,7 @@ $(function() {
                <p id="text">◎회사 위치</p>
             </div>
             <div>
-               <p><img alt="오시는 길" src="${pageContext.request.contextPath }/img/company.png" style="width: 350px"></p>
+               <p><img alt="오시는 길" src="${pageContext.request.contextPath }/img/company.png" style="width: 340px;"></p>
                <p><a id="showBigMap"><img alt="지도 크게보기" src="${pageContext.request.contextPath }/img/showBigMap.png" style="width: 180px"></a></p>
             </div>
          </div>

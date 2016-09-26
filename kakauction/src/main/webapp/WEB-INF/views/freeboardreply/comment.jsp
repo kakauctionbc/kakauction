@@ -61,6 +61,34 @@
 		});
 	});
 </script>
+<style type="text/css">
+.box1 tbody tr td a:hover{
+	text-decoration: underline;
+	color: blue;
+}
+.box1 tbody tr td{
+	font-size: 0.8em;
+}
+.box1{
+	width: 1000px;
+	border: 1px solid silver;
+	border-collapse: collapse;
+}
+.box1 tr th{
+	font-size: 0.8em;
+	height: 35px;
+	border-top:1px solid silver;
+	border-bottom:1px solid silver;
+	background: #fffffb;
+}
+.box1 tr td{
+	height: 40px;
+	border-bottom: 1px solid silver;	
+}
+.box1 tbody tr td{
+	height: 30px;
+}
+</style>
 </head>
 <body>
 	<form name="frmPage" method="post" action="<c:url value='/freeboard/detail.do?freeboardNo=${freeVo.freeboardNo}'/>">
@@ -68,7 +96,7 @@
 	</form>
 	<div class="comment">
 	<br><br>
-		<table class="box2"
+		<table class="box1"
 	 		summary="게시판 댓글에 대한 표로써, 작성자, 내용, 작성일시에 대한 정보를 제공합니다." style="width: 1000px">
 	 		<colgroup>
 				<col style="width:10%;" />
@@ -86,7 +114,7 @@
 			</thead>
 			<c:if test="${empty alist1 }">
 				<tr>
-					<td colspan="4" class="align_center">등록된 댓글이 없습니다.</td>
+					<td colspan="4" style="text-align: center;">등록된 댓글이 없습니다.</td>
 				</tr>
 			</c:if>
 			<c:if test="${!empty alist1 }">
@@ -159,7 +187,7 @@
 					<input type="hidden" id="memberId" name="memberId" style="width: 30%" value="${sessionScope.memberId }" readonly>
 					<input type="hidden" name="freeboardNo" value="${freeVo.freeboardNo}">
 					<p style="margin-top: 20px;">
-						<textarea rows="1" cols="165" name="freereplyContent" id="freereplyContent" style="height: 50px;"></textarea>
+						<textarea rows="1" cols="165" name="freereplyContent" id="freereplyContent" style="height: 50px;width:1000px;font-size: 1em;"></textarea>
 						<input type="submit" name="commentSubmit" value="확인" style="margin-left: 480px; margin-top: 20px;">
 					</p>
 				</fieldset>

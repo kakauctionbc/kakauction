@@ -33,7 +33,7 @@
 						<td class="scheduleTitle">
 							<a href="<c:url value='/auction/auctiongo.do?auctionNo=${vo.auctionNo }'/>">
 							KAKAUCTION
-							<fmt:formatDate value="${vo.auctionRegdate}" pattern="yyyy/MM/dd"/> 
+							<fmt:formatDate value="${vo.auctionRegdate}" pattern="MM/dd"/> 
 							 ${vo.auctionNo}회차 경매
 							 </a> 
 							 

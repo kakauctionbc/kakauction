@@ -68,9 +68,9 @@
 						<th>연식</th>
 						<th>변속기</th>
 						<th>감정평가액</th>
-						<th>물건상태</th>
+						<th style="border-right: 1px solid silver;">물건상태</th>
 						<th rowspan="2">물건번호</th>
-						<th>입찰시작</th>
+						<th style="border-left: 1px solid silver;">입찰시작</th>
 						<th rowspan="2" class="readCount">조회</th>
 					</tr>
 					<tr>
@@ -85,7 +85,7 @@
 				<tbody>
 					<c:if test="${empty alist}">
 						<tr>
-							<td colspan="10" class="align_center">해당 데이터가 없습니다</td>
+							<td colspan="10" style="text-align: center;">해당 데이터가 없습니다</td>
 						</tr>
 					</c:if>
 					<c:if test="${!empty alist}">
