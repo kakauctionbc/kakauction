@@ -5,32 +5,69 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js' />"></script>
 <style>
-	#loginp p{
-		font-size: 1.2em;
-	}
-	#join{
-		margin-left: 30px;
-	}
-	#searchpwd{
-		margin-left: 30px;
-	}
-	.name{
-		margin-left: 30px;
-	}
-	.result{
-		width:500px;
-	}
-	.result td{
-		text-align: center;
-	}
-	tr{
-		height: 15px;
-	}
-	h1{
-		font-size: 2em;
-		font-weight: bold;
-		margin-bottom: 10px;
-	}
+#loginp p{
+	font-size: 1.2em;
+}
+#join{
+	margin-left: 30px;
+}
+#searchpwd{
+	margin-left: 30px;
+}
+.name{
+	margin-left: 30px;
+}
+.result{
+	width:500px;
+}
+.result td{
+	text-align: center;
+}
+tr{
+	height: 15px;
+}
+h1{
+	font-size: 2em;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.uf_simpleForm{
+	margin-left: 250px;
+	margin-top: 70px;
+}
+.uf_simpleForm #memberId{
+	margin-bottom: 10px;
+}
+#userfind_pwd_btn{
+	background-color: #fae100;
+    color: black;
+    cursor: pointer;
+    width: 80px;
+    height:30px;
+	border-radius: 10%;
+	box-shadow: 0 5px 5px lightgray;
+	font-weight: bold;
+	margin-left: 140px;
+	float: left;
+}
+#userfind_pwd_reset{
+	background-color: #f2f2ee;
+    color: black;
+    cursor: pointer;
+    width: 100px;
+    height:30px;
+	border-radius: 10%;
+	box-shadow: 0 5px 5px lightgray;
+	font-weight: bold;
+	margin-left:20px;
+	float: left;
+}
+.userfind_pwd_article{
+	width: 100px;
+	border-radius: 10px;
+	background: #f2f2ee;
+	margin-bottom: 20px;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -62,11 +99,12 @@
 			<h1>비밀번호 찾기</h1>
 		</div>
 		<div id="loginp">
-			<p>
-				아래 정보를 입력하여 주십시오. 임시비밀번호를 문자로 전송해드립니다.
+			<p style="margin-left:90px;">
+				아래 정보를 입력하여 주십시오.<br> 
+				임시비밀번호를 문자로 전송해드립니다.
 			</p>
 		</div>
-		<div class="simpleForm">
+		<div class="uf_simpleForm">
 			<form action="<c:url value="/fing/user_find_password.do"/>" name="pwsearch" id="pwsearch" method="post" >
 				<fieldset>
 					<div class="memberId">
@@ -77,11 +115,11 @@
 					<div class="jumin">	
 						<label for="memberEmail"  class="label">
 							이메일</label>
-						<input type="text" name="memberEmail" id="memberEmail">
+						<input type="text" name="memberEmail" id="memberEmail" style="width: 170px;">
 					</div>
 					<div style="width:100%; margin-top: 20px;">
-						<button type="submit" id="pwdCheck_btn">확인</button>
-						<button type="reset" onclick="location.href='${pageContext.request.contextPath }/design/index.do'" id="pwdCheck_main">취소</button>
+						<button type="submit" id="userfind_pwd_btn">확인</button>
+						<button type="reset" onclick="location.href='${pageContext.request.contextPath }/design/index.do'" id="userfind_pwd_reset">취소</button>
 					</div>
 				</fieldset>
 				<!-- 
@@ -104,12 +142,12 @@
 					<div style="width: 100%; height: 30px;"></div>
 					<div id="join">
 						<label for="join" class="label">※ 회원이 아니신가요?</label>
-						<button type="submit"
+						<button type="submit" class="userfind_pwd_article"
 							onclick="location.href='${pageContext.request.contextPath }/member/register.do'">회원가입</button>
 					</div>
 					<div id="searchpwd">
 						<label for="searchpwd" class="label">※ 아이디를 잊으셨나요?</label>
-						<button type="submit"
+						<button type="submit" class="userfind_pwd_article"
 							onclick="location.href='${pageContext.request.contextPath }/fing/user_find_id'">아이디</button>
 					</div>
 				</article>

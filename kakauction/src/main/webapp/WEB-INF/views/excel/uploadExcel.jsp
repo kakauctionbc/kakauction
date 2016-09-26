@@ -41,11 +41,6 @@
 	td, th{
 		border: 1px solid silver;
 	}
-	h1{
-		font-size: 2em;
-		font-weight: bold;
-		margin-bottom: 10px;
-	}
 	.memTable{
 		margin-top: 10px;
 	}
@@ -58,12 +53,11 @@
 	<div id="wrapdiv">
 		<div id="wraptop">
 			<p>
-				<a href="${pageContext.request.contextPath }/admin/index.do">HOME</a>>회원관리>회원조회관리
+				<a href="${pageContext.request.contextPath }/admin/index.do">HOME</a>>회원관리>회원엑셀일괄등록
 			</p>
 		</div>
 		<div id="pagelogo">
-			<%-- <img src="${pageContext.request.contextPath }/img/memberAdminister_logo.png" alt="회원가입로고"> --%>
-			<h1>회원 엑셀 일괄등록</h1>
+			<img src="${pageContext.request.contextPath }/img/excel_logo.png" alt="엑셀등록로고">
 		</div>
 		<div class="download">
 			<form action="excelFromDown" method="post" action="<c:url value='/admin/excel/uploadExcel.do'/>" enctype="multipart/form-data">

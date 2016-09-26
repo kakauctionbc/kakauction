@@ -54,7 +54,7 @@ h1{
 </script>
 <style type="text/css">
 #userfind_btn{
-	background-color: #f2f2ee;
+	background-color: #fae100;
     color: black;
     cursor: pointer;
     width: 80px;
@@ -64,6 +64,28 @@ h1{
 	font-weight: bold;
 	margin-left: 95px;
 	float: left;
+}
+#userfind_btn_reset{
+	background-color: #f2f2ee;
+    color: black;
+    cursor: pointer;
+    width: 100px;
+    height:30px;
+	border-radius: 10%;
+	box-shadow: 0 5px 5px lightgray;
+	font-weight: bold;
+	margin-left:20px;
+	float: left;
+}
+#userfind_resister{
+    width: 100px;
+    border-radius: 10px;
+    background: #f2f2ee;
+}
+#userfind_pwd{
+    width: 100px;
+    border-radius: 10px;
+    background: #f2f2ee;
 }
 </style>
 <div id="wrap">
@@ -97,7 +119,7 @@ h1{
 					</div>
 					<div style="width:100%; margin-top: 20px;">
 						<button type="submit" id="userfind_btn">확인</button>
-						<button type="reset" onclick="location.href='${pageContext.request.contextPath }/design/index.do'" id="pwdCheck_main">취소</button>
+						<button type="reset" onclick="location.href='${pageContext.request.contextPath }/design/index.do'" id="userfind_btn_reset">취소</button>
 					</div>
 				</fieldset>
 				<div style="width: 400px; height: 30px; border-top: 1px solid silver; margin-top: 20px;"></div>
@@ -117,12 +139,12 @@ h1{
 				<div style="width: 400px; height: 5px; border-top: 1px solid silver;"></div>
 				<div id="join">
 					<label for="join" class="label">※ 회원이 아니신가요?</label>
-					<button type="submit"
+					<button type="submit" id="userfind_resister"
 						onclick="location.href='${pageContext.request.contextPath }/member/register.do'">회원가입</button>
 				</div>
 				<div id="searchpwd">
 					<label for="searchpwd" class="label">※ 비밀번호를 잊으셨나요?</label>
-					<button type="submit"
+					<button type="submit" id="userfind_pwd"
 						onclick="location.href='${pageContext.request.contextPath }/fing/user_find_password.do'">비밀번호</button>
 				</div>
 		</div>
