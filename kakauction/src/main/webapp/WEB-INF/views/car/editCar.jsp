@@ -1927,9 +1927,9 @@
 						<label for="sellerAgree2" class="s2">위 내용에 동의하지 않습니다. </label>
 					</div>
 			</div>
-			<div>
+			<div style="text-align: center;">
 				<a href="#"></a>
-				<a style="cursor:pointer; color: black;" id="carEdit" href="#">차량 등록</a>
+				<a style="cursor:pointer; color: black;" id="carEdit" href="#"><img alt="차량등록" src="<%=request.getContextPath()%>/img/register_car.png"></a>
 			</div>            
 		</div>
 	</div>
