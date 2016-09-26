@@ -4,7 +4,7 @@
 <%@ include file="../design/inc/adminTop.jsp" %>
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js'/>"></script>
 <script type="text/javascript">
-	$(function(){
+	/* $(function(){
 		$("#excelUpFrom").submit(function(){
 			if($("#excel").val().length<1){
 				alert("파일을 올려주세요");
@@ -22,7 +22,7 @@
 			if(filType!=0) return true; 
 			if(fileType2!=0) return true;
 		});
-	}); 
+	});  */
 </script>
 <style>
 	.align_center{
