@@ -47,7 +47,7 @@ public class LoginController {
 		
 		String memberGrade = memberService.whereMemberGrade(memberId);
 		logger.info("memberGrade={}",memberGrade);
-		if (memberGrade.equals("BLACKLIST")) {
+		if ("BLACKLIST".equals(memberGrade)) {
 			model.addAttribute("msg", "신고로 차단된 회원입니다.");
 			model.addAttribute("url", "/login/login.do");
 			
