@@ -16,7 +16,7 @@
     <title>지도 ver.9</title>
     <style type="text/css">
     	#map{
-    		margin-left: 300px;
+    		margin-left:100px;
     		margin-top: 50px
     	}
     </style>
@@ -486,7 +486,8 @@
 		return nearMarker;
 	}
 </script>
-	<form name="inputPlace" id="inputPlace" method="post" action="<c:url value='/delivery/detail.do?auctionNo=${map["AUCTION_NO"] }'/>">
+	<form name="inputPlace" id="inputPlace" method="post" action="<c:url value='/delivery/detail.do?auctionNo=${map["AUCTION_NO"] }'/>"
+		style="margin-top: 20px; margin-left: 430px;">
 		<input type="text" name="place" id="place" value="<%=place %>">
 		<input type="submit" value="검색">
 	</form>

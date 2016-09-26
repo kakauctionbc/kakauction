@@ -13,7 +13,7 @@ body{ margin-bottom:5px;}
 	width: 100%;
     height:auto;
     margin-top: 0px;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
 }
 
 #header	{
@@ -152,7 +152,7 @@ body{ margin-bottom:5px;}
 }
 #content-member{
 	float: left;
-	margin-left: 950px;
+	margin-left: 980px;
 	padding-right: 20px;
 }
 #content-sell{

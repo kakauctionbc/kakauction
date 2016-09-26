@@ -25,7 +25,7 @@
 	}); 
 </script>
 <style>
-		.align_center{
+	.align_center{
 		text-align: center;
 	}
 	.btdel {
@@ -48,6 +48,32 @@
 	.changeGrade{
 		margin-top: 10px;
 	}
+	.download{
+		width:800px;
+		margin-top: 70px;
+		margin-left: 100px;
+		border-bottom: 1px solid silver;
+		padding-bottom: 40px;
+	}
+	.upload{
+		width:800px;
+		margin-top:50px;
+		margin-left: 100px;
+		border-bottom: 1px solid silver;
+		padding-bottom: 30px;
+	}
+	#excelDown{
+	    width: 100px;
+	    border-radius: 10px;
+	    background: #f2f2ee;
+	    margin-top: 20px;
+	}
+	#excelUp{
+		width: 100px;
+	    border-radius: 10px;
+	    background: #f2f2ee;
+	    margin-top: 20px;
+	}
 </style>
 <div id="wrap">
 	<div id="wrapdiv">
@@ -62,15 +88,14 @@
 		<div class="download">
 			<form action="excelFromDown" method="post" action="<c:url value='/admin/excel/uploadExcel.do'/>" enctype="multipart/form-data">
 				<div>
-					<p>■ 양식 다운로드</p>
+					<p>■ 양식 다운로드</p><br>
 					<p>- 회원 정보 등록을 위하여 먼저 엑셀 양식을 다운받으세요.</p>
 				</div>
 				<div class="form_group">
 					<div class="upFile">
 						<table>
 							<tr>
-								<th>양식 다운로드</th>
-								<td>						
+								<td style="border: none;">						
 									<button type="submit" id="excelDown"><a href="<c:url value='/admin/excel/downloadForm.do'/>">양식다운로드</a></button>
 								</td>
 							</tr>
@@ -82,21 +107,21 @@
 		<div class="upload">
 			<form id="excelUpFrom" method="post" action="<c:url value='/admin/excel/uploadExcel.do'/>" enctype="multipart/form-data">
 				<div>
-					<p>■ 엑셀 업로드</p>
-					<p>- 엑셀 업로드를 이용하시면 회원 정보를 일괄로 등록하실 수 있습니다.</p>
+					<p>■ 엑셀 업로드</p><br>
+					<p>- 엑셀 업로드를 이용하시면 회원 정보를 일괄로 등록하실 수 있습니다.</p><br>
 				</div>
 				<div class="notice">
-					<p>주의 사항<p>
-					<p>*엑셀 파일만 업로드 가능합니다.</p>
-					<p>*첫 번째 시트에 데이터가 있어야 합니다. [시트명 : Sheet1]</p>
-					<p>*엑셀 작성 시, 중간에 빈 줄이 없어야 합니다.</p>
+					<p style="padding-bottom: 10px;">※ 주의 사항<p>
+					<p>- 엑셀 파일만 업로드 가능합니다.</p>
+					<p>- 첫 번째 시트에 데이터가 있어야 합니다. [시트명 : Sheet1]</p>
+					<p style="padding-bottom: 10px;">- 엑셀 작성 시, 중간에 빈 줄이 없어야 합니다.</p><br>
 				</div>
 				<div class="form_group">
 					<div class="upFile">
 						<table>
 							<tr>
-								<th>엑셀파일 등록</th>
-								<td>						
+								<th style="border: none;">엑셀파일 등록 :</th>
+								<td style="border: none;">						
 									<input id="excel" type="file" name="excel">
 								</td>
 							</tr>
