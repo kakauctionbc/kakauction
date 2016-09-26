@@ -161,7 +161,7 @@
 						<div class="imgbox">
 							<img height="100px;" width="150px;" src="${pageContext.request.contextPath }/picture_upload/${bs.picture1}"
 									alt="자동차사진" />
-						</div><span class="txt">${bs.carModel}</span></a>
+						</div><span class="txt"></span></a>
 				</li>
 			</c:forEach>
 			</ul>
