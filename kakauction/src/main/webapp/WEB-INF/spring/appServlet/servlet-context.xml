@@ -69,5 +69,12 @@
 	        <beans:ref bean ="stopMemberInterceptor" />
 		</interceptor>
 	</interceptors>
+
+	<interceptors> 
+		<interceptor>
+	        <mapping path="/admin/*" />
+	        <beans:ref bean ="adminLoginInterceptor" />
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>

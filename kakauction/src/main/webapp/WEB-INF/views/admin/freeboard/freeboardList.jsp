@@ -135,7 +135,7 @@
 									<input type="checkbox" name="freeboardItems[${i}].freeboardNo" value="${vo.freeboardNo}" id="chk_${i}">
 									<c:set var="name" value="${vo.freeboardFilename}"/>
 									<c:if test="${!empty name}">
-										<input type="text" name="freeboardItems[${i}].freeboardFilename" value="${vo.freeboardFilename}" readonly="readonly">
+										<input type="hidden" name="freeboardItems[${i}].freeboardFilename" value="${vo.freeboardFilename}" readonly="readonly">
 									</c:if>
 								</td>
 								<td>${vo.freeboardNo}</td>

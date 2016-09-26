@@ -5,7 +5,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="<c:url value='/jquery/jquery-3.1.0.min.js' />"></script>
 <script type="text/javascript">
-
+	$(function(){
+		$("#pwdEditForm").submit(function(){
+			if($("#memberPwd").val()!=$("#memberPwd2").val()){
+				alert("비밀번호가 동일하지 않습니다.");
+				return false;
+			}
+		});
+	});
 </script>
 <style type="text/css">
 .pwdEditForm{
@@ -42,7 +49,7 @@
 		<div id="loginp">
 			<p style="margin-left: 70px;">${sessionScope.memberId} 님 새로운 비밀번호를 입력해주세요</p>
 		</div>
-			<form name="frm1" class="pwdEditForm" method="post" action="<c:url value='/fing/pwd_Edit.do'/>">
+			<form name="frm1" class="pwdEditForm" id="pwdEditForm" method="post" action="<c:url value='/fing/pwd_Edit.do'/>">
 				<table id="passwordEdit">
 					<colgroup>
 						<col width="120" />

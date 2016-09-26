@@ -259,8 +259,8 @@
 		<div id="pagelogo">
 			<img src="${pageContext.request.contextPath }/img/AuctionResult_logo.png" alt="경매결과로고">
 		</div>
-	<input type="button" id="timbt" value="팀버튼헤헤">
-	<input type="button" id="timbt1" value="거래취소버튼헤헤">
+	<input type="button" id="timbt" value="거래완료버튼">
+	<input type="button" id="timbt1" value="거래취소버튼">
 	<table style="margin-top: 20px;" class="box2" summary="경매 결과에 관한 표로써, 경매번호, 차량번호, 구매자아이디, 판매자아이디, 최종입찰시간, 경매 시작가, 경매 최종가격, 차량 종류, 연식, 수령지 등의 정보를 제공합니다." style="text-align: center; border: 1px solid silver">
 		<caption>경매 결과</caption>
 		<colgroup>

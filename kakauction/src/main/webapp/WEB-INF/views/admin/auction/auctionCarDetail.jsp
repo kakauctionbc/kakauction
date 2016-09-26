@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
 function Div_carphto_onoff(){
 	var n = document.getElementById("carphto_onoff").value;
@@ -162,21 +163,35 @@ function Div_carphto_onoff(){
     	background:silver;
     	width: 400px;
     }
+    .auctionStateTable{
+		width: 1000px;
+		border: 3px solid black;
+		border-collapse: collapse;
+	}
+	.auctionStateTable tr td{
+		border-top:1px solid silver;
+		border-bottom:1px solid silver;
+		height: 40px;
+	}
+	
+	.auctionStateTable tbody tr td{
+		height: 30px;
+	}
 </style>
 
 	<div class="sellerInformation">
 	<input type="hidden" id="auctionNo" value="${auctionVo.auctionNo}">
-		<table>
+		<table class="auctionStateTable">
 			<c:if test="${auctionVo.auctionState!='END'}">
 				<tr>
-					<td>
+					<td style="border-top:1px solid silver;	border-bottom:1px solid silver;border-right: 1px solid silver;">
 						<a href="#" class="stopAuction" style="color:#fae100;">경매 강제 종료</a>
 					</td>
-					<td>
+			</c:if>
+					<td  style="border-top:1px solid silver;	border-bottom:1px solid silver;">
 						<a href="<c:url value='/admin/auction/auctionList.do'/>" class="AuctionList" style="color:#fae100;">경매 목록</a>
 					</td>
 				</tr>
-			</c:if>
 		</table>
 	</div>
 	<!--차량사진-->

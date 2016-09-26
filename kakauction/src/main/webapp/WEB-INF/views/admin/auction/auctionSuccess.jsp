@@ -90,11 +90,17 @@
 						<!--게시판 내용 반복문 시작  -->
 						<c:forEach var="vo" items="${alist }">
 							<tr style="text-align: center">
-								<td class="listImg"><img alt="사진" height="56px;" width="90px;" src="<c:url value='/picture_upload/${vo.picture1}'/>"></td>
+								<td class="listImg"><img alt="사진" height="56px;" width="90px;" src="${pageContext.request.contextPath }/picture_upload/${vo.PICTURE_1}"></td>
 								<td class="listSize">${vo['CAR_SIZE']}</td>
 								<c:if test="${vo['AUCTION_STATE']=='END' }">
 									<td class="listName" style="text-align: center;">
 											[종료]<br>${vo['CAR_MODEL']} 
+										</a>
+									</td>
+								</c:if>
+								<c:if test="${vo['AUCTION_STATE']=='START' }">
+									<td class="listName" style="text-align: center;">
+											<br>${vo['CAR_MODEL']} 
 										</a>
 									</td>
 								</c:if>

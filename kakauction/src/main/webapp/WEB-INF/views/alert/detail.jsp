@@ -19,6 +19,13 @@
 				$("#register").submit();
 			}
 		});
+
+		$("#deferRegister").click(function(){
+			if(confirm("등록 물품 수정창으로 이동합니다")){
+				opener.location.href = "<c:url value='/car/edit.do?carNum="+$("#carNum").val()+"'/>";
+				self.close();
+			}
+		});
 	});
 </script>
 </head>
@@ -81,6 +88,10 @@
 				<td colspan="4">
 					<c:if test="${alertVo.alertType=='AGAIN' }">
 						<input type="button" id="registerAgain" value="경매 재등록">
+					</c:if>
+					<c:if test="${alertVo.alertType=='DEFER' }">
+						<input type="hidden" id="carNum" value="${alertVo.carNum }">
+						<input type="button" id="deferRegister" value="등록 물품 수정">
 					</c:if>
 					<input type="button" id="selfClose" value="닫기">
 				</td>

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 @Component
-public class LoginInterceptor extends HandlerInterceptorAdapter{
+public class AdminLoginInterceptor extends HandlerInterceptorAdapter{
 	private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 
 	@Override
@@ -33,6 +33,17 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			
 			return false; //다음 컨트롤러가 수행되지 않음
 		}else{
+			if(!"ADMIN".equals(memberGrade)){
+				request.setAttribute("msg", "관리자가 아닙니다");
+				request.setAttribute("url","/index.do");
+				
+				RequestDispatcher dispatcher
+				=request.getRequestDispatcher(
+					"/WEB-INF/views/common/message.jsp");
+				dispatcher.forward(request, response);
+				
+				return false; //다음 컨트롤러가 수행되지 않음
+			}
 			return true;  //다음 컨트롤러가 수행됨
 		}
 	}
