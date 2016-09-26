@@ -23,25 +23,27 @@
 				<td colspan="4"><img alt="카카옥션" src="<c:url value='/img/auctionRegReportToplogo.png'/>"></td>
 			</tr>
 			<tr>
-				<td colspan="4" style="text-align: left;padding-left: 25px;">카카옥션 불량 경매 신고</td>
+				<td colspan="4" style="padding-left: 120px; font-weight: bold;">카카옥션 불량 경매 신고</td>
 			</tr>
 			<tr>
-				<td>
+				<td style="border-top: 1px solid silver; background: #fff8b5;">
 					<p>신고 제목<p>
 				</td>
-				<td colspan="3">${msgVo.msgTitle }</td>
+				<td colspan="3" style="border-top: 1px solid silver; padding-left: 10px;">${msgVo.msgTitle }</td>
 			</tr>
 			<tr>
-				<td>
+				<td style="background: #fff8b5;">
 					<p>신고자 ID</p>
 				</td>
-				<td>
+				<td style="padding-left: 10px;">
 					<p>${msgVo.reportMemberId }</p>
 				</td>
-				<td>
+			</tr>
+			<tr>
+				<td style="background: #fff8b5;">
 					<p>신고유형</p>
 				</td>
-				<td>
+				<td style="padding-left: 10px;">
 					<c:if test="${msgVo.originType == 1}">
 						자유게시판
 					</c:if>
@@ -51,10 +53,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td style="border-bottom: 1px solid silver; background: #fff8b5;">
 					<p>쪽지 수신일</p>
 				</td>
-				<td colspan="3">
+				<td colspan="3" style="border-bottom: 1px solid silver; padding-bottom: 5px; padding-left: 10px;">
 					${msgVo.msgRegdate }
 				</td>
 			</tr>
@@ -65,16 +67,16 @@
 			</tr>
 			<tr>
 				<td colspan="4">
-					<textarea id="msgContent" name="msgContent" readonly rows="5" cols="50">${msgVo.msgContent }</textarea>
+					<textarea id="msgContent" name="msgContent" readonly rows="5" cols="50" style="width: 430px; height: 130px; padding-top: 20px;">${msgVo.msgContent }</textarea>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="4">
-					<input type="button" id="selfClose" value="닫기">
+					<input type="button" id="selfClose" value="닫기" style="margin-left: 180px; margin-top: 10px; margin-bottom:30px;">
 				</td>
 			</tr>
-			<tr>
-				<td colspan="4"><img alt="카카옥션" src="<c:url value='/img/auctionRegReportBottomplogo.png'/>"></td>
+			<tr style="width: 380px; background: #fae100; height: 30px;">
+				<td colspan="4"></td>
 				</tr>
 		</table>
 	</div>
