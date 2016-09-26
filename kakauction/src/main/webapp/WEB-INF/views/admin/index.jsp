@@ -57,29 +57,8 @@
 <div id="wrap">
 	<div id="wrapdiv">
 		<div id="pagelogo">
-			<%-- <img src="${pageContext.request.contextPath }/img/auctionList_logo.png" alt="회원가입로고"> --%>
-			<h1>하이..차트..?</h1>
 		</div>
 	</div>
 </div>
-<!-- <div>
-	<table>
-		<tr>
-			<td colspan="2">
-			</td>
-		</tr>
-		<tr>
-			<td>
-				여기는 원래 하이차트가 들어가야합니다
-				왜왜오래
-				커밋안해주냐
-				이게 여기는 이거야 이거
-			</td>
-			<td>
-			</td>
-		</tr>
-
-	</table>
-</div>
- -->
+ <jsp:include page="/admin/highChart.do"></jsp:include>
 <%@ include file="../design/inc/adminBottom.jsp" %>

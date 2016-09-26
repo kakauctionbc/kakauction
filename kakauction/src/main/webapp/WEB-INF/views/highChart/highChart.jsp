@@ -62,6 +62,6 @@ $(function () {
 </script>
 </head>
 <body>
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div id="container" style="width: 1000px; height: 400px; margin: 0 auto"></div>
 </body>
 </html>
