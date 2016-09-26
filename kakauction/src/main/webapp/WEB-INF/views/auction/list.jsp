@@ -108,12 +108,31 @@
 .txt{
 	text-decoration: none;
 }
-.box2 tbody tr td a:hover{
+.box1 tbody tr td a:hover{
 	text-decoration: underline;
 	color: blue;
 }
-.box2 tbody tr td{
+.box1 tbody tr td{
 	font-size: 0.8em;
+}
+.box1{
+	width: 1000px;
+	border: 1px solid silver;
+	border-collapse: collapse;
+}
+.box1 tr th{
+	font-size: 1em;
+	height: 35px;
+	border-top:1px solid silver;
+	border-bottom:1px solid silver;
+	background: #fffffb;
+}
+.box1 tr td{
+	height: 40px;
+	border-bottom: 1px solid silver;	
+}
+.box1 tbody tr td{
+	height: 30px;
 }
 </style>
  		<!--상세검색 -->
@@ -166,7 +185,7 @@
 			<c:if test="${empty searchVO.searchKeyword }">
 				<p>전체 조회 결과 - ${pagingInfo.totalRecord }건 조회되었습니다</p>
 			</c:if>
-			<table class="box2"
+			<table class="box1"
 				summary="자료실에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
 				<caption>자료실</caption>
 				<colgroup>
@@ -190,7 +209,7 @@
 										<li><a style="cursor: pointer;" class="on" onclick="">
 											<input type="checkbox" name="chkAll" id="chkAll">전체</a></li>
 										<c:forEach var="cslist" items="${carsizeList}" varStatus="vs">
-											<li style="font-size: 0.7em; width: 47px;text-align: center;">
+											<li style="font-size: 0.8em;text-align: center;">
 											<input type="checkbox" class="listSearch" name="carSizes" value="${cslist.carSize}"
 											<c:forEach var="carSizes1" items="${searchVo.carSizes }">
 												<c:if test="${carSizes1==cslist.carSize }"> checked </c:if>
@@ -198,7 +217,7 @@
 											<input type="hidden" value="carSizes${vs.index }">
 											<label for="carSizes${vs.index}"
 											<c:forEach var="carSizes1" items="${searchVo.carSizes }">
-												<c:if test="${carSizes1==cslist.carSize }"> style="font-size: 1.2em;color:pink" </c:if>
+												<c:if test="${carSizes1==cslist.carSize }"> style="font-size: 1.2em;color:skyblue" </c:if>
 											</c:forEach>>
 											${cslist.carSize}
 											</label></li>

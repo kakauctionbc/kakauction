@@ -27,6 +27,30 @@
 		document.frmPage.submit();
 	}
 </script>
+<style>
+.box1 tbody tr td{
+	font-size: 0.8em;
+}
+.box1{
+	width: 1000px;
+	border: 1px solid silver;
+	border-collapse: collapse;
+}
+.box1 tr th{
+	font-size: 0.8em;
+	height: 35px;
+	border-top:1px solid silver;
+	border-bottom:1px solid silver;
+	background: #fffffb;
+}
+.box1 tr td{
+	height: 40px;
+	border-bottom: 1px solid silver;	
+}
+.box1 tbody tr td{
+	height: 30px;
+}
+</style>
 <div id="wrap">
 	<div id="wrapdiv">
 		<div id="wraptop">
@@ -59,7 +83,7 @@
 			<input type="submit" value="조회" >
 		</form>
 		<div class="divList">
-			<table class="box2">
+			<table class="box1">
 				<caption>나의 경매리스트</caption>
 				<colgroup>
 					<col style="width: 20%;" />

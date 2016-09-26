@@ -110,7 +110,13 @@
 </script>
 <style type="text/css">
 	th{
+		height: 30px;
+		font-size: 0.8em;
 		background: #fffffb;
+		padding-left: 10px;
+	}
+	td{
+		font-size: 0.8em;
 		padding-left: 10px;
 	}
 	th label{

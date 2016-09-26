@@ -116,7 +116,9 @@ $(function(){
 				<ul>
 					<li><a href="<c:url value='/car/register.do'/>">내차 잘 팔기</a></li>
 					<li><a href="<c:url value='/auction/list.do'/>">좋은 차 사기</a></li>
-					<li><a href="<c:url value='/member/myInfo.do'/>">마이페이지</a></li>
+					<c:if test="${!empty sessionScope.memberId }">
+						<li><a href="<c:url value='/member/myInfo.do'/>">마이페이지</a></li>
+					</c:if>
 					<li><a href="#">고객센터</a></li>
 				</ul>
 			</div>
@@ -129,8 +131,8 @@ $(function(){
 						<li><a href="<c:url value='/member/agreement.do'/>">회원가입</a></li>
 					</c:if>
 					<li><a href="<c:url value='/member/pwdCheck.do'/>">회원정보수정</a></li>
-					<li><a href="#">회사소개</a></li>
-					<li><a href="#">찾아오시는 길</a></li>
+					<!-- <li><a href="#">회사소개</a></li>
+					<li><a href="#">찾아오시는 길</a></li> -->
 				</ul>
 			</div>
 			<div id="content-sell">
@@ -145,16 +147,18 @@ $(function(){
 					<li><a href="<c:url value='/auction/front_schedule_list.do'/>">일정안내</a></li>
 				</ul>
 			</div>
-			<div id="content-myinfo">
-				<ul>
-					<li><a href="<c:url value='/auction/auctionSuccess.do'/>">경매낙찰현황</a></li>
-					<li><a href="<c:url value='/auction/myAuctionList.do'/>">경매입찰현황</a></li>
-					<li><a href="<c:url value='/car/myDeferList.do'/>">내 보류경매</a></li>
-					<li><a href="<c:url value='/auction/myPayList.do'/>">내 결제현황</a></li>
-					<%-- <li><a href="<c:url value='/report/auctionReport.do'/>">불량경매신고</a></li>
-					<li><a href="<c:url value='/freeboard/myFreeboardList.do'/>">내가 쓴 글</a></li> --%>
-				</ul>
-			</div>
+			<c:if test="${!empty sessionScope.memberId }">
+				<div id="content-myinfo">
+					<ul>
+						<li><a href="<c:url value='/auction/auctionSuccess.do'/>">경매낙찰현황</a></li>
+						<li><a href="<c:url value='/auction/myAuctionList.do'/>">경매입찰현황</a></li>
+						<li><a href="<c:url value='/car/myDeferList.do'/>">내 보류경매</a></li>
+						<li><a href="<c:url value='/auction/myPayList.do'/>">내 결제현황</a></li>
+						<%-- <li><a href="<c:url value='/report/auctionReport.do'/>">불량경매신고</a></li>
+						<li><a href="<c:url value='/freeboard/myFreeboardList.do'/>">내가 쓴 글</a></li> --%>
+					</ul>
+				</div>
+			</c:if>
 			<div id="content-notice">
 				<ul>
 					<li><a href="<c:url value='/notice/list.do'/>">공지사항</a></li>

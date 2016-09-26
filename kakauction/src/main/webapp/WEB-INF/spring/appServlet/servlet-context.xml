@@ -38,7 +38,9 @@
 	        <mapping path="/admin/*" />
 	        <mapping path="/car/*" />
 	        <mapping path="/auction/list.do" />
+	        <mapping path="/auction/auctiongo.do" />
 	        <mapping path="/auction/todayList.do" />
+	        <mapping path="/auction/updateCount.do" />
 	        <mapping path="/excel/*" />
 	        <mapping path="/notice/detail.do" />
 	        <mapping path="/freeboard/write.do" />
@@ -46,8 +48,6 @@
 	        <mapping path="/freeboard/detail.do" />
 	        <mapping path="/freeboard/edit.do" />
 	        <mapping path="/freeboard/delete.do" />
-	        <!-- <mapping path="/admin/*/*" /> -->
-	        <!-- <mapping path="/admin/*" /> -->
 	        <beans:ref bean ="loginInterceptor" />
 		</interceptor>
 	</interceptors>
