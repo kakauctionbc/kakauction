@@ -8,13 +8,13 @@
 	<div id="wrapdiv">
 		<div id="wraptop">
 			<p>
-				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>나의낙찰현황
+				<a href="${pageContext.request.contextPath }/design/index.do">HOME</a>>내 결제 현황
 			</p>
 		</div>
 		<div id="pagelogo">
 			<img
-				src="${pageContext.request.contextPath }/img/auctionSuccess_logo.png"
-				alt="회원가입로고">
+				src="${pageContext.request.contextPath }/img/pay_logo.png"
+				alt="결제현황로고">
 		</div>
 		<form name="frmPage" method="post" action="<c:url value='/auction/list.do'/>">
 			<input type="hidden" name="currentPage"> <input type="hidden"
@@ -46,8 +46,8 @@
 						<th>물건명</th>
 						<th>연식</th>
 						<th>변속기</th>
-						<th rowspan="2">거래가</th>
-						<th rowspan="2" class="readCount">조회</th>
+						<th rowspan="2" style="border-left: 1px solid silver;">거래가</th>
+						<th rowspan="2" class="readCount" style="border-right: 1px solid silver;">조회</th>
 					</tr>
 					<tr>
 						<th>소재지</th>
