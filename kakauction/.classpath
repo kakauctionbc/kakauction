@@ -26,17 +26,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/excellib"/>
-	<classpathentry kind="lib" path="D:/kaka/kakauction/kakauction/src/main/lib/commons-codec-1.10.jar"/>
-	<classpathentry kind="lib" path="D:/kaka/kakauction/kakauction/src/main/lib/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="D:/kaka/kakauction/kakauction/src/main/lib/curvesapi-1.03.jar"/>
-	<classpathentry kind="lib" path="D:/kaka/kakauction/kakauction/src/main/lib/junit-4.12.jar"/>
-	<classpathentry kind="lib" path="D:/kaka/kakauction/kakauction/src/main/lib/log4j-1.2.17.jar"/>
-	<classpathentry kind="lib" path="D:/kaka/kakauction/kakauction/src/main/lib/poi-3.14-20160307.jar"/>
-	<classpathentry kind="lib" path="D:/kaka/kakauction/kakauction/src/main/lib/poi-examples-3.14-20160307.jar"/>
-	<classpathentry kind="lib" path="D:/kaka/kakauction/kakauction/src/main/lib/poi-excelant-3.14-20160307.jar"/>
-	<classpathentry kind="lib" path="D:/kaka/kakauction/kakauction/src/main/lib/poi-ooxml-3.14-20160307.jar"/>
-	<classpathentry kind="lib" path="D:/kaka/kakauction/kakauction/src/main/lib/poi-ooxml-schemas-3.14-20160307.jar"/>
-	<classpathentry kind="lib" path="D:/kaka/kakauction/kakauction/src/main/lib/poi-scratchpad-3.14-20160307.jar"/>
-	<classpathentry kind="lib" path="D:/kaka/kakauction/kakauction/src/main/lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/kaka"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
