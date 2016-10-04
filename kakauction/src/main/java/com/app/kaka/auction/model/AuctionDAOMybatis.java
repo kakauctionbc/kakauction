@@ -307,4 +307,9 @@ public class AuctionDAOMybatis extends SqlSessionDaoSupport implements AuctionDA
 		return getSqlSession().selectList(namespace+".myPayList", memberId);
 	}
 
+	@Override
+	public List<AuctionCarVO> selectAll2(SearchVO vo) {
+		return getSqlSession().selectList(namespace+".selectAll2", vo);
+	}
+
 }

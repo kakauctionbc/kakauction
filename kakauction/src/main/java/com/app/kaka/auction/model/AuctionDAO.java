@@ -42,6 +42,7 @@ public interface AuctionDAO {
 	
 	//admin 에서 불러오는 것들
 	public List<AuctionCarVO> selectAll(SearchVO vo);
+	public List<AuctionCarVO> selectAll2(SearchVO vo);
 	public List<AuctionCarVO> selectList(SearchVO vo);
 	
 	public AuctionCarVO selectAuction(int auctionNo);

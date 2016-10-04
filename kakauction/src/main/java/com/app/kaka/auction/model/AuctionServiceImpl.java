@@ -326,4 +326,9 @@ public class AuctionServiceImpl implements AuctionService{
 	public List<Map<String, Object>> myPayList(String memberId) {
 		return auctionDao.myPayList(memberId);
 	}
+
+	@Override
+	public List<AuctionCarVO> selectAll2(SearchVO vo) {
+		return auctionDao.selectAll2(vo);
+	}
 }

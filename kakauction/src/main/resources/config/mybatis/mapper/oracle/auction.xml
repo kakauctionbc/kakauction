@@ -28,6 +28,23 @@
 			and RNUM<= #{firstRecordIndex}+ #{recordCountPerPage}
 		]]>
 	</select>
+
+	<select id="selectAll2" resultType="AuctionCarVO" parameterType="SearchVO">
+		select *
+		from
+		(
+		    select rownum as RNUM, LIST_ALL.*
+		    from
+		        (select * from admin_Auction_Car
+		        <include refid="searchWhere"></include>
+		        order by auction_no desc
+		        ) LIST_ALL    
+		) 
+		<![CDATA[
+		where  RNUM> #{firstRecordIndex} 
+			and RNUM<= #{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
+	</select>
 	
 	<select id="selectList" resultType="AuctionCarVO" parameterType="SearchVO">
 		select *
@@ -311,7 +328,7 @@
 	</select>
 	
 	<select id="selectAuction" resultType="AuctionCarVO" parameterType="int">
-		select * from auction_car2 where auction_no=#{auctionNo}
+		select * from admin_Auction_Car where auction_no=#{auctionNo}
 	</select>
 	
 	<update id="auctionDenyCar" parameterType="string">

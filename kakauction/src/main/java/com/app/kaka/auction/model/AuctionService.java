@@ -56,6 +56,7 @@ public interface AuctionService {
 	
 	//admin에서 불러오는 것들
 	public List<AuctionCarVO> selectAll(SearchVO vo);
+	public List<AuctionCarVO> selectAll2(SearchVO vo);
 	public List<AuctionCarVO> selectList(SearchVO vo);
 	
 	

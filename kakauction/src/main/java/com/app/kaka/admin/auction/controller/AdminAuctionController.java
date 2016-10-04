@@ -143,7 +143,7 @@ public class AdminAuctionController {
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 				
 		//2. db작업 - select
-		List<AuctionCarVO> alist = auctionService.selectAll(searchVo);
+		List<AuctionCarVO> alist = auctionService.selectAll2(searchVo);
 		logger.info("글목록 조회 결과 alist.size()={}", alist.size());
 		
 		//전체 레코드 개수 조회하기
